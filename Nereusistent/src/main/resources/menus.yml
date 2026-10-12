@@ -125,6 +125,17 @@ menus:
         actions:
           - "[close]"
           - "[player] nereus"
+      gadget:
+        slot: 36
+        material: LEVER
+        name: "&fGadget Hotbar"
+        lore:
+          - "&7Item Nereusistent di hotbar."
+          - "&7Status: {gadget_state}"
+          - ""
+          - "&eKlik untuk hidupkan/matikan"
+        actions:
+          - "[toggle-gadget]"
       close:
         slot: 44
         material: BARRIER

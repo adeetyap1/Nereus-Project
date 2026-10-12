@@ -107,6 +107,8 @@ public final class MenuManager {
                 "server_name", plugin.getConfig().getString("server-name", "Nereus Throne"),
                 "online", String.valueOf(Bukkit.getOnlinePlayers().size()),
                 "max", String.valueOf(Bukkit.getMaxPlayers()),
+                "gadget_state", plugin.messages().raw(
+                        plugin.gadgets().isDisabled(p.getUniqueId()) ? "state-off" : "state-on"),
         };
     }
 
@@ -202,6 +204,10 @@ public final class MenuManager {
                 case "message" -> p.sendMessage(Text.parse(Text.papi(p, arg)));
                 case "sound" -> p.playSound(p.getLocation(), arg, clickVolume, 1f);
                 case "link" -> sendLink(p, arg);
+                case "toggle-gadget" -> {
+                    plugin.gadgets().toggle(p);
+                    open(p, menuId);
+                }
                 default -> plugin.getLogger().warning("Unknown menu action: " + line);
             }
         }

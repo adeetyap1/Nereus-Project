@@ -26,6 +26,7 @@ gadget:
     - "&8Developer: &7{developer}"
   glow: true
   custom-model-data: 0         # 0 = tidak dipakai
+  allow-toggle: true           # pemain boleh mematikan gadget sendiri (/nsi toggle atau tombol di menu)
   open-cooldown-ms: 300
   check-interval-seconds: 2    # cek ulang & pulihkan item kalau hilang
   disabled-worlds: []          # world yang tidak dapat gadget, mis. ["lobby"]

@@ -8,6 +8,11 @@ given: "{prefix}&aGadget diberikan ke &f{player}&a."
 not-found: "{prefix}&cPlayer tidak ditemukan."
 unknown-menu: "{prefix}&cMenu '{menu}' tidak ditemukan."
 link: "{prefix}&7Klik untuk membuka: &b&n{url}"
+state-on: "&aON"
+state-off: "&cOFF"
+gadget-on: "{prefix}&aGadget dihidupkan kembali."
+gadget-off: "{prefix}&7Gadget dimatikan. Ketik &f/nsi toggle &7atau buka menu untuk menghidupkan lagi."
+toggle-denied: "{prefix}&cKamu tidak bisa mematikan gadget."
 
 about:
   - "&8&m                                   "

@@ -47,6 +47,13 @@ public final class NereusistentCommand implements TabExecutor {
                 plugin.messages().send(sender, "given", "player", target.getName());
             }
             case "about", "info" -> about(sender);
+            case "toggle" -> {
+                if (sender instanceof Player p) {
+                    plugin.gadgets().toggle(p);
+                } else {
+                    plugin.messages().send(sender, "players-only");
+                }
+            }
             default -> {
                 if (sender instanceof Player p && p.hasPermission("nereusistent.use")) {
                     plugin.gadgets().open(p);
@@ -68,7 +75,7 @@ public final class NereusistentCommand implements TabExecutor {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (args.length == 1) {
-            List<String> subs = new ArrayList<>(List.of("about"));
+            List<String> subs = new ArrayList<>(List.of("about", "toggle"));
             if (sender.hasPermission("nereusistent.admin")) {
                 subs.add("give");
                 subs.add("reload");

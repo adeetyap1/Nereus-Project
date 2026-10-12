@@ -10,11 +10,14 @@ commands:
   nereusistent:
     description: Gadget Nereusistent
     aliases: [nsi, gadget]
-    usage: /<command> [give [player]|reload|about]
+    usage: /<command> [toggle|give [player]|reload|about]
 
 permissions:
   nereusistent.use:
     description: Dapat gadget di hotbar dan bisa membuka menunya
+    default: true
+  nereusistent.toggle:
+    description: Boleh mematikan/menghidupkan gadget sendiri
     default: true
   nereusistent.admin:
     description: Reload dan give gadget

@@ -1,9 +1,13 @@
 package me.naook1.nereusistent.gadget;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 import me.naook1.nereusistent.Nereusistent;
 import me.naook1.nereusistent.util.SmallCaps;
@@ -13,6 +17,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -28,6 +33,8 @@ public final class GadgetManager {
     private final NamespacedKey key;
     private final Map<UUID, Long> lastOpen = new HashMap<>();
     private final List<String> disabledWorlds = new ArrayList<>();
+    private final Set<UUID> disabled = new HashSet<>();
+    private final File dataFile;
     private BukkitTask task;
 
     private int slot = 8;
@@ -42,6 +49,8 @@ public final class GadgetManager {
     public GadgetManager(Nereusistent plugin) {
         this.plugin = plugin;
         this.key = new NamespacedKey(plugin, "gadget");
+        this.dataFile = new File(plugin.getDataFolder(), "data.yml");
+        loadData();
     }
 
     public void reload() {
@@ -96,7 +105,9 @@ public final class GadgetManager {
     }
 
     public boolean canHave(Player p) {
-        return p.hasPermission("nereusistent.use") && !disabledWorlds.contains(p.getWorld().getName());
+        return p.hasPermission("nereusistent.use")
+                && !disabledWorlds.contains(p.getWorld().getName())
+                && !disabled.contains(p.getUniqueId());
     }
 
     public ItemStack build(Player p) {
@@ -170,6 +181,57 @@ public final class GadgetManager {
         }
         lastOpen.put(p.getUniqueId(), now);
         plugin.menus().open(p, "main");
+    }
+
+    public boolean isDisabled(UUID uuid) {
+        return disabled.contains(uuid);
+    }
+
+    /** A player turns their own gadget off/on (saved). Returns false if toggling is not allowed. */
+    public boolean toggle(Player p) {
+        if (!plugin.getConfig().getBoolean("gadget.allow-toggle", true) || !p.hasPermission("nereusistent.toggle")) {
+            plugin.messages().send(p, "toggle-denied");
+            return false;
+        }
+        if (disabled.remove(p.getUniqueId())) {
+            saveData();
+            ensure(p, false);
+            plugin.messages().send(p, "gadget-on");
+        } else {
+            disabled.add(p.getUniqueId());
+            saveData();
+            strip(p);
+            plugin.messages().send(p, "gadget-off");
+        }
+        return true;
+    }
+
+    private void loadData() {
+        if (!dataFile.exists()) {
+            return;
+        }
+        YamlConfiguration y = YamlConfiguration.loadConfiguration(dataFile);
+        for (String s : y.getStringList("disabled")) {
+            try {
+                disabled.add(UUID.fromString(s));
+            } catch (IllegalArgumentException ignored) {
+                // skip bad entry
+            }
+        }
+    }
+
+    private void saveData() {
+        YamlConfiguration y = new YamlConfiguration();
+        List<String> ids = new ArrayList<>();
+        for (UUID u : disabled) {
+            ids.add(u.toString());
+        }
+        y.set("disabled", ids);
+        try {
+            y.save(dataFile);
+        } catch (IOException e) {
+            plugin.getLogger().warning("Could not save data.yml: " + e.getMessage());
+        }
     }
 
     public void forget(UUID uuid) {
