@@ -1,0 +1,17 @@
+# messages.yml - Developer: naook1/adityap
+prefix: "&8[&6Nereusistent&8] &7"
+
+no-permission: "{prefix}&cKamu tidak punya izin untuk itu."
+players-only: "{prefix}&cCommand ini hanya untuk player."
+reloaded: "{prefix}&aConfig dan menu berhasil di-reload."
+given: "{prefix}&aGadget diberikan ke &f{player}&a."
+not-found: "{prefix}&cPlayer tidak ditemukan."
+unknown-menu: "{prefix}&cMenu '{menu}' tidak ditemukan."
+link: "{prefix}&7Klik untuk membuka: &b&n{url}"
+
+about:
+  - "&8&m                                   "
+  - "&6Nereusistent &7v{version}"
+  - "&7Developer: &f{developer}"
+  - "&7Server: &f{server_name}"
+  - "&8&m                                   "

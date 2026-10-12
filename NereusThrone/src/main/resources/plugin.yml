@@ -1,0 +1,36 @@
+name: NereusThrone
+version: '${project.version}'
+main: me.naook1.nereusthrone.NereusThrone
+api-version: '1.21'
+authors: [naook1, adityap]
+description: Custom join/leave, AFK rewards, daily and menus. Developer naook1/adityap
+softdepend: [PlaceholderAPI, LuckPerms, Essentials, CrazyCrates, PlayerKits2, DeluxeMenus, floodgate]
+
+commands:
+  nereus:
+    description: Menu utama NereusThrone
+    aliases: [nereusthrone, nt]
+    usage: /<command> [join|leave|daily|kits|settings|afk|about|reload]
+  afk:
+    description: Tandai dirimu AFK
+    usage: /<command> [alasan]
+
+permissions:
+  nereus.use:
+    description: Buka menu /nereus
+    default: true
+  nereus.afk:
+    description: Pakai /afk
+    default: true
+  nereus.afk.reward:
+    description: Dapat reward saat AFK
+    default: true
+  nereus.afk.exempt:
+    description: Tidak kena auto-AFK
+    default: false
+  nereus.bypass:
+    description: Bisa pakai semua join/leave style
+    default: op
+  nereus.admin:
+    description: Reload dan admin
+    default: op

@@ -1,0 +1,136 @@
+# ============================================================
+#  NereusThrone
+#  Developer : naook1/adityap
+#  Server    : 1.21.1 (Paper) | Java 21 | Java + Bedrock (Geyser)
+# ============================================================
+# Warna: &a &l dll, hex &#RRGGBB. Awali teks dengan [mm] untuk MiniMessage (gradient).
+# Placeholder: {player} dll, dan %placeholderapi% kalau PlaceholderAPI terpasang.
+
+developer: "naook1/adityap"
+
+# Teks otomatis diubah jadi small caps (ᴄᴏɴᴛᴏʜ ɪɴɪ).
+# Matikan kalau mau tulis teks sendiri persis seperti di file.
+small-caps:
+  gui: true        # gui.yml + nama hadiah daily
+  messages: true   # messages.yml
+  styles: true     # styles.yml (join/leave style)
+
+join-leave:
+  enabled: true
+  join-delay-ticks: 2
+  sound-volume: 0.7
+
+kits:
+  # Command PlayerKits2 yang dijalankan tombol Kits
+  command: "kit"
+
+# ------------------------------------------------------------
+#  AFK  (/afk [alasan])
+# ------------------------------------------------------------
+afk:
+  enabled: true
+  auto-afk-minutes: 5          # 0 = matikan auto AFK
+  unafk-on-activity: true      # gerak/chat/command/klik = tidak AFK lagi
+  default-reason: "Tidak ada alasan"
+  auto-reason: "Tidak aktif"
+  max-reason-length: 40
+  reward:
+    enabled: true
+    interval-minutes: 5        # tiap 5 menit AFK dapat reward
+    max-afk-minutes: 120       # lewat ini tidak dapat reward lagi (0 = tanpa batas)
+    sound: "entity.experience_orb.pickup"
+    money:
+      enabled: true
+      base: 1000               # reward pertama
+      increase-per-cycle: 500  # naik tiap siklus (AFK makin lama makin besar)
+      max: 10000               # batas atas (0 = tanpa batas)
+      # {player} {amount} {minutes} {cycle}
+      commands:
+        - "eco give {player} {amount}"
+    keys:
+      enabled: true
+      chance: 20.0             # peluang (%) dapat key di tiap siklus
+      # Cek syntax CrazyCrates kamu dengan /crates help, lalu sesuaikan.
+      # {player} {crate} {amount}
+      command: "crates give virtual {crate} {amount} {player}"
+      pool:                    # weight = rate relatif antar key
+        - crate: "vote"
+          display: "&aVote Key"
+          weight: 60
+          amount: 1
+        - crate: "rare"
+          display: "&9Rare Key"
+          weight: 30
+          amount: 1
+        - crate: "epic"
+          display: "&dEpic Key"
+          weight: 10
+          amount: 1
+
+# ------------------------------------------------------------
+#  DAILY (bawaan NereusThrone, reset tengah malam sesuai timezone)
+# ------------------------------------------------------------
+daily:
+  enabled: true
+  timezone: "Asia/Makassar"
+  loop: true                   # setelah hari terakhir kembali ke hari 1
+  # Lewat sehari = streak ulang dari hari 1.
+  # {player} {day}
+  rewards:
+    1:
+      name: "Day 1"
+      icon: GOLD_NUGGET
+      lore:
+        - "&7+ &e$2,000"
+      commands:
+        - "eco give {player} 2000"
+    2:
+      name: "Day 2"
+      icon: GOLD_INGOT
+      lore:
+        - "&7+ &e$3,000"
+      commands:
+        - "eco give {player} 3000"
+    3:
+      name: "Day 3"
+      icon: IRON_INGOT
+      lore:
+        - "&7+ &e$4,000"
+        - "&7+ &f16 Iron Ingot"
+      commands:
+        - "eco give {player} 4000"
+        - "give {player} minecraft:iron_ingot 16"
+    4:
+      name: "Day 4"
+      icon: EMERALD
+      lore:
+        - "&7+ &e$5,000"
+      commands:
+        - "eco give {player} 5000"
+    5:
+      name: "Day 5"
+      icon: DIAMOND
+      lore:
+        - "&7+ &e$7,500"
+        - "&7+ &b4 Diamond"
+      commands:
+        - "eco give {player} 7500"
+        - "give {player} minecraft:diamond 4"
+    6:
+      name: "Day 6"
+      icon: GOLDEN_APPLE
+      lore:
+        - "&7+ &e$10,000"
+        - "&7+ &62 Golden Apple"
+      commands:
+        - "eco give {player} 10000"
+        - "give {player} minecraft:golden_apple 2"
+    7:
+      name: "Day 7 &d(Bonus)"
+      icon: CHEST
+      lore:
+        - "&7+ &e$15,000"
+        - "&7+ &b8 Diamond"
+      commands:
+        - "eco give {player} 15000"
+        - "give {player} minecraft:diamond 8"

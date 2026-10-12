@@ -1,0 +1,95 @@
+# styles.yml - Join & Leave style - Developer: naook1/adityap
+#
+# Siapa yang boleh pakai style?
+#   permission : node LuckPerms (mis. nereus.join.vip)
+#   ranks      : nama group LuckPerms (mis. vip). Member group itu (termasuk inherit) boleh pakai.
+#   Boleh isi salah satu atau dua-duanya (cukup salah satu terpenuhi).
+#   Kosong semua = semua player boleh. (OP / nereus.bypass bebas pakai semua.)
+#
+# message : {player} dan placeholder PAPI (mis. %luckperms_prefix%) bisa dipakai.
+#           Awali [mm] untuk MiniMessage (gradient).
+# sound   : key sound Minecraft (mis. entity.player.levelup), kosong = tanpa suara.
+#
+# Nama group di bawah hanya contoh. Sesuaikan dengan group LuckPerms servermu.
+
+default-join: default
+default-leave: default
+
+first-join:
+  enabled: true
+  message: "&8[&d★&8] &d{player} &7baru pertama kali bergabung di &6Nereus Throne&7!"
+
+join-styles:
+  default:
+    name: "&7Default"
+    icon: PAPER
+    permission: ""
+    ranks: []
+    message: "&8[&a+&8] &7{player}"
+    sound: ""
+  vip:
+    name: "&aVIP"
+    icon: EMERALD
+    permission: "nereus.join.vip"
+    ranks: ["vip"]
+    message: "&8[&a+&8] &a{player} &7bergabung ke server"
+    sound: "entity.experience_orb.pickup"
+  mvp:
+    name: "&bMVP"
+    icon: DIAMOND
+    permission: "nereus.join.mvp"
+    ranks: ["mvp"]
+    message: "[mm]<gradient:#00c6ff:#0072ff>✦ {player} bergabung ke server ✦</gradient>"
+    sound: "entity.player.levelup"
+  kaiser:
+    name: "&6Kaiser"
+    icon: GOLDEN_HELMET
+    permission: "nereus.join.kaiser"
+    ranks: ["kaiser"]
+    message: "[mm]<gradient:#ff9a00:#ffdd00>♛ Kaiser {player} telah tiba! ♛</gradient>"
+    sound: "ui.toast.challenge_complete"
+  emperor:
+    name: "&dEmperor"
+    icon: NETHER_STAR
+    permission: "nereus.join.emperor"
+    ranks: ["emperor"]
+    message: "[mm]<gradient:#ff00cc:#3333ff>⚔ Sang Emperor {player} memasuki Nereus Throne ⚔</gradient>"
+    sound: "entity.ender_dragon.growl"
+    sound-pitch: 1.2
+
+leave-styles:
+  default:
+    name: "&7Default"
+    icon: PAPER
+    permission: ""
+    ranks: []
+    message: "&8[&c-&8] &7{player}"
+    sound: ""
+  vip:
+    name: "&aVIP"
+    icon: EMERALD
+    permission: "nereus.leave.vip"
+    ranks: ["vip"]
+    message: "&8[&c-&8] &a{player} &7meninggalkan server"
+    sound: ""
+  mvp:
+    name: "&bMVP"
+    icon: DIAMOND
+    permission: "nereus.leave.mvp"
+    ranks: ["mvp"]
+    message: "[mm]<gradient:#0072ff:#00c6ff>✦ {player} meninggalkan server ✦</gradient>"
+    sound: ""
+  kaiser:
+    name: "&6Kaiser"
+    icon: GOLDEN_HELMET
+    permission: "nereus.leave.kaiser"
+    ranks: ["kaiser"]
+    message: "[mm]<gradient:#ffdd00:#ff9a00>♛ Kaiser {player} pamit undur diri ♛</gradient>"
+    sound: ""
+  emperor:
+    name: "&dEmperor"
+    icon: NETHER_STAR
+    permission: "nereus.leave.emperor"
+    ranks: ["emperor"]
+    message: "[mm]<gradient:#3333ff:#ff00cc>⚔ Sang Emperor {player} meninggalkan takhta ⚔</gradient>"
+    sound: ""
