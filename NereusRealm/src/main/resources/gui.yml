@@ -1,4 +1,4 @@
-file-version: 2
+file-version: 3
 # gui.yml - Menu /nereus - Developer: naook1/adityap
 #
 # Teks otomatis small caps (small-caps.gui di config.yml).
@@ -16,6 +16,7 @@ file-version: 2
 #   [message] <teks>       kirim pesan          [sound] <key>           mainkan sound
 #   [link] <url>           kirim link klik      [page] next|prev        ganti halaman
 #   [daily]                claim daily          [afk]                   toggle AFK
+#   [afk-reason]           mulai AFK + tanya alasan di chat
 #   [toggle] <flag>        show-joinleave | show-afk | show-rewards
 #   [custom-set|custom-use|custom-reset] join|leave
 #   [feedback-start]       mulai beri rating    [rate] 1-5              pilih bintang
@@ -460,10 +461,11 @@ menus:
         name: "&aMulai AFK"
         lore:
           - "&7Mulai kumpulkan reward sekarang."
+          - "&7Kamu akan diminta menulis alasan AFK."
           - ""
           - "&eKlik untuk mulai"
         actions:
-          - "[afk]"
+          - "[afk-reason]"
       toggle-off:
         slot: 22
         show-if: afk

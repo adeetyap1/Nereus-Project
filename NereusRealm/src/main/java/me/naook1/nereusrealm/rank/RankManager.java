@@ -7,7 +7,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import me.naook1.nereusrealm.NereusRealm;
+import me.naook1.nereusrealm.hook.LuckPermsHook;
 import me.naook1.nereusrealm.util.SmallCaps;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -86,6 +88,32 @@ public final class RankManager {
             }
         }
         return best;
+    }
+
+    /**
+     * Name shown for the player's own rank: the primary LuckPerms group (so staff and custom groups show
+     * correctly), styled from ranks.yml when listed there. Falls back to the highest ranks.yml rank the
+     * player owns, then to "Member".
+     */
+    public String currentName(Player p) {
+        String member = plugin.messages().raw("ranks.member");
+        String id = null;
+        if (Bukkit.getPluginManager().isPluginEnabled("LuckPerms")) {
+            id = LuckPermsHook.primaryGroup(p);
+        }
+        if (id == null || id.isBlank() || id.equalsIgnoreCase("default")) {
+            Rank r = current(p);
+            return r == null ? member : r.name();
+        }
+        Rank listed = ranks.get(id.toLowerCase(Locale.ROOT));
+        if (listed != null) {
+            return listed.name();
+        }
+        String shown = LuckPermsHook.display(id);
+        if (shown == null || shown.isBlank()) {
+            shown = Character.toUpperCase(id.charAt(0)) + id.substring(1);
+        }
+        return conv(shown, plugin.getConfig().getBoolean("small-caps.gui", true));
     }
 
     /** Display name from ranks.yml, or the capitalized id if the rank is not listed. */

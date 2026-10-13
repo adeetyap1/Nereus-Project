@@ -573,7 +573,7 @@ public final class MenuManager {
                 "developer", plugin.getConfig().getString("developer", "naook1/adityap"),
                 "version", plugin.getDescription().getVersion(),
                 "server_name", plugin.getConfig().getString("server-name", "Nereus Throne"),
-                "current_rank", cur == null ? plugin.messages().raw("ranks.member") : cur.name(),
+                "current_rank", plugin.ranks().currentName(p),
                 "join_style", sm.displayName(p, true),
                 "leave_style", sm.displayName(p, false),
                 "streak", String.valueOf(dm.currentStreak(p)),
@@ -697,6 +697,7 @@ public final class MenuManager {
                     open(p, menuId);
                 }
                 case "redeem" -> plugin.prompts().beginRedeem(p);
+                case "afk-reason" -> plugin.prompts().beginAfk(p);
                 case "feedback-start" -> {
                     if (!p.hasPermission("nereus.rating")) {
                         plugin.messages().send(p, "no-permission");

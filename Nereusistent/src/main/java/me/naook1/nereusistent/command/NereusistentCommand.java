@@ -46,6 +46,7 @@ public final class NereusistentCommand implements TabExecutor {
                 plugin.gadgets().ensure(target, true);
                 plugin.messages().send(sender, "given", "player", target.getName());
             }
+            case "setpoint", "delpoint", "points" -> points(sender, sub, args);
             case "about", "info" -> about(sender);
             case "toggle" -> {
                 if (sender instanceof Player p) {
@@ -65,6 +66,35 @@ public final class NereusistentCommand implements TabExecutor {
         return true;
     }
 
+    private void points(CommandSender sender, String sub, String[] args) {
+        var m = plugin.messages();
+        if (!sender.hasPermission("nereusistent.admin")) {
+            m.send(sender, "no-permission");
+            return;
+        }
+        if (sub.equals("points")) {
+            m.send(sender, "point-list", "points", String.join(", ", plugin.points().names()));
+            return;
+        }
+        if (args.length < 2) {
+            m.send(sender, "point-usage");
+            return;
+        }
+        String name = args[1].toLowerCase(Locale.ROOT);
+        if (sub.equals("setpoint")) {
+            if (!(sender instanceof Player p)) {
+                m.send(sender, "players-only");
+                return;
+            }
+            plugin.points().set(name, p.getLocation());
+            m.send(sender, "point-set", "point", name);
+        } else if (plugin.points().remove(name)) {
+            m.send(sender, "point-deleted", "point", name);
+        } else {
+            m.send(sender, "point-missing", "point", name);
+        }
+    }
+
     private void about(CommandSender sender) {
         plugin.messages().sendList(sender, "about",
                 "version", plugin.getDescription().getVersion(),
@@ -79,8 +109,19 @@ public final class NereusistentCommand implements TabExecutor {
             if (sender.hasPermission("nereusistent.admin")) {
                 subs.add("give");
                 subs.add("reload");
+                subs.add("setpoint");
+                subs.add("delpoint");
+                subs.add("points");
             }
             return StringUtil.copyPartialMatches(args[0], subs, new ArrayList<>());
+        }
+        if (args.length == 2 && sender.hasPermission("nereusistent.admin")
+                && (args[0].equalsIgnoreCase("setpoint") || args[0].equalsIgnoreCase("delpoint"))) {
+            List<String> names = plugin.points().names();
+            if (args[0].equalsIgnoreCase("setpoint")) {
+                names.addAll(List.of("gacha", "survival", "rtp"));
+            }
+            return StringUtil.copyPartialMatches(args[1], names, new ArrayList<>());
         }
         return List.of();
     }

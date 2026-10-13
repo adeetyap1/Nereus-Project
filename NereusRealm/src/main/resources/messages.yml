@@ -1,4 +1,4 @@
-file-version: 2
+file-version: 3
 # messages.yml - Developer: naook1/adityap
 # Semua teks bisa diubah. {prefix} = prefix di bawah.
 # Small caps otomatis jika small-caps.messages: true di config.yml
@@ -85,8 +85,9 @@ daily:
 
 afk:
   disabled: "{prefix}&cFitur AFK sedang dimatikan."
+  prompt: "{prefix}&7Ketik &falasan AFK &7kamu di chat (contoh: &fmau makan&7). Ketik &askip &7tanpa alasan, &ccancel &7untuk batal."
   went-afk: "&8[&e&lAFK&8] &f{player} &7sekarang AFK &8» &f{reason}"
-  returned: "&8[&e&lAFK&8] &f{player} &7sudah kembali &8» &e{time}"
+  returned: "&8[&e&lAFK&8] &f{player} &7telah kembali dari AFK &8» &f{reason} &8(&e{time}&8)"
   reward-money: "{prefix}&7AFK &e{minutes} menit &8» &a+${amount}"
   reward-key: "{prefix}&7Kamu dapat &fx{amount} {key} &7dari AFK!"
   state-on: "&eAFK"

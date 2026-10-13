@@ -12,6 +12,7 @@ import me.naook1.nereusistent.gadget.GadgetListener;
 import me.naook1.nereusistent.gadget.GadgetManager;
 import me.naook1.nereusistent.gui.MenuListener;
 import me.naook1.nereusistent.gui.MenuManager;
+import me.naook1.nereusistent.point.PointManager;
 import me.naook1.nereusistent.util.Messages;
 import me.naook1.nereusistent.util.Text;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -28,6 +29,7 @@ public final class Nereusistent extends JavaPlugin {
     private Messages messages;
     private GadgetManager gadgets;
     private MenuManager menus;
+    private PointManager points;
 
     @Override
     public void onEnable() {
@@ -37,6 +39,8 @@ public final class Nereusistent extends JavaPlugin {
         messages = new Messages(this);
         gadgets = new GadgetManager(this);
         menus = new MenuManager(this);
+        points = new PointManager(this);
+        points.load();
         reloadAll();
 
         getServer().getPluginManager().registerEvents(new GadgetListener(this), this);
@@ -109,6 +113,10 @@ public final class Nereusistent extends JavaPlugin {
 
     public GadgetManager gadgets() {
         return gadgets;
+    }
+
+    public PointManager points() {
+        return points;
     }
 
     public MenuManager menus() {

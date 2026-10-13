@@ -6,7 +6,7 @@
 
     <groupId>me.naook1</groupId>
     <artifactId>NereusRealm</artifactId>
-    <version>1.2.0</version>
+    <version>1.2.1</version>
     <packaging>jar</packaging>
     <name>NereusRealm</name>
     <description>Custom join/leave, AFK rewards, daily and menus by naook1/adityap</description>
@@ -32,6 +32,12 @@
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
             <version>1.21.1-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.luckperms</groupId>
+            <artifactId>api</artifactId>
+            <version>5.4</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

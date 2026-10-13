@@ -13,7 +13,7 @@ import org.bukkit.entity.Player;
 /** "Type your answer in chat" prompts for custom join/leave messages and feedback. */
 public final class PromptManager {
 
-    public enum Kind { JOIN, LEAVE, FEEDBACK, REDEEM }
+    public enum Kind { JOIN, LEAVE, FEEDBACK, REDEEM, AFK }
 
     private record Pending(Kind kind, int stars, long expires) {
     }
@@ -82,6 +82,20 @@ public final class PromptManager {
                 "max", String.valueOf(plugin.feedback().maxLength()));
     }
 
+    public void beginAfk(Player p) {
+        if (!p.hasPermission("nereus.afk")) {
+            plugin.messages().send(p, "no-permission");
+            return;
+        }
+        if (!plugin.afk().isEnabled()) {
+            plugin.messages().send(p, "afk.disabled");
+            return;
+        }
+        p.closeInventory();
+        start(p, Kind.AFK, 0);
+        plugin.messages().send(p, "afk.prompt");
+    }
+
     public void beginRedeem(Player p) {
         if (!plugin.redeem().isEnabled()) {
             plugin.messages().send(p, "redeem.disabled");
@@ -132,6 +146,11 @@ public final class PromptManager {
                 pending.remove(id);
                 plugin.messages().send(p, "custom.saved");
                 plugin.styles().previewCurrent(p, join);
+            }
+            case AFK -> {
+                pending.remove(id);
+                plugin.afk().toggle(p, text.equalsIgnoreCase("skip") ? null : text);
+                plugin.menus().open(p, "afk");
             }
             case REDEEM -> {
                 pending.remove(id);

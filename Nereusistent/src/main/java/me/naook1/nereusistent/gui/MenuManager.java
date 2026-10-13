@@ -6,11 +6,13 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import me.naook1.nereusistent.Nereusistent;
+import me.naook1.nereusistent.hook.LuckPermsHook;
 import me.naook1.nereusistent.util.SmallCaps;
 import me.naook1.nereusistent.util.Text;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -105,11 +107,28 @@ public final class MenuManager {
                 "developer", plugin.getConfig().getString("developer", "naook1/adityap"),
                 "version", plugin.getDescription().getVersion(),
                 "server_name", plugin.getConfig().getString("server-name", "Nereus Throne"),
+                "rank", rankOf(p),
                 "online", String.valueOf(Bukkit.getOnlinePlayers().size()),
                 "max", String.valueOf(Bukkit.getMaxPlayers()),
                 "gadget_state", plugin.messages().raw(
                         plugin.gadgets().isDisabled(p.getUniqueId()) ? "state-off" : "state-on"),
         };
+    }
+
+    /** The player's own rank: primary LuckPerms group ("default" shows as Member). */
+    private String rankOf(Player p) {
+        String id = null;
+        if (Bukkit.getPluginManager().isPluginEnabled("LuckPerms")) {
+            id = LuckPermsHook.primaryGroup(p);
+        }
+        String shown;
+        if (id == null || id.isBlank() || id.equalsIgnoreCase("default")) {
+            shown = "Member";
+        } else {
+            String d = LuckPermsHook.display(id);
+            shown = d != null && !d.isBlank() ? d : Character.toUpperCase(id.charAt(0)) + id.substring(1);
+        }
+        return smallCaps ? SmallCaps.convert(shown) : shown;
     }
 
     public void open(Player p, String id) {
@@ -204,6 +223,7 @@ public final class MenuManager {
                 case "message" -> p.sendMessage(Text.parse(Text.papi(p, arg)));
                 case "sound" -> p.playSound(p.getLocation(), arg, clickVolume, 1f);
                 case "link" -> sendLink(p, arg);
+                case "teleport" -> teleport(p, arg);
                 case "toggle-gadget" -> {
                     plugin.gadgets().toggle(p);
                     open(p, menuId);
@@ -211,6 +231,20 @@ public final class MenuManager {
                 default -> plugin.getLogger().warning("Unknown menu action: " + line);
             }
         }
+    }
+
+    private void teleport(Player p, String point) {
+        Location loc = plugin.points().get(point);
+        if (loc == null) {
+            plugin.messages().send(p, "point-missing", "point", point);
+            return;
+        }
+        p.closeInventory();
+        p.teleportAsync(loc).thenAccept(ok -> {
+            if (ok) {
+                plugin.messages().send(p, "teleported", "point", point);
+            }
+        });
     }
 
     private void sendLink(Player p, String url) {

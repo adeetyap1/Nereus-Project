@@ -1,4 +1,4 @@
-file-version: 3
+file-version: 4
 # menus.yml - Menu gadget Nereusistent - Developer: naook1/adityap
 #
 # Item: slot/slots, material, name, lore, amount, glow, custom-model-data, actions
@@ -7,6 +7,7 @@ file-version: 3
 #   [player] <command>   jalankan sbg player    [console] <command> jalankan sbg console
 #   [message] <teks>     kirim pesan            [sound] <key>       mainkan sound
 #   [link] <url>         kirim link yang bisa diklik
+#   [teleport] <titik>   teleport ke titik yang diatur admin: /nsi setpoint <titik>
 #
 # Command default sesuai plugin di servermu. Ubah kalau berbeda:
 #   RTP      -> BetterRTP        : rtp
@@ -31,6 +32,7 @@ menus:
         name: "&6{server_name}"
         lore:
           - "&7Selamat datang, &f{player}&7!"
+          - "&7Rank: &f{rank}"
           - "&7Online: &a{online}&7/&f{max}"
           - ""
           - "&8Developer: &7{developer}"
@@ -67,7 +69,7 @@ menus:
           - "&eKlik untuk membuka"
         actions:
           - "[close]"
-          - "[player] crates"
+          - "[teleport] gacha"
       spawn:
         slot: 25
         material: RED_BED

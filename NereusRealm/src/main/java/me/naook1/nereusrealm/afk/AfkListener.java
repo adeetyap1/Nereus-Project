@@ -19,10 +19,29 @@ public final class AfkListener implements Listener {
     private static final Pattern AFK_COMMAND =
             Pattern.compile("^/(?:[a-z0-9_]+:)?(?:afk|eafk)(?:\\s.*)?$", Pattern.CASE_INSENSITIVE);
 
+    /** Plain /afk [alasan] (not prefixed, not /eafk): handled here so EssentialsX can never take it over. */
+    private static final Pattern OWN_AFK = Pattern.compile("^/afk(?:\\s+(.*))?$", Pattern.CASE_INSENSITIVE);
+
     private final NereusRealm plugin;
 
     public AfkListener(NereusRealm plugin) {
         this.plugin = plugin;
+    }
+
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
+    public void onAfkCommand(PlayerCommandPreprocessEvent e) {
+        var m = OWN_AFK.matcher(e.getMessage().trim());
+        if (!m.matches() || !plugin.afk().isEnabled()) {
+            return;
+        }
+        var p = e.getPlayer();
+        e.setCancelled(true);
+        if (!p.hasPermission("nereus.afk")) {
+            plugin.messages().send(p, "no-permission");
+            return;
+        }
+        String reason = m.group(1);
+        plugin.afk().toggle(p, reason == null || reason.isBlank() ? null : reason.trim());
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)

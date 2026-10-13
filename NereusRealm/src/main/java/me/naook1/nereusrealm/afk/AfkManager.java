@@ -279,12 +279,13 @@ public final class AfkManager {
             }
         } else {
             long secs = s.afkSeconds;
+            String backFrom = s.reason == null || s.reason.isBlank() || s.reason.equals("-") ? defaultReason : s.reason;
             long money = s.sessionMoney;
             int keys = s.sessionKeys;
             s.afkSeconds = 0;
             s.sessionMoney = 0;
             s.sessionKeys = 0;
-            broadcast("afk.returned", "player", p.getName(), "time", TimeUtil.format(secs));
+            broadcast("afk.returned", "player", p.getName(), "time", TimeUtil.format(secs), "reason", backFrom);
             if (actionbar) {
                 p.sendActionBar(Component.empty());
             }
