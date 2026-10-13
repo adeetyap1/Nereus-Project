@@ -6,7 +6,7 @@
 
     <groupId>me.naook1</groupId>
     <artifactId>Nereusistent</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <packaging>jar</packaging>
     <name>Nereusistent</name>
     <description>Hotbar gadget menu (RTP, survival, gacha, info, rules) by naook1/adityap</description>

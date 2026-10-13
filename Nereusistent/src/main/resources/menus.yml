@@ -1,4 +1,4 @@
-file-version: 2
+file-version: 3
 # menus.yml - Menu gadget Nereusistent - Developer: naook1/adityap
 #
 # Item: slot/slots, material, name, lore, amount, glow, custom-model-data, actions
@@ -179,6 +179,18 @@ menus:
           - "&eKlik untuk hidupkan/matikan"
         actions:
           - "[toggle-gadget]"
+      redeem:
+        slot: 52
+        material: TRIPWIRE_HOOK
+        name: "&dRedeem Code"
+        lore:
+          - "&7Punya kode hadiah?"
+          - "&7Tukarkan di sini."
+          - ""
+          - "&eKlik lalu ketik kodenya"
+        actions:
+          - "[close]"
+          - "[player] nereus redeem"
       close:
         slot: 49
         material: BARRIER
