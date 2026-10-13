@@ -1,0 +1,101 @@
+# messages.yml - NereusLottery - Developer: naook1/adityap
+# Semua teks bisa diubah. {prefix} = prefix di bawah. Small caps otomatis jika small-caps: true.
+
+prefix: "&8[&6Lottery&8] &7"
+
+no-permission: "{prefix}&cKamu tidak punya izin untuk itu."
+players-only: "{prefix}&cCommand ini hanya untuk player."
+disabled: "{prefix}&cLottery sedang dimatikan."
+no-economy: "{prefix}&cEkonomi belum siap. Hubungi admin."
+invalid-number: "{prefix}&cJumlah tiket tidak valid."
+not-enough-money: "{prefix}&cUangmu kurang. Butuh &f{symbol}{cost}&c."
+max-tickets: "{prefix}&cBatas tiket per pemain adalah &f{max}&c. Kamu sudah punya &f{have}&c."
+bought: "{prefix}&aBeli &f{amount} tiket &asebesar &f{symbol}{cost}&a. Total tiketmu &e{total} &7(peluang &f{chance}%&7)."
+reloaded: "{prefix}&aConfig dimuat ulang."
+
+pending-paid: "{prefix}&aHadiah lottery yang tertunda sebesar &6{symbol}{amount} &asudah dikirim."
+
+countdown: "{prefix}&7Undian dalam &f{time}&7! Jackpot &6{symbol}{pot}&7. Beli tiket: &f/lottery"
+
+draw:
+  skipped: "{prefix}&7Undian ditunda karena peserta kurang dari &f{min}&7. Jackpot &6{symbol}{pot} &7dibawa ke putaran berikutnya."
+  header:
+    - "&8&m                                   "
+    - "&6&lHASIL UNDIAN LOTTERY"
+    - "&7Peserta: &f{players} &8| &7Tiket: &f{tickets} &8| &7Jackpot: &6{symbol}{pot}"
+  winner-line: "&e#{rank} &f{player} &8» &6{symbol}{prize} &8(&7{tickets} tiket&8)"
+  footer:
+    - "&7Putaran berikutnya: &f{next}"
+    - "&8&m                                   "
+
+win:
+  title: "&6&lKAMU MENANG!"
+  subtitle: "&f{symbol}{prize}"
+  paid: "{prefix}&aSelamat! Kamu menang &6{symbol}{prize} &adi lottery!"
+  pending: "{prefix}&aSelamat! Kamu menang &6{symbol}{prize}&a. Hadiah dikirim saat ekonomi siap atau kamu login lagi."
+
+admin:
+  cancelled: "{prefix}&aPutaran dibatalkan. Tiket dikembalikan ke &f{count} &apemain."
+  pot-added: "{prefix}&aPot ditambah &6{symbol}{amount}&a. Jackpot sekarang &6{symbol}{pot}&a."
+
+info:
+  - "&8&m                                   "
+  - "&6&lLottery Nereus"
+  - "&7Jackpot: &6{symbol}{pot}"
+  - "&7Harga tiket: &f{symbol}{price} &8| &7Maks &f{max} &7per pemain"
+  - "&7Peserta: &f{players} &8| &7Tiket terjual: &f{tickets}"
+  - "&7Tiketmu: &e{mine} &7(peluang &f{chance}%&7)"
+  - "&7Undian berikutnya: &f{next} &8(&7{time}&8)"
+  - "&7Beli: &f/lottery buy <jumlah> &8atau &f/lottery"
+  - "&8&m                                   "
+
+history:
+  header: "{prefix}&7Pemenang terakhir:"
+  line: "  &f{player} &8» &6{symbol}{prize} &8({ago})"
+  empty: "{prefix}&7Belum ada pemenang."
+
+help:
+  - "&6/lottery &8- &7Buka menu"
+  - "&6/lottery buy <jumlah> &8- &7Beli tiket"
+  - "&6/lottery info &8| &6history"
+  - "&6/lottery draw &8| &6cancel &8| &6addpot <jumlah> &8| &6reload &7(admin)"
+
+time:
+  none: "-"
+  day: "hari"
+  hour: "jam"
+  minute: "menit"
+  second: "detik"
+
+menu:
+  title: "&8Lottery Nereus"
+  border-name: " "
+  pot:
+    name: "&6&lJACKPOT &f{symbol}{pot}"
+    lore:
+      - "&7Peserta: &f{players}"
+      - "&7Tiket terjual: &f{tickets}"
+      - "&7Pemenang: &f{winners}"
+      - ""
+      - "&7Undian berikutnya:"
+      - "&f{next}"
+      - "&7Sisa waktu: &e{time}"
+  buy:
+    name: "&aBeli {amount} Tiket"
+    lore:
+      - "&7Harga: &f{symbol}{cost}"
+      - "&7Tiketmu sekarang: &e{mine}&7/&f{max}"
+      - ""
+      - "&eKlik untuk membeli"
+  mine:
+    name: "&bTiketmu"
+    lore:
+      - "&7Jumlah: &e{mine}"
+      - "&7Peluang menang: &f{chance}%"
+      - "&7Saldo: &a{symbol}{balance}"
+  history:
+    name: "&dPemenang Terakhir"
+    empty: "&8Belum ada pemenang"
+    line: "&f{player} &8» &6{symbol}{prize}"
+  close:
+    name: "&cTutup"

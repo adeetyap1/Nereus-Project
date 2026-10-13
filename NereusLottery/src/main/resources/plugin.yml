@@ -1,0 +1,21 @@
+name: NereusLottery
+version: '${project.version}'
+main: me.naook1.nereuslottery.NereusLottery
+api-version: '1.21'
+authors: [naook1, adityap]
+description: Lottery with scheduled draws by naook1/adityap
+softdepend: [Vault, Essentials, PlaceholderAPI]
+
+commands:
+  lottery:
+    description: Lottery Nereus
+    aliases: [lotre, undian, lotto]
+    usage: /<command> [buy <jumlah>|info|history]
+
+permissions:
+  lottery.use:
+    description: Beli tiket dan lihat lottery
+    default: true
+  lottery.admin:
+    description: Undi sekarang, batalkan, tambah pot, reload
+    default: op

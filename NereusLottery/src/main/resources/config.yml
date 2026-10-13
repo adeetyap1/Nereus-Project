@@ -1,0 +1,40 @@
+# ============================================================
+#  NereusLottery
+#  Developer : naook1/adityap
+#  Server    : 1.21.1 (Paper) | Java 21 | Java + Bedrock (Geyser)
+#  Butuh     : Vault + plugin ekonomi (EssentialsX dll)
+# ============================================================
+# Warna: &a &l dll, hex &#RRGGBB. Awali teks dengan [mm] untuk MiniMessage.
+# Tidak ada pajak: seluruh isi pot menjadi hadiah pemenang.
+
+developer: "naook1/adityap"
+enabled: true
+small-caps: true          # semua teks di messages.yml jadi small caps
+
+currency-symbol: "$"
+ticket-price: 1000        # harga 1 tiket
+max-tickets-per-player: 20
+min-players: 1            # kurang dari ini -> undian ditunda, pot dibawa ke putaran berikutnya
+seed: 10000               # pot awal minimum tiap putaran (dana dari server)
+
+# Pembagian hadiah (persen) untuk juara 1, 2, 3, ...
+#   [100]          = 1 pemenang ambil semua
+#   [60, 25, 15]   = 3 pemenang
+# Kalau pesertanya lebih sedikit dari jumlah juara, persen dibagi ulang ke yang ada.
+winners: [100]
+
+draw:
+  timezone: "Asia/Makassar"
+  times: ["20:00"]        # boleh lebih dari satu, contoh ["12:00", "20:00"]
+  days: []                # kosong = tiap hari. Contoh: [SATURDAY, SUNDAY]
+
+# Pengumuman hitung mundur (detik sebelum undian)
+announce-before: [600, 60, 10]
+
+sounds:
+  buy: "entity.experience_orb.pickup"
+  win: "ui.toast.challenge_complete"
+  lose: ""                 # suara untuk peserta yang tidak menang (kosong = tanpa suara)
+
+menu:
+  buy-amounts: [1, 5, 10]  # maksimal 3 tombol beli

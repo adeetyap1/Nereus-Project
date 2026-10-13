@@ -7,4 +7,7 @@ Custom Paper 1.21.1 plugins (Java 21) by naook1/adityap.
 - **Nereusistent** - item gadget di hotbar slot 9 (tidak bisa dibuang/dipindah) yang membuka menu
   RTP, Survival, Gacha, Info, Rules, Rank, Rating, AFK, About Developer.
 
-Build: buka tab Actions, jalankan "Build" terbaru, unduh artifact `plugins` (berisi 2 jar).
+- **NereusLottery** - `/lottery`: undian terjadwal (WITA), tiket, jackpot yang menumpuk, menu GUI, tanpa pajak.
+  Butuh Vault + plugin ekonomi (EssentialsX).
+
+Build: buka tab Actions, jalankan "Build" terbaru, unduh artifact `plugins` (berisi 3 jar).
