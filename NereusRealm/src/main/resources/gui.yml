@@ -1,4 +1,4 @@
-file-version: 1
+file-version: 2
 # gui.yml - Menu /nereus - Developer: naook1/adityap
 #
 # Teks otomatis small caps (small-caps.gui di config.yml).
@@ -20,6 +20,7 @@ file-version: 1
 #   [custom-set|custom-use|custom-reset] join|leave
 #   [feedback-start]       mulai beri rating    [rate] 1-5              pilih bintang
 #   [feedback-delete]      hapus rating sendiri
+#   [redeem]               minta kode redeem di chat
 #
 # Placeholder item: {player} {developer} {version} {server_name} {current_rank}
 #   {join_style} {leave_style} {streak} {daily_status} {reset}
@@ -216,6 +217,17 @@ menus:
           - "&eKlik untuk membuka"
         actions:
           - "[menu] settings"
+      redeem:
+        slot: 40
+        material: TRIPWIRE_HOOK
+        name: "&dRedeem Code"
+        lore:
+          - "&7Punya kode hadiah?"
+          - "&7Tukarkan di sini."
+          - ""
+          - "&eKlik lalu ketik kodenya"
+        actions:
+          - "[redeem]"
       close:
         slot: 49
         material: BARRIER

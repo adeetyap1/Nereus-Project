@@ -13,7 +13,7 @@ import org.bukkit.entity.Player;
 /** "Type your answer in chat" prompts for custom join/leave messages and feedback. */
 public final class PromptManager {
 
-    public enum Kind { JOIN, LEAVE, FEEDBACK }
+    public enum Kind { JOIN, LEAVE, FEEDBACK, REDEEM }
 
     private record Pending(Kind kind, int stars, long expires) {
     }
@@ -82,6 +82,20 @@ public final class PromptManager {
                 "max", String.valueOf(plugin.feedback().maxLength()));
     }
 
+    public void beginRedeem(Player p) {
+        if (!plugin.redeem().isEnabled()) {
+            plugin.messages().send(p, "redeem.disabled");
+            return;
+        }
+        if (!p.hasPermission("nereus.redeem")) {
+            plugin.messages().send(p, "no-permission");
+            return;
+        }
+        p.closeInventory();
+        start(p, Kind.REDEEM, 0);
+        plugin.messages().send(p, "redeem.prompt");
+    }
+
     private void start(Player p, Kind kind, int stars) {
         UUID id = p.getUniqueId();
         Pending np = new Pending(kind, stars, System.currentTimeMillis() + timeoutSeconds * 1000L);
@@ -118,6 +132,10 @@ public final class PromptManager {
                 pending.remove(id);
                 plugin.messages().send(p, "custom.saved");
                 plugin.styles().previewCurrent(p, join);
+            }
+            case REDEEM -> {
+                pending.remove(id);
+                plugin.redeem().claim(p, text);
             }
             case FEEDBACK -> {
                 String msg = text.equalsIgnoreCase("skip") ? "" : text;

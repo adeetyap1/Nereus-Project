@@ -696,6 +696,7 @@ public final class MenuManager {
                     }
                     open(p, menuId);
                 }
+                case "redeem" -> plugin.prompts().beginRedeem(p);
                 case "feedback-start" -> {
                     if (!p.hasPermission("nereus.rating")) {
                         plugin.messages().send(p, "no-permission");

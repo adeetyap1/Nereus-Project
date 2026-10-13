@@ -37,6 +37,14 @@ public final class NereusCommand implements TabExecutor {
                 plugin.messages().send(sender, "reloaded");
                 return true;
             }
+            case "code", "codes" -> {
+                if (!sender.hasPermission("nereus.admin")) {
+                    plugin.messages().send(sender, "no-permission");
+                } else {
+                    new CodeAdmin(plugin).handle(sender, Arrays.copyOfRange(args, 1, args.length));
+                }
+                return true;
+            }
             case "clearcustom" -> {
                 clearCustom(sender, args);
                 return true;
@@ -70,6 +78,13 @@ public final class NereusCommand implements TabExecutor {
             case "settings" -> plugin.menus().open(p, "settings");
             case "ranks", "rank" -> plugin.menus().open(p, "ranks");
             case "feedback", "rating", "review" -> plugin.menus().open(p, "feedback");
+            case "redeem" -> {
+                if (args.length < 2) {
+                    plugin.prompts().beginRedeem(p);
+                } else {
+                    plugin.redeem().claim(p, args[1]);
+                }
+            }
             case "kits" -> p.performCommand(plugin.getConfig().getString("kits.command", "kit"));
             case "afk" -> afk(p, args);
             case "setjoin", "setleave" -> setCustom(p, sub.equals("setjoin"), args);
@@ -148,13 +163,17 @@ public final class NereusCommand implements TabExecutor {
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (args.length == 1) {
             List<String> subs = new ArrayList<>(List.of("join", "leave", "daily", "kits", "ranks", "feedback",
-                    "afk", "settings", "setjoin", "setleave", "resetjoin", "resetleave", "about", "help"));
+                    "afk", "redeem", "settings", "setjoin", "setleave", "resetjoin", "resetleave", "about", "help"));
             if (sender.hasPermission("nereus.admin")) {
                 subs.add("reload");
                 subs.add("menu");
                 subs.add("clearcustom");
+                subs.add("code");
             }
             return StringUtil.copyPartialMatches(args[0], subs, new ArrayList<>());
+        }
+        if (args.length >= 2 && args[0].equalsIgnoreCase("code") && sender.hasPermission("nereus.admin")) {
+            return new CodeAdmin(plugin).tab(Arrays.copyOfRange(args, 1, args.length));
         }
         if (args.length == 2 && args[0].equalsIgnoreCase("clearcustom") && sender.hasPermission("nereus.admin")) {
             List<String> names = new ArrayList<>();

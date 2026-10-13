@@ -10,6 +10,7 @@ import java.nio.file.StandardCopyOption;
 import me.naook1.nereusrealm.afk.AfkListener;
 import me.naook1.nereusrealm.afk.AfkManager;
 import me.naook1.nereusrealm.command.AfkCommand;
+import me.naook1.nereusrealm.command.RedeemCommand;
 import me.naook1.nereusrealm.command.NereusCommand;
 import me.naook1.nereusrealm.daily.DailyManager;
 import me.naook1.nereusrealm.data.DataStore;
@@ -23,6 +24,7 @@ import me.naook1.nereusrealm.joinleave.CustomMessages;
 import me.naook1.nereusrealm.joinleave.JoinLeaveListener;
 import me.naook1.nereusrealm.joinleave.StyleManager;
 import me.naook1.nereusrealm.rank.RankManager;
+import me.naook1.nereusrealm.redeem.RedeemManager;
 import me.naook1.nereusrealm.util.Messages;
 import me.naook1.nereusrealm.util.Text;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -45,6 +47,7 @@ public final class NereusRealm extends JavaPlugin {
     private RankManager ranks;
     private FeedbackManager feedback;
     private PromptManager prompts;
+    private RedeemManager redeem;
     private MenuManager menus;
 
     @Override
@@ -61,6 +64,7 @@ public final class NereusRealm extends JavaPlugin {
         ranks = new RankManager(this);
         feedback = new FeedbackManager(this);
         prompts = new PromptManager(this);
+        redeem = new RedeemManager(this);
         menus = new MenuManager(this);
         reloadAll();
 
@@ -74,12 +78,16 @@ public final class NereusRealm extends JavaPlugin {
         getCommand("nereus").setExecutor(nereus);
         getCommand("nereus").setTabCompleter(nereus);
         getCommand("afk").setExecutor(new AfkCommand(this));
+        RedeemCommand redeemCmd = new RedeemCommand(this);
+        getCommand("redeem").setExecutor(redeemCmd);
+        getCommand("redeem").setTabCompleter(redeemCmd);
 
         afk.start();
         menus.start();
         getServer().getScheduler().runTaskTimer(this, () -> {
             data.flush(true);
             feedback.flush(true);
+            redeem.flush(true);
         }, 20L * 30, 20L * 30);
 
         if (getServer().getPluginManager().isPluginEnabled("PlaceholderAPI")) {
@@ -108,6 +116,9 @@ public final class NereusRealm extends JavaPlugin {
         if (feedback != null) {
             feedback.flush(false);
         }
+        if (redeem != null) {
+            redeem.flush(false);
+        }
     }
 
     public void reloadAll() {
@@ -120,6 +131,7 @@ public final class NereusRealm extends JavaPlugin {
         ranks.reload();
         feedback.reload();
         prompts.reload();
+        redeem.reload();
         menus.reload();
     }
 
@@ -195,6 +207,10 @@ public final class NereusRealm extends JavaPlugin {
 
     public PromptManager prompts() {
         return prompts;
+    }
+
+    public RedeemManager redeem() {
+        return redeem;
     }
 
     public MenuManager menus() {

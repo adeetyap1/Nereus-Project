@@ -3,7 +3,7 @@ version: '${project.version}'
 main: me.naook1.nereusrealm.NereusRealm
 api-version: '1.21'
 authors: [naook1, adityap]
-description: Custom join/leave, rating, ranks, AFK rewards, daily and menus by naook1/adityap
+description: Custom join/leave, rating, ranks, AFK rewards, daily, redeem codes and menus by naook1/adityap
 softdepend: [PlaceholderAPI, LuckPerms, Essentials, CrazyCrates, PlayerKits2, DeluxeMenus, floodgate]
 
 commands:
@@ -14,8 +14,15 @@ commands:
   afk:
     description: Tandai dirimu AFK
     usage: /<command> [alasan]
+  redeem:
+    description: Tukar kode redeem dengan hadiah
+    aliases: [kode, claimcode]
+    usage: /<command> [kode]
 
 permissions:
+  nereus.redeem:
+    description: Boleh menukar kode redeem
+    default: true
   nereus.use:
     description: Buka menu /nereus
     default: true

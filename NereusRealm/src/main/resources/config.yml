@@ -21,6 +21,20 @@ join-leave:
   join-delay-ticks: 2
   sound-volume: 0.7
 
+# ------------------------------------------------------------
+#  REDEEM CODE  (/redeem <kode> atau tombol Redeem di /nereus)
+#  Kode dibuat admin: /nereus code create NERUSONTOP1 7d 100
+#  lalu atur hadiahnya (lihat /nereus code). Tiap pemain hanya bisa
+#  claim 1x per kode. Data kode ada di codes.yml.
+# ------------------------------------------------------------
+redeem:
+  enabled: true
+  timezone: "Asia/Makassar"          # zona waktu untuk tanggal expires
+  money-command: "eco give {player} {amount}"   # dipakai untuk hadiah uang
+  sound: "entity.player.levelup"     # kosongkan untuk tanpa suara
+  max-fails: 5                       # salah kode berturut-turut sebelum dikunci
+  lock-seconds: 300                  # lama dikunci (anti tebak kode)
+
 kits:
   # Command PlayerKits2 yang dijalankan tombol Kits
   command: "kit"

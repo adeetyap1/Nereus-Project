@@ -1,4 +1,4 @@
-file-version: 1
+file-version: 2
 # messages.yml - Developer: naook1/adityap
 # Semua teks bisa diubah. {prefix} = prefix di bawah.
 # Small caps otomatis jika small-caps.messages: true di config.yml
@@ -100,8 +100,55 @@ afk:
   subtitle: "&7{reason}"
   summary: "{prefix}&7Selamat datang kembali! Selama AFK (&f{time}&7) kamu dapat &a${money} &7dan &d{keys} key&7."
 
+redeem:
+  disabled: "{prefix}&cFitur redeem code sedang dimatikan."
+  prompt: "{prefix}&7Ketik &fkode redeem &7kamu di chat. Ketik &ccancel &7untuk batal."
+  invalid: "{prefix}&cKode tidak valid. Periksa lagi penulisannya."
+  expired: "{prefix}&cKode &f{code} &csudah kedaluwarsa."
+  already: "{prefix}&cKamu sudah pernah memakai kode &f{code}&c."
+  full: "{prefix}&cKode &f{code} &csudah habis dipakai."
+  locked: "{prefix}&cTerlalu banyak salah kode. Coba lagi dalam &f{time}&c."
+  success: "{prefix}&aKode &f{code} &aberhasil dipakai! &7Hadiah: &f{reward}"
+  admin:
+    help:
+      - "&8&m                                   "
+      - "&6/nereus code create <KODE> [durasi|never] [maks]"
+      - "&7  contoh: &f/nereus code create NERUSONTOP1 7d 100"
+      - "&6/nereus code money <KODE> <jumlah> &8- &7hadiah uang"
+      - "&6/nereus code addcmd <KODE> <command> &8- &7tambah hadiah (console)"
+      - "&7  pakai &f{player} &7untuk nama pemain, contoh: &fcrates give virtual vote 1 {player}"
+      - "&6/nereus code clearcmds <KODE> &8- &7hapus semua command hadiah"
+      - "&6/nereus code text <KODE> <teks> &8- &7teks hadiah yang dilihat pemain"
+      - "&6/nereus code expire <KODE> <durasi|never|yyyy-MM-dd HH:mm>"
+      - "&6/nereus code max <KODE> <jumlah> &8- &7batas total pemakai (0 = bebas)"
+      - "&6/nereus code on|off <KODE> &8| &6resetuses <KODE> &8| &6delete <KODE>"
+      - "&6/nereus code list &8| &6info <KODE> &8| &6reload"
+      - "&7Durasi: &f30m 12h 7d 2w &7atau gabungan seperti &f1d12h"
+      - "&8&m                                   "
+    created: "{prefix}&aKode &f{code} &adibuat. Atur hadiahnya dengan money / addcmd."
+    deleted: "{prefix}&aKode &f{code} &adihapus."
+    updated: "{prefix}&aKode &f{code} &adiperbarui."
+    reloaded: "{prefix}&acodes.yml dimuat ulang (&f{count} &akode)."
+    not-found: "{prefix}&cKode &f{code} &ctidak ditemukan."
+    exists: "{prefix}&cKode &f{code} &csudah ada."
+    bad-code: "{prefix}&cKode hanya boleh huruf, angka, - dan _ (3-32 karakter)."
+    bad-number: "{prefix}&cAngka tidak valid."
+    bad-time: "{prefix}&cWaktu tidak valid. Pakai 30m, 12h, 7d, never, atau yyyy-MM-dd HH:mm."
+    empty: "{prefix}&7Belum ada kode. Buat dengan &f/nereus code create"
+    list-header: "{prefix}&7Daftar kode (&f{count}&7):"
+    list-line: "  &f{code} &8- {status} &8| &7dipakai &f{uses} &8| &7sisa &f{time}"
+    info:
+      - "&8&m                                   "
+      - "&6Kode &f{code} &8- {status}"
+      - "&7Berakhir: &f{expires} &8(&7{left}&8)"
+      - "&7Dipakai: &f{uses} &7dari &f{max}"
+      - "&7Uang: &a${money}"
+      - "&7Teks hadiah: &f{text}"
+      - "&7Command hadiah: &f{commands}"
+
 help:
   - "&8&m                                   "
+  - "&6/redeem <kode> &8- &7Tukar kode redeem"
   - "&6/nereus &8- &7Menu utama"
   - "&6/nereus join &8- &7Atur join message"
   - "&6/nereus leave &8- &7Atur leave message"
@@ -113,6 +160,7 @@ help:
   - "&6/nereus setleave <pesan> &8- &7Tulis leave message custom"
   - "&6/nereus resetjoin &8| &6resetleave &8- &7Hapus pesan custom"
   - "&6/nereus kits &8- &7Buka kits"
+  - "&6/nereus code &8- &7Kelola kode redeem (admin)"
   - "&6/nereus settings &8- &7Pengaturan pribadi"
   - "&6/afk [alasan] &8- &7Tandai AFK"
   - "&8&m                                   "
