@@ -4,7 +4,7 @@ main: me.naook1.nereusistent.Nereusistent
 api-version: '1.21'
 authors: [naook1, adityap]
 description: Hotbar gadget menu (RTP, survival, gacha, info, rules). Developer naook1/adityap
-softdepend: [PlaceholderAPI, LuckPerms, BetterRTP, Multiverse-Core, CrazyCrates, Essentials, EssentialsSpawn, PlayerKits2, DeluxeMenus, NereusThrone]
+softdepend: [PlaceholderAPI, LuckPerms, BetterRTP, Multiverse-Core, CrazyCrates, Essentials, EssentialsSpawn, PlayerKits2, DeluxeMenus, NereusRealm]
 
 commands:
   nereusistent:

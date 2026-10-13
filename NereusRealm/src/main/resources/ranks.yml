@@ -1,0 +1,84 @@
+file-version: 1
+# ranks.yml - Daftar rank untuk menu /nereus ranks - Developer: naook1/adityap
+#
+# SEMUA ISI DI BAWAH HANYA CONTOH. Ubah nama, harga, dan fitur sesuai servermu.
+#
+# id       : nama group LuckPerms (dipakai untuk menandai "Rank kamu saat ini")
+# name     : nama tampilan
+# icon     : item di menu (cocokkan dengan tingkatan rank)
+# price    : teks bebas (mis. "Rp 25.000" atau "$10")
+# duration : teks bebas (mis. "Permanen" atau "30 hari")
+# features : satu baris per fitur
+# actions  : yang terjadi saat rank diklik. Default = kirim link store.
+#            [link] <url>  [player] <cmd>  [console] <cmd>  [message] <teks>  [menu] <id>
+#
+# Urutan menu = urutan di file ini (maksimal 6 rank).
+
+store-url: "https://example.com/store"
+
+default-actions:
+  - "[close]"
+  - "[link] {store_url}"
+
+ranks:
+  knight:
+    name: "&7Knight"
+    icon: IRON_INGOT
+    price: "Rp 15.000"
+    duration: "Permanen"
+    features:
+      - "&8» &7Prefix &f[Knight] &7di chat dan tab"
+      - "&8» &7Kit &fKnight &7(sekali sehari)"
+      - "&8» &7Home &f3 &7lokasi"
+      - "&8» &7Bonus daily &f+5%"
+  baron:
+    name: "&aBaron"
+    icon: GOLD_INGOT
+    price: "Rp 30.000"
+    duration: "Permanen"
+    features:
+      - "&8» &7Semua fitur &fKnight"
+      - "&8» &7Kit &fBaron"
+      - "&8» &7Home &f5 &7lokasi"
+      - "&8» &7Auction slot &f+2"
+  duke:
+    name: "&9Duke"
+    icon: EMERALD
+    price: "Rp 50.000"
+    duration: "Permanen"
+    features:
+      - "&8» &7Semua fitur &fBaron"
+      - "&8» &7Join/leave message &fcustom &7(tanpa warna)"
+      - "&8» &7Kit &fDuke"
+      - "&8» &7Home &f7 &7lokasi"
+  viscount:
+    name: "&bViscount"
+    icon: DIAMOND
+    price: "Rp 80.000"
+    duration: "Permanen"
+    features:
+      - "&8» &7Semua fitur &fDuke"
+      - "&8» &7Pesan custom &fberwarna"
+      - "&8» &7Kit &fViscount"
+      - "&8» &7Reward AFK &fx1.5"
+  king:
+    name: "&6King"
+    icon: NETHERITE_INGOT
+    price: "Rp 120.000"
+    duration: "Permanen"
+    features:
+      - "&8» &7Semua fitur &fViscount"
+      - "&8» &7Format &ftebal &7dan &fmiring &7di pesan custom"
+      - "&8» &7Kit &fKing"
+      - "&8» &7Command &f/fly &7di spawn"
+  emperor:
+    name: "&dEmperor"
+    icon: NETHER_STAR
+    price: "Rp 200.000"
+    duration: "Permanen"
+    features:
+      - "&8» &7Semua fitur &fKing"
+      - "&8» &7Warna &fhex &7di pesan custom"
+      - "&8» &7Kit &fEmperor"
+      - "&8» &7Reward AFK &fx2"
+      - "&8» &7Prioritas masuk server penuh"

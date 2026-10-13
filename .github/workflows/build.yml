@@ -14,9 +14,14 @@ jobs:
           cache: maven
       - name: Build plugins
         run: |
+          set -o pipefail
           mkdir out
-          for dir in NereusThrone Nereusistent; do
-            mvn -B -f "$dir/pom.xml" clean package
+          for dir in NereusRealm Nereusistent; do
+            if ! mvn -B -f "$dir/pom.xml" clean package 2>&1 | tee "$dir-build.log"; then
+              # show compile errors as annotations so they are visible on the run page
+              grep -E '^\[ERROR\] .*(\.java|symbol|location)' "$dir-build.log" | head -40 | while read -r line; do echo "::error::$line"; done
+              exit 1
+            fi
             cp "$dir"/target/*.jar out/
           done
       - uses: actions/upload-artifact@v4

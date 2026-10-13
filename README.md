@@ -2,7 +2,9 @@
 
 Custom Paper 1.21.1 plugins (Java 21) by naook1/adityap.
 
-- **NereusThrone** - custom join/leave styles (LuckPerms ranks), AFK rewards, daily, menus.
-- **Nereusistent** - locked hotbar gadget menu (RTP, survival, gacha, info, rules).
+- **NereusRealm** - `/nereus`: join/leave style per rank + custom message (Duke ke atas), rating & masukan server,
+  daftar rank (ranks.yml), AFK Center (reward uang naik + key acak), daily, kits, settings. Small caps.
+- **Nereusistent** - item gadget di hotbar slot 9 (tidak bisa dibuang/dipindah) yang membuka menu
+  RTP, Survival, Gacha, Info, Rules, Rank, Rating, AFK, About Developer.
 
-Build: open the Actions tab, run the latest "Build", download the `plugins` artifact.
+Build: buka tab Actions, jalankan "Build" terbaru, unduh artifact `plugins` (berisi 2 jar).

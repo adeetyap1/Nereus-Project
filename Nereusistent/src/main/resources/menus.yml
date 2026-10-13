@@ -1,3 +1,4 @@
+file-version: 2
 # menus.yml - Menu gadget Nereusistent - Developer: naook1/adityap
 #
 # Item: slot/slots, material, name, lore, amount, glow, custom-model-data, actions
@@ -13,7 +14,7 @@
 #   Gacha    -> CrazyCrates      : crates
 #   Spawn    -> EssentialsSpawn  : spawn
 #   Kits     -> PlayerKits2      : kit
-#   Nereus   -> NereusThrone     : nereus
+#   Nereus   -> NereusRealm     : nereus (menu), nereus ranks, nereus feedback, nereus afk
 
 filler:
   material: BLACK_STAINED_GLASS_PANE
@@ -22,7 +23,7 @@ filler:
 menus:
   main:
     title: "&8Nereusistent"
-    rows: 5
+    rows: 6
     items:
       header:
         slot: 4
@@ -33,8 +34,9 @@ menus:
           - "&7Online: &a{online}&7/&f{max}"
           - ""
           - "&8Developer: &7{developer}"
+      # --- Baris 1: teleport
       rtp:
-        slot: 20
+        slot: 19
         material: ENDER_PEARL
         name: "&bRTP"
         lore:
@@ -45,7 +47,7 @@ menus:
           - "[close]"
           - "[player] rtp"
       survival:
-        slot: 22
+        slot: 21
         material: GRASS_BLOCK
         name: "&aSurvival"
         lore:
@@ -56,7 +58,7 @@ menus:
           - "[close]"
           - "[player] mvtp survival"
       gacha:
-        slot: 24
+        slot: 23
         material: ENDER_CHEST
         name: "&dGacha"
         lore:
@@ -66,8 +68,20 @@ menus:
         actions:
           - "[close]"
           - "[player] crates"
+      spawn:
+        slot: 25
+        material: RED_BED
+        name: "&fSpawn"
+        lore:
+          - "&7Kembali ke spawn."
+          - ""
+          - "&eKlik untuk ke spawn"
+        actions:
+          - "[close]"
+          - "[player] spawn"
+      # --- Baris 2: informasi
       info:
-        slot: 29
+        slot: 28
         material: BOOK
         name: "&eInfo Server"
         lore:
@@ -77,7 +91,7 @@ menus:
         actions:
           - "[menu] info"
       rules:
-        slot: 31
+        slot: 30
         material: WRITABLE_BOOK
         name: "&cRules"
         lore:
@@ -86,9 +100,66 @@ menus:
           - "&eKlik untuk membuka"
         actions:
           - "[menu] rules"
+      ranks:
+        slot: 32
+        material: DIAMOND
+        name: "&bDaftar Rank"
+        lore:
+          - "&7Lihat rank, fitur, dan harga."
+          - ""
+          - "&eKlik untuk membuka"
+        actions:
+          - "[close]"
+          - "[player] nereus ranks"
+      feedback:
+        slot: 34
+        material: GOLD_NUGGET
+        name: "&6Rating Server"
+        lore:
+          - "&7Beri bintang dan masukan,"
+          - "&7baca masukan pemain lain."
+          - ""
+          - "&eKlik untuk membuka"
+        actions:
+          - "[close]"
+          - "[player] nereus feedback"
+      # --- Baris 3: fitur pemain
+      afk:
+        slot: 37
+        material: RED_BED
+        name: "&bAFK Center"
+        lore:
+          - "&7Reward AFK, timer, dan pengaturan."
+          - ""
+          - "&eKlik untuk membuka"
+        actions:
+          - "[close]"
+          - "[player] nereus afk"
+      kits:
+        slot: 39
+        material: CHEST
+        name: "&6Kits"
+        lore:
+          - "&7Ambil kit kamu."
+          - ""
+          - "&eKlik untuk membuka"
+        actions:
+          - "[close]"
+          - "[player] kit"
+      nereus:
+        slot: 41
+        material: COMPASS
+        name: "&aNereus Menu"
+        lore:
+          - "&7Join/leave message, daily, settings."
+          - ""
+          - "&eKlik untuk membuka"
+        actions:
+          - "[close]"
+          - "[player] nereus"
       about:
-        slot: 33
-        material: GOLDEN_HELMET
+        slot: 43
+        material: NAME_TAG
         name: "&6About Developer"
         lore:
           - "&7Siapa di balik Nereusistent."
@@ -96,37 +167,9 @@ menus:
           - "&eKlik untuk membuka"
         actions:
           - "[menu] about"
-      spawn:
-        slot: 38
-        material: RED_BED
-        name: "&fSpawn"
-        lore:
-          - "&eKlik untuk ke spawn"
-        actions:
-          - "[close]"
-          - "[player] spawn"
-      kits:
-        slot: 40
-        material: CHEST
-        name: "&6Kits"
-        lore:
-          - "&eKlik untuk membuka kits"
-        actions:
-          - "[close]"
-          - "[player] kit"
-      nereus:
-        slot: 42
-        material: COMPASS
-        name: "&bNereus Menu"
-        lore:
-          - "&7Join/leave message, daily, AFK."
-          - ""
-          - "&eKlik untuk membuka"
-        actions:
-          - "[close]"
-          - "[player] nereus"
+      # --- Bawah
       gadget:
-        slot: 36
+        slot: 46
         material: LEVER
         name: "&fGadget Hotbar"
         lore:
@@ -137,7 +180,7 @@ menus:
         actions:
           - "[toggle-gadget]"
       close:
-        slot: 44
+        slot: 49
         material: BARRIER
         name: "&cTutup"
         actions:
@@ -210,7 +253,7 @@ menus:
     items:
       developer:
         slot: 11
-        material: GOLDEN_HELMET
+        material: NAME_TAG
         name: "&6Developer"
         lore:
           - "&f{developer}"

@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import me.naook1.nereusistent.command.NereusistentCommand;
 import me.naook1.nereusistent.gadget.GadgetListener;
 import me.naook1.nereusistent.gadget.GadgetManager;
@@ -72,12 +74,31 @@ public final class Nereusistent extends JavaPlugin {
             saveResource(name, false);
         }
         YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
+        YamlConfiguration defaults = null;
         try (InputStream in = getResource(name)) {
             if (in != null) {
-                cfg.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(in, StandardCharsets.UTF_8)));
+                defaults = YamlConfiguration.loadConfiguration(new InputStreamReader(in, StandardCharsets.UTF_8));
             }
         } catch (IOException ignored) {
             // defaults are optional
+        }
+        if (defaults != null) {
+            // An older file-version in the plugin folder is renamed to "name.old-vN" and replaced,
+            // so new menu buttons always show up after an update.
+            int have = cfg.getInt("file-version", 0);
+            int want = defaults.getInt("file-version", 0);
+            if (have < want) {
+                File backup = new File(getDataFolder(), name + ".old-v" + have);
+                try {
+                    Files.move(file.toPath(), backup.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                    saveResource(name, true);
+                    cfg = YamlConfiguration.loadConfiguration(file);
+                    getLogger().warning(name + " is outdated, replaced with the new version. Old copy: " + backup.getName());
+                } catch (IOException e) {
+                    getLogger().warning("Could not update " + name + ": " + e.getMessage());
+                }
+            }
+            cfg.setDefaults(defaults);
         }
         return cfg;
     }

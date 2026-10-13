@@ -1,0 +1,203 @@
+package me.naook1.nereusrealm;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+import me.naook1.nereusrealm.afk.AfkListener;
+import me.naook1.nereusrealm.afk.AfkManager;
+import me.naook1.nereusrealm.command.AfkCommand;
+import me.naook1.nereusrealm.command.NereusCommand;
+import me.naook1.nereusrealm.daily.DailyManager;
+import me.naook1.nereusrealm.data.DataStore;
+import me.naook1.nereusrealm.feedback.FeedbackManager;
+import me.naook1.nereusrealm.gui.MenuListener;
+import me.naook1.nereusrealm.gui.MenuManager;
+import me.naook1.nereusrealm.hook.PapiHook;
+import me.naook1.nereusrealm.input.PromptListener;
+import me.naook1.nereusrealm.input.PromptManager;
+import me.naook1.nereusrealm.joinleave.CustomMessages;
+import me.naook1.nereusrealm.joinleave.JoinLeaveListener;
+import me.naook1.nereusrealm.joinleave.StyleManager;
+import me.naook1.nereusrealm.rank.RankManager;
+import me.naook1.nereusrealm.util.Messages;
+import me.naook1.nereusrealm.util.Text;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.java.JavaPlugin;
+
+/**
+ * NereusRealm - custom join/leave, rating, ranks, AFK rewards, daily and menus.
+ * Developer: naook1/adityap
+ */
+public final class NereusRealm extends JavaPlugin {
+
+    private Messages messages;
+    private DataStore data;
+    private CustomMessages custom;
+    private StyleManager styles;
+    private AfkManager afk;
+    private DailyManager daily;
+    private RankManager ranks;
+    private FeedbackManager feedback;
+    private PromptManager prompts;
+    private MenuManager menus;
+
+    @Override
+    public void onEnable() {
+        saveDefaultConfig();
+        Text.setPapi(getServer().getPluginManager().isPluginEnabled("PlaceholderAPI"));
+
+        messages = new Messages(this);
+        data = new DataStore(this);
+        custom = new CustomMessages(this);
+        styles = new StyleManager(this);
+        afk = new AfkManager(this);
+        daily = new DailyManager(this);
+        ranks = new RankManager(this);
+        feedback = new FeedbackManager(this);
+        prompts = new PromptManager(this);
+        menus = new MenuManager(this);
+        reloadAll();
+
+        PluginManager pm = getServer().getPluginManager();
+        pm.registerEvents(new JoinLeaveListener(this), this);
+        pm.registerEvents(new AfkListener(this), this);
+        pm.registerEvents(new MenuListener(this), this);
+        pm.registerEvents(new PromptListener(this), this);
+
+        NereusCommand nereus = new NereusCommand(this);
+        getCommand("nereus").setExecutor(nereus);
+        getCommand("nereus").setTabCompleter(nereus);
+        getCommand("afk").setExecutor(new AfkCommand(this));
+
+        afk.start();
+        menus.start();
+        getServer().getScheduler().runTaskTimer(this, () -> {
+            data.flush(true);
+            feedback.flush(true);
+        }, 20L * 30, 20L * 30);
+
+        if (getServer().getPluginManager().isPluginEnabled("PlaceholderAPI")) {
+            try {
+                PapiHook.registerExpansion(this);
+            } catch (Throwable t) {
+                getLogger().warning("Could not register PlaceholderAPI expansion: " + t.getMessage());
+            }
+        }
+
+        getLogger().info("NereusRealm v" + getDescription().getVersion()
+                + " enabled | developer: " + getConfig().getString("developer", "naook1/adityap"));
+    }
+
+    @Override
+    public void onDisable() {
+        if (afk != null) {
+            afk.stop();
+        }
+        if (menus != null) {
+            menus.stop();
+        }
+        if (data != null) {
+            data.flush(false);
+        }
+        if (feedback != null) {
+            feedback.flush(false);
+        }
+    }
+
+    public void reloadAll() {
+        reloadConfig();
+        messages.reload();
+        custom.reload();
+        styles.reload();
+        afk.reload();
+        daily.reload();
+        ranks.reload();
+        feedback.reload();
+        prompts.reload();
+        menus.reload();
+    }
+
+    /**
+     * Loads a bundled yml (copied to the plugin folder on first run, missing keys fall back to jar defaults).
+     * If the file in the plugin folder has an older "file-version" than the jar, it is renamed to
+     * "name.old-vN" and a fresh copy is written, so new menus/messages always appear.
+     */
+    public FileConfiguration loadYaml(String name) {
+        File file = new File(getDataFolder(), name);
+        if (!file.exists()) {
+            saveResource(name, false);
+        }
+        YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
+        YamlConfiguration defaults = null;
+        try (InputStream in = getResource(name)) {
+            if (in != null) {
+                defaults = YamlConfiguration.loadConfiguration(new InputStreamReader(in, StandardCharsets.UTF_8));
+            }
+        } catch (IOException ignored) {
+            // defaults are optional
+        }
+        if (defaults != null) {
+            int have = cfg.getInt("file-version", 0);
+            int want = defaults.getInt("file-version", 0);
+            if (have < want) {
+                File backup = new File(getDataFolder(), name + ".old-v" + have);
+                try {
+                    Files.move(file.toPath(), backup.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                    saveResource(name, true);
+                    cfg = YamlConfiguration.loadConfiguration(file);
+                    getLogger().warning(name + " is outdated, replaced with the new version. Old copy: " + backup.getName());
+                } catch (IOException e) {
+                    getLogger().warning("Could not update " + name + ": " + e.getMessage());
+                }
+            }
+            cfg.setDefaults(defaults);
+        }
+        return cfg;
+    }
+
+    public Messages messages() {
+        return messages;
+    }
+
+    public DataStore data() {
+        return data;
+    }
+
+    public CustomMessages custom() {
+        return custom;
+    }
+
+    public StyleManager styles() {
+        return styles;
+    }
+
+    public AfkManager afk() {
+        return afk;
+    }
+
+    public DailyManager daily() {
+        return daily;
+    }
+
+    public RankManager ranks() {
+        return ranks;
+    }
+
+    public FeedbackManager feedback() {
+        return feedback;
+    }
+
+    public PromptManager prompts() {
+        return prompts;
+    }
+
+    public MenuManager menus() {
+        return menus;
+    }
+}

@@ -1,0 +1,122 @@
+file-version: 1
+# messages.yml - Developer: naook1/adityap
+# Semua teks bisa diubah. {prefix} = prefix di bawah.
+# Small caps otomatis jika small-caps.messages: true di config.yml
+
+prefix: "&8[&6Nereus&8] &7"
+
+no-permission: "{prefix}&cKamu tidak punya izin untuk itu."
+players-only: "{prefix}&cCommand ini hanya untuk player."
+reloaded: "{prefix}&aConfig, menu, rank, dan style berhasil di-reload."
+unknown-menu: "{prefix}&cMenu '{menu}' tidak ditemukan."
+player-not-found: "{prefix}&cPemain tidak ditemukan."
+link: "{prefix}&7Klik untuk membuka: &b&n{url}"
+
+status:
+  enabled: "&aON"
+  disabled: "&cOFF"
+
+style:
+  unknown: "{prefix}&cStyle tidak ditemukan."
+  locked: "{prefix}&cStyle ini terkunci! Dibutuhkan: &f{requirement}"
+  selected-join: "{prefix}&aJoin style diganti ke {style}"
+  selected-leave: "{prefix}&aLeave style diganti ke {style}"
+  preview: "{prefix}&7Preview:"
+
+custom:
+  name: "&dCustom Message"
+  empty-preview: "&8(belum ada)"
+  label-none: "Tanpa warna"
+  active: "&a✔ Sedang dipakai"
+  inactive: "&7Tidak dipakai"
+  used: "{prefix}&aPesan custom dipakai."
+  reset: "{prefix}&7Pesan custom dihapus. Kembali memakai style bawaan."
+  cleared: "{prefix}&aPesan custom milik &f{player} &adireset."
+  label-colors: "Warna"
+  label-format: "Format"
+  label-hex: "Hex"
+  locked: "{prefix}&cFitur custom message khusus rank: &f{requirement}"
+  none: "{prefix}&cKamu belum menulis pesan custom. Klik kiri item custom untuk menulis."
+  prompt-join: "{prefix}&7Ketik &fpesan join &7kamu di chat. Pakai &f{player} &7untuk namamu. Maks &f{max} &7karakter. Ketik &ccancel &7untuk batal."
+  prompt-leave: "{prefix}&7Ketik &fpesan leave &7kamu di chat. Pakai &f{player} &7untuk namamu. Maks &f{max} &7karakter. Ketik &ccancel &7untuk batal."
+  saved: "{prefix}&aPesan custom disimpan dan langsung dipakai."
+  err-empty: "{prefix}&cPesan tidak boleh kosong. Coba lagi atau ketik &fcancel&c."
+  err-too-long: "{prefix}&cPesan terlalu panjang (maks &f{max}&c karakter). Coba lagi."
+  err-blocked: "{prefix}&cPesan mengandung kata atau tautan yang tidak diizinkan. Coba lagi."
+  cooldown: "{prefix}&cTunggu &f{time} &clagi sebelum mengubah pesan custom."
+
+input:
+  cancelled: "{prefix}&7Dibatalkan."
+  timeout: "{prefix}&cWaktu mengetik habis."
+
+feedback:
+  disabled: "{prefix}&cFitur rating sedang dimatikan."
+  need-playtime: "{prefix}&cMain dulu minimal &f{needed} menit &cbaru bisa memberi rating. Kamu baru &f{current} menit&c."
+  cooldown: "{prefix}&cKamu baru bisa mengubah rating lagi dalam &f{time}&c."
+  prompt: "{prefix}&7Kamu memberi &e{stars}&7. Ketik &fmasukanmu &7di chat (maks &f{max} &7karakter), atau ketik &askip &7untuk tanpa pesan, &ccancel &7untuk batal."
+  thanks: "{prefix}&aTerima kasih! Rating kamu &e{stars} &asudah tersimpan."
+  err-too-long: "{prefix}&cMasukan terlalu panjang (maks &f{max}&c karakter). Coba lagi."
+  err-blocked: "{prefix}&cMasukan mengandung kata atau tautan yang tidak diizinkan. Coba lagi."
+  deleted: "{prefix}&aMasukan milik &f{player} &adihapus."
+  deleted-self: "{prefix}&aMasukanmu sudah dihapus."
+  not-found: "{prefix}&cMasukan dari pemain itu tidak ditemukan."
+  no-message: "&8(Tanpa pesan)"
+  not-rated: "&7Belum memberi rating"
+  can-rate-now: "&aSekarang"
+  admin-hint: "&cKlik kanan untuk menghapus"
+
+ranks:
+  member: "&7Member"
+  status-owned: "&a✔ Rank kamu saat ini"
+  status-buy: "&eKlik untuk membeli"
+
+settings:
+  toggled: "{prefix}&7{setting}: {state}"
+  name-show-joinleave: "&fPesan join/leave"
+  name-show-afk: "&fPesan AFK"
+  name-show-rewards: "&fNotifikasi reward AFK"
+
+daily:
+  disabled: "{prefix}&cDaily sedang dimatikan."
+  already: "{prefix}&cKamu sudah claim hari ini. Reset dalam &f{reset}&c."
+  claimed: "{prefix}&aDaily claimed! &7({reward}&7) &8| &7Hari ke-&e{day}"
+  status-ready: "&aSiap di-claim!"
+  status-claimed: "&cSudah di-claim"
+
+afk:
+  disabled: "{prefix}&cFitur AFK sedang dimatikan."
+  went-afk: "&8[&e&lAFK&8] &f{player} &7sekarang AFK &8» &f{reason}"
+  returned: "&8[&e&lAFK&8] &f{player} &7sudah kembali &8» &e{time}"
+  reward-money: "{prefix}&7AFK &e{minutes} menit &8» &a+${amount}"
+  reward-key: "{prefix}&7Kamu dapat &fx{amount} {key} &7dari AFK!"
+  state-on: "&eAFK"
+  state-off: "&aAktif"
+  capped: "&cBatas reward tercapai"
+  reward-active: "&aReward berjalan"
+  actionbar: "&e&lAFK &8• &f{time} &8• &7Reward &a${money} &7dalam &f{next_in}"
+  actionbar-simple: "&e&lAFK &8• &f{time} &8• &7{reason}"
+  actionbar-capped: "&e&lAFK &8• &f{time} &8• &cBatas reward tercapai"
+  title: "&e&lAFK"
+  subtitle: "&7{reason}"
+  summary: "{prefix}&7Selamat datang kembali! Selama AFK (&f{time}&7) kamu dapat &a${money} &7dan &d{keys} key&7."
+
+help:
+  - "&8&m                                   "
+  - "&6/nereus &8- &7Menu utama"
+  - "&6/nereus join &8- &7Atur join message"
+  - "&6/nereus leave &8- &7Atur leave message"
+  - "&6/nereus daily &8- &7Hadiah harian"
+  - "&6/nereus ranks &8- &7Daftar rank, fitur, dan harga"
+  - "&6/nereus feedback &8- &7Rating dan masukan server"
+  - "&6/nereus afk &8- &7Menu AFK"
+  - "&6/nereus setjoin <pesan> &8- &7Tulis join message custom"
+  - "&6/nereus setleave <pesan> &8- &7Tulis leave message custom"
+  - "&6/nereus resetjoin &8| &6resetleave &8- &7Hapus pesan custom"
+  - "&6/nereus kits &8- &7Buka kits"
+  - "&6/nereus settings &8- &7Pengaturan pribadi"
+  - "&6/afk [alasan] &8- &7Tandai AFK"
+  - "&8&m                                   "
+
+about:
+  - "&6NereusRealm &7v{version}"
+  - "&7Developer: &f{developer}"
