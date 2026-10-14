@@ -1,0 +1,21 @@
+name: NereusFarmPrice
+version: '${project.version}'
+main: me.naook1.nereusfarmprice.NereusFarmPrice
+api-version: '1.21'
+authors: [naook1, adityap]
+description: Farm price buffs synced with EconomyShopGUI by naook1/adityap
+softdepend: [EconomyShopGUI, EconomyShopGUI-Premium]
+
+commands:
+  farmprice:
+    description: Lihat harga farm yang sedang di-buff
+    aliases: [hargafarm, farmprices]
+    usage: /<command> [chat|book]
+
+permissions:
+  farmprice.use:
+    description: Buka /farmprice
+    default: true
+  farmprice.admin:
+    description: Atur buff, rotasi, reload, debug
+    default: op

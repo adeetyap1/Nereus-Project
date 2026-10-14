@@ -10,4 +10,7 @@ Custom Paper 1.21.1 plugins (Java 21) by naook1/adityap.
 - **NereusLottery** - `/lottery`: undian terjadwal (WITA), tiket, jackpot yang menumpuk, menu GUI, tanpa pajak.
   Butuh Vault + plugin ekonomi (EssentialsX).
 
-Build: buka tab Actions, jalankan "Build" terbaru, unduh artifact `plugins` (berisi 3 jar).
+- **NereusFarmPrice** - `/farmprice`: buff harga farm berotasi otomatis + pasar jenuh, harga dasar dibaca dari
+  EconomyShopGUI, menu berupa teks (buku/chat).
+
+Build: buka tab Actions, jalankan "Build" terbaru, unduh artifact `plugins` (berisi 4 jar).

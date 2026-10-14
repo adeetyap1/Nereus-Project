@@ -16,7 +16,7 @@ jobs:
         run: |
           set -o pipefail
           mkdir out
-          for dir in NereusRealm Nereusistent NereusLottery; do
+          for dir in NereusRealm Nereusistent NereusLottery NereusFarmPrice; do
             if ! mvn -B -f "$dir/pom.xml" clean package 2>&1 | tee "$dir-build.log"; then
               # show compile errors as annotations so they are visible on the run page
               grep -E '^\[ERROR\] .*(\.java|symbol|location)' "$dir-build.log" | head -40 | while read -r line; do echo "::error::$line"; done
