@@ -35,6 +35,25 @@ redeem:
   max-fails: 5                       # salah kode berturut-turut sebelum dikunci
   lock-seconds: 300                  # lama dikunci (anti tebak kode)
 
+# ------------------------------------------------------------
+#  GADGET HOTBAR (item di hotbar, klik kanan = buka menu /nereus)
+# ------------------------------------------------------------
+gadget:
+  slot: 9                      # 1-9 (9 = paling kanan di hotbar)
+  material: NETHER_STAR
+  name: "&6&lNereus Menu"
+  lore:
+    - "&7Klik kanan untuk membuka menu."
+    - "&7Teleport, daily, AFK, rank, dan lainnya."
+    - ""
+    - "&8Developer: &7{developer}"
+  glow: true
+  custom-model-data: 0         # 0 = tidak dipakai
+  allow-toggle: true           # pemain boleh mematikan gadget sendiri (/nereus toggle atau menu Settings)
+  open-cooldown-ms: 300
+  check-interval-seconds: 2    # cek ulang & pulihkan item kalau hilang
+  disabled-worlds: []          # world yang tidak dapat gadget, mis. ["lobby"]
+
 kits:
   # Command PlayerKits2 yang dijalankan tombol Kits
   command: "kit"

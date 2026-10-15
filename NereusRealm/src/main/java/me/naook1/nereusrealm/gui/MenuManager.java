@@ -19,6 +19,7 @@ import me.naook1.nereusrealm.util.TimeUtil;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.ConfigurationSection;
@@ -595,6 +596,9 @@ public final class MenuManager {
                 "afk_money_step", AfkManager.fmt(am.moneyStep()),
                 "afk_money_max", am.moneyMax() > 0 ? AfkManager.fmt(am.moneyMax()) : "∞",
                 "afk_key_chance", pct(am.keyChance()),
+                "online", String.valueOf(Bukkit.getOnlinePlayers().size()),
+                "max", String.valueOf(Bukkit.getMaxPlayers()),
+                "gadget_state", plugin.messages().raw(plugin.gadgets().isDisabled(u) ? "status.disabled" : "status.enabled"),
                 "kits_command", plugin.getConfig().getString("kits.command", "kit"),
                 "state_show_joinleave", state(plugin.data().getBoolean(u, "show-joinleave", true)),
                 "state_show_afk", state(plugin.data().getBoolean(u, "show-afk", true)),
@@ -696,6 +700,11 @@ public final class MenuManager {
                     }
                     open(p, menuId);
                 }
+                case "teleport" -> teleport(p, arg);
+                case "toggle-gadget" -> {
+                    plugin.gadgets().toggle(p);
+                    open(p, menuId);
+                }
                 case "redeem" -> plugin.prompts().beginRedeem(p);
                 case "afk-reason" -> plugin.prompts().beginAfk(p);
                 case "feedback-start" -> {
@@ -727,6 +736,20 @@ public final class MenuManager {
                 default -> plugin.getLogger().warning("Unknown gui action: " + line);
             }
         }
+    }
+
+    private void teleport(Player p, String point) {
+        Location loc = plugin.points().get(point);
+        if (loc == null) {
+            plugin.messages().send(p, "point.missing", "point", point);
+            return;
+        }
+        p.closeInventory();
+        p.teleportAsync(loc).thenAccept(ok -> {
+            if (ok) {
+                plugin.messages().send(p, "point.teleported", "point", point);
+            }
+        });
     }
 
     private void deleteOther(Player admin, String uuid) {

@@ -45,6 +45,24 @@ public final class NereusCommand implements TabExecutor {
                 }
                 return true;
             }
+            case "setpoint", "delpoint", "points" -> {
+                points(sender, sub, args);
+                return true;
+            }
+            case "give" -> {
+                if (!sender.hasPermission("nereus.admin")) {
+                    plugin.messages().send(sender, "no-permission");
+                    return true;
+                }
+                Player target = args.length > 1 ? Bukkit.getPlayerExact(args[1]) : (sender instanceof Player self ? self : null);
+                if (target == null) {
+                    plugin.messages().send(sender, "player-not-found");
+                } else {
+                    plugin.gadgets().ensure(target, true);
+                    plugin.messages().send(sender, "gadget.given", "player", target.getName());
+                }
+                return true;
+            }
             case "clearcustom" -> {
                 clearCustom(sender, args);
                 return true;
@@ -85,6 +103,7 @@ public final class NereusCommand implements TabExecutor {
                     plugin.redeem().claim(p, args[1]);
                 }
             }
+            case "toggle", "gadget" -> plugin.gadgets().toggle(p);
             case "kits" -> p.performCommand(plugin.getConfig().getString("kits.command", "kit"));
             case "afk" -> afk(p, args);
             case "setjoin", "setleave" -> setCustom(p, sub.equals("setjoin"), args);
@@ -153,6 +172,35 @@ public final class NereusCommand implements TabExecutor {
         plugin.messages().send(sender, "custom.cleared", "player", args[1]);
     }
 
+    private void points(CommandSender sender, String sub, String[] args) {
+        var m = plugin.messages();
+        if (!sender.hasPermission("nereus.admin")) {
+            m.send(sender, "no-permission");
+            return;
+        }
+        if (sub.equals("points")) {
+            m.send(sender, "point.list", "points", String.join(", ", plugin.points().names()));
+            return;
+        }
+        if (args.length < 2) {
+            m.send(sender, "point.usage");
+            return;
+        }
+        String name = args[1].toLowerCase(Locale.ROOT);
+        if (sub.equals("setpoint")) {
+            if (!(sender instanceof Player p)) {
+                m.send(sender, "players-only");
+                return;
+            }
+            plugin.points().set(name, p.getLocation());
+            m.send(sender, "point.set", "point", name);
+        } else if (plugin.points().remove(name)) {
+            m.send(sender, "point.deleted", "point", name);
+        } else {
+            m.send(sender, "point.missing", "point", name);
+        }
+    }
+
     private void about(CommandSender sender) {
         plugin.messages().sendList(sender, "about",
                 "version", plugin.getDescription().getVersion(),
@@ -163,17 +211,29 @@ public final class NereusCommand implements TabExecutor {
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (args.length == 1) {
             List<String> subs = new ArrayList<>(List.of("join", "leave", "daily", "kits", "ranks", "feedback",
-                    "afk", "redeem", "settings", "setjoin", "setleave", "resetjoin", "resetleave", "about", "help"));
+                    "afk", "redeem", "settings", "toggle", "setjoin", "setleave", "resetjoin", "resetleave", "about", "help"));
             if (sender.hasPermission("nereus.admin")) {
                 subs.add("reload");
                 subs.add("menu");
                 subs.add("clearcustom");
                 subs.add("code");
+                subs.add("give");
+                subs.add("setpoint");
+                subs.add("delpoint");
+                subs.add("points");
             }
             return StringUtil.copyPartialMatches(args[0], subs, new ArrayList<>());
         }
         if (args.length >= 2 && args[0].equalsIgnoreCase("code") && sender.hasPermission("nereus.admin")) {
             return new CodeAdmin(plugin).tab(Arrays.copyOfRange(args, 1, args.length));
+        }
+        if (args.length == 2 && sender.hasPermission("nereus.admin")
+                && (args[0].equalsIgnoreCase("setpoint") || args[0].equalsIgnoreCase("delpoint"))) {
+            List<String> names = plugin.points().names();
+            if (args[0].equalsIgnoreCase("setpoint")) {
+                names.addAll(List.of("gacha", "survival", "rtp"));
+            }
+            return StringUtil.copyPartialMatches(args[1], names, new ArrayList<>());
         }
         if (args.length == 2 && args[0].equalsIgnoreCase("clearcustom") && sender.hasPermission("nereus.admin")) {
             List<String> names = new ArrayList<>();

@@ -1,6 +1,6 @@
-package me.naook1.nereusistent.gadget;
+package me.naook1.nereusrealm.gadget;
 
-import me.naook1.nereusistent.Nereusistent;
+import me.naook1.nereusrealm.NereusRealm;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -32,10 +32,10 @@ import org.bukkit.inventory.ItemStack;
 /** Makes the gadget undroppable, unmovable, undeletable and always present. */
 public final class GadgetListener implements Listener {
 
-    private final Nereusistent plugin;
+    private final NereusRealm plugin;
     private final GadgetManager gm;
 
-    public GadgetListener(Nereusistent plugin) {
+    public GadgetListener(NereusRealm plugin) {
         this.plugin = plugin;
         this.gm = plugin.gadgets();
     }

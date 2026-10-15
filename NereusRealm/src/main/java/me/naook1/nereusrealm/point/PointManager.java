@@ -1,11 +1,11 @@
-package me.naook1.nereusistent.point;
+package me.naook1.nereusrealm.point;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import me.naook1.nereusistent.Nereusistent;
+import me.naook1.nereusrealm.NereusRealm;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -15,11 +15,11 @@ import org.bukkit.configuration.file.YamlConfiguration;
 /** Named teleport points (points.yml) set in-game with /nsi setpoint <name>, used by the [teleport] menu action. */
 public final class PointManager {
 
-    private final Nereusistent plugin;
+    private final NereusRealm plugin;
     private final File file;
     private YamlConfiguration cfg = new YamlConfiguration();
 
-    public PointManager(Nereusistent plugin) {
+    public PointManager(NereusRealm plugin) {
         this.plugin = plugin;
         this.file = new File(plugin.getDataFolder(), "points.yml");
     }

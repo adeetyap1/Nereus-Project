@@ -2,10 +2,9 @@
 
 Custom Paper 1.21.1 plugins (Java 21) by naook1/adityap.
 
-- **NereusRealm** - `/nereus`: join/leave style per rank + custom message (Duke ke atas), rating & masukan server,
-  daftar rank (ranks.yml), AFK Center (reward uang naik + key acak), daily, kits, settings. Small caps.
-- **Nereusistent** - item gadget di hotbar slot 9 (tidak bisa dibuang/dipindah) yang membuka menu
-  RTP, Survival, Gacha, Info, Rules, Rank, Rating, AFK, About Developer.
+- **NereusRealm** (2.0, sudah termasuk gadget hotbar dan menu teleport) - `/nereus` (alias `/nsi`): SATU menu untuk semua:
+  RTP, Survival, Gacha, Spawn, Daily, Kits, AFK Center, Redeem, Join/Leave style + custom message, Rank, Rating,
+  Info & Rules, Settings. Item gadget di hotbar slot 9 membuka menu yang sama. Small caps.
 
 - **NereusLottery** - `/lottery`: undian terjadwal (WITA), tiket, jackpot yang menumpuk, menu GUI, tanpa pajak.
   Butuh Vault + plugin ekonomi (EssentialsX).
@@ -20,4 +19,4 @@ Custom Paper 1.21.1 plugins (Java 21) by naook1/adityap.
 - **NereusHide** - `/hide`: petak umpet, pencari diundi acak, sistem poin (temuan +1, ketemu -5 dst), admin tidak ikut
   kecuali `/hide join`, menu admin `/hide admin`, inventory pemain disimpan aman ke file.
 
-Build: buka tab Actions, jalankan "Build" terbaru, unduh artifact `plugins` (berisi 7 jar).
+Build: buka tab Actions, jalankan "Build" terbaru, unduh artifact `plugins` (berisi 6 jar).

@@ -1,4 +1,4 @@
-file-version: 3
+file-version: 4
 # gui.yml - Menu /nereus - Developer: naook1/adityap
 #
 # Teks otomatis small caps (small-caps.gui di config.yml).
@@ -22,6 +22,8 @@ file-version: 3
 #   [feedback-start]       mulai beri rating    [rate] 1-5              pilih bintang
 #   [feedback-delete]      hapus rating sendiri
 #   [redeem]               minta kode redeem di chat
+#   [teleport] <titik>     teleport ke titik yang diatur admin: /nereus setpoint <titik>
+#   [toggle-gadget]        hidupkan/matikan item gadget di hotbar
 #
 # Placeholder item: {player} {developer} {version} {server_name} {current_rank}
 #   {join_style} {leave_style} {streak} {daily_status} {reset}
@@ -31,7 +33,7 @@ file-version: 3
 #   {custom_join_text} {custom_leave_text} {custom_join_active} {custom_leave_active}
 #   {custom_max} {custom_colors} {custom_requirement}
 #   {rating_avg} {rating_count} {rating_stars} {my_stars} {feedback_next}
-#   {state_show_joinleave} {state_show_afk} {state_show_rewards} {kits_command} {page} {pages}
+#   {online} {max} {gadget_state} {state_show_joinleave} {state_show_afk} {state_show_rewards} {kits_command} {page} {pages}
 #   + PlaceholderAPI. Satu baris lore yang isinya persis {afk_ladder}, {afk_keys}, {rating_dist},
 #   {my_feedback} akan diganti beberapa baris.
 
@@ -123,6 +125,7 @@ menus:
         name: "&6{player}"
         lore:
           - "&7Rank: &f{current_rank}"
+          - "&7Online: &a{online}&7/&f{max}"
           - ""
           - "&7Join style: {join_style}"
           - "&7Leave style: {leave_style}"
@@ -130,30 +133,53 @@ menus:
           - "&7Rating server: &e{rating_avg}&7/5"
           - ""
           - "&8Developer: &7{developer}"
-      join:
+      # --- Baris 1: teleport
+      rtp:
         slot: 19
-        material: LIME_DYE
-        name: "&aJoin Message"
+        material: ENDER_PEARL
+        name: "&bRTP"
         lore:
-          - "&7Atur pesan saat kamu masuk."
-          - "&7Sekarang: {join_style}"
+          - "&7Teleport acak ke lokasi baru."
           - ""
-          - "&eKlik untuk membuka"
+          - "&eKlik untuk teleport"
         actions:
-          - "[menu] join-styles"
-      leave:
+          - "[close]"
+          - "[player] rtp"
+      survival:
         slot: 21
-        material: RED_DYE
-        name: "&cLeave Message"
+        material: GRASS_BLOCK
+        name: "&aSurvival"
         lore:
-          - "&7Atur pesan saat kamu keluar."
-          - "&7Sekarang: {leave_style}"
+          - "&7Masuk ke dunia survival."
           - ""
-          - "&eKlik untuk membuka"
+          - "&eKlik untuk masuk"
         actions:
-          - "[menu] leave-styles"
-      daily:
+          - "[close]"
+          - "[player] mvtp survival"
+      gacha:
         slot: 23
+        material: ENDER_CHEST
+        name: "&dGacha"
+        lore:
+          - "&7Buka crate dan dapatkan hadiah."
+          - ""
+          - "&eKlik untuk teleport"
+        actions:
+          - "[teleport] gacha"
+      spawn:
+        slot: 25
+        material: RED_BED
+        name: "&fSpawn"
+        lore:
+          - "&7Kembali ke spawn."
+          - ""
+          - "&eKlik untuk ke spawn"
+        actions:
+          - "[close]"
+          - "[player] spawn"
+      # --- Baris 2: hadiah & fitur harian
+      daily:
+        slot: 28
         material: CLOCK
         name: "&eDaily Reward"
         lore:
@@ -165,7 +191,7 @@ menus:
         actions:
           - "[menu] daily"
       kits:
-        slot: 25
+        slot: 30
         material: CHEST
         name: "&6Kits"
         lore:
@@ -176,7 +202,7 @@ menus:
           - "[close]"
           - "[player] {kits_command}"
       afk:
-        slot: 28
+        slot: 32
         material: RED_BED
         name: "&bAFK Center"
         lore:
@@ -186,8 +212,42 @@ menus:
           - "&eKlik untuk membuka"
         actions:
           - "[menu] afk"
+      redeem:
+        slot: 34
+        material: TRIPWIRE_HOOK
+        name: "&dRedeem Code"
+        lore:
+          - "&7Punya kode hadiah?"
+          - "&7Tukarkan di sini."
+          - ""
+          - "&eKlik lalu ketik kodenya"
+        actions:
+          - "[redeem]"
+      # --- Baris 3: tampilan & komunitas
+      join:
+        slot: 37
+        material: LIME_DYE
+        name: "&aJoin Message"
+        lore:
+          - "&7Atur pesan saat kamu masuk."
+          - "&7Sekarang: {join_style}"
+          - ""
+          - "&eKlik untuk membuka"
+        actions:
+          - "[menu] join-styles"
+      leave:
+        slot: 39
+        material: RED_DYE
+        name: "&cLeave Message"
+        lore:
+          - "&7Atur pesan saat kamu keluar."
+          - "&7Sekarang: {leave_style}"
+          - ""
+          - "&eKlik untuk membuka"
+        actions:
+          - "[menu] leave-styles"
       ranks:
-        slot: 30
+        slot: 41
         material: DIAMOND
         name: "&bDaftar Rank"
         lore:
@@ -198,7 +258,7 @@ menus:
         actions:
           - "[menu] ranks"
       feedback:
-        slot: 32
+        slot: 43
         material: NETHER_STAR
         name: "&6Rating Server"
         lore:
@@ -208,8 +268,25 @@ menus:
           - "&eKlik untuk membuka"
         actions:
           - "[menu] feedback"
+      # --- Bawah
+      info:
+        slot: 46
+        material: BOOK
+        name: "&eInfo & Rules"
+        lore:
+          - "&7Info server, link, dan aturan."
+          - ""
+          - "&eKlik untuk membuka"
+        actions:
+          - "[menu] info"
+      close:
+        slot: 49
+        material: BARRIER
+        name: "&cTutup"
+        actions:
+          - "[close]"
       settings:
-        slot: 34
+        slot: 52
         material: COMPARATOR
         name: "&dSettings"
         lore:
@@ -218,23 +295,60 @@ menus:
           - "&eKlik untuk membuka"
         actions:
           - "[menu] settings"
-      redeem:
-        slot: 40
-        material: TRIPWIRE_HOOK
-        name: "&dRedeem Code"
+
+  # ---------------------------------------------------------------- info & rules
+  info:
+    title: "&8Info & Rules"
+    rows: 4
+    border: BLACK_STAINED_GLASS_PANE
+    items:
+      server:
+        slot: 10
+        material: NETHER_STAR
+        name: "&6{server_name}"
         lore:
-          - "&7Punya kode hadiah?"
-          - "&7Tukarkan di sini."
+          - "&7Versi: &fJava & Bedrock 1.21.1"
+          - "&7Online: &a{online}&7/&f{max}"
+          - "&7Mode: &fSurvival"
           - ""
-          - "&eKlik lalu ketik kodenya"
-        actions:
-          - "[redeem]"
-      close:
-        slot: 49
-        material: BARRIER
-        name: "&cTutup"
+          - "&8Developer: &7{developer}"
+      discord:
+        slot: 12
+        material: PAPER
+        name: "&9Discord"
+        lore:
+          - "&7Gabung komunitas kami."
+          - ""
+          - "&eKlik untuk mendapatkan link"
         actions:
           - "[close]"
+          - "[link] https://discord.gg/your-link"
+      website:
+        slot: 14
+        material: MAP
+        name: "&bWebsite / Store"
+        lore:
+          - "&eKlik untuk mendapatkan link"
+        actions:
+          - "[close]"
+          - "[link] https://example.com"
+      rules:
+        slot: 16
+        material: WRITTEN_BOOK
+        name: "&cRules Server"
+        lore:
+          - "&71. &fHormati semua player dan staff."
+          - "&72. &fDilarang cheat, hack, dan x-ray."
+          - "&73. &fDilarang bug abuse / dupe."
+          - "&74. &fDilarang spam, flood, dan iklan."
+          - "&75. &fDilarang griefing di area orang lain."
+          - "&76. &fKeputusan staff bersifat final."
+      back:
+        slot: 31
+        material: ARROW
+        name: "&cKembali"
+        actions:
+          - "[menu] main"
 
   # ---------------------------------------------------------------- join / leave
   join-styles:
@@ -705,7 +819,7 @@ menus:
     border: BLACK_STAINED_GLASS_PANE
     items:
       joinleave:
-        slot: 11
+        slot: 10
         material: PAPER
         name: "&fPesan join/leave"
         lore:
@@ -716,7 +830,7 @@ menus:
         actions:
           - "[toggle] show-joinleave"
       afk:
-        slot: 13
+        slot: 12
         material: RED_BED
         name: "&fPesan AFK"
         lore:
@@ -727,7 +841,7 @@ menus:
         actions:
           - "[toggle] show-afk"
       rewards:
-        slot: 15
+        slot: 14
         material: GOLD_NUGGET
         name: "&fNotifikasi reward AFK"
         lore:
@@ -737,6 +851,17 @@ menus:
           - "&eKlik untuk toggle"
         actions:
           - "[toggle] show-rewards"
+      gadget:
+        slot: 16
+        material: LEVER
+        name: "&fGadget Hotbar"
+        lore:
+          - "&7Item menu di hotbar-mu."
+          - "&7Status: {gadget_state}"
+          - ""
+          - "&eKlik untuk toggle"
+        actions:
+          - "[toggle-gadget]"
       back:
         slot: 22
         material: ARROW

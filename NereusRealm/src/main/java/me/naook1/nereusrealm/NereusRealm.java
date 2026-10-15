@@ -15,6 +15,8 @@ import me.naook1.nereusrealm.command.NereusCommand;
 import me.naook1.nereusrealm.daily.DailyManager;
 import me.naook1.nereusrealm.data.DataStore;
 import me.naook1.nereusrealm.feedback.FeedbackManager;
+import me.naook1.nereusrealm.gadget.GadgetListener;
+import me.naook1.nereusrealm.gadget.GadgetManager;
 import me.naook1.nereusrealm.gui.MenuListener;
 import me.naook1.nereusrealm.gui.MenuManager;
 import me.naook1.nereusrealm.hook.PapiHook;
@@ -23,6 +25,7 @@ import me.naook1.nereusrealm.input.PromptManager;
 import me.naook1.nereusrealm.joinleave.CustomMessages;
 import me.naook1.nereusrealm.joinleave.JoinLeaveListener;
 import me.naook1.nereusrealm.joinleave.StyleManager;
+import me.naook1.nereusrealm.point.PointManager;
 import me.naook1.nereusrealm.rank.RankManager;
 import me.naook1.nereusrealm.redeem.RedeemManager;
 import me.naook1.nereusrealm.util.Messages;
@@ -33,7 +36,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
- * NereusRealm - custom join/leave, rating, ranks, AFK rewards, daily and menus.
+ * NereusRealm - one menu for everything: join/leave, rating, ranks, AFK, daily, redeem, teleports, hotbar gadget.
  * Developer: naook1/adityap
  */
 public final class NereusRealm extends JavaPlugin {
@@ -49,6 +52,8 @@ public final class NereusRealm extends JavaPlugin {
     private PromptManager prompts;
     private RedeemManager redeem;
     private MenuManager menus;
+    private GadgetManager gadgets;
+    private PointManager points;
 
     @Override
     public void onEnable() {
@@ -66,6 +71,9 @@ public final class NereusRealm extends JavaPlugin {
         prompts = new PromptManager(this);
         redeem = new RedeemManager(this);
         menus = new MenuManager(this);
+        gadgets = new GadgetManager(this);
+        points = new PointManager(this);
+        points.load();
         reloadAll();
 
         PluginManager pm = getServer().getPluginManager();
@@ -73,6 +81,7 @@ public final class NereusRealm extends JavaPlugin {
         pm.registerEvents(new AfkListener(this), this);
         pm.registerEvents(new MenuListener(this), this);
         pm.registerEvents(new PromptListener(this), this);
+        pm.registerEvents(new GadgetListener(this), this);
 
         NereusCommand nereus = new NereusCommand(this);
         getCommand("nereus").setExecutor(nereus);
@@ -84,6 +93,7 @@ public final class NereusRealm extends JavaPlugin {
 
         afk.start();
         menus.start();
+        gadgets.start();
         getServer().getScheduler().runTaskTimer(this, () -> {
             data.flush(true);
             feedback.flush(true);
@@ -110,6 +120,9 @@ public final class NereusRealm extends JavaPlugin {
         if (menus != null) {
             menus.stop();
         }
+        if (gadgets != null) {
+            gadgets.stop();
+        }
         if (data != null) {
             data.flush(false);
         }
@@ -133,6 +146,10 @@ public final class NereusRealm extends JavaPlugin {
         prompts.reload();
         redeem.reload();
         menus.reload();
+        gadgets.reload();
+        for (org.bukkit.entity.Player p : getServer().getOnlinePlayers()) {
+            gadgets.ensure(p, true);
+        }
     }
 
     /**
@@ -215,5 +232,13 @@ public final class NereusRealm extends JavaPlugin {
 
     public MenuManager menus() {
         return menus;
+    }
+
+    public GadgetManager gadgets() {
+        return gadgets;
+    }
+
+    public PointManager points() {
+        return points;
     }
 }

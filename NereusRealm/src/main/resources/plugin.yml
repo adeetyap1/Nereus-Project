@@ -3,14 +3,14 @@ version: '${project.version}'
 main: me.naook1.nereusrealm.NereusRealm
 api-version: '1.21'
 authors: [naook1, adityap]
-description: Custom join/leave, rating, ranks, AFK rewards, daily, redeem codes and menus by naook1/adityap
-softdepend: [PlaceholderAPI, LuckPerms, Essentials, CrazyCrates, PlayerKits2, DeluxeMenus, floodgate]
+description: One menu for everything - join/leave, rating, ranks, AFK, daily, redeem, teleports and hotbar gadget by naook1/adityap
+softdepend: [PlaceholderAPI, LuckPerms, Essentials, EssentialsSpawn, BetterRTP, Multiverse-Core, CrazyCrates, PlayerKits2, DeluxeMenus, floodgate]
 
 commands:
   nereus:
     description: Menu utama NereusRealm
-    aliases: [nereusrealm]
-    usage: /<command> [join|leave|daily|kits|ranks|feedback|afk|settings|about|reload]
+    aliases: [nereusrealm, nsi, gadget]
+    usage: /<command> [join|leave|daily|kits|ranks|feedback|afk|settings|toggle|about|reload]
   afk:
     description: Tandai dirimu AFK
     usage: /<command> [alasan]
@@ -20,6 +20,12 @@ commands:
     usage: /<command> [kode]
 
 permissions:
+  nereus.gadget:
+    description: Dapat item gadget di hotbar
+    default: true
+  nereus.gadget.toggle:
+    description: Boleh mematikan/menghidupkan gadget sendiri
+    default: true
   nereus.redeem:
     description: Boleh menukar kode redeem
     default: true

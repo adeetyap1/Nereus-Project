@@ -1,4 +1,4 @@
-file-version: 3
+file-version: 4
 # messages.yml - Developer: naook1/adityap
 # Semua teks bisa diubah. {prefix} = prefix di bawah.
 # Small caps otomatis jika small-caps.messages: true di config.yml
@@ -147,6 +147,20 @@ redeem:
       - "&7Teks hadiah: &f{text}"
       - "&7Command hadiah: &f{commands}"
 
+gadget:
+  turned-on: "{prefix}&aGadget dihidupkan kembali."
+  turned-off: "{prefix}&7Gadget dimatikan. Ketik &f/nereus toggle &7atau buka menu Settings untuk menghidupkan lagi."
+  denied: "{prefix}&cKamu tidak bisa mematikan gadget."
+  given: "{prefix}&aGadget diberikan ke &f{player}&a."
+
+point:
+  set: "{prefix}&aTitik &f{point} &adisimpan di lokasimu sekarang."
+  deleted: "{prefix}&aTitik &f{point} &adihapus."
+  missing: "{prefix}&cLokasi &f{point} &cbelum diatur. Admin: berdiri di lokasinya lalu ketik &f/nereus setpoint {point}&c."
+  list: "{prefix}&7Titik teleport: &f{points}"
+  usage: "{prefix}&7Pakai: &f/nereus setpoint <nama> &8| &f/nereus delpoint <nama> &8| &f/nereus points"
+  teleported: "{prefix}&aBerhasil teleport ke &f{point}&a."
+
 help:
   - "&8&m                                   "
   - "&6/redeem <kode> &8- &7Tukar kode redeem"
@@ -163,6 +177,8 @@ help:
   - "&6/nereus kits &8- &7Buka kits"
   - "&6/nereus code &8- &7Kelola kode redeem (admin)"
   - "&6/nereus settings &8- &7Pengaturan pribadi"
+  - "&6/nereus toggle &8- &7Hidupkan/matikan gadget hotbar"
+  - "&6/nereus setpoint|delpoint|points &8- &7Titik teleport menu (admin)"
   - "&6/afk [alasan] &8- &7Tandai AFK"
   - "&8&m                                   "
 

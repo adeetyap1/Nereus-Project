@@ -1,23 +1,18 @@
-package me.naook1.nereusistent.gadget;
+package me.naook1.nereusrealm.gadget;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
-import me.naook1.nereusistent.Nereusistent;
-import me.naook1.nereusistent.util.SmallCaps;
-import me.naook1.nereusistent.util.Text;
+import me.naook1.nereusrealm.NereusRealm;
+import me.naook1.nereusrealm.util.SmallCaps;
+import me.naook1.nereusrealm.util.Text;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -29,12 +24,10 @@ import org.bukkit.scheduler.BukkitTask;
 /** Builds the gadget item and keeps it locked in its hotbar slot. */
 public final class GadgetManager {
 
-    private final Nereusistent plugin;
+    private final NereusRealm plugin;
     private final NamespacedKey key;
     private final Map<UUID, Long> lastOpen = new HashMap<>();
     private final List<String> disabledWorlds = new ArrayList<>();
-    private final Set<UUID> disabled = new HashSet<>();
-    private final File dataFile;
     private BukkitTask task;
 
     private int slot = 8;
@@ -46,11 +39,9 @@ public final class GadgetManager {
     private long cooldown = 300;
     private int intervalTicks = 40;
 
-    public GadgetManager(Nereusistent plugin) {
+    public GadgetManager(NereusRealm plugin) {
         this.plugin = plugin;
         this.key = new NamespacedKey(plugin, "gadget");
-        this.dataFile = new File(plugin.getDataFolder(), "data.yml");
-        loadData();
     }
 
     public void reload() {
@@ -59,7 +50,7 @@ public final class GadgetManager {
         slot = Math.max(1, Math.min(9, c.getInt("gadget.slot", 9))) - 1;
         Material m = Material.matchMaterial(c.getString("gadget.material", "NETHER_STAR"));
         material = (m == null || !m.isItem()) ? Material.NETHER_STAR : m;
-        name = c.getString("gadget.name", "Nereusistent");
+        name = c.getString("gadget.name", "NereusRealm");
         lore = new ArrayList<>(c.getStringList("gadget.lore"));
         if (sc) {
             name = SmallCaps.convert(name);
@@ -105,9 +96,9 @@ public final class GadgetManager {
     }
 
     public boolean canHave(Player p) {
-        return p.hasPermission("nereusistent.use")
+        return p.hasPermission("nereus.gadget")
                 && !disabledWorlds.contains(p.getWorld().getName())
-                && !disabled.contains(p.getUniqueId());
+                && !isDisabled(p.getUniqueId());
     }
 
     public ItemStack build(Player p) {
@@ -184,54 +175,25 @@ public final class GadgetManager {
     }
 
     public boolean isDisabled(UUID uuid) {
-        return disabled.contains(uuid);
+        return plugin.data().getBoolean(uuid, "gadget-off", false);
     }
 
     /** A player turns their own gadget off/on (saved). Returns false if toggling is not allowed. */
     public boolean toggle(Player p) {
-        if (!plugin.getConfig().getBoolean("gadget.allow-toggle", true) || !p.hasPermission("nereusistent.toggle")) {
-            plugin.messages().send(p, "toggle-denied");
+        if (!plugin.getConfig().getBoolean("gadget.allow-toggle", true) || !p.hasPermission("nereus.gadget.toggle")) {
+            plugin.messages().send(p, "gadget.denied");
             return false;
         }
-        if (disabled.remove(p.getUniqueId())) {
-            saveData();
+        if (isDisabled(p.getUniqueId())) {
+            plugin.data().set(p.getUniqueId(), "gadget-off", false);
             ensure(p, false);
-            plugin.messages().send(p, "gadget-on");
+            plugin.messages().send(p, "gadget.turned-on");
         } else {
-            disabled.add(p.getUniqueId());
-            saveData();
+            plugin.data().set(p.getUniqueId(), "gadget-off", true);
             strip(p);
-            plugin.messages().send(p, "gadget-off");
+            plugin.messages().send(p, "gadget.turned-off");
         }
         return true;
-    }
-
-    private void loadData() {
-        if (!dataFile.exists()) {
-            return;
-        }
-        YamlConfiguration y = YamlConfiguration.loadConfiguration(dataFile);
-        for (String s : y.getStringList("disabled")) {
-            try {
-                disabled.add(UUID.fromString(s));
-            } catch (IllegalArgumentException ignored) {
-                // skip bad entry
-            }
-        }
-    }
-
-    private void saveData() {
-        YamlConfiguration y = new YamlConfiguration();
-        List<String> ids = new ArrayList<>();
-        for (UUID u : disabled) {
-            ids.add(u.toString());
-        }
-        y.set("disabled", ids);
-        try {
-            y.save(dataFile);
-        } catch (IOException e) {
-            plugin.getLogger().warning("Could not save data.yml: " + e.getMessage());
-        }
     }
 
     public void forget(UUID uuid) {
