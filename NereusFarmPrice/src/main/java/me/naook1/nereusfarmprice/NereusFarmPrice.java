@@ -6,7 +6,7 @@ import me.naook1.nereusfarmprice.util.Messages;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
- * NereusFarmPrice - rotating farm price buffs and market saturation, synced with EconomyShopGUI.
+ * NereusFarmPrice - Daily Farm Boost: 3 farms get a sell price bonus every 24h, synced with EconomyShopGUI.
  * Developer: naook1/adityap
  */
 public final class NereusFarmPrice extends JavaPlugin {
@@ -16,6 +16,7 @@ public final class NereusFarmPrice extends JavaPlugin {
     private FarmManager farm;
     private FarmDisplay display;
     private EsguiHook hook;
+    private EconomyHook economy;
     private long lastPriceRead;
 
     @Override
@@ -26,6 +27,7 @@ public final class NereusFarmPrice extends JavaPlugin {
         farm = new FarmManager(this);
         display = new FarmDisplay(this);
         hook = new EsguiHook(this);
+        economy = new EconomyHook(this);
 
         messages.reload();
         prices.reload();
@@ -62,12 +64,12 @@ public final class NereusFarmPrice extends JavaPlugin {
 
     private void tick() {
         long now = System.currentTimeMillis();
-        long every = Math.max(1, getConfig().getLong("esgui.refresh-minutes", 10)) * 60_000L;
+        long every = Math.max(1, getConfig().getLong("integration.refresh-minutes", 10)) * 60_000L;
         if (now - lastPriceRead >= every) {
             lastPriceRead = now;
             getServer().getScheduler().runTaskAsynchronously(this, prices::reload);
         }
-        farm.tick();
+        farm.checkRotation();
         farm.flush(true);
     }
 
@@ -93,6 +95,10 @@ public final class NereusFarmPrice extends JavaPlugin {
 
     public FarmDisplay display() {
         return display;
+    }
+
+    public EconomyHook economy() {
+        return economy;
     }
 
     public EsguiHook hook() {

@@ -1,35 +1,20 @@
 # messages.yml - NereusFarmPrice - Developer: naook1/adityap
-# Small caps otomatis jika small-caps: true. Menu buku memakai warna gelap (&0 &8 &2 &4) karena latarnya putih.
+# Small caps otomatis jika small-caps: true. Placeholder tersedia di tiap bagian.
+# Menu buku memakai warna gelap (&0 &8 &2) karena latarnya putih.
 
 prefix: "&8[&6Farm&8] &7"
 
 no-permission: "{prefix}&cKamu tidak punya izin untuk itu."
 players-only: "{prefix}&cCommand ini hanya untuk player."
 reloaded: "{prefix}&aConfig dimuat ulang. Harga EconomyShopGUI terbaca untuk &f{count} &aitem."
-unknown-crop: "{prefix}&cFarm '&f{crop}&c' tidak ditemukan. Pilihan: &f{list}"
-bad-number: "{prefix}&cAngka tidak valid."
-bad-time: "{prefix}&cDurasi tidak valid. Contoh: 30m, 6h, 1d."
-no-price: "{prefix}&cHarga dasar &f{crop} &cbelum terbaca dari EconomyShopGUI. Pakai &fx1.5 &c(kelipatan) atau isi 'price' di config."
-buffed: "{prefix}&aBuff &f{crop} &6x{mult} &aaktif selama &f{time}&a."
-unbuffed: "{prefix}&aBuff &f{crop} &adihapus."
-rotated: "{prefix}&aBuff baru dipilih."
-reset-done: "{prefix}&aSemua pasar jenuh direset ke normal."
+rotated: "{prefix}&aRotasi baru dipilih."
+no-valid: "{prefix}&cTidak ada kandidat dengan harga jual valid di EconomyShopGUI. Cek &f/farmprice debug&c."
 usage:
-  - "&6/farmprice &8- &7Lihat harga farm"
+  - "&6/farmprice &8- &7Lihat farm yang sedang di-boost"
   - "&6/farmprice chat &8| &6book &8- &7Pilih tampilan"
-  - "&6/farmprice buff <farm> <harga|x1.5> [durasi] &8- &7Buff manual"
-  - "&6/farmprice unbuff <farm> &8| &6rotate &8| &6reset &8| &6reload &8| &6debug"
+  - "&6/farmprice rotate &8| &6reload &8| &6debug &7(admin)"
 
-sale-note: "&6Buff Farm &7{crop} &8» &a{sign}{delta} &8(&7x{mult}&8)"
-
-rotate:
-  header:
-    - "&8&m                                   "
-    - "&6&l✦ BUFF FARM BARU"
-  line: "  &f{crop} &8» &7{base} &8→ &a&l{price} &a▲ {pct}% &8(&7{time}&8)"
-  footer:
-    - "&7Jual di &f/shop &7atau &f/sellall &7sebelum buff habis! Lihat: &f/farmprice"
-    - "&8&m                                   "
+sale-note: "&6Daily Farm Boost &7{name} &8» &a+{delta} &8(&7+{percent}%&8)"
 
 time:
   second: "detik"
@@ -37,42 +22,71 @@ time:
   hour: "jam"
   day: "hari"
 
-ui:
-  # ---- chat
-  chat-divider: "&8&m                                      "
-  chat-title: "&6&l          FARM PRICE"
-  chat-next: "&7Buff berikutnya dalam &f{time}"
-  chat-buff-header: "&6&l✦ BUFF AKTIF"
-  chat-buff-none: "  &7Tidak ada buff saat ini."
-  chat-buff: "  &f{crop} &8» &7{base} &8→ &a&l{price} &a▲ {pct}% &8(&7{time}&8)"
-  chat-all-header: "&e&lSEMUA FARM"
-  chat-row: "  &f{crop} &8» {color}{price}{arrow}"
-  chat-footer: "&8Harga dasar dari EconomyShopGUI. Selisih buff ikut terbayar otomatis."
-  # ---- buku (teks gelap di kertas putih)
-  book-title: "Farm Price"
-  book-heading: "&0&lFARM PRICE"
-  book-next: "&8Buff berikutnya"
-  book-next-time: "&0{time}"
-  book-buff-header: "&6&l✦ BUFF AKTIF"
-  book-buff-none: "&8Tidak ada buff."
-  book-buff-1: "&0&l{crop} &2▲{pct}%"
-  book-buff-2: "&8{base} &0→ &2&l{price}"
-  book-buff-3: "&8sisa {time}"
-  book-all-header: "&0&lSEMUA FARM"
-  book-row: "&0{crop} &8» {color}{price}{arrow}"
-  book-how:
-    - "&0&lCARA KERJA"
+# Pengumuman rotasi baru (dikirim ke pemain online, hanya sekali per rotasi)
+announce:
+  header:
+    - "&6✦ Nereus MC | Daily Farm Boost"
+    - "&8━━━━━━━━━━━━━━━━━━━━"
     - ""
-    - "&2▲ &0harga naik karena"
-    - "&0buff. Dipilih acak tiap"
-    - "&0beberapa jam."
+    - "&eFarm Boost hari ini telah berganti!"
     - ""
-    - "&4▼ &0harga turun karena"
-    - "&0kebanyakan dijual."
-    - "&0Pulih seiring waktu."
+  item: "&f{icon} {name_sc}"
+  footer:
     - ""
-    - "&8Tanam banyak jenis!"
-    - "&8Harga dasar dari shop."
-  arrow-up: " ▲"
-  arrow-down: " ▼"
-  unknown-price: "?"
+    - "&6✦ Harga jual naik {percent}%!"
+    - ""
+    - "&7Farm lamamu tetap bisa digunakan."
+    - "&7Manfaatkan bonus farm hari ini! &8(&f/farmprice&8)"
+
+# Tampilan /farmprice di chat
+chat:
+  header:
+    - "&6✦ Nereus MC | Daily Farm Boost"
+    - "&8━━━━━━━━━━━━━━━━━━━━"
+    - ""
+    - "&e✦ Boosted Farm Hari Ini"
+    - ""
+  item:
+    - "&f{icon} {name}"
+    - "&7   {normal} &8→ &a&l{boosted}"
+    - ""
+  empty:
+    - "&7Belum ada farm yang di-boost saat ini."
+    - ""
+  footer:
+    - "&8━━━━━━━━━━━━━━━━━━━━"
+    - "&6✦ Bonus Harga: &a+{percent}%"
+    - ""
+    - "&e⌛ Rotasi Berikutnya:"
+    - "&f{time}"
+    - ""
+    - "&7{count} farm mendapatkan bonus!"
+    - "&7Farm lainnya tetap normal."
+
+# Tampilan /farmprice sebagai buku
+book:
+  title: "Daily Farm Boost"
+  header:
+    - "&0&lDaily Farm Boost"
+    - "&8Nereus MC"
+    - ""
+  item:
+    - "&0{name}"
+    - "&8{normal} &0→ &2&l{boosted}"
+  footer:
+    - ""
+    - "&0Bonus: &2+{percent}%"
+    - "&8Rotasi berikutnya"
+    - "&0{time}"
+  rules:
+    - "&0&lInfo"
+    - ""
+    - "&0{count} farm dipilih"
+    - "&0otomatis tiap"
+    - "&0{hours} jam."
+    - ""
+    - "&0Farm lain tetap"
+    - "&0harga normal."
+    - ""
+    - "&8Harga normal dari"
+    - "&8EconomyShopGUI."

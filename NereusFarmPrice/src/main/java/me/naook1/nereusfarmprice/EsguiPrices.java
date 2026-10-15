@@ -32,7 +32,7 @@ public final class EsguiPrices {
         Map<Material, Double> fresh = new EnumMap<>(Material.class);
         int count = 0;
         File plugins = plugin.getDataFolder().getParentFile();
-        for (String folder : plugin.getConfig().getStringList("esgui.folders")) {
+        for (String folder : plugin.getConfig().getStringList("integration.folders")) {
             File dir = new File(plugins, folder);
             if (!dir.isDirectory()) {
                 continue;

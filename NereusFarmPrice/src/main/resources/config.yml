@@ -1,76 +1,65 @@
 # ============================================================
-#  NereusFarmPrice
+#  NereusFarmPrice  -  Daily Farm Boost
 #  Developer : naook1/adityap
 #  Server    : 1.21.1 (Paper) | Java 21 | Java + Bedrock (Geyser)
-#  Butuh     : EconomyShopGUI (harga dasar dibaca otomatis dari sana)
+#  Butuh     : EconomyShopGUI (harga normal dibaca otomatis dari sana)
 # ============================================================
 # Cara kerja:
-#  - Harga dasar tiap farm = harga JUAL di EconomyShopGUI (ikut berubah kalau kamu edit shop).
-#  - Tiap beberapa jam plugin memilih beberapa farm untuk di-BUFF (harga jual naik).
-#  - Kalau satu jenis dijual terlalu banyak, harganya turun pelan-pelan (pasar jenuh) lalu pulih lagi.
-#    Jadi pemain terdorong menanam banyak jenis, bukan cuma satu.
-#  - Harga akhir dipakai langsung saat menjual lewat EconomyShopGUI (/shop, sell GUI, /sellall).
+#  - Tiap periode (24 jam) plugin memilih TEPAT 3 farm berbeda dari daftar "candidates".
+#  - Harga JUAL ketiga farm itu naik +50%. Farm lain tetap harga normal.
+#  - Harga normal selalu dibaca dari file EconomyShopGUI (tidak ada harga ganda di plugin ini).
+#  - Harga beli tidak pernah diubah. Tidak ada file EconomyShopGUI yang diubah.
+#  - Daftar farm aktif + waktu mulai/akhir disimpan di data.yml, jadi aman saat server restart.
 
 developer: "naook1/adityap"
-small-caps: true
-display: book            # book = menu buku (bersih, bisa di-scroll), chat = panel teks di chat
+small-caps: true            # teks di messages.yml jadi small caps
+display: chat               # chat = panel teks di chat | book = buku yang bisa dibalik
 
-rotation:
+boost:
   enabled: true
-  interval-hours: 6      # buff diganti tiap sekian jam
-  count: 2               # jumlah farm yang di-buff tiap rotasi
-  min-multiplier: 1.4    # buff acak antara min dan maks
-  max-multiplier: 2.0
-  broadcast: true        # umumkan buff baru ke semua pemain
+  percent: 50               # +50%  ->  harga buff = normal x (1 + 50/100)
+  count: 3                  # jumlah farm yang di-boost
+  duration-hours: 24        # lama satu periode
+  timezone: "Asia/Makassar" # zona waktu untuk jadwal rotasi
+  rotation-time: "00:00"    # jam ganti periode (tiap 24 jam dihitung dari jam ini, bukan dari jam server menyala)
+  avoid-repeat: true        # hindari farm yang sama dengan periode sebelumnya (jika kandidat cukup)
+  announce: true            # umumkan ke pemain online saat rotasi baru dimulai
 
-market:
-  enabled: true
-  capacity: 3000         # jumlah item terjual sampai harga mentok di batas bawah
-  floor: 0.70            # harga terendah = 70% dari normal
-  recovery-per-hour: 600 # tiap jam, sekian item "pulih" (harga naik lagi)
+integration:
+  folders: ["EconomyShopGUI", "EconomyShopGUI-Premium"]   # folder plugin tempat file toko dibaca
+  refresh-minutes: 10       # baca ulang harga dari file EconomyShopGUI
+  notify-sale: true         # info bonus di action bar saat menjual farm boost
+  # Dipakai hanya kalau EconomyShopGUI tidak mengizinkan harga diubah lewat event-nya:
+  # selisih bonus dibayar lewat Vault setelah transaksi berhasil.
+  fallback-vault-bonus: true
 
-notify-sale: true        # tampilkan info buff di action bar saat menjual
-
-esgui:
-  folders: ["EconomyShopGUI", "EconomyShopGUI-Premium"]
-  refresh-minutes: 10    # baca ulang harga dari file EconomyShopGUI
-
-# Daftar farm. price: 0 = ikut EconomyShopGUI (isi angka untuk memaksa harga dasar tertentu).
-# materials: semua item yang dihitung satu jenis (contoh melon = irisan + blok).
-crops:
-  wheat:
-    name: "Gandum"
-    materials: [WHEAT]
-  carrot:
-    name: "Wortel"
-    materials: [CARROT]
-  potato:
-    name: "Kentang"
-    materials: [POTATO]
-  beetroot:
-    name: "Bit"
-    materials: [BEETROOT]
-  melon:
-    name: "Melon"
-    materials: [MELON_SLICE, MELON]
-  pumpkin:
-    name: "Labu"
-    materials: [PUMPKIN]
-  sugar_cane:
-    name: "Tebu"
-    materials: [SUGAR_CANE]
-  cocoa:
-    name: "Kakao"
-    materials: [COCOA_BEANS]
-  nether_wart:
-    name: "Nether Wart"
-    materials: [NETHER_WART]
-  sweet_berries:
-    name: "Sweet Berry"
-    materials: [SWEET_BERRIES]
-  cactus:
-    name: "Kaktus"
-    materials: [CACTUS]
-  bamboo:
-    name: "Bambu"
-    materials: [BAMBOO]
+# Kandidat farm (nama material Minecraft). Tambah atau hapus sesuai kebutuhan.
+# name: nama tampilan (kosong = otomatis dari material). icon: emoji di depan nama (kosong = tanpa).
+# Item tanpa harga JUAL valid di EconomyShopGUI tidak akan pernah dipilih.
+candidates:
+  MELON_SLICE:
+    icon: "🍉"
+  MELON:
+    icon: "🍈"
+  CARROT:
+    icon: "🥕"
+  POTATO:
+    icon: "🥔"
+  PUMPKIN:
+    icon: "🎃"
+  CACTUS:
+    icon: "🌵"
+  BAMBOO:
+    icon: "🎍"
+  SUGAR_CANE:
+    icon: "🌿"
+  WHEAT:
+    icon: "🌾"
+  BEETROOT:
+    icon: "🍠"
+  NETHER_WART:
+    icon: "🔴"
+  COCOA_BEANS:
+    icon: "🍫"
+  KELP:
+    icon: "🌊"

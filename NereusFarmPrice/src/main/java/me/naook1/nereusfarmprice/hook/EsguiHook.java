@@ -3,6 +3,8 @@ package me.naook1.nereusfarmprice.hook;
 import java.lang.reflect.Method;
 import java.util.Locale;
 import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Consumer;
 import me.naook1.nereusfarmprice.FarmManager;
 import me.naook1.nereusfarmprice.NereusFarmPrice;
@@ -18,7 +20,7 @@ import org.bukkit.plugin.Plugin;
 
 /**
  * Connects to EconomyShopGUI's PreTransactionEvent (changes the payout of farm sales) and
- * PostTransactionEvent (records sales for the market saturation). Everything goes through reflection so
+ * PostTransactionEvent (pays a Vault bonus only if the price could not be changed). Everything goes through reflection so
  * the plugin builds without the EconomyShopGUI jar and keeps working across its versions.
  */
 public final class EsguiHook {
@@ -32,7 +34,13 @@ public final class EsguiHook {
     private String status = "belum terhubung";
     private String lastSale = "-";
     private String lastError = "-";
-    private int unknownItems;
+    private Event lastPre;
+    private Event lastPost;
+    private int applied;
+    private int mismatches;
+    private int fallbacks;
+    private final Map<UUID, double[]> pending = new ConcurrentHashMap<>();
+    private final Map<UUID, Material> pendingMat = new ConcurrentHashMap<>();
 
     public EsguiHook(NereusFarmPrice plugin) {
         this.plugin = plugin;
@@ -52,10 +60,6 @@ public final class EsguiHook {
 
     public String lastError() {
         return lastError;
-    }
-
-    public int unknownItems() {
-        return unknownItems;
     }
 
     /** Hooks the events. Safe to call again; returns true when both events are hooked. */
@@ -119,10 +123,12 @@ public final class EsguiHook {
     // ------------------------------------------------------------------ handlers
 
     private void onPre(Event e) {
-        if (!isSell(e)) {
-            return;
+        if (e == lastPre || !isSell(e)) {
+            return;                 // same event seen twice: never apply the boost twice
         }
+        lastPre = e;
         FarmManager fm = plugin.farm();
+        fm.checkRotation();
         Player player = call(e, "getPlayer") instanceof Player p ? p : null;
         Map<?, ?> items = call(e, "getItems") instanceof Map<?, ?> m ? m : null;
         Map<?, ?> prices = call(e, "getPrices") instanceof Map<?, ?> m2 ? m2 : null;
@@ -136,12 +142,7 @@ public final class EsguiHook {
 
     private void single(Event e, FarmManager fm, Player player) {
         Material mat = materialOf(call(e, "getShopItem"));
-        FarmManager.Crop crop = mat == null ? null : fm.cropOf(mat);
-        if (crop == null) {
-            return;
-        }
-        double f = fm.factor(crop);
-        if (Math.abs(f - 1.0) < 0.001) {
+        if (mat == null || !fm.isBoosted(mat)) {
             return;
         }
         Object old = call(e, "getPrice");
@@ -149,41 +150,38 @@ public final class EsguiHook {
             return;
         }
         double before = n.doubleValue();
+        double f = fm.factor(mat);
         double after = before * f;
         try {
             e.getClass().getMethod("setPrice", double.class).invoke(e, after);
+            applied++;
+            lastSale = mat + " " + before + " -> " + after;
+            note(player, mat, after - before);
         } catch (Exception ex) {
             lastError = "setPrice: " + ex.getMessage();
-            return;
+            fallback(player, mat, after - before);
         }
-        lastSale = crop.id() + " x" + String.format(Locale.ROOT, "%.2f", f) + " (" + before + " -> " + after + ")";
-        note(player, crop, f, after - before);
     }
 
     @SuppressWarnings("unchecked")
     private void multi(Event e, FarmManager fm, Player player, Map<?, ?> items, Map<?, ?> prices) {
         double delta = 0;
-        FarmManager.Crop shown = null;
-        double shownFactor = 1.0;
+        Material shown = null;
         for (Map.Entry<?, ?> en : items.entrySet()) {
             Material mat = materialOf(en.getKey());
-            FarmManager.Crop crop = mat == null ? null : fm.cropOf(mat);
-            if (crop == null || !(en.getValue() instanceof Number qty)) {
+            if (mat == null || !fm.isBoosted(mat) || !(en.getValue() instanceof Number qty)) {
                 continue;
             }
-            double base = fm.basePrice(crop, mat);
+            double base = fm.normalPrice(mat);
             if (base <= 0) {
-                unknownItems++;
                 continue;
             }
-            double f = fm.factor(crop);
-            delta += qty.doubleValue() * base * (f - 1.0);
-            if (shown == null || Math.abs(f - 1.0) > Math.abs(shownFactor - 1.0)) {
-                shown = crop;
-                shownFactor = f;
+            delta += qty.doubleValue() * base * (fm.factor(mat) - 1.0);
+            if (shown == null) {
+                shown = mat;
             }
         }
-        if (Math.abs(delta) < 0.01) {
+        if (delta < 0.01) {
             return;
         }
         Object key = null;
@@ -193,55 +191,90 @@ public final class EsguiHook {
             }
         }
         if (key == null || !(prices.get(key) instanceof Number old)) {
+            fallback(player, shown, delta);
             return;
         }
-        double after = Math.max(0, old.doubleValue() + delta);
         try {
-            ((Map<Object, Object>) prices).put(key, after);
+            ((Map<Object, Object>) prices).put(key, old.doubleValue() + delta);
+            applied++;
+            lastSale = "bulk " + items.size() + " item, +" + String.format(Locale.ROOT, "%.2f", delta);
+            note(player, shown, delta);
         } catch (Exception ex) {
             lastError = "prices map: " + ex.getMessage();
+            fallback(player, shown, delta);
+        }
+    }
+
+    /** The price could not be changed in the event: pay the bonus through Vault once the sale succeeds. */
+    private void fallback(Player player, Material mat, double delta) {
+        if (player == null || delta < 0.01 || !plugin.getConfig().getBoolean("integration.fallback-vault-bonus", true)) {
             return;
         }
-        lastSale = "bulk " + items.size() + " item, delta " + String.format(Locale.ROOT, "%.2f", delta);
-        note(player, shown, shownFactor, delta);
+        pending.merge(player.getUniqueId(), new double[]{delta}, (a, b) -> new double[]{a[0] + b[0]});
+        pendingMat.put(player.getUniqueId(), mat);
     }
 
     private void onPost(Event e) {
-        if (!isSell(e)) {
+        if (e == lastPost || !isSell(e)) {
+            return;
+        }
+        lastPost = e;
+        Player player = call(e, "getPlayer") instanceof Player p ? p : null;
+        if (player == null) {
+            return;
+        }
+        double[] bonus = pending.remove(player.getUniqueId());
+        Material mat = pendingMat.remove(player.getUniqueId());
+        if (bonus == null) {
             return;
         }
         Object result = call(e, "getTransactionResult");
         if (result != null && !result.toString().toUpperCase(Locale.ROOT).contains("SUCCESS")) {
             return;
         }
-        FarmManager fm = plugin.farm();
-        Map<?, ?> items = call(e, "getItems") instanceof Map<?, ?> m ? m : null;
-        if (items != null && !items.isEmpty()) {
-            for (Map.Entry<?, ?> en : items.entrySet()) {
-                Material mat = materialOf(en.getKey());
-                FarmManager.Crop crop = mat == null ? null : fm.cropOf(mat);
-                if (crop != null && en.getValue() instanceof Number qty) {
-                    fm.sold(crop, qty.intValue());
-                }
-            }
-            return;
-        }
-        Material mat = materialOf(call(e, "getShopItem"));
-        FarmManager.Crop crop = mat == null ? null : fm.cropOf(mat);
-        if (crop != null && call(e, "getAmount") instanceof Number qty) {
-            fm.sold(crop, qty.intValue());
+        if (plugin.economy().ready() && plugin.economy().depositExact(player, bonus[0])) {
+            fallbacks++;
+            lastSale = "vault bonus +" + String.format(Locale.ROOT, "%.2f", bonus[0]);
+            note(player, mat, bonus[0]);
+        } else {
+            mismatches++;
+            lastError = "bonus tidak bisa dibayar (Vault tidak siap)";
+            plugin.getLogger().warning(lastError);
         }
     }
 
-    private void note(Player player, FarmManager.Crop crop, double factor, double delta) {
-        if (player == null || !plugin.getConfig().getBoolean("notify-sale", true) || Math.abs(delta) < 0.01) {
+    private void note(Player player, Material mat, double delta) {
+        FarmManager fm = plugin.farm();
+        if (player == null || mat == null || !plugin.getConfig().getBoolean("integration.notify-sale", true)
+                || delta < 0.01) {
             return;
         }
-        FarmManager fm = plugin.farm();
-        String msg = plugin.messages().format("sale-note", "crop", crop.name(),
-                "sign", delta >= 0 ? "+" : "-", "delta", fm.fmt(Math.abs(delta)),
-                "mult", String.format(Locale.ROOT, "%.2f", factor));
+        FarmManager.Candidate c = fm.candidate(mat);
+        String msg = plugin.messages().format("sale-note", "name", c == null ? mat.name() : c.name(),
+                "delta", fm.fmt(delta), "percent", fm.percentText());
         player.sendActionBar(Text.parse(msg));
+    }
+
+    public String esguiVersion() {
+        for (String name : new String[]{"EconomyShopGUI", "EconomyShopGUI-Premium"}) {
+            Plugin p = Bukkit.getPluginManager().getPlugin(name);
+            if (p != null) {
+                return name + " " + p.getDescription().getVersion() + (p.isEnabled() ? "" : " (disabled)");
+            }
+        }
+        return "tidak ditemukan";
+    }
+
+    public int applied() {
+        return applied;
+    }
+
+    public int mismatches() {
+        return mismatches;
+    }
+
+    public int fallbacks() {
+        return fallbacks;
     }
 
     // ------------------------------------------------------------------ reflection helpers

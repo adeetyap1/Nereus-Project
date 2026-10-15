@@ -6,7 +6,7 @@
 
     <groupId>me.naook1</groupId>
     <artifactId>NereusFarmPrice</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <packaging>jar</packaging>
     <name>NereusFarmPrice</name>
     <description>Farm price buffs synced with EconomyShopGUI by naook1/adityap</description>
