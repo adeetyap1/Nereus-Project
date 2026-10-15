@@ -1,0 +1,23 @@
+name: NereusHide
+version: '${project.version}'
+main: me.naook1.nereushide.NereusHide
+api-version: '1.21'
+authors: [naook1, adityap]
+description: Hide and seek minigame by naook1/adityap
+
+commands:
+  hide:
+    description: Petak umpet Nereus
+    aliases: [petakumpet, hns]
+    usage: /<command> join | leave | status | stats
+
+permissions:
+  hide.play:
+    description: Ikut petak umpet (/hide join)
+    default: true
+  hide.admin:
+    description: Buka, mulai, hentikan, atur arena dan menu admin
+    default: op
+  hide.bypass:
+    description: Boleh memakai command / teleport lain saat sedang bermain
+    default: false

@@ -1,0 +1,81 @@
+# ============================================================
+#  NereusHide  (Petak Umpet)
+#  Developer : naook1/adityap
+#  Server    : 1.21.1 (Paper) | Java 21 | Java + Bedrock (Geyser)
+# ============================================================
+# Warna: &a &l dll, hex &#RRGGBB. Teks ada di messages.yml.
+#
+# CARA SETUP (sekali saja, berdiri di lokasinya):
+#   /hide setlobby    ruang tunggu pemain
+#   /hide sethide     titik awal arena (tempat pemain sembunyi mulai)
+#   /hide setseeker   ruang tunggu pencari saat menunggu (opsional)
+#   /hide setend      titik kembali setelah game (opsional, lihat return-to)
+#   /hide setpos1 dan /hide setpos2   dua sudut area bermain (pemain tidak bisa keluar)
+#   /hide check       cek kelengkapan
+# Lalu /hide open (atau pakai jadwal di bawah). Admin/owner TIDAK otomatis ikut:
+# semua pemain, termasuk admin, harus /hide join. Admin juga bisa lewat /hide admin.
+
+developer: "naook1/adityap"
+enabled: true
+small-caps: true
+
+game:
+  min-players: 3             # game dimulai otomatis kalau pemain sudah segini
+  max-players: 20
+  lobby-wait-seconds: 180    # kalau pemain kurang dari min, pendaftaran dibatalkan setelah ini
+  countdown-seconds: 30      # hitung mundur setelah min pemain tercapai
+  hide-seconds: 60           # waktu bersembunyi (pencari ditahan & buta)
+  seek-seconds: 300          # waktu mencari
+  result-seconds: 10         # lama layar hasil sebelum semua dikembalikan
+
+seekers:
+  mode: ratio                # ratio = persen dari pemain | fixed = jumlah tetap
+  ratio: 0.2                 # 20% pemain jadi pencari (minimal 1)
+  fixed: 1
+  avoid-repeat: true         # yang jadi pencari di game lalu tidak dipilih lagi kalau pemain cukup
+
+points:
+  per-find: 1                # pencari (dan yang sudah ketemu) dapat ini tiap menemukan 1 pemain
+  # Poin awal yang sembunyi 0. Yang ketemu pertama -5, kedua -4, dst (angka terakhir berlaku seterusnya).
+  # Mau semua -5? isi cukup [-5]
+  found-penalties: [-5, -4, -3, -2, -1]
+
+# Pemain yang sudah ketemu jadi pembantu pencari. Kalau poinnya naik jadi 0 atau lebih
+# (dengan menemukan pemain lain), dia ikut dihitung menang.
+
+return-to: saved             # saved = lokasi awal pemain | end = titik /hide setend
+
+chat:
+  isolate: true              # yang sembunyi hanya chat dengan yang sembunyi, pencari dengan pencari
+
+announce:
+  server-results: true       # ringkasan pemenang dikirim ke pemain yang tidak ikut
+
+# Command yang boleh dipakai saat bermain (selain /hide). Permission hide.bypass lewati ini.
+allowed-commands: []
+
+# Hadiah lewat command console. {player} {points}
+rewards:
+  participation:
+    - "eco give {player} 500"
+  win:
+    - "eco give {player} 3000"
+  mvp:
+    - "eco give {player} 2000"
+
+sounds:
+  open: "block.note_block.pling"
+  join: "entity.experience_orb.pickup"
+  tick: "block.note_block.hat"
+  start: "entity.ender_dragon.growl"
+  release: "entity.wither.spawn"
+  find: "entity.player.levelup"
+  found: "entity.villager.no"
+  win: "ui.toast.challenge_complete"
+  lose: "entity.wither.death"
+
+# Buka pendaftaran otomatis tiap hari pada jam ini
+schedule:
+  enabled: false
+  timezone: "Asia/Makassar"
+  times: ["19:00"]
