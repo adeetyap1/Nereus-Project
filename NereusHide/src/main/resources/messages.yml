@@ -86,6 +86,8 @@ title:
   promoted-sub: "&7Pencari sebelumnya keluar"
   win: "&a&lMENANG!"
   win-sub: "&7Poinmu: &f{points}"
+  mvp: "&6&lPENCARI TERBAIK!"
+  mvp-sub: "&7{finds} temuan, {points} poin"
   lose: "&c&lKALAH"
   lose-sub: "&7Poinmu: &f{points}"
 

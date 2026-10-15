@@ -59,11 +59,14 @@ allowed-commands: []
 
 # Hadiah lewat command console. {player} {points}
 rewards:
+  # Dijalankan SEKALI TIAP temuan, jadi pencari yang rajin menemukan tetap dapat hadiah walau tidak menang
+  find:
+    - "eco give {player} 1000"
   participation:
     - "eco give {player} 500"
   win:
     - "eco give {player} 3000"
-  mvp:
+  mvp:                       # poin tertinggi (pencari terbaik atau siapa pun)
     - "eco give {player} 2000"
 
 sounds:

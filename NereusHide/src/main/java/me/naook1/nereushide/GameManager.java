@@ -673,9 +673,11 @@ public final class GameManager {
             }
             P me = players.get(p.getUniqueId());
             boolean won = winners.contains(me);
-            title(p, won ? "title.win" : "title.lose", won ? "title.win-sub" : "title.lose-sub", 5, 80, 20,
-                    "points", String.valueOf(me.points));
-            sound(p, won ? "win" : "lose");
+            boolean best = !won && mvps.contains(me);
+            title(p, won ? "title.win" : best ? "title.mvp" : "title.lose",
+                    won ? "title.win-sub" : best ? "title.mvp-sub" : "title.lose-sub", 5, 80, 20,
+                    "points", String.valueOf(me.points), "finds", String.valueOf(me.finds));
+            sound(p, won || best ? "win" : "lose");
             p.removePotionEffect(PotionEffectType.BLINDNESS);
         }
         if (plugin.settings().announceServer()) {
@@ -691,6 +693,9 @@ public final class GameManager {
         for (P p : ranking) {
             plugin.data().addStats(p.id, 1, winners.contains(p) ? 1 : 0, p.finds);
             runRewards("participation", p);
+            for (int i = 0; i < Math.min(p.finds, 50); i++) {
+                runRewards("find", p);
+            }
             if (winners.contains(p)) {
                 runRewards("win", p);
             }
