@@ -1,0 +1,24 @@
+name: NereusBarter
+version: '${project.version}'
+main: me.naook1.nereusbarter.NereusBarter
+api-version: '1.21'
+authors: [naook1, adityap]
+description: Player to player barter by naook1/adityap
+softdepend: [Vault, Essentials, PlaceholderAPI]
+
+commands:
+  barter:
+    description: Barter dengan pemain lain
+    aliases: [tukar, trade2]
+    usage: /<command> <player> | accept | deny | cancel | toggle | history
+
+permissions:
+  barter.use:
+    description: Memakai /barter
+    default: true
+  barter.bypass:
+    description: Lewati syarat playtime dan jarak
+    default: op
+  barter.admin:
+    description: Reload dan batalkan barter pemain
+    default: op

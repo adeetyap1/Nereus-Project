@@ -1,0 +1,49 @@
+# ============================================================
+#  NereusBarter
+#  Developer : naook1/adityap
+#  Server    : 1.21.1 (Paper) | Java 21 | Java + Bedrock (Geyser)
+#  Butuh     : Vault + plugin ekonomi (kalau fitur uang dipakai)
+# ============================================================
+# Warna: &a &l dll, hex &#RRGGBB. Awali teks dengan [mm] untuk MiniMessage.
+
+developer: "naook1/adityap"
+enabled: true
+small-caps: true            # semua teks di messages.yml jadi small caps
+
+currency-symbol: "$"
+
+request:
+  expire-seconds: 30        # ajakan hangus setelah ini
+  cooldown-seconds: 10      # jeda antar ajakan dari pemain yang sama
+
+# Syarat barter (pemain dengan permission barter.bypass dilewati)
+rules:
+  min-playtime-minutes: 20  # 0 = tanpa batas
+  max-distance: 30          # blok; 0 = bebas jarak. Beda dunia selalu ditolak kecuali 0
+  confirm-lock-seconds: 3   # tombol Setuju terkunci sekian detik setelah kedua pihak Siap
+
+money:
+  enabled: true
+  steps: [1000, 10000, 100000]   # tepat 3 tombol tambah uang
+  max: 100000000                 # batas uang per barter
+
+# Item yang tidak boleh dibarter (nama material)
+blocked-items:
+  - BEDROCK
+  - BARRIER
+  - COMMAND_BLOCK
+  - CHAIN_COMMAND_BLOCK
+  - REPEATING_COMMAND_BLOCK
+  - STRUCTURE_BLOCK
+  - JIGSAW
+  - DEBUG_STICK
+  - SPAWNER
+
+sounds:
+  request: "block.note_block.pling"
+  success: "entity.player.levelup"
+  cancel: "block.note_block.bass"
+
+history:
+  keep: 200                 # jumlah barter terakhir yang disimpan di barter-log.yml
+  timezone: "Asia/Makassar"   # zona waktu untuk jam di /barter history

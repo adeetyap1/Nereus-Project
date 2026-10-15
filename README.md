@@ -10,7 +10,10 @@ Custom Paper 1.21.1 plugins (Java 21) by naook1/adityap.
 - **NereusLottery** - `/lottery`: undian terjadwal (WITA), tiket, jackpot yang menumpuk, menu GUI, tanpa pajak.
   Butuh Vault + plugin ekonomi (EssentialsX).
 
-- **NereusFarmPrice** - `/farmprice`: buff harga farm berotasi otomatis + pasar jenuh, harga dasar dibaca dari
-  EconomyShopGUI, menu berupa teks (buku/chat).
+- **NereusFarmPrice** - `/farmprice`: Daily Farm Boost: 3 farm mendapat bonus harga jual +50% tiap 24 jam (rotasi otomatis),
+  harga dasar dibaca dari EconomyShopGUI, tampilan teks (chat/buku).
 
-Build: buka tab Actions, jalankan "Build" terbaru, unduh artifact `plugins` (berisi 4 jar).
+- **NereusBarter** - `/barter <player>`: barter item + uang antar 2 pemain, GUI bersama, konfirmasi 2 tahap,
+  anti-tipu (status Siap reset kalau penawaran berubah), syarat playtime 20 menit dan jarak 30 blok.
+
+Build: buka tab Actions, jalankan "Build" terbaru, unduh artifact `plugins` (berisi 5 jar).
