@@ -789,6 +789,9 @@ public final class GameManager {
         Arena arena = plugin.arena();
         for (Player p : online()) {
             P me = players.get(p.getUniqueId());
+            if (frozen(p)) {
+                continue;       // seekers waiting in their room may be outside the play area
+            }
             if (arena.contains(p.getLocation())) {
                 me.lastInside = p.getLocation();
             } else {
