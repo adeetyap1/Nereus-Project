@@ -113,15 +113,27 @@ public final class Arena {
         return sb.toString().trim();
     }
 
+    /** Inside the play area. Height is ignored unless arena.check-height is true (corners are usually set on the ground). */
     public boolean contains(Location l) {
         if (!hasBounds()) {
             return true;
         }
-        if (l.getWorld() == null || !l.getWorld().equals(pos1.getWorld())) {
+        if (l == null || l.getWorld() == null || !l.getWorld().equals(pos1.getWorld())) {
             return false;
         }
-        return l.getX() >= Math.min(pos1.getX(), pos2.getX()) && l.getX() <= Math.max(pos1.getX(), pos2.getX()) + 1
-                && l.getY() >= Math.min(pos1.getY(), pos2.getY()) - 1 && l.getY() <= Math.max(pos1.getY(), pos2.getY()) + 2
+        boolean flat = l.getX() >= Math.min(pos1.getX(), pos2.getX()) && l.getX() <= Math.max(pos1.getX(), pos2.getX()) + 1
                 && l.getZ() >= Math.min(pos1.getZ(), pos2.getZ()) && l.getZ() <= Math.max(pos1.getZ(), pos2.getZ()) + 1;
+        if (!flat) {
+            return false;
+        }
+        if (!plugin.getConfig().getBoolean("arena.check-height", false)) {
+            return true;
+        }
+        return l.getY() >= Math.min(pos1.getY(), pos2.getY()) - 2 && l.getY() <= Math.max(pos1.getY(), pos2.getY()) + 3;
+    }
+
+    /** The hide spawn must be inside the play area, otherwise players would be pulled back forever. */
+    public boolean hideInside() {
+        return hide == null || contains(hide);
     }
 }

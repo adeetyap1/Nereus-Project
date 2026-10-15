@@ -50,6 +50,7 @@ public final class GameManager {
         public int finds;
         public boolean originalSeeker;
         public Location lastInside;
+        public long lastWarn;
 
         P(Player p) {
             this.id = p.getUniqueId();
@@ -225,6 +226,9 @@ public final class GameManager {
         }
         if (!plugin.arena().complete()) {
             return "arena-incomplete";
+        }
+        if (!plugin.arena().hideInside()) {
+            return "arena-hide-outside";
         }
         phase = Phase.LOBBY;
         waitLeft = plugin.settings().lobbyWait();
@@ -789,14 +793,21 @@ public final class GameManager {
         Arena arena = plugin.arena();
         for (Player p : online()) {
             P me = players.get(p.getUniqueId());
-            if (frozen(p)) {
+            if (me == null || frozen(p)) {
                 continue;       // seekers waiting in their room may be outside the play area
             }
             if (arena.contains(p.getLocation())) {
                 me.lastInside = p.getLocation();
-            } else {
-                Location back = me.lastInside != null ? me.lastInside : arena.hide();
-                tp(p, back);
+                continue;
+            }
+            Location back = me.lastInside != null && arena.contains(me.lastInside) ? me.lastInside : arena.hide();
+            if (back == null || !arena.contains(back)) {
+                continue;       // misconfigured arena: never teleport in a loop
+            }
+            long now = System.currentTimeMillis();
+            tp(p, back);
+            if (now - me.lastWarn > 3000) {
+                me.lastWarn = now;
                 tell(p, "out-of-arena");
             }
         }

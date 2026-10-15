@@ -17,6 +17,9 @@
 
 developer: "naook1/adityap"
 enabled: true
+
+arena:
+  check-height: false        # true = tinggi (Y) juga dibatasi sesuai pos1/pos2. Default: hanya sisi (X/Z)
 small-caps: true
 
 game:

@@ -118,7 +118,9 @@ public final class HideCommand implements TabExecutor {
                 m.send(s, "reloaded");
             }
             case "check" -> {
-                if (plugin.arena().complete()) {
+                if (plugin.arena().complete() && !plugin.arena().hideInside()) {
+                    m.send(s, "arena-hide-outside");
+                } else if (plugin.arena().complete()) {
                     m.send(s, "arena-ok");
                 } else {
                     m.send(s, "arena-missing", "missing", plugin.arena().missing());
