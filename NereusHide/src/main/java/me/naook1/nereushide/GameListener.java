@@ -217,7 +217,7 @@ public final class GameListener implements Listener {
     /** Hiders only talk to hiders, the seeker side only to the seeker side, outsiders see nothing of the game. */
     @EventHandler(priority = EventPriority.HIGH)
     public void onChat(AsyncChatEvent e) {
-        if (!plugin.settings().isolateChat() || g().phase() == Phase.IDLE) {
+        if (!plugin.settings().isolateChat() || !g().running()) {
             return;
         }
         int mine = g().chatGroup(e.getPlayer().getUniqueId());
