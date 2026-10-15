@@ -1,0 +1,26 @@
+# ============================================================
+#  NereusLand
+#  Developer : naook1/adityap
+#  Server    : 1.21.1 (Paper) | Java 21 | Java + Bedrock (Geyser)
+#  Butuh     : RedProtect (nama land dibaca langsung dari RedProtect)
+# ============================================================
+# Warna: &a &l dll, hex &#RRGGBB. Awali teks dengan [mm] untuk MiniMessage.
+# Teks bossbar ada di messages.yml.
+
+developer: "naook1/adityap"
+enabled: true
+small-caps: true          # teks di messages.yml jadi small caps (nama land tetap apa adanya)
+
+update-ticks: 10          # seberapa sering posisi pemain dicek (10 = 2x per detik)
+
+bossbar:
+  progress: 1.0           # 0.0 - 1.0 (isi bar)
+  overlay: PROGRESS       # PROGRESS | NOTCHED_6 | NOTCHED_10 | NOTCHED_12 | NOTCHED_20
+  own-color: GREEN        # land milikmu (leader/admin/member)
+  other-color: YELLOW     # land orang lain
+  wilderness:
+    enabled: false        # tampilkan bar juga di luar land
+    color: WHITE
+
+# Dunia yang tidak menampilkan bossbar
+ignore-worlds: []

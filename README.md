@@ -16,4 +16,6 @@ Custom Paper 1.21.1 plugins (Java 21) by naook1/adityap.
 - **NereusBarter** - `/barter <player>`: barter item + uang antar 2 pemain, GUI bersama, konfirmasi 2 tahap,
   anti-tipu (status Siap reset kalau penawaran berubah), syarat playtime 20 menit dan jarak 30 blok.
 
-Build: buka tab Actions, jalankan "Build" terbaru, unduh artifact `plugins` (berisi 5 jar).
+- **NereusLand** - bossbar nama land yang disinkronkan langsung dengan RedProtect (`/landbar` untuk on/off).
+
+Build: buka tab Actions, jalankan "Build" terbaru, unduh artifact `plugins` (berisi 6 jar).

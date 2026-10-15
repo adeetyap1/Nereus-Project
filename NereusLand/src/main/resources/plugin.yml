@@ -1,0 +1,21 @@
+name: NereusLand
+version: '${project.version}'
+main: me.naook1.nereusland.NereusLand
+api-version: '1.21'
+authors: [naook1, adityap]
+description: RedProtect land name bossbar by naook1/adityap
+softdepend: [RedProtect]
+
+commands:
+  landbar:
+    description: Nyalakan / matikan bossbar nama land, atau kelola plugin
+    aliases: [nland, nereusland]
+    usage: /<command> [toggle|reload|debug]
+
+permissions:
+  nereusland.use:
+    description: Melihat bossbar nama land dan memakai /landbar toggle
+    default: true
+  nereusland.admin:
+    description: Reload dan debug
+    default: op

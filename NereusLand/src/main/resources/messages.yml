@@ -1,0 +1,17 @@
+prefix: "&8[&6Land&8] &7"
+no-permission: "{prefix}&cKamu tidak punya izin untuk itu."
+players-only: "{prefix}&cCommand ini hanya untuk player."
+reloaded: "{prefix}&aConfig dimuat ulang."
+toggle-on: "{prefix}&aBossbar nama land dinyalakan."
+toggle-off: "{prefix}&cBossbar nama land dimatikan."
+
+# Teks bossbar. Placeholder: {name} nama land, {owner} pemilik (leader), {role} peran kamu
+bossbar:
+  own: "&a✦ &f{name} &8| &7Kamu: &a{role}"
+  other: "&e✦ &f{name} &8| &7Pemilik: &f{owner}"
+  wilderness: "&7Wilderness"
+
+role:
+  leader: "Pemilik"
+  admin: "Admin"
+  member: "Member"
