@@ -78,6 +78,20 @@ public final class EconomyHook {
         return transact(deposit, p, amount);
     }
 
+    /** Deposits an exact (decimal) amount. */
+    public boolean depositExact(OfflinePlayer p, double amount) {
+        if (!ready() || amount <= 0) {
+            return false;
+        }
+        try {
+            Object response = deposit.invoke(eco, p, amount);
+            return (boolean) success.invoke(response);
+        } catch (Exception e) {
+            plugin.getLogger().warning("Economy deposit failed: " + e.getMessage());
+            return false;
+        }
+    }
+
     private boolean transact(Method m, OfflinePlayer p, long amount) {
         if (!ready()) {
             return false;
