@@ -17,6 +17,7 @@ public final class NereusHide extends JavaPlugin {
     private PlayerStates states;
     private DataStore data;
     private GameManager game;
+    private NameTags nameTags;
     private int saveCounter;
 
     @Override
@@ -28,6 +29,8 @@ public final class NereusHide extends JavaPlugin {
         states = new PlayerStates(this);
         data = new DataStore(this);
         game = new GameManager(this);
+        nameTags = new NameTags(this);
+        nameTags.purge();
         messages.reload();
         arena.load();
         data.load();
@@ -50,6 +53,9 @@ public final class NereusHide extends JavaPlugin {
     public void onDisable() {
         if (game != null) {
             game.stop();
+        }
+        if (nameTags != null) {
+            nameTags.showAll();
         }
         if (data != null) {
             data.flush(false);
@@ -88,6 +94,10 @@ public final class NereusHide extends JavaPlugin {
 
     public DataStore data() {
         return data;
+    }
+
+    public NameTags nameTags() {
+        return nameTags;
     }
 
     public GameManager game() {

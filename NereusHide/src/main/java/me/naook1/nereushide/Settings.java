@@ -64,6 +64,10 @@ public final class Settings {
         return Math.max(1, Math.min(n, Math.max(1, players - 1)));
     }
 
+    public boolean hideNametags() {
+        return plugin.getConfig().getBoolean("hide-nametags", true);
+    }
+
     public boolean avoidRepeat() {
         return c().getBoolean("seekers.avoid-repeat", true);
     }

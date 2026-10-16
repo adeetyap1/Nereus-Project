@@ -293,6 +293,7 @@ public final class GameManager {
         if (bar != null) {
             bar.removeViewer(p);
         }
+        plugin.nameTags().show(me.name);
         if (!quit) {
             restore(p);
             tell(p, "left-you");
@@ -549,6 +550,7 @@ public final class GameManager {
                 title(p, "title.you-hider", "title.you-hider-sub", 5, 70, 10, "seconds", String.valueOf(hideTime), "seekers", list);
             }
             me.lastInside = p.getLocation();
+            plugin.nameTags().hide(p);
             sound(p, "start");
         }
         tellAll("seekers-chosen", "seekers", list, "hiders", String.valueOf(hidersLeft()));
@@ -621,6 +623,7 @@ public final class GameManager {
             return;
         }
         phase = Phase.ENDED;
+        plugin.nameTags().showAll();
         timer = plugin.settings().resultTime();
         List<P> ranking = ranking();
         List<P> winners = new ArrayList<>();
@@ -724,6 +727,7 @@ public final class GameManager {
 
     /** Gives everybody their things back and resets the game. */
     public void cleanup() {
+        plugin.nameTags().showAll();
         lastSeekers.clear();
         for (P p : players.values()) {
             if (p.originalSeeker) {

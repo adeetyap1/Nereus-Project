@@ -18,6 +18,8 @@
 developer: "naook1/adityap"
 enabled: true
 
+hide-nametags: true         # nama di atas kepala disembunyikan selama game, muncul lagi setelah selesai
+
 arena:
   check-height: false        # true = tinggi (Y) juga dibatasi sesuai pos1/pos2. Default: hanya sisi (X/Z)
 small-caps: true
