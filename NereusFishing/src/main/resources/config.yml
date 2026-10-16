@@ -1,0 +1,149 @@
+# NereusFishing by naook1/adityap
+developer: naook1/adityap
+small-caps: true            # nama dan lore otomatis small caps
+
+# true  = joran vanilla biasa juga dapat ikan custom
+# false = hanya joran Nereus (dari /fish give)
+vanilla-rods-too: false
+
+sell-multiplier: 1.0        # kali harga jual (misal 1.5 saat event)
+
+# Rarity: weight = peluang dasar, luck-boost = seberapa besar luck joran menaikkan peluangnya
+# (peluang = weight * (1 + luck * luck-boost)). Boleh negatif untuk menurunkan peluang ikan umum.
+rarities:
+  COMMON:
+    name: "&fUmum"
+    weight: 60
+    luck-boost: -0.1
+    broadcast: false
+  RARE:
+    name: "&9Langka"
+    weight: 25
+    luck-boost: 0.25
+    broadcast: false
+  EPIC:
+    name: "&5Epik"
+    weight: 12
+    luck-boost: 0.5
+    broadcast: false
+  LEGENDARY:
+    name: "&6Legendaris"
+    weight: 3
+    luck-boost: 1.0
+    broadcast: true         # diumumkan ke semua pemain
+
+# Joran. model = custom_model_data (0 = tampilan vanilla). Leviathan memakai model 7014 dari pack.
+# luck = bonus peluang rarity, speed = persen lebih cepat menggigit (maks 90).
+rods:
+  wood:
+    name: "&fJoran Kayu"
+    material: FISHING_ROD
+    model: 0
+    luck: 0
+    speed: 0
+    lore:
+      - "&7Joran dasar untuk pemula."
+  iron:
+    name: "&7Joran Besi"
+    material: FISHING_ROD
+    model: 0
+    luck: 1
+    speed: 10
+    lore:
+      - "&7Lebih cepat dan sedikit beruntung."
+  gold:
+    name: "&6Joran Emas"
+    material: FISHING_ROD
+    model: 0
+    luck: 2
+    speed: 20
+    lore:
+      - "&7Ikan langka lebih sering muncul."
+  leviathan:
+    name: "&b&lJoran Leviathan"
+    material: FISHING_ROD
+    model: 7014
+    luck: 4
+    speed: 35
+    lore:
+      - "&7Joran legenda dari dasar laut."
+
+# Ikan. price-per-kg = harga jual per kilogram. model optional (custom_model_data).
+fish:
+  sarden:
+    name: "Sarden"
+    material: COD
+    rarity: COMMON
+    min-weight: 0.2
+    max-weight: 1.0
+    price-per-kg: 8
+  kembung:
+    name: "Kembung"
+    material: COD
+    rarity: COMMON
+    min-weight: 0.3
+    max-weight: 1.5
+    price-per-kg: 10
+  salmon-laut:
+    name: "Salmon Laut"
+    material: SALMON
+    rarity: COMMON
+    min-weight: 1.0
+    max-weight: 4.0
+    price-per-kg: 14
+  nila:
+    name: "Nila Emas"
+    material: SALMON
+    rarity: RARE
+    min-weight: 1.5
+    max-weight: 5.0
+    price-per-kg: 30
+  ikan-badut:
+    name: "Ikan Badut"
+    material: TROPICAL_FISH
+    rarity: RARE
+    min-weight: 0.1
+    max-weight: 0.6
+    price-per-kg: 120
+  buntal:
+    name: "Ikan Buntal"
+    material: PUFFERFISH
+    rarity: RARE
+    min-weight: 0.5
+    max-weight: 2.5
+    price-per-kg: 40
+  tuna:
+    name: "Tuna Sirip Biru"
+    material: SALMON
+    rarity: EPIC
+    min-weight: 10
+    max-weight: 60
+    price-per-kg: 22
+  cumi-bercahaya:
+    name: "Cumi Bercahaya"
+    material: GLOW_INK_SAC
+    rarity: EPIC
+    min-weight: 1
+    max-weight: 6
+    price-per-kg: 50
+  kerang-mutiara:
+    name: "Kerang Mutiara"
+    material: NAUTILUS_SHELL
+    rarity: EPIC
+    min-weight: 0.5
+    max-weight: 3
+    price-per-kg: 90
+  naga-laut:
+    name: "Naga Laut"
+    material: PRISMARINE_CRYSTALS
+    rarity: LEGENDARY
+    min-weight: 40
+    max-weight: 120
+    price-per-kg: 35
+  leviathan-kecil:
+    name: "Anak Leviathan"
+    material: HEART_OF_THE_SEA
+    rarity: LEGENDARY
+    min-weight: 80
+    max-weight: 250
+    price-per-kg: 30

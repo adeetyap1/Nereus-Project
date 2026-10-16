@@ -1,0 +1,25 @@
+name: NereusFishing
+version: '${project.version}'
+main: me.naook1.nereusfishing.NereusFishing
+api-version: '1.21'
+authors: [naook1, adityap]
+description: Custom fishing with rods, rarities and fish selling by naook1/adityap
+softdepend: [Vault, Essentials]
+
+commands:
+  fish:
+    description: Menu memancing
+    aliases: [mancing, fishing]
+    usage: /<command> rods | top | sell | give <rod> [player] | reload
+  fishsell:
+    description: Jual semua ikan di inventory
+    aliases: [jualikan]
+    usage: /<command>
+
+permissions:
+  fishing.use:
+    description: Memakai /fish dan /fishsell
+    default: true
+  fishing.admin:
+    description: Give joran dan reload
+    default: op
