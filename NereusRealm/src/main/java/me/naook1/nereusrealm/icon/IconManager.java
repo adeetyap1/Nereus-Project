@@ -51,6 +51,18 @@ public final class IconManager {
         }
     }
 
+    /** group name -> icon characters, in config order (first = highest priority). */
+    public Map<String, String> groupIcons() {
+        Map<String, String> out = new LinkedHashMap<>();
+        for (Map.Entry<String, String> e : groups.entrySet()) {
+            String icon = icon(e.getValue());
+            if (icon != null) {
+                out.put(e.getKey(), icon);
+            }
+        }
+        return out;
+    }
+
     public Collection<String> ids() {
         return icons.keySet();
     }

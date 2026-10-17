@@ -104,7 +104,7 @@ public final class NereusCommand implements TabExecutor {
                 }
             }
             case "toggle", "gadget" -> plugin.gadgets().toggle(p);
-            case "icon", "icons" -> icons(p);
+            case "icon", "icons" -> icons(p, args);
             case "kits" -> p.performCommand(plugin.getConfig().getString("kits.command", "kit"));
             case "afk" -> afk(p, args);
             case "setjoin", "setleave" -> setCustom(p, sub.equals("setjoin"), args);
@@ -208,7 +208,35 @@ public final class NereusCommand implements TabExecutor {
                 "developer", plugin.getConfig().getString("developer", "naook1/adityap"));
     }
 
-    private void icons(Player p) {
+    private void applyIcons(Player p) {
+        if (!p.hasPermission("nereus.admin")) {
+            plugin.messages().send(p, "no-permission");
+            return;
+        }
+        if (!Bukkit.getPluginManager().isPluginEnabled("LuckPerms")) {
+            plugin.messages().send(p, "icon.no-luckperms");
+            return;
+        }
+        int priority = 100;
+        int count = 0;
+        for (java.util.Map.Entry<String, String> e : plugin.icons().groupIcons().entrySet()) {
+            String g = e.getKey();
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp creategroup " + g);
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
+                    "lp group " + g + " meta setprefix " + (g.equals("default") ? 10 : priority) + " \"" + e.getValue() + " \"");
+            if (!g.equals("default")) {
+                priority -= 10;
+            }
+            count++;
+        }
+        plugin.messages().send(p, "icon.applied", "count", String.valueOf(count));
+    }
+
+    private void icons(Player p, String[] args) {
+        if (args.length > 1 && args[1].equalsIgnoreCase("apply")) {
+            applyIcons(p);
+            return;
+        }
         if (plugin.icons().ids().isEmpty()) {
             plugin.messages().send(p, "icon.none");
             return;

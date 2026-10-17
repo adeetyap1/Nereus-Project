@@ -167,6 +167,8 @@ icon:
   me: "{prefix}&7Icon rank kamu: &r{icon}"
   no-rank: "{prefix}&7Tidak ada icon untuk rank kamu."
   none: "{prefix}&cBelum ada icon di icons.yml."
+  applied: "{prefix}&aPrefix icon dipasang ke &f{count} &agroup LuckPerms. Cek chat atau /lp group owner info."
+  no-luckperms: "{prefix}&cLuckPerms tidak terpasang."
 
 help:
   - "&8&m                                   "
