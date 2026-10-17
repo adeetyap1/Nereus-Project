@@ -10,7 +10,7 @@ commands:
   nereus:
     description: Menu utama NereusRealm
     aliases: [nereusrealm, nsi, gadget]
-    usage: /<command> [join|leave|daily|kits|ranks|feedback|afk|settings|toggle|about|reload]
+    usage: /<command> [join|leave|daily|kits|ranks|feedback|afk|settings|toggle|icon|about|reload]
   afk:
     description: Tandai dirimu AFK
     usage: /<command> [alasan]
@@ -20,6 +20,9 @@ commands:
     usage: /<command> [kode]
 
 permissions:
+  nereus.icon.chat:
+    description: "Boleh menulis :nama: (icon rank) di pesan chat sendiri"
+    default: op
   nereus.gadget:
     description: Dapat item gadget di hotbar
     default: true

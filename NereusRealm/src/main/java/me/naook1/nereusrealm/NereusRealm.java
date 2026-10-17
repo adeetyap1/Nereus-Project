@@ -20,6 +20,8 @@ import me.naook1.nereusrealm.gadget.GadgetManager;
 import me.naook1.nereusrealm.gui.MenuListener;
 import me.naook1.nereusrealm.gui.MenuManager;
 import me.naook1.nereusrealm.hook.PapiHook;
+import me.naook1.nereusrealm.icon.IconChatListener;
+import me.naook1.nereusrealm.icon.IconManager;
 import me.naook1.nereusrealm.input.PromptListener;
 import me.naook1.nereusrealm.input.PromptManager;
 import me.naook1.nereusrealm.joinleave.CustomMessages;
@@ -54,6 +56,7 @@ public final class NereusRealm extends JavaPlugin {
     private MenuManager menus;
     private GadgetManager gadgets;
     private PointManager points;
+    private IconManager icons;
 
     @Override
     public void onEnable() {
@@ -74,6 +77,7 @@ public final class NereusRealm extends JavaPlugin {
         gadgets = new GadgetManager(this);
         points = new PointManager(this);
         points.load();
+        icons = new IconManager(this);
         reloadAll();
 
         PluginManager pm = getServer().getPluginManager();
@@ -82,6 +86,7 @@ public final class NereusRealm extends JavaPlugin {
         pm.registerEvents(new MenuListener(this), this);
         pm.registerEvents(new PromptListener(this), this);
         pm.registerEvents(new GadgetListener(this), this);
+        pm.registerEvents(new IconChatListener(this), this);
 
         NereusCommand nereus = new NereusCommand(this);
         getCommand("nereus").setExecutor(nereus);
@@ -147,6 +152,7 @@ public final class NereusRealm extends JavaPlugin {
         redeem.reload();
         menus.reload();
         gadgets.reload();
+        icons.reload();
         for (org.bukkit.entity.Player p : getServer().getOnlinePlayers()) {
             gadgets.ensure(p, true);
         }
@@ -240,5 +246,9 @@ public final class NereusRealm extends JavaPlugin {
 
     public PointManager points() {
         return points;
+    }
+
+    public IconManager icons() {
+        return icons;
     }
 }

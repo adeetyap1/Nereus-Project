@@ -161,6 +161,13 @@ point:
   usage: "{prefix}&7Pakai: &f/nereus setpoint <nama> &8| &f/nereus delpoint <nama> &8| &f/nereus points"
   teleported: "{prefix}&aBerhasil teleport ke &f{point}&a."
 
+icon:
+  header: "{prefix}&bIcon rank yang tersedia:"
+  line: "&8 - &f:{id}: &8= &r{icon}"
+  me: "{prefix}&7Icon rank kamu: &r{icon}"
+  no-rank: "{prefix}&7Tidak ada icon untuk rank kamu."
+  none: "{prefix}&cBelum ada icon di icons.yml."
+
 help:
   - "&8&m                                   "
   - "&6/redeem <kode> &8- &7Tukar kode redeem"

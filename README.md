@@ -2,7 +2,7 @@
 
 Custom Paper 1.21.1 plugins (Java 21) by naook1/adityap.
 
-- **NereusRealm** (2.0, sudah termasuk gadget hotbar dan menu teleport) - `/nereus` (alias `/nsi`): SATU menu untuk semua:
+- **NereusRealm** (2.1, sudah termasuk gadget hotbar, menu teleport, dan icon rank `:owner:` / `%nereus_icon_rank%`) - `/nereus` (alias `/nsi`): SATU menu untuk semua:
   RTP, Survival, Gacha, Spawn, Daily, Kits, AFK Center, Redeem, Join/Leave style + custom message, Rank, Rating,
   Info & Rules, Settings. Item gadget di hotbar slot 9 membuka menu yang sama. Small caps.
 
@@ -18,7 +18,6 @@ Custom Paper 1.21.1 plugins (Java 21) by naook1/adityap.
 - **NereusLand** - bossbar nama land yang disinkronkan langsung dengan RedProtect (`/landbar` untuk on/off).
 - **NereusHide** - `/hide`: petak umpet, pencari diundi acak, sistem poin (temuan +1, ketemu -5 dst), admin tidak ikut
 - **NereusFishing** - `/fish`: joran bertingkat (bisa pakai model custom), ikan custom berdasarkan rarity, berat acak, rekor `/fish top`, jual `/fishsell` via Vault
-- **NereusIcons** - icon rank custom (font pack Java + glyph pack Bedrock), ganti `:owner:`/`:rank:` di prefix chat, placeholder PAPI `%nereusicons_rank%` untuk TAB
   kecuali `/hide join`, menu admin `/hide admin`, inventory pemain disimpan aman ke file.
 
 Build: buka tab Actions, jalankan "Build" terbaru, unduh artifact `plugins` (berisi 6 jar).

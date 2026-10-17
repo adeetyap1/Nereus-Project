@@ -104,6 +104,7 @@ public final class NereusCommand implements TabExecutor {
                 }
             }
             case "toggle", "gadget" -> plugin.gadgets().toggle(p);
+            case "icon", "icons" -> icons(p);
             case "kits" -> p.performCommand(plugin.getConfig().getString("kits.command", "kit"));
             case "afk" -> afk(p, args);
             case "setjoin", "setleave" -> setCustom(p, sub.equals("setjoin"), args);
@@ -207,11 +208,28 @@ public final class NereusCommand implements TabExecutor {
                 "developer", plugin.getConfig().getString("developer", "naook1/adityap"));
     }
 
+    private void icons(Player p) {
+        if (plugin.icons().ids().isEmpty()) {
+            plugin.messages().send(p, "icon.none");
+            return;
+        }
+        plugin.messages().send(p, "icon.header");
+        for (String id : plugin.icons().ids()) {
+            plugin.messages().send(p, "icon.line", "id", id, "icon", plugin.icons().icon(id));
+        }
+        String mine = plugin.icons().rank(p);
+        if (mine == null) {
+            plugin.messages().send(p, "icon.no-rank");
+        } else {
+            plugin.messages().send(p, "icon.me", "icon", mine);
+        }
+    }
+
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (args.length == 1) {
             List<String> subs = new ArrayList<>(List.of("join", "leave", "daily", "kits", "ranks", "feedback",
-                    "afk", "redeem", "settings", "toggle", "setjoin", "setleave", "resetjoin", "resetleave", "about", "help"));
+                    "afk", "redeem", "settings", "toggle", "icon", "setjoin", "setleave", "resetjoin", "resetleave", "about", "help"));
             if (sender.hasPermission("nereus.admin")) {
                 subs.add("reload");
                 subs.add("menu");

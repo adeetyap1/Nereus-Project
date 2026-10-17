@@ -6,7 +6,7 @@
 
     <groupId>me.naook1</groupId>
     <artifactId>NereusRealm</artifactId>
-    <version>2.0.0</version>
+    <version>2.1.0</version>
     <packaging>jar</packaging>
     <name>NereusRealm</name>
     <description>Custom join/leave, AFK rewards, daily and menus by naook1/adityap</description>

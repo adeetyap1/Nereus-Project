@@ -10,7 +10,8 @@ import org.bukkit.entity.Player;
 /**
  * PlaceholderAPI expansion, identifier "nereus".
  * %nereus_afk% (AFK or empty), %nereus_afk_bool%, %nereus_afk_time%,
- * %nereus_daily_streak%, %nereus_rating_avg%, %nereus_rating_count%
+ * %nereus_daily_streak%, %nereus_rating_avg%, %nereus_rating_count%,
+ * %nereus_icon_rank% (icon of the player's group), %nereus_icon_owner% (a specific icon)
  */
 public final class NereusExpansion extends PlaceholderExpansion {
 
@@ -51,6 +52,10 @@ public final class NereusExpansion extends PlaceholderExpansion {
             default:
                 break;
         }
+        if (key.startsWith("icon_") && !key.equals("icon_rank")) {
+            String icon = plugin.icons().icon(key.substring(5));
+            return icon == null ? "" : icon;
+        }
         Player p = offline == null ? null : offline.getPlayer();
         if (p == null) {
             return "";
@@ -62,6 +67,10 @@ public final class NereusExpansion extends PlaceholderExpansion {
                 return String.valueOf(plugin.afk().isAfk(p));
             case "afk_time":
                 return TimeUtil.clock(plugin.afk().info(p).seconds());
+            case "icon_rank": {
+                String r = plugin.icons().rank(p);
+                return r == null ? "" : r;
+            }
             case "daily_streak":
                 return String.valueOf(plugin.daily().currentStreak(p));
             default:

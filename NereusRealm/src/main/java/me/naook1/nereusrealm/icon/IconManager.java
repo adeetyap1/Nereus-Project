@@ -1,4 +1,4 @@
-package me.naook1.nereusicons;
+package me.naook1.nereusrealm.icon;
 
 import java.util.Collection;
 import java.util.LinkedHashMap;
@@ -6,7 +6,9 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import me.naook1.nereusrealm.NereusRealm;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 /** id -> icon character sequence, plus rank resolution from LuckPerms groups (permission group.NAME). */
@@ -14,19 +16,19 @@ public final class IconManager {
 
     private static final Pattern TOKEN = Pattern.compile(":([a-zA-Z0-9_]+):");
 
-    private final NereusIcons plugin;
+    private final NereusRealm plugin;
     private final Map<String, String> icons = new LinkedHashMap<>();
     private final Map<String, String> groups = new LinkedHashMap<>();
 
-    public IconManager(NereusIcons plugin) {
+    public IconManager(NereusRealm plugin) {
         this.plugin = plugin;
     }
 
     public void reload() {
-        plugin.reloadConfig();
         icons.clear();
         groups.clear();
-        ConfigurationSection is = plugin.getConfig().getConfigurationSection("icons");
+        FileConfiguration cfg = plugin.loadYaml("icons.yml");
+        ConfigurationSection is = cfg.getConfigurationSection("icons");
         if (is != null) {
             for (String id : is.getKeys(false)) {
                 String v = is.getString(id);
@@ -35,7 +37,7 @@ public final class IconManager {
                 }
             }
         }
-        ConfigurationSection gs = plugin.getConfig().getConfigurationSection("groups");
+        ConfigurationSection gs = cfg.getConfigurationSection("groups");
         if (gs != null) {
             for (String g : gs.getKeys(false)) {
                 String id = gs.getString(g);
@@ -54,7 +56,7 @@ public final class IconManager {
         return id == null ? null : icons.get(id.toLowerCase(Locale.ROOT));
     }
 
-    /** The icon for the first configured group the player has (LuckPerms: permission group.NAME). */
+    /** The icon for the first configured group the player has (permission group.NAME). */
     public String rank(Player p) {
         if (p == null) {
             return null;
