@@ -1,4 +1,4 @@
-file-version: 1
+file-version: 2
 # Icon rank custom (pack Java + pack Bedrock). Developer: naook1/adityap
 # Di prefix LuckPerms / chat tulis :owner: dst, atau :rank: (otomatis sesuai group).
 # Karakter icon jangan diubah kecuali kamu mengganti pack.
@@ -29,3 +29,17 @@ groups:
   knight: knight
   default: rakyat
 
+
+# Warna nama pemain per group (kode warna & atau &#rrggbb). Dipasang di belakang icon lewat /nereus icon apply.
+# Icon sendiri tetap putih (warna asli gambar), karena warna baru dipasang setelah icon.
+name-colors:
+  owner: "&6"
+  admin: "&c"
+  staff: "&b"
+  emperor: "&5"
+  king: "&e"
+  duke: "&d"
+  viscount: "&9"
+  baron: "&a"
+  knight: "&3"
+  default: "&7"

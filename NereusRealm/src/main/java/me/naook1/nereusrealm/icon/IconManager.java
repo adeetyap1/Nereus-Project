@@ -22,6 +22,7 @@ public final class IconManager {
     private final NereusRealm plugin;
     private final Map<String, String> icons = new LinkedHashMap<>();
     private final Map<String, String> groups = new LinkedHashMap<>();
+    private final Map<String, String> colors = new LinkedHashMap<>();
 
     public IconManager(NereusRealm plugin) {
         this.plugin = plugin;
@@ -30,6 +31,7 @@ public final class IconManager {
     public void reload() {
         icons.clear();
         groups.clear();
+        colors.clear();
         FileConfiguration cfg = plugin.loadYaml("icons.yml");
         ConfigurationSection is = cfg.getConfigurationSection("icons");
         if (is != null) {
@@ -37,6 +39,15 @@ public final class IconManager {
                 String v = is.getString(id);
                 if (v != null && !v.isEmpty()) {
                     icons.put(id.toLowerCase(Locale.ROOT), v);
+                }
+            }
+        }
+        ConfigurationSection cs = cfg.getConfigurationSection("name-colors");
+        if (cs != null) {
+            for (String g : cs.getKeys(false)) {
+                String c = cs.getString(g);
+                if (c != null) {
+                    colors.put(g.toLowerCase(Locale.ROOT), c);
                 }
             }
         }
@@ -61,6 +72,11 @@ public final class IconManager {
             }
         }
         return out;
+    }
+
+    /** Color code (e.g. &6) for the player name of a group, or empty. */
+    public String nameColor(String group) {
+        return colors.getOrDefault(group.toLowerCase(Locale.ROOT), "");
     }
 
     public Collection<String> ids() {

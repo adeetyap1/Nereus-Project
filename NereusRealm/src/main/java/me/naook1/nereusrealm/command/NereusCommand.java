@@ -222,8 +222,11 @@ public final class NereusCommand implements TabExecutor {
         for (java.util.Map.Entry<String, String> e : plugin.icons().groupIcons().entrySet()) {
             String g = e.getKey();
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp creategroup " + g);
+            int prio = g.equals("default") ? 10 : priority;
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
-                    "lp group " + g + " meta setprefix " + (g.equals("default") ? 10 : priority) + " \"" + e.getValue() + " \"");
+                    "lp group " + g + " meta setprefix " + prio + " \"" + e.getValue() + " " + plugin.icons().nameColor(g) + "\"");
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
+                    "lp group " + g + " meta setsuffix " + prio + " \"&r\"");
             if (!g.equals("default")) {
                 priority -= 10;
             }
