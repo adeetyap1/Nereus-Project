@@ -1,0 +1,41 @@
+# NereusIcons by naook1/adityap
+developer: naook1/adityap
+small-caps: true
+
+# id -> karakter icon (jangan diubah kecuali kamu ganti pack).
+icons:
+  owner: "\uE000\uE001\uE002\uE003"
+  admin: "\uE008\uE009\uE00A\uE00B"
+  staff: "\uE010\uE011\uE012\uE013"
+  emperor: "\uE018\uE019\uE01A\uE01B\uE01C"
+  king: "\uE020\uE021\uE022"
+  duke: "\uE028\uE029\uE02A"
+  viscount: "\uE030\uE031\uE032\uE033\uE034"
+  baron: "\uE038\uE039\uE03A\uE03B"
+  knight: "\uE040\uE041\uE042\uE043"
+  rakyat: "\uE048\uE049\uE04A\uE04B"
+
+# Urutan pengecekan group untuk :rank: dan %nereusicons_rank% (permission "group.<nama>" dari LuckPerms).
+# Group paling atas yang dimiliki pemain yang dipakai. Isi nama group -> id icon.
+groups:
+  owner: owner
+  admin: admin
+  staff: staff
+  emperor: emperor
+  king: king
+  duke: duke
+  viscount: viscount
+  baron: baron
+  knight: knight
+  default: rakyat
+
+# Pemain dengan nereusicons.chat boleh menulis :owner: dll di pesan chat mereka sendiri.
+messages:
+  prefix: "&#4fc3f7&lnereus&#ffd54f&licons &8» &7"
+  header: "{prefix}&bIcon yang tersedia:"
+  line: "&8 - &f:{id}: &8= &r{icon}"
+  test-none: "{prefix}&cTidak ada icon."
+  reloaded: "{prefix}&aConfig dimuat ulang."
+  no-permission: "{prefix}&cKamu tidak punya izin."
+  your-rank: "{prefix}&7Icon rank kamu: &r{icon}"
+  no-rank: "{prefix}&7Tidak ada icon untuk rank kamu."

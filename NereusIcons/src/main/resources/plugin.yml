@@ -1,0 +1,24 @@
+name: NereusIcons
+version: '${project.version}'
+main: me.naook1.nereusicons.NereusIcons
+api-version: '1.21'
+authors: [naook1, adityap]
+description: Custom rank icons for Java and Bedrock by naook1/adityap
+softdepend: [PlaceholderAPI, LuckPerms, Essentials, EssentialsChat, TAB]
+
+commands:
+  icon:
+    description: Daftar dan tes icon rank
+    aliases: [icons, rankicon]
+    usage: /<command> list | me | reload
+
+permissions:
+  nereusicons.use:
+    description: Memakai /icon
+    default: true
+  nereusicons.chat:
+    description: Menulis :nama: di pesan chat sendiri
+    default: op
+  nereusicons.admin:
+    description: Reload config
+    default: op
