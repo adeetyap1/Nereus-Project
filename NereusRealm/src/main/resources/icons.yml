@@ -1,20 +1,20 @@
-file-version: 4
+file-version: 5
 # Icon rank custom (pack Java + pack Bedrock). Developer: naook1/adityap
 # Di prefix LuckPerms / chat tulis :owner: dst, atau :rank: (otomatis sesuai group).
-# Satu karakter per rank = lencana. Tulisan rank (labels) dipasang sebagai teks biasa di sebelahnya, sama di Java dan Bedrock.
+# Tiap rank = lencana + spasi + gambar nama rank (beberapa karakter untuk Bedrock, di Java hanya karakter pertama yang terlihat).
 # Karakter icon jangan diubah kecuali kamu mengganti pack.
 
 icons:
-  owner: "\uE000"
-  admin: "\uE008"
-  staff: "\uE010"
-  emperor: "\uE018"
-  king: "\uE020"
-  duke: "\uE028"
-  viscount: "\uE030"
-  baron: "\uE038"
-  knight: "\uE040"
-  rakyat: "\uE048"
+  owner: "\uE000 \uE001\uE002"
+  admin: "\uE008 \uE009\uE00A"
+  staff: "\uE010 \uE011\uE012"
+  emperor: "\uE018 \uE019\uE01A\uE01B"
+  king: "\uE020 \uE021\uE022"
+  duke: "\uE028 \uE029\uE02A"
+  viscount: "\uE030 \uE031\uE032\uE033"
+  baron: "\uE038 \uE039\uE03A"
+  knight: "\uE040 \uE041\uE042"
+  rakyat: "\uE048 \uE049\uE04A"
 
 # Urutan pengecekan group untuk :rank: dan %nereusicons_rank% (permission "group.<nama>" dari LuckPerms).
 # Group paling atas yang dimiliki pemain yang dipakai. Isi nama group -> id icon.
@@ -44,16 +44,3 @@ name-colors:
   baron: "&a"
   knight: "&3"
   default: "&7"
-
-# Tulisan rank yang dipasang setelah lencana (teks biasa berwarna + tebal, memakai warna dari name-colors).
-labels:
-  owner: "OWNER"
-  admin: "ADMIN"
-  staff: "STAFF"
-  emperor: "EMPEROR"
-  king: "KING"
-  duke: "DUKE"
-  viscount: "VISCOUNT"
-  baron: "BARON"
-  knight: "KNIGHT"
-  default: "RAKYAT"
