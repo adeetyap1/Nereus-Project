@@ -1,7 +1,7 @@
-file-version: 3
+file-version: 4
 # Icon rank custom (pack Java + pack Bedrock). Developer: naook1/adityap
 # Di prefix LuckPerms / chat tulis :owner: dst, atau :rank: (otomatis sesuai group).
-# Satu karakter per rank: di Java tampil tag penuh, di Bedrock tampil lencana (emblem) HD.
+# Satu karakter per rank = lencana. Tulisan rank (labels) dipasang sebagai teks biasa di sebelahnya, sama di Java dan Bedrock.
 # Karakter icon jangan diubah kecuali kamu mengganti pack.
 
 icons:
@@ -44,3 +44,16 @@ name-colors:
   baron: "&a"
   knight: "&3"
   default: "&7"
+
+# Tulisan rank yang dipasang setelah lencana (teks biasa berwarna + tebal, memakai warna dari name-colors).
+labels:
+  owner: "OWNER"
+  admin: "ADMIN"
+  staff: "STAFF"
+  emperor: "EMPEROR"
+  king: "KING"
+  duke: "DUKE"
+  viscount: "VISCOUNT"
+  baron: "BARON"
+  knight: "KNIGHT"
+  default: "RAKYAT"
