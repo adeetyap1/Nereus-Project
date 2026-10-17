@@ -5,7 +5,10 @@ import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
+import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextReplacementConfig;
 import me.naook1.nereusrealm.NereusRealm;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -86,5 +89,20 @@ public final class IconManager {
         }
         m.appendTail(sb);
         return sb.toString();
+    }
+
+    /** Same as {@link #apply(String, Player)} but on an Adventure component (for chat plugins that render components). */
+    public Component apply(Component in, Player p) {
+        return in.replaceText(TextReplacementConfig.builder().match(TOKEN).replacement((MatchResult r, net.kyori.adventure.text.TextComponent.Builder b) -> {
+            String id = r.group(1).toLowerCase(Locale.ROOT);
+            String rep = id.equals("rank") ? rank(p) : icon(id);
+            return rep == null ? b : Component.text(rep);
+        }).build());
+    }
+
+    /** Breaks :id: tokens (zero-width space) so players without permission cannot type icons themselves. */
+    public Component neutralize(Component in) {
+        return in.replaceText(TextReplacementConfig.builder().match(TOKEN).replacement((MatchResult r, net.kyori.adventure.text.TextComponent.Builder b) ->
+                Component.text(":\u200B" + r.group(1) + ":")).build());
     }
 }

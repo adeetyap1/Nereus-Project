@@ -1,6 +1,9 @@
 package me.naook1.nereusrealm.icon;
 
 import me.naook1.nereusrealm.NereusRealm;
+import io.papermc.paper.chat.ChatRenderer;
+import io.papermc.paper.event.player.AsyncChatEvent;
+import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -25,5 +28,17 @@ public final class IconChatListener implements Listener {
         if (p.hasPermission("nereus.icon.chat")) {
             e.setMessage(icons.apply(e.getMessage(), p));
         }
+    }
+
+    /** For chat plugins that render with Paper's ChatRenderer instead of the legacy format string. */
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onChatModern(AsyncChatEvent e) {
+        ChatRenderer original = e.renderer();
+        boolean allowMessage = e.getPlayer().hasPermission("nereus.icon.chat");
+        IconManager icons = plugin.icons();
+        e.renderer((source, name, message, viewer) -> {
+            Component msg = allowMessage ? message : icons.neutralize(message);
+            return icons.apply(original.render(source, name, msg, viewer), source);
+        });
     }
 }
