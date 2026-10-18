@@ -1,4 +1,4 @@
-file-version: 7
+file-version: 8
 # Icon rank custom (pack Java + pack Bedrock). Developer: naook1/adityap
 # Di prefix LuckPerms / chat tulis :owner: dst, atau :rank: (otomatis sesuai group).
 # Tiap rank = lencana + spasi + gambar nama rank (beberapa karakter untuk Bedrock, di Java hanya karakter pertama yang terlihat).
@@ -6,15 +6,15 @@ file-version: 7
 
 icons:
   owner: "\uE000 \uE001\uE002\uE003\uE004"
-  admin: "\uE008 \uE009\uE00A\uE00B\uE00C"
-  staff: "\uE010 \uE011\uE012\uE013\uE014"
-  emperor: "\uE018 \uE019\uE01A\uE01B\uE01C\uE01D\uE01E"
-  king: "\uE020 \uE021\uE022\uE023"
-  duke: "\uE028 \uE029\uE02A\uE02B"
-  viscount: "\uE030 \uE031\uE032\uE033\uE034\uE035\uE036"
-  baron: "\uE038 \uE039\uE03A\uE03B\uE03C\uE03D"
-  knight: "\uE040 \uE041\uE042\uE043\uE044\uE045"
-  rakyat: "\uE048 \uE049\uE04A\uE04B\uE04C\uE04D\uE04E"
+  admin: "\uE008 \uE009\uE00A\uE00B"
+  staff: "\uE010 \uE011\uE012\uE013"
+  emperor: "\uE018 \uE019\uE01A\uE01B\uE01C"
+  king: "\uE020 \uE021\uE022"
+  duke: "\uE028 \uE029\uE02A"
+  viscount: "\uE030 \uE031\uE032\uE033\uE034"
+  baron: "\uE038 \uE039\uE03A\uE03B"
+  knight: "\uE040 \uE041\uE042\uE043"
+  rakyat: "\uE048 \uE049\uE04A\uE04B"
 
 # Urutan pengecekan group untuk :rank: dan %nereusicons_rank% (permission "group.<nama>" dari LuckPerms).
 # Group paling atas yang dimiliki pemain yang dipakai. Isi nama group -> id icon.
