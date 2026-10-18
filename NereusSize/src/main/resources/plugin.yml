@@ -1,0 +1,26 @@
+name: NereusSize
+version: '${project.version}'
+main: me.naook1.nereussize.NereusSize
+api-version: '1.21'
+authors: [naook1, adityap]
+description: Ubah ukuran badan pemain by naook1/adityap
+
+commands:
+  ukuran:
+    description: Ubah ukuran badanmu
+    aliases: [size, resize]
+    usage: /<command> <angka> | reset | <pemain> <angka>
+
+permissions:
+  nereus.size.use:
+    description: Boleh mengubah ukuran badan sendiri
+    default: true
+  nereus.size.others:
+    description: Boleh mengubah ukuran pemain lain dan reload
+    default: op
+  nereus.size.bypass:
+    description: Abaikan batas ukuran, cooldown dan dunia terlarang
+    default: op
+  nereus.size.vip:
+    description: Batas ukuran lebih luas (tier vip di config.yml)
+    default: false

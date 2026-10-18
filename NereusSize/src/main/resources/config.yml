@@ -1,0 +1,22 @@
+# NereusSize - ubah ukuran badan pemain. Developer: naook1/adityap
+# Ukuran 1.0 = normal. Batas mutlak Minecraft: 0.0625 sampai 16.
+
+# Batas ukuran pemain biasa (yang punya nereus.size.use)
+min: 0.7
+max: 1.5
+
+# Tier tambahan. Pemain dengan permission-nya dapat batas yang lebih luas
+# (kalau punya beberapa tier, dipakai batas terluas).
+tiers:
+  - permission: nereus.size.vip
+    min: 0.4
+    max: 2.5
+
+# Jeda antar perubahan ukuran (detik). 0 = tanpa jeda. Dilewati nereus.size.bypass.
+cooldown-seconds: 5
+
+# Dunia tempat ukuran tidak boleh diubah (nama dunia).
+disabled-worlds: []
+
+# Saat pemain masuk server, ukurannya dipaksa sesuai batas terbaru.
+enforce-on-join: true
