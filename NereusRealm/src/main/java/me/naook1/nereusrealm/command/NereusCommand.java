@@ -227,6 +227,8 @@ public final class NereusCommand implements TabExecutor {
                     "lp group " + g + " meta setprefix " + prio + " \"" + e.getValue() + " " + plugin.icons().nameColor(g) + "\"");
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
                     "lp group " + g + " meta setsuffix " + prio + " \"&r\"");
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
+                    "lp group " + g + " meta set username-color \"" + plugin.icons().nameColor(g) + "\"");
             if (!g.equals("default")) {
                 priority -= 10;
             }
