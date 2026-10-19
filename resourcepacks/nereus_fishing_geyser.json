@@ -225,7 +225,7 @@
     "allow_offhand": true,
     "display_name": "Joran Wood",
     "display_handheld": true,
-    "texture_size": 32
+    "texture_size": 64
    },
    {
     "name": "nereus_rod_iron",
@@ -234,7 +234,7 @@
     "allow_offhand": true,
     "display_name": "Joran Iron",
     "display_handheld": true,
-    "texture_size": 32
+    "texture_size": 64
    },
    {
     "name": "nereus_rod_gold",
@@ -243,7 +243,7 @@
     "allow_offhand": true,
     "display_name": "Joran Gold",
     "display_handheld": true,
-    "texture_size": 32
+    "texture_size": 64
    },
    {
     "name": "nereus_rod_leviathan",
@@ -252,7 +252,7 @@
     "allow_offhand": true,
     "display_name": "Joran Leviathan",
     "display_handheld": true,
-    "texture_size": 32
+    "texture_size": 64
    }
   ]
  }

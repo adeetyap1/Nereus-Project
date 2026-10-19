@@ -10,6 +10,7 @@ sell-multiplier: 1.0        # kali harga jual (misal 1.5 saat event)
 
 # Minigame menarik ikan: setelah ikan menggigit, klik kanan saat kursor ada di zona hijau.
 # Per rarity: hits = berapa kali harus kena, zone = lebar zona hijau (dari bar), speed = kecepatan kursor.
+# color = warna boss bar (petunjuk rarity ikan yang sedang ditarik).
 # Sampah (JUNK) tidak ada minigame. enabled: false = langsung dapat ikan seperti biasa.
 minigame:
   enabled: true
@@ -17,10 +18,10 @@ minigame:
   lives: 2                  # boleh meleset sebanyak ini sebelum ikan lepas
   timeout-seconds: 14
   difficulty:
-    COMMON:    {hits: 1, zone: 7, speed: 1}
-    RARE:      {hits: 2, zone: 5, speed: 1}
-    EPIC:      {hits: 3, zone: 4, speed: 2}
-    LEGENDARY: {hits: 4, zone: 3, speed: 2}
+    COMMON:    {hits: 1, zone: 7, speed: 1, color: WHITE}
+    RARE:      {hits: 2, zone: 5, speed: 1, color: BLUE}
+    EPIC:      {hits: 3, zone: 4, speed: 2, color: PURPLE}
+    LEGENDARY: {hits: 4, zone: 3, speed: 2, color: YELLOW}
 
 # Rarity: weight = peluang dasar, luck-boost = seberapa besar luck joran menaikkan peluangnya
 # (peluang = weight * (1 + luck * luck-boost)). Boleh negatif untuk menurunkan peluang ikan umum.
