@@ -7,42 +7,48 @@
     "custom_model_data": 7101,
     "icon": "nereus_teri",
     "allow_offhand": true,
-    "display_name": "Ikan Teri"
+    "display_name": "Ikan Teri",
+    "texture_size": 64
    },
    {
     "name": "nereus_fish_kembung",
     "custom_model_data": 7102,
     "icon": "nereus_kembung",
     "allow_offhand": true,
-    "display_name": "Ikan Kembung"
+    "display_name": "Ikan Kembung",
+    "texture_size": 64
    },
    {
     "name": "nereus_fish_bandeng",
     "custom_model_data": 7103,
     "icon": "nereus_bandeng",
     "allow_offhand": true,
-    "display_name": "Ikan Bandeng"
+    "display_name": "Ikan Bandeng",
+    "texture_size": 64
    },
    {
     "name": "nereus_fish_mujair",
     "custom_model_data": 7104,
     "icon": "nereus_mujair",
     "allow_offhand": true,
-    "display_name": "Ikan Mujair"
+    "display_name": "Ikan Mujair",
+    "texture_size": 64
    },
    {
     "name": "nereus_fish_lele",
     "custom_model_data": 7105,
     "icon": "nereus_lele",
     "allow_offhand": true,
-    "display_name": "Ikan Lele"
+    "display_name": "Ikan Lele",
+    "texture_size": 64
    },
    {
     "name": "nereus_fish_tongkol",
     "custom_model_data": 7106,
     "icon": "nereus_tongkol",
     "allow_offhand": true,
-    "display_name": "Ikan Tongkol"
+    "display_name": "Ikan Tongkol",
+    "texture_size": 64
    }
   ],
   "minecraft:salmon": [
@@ -51,84 +57,96 @@
     "custom_model_data": 7107,
     "icon": "nereus_gurame",
     "allow_offhand": true,
-    "display_name": "Ikan Gurame"
+    "display_name": "Ikan Gurame",
+    "texture_size": 64
    },
    {
     "name": "nereus_fish_patin",
     "custom_model_data": 7108,
     "icon": "nereus_patin",
     "allow_offhand": true,
-    "display_name": "Ikan Patin"
+    "display_name": "Ikan Patin",
+    "texture_size": 64
    },
    {
     "name": "nereus_fish_gabus",
     "custom_model_data": 7109,
     "icon": "nereus_gabus",
     "allow_offhand": true,
-    "display_name": "Ikan Gabus"
+    "display_name": "Ikan Gabus",
+    "texture_size": 64
    },
    {
     "name": "nereus_fish_nila",
     "custom_model_data": 7110,
     "icon": "nereus_nila",
     "allow_offhand": true,
-    "display_name": "Nila Merah"
+    "display_name": "Nila Merah",
+    "texture_size": 64
    },
    {
     "name": "nereus_fish_bawal",
     "custom_model_data": 7111,
     "icon": "nereus_bawal",
     "allow_offhand": true,
-    "display_name": "Ikan Bawal"
+    "display_name": "Ikan Bawal",
+    "texture_size": 64
    },
    {
     "name": "nereus_fish_kakap_merah",
     "custom_model_data": 7113,
     "icon": "nereus_kakap_merah",
     "allow_offhand": true,
-    "display_name": "Kakap Merah"
+    "display_name": "Kakap Merah",
+    "texture_size": 64
    },
    {
     "name": "nereus_fish_kerapu",
     "custom_model_data": 7114,
     "icon": "nereus_kerapu",
     "allow_offhand": true,
-    "display_name": "Kerapu Macan"
+    "display_name": "Kerapu Macan",
+    "texture_size": 64
    },
    {
     "name": "nereus_fish_tenggiri",
     "custom_model_data": 7115,
     "icon": "nereus_tenggiri",
     "allow_offhand": true,
-    "display_name": "Ikan Tenggiri"
+    "display_name": "Ikan Tenggiri",
+    "texture_size": 64
    },
    {
     "name": "nereus_fish_pari",
     "custom_model_data": 7116,
     "icon": "nereus_pari",
     "allow_offhand": true,
-    "display_name": "Pari Manta"
+    "display_name": "Pari Manta",
+    "texture_size": 64
    },
    {
     "name": "nereus_fish_belida",
     "custom_model_data": 7117,
     "icon": "nereus_belida",
     "allow_offhand": true,
-    "display_name": "Ikan Belida"
+    "display_name": "Ikan Belida",
+    "texture_size": 64
    },
    {
     "name": "nereus_fish_arwana",
     "custom_model_data": 7118,
     "icon": "nereus_arwana",
     "allow_offhand": true,
-    "display_name": "Arwana Super Red"
+    "display_name": "Arwana Super Red",
+    "texture_size": 64
    },
    {
     "name": "nereus_fish_tuna",
     "custom_model_data": 7119,
     "icon": "nereus_tuna",
     "allow_offhand": true,
-    "display_name": "Tuna Sirip Biru"
+    "display_name": "Tuna Sirip Biru",
+    "texture_size": 64
    }
   ],
   "minecraft:tropical_fish": [
@@ -137,14 +155,16 @@
     "custom_model_data": 7112,
     "icon": "nereus_ikan_mas",
     "allow_offhand": true,
-    "display_name": "Ikan Mas Koki"
+    "display_name": "Ikan Mas Koki",
+    "texture_size": 64
    },
    {
     "name": "nereus_fish_raja_laut",
     "custom_model_data": 7120,
     "icon": "nereus_raja_laut",
     "allow_offhand": true,
-    "display_name": "Ikan Raja Laut"
+    "display_name": "Ikan Raja Laut",
+    "texture_size": 64
    }
   ],
   "minecraft:leather": [
@@ -153,7 +173,8 @@
     "custom_model_data": 7121,
     "icon": "nereus_sandal",
     "allow_offhand": true,
-    "display_name": "Sandal Butut"
+    "display_name": "Sandal Butut",
+    "texture_size": 64
    }
   ],
   "minecraft:iron_nugget": [
@@ -162,7 +183,8 @@
     "custom_model_data": 7122,
     "icon": "nereus_kaleng",
     "allow_offhand": true,
-    "display_name": "Kaleng Bekas"
+    "display_name": "Kaleng Bekas",
+    "texture_size": 64
    }
   ],
   "minecraft:glass_bottle": [
@@ -171,7 +193,8 @@
     "custom_model_data": 7123,
     "icon": "nereus_botol",
     "allow_offhand": true,
-    "display_name": "Botol Plastik"
+    "display_name": "Botol Plastik",
+    "texture_size": 64
    }
   ],
   "minecraft:charcoal": [
@@ -180,7 +203,8 @@
     "custom_model_data": 7124,
     "icon": "nereus_ban",
     "allow_offhand": true,
-    "display_name": "Ban Bekas"
+    "display_name": "Ban Bekas",
+    "texture_size": 64
    }
   ],
   "minecraft:stick": [
@@ -189,7 +213,8 @@
     "custom_model_data": 7125,
     "icon": "nereus_ranting",
     "allow_offhand": true,
-    "display_name": "Ranting Basah"
+    "display_name": "Ranting Basah",
+    "texture_size": 64
    }
   ],
   "minecraft:fishing_rod": [
@@ -199,7 +224,8 @@
     "icon": "nereus_rod_wood",
     "allow_offhand": true,
     "display_name": "Joran Wood",
-    "display_handheld": true
+    "display_handheld": true,
+    "texture_size": 32
    },
    {
     "name": "nereus_rod_iron",
@@ -207,7 +233,8 @@
     "icon": "nereus_rod_iron",
     "allow_offhand": true,
     "display_name": "Joran Iron",
-    "display_handheld": true
+    "display_handheld": true,
+    "texture_size": 32
    },
    {
     "name": "nereus_rod_gold",
@@ -215,7 +242,8 @@
     "icon": "nereus_rod_gold",
     "allow_offhand": true,
     "display_name": "Joran Gold",
-    "display_handheld": true
+    "display_handheld": true,
+    "texture_size": 32
    },
    {
     "name": "nereus_rod_leviathan",
@@ -223,7 +251,8 @@
     "icon": "nereus_rod_leviathan",
     "allow_offhand": true,
     "display_name": "Joran Leviathan",
-    "display_handheld": true
+    "display_handheld": true,
+    "texture_size": 32
    }
   ]
  }

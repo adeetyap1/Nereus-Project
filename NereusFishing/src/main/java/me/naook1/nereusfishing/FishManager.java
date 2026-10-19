@@ -28,7 +28,7 @@ public final class FishManager {
     }
 
     public record Rod(String id, String name, Material material, int model, List<String> lore,
-                      double luck, double speed) {
+                      double luck, double speed, double control) {
     }
 
     public record Catch(Fish fish, double weight, double value) {
@@ -44,7 +44,7 @@ public final class FishManager {
     private final Map<String, Rarity> rarities = new LinkedHashMap<>();
     private final Map<String, Fish> fish = new LinkedHashMap<>();
     private final Map<String, Rod> rods = new LinkedHashMap<>();
-    private final Rod vanillaRod = new Rod("vanilla", "Vanilla", Material.FISHING_ROD, 0, List.of(), 0, 0);
+    private final Rod vanillaRod = new Rod("vanilla", "Vanilla", Material.FISHING_ROD, 0, List.of(), 0, 0, 0);
 
     public FishManager(NereusFishing plugin) {
         this.plugin = plugin;
@@ -103,7 +103,7 @@ public final class FishManager {
                 }
                 rods.put(id.toLowerCase(), new Rod(id.toLowerCase(), s.getString("name", id), mat,
                         s.getInt("model", 0), s.getStringList("lore"), s.getDouble("luck", 0),
-                        Math.min(90, s.getDouble("speed", 0))));
+                        Math.min(90, s.getDouble("speed", 0)), s.getDouble("control", 0)));
             }
         }
         plugin.getLogger().info("Loaded " + rods.size() + " rods, " + fish.size() + " fish, "
@@ -144,7 +144,7 @@ public final class FishManager {
         for (String line : rod.lore()) {
             lore.add(Text.item(sc(line)));
         }
-        for (String line : plugin.messages().list("rod-stats", "luck", fmt(rod.luck()), "speed", fmt(rod.speed()))) {
+        for (String line : plugin.messages().list("rod-stats", "luck", fmt(rod.luck()), "speed", fmt(rod.speed()), "control", fmt(rod.control()))) {
             lore.add(Text.item(line));
         }
         meta.lore(lore);

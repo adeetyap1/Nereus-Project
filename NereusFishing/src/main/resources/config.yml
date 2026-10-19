@@ -8,6 +8,20 @@ vanilla-rods-too: false
 
 sell-multiplier: 1.0        # kali harga jual (misal 1.5 saat event)
 
+# Minigame menarik ikan: setelah ikan menggigit, klik kanan saat kursor ada di zona hijau.
+# Per rarity: hits = berapa kali harus kena, zone = lebar zona hijau (dari bar), speed = kecepatan kursor.
+# Sampah (JUNK) tidak ada minigame. enabled: false = langsung dapat ikan seperti biasa.
+minigame:
+  enabled: true
+  bar-length: 21
+  lives: 2                  # boleh meleset sebanyak ini sebelum ikan lepas
+  timeout-seconds: 14
+  difficulty:
+    COMMON:    {hits: 1, zone: 7, speed: 1}
+    RARE:      {hits: 2, zone: 5, speed: 1}
+    EPIC:      {hits: 3, zone: 4, speed: 2}
+    LEGENDARY: {hits: 4, zone: 3, speed: 2}
+
 # Rarity: weight = peluang dasar, luck-boost = seberapa besar luck joran menaikkan peluangnya
 # (peluang = weight * (1 + luck * luck-boost)). Boleh negatif untuk menurunkan peluang ikan umum.
 rarities:
@@ -38,6 +52,7 @@ rarities:
     broadcast: false
     junk: true              # tidak masuk rekor /fish top
 
+# control = tambahan lebar zona hijau di minigame menarik ikan.
 # Joran. model = custom_model_data (0 = tampilan vanilla). Model 7011-7014 = tampilan joran di resource pack.
 # luck = bonus peluang rarity, speed = persen lebih cepat menggigit (maks 90).
 rods:
@@ -47,6 +62,7 @@ rods:
     model: 7011
     luck: 0
     speed: 0
+    control: 0
     lore:
       - "&7Joran dasar untuk pemula."
   iron:
@@ -55,6 +71,7 @@ rods:
     model: 7012
     luck: 1
     speed: 10
+    control: 1
     lore:
       - "&7Lebih cepat dan sedikit beruntung."
   gold:
@@ -63,6 +80,7 @@ rods:
     model: 7013
     luck: 2
     speed: 20
+    control: 1
     lore:
       - "&7Ikan langka lebih sering muncul."
   leviathan:
@@ -71,6 +89,7 @@ rods:
     model: 7014
     luck: 4
     speed: 35
+    control: 2
     lore:
       - "&7Joran legenda dari dasar laut."
 
