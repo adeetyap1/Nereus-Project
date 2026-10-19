@@ -19,7 +19,8 @@ import org.bukkit.persistence.PersistentDataType;
 /** Loads rods, rarities and fish from config.yml and builds the items. */
 public final class FishManager {
 
-    public record Rarity(String id, String name, double weight, double luckBoost, boolean broadcast) {
+    public record Rarity(String id, String name, double weight, double luckBoost, boolean broadcast,
+                  boolean junk) {
     }
 
     public record Fish(String id, String name, Material material, Rarity rarity, double minWeight,
@@ -67,7 +68,7 @@ public final class FishManager {
                     continue;
                 }
                 rarities.put(id.toUpperCase(), new Rarity(id.toUpperCase(), s.getString("name", id),
-                        s.getDouble("weight", 1), s.getDouble("luck-boost", 0), s.getBoolean("broadcast", false)));
+                        s.getDouble("weight", 1), s.getDouble("luck-boost", 0), s.getBoolean("broadcast", false), s.getBoolean("junk", false)));
             }
         }
         ConfigurationSection fs = cfg.getConfigurationSection("fish");

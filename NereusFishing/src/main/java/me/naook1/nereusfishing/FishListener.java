@@ -62,6 +62,10 @@ public final class FishListener implements Listener {
         String fishName = mgr.sc(c.fish().name());
         String weight = FishManager.fmt(c.weight());
         var m = plugin.messages();
+        if (c.fish().rarity().junk()) {
+            p.sendActionBar(Text.parse(m.format("caught-junk", "fish", fishName, "weight", weight)));
+            return;
+        }
         p.sendActionBar(Text.parse(m.format("caught", "fish", fishName, "weight", weight,
                 "rarity", mgr.rarityLabel(c.fish().rarity()))));
         boolean record = plugin.store().record(p.getUniqueId(), p.getName(), fishName, c.weight());

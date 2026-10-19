@@ -31,14 +31,20 @@ rarities:
     weight: 3
     luck-boost: 1.0
     broadcast: true         # diumumkan ke semua pemain
+  JUNK:
+    name: "&8Sampah"
+    weight: 12
+    luck-boost: -0.6        # joran bagus = makin jarang dapat sampah
+    broadcast: false
+    junk: true              # tidak masuk rekor /fish top
 
-# Joran. model = custom_model_data (0 = tampilan vanilla). Leviathan memakai model 7014 dari pack.
+# Joran. model = custom_model_data (0 = tampilan vanilla). Model 7011-7014 = tampilan joran di resource pack.
 # luck = bonus peluang rarity, speed = persen lebih cepat menggigit (maks 90).
 rods:
   wood:
     name: "&fJoran Kayu"
     material: FISHING_ROD
-    model: 0
+    model: 7011
     luck: 0
     speed: 0
     lore:
@@ -46,7 +52,7 @@ rods:
   iron:
     name: "&7Joran Besi"
     material: FISHING_ROD
-    model: 0
+    model: 7012
     luck: 1
     speed: 10
     lore:
@@ -54,7 +60,7 @@ rods:
   gold:
     name: "&6Joran Emas"
     material: FISHING_ROD
-    model: 0
+    model: 7013
     luck: 2
     speed: 20
     lore:
@@ -68,82 +74,206 @@ rods:
     lore:
       - "&7Joran legenda dari dasar laut."
 
-# Ikan. price-per-kg = harga jual per kilogram. model optional (custom_model_data).
+# Ikan (20 ikan Indonesia + 5 sampah). price-per-kg = harga jual per kilogram.
+# model = custom_model_data 7101-7125 (tekstur ada di resource pack).
 fish:
-  sarden:
-    name: "Sarden"
+  teri:
+    name: "Ikan Teri"
     material: COD
     rarity: COMMON
-    min-weight: 0.2
-    max-weight: 1.0
-    price-per-kg: 8
+    min-weight: 0.05
+    max-weight: 0.3
+    price-per-kg: 6
+    model: 7101
   kembung:
-    name: "Kembung"
+    name: "Ikan Kembung"
     material: COD
     rarity: COMMON
     min-weight: 0.3
-    max-weight: 1.5
+    max-weight: 1.2
     price-per-kg: 10
-  salmon-laut:
-    name: "Salmon Laut"
-    material: SALMON
+    model: 7102
+  bandeng:
+    name: "Ikan Bandeng"
+    material: COD
     rarity: COMMON
-    min-weight: 1.0
-    max-weight: 4.0
-    price-per-kg: 14
-  nila:
-    name: "Nila Emas"
+    min-weight: 0.5
+    max-weight: 2.0
+    price-per-kg: 12
+    model: 7103
+  mujair:
+    name: "Ikan Mujair"
+    material: COD
+    rarity: COMMON
+    min-weight: 0.2
+    max-weight: 0.9
+    price-per-kg: 9
+    model: 7104
+  lele:
+    name: "Ikan Lele"
+    material: COD
+    rarity: COMMON
+    min-weight: 0.3
+    max-weight: 1.8
+    price-per-kg: 11
+    model: 7105
+  tongkol:
+    name: "Ikan Tongkol"
+    material: COD
+    rarity: COMMON
+    min-weight: 0.8
+    max-weight: 3.0
+    price-per-kg: 13
+    model: 7106
+  gurame:
+    name: "Ikan Gurame"
     material: SALMON
     rarity: RARE
-    min-weight: 1.5
-    max-weight: 5.0
+    min-weight: 0.8
+    max-weight: 3.5
+    price-per-kg: 26
+    model: 7107
+  patin:
+    name: "Ikan Patin"
+    material: SALMON
+    rarity: RARE
+    min-weight: 1.0
+    max-weight: 4.0
+    price-per-kg: 22
+    model: 7108
+  gabus:
+    name: "Ikan Gabus"
+    material: SALMON
+    rarity: RARE
+    min-weight: 0.6
+    max-weight: 2.8
+    price-per-kg: 24
+    model: 7109
+  nila:
+    name: "Nila Merah"
+    material: SALMON
+    rarity: RARE
+    min-weight: 0.8
+    max-weight: 3.2
+    price-per-kg: 28
+    model: 7110
+  bawal:
+    name: "Ikan Bawal"
+    material: SALMON
+    rarity: RARE
+    min-weight: 0.7
+    max-weight: 2.5
     price-per-kg: 30
-  ikan-badut:
-    name: "Ikan Badut"
+    model: 7111
+  ikan-mas:
+    name: "Ikan Mas Koki"
     material: TROPICAL_FISH
     rarity: RARE
     min-weight: 0.1
-    max-weight: 0.6
-    price-per-kg: 120
-  buntal:
-    name: "Ikan Buntal"
-    material: PUFFERFISH
-    rarity: RARE
-    min-weight: 0.5
-    max-weight: 2.5
+    max-weight: 0.9
+    price-per-kg: 60
+    model: 7112
+  kakap-merah:
+    name: "Kakap Merah"
+    material: SALMON
+    rarity: EPIC
+    min-weight: 2
+    max-weight: 9
+    price-per-kg: 32
+    model: 7113
+  kerapu:
+    name: "Kerapu Macan"
+    material: SALMON
+    rarity: EPIC
+    min-weight: 3
+    max-weight: 15
     price-per-kg: 40
-  tuna:
-    name: "Tuna Sirip Biru"
+    model: 7114
+  tenggiri:
+    name: "Ikan Tenggiri"
+    material: SALMON
+    rarity: EPIC
+    min-weight: 3
+    max-weight: 14
+    price-per-kg: 34
+    model: 7115
+  pari:
+    name: "Pari Manta"
     material: SALMON
     rarity: EPIC
     min-weight: 10
     max-weight: 60
-    price-per-kg: 22
-  cumi-bercahaya:
-    name: "Cumi Bercahaya"
-    material: GLOW_INK_SAC
+    price-per-kg: 25
+    model: 7116
+  belida:
+    name: "Ikan Belida"
+    material: SALMON
     rarity: EPIC
-    min-weight: 1
-    max-weight: 6
-    price-per-kg: 50
-  kerang-mutiara:
-    name: "Kerang Mutiara"
-    material: NAUTILUS_SHELL
-    rarity: EPIC
-    min-weight: 0.5
-    max-weight: 3
-    price-per-kg: 90
-  naga-laut:
-    name: "Naga Laut"
-    material: PRISMARINE_CRYSTALS
+    min-weight: 2
+    max-weight: 10
+    price-per-kg: 55
+    model: 7117
+  arwana:
+    name: "Arwana Super Red"
+    material: SALMON
     rarity: LEGENDARY
-    min-weight: 40
-    max-weight: 120
-    price-per-kg: 35
-  leviathan-kecil:
-    name: "Anak Leviathan"
-    material: HEART_OF_THE_SEA
+    min-weight: 3
+    max-weight: 12
+    price-per-kg: 160
+    model: 7118
+  tuna:
+    name: "Tuna Sirip Biru"
+    material: SALMON
     rarity: LEGENDARY
-    min-weight: 80
-    max-weight: 250
-    price-per-kg: 30
+    min-weight: 30
+    max-weight: 200
+    price-per-kg: 28
+    model: 7119
+  raja-laut:
+    name: "Ikan Raja Laut"
+    material: TROPICAL_FISH
+    rarity: LEGENDARY
+    min-weight: 15
+    max-weight: 90
+    price-per-kg: 70
+    model: 7120
+  sandal:
+    name: "Sandal Butut"
+    material: LEATHER
+    rarity: JUNK
+    min-weight: 0.1
+    max-weight: 0.3
+    price-per-kg: 1
+    model: 7121
+  kaleng:
+    name: "Kaleng Bekas"
+    material: IRON_NUGGET
+    rarity: JUNK
+    min-weight: 0.05
+    max-weight: 0.2
+    price-per-kg: 1
+    model: 7122
+  botol:
+    name: "Botol Plastik"
+    material: GLASS_BOTTLE
+    rarity: JUNK
+    min-weight: 0.02
+    max-weight: 0.1
+    price-per-kg: 1
+    model: 7123
+  ban:
+    name: "Ban Bekas"
+    material: CHARCOAL
+    rarity: JUNK
+    min-weight: 2
+    max-weight: 5
+    price-per-kg: 2
+    model: 7124
+  ranting:
+    name: "Ranting Basah"
+    material: STICK
+    rarity: JUNK
+    min-weight: 0.1
+    max-weight: 0.5
+    price-per-kg: 1
+    model: 7125

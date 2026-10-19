@@ -18,6 +18,7 @@ sell-none: "{prefix}&cTidak ada ikan untuk dijual."
 sell-done: "{prefix}&aMenjual &f{count} ikan &auntuk &e${money}&a."
 sell-no-economy: "{prefix}&cEkonomi (Vault) tidak tersedia."
 caught: "&7Dapat &f{fish} &8(&7{weight} kg&8) {rarity}"
+caught-junk: "&7Yah, dapat &8{fish} &8({weight} kg&8)... sampah."
 caught-record: "{prefix}&6Rekor pribadi baru! &f{fish} &7{weight} kg"
 caught-broadcast: "{prefix}&f{player} &7menangkap &6{fish} &8(&7{weight} kg&8) &7dengan &f{rod}&7!"
 fish-lore:
