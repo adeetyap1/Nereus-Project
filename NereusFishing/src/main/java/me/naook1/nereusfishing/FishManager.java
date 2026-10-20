@@ -218,6 +218,30 @@ public final class FishManager {
         return n.length() >= 2 && n.charAt(0) == '&' ? n.substring(0, 2) : "";
     }
 
+    /** 0..6: <0.25, <1, <5, <25, <100, <300, 300+ kg. Must match the resource pack. */
+    public static int sizeTier(double kg) {
+        double[] t = {0.25, 1, 5, 25, 100, 300};
+        for (int i = 0; i < t.length; i++) {
+            if (kg < t[i]) {
+                return i;
+            }
+        }
+        return 6;
+    }
+
+    /** Weight stored on a custom fish item, or -1. */
+    public double weightOf(ItemStack item) {
+        if (item == null || item.getType() == Material.AIR || !item.hasItemMeta()) {
+            return -1;
+        }
+        PersistentDataContainer pdc = item.getItemMeta().getPersistentDataContainer();
+        if (!pdc.has(keyFish, PersistentDataType.STRING)) {
+            return -1;
+        }
+        Double v = pdc.get(keyWeight, PersistentDataType.DOUBLE);
+        return v == null ? -1 : v;
+    }
+
     public static String habitatLabel(String h) {
         return switch (h == null ? "" : h.toLowerCase()) {
             case "tawar" -> "Air Tawar";
@@ -256,7 +280,8 @@ public final class FishManager {
         }
         meta.lore(lore);
         if (f.model() > 0) {
-            meta.setCustomModelData(f.model());
+            // the resource pack has one model per size tier, so heavier fish look bigger
+            meta.setCustomModelData(f.rarity().junk() ? f.model() : f.model() * 10 + sizeTier(c.weight()));
         }
         PersistentDataContainer pdc = meta.getPersistentDataContainer();
         pdc.set(keyFish, PersistentDataType.STRING, f.id());

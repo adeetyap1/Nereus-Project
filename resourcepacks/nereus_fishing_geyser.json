@@ -4,201 +4,371 @@
   "minecraft:cod": [
    {
     "type": "legacy",
-    "custom_model_data": 7101.0,
-    "bedrock_identifier": "nereus:fish_teri",
+    "custom_model_data": 71010.0,
+    "bedrock_identifier": "nereus:fish_teri_0",
     "display_name": "Ikan Teri",
     "bedrock_options": {
-     "icon": "nereus_teri",
+     "icon": "nereus_teri_0",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7102.0,
-    "bedrock_identifier": "nereus:fish_kembung",
+    "custom_model_data": 71011.0,
+    "bedrock_identifier": "nereus:fish_teri_1",
+    "display_name": "Ikan Teri",
+    "bedrock_options": {
+     "icon": "nereus_teri_1",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71021.0,
+    "bedrock_identifier": "nereus:fish_kembung_1",
     "display_name": "Ikan Kembung",
     "bedrock_options": {
-     "icon": "nereus_kembung",
+     "icon": "nereus_kembung_1",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7103.0,
-    "bedrock_identifier": "nereus:fish_bandeng",
+    "custom_model_data": 71022.0,
+    "bedrock_identifier": "nereus:fish_kembung_2",
+    "display_name": "Ikan Kembung",
+    "bedrock_options": {
+     "icon": "nereus_kembung_2",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71031.0,
+    "bedrock_identifier": "nereus:fish_bandeng_1",
     "display_name": "Ikan Bandeng",
     "bedrock_options": {
-     "icon": "nereus_bandeng",
+     "icon": "nereus_bandeng_1",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7104.0,
-    "bedrock_identifier": "nereus:fish_mujair",
+    "custom_model_data": 71032.0,
+    "bedrock_identifier": "nereus:fish_bandeng_2",
+    "display_name": "Ikan Bandeng",
+    "bedrock_options": {
+     "icon": "nereus_bandeng_2",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71040.0,
+    "bedrock_identifier": "nereus:fish_mujair_0",
     "display_name": "Ikan Mujair",
     "bedrock_options": {
-     "icon": "nereus_mujair",
+     "icon": "nereus_mujair_0",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7105.0,
-    "bedrock_identifier": "nereus:fish_lele",
+    "custom_model_data": 71041.0,
+    "bedrock_identifier": "nereus:fish_mujair_1",
+    "display_name": "Ikan Mujair",
+    "bedrock_options": {
+     "icon": "nereus_mujair_1",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71051.0,
+    "bedrock_identifier": "nereus:fish_lele_1",
     "display_name": "Ikan Lele",
     "bedrock_options": {
-     "icon": "nereus_lele",
+     "icon": "nereus_lele_1",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7106.0,
-    "bedrock_identifier": "nereus:fish_tongkol",
+    "custom_model_data": 71052.0,
+    "bedrock_identifier": "nereus:fish_lele_2",
+    "display_name": "Ikan Lele",
+    "bedrock_options": {
+     "icon": "nereus_lele_2",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71061.0,
+    "bedrock_identifier": "nereus:fish_tongkol_1",
     "display_name": "Ikan Tongkol",
     "bedrock_options": {
-     "icon": "nereus_tongkol",
+     "icon": "nereus_tongkol_1",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7126.0,
-    "bedrock_identifier": "nereus:fish_selar",
+    "custom_model_data": 71062.0,
+    "bedrock_identifier": "nereus:fish_tongkol_2",
+    "display_name": "Ikan Tongkol",
+    "bedrock_options": {
+     "icon": "nereus_tongkol_2",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71260.0,
+    "bedrock_identifier": "nereus:fish_selar_0",
     "display_name": "Ikan Selar Kuning",
     "bedrock_options": {
-     "icon": "nereus_selar",
+     "icon": "nereus_selar_0",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7127.0,
-    "bedrock_identifier": "nereus:fish_layang",
+    "custom_model_data": 71261.0,
+    "bedrock_identifier": "nereus:fish_selar_1",
+    "display_name": "Ikan Selar Kuning",
+    "bedrock_options": {
+     "icon": "nereus_selar_1",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71270.0,
+    "bedrock_identifier": "nereus:fish_layang_0",
     "display_name": "Ikan Layang",
     "bedrock_options": {
-     "icon": "nereus_layang",
+     "icon": "nereus_layang_0",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7128.0,
-    "bedrock_identifier": "nereus:fish_lemuru",
+    "custom_model_data": 71271.0,
+    "bedrock_identifier": "nereus:fish_layang_1",
+    "display_name": "Ikan Layang",
+    "bedrock_options": {
+     "icon": "nereus_layang_1",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71280.0,
+    "bedrock_identifier": "nereus:fish_lemuru_0",
     "display_name": "Ikan Lemuru",
     "bedrock_options": {
-     "icon": "nereus_lemuru",
+     "icon": "nereus_lemuru_0",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7129.0,
-    "bedrock_identifier": "nereus:fish_julung_julung",
+    "custom_model_data": 71281.0,
+    "bedrock_identifier": "nereus:fish_lemuru_1",
+    "display_name": "Ikan Lemuru",
+    "bedrock_options": {
+     "icon": "nereus_lemuru_1",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71290.0,
+    "bedrock_identifier": "nereus:fish_julung_julung_0",
     "display_name": "Julung-julung",
     "bedrock_options": {
-     "icon": "nereus_julung_julung",
+     "icon": "nereus_julung_julung_0",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7130.0,
-    "bedrock_identifier": "nereus:fish_belanak",
+    "custom_model_data": 71291.0,
+    "bedrock_identifier": "nereus:fish_julung_julung_1",
+    "display_name": "Julung-julung",
+    "bedrock_options": {
+     "icon": "nereus_julung_julung_1",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71301.0,
+    "bedrock_identifier": "nereus:fish_belanak_1",
     "display_name": "Ikan Belanak",
     "bedrock_options": {
-     "icon": "nereus_belanak",
+     "icon": "nereus_belanak_1",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7131.0,
-    "bedrock_identifier": "nereus:fish_pepetek",
+    "custom_model_data": 71302.0,
+    "bedrock_identifier": "nereus:fish_belanak_2",
+    "display_name": "Ikan Belanak",
+    "bedrock_options": {
+     "icon": "nereus_belanak_2",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71310.0,
+    "bedrock_identifier": "nereus:fish_pepetek_0",
     "display_name": "Ikan Pepetek",
     "bedrock_options": {
-     "icon": "nereus_pepetek",
+     "icon": "nereus_pepetek_0",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7132.0,
-    "bedrock_identifier": "nereus:fish_tembang",
+    "custom_model_data": 71311.0,
+    "bedrock_identifier": "nereus:fish_pepetek_1",
+    "display_name": "Ikan Pepetek",
+    "bedrock_options": {
+     "icon": "nereus_pepetek_1",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71320.0,
+    "bedrock_identifier": "nereus:fish_tembang_0",
     "display_name": "Ikan Tembang",
     "bedrock_options": {
-     "icon": "nereus_tembang",
+     "icon": "nereus_tembang_0",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7133.0,
-    "bedrock_identifier": "nereus:fish_sepat_siam",
+    "custom_model_data": 71321.0,
+    "bedrock_identifier": "nereus:fish_tembang_1",
+    "display_name": "Ikan Tembang",
+    "bedrock_options": {
+     "icon": "nereus_tembang_1",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71330.0,
+    "bedrock_identifier": "nereus:fish_sepat_siam_0",
     "display_name": "Ikan Sepat Siam",
     "bedrock_options": {
-     "icon": "nereus_sepat_siam",
+     "icon": "nereus_sepat_siam_0",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7134.0,
-    "bedrock_identifier": "nereus:fish_betok",
+    "custom_model_data": 71331.0,
+    "bedrock_identifier": "nereus:fish_sepat_siam_1",
+    "display_name": "Ikan Sepat Siam",
+    "bedrock_options": {
+     "icon": "nereus_sepat_siam_1",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71340.0,
+    "bedrock_identifier": "nereus:fish_betok_0",
     "display_name": "Ikan Betok",
     "bedrock_options": {
-     "icon": "nereus_betok",
+     "icon": "nereus_betok_0",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7135.0,
-    "bedrock_identifier": "nereus:fish_wader",
+    "custom_model_data": 71341.0,
+    "bedrock_identifier": "nereus:fish_betok_1",
+    "display_name": "Ikan Betok",
+    "bedrock_options": {
+     "icon": "nereus_betok_1",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71350.0,
+    "bedrock_identifier": "nereus:fish_wader_0",
     "display_name": "Ikan Wader Pari",
     "bedrock_options": {
-     "icon": "nereus_wader",
+     "icon": "nereus_wader_0",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7136.0,
-    "bedrock_identifier": "nereus:fish_tawes",
+    "custom_model_data": 71361.0,
+    "bedrock_identifier": "nereus:fish_tawes_1",
     "display_name": "Ikan Tawes",
     "bedrock_options": {
-     "icon": "nereus_tawes",
+     "icon": "nereus_tawes_1",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7137.0,
-    "bedrock_identifier": "nereus:fish_seluang",
+    "custom_model_data": 71362.0,
+    "bedrock_identifier": "nereus:fish_tawes_2",
+    "display_name": "Ikan Tawes",
+    "bedrock_options": {
+     "icon": "nereus_tawes_2",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71370.0,
+    "bedrock_identifier": "nereus:fish_seluang_0",
     "display_name": "Ikan Seluang",
     "bedrock_options": {
-     "icon": "nereus_seluang",
+     "icon": "nereus_seluang_0",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7138.0,
-    "bedrock_identifier": "nereus:fish_bilih",
+    "custom_model_data": 71380.0,
+    "bedrock_identifier": "nereus:fish_bilih_0",
     "display_name": "Ikan Bilih Singkarak",
     "bedrock_options": {
-     "icon": "nereus_bilih",
+     "icon": "nereus_bilih_0",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7139.0,
-    "bedrock_identifier": "nereus:fish_keting",
+    "custom_model_data": 71390.0,
+    "bedrock_identifier": "nereus:fish_keting_0",
     "display_name": "Ikan Keting",
     "bedrock_options": {
-     "icon": "nereus_keting",
+     "icon": "nereus_keting_0",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71391.0,
+    "bedrock_identifier": "nereus:fish_keting_1",
+    "display_name": "Ikan Keting",
+    "bedrock_options": {
+     "icon": "nereus_keting_1",
      "allow_offhand": true
     }
    }
@@ -206,441 +376,981 @@
   "minecraft:salmon": [
    {
     "type": "legacy",
-    "custom_model_data": 7107.0,
-    "bedrock_identifier": "nereus:fish_gurame",
+    "custom_model_data": 71071.0,
+    "bedrock_identifier": "nereus:fish_gurame_1",
     "display_name": "Ikan Gurame",
     "bedrock_options": {
-     "icon": "nereus_gurame",
+     "icon": "nereus_gurame_1",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7108.0,
-    "bedrock_identifier": "nereus:fish_patin",
+    "custom_model_data": 71072.0,
+    "bedrock_identifier": "nereus:fish_gurame_2",
+    "display_name": "Ikan Gurame",
+    "bedrock_options": {
+     "icon": "nereus_gurame_2",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71082.0,
+    "bedrock_identifier": "nereus:fish_patin_2",
     "display_name": "Ikan Patin",
     "bedrock_options": {
-     "icon": "nereus_patin",
+     "icon": "nereus_patin_2",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7109.0,
-    "bedrock_identifier": "nereus:fish_gabus",
+    "custom_model_data": 71091.0,
+    "bedrock_identifier": "nereus:fish_gabus_1",
     "display_name": "Ikan Gabus",
     "bedrock_options": {
-     "icon": "nereus_gabus",
+     "icon": "nereus_gabus_1",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7110.0,
-    "bedrock_identifier": "nereus:fish_nila",
+    "custom_model_data": 71092.0,
+    "bedrock_identifier": "nereus:fish_gabus_2",
+    "display_name": "Ikan Gabus",
+    "bedrock_options": {
+     "icon": "nereus_gabus_2",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71101.0,
+    "bedrock_identifier": "nereus:fish_nila_1",
     "display_name": "Nila Merah",
     "bedrock_options": {
-     "icon": "nereus_nila",
+     "icon": "nereus_nila_1",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7111.0,
-    "bedrock_identifier": "nereus:fish_bawal",
+    "custom_model_data": 71102.0,
+    "bedrock_identifier": "nereus:fish_nila_2",
+    "display_name": "Nila Merah",
+    "bedrock_options": {
+     "icon": "nereus_nila_2",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71111.0,
+    "bedrock_identifier": "nereus:fish_bawal_1",
     "display_name": "Ikan Bawal",
     "bedrock_options": {
-     "icon": "nereus_bawal",
+     "icon": "nereus_bawal_1",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7113.0,
-    "bedrock_identifier": "nereus:fish_kakap_merah",
+    "custom_model_data": 71112.0,
+    "bedrock_identifier": "nereus:fish_bawal_2",
+    "display_name": "Ikan Bawal",
+    "bedrock_options": {
+     "icon": "nereus_bawal_2",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71132.0,
+    "bedrock_identifier": "nereus:fish_kakap_merah_2",
     "display_name": "Kakap Merah",
     "bedrock_options": {
-     "icon": "nereus_kakap_merah",
+     "icon": "nereus_kakap_merah_2",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7114.0,
-    "bedrock_identifier": "nereus:fish_kerapu",
+    "custom_model_data": 71133.0,
+    "bedrock_identifier": "nereus:fish_kakap_merah_3",
+    "display_name": "Kakap Merah",
+    "bedrock_options": {
+     "icon": "nereus_kakap_merah_3",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71142.0,
+    "bedrock_identifier": "nereus:fish_kerapu_2",
     "display_name": "Kerapu Macan",
     "bedrock_options": {
-     "icon": "nereus_kerapu",
+     "icon": "nereus_kerapu_2",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7115.0,
-    "bedrock_identifier": "nereus:fish_tenggiri",
+    "custom_model_data": 71143.0,
+    "bedrock_identifier": "nereus:fish_kerapu_3",
+    "display_name": "Kerapu Macan",
+    "bedrock_options": {
+     "icon": "nereus_kerapu_3",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71152.0,
+    "bedrock_identifier": "nereus:fish_tenggiri_2",
     "display_name": "Ikan Tenggiri",
     "bedrock_options": {
-     "icon": "nereus_tenggiri",
+     "icon": "nereus_tenggiri_2",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7116.0,
-    "bedrock_identifier": "nereus:fish_pari",
+    "custom_model_data": 71153.0,
+    "bedrock_identifier": "nereus:fish_tenggiri_3",
+    "display_name": "Ikan Tenggiri",
+    "bedrock_options": {
+     "icon": "nereus_tenggiri_3",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71163.0,
+    "bedrock_identifier": "nereus:fish_pari_3",
     "display_name": "Pari Manta",
     "bedrock_options": {
-     "icon": "nereus_pari",
+     "icon": "nereus_pari_3",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7117.0,
-    "bedrock_identifier": "nereus:fish_belida",
+    "custom_model_data": 71164.0,
+    "bedrock_identifier": "nereus:fish_pari_4",
+    "display_name": "Pari Manta",
+    "bedrock_options": {
+     "icon": "nereus_pari_4",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71172.0,
+    "bedrock_identifier": "nereus:fish_belida_2",
     "display_name": "Ikan Belida",
     "bedrock_options": {
-     "icon": "nereus_belida",
+     "icon": "nereus_belida_2",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7118.0,
-    "bedrock_identifier": "nereus:fish_arwana",
+    "custom_model_data": 71173.0,
+    "bedrock_identifier": "nereus:fish_belida_3",
+    "display_name": "Ikan Belida",
+    "bedrock_options": {
+     "icon": "nereus_belida_3",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71182.0,
+    "bedrock_identifier": "nereus:fish_arwana_2",
     "display_name": "Arwana Super Red",
     "bedrock_options": {
-     "icon": "nereus_arwana",
+     "icon": "nereus_arwana_2",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7119.0,
-    "bedrock_identifier": "nereus:fish_tuna",
+    "custom_model_data": 71183.0,
+    "bedrock_identifier": "nereus:fish_arwana_3",
+    "display_name": "Arwana Super Red",
+    "bedrock_options": {
+     "icon": "nereus_arwana_3",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71194.0,
+    "bedrock_identifier": "nereus:fish_tuna_4",
     "display_name": "Tuna Sirip Biru",
     "bedrock_options": {
-     "icon": "nereus_tuna",
+     "icon": "nereus_tuna_4",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7140.0,
-    "bedrock_identifier": "nereus:fish_baronang",
+    "custom_model_data": 71195.0,
+    "bedrock_identifier": "nereus:fish_tuna_5",
+    "display_name": "Tuna Sirip Biru",
+    "bedrock_options": {
+     "icon": "nereus_tuna_5",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71401.0,
+    "bedrock_identifier": "nereus:fish_baronang_1",
     "display_name": "Ikan Baronang",
     "bedrock_options": {
-     "icon": "nereus_baronang",
+     "icon": "nereus_baronang_1",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7141.0,
-    "bedrock_identifier": "nereus:fish_kuwe",
+    "custom_model_data": 71402.0,
+    "bedrock_identifier": "nereus:fish_baronang_2",
+    "display_name": "Ikan Baronang",
+    "bedrock_options": {
+     "icon": "nereus_baronang_2",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71412.0,
+    "bedrock_identifier": "nereus:fish_kuwe_2",
     "display_name": "Ikan Kuwe",
     "bedrock_options": {
-     "icon": "nereus_kuwe",
+     "icon": "nereus_kuwe_2",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7142.0,
-    "bedrock_identifier": "nereus:fish_cakalang",
+    "custom_model_data": 71413.0,
+    "bedrock_identifier": "nereus:fish_kuwe_3",
+    "display_name": "Ikan Kuwe",
+    "bedrock_options": {
+     "icon": "nereus_kuwe_3",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71422.0,
+    "bedrock_identifier": "nereus:fish_cakalang_2",
     "display_name": "Ikan Cakalang",
     "bedrock_options": {
-     "icon": "nereus_cakalang",
+     "icon": "nereus_cakalang_2",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7143.0,
-    "bedrock_identifier": "nereus:fish_kakap_putih",
+    "custom_model_data": 71423.0,
+    "bedrock_identifier": "nereus:fish_cakalang_3",
+    "display_name": "Ikan Cakalang",
+    "bedrock_options": {
+     "icon": "nereus_cakalang_3",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71432.0,
+    "bedrock_identifier": "nereus:fish_kakap_putih_2",
     "display_name": "Kakap Putih",
     "bedrock_options": {
-     "icon": "nereus_kakap_putih",
+     "icon": "nereus_kakap_putih_2",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7144.0,
-    "bedrock_identifier": "nereus:fish_bawal_hitam",
+    "custom_model_data": 71433.0,
+    "bedrock_identifier": "nereus:fish_kakap_putih_3",
+    "display_name": "Kakap Putih",
+    "bedrock_options": {
+     "icon": "nereus_kakap_putih_3",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71441.0,
+    "bedrock_identifier": "nereus:fish_bawal_hitam_1",
     "display_name": "Bawal Hitam",
     "bedrock_options": {
-     "icon": "nereus_bawal_hitam",
+     "icon": "nereus_bawal_hitam_1",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7145.0,
-    "bedrock_identifier": "nereus:fish_ikan_terbang",
+    "custom_model_data": 71442.0,
+    "bedrock_identifier": "nereus:fish_bawal_hitam_2",
+    "display_name": "Bawal Hitam",
+    "bedrock_options": {
+     "icon": "nereus_bawal_hitam_2",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71450.0,
+    "bedrock_identifier": "nereus:fish_ikan_terbang_0",
     "display_name": "Ikan Terbang",
     "bedrock_options": {
-     "icon": "nereus_ikan_terbang",
+     "icon": "nereus_ikan_terbang_0",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7146.0,
-    "bedrock_identifier": "nereus:fish_lepu_ayam",
+    "custom_model_data": 71451.0,
+    "bedrock_identifier": "nereus:fish_ikan_terbang_1",
+    "display_name": "Ikan Terbang",
+    "bedrock_options": {
+     "icon": "nereus_ikan_terbang_1",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71460.0,
+    "bedrock_identifier": "nereus:fish_lepu_ayam_0",
     "display_name": "Lepu Ayam",
     "bedrock_options": {
-     "icon": "nereus_lepu_ayam",
+     "icon": "nereus_lepu_ayam_0",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7147.0,
-    "bedrock_identifier": "nereus:fish_sidat",
+    "custom_model_data": 71461.0,
+    "bedrock_identifier": "nereus:fish_lepu_ayam_1",
+    "display_name": "Lepu Ayam",
+    "bedrock_options": {
+     "icon": "nereus_lepu_ayam_1",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71462.0,
+    "bedrock_identifier": "nereus:fish_lepu_ayam_2",
+    "display_name": "Lepu Ayam",
+    "bedrock_options": {
+     "icon": "nereus_lepu_ayam_2",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71471.0,
+    "bedrock_identifier": "nereus:fish_sidat_1",
     "display_name": "Ikan Sidat",
     "bedrock_options": {
-     "icon": "nereus_sidat",
+     "icon": "nereus_sidat_1",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7148.0,
-    "bedrock_identifier": "nereus:fish_toman",
+    "custom_model_data": 71472.0,
+    "bedrock_identifier": "nereus:fish_sidat_2",
+    "display_name": "Ikan Sidat",
+    "bedrock_options": {
+     "icon": "nereus_sidat_2",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71482.0,
+    "bedrock_identifier": "nereus:fish_toman_2",
     "display_name": "Ikan Toman",
     "bedrock_options": {
-     "icon": "nereus_toman",
+     "icon": "nereus_toman_2",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7149.0,
-    "bedrock_identifier": "nereus:fish_jelawat",
+    "custom_model_data": 71483.0,
+    "bedrock_identifier": "nereus:fish_toman_3",
+    "display_name": "Ikan Toman",
+    "bedrock_options": {
+     "icon": "nereus_toman_3",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71491.0,
+    "bedrock_identifier": "nereus:fish_jelawat_1",
     "display_name": "Ikan Jelawat",
     "bedrock_options": {
-     "icon": "nereus_jelawat",
+     "icon": "nereus_jelawat_1",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7150.0,
-    "bedrock_identifier": "nereus:fish_baung",
+    "custom_model_data": 71492.0,
+    "bedrock_identifier": "nereus:fish_jelawat_2",
+    "display_name": "Ikan Jelawat",
+    "bedrock_options": {
+     "icon": "nereus_jelawat_2",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71493.0,
+    "bedrock_identifier": "nereus:fish_jelawat_3",
+    "display_name": "Ikan Jelawat",
+    "bedrock_options": {
+     "icon": "nereus_jelawat_3",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71501.0,
+    "bedrock_identifier": "nereus:fish_baung_1",
     "display_name": "Ikan Baung",
     "bedrock_options": {
-     "icon": "nereus_baung",
+     "icon": "nereus_baung_1",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7151.0,
-    "bedrock_identifier": "nereus:fish_hampala",
+    "custom_model_data": 71502.0,
+    "bedrock_identifier": "nereus:fish_baung_2",
+    "display_name": "Ikan Baung",
+    "bedrock_options": {
+     "icon": "nereus_baung_2",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71511.0,
+    "bedrock_identifier": "nereus:fish_hampala_1",
     "display_name": "Ikan Hampala",
     "bedrock_options": {
-     "icon": "nereus_hampala",
+     "icon": "nereus_hampala_1",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7152.0,
-    "bedrock_identifier": "nereus:fish_parang_parang",
+    "custom_model_data": 71512.0,
+    "bedrock_identifier": "nereus:fish_hampala_2",
+    "display_name": "Ikan Hampala",
+    "bedrock_options": {
+     "icon": "nereus_hampala_2",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71513.0,
+    "bedrock_identifier": "nereus:fish_hampala_3",
+    "display_name": "Ikan Hampala",
+    "bedrock_options": {
+     "icon": "nereus_hampala_3",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71522.0,
+    "bedrock_identifier": "nereus:fish_parang_parang_2",
     "display_name": "Ikan Parang-parang",
     "bedrock_options": {
-     "icon": "nereus_parang_parang",
+     "icon": "nereus_parang_parang_2",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7156.0,
-    "bedrock_identifier": "nereus:fish_napoleon",
+    "custom_model_data": 71523.0,
+    "bedrock_identifier": "nereus:fish_parang_parang_3",
+    "display_name": "Ikan Parang-parang",
+    "bedrock_options": {
+     "icon": "nereus_parang_parang_3",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71563.0,
+    "bedrock_identifier": "nereus:fish_napoleon_3",
     "display_name": "Ikan Napoleon",
     "bedrock_options": {
-     "icon": "nereus_napoleon",
+     "icon": "nereus_napoleon_3",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7157.0,
-    "bedrock_identifier": "nereus:fish_todak",
+    "custom_model_data": 71564.0,
+    "bedrock_identifier": "nereus:fish_napoleon_4",
+    "display_name": "Ikan Napoleon",
+    "bedrock_options": {
+     "icon": "nereus_napoleon_4",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71565.0,
+    "bedrock_identifier": "nereus:fish_napoleon_5",
+    "display_name": "Ikan Napoleon",
+    "bedrock_options": {
+     "icon": "nereus_napoleon_5",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71573.0,
+    "bedrock_identifier": "nereus:fish_todak_3",
     "display_name": "Ikan Todak",
     "bedrock_options": {
-     "icon": "nereus_todak",
+     "icon": "nereus_todak_3",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7158.0,
-    "bedrock_identifier": "nereus:fish_marlin_biru",
+    "custom_model_data": 71574.0,
+    "bedrock_identifier": "nereus:fish_todak_4",
+    "display_name": "Ikan Todak",
+    "bedrock_options": {
+     "icon": "nereus_todak_4",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71584.0,
+    "bedrock_identifier": "nereus:fish_marlin_biru_4",
     "display_name": "Marlin Biru",
     "bedrock_options": {
-     "icon": "nereus_marlin_biru",
+     "icon": "nereus_marlin_biru_4",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7159.0,
-    "bedrock_identifier": "nereus:fish_layur_raksasa",
+    "custom_model_data": 71585.0,
+    "bedrock_identifier": "nereus:fish_marlin_biru_5",
+    "display_name": "Marlin Biru",
+    "bedrock_options": {
+     "icon": "nereus_marlin_biru_5",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71586.0,
+    "bedrock_identifier": "nereus:fish_marlin_biru_6",
+    "display_name": "Marlin Biru",
+    "bedrock_options": {
+     "icon": "nereus_marlin_biru_6",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71592.0,
+    "bedrock_identifier": "nereus:fish_layur_raksasa_2",
     "display_name": "Layur Raksasa",
     "bedrock_options": {
-     "icon": "nereus_layur_raksasa",
+     "icon": "nereus_layur_raksasa_2",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7160.0,
-    "bedrock_identifier": "nereus:fish_pari_elang",
+    "custom_model_data": 71593.0,
+    "bedrock_identifier": "nereus:fish_layur_raksasa_3",
+    "display_name": "Layur Raksasa",
+    "bedrock_options": {
+     "icon": "nereus_layur_raksasa_3",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71594.0,
+    "bedrock_identifier": "nereus:fish_layur_raksasa_4",
+    "display_name": "Layur Raksasa",
+    "bedrock_options": {
+     "icon": "nereus_layur_raksasa_4",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71603.0,
+    "bedrock_identifier": "nereus:fish_pari_elang_3",
     "display_name": "Pari Elang",
     "bedrock_options": {
-     "icon": "nereus_pari_elang",
+     "icon": "nereus_pari_elang_3",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7161.0,
-    "bedrock_identifier": "nereus:fish_hiu_sirip_putih",
+    "custom_model_data": 71604.0,
+    "bedrock_identifier": "nereus:fish_pari_elang_4",
+    "display_name": "Pari Elang",
+    "bedrock_options": {
+     "icon": "nereus_pari_elang_4",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71605.0,
+    "bedrock_identifier": "nereus:fish_pari_elang_5",
+    "display_name": "Pari Elang",
+    "bedrock_options": {
+     "icon": "nereus_pari_elang_5",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71614.0,
+    "bedrock_identifier": "nereus:fish_hiu_sirip_putih_4",
     "display_name": "Hiu Sirip Putih",
     "bedrock_options": {
-     "icon": "nereus_hiu_sirip_putih",
+     "icon": "nereus_hiu_sirip_putih_4",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7162.0,
-    "bedrock_identifier": "nereus:fish_hiu_martil",
+    "custom_model_data": 71615.0,
+    "bedrock_identifier": "nereus:fish_hiu_sirip_putih_5",
+    "display_name": "Hiu Sirip Putih",
+    "bedrock_options": {
+     "icon": "nereus_hiu_sirip_putih_5",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71624.0,
+    "bedrock_identifier": "nereus:fish_hiu_martil_4",
     "display_name": "Hiu Martil",
     "bedrock_options": {
-     "icon": "nereus_hiu_martil",
+     "icon": "nereus_hiu_martil_4",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7163.0,
-    "bedrock_identifier": "nereus:fish_tapah",
+    "custom_model_data": 71625.0,
+    "bedrock_identifier": "nereus:fish_hiu_martil_5",
+    "display_name": "Hiu Martil",
+    "bedrock_options": {
+     "icon": "nereus_hiu_martil_5",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71626.0,
+    "bedrock_identifier": "nereus:fish_hiu_martil_6",
+    "display_name": "Hiu Martil",
+    "bedrock_options": {
+     "icon": "nereus_hiu_martil_6",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71633.0,
+    "bedrock_identifier": "nereus:fish_tapah_3",
     "display_name": "Ikan Tapah",
     "bedrock_options": {
-     "icon": "nereus_tapah",
+     "icon": "nereus_tapah_3",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7164.0,
-    "bedrock_identifier": "nereus:fish_semah_emas",
+    "custom_model_data": 71634.0,
+    "bedrock_identifier": "nereus:fish_tapah_4",
+    "display_name": "Ikan Tapah",
+    "bedrock_options": {
+     "icon": "nereus_tapah_4",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71642.0,
+    "bedrock_identifier": "nereus:fish_semah_emas_2",
     "display_name": "Semah Emas",
     "bedrock_options": {
-     "icon": "nereus_semah_emas",
+     "icon": "nereus_semah_emas_2",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7165.0,
-    "bedrock_identifier": "nereus:fish_angler",
+    "custom_model_data": 71643.0,
+    "bedrock_identifier": "nereus:fish_semah_emas_3",
+    "display_name": "Semah Emas",
+    "bedrock_options": {
+     "icon": "nereus_semah_emas_3",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71644.0,
+    "bedrock_identifier": "nereus:fish_semah_emas_4",
+    "display_name": "Semah Emas",
+    "bedrock_options": {
+     "icon": "nereus_semah_emas_4",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71652.0,
+    "bedrock_identifier": "nereus:fish_angler_2",
     "display_name": "Ikan Pancing Laut Dalam",
     "bedrock_options": {
-     "icon": "nereus_angler",
+     "icon": "nereus_angler_2",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7166.0,
-    "bedrock_identifier": "nereus:fish_moray",
+    "custom_model_data": 71653.0,
+    "bedrock_identifier": "nereus:fish_angler_3",
+    "display_name": "Ikan Pancing Laut Dalam",
+    "bedrock_options": {
+     "icon": "nereus_angler_3",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71654.0,
+    "bedrock_identifier": "nereus:fish_angler_4",
+    "display_name": "Ikan Pancing Laut Dalam",
+    "bedrock_options": {
+     "icon": "nereus_angler_4",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71663.0,
+    "bedrock_identifier": "nereus:fish_moray_3",
     "display_name": "Belut Moray Raksasa",
     "bedrock_options": {
-     "icon": "nereus_moray",
+     "icon": "nereus_moray_3",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7167.0,
-    "bedrock_identifier": "nereus:fish_hiu_zebra",
+    "custom_model_data": 71664.0,
+    "bedrock_identifier": "nereus:fish_moray_4",
+    "display_name": "Belut Moray Raksasa",
+    "bedrock_options": {
+     "icon": "nereus_moray_4",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71673.0,
+    "bedrock_identifier": "nereus:fish_hiu_zebra_3",
     "display_name": "Hiu Macan Tutul",
     "bedrock_options": {
-     "icon": "nereus_hiu_zebra",
+     "icon": "nereus_hiu_zebra_3",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7168.0,
-    "bedrock_identifier": "nereus:fish_hiu_paus",
+    "custom_model_data": 71674.0,
+    "bedrock_identifier": "nereus:fish_hiu_zebra_4",
+    "display_name": "Hiu Macan Tutul",
+    "bedrock_options": {
+     "icon": "nereus_hiu_zebra_4",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71675.0,
+    "bedrock_identifier": "nereus:fish_hiu_zebra_5",
+    "display_name": "Hiu Macan Tutul",
+    "bedrock_options": {
+     "icon": "nereus_hiu_zebra_5",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71686.0,
+    "bedrock_identifier": "nereus:fish_hiu_paus_6",
     "display_name": "Hiu Paus",
     "bedrock_options": {
-     "icon": "nereus_hiu_paus",
+     "icon": "nereus_hiu_paus_6",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7169.0,
-    "bedrock_identifier": "nereus:fish_ikan_bulan",
+    "custom_model_data": 71695.0,
+    "bedrock_identifier": "nereus:fish_ikan_bulan_5",
     "display_name": "Ikan Bulan Mola-mola",
     "bedrock_options": {
-     "icon": "nereus_ikan_bulan",
+     "icon": "nereus_ikan_bulan_5",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7170.0,
-    "bedrock_identifier": "nereus:fish_arwana_emas",
+    "custom_model_data": 71696.0,
+    "bedrock_identifier": "nereus:fish_ikan_bulan_6",
+    "display_name": "Ikan Bulan Mola-mola",
+    "bedrock_options": {
+     "icon": "nereus_ikan_bulan_6",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71703.0,
+    "bedrock_identifier": "nereus:fish_arwana_emas_3",
     "display_name": "Arwana Emas Kalimantan",
     "bedrock_options": {
-     "icon": "nereus_arwana_emas",
+     "icon": "nereus_arwana_emas_3",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7171.0,
-    "bedrock_identifier": "nereus:fish_pari_raksasa",
+    "custom_model_data": 71704.0,
+    "bedrock_identifier": "nereus:fish_arwana_emas_4",
+    "display_name": "Arwana Emas Kalimantan",
+    "bedrock_options": {
+     "icon": "nereus_arwana_emas_4",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71715.0,
+    "bedrock_identifier": "nereus:fish_pari_raksasa_5",
     "display_name": "Pari Air Tawar Raksasa",
     "bedrock_options": {
-     "icon": "nereus_pari_raksasa",
+     "icon": "nereus_pari_raksasa_5",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7172.0,
-    "bedrock_identifier": "nereus:fish_megamouth",
+    "custom_model_data": 71716.0,
+    "bedrock_identifier": "nereus:fish_pari_raksasa_6",
+    "display_name": "Pari Air Tawar Raksasa",
+    "bedrock_options": {
+     "icon": "nereus_pari_raksasa_6",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71725.0,
+    "bedrock_identifier": "nereus:fish_megamouth_5",
     "display_name": "Hiu Megamouth",
     "bedrock_options": {
-     "icon": "nereus_megamouth",
+     "icon": "nereus_megamouth_5",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7173.0,
-    "bedrock_identifier": "nereus:fish_naga_nusantara",
+    "custom_model_data": 71726.0,
+    "bedrock_identifier": "nereus:fish_megamouth_6",
+    "display_name": "Hiu Megamouth",
+    "bedrock_options": {
+     "icon": "nereus_megamouth_6",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71734.0,
+    "bedrock_identifier": "nereus:fish_naga_nusantara_4",
     "display_name": "Naga Nusantara",
     "bedrock_options": {
-     "icon": "nereus_naga_nusantara",
+     "icon": "nereus_naga_nusantara_4",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7175.0,
-    "bedrock_identifier": "nereus:fish_leviathan_kecil",
+    "custom_model_data": 71735.0,
+    "bedrock_identifier": "nereus:fish_naga_nusantara_5",
+    "display_name": "Naga Nusantara",
+    "bedrock_options": {
+     "icon": "nereus_naga_nusantara_5",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71736.0,
+    "bedrock_identifier": "nereus:fish_naga_nusantara_6",
+    "display_name": "Naga Nusantara",
+    "bedrock_options": {
+     "icon": "nereus_naga_nusantara_6",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71754.0,
+    "bedrock_identifier": "nereus:fish_leviathan_kecil_4",
     "display_name": "Anak Leviathan",
     "bedrock_options": {
-     "icon": "nereus_leviathan_kecil",
+     "icon": "nereus_leviathan_kecil_4",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71755.0,
+    "bedrock_identifier": "nereus:fish_leviathan_kecil_5",
+    "display_name": "Anak Leviathan",
+    "bedrock_options": {
+     "icon": "nereus_leviathan_kecil_5",
      "allow_offhand": true
     }
    }
@@ -648,61 +1358,111 @@
   "minecraft:tropical_fish": [
    {
     "type": "legacy",
-    "custom_model_data": 7112.0,
-    "bedrock_identifier": "nereus:fish_ikan_mas",
+    "custom_model_data": 71120.0,
+    "bedrock_identifier": "nereus:fish_ikan_mas_0",
     "display_name": "Ikan Mas Koki",
     "bedrock_options": {
-     "icon": "nereus_ikan_mas",
+     "icon": "nereus_ikan_mas_0",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7120.0,
-    "bedrock_identifier": "nereus:fish_raja_laut",
+    "custom_model_data": 71121.0,
+    "bedrock_identifier": "nereus:fish_ikan_mas_1",
+    "display_name": "Ikan Mas Koki",
+    "bedrock_options": {
+     "icon": "nereus_ikan_mas_1",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71203.0,
+    "bedrock_identifier": "nereus:fish_raja_laut_3",
     "display_name": "Ikan Raja Laut",
     "bedrock_options": {
-     "icon": "nereus_raja_laut",
+     "icon": "nereus_raja_laut_3",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7153.0,
-    "bedrock_identifier": "nereus:fish_boesemani",
+    "custom_model_data": 71204.0,
+    "bedrock_identifier": "nereus:fish_raja_laut_4",
+    "display_name": "Ikan Raja Laut",
+    "bedrock_options": {
+     "icon": "nereus_raja_laut_4",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71530.0,
+    "bedrock_identifier": "nereus:fish_boesemani_0",
     "display_name": "Rainbow Boesemani",
     "bedrock_options": {
-     "icon": "nereus_boesemani",
+     "icon": "nereus_boesemani_0",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7154.0,
-    "bedrock_identifier": "nereus:fish_cupang_hias",
+    "custom_model_data": 71531.0,
+    "bedrock_identifier": "nereus:fish_boesemani_1",
+    "display_name": "Rainbow Boesemani",
+    "bedrock_options": {
+     "icon": "nereus_boesemani_1",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71540.0,
+    "bedrock_identifier": "nereus:fish_cupang_hias_0",
     "display_name": "Cupang Hias",
     "bedrock_options": {
-     "icon": "nereus_cupang_hias",
+     "icon": "nereus_cupang_hias_0",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7155.0,
-    "bedrock_identifier": "nereus:fish_kakatua",
+    "custom_model_data": 71552.0,
+    "bedrock_identifier": "nereus:fish_kakatua_2",
     "display_name": "Ikan Kakatua",
     "bedrock_options": {
-     "icon": "nereus_kakatua",
+     "icon": "nereus_kakatua_2",
      "allow_offhand": true
     }
    },
    {
     "type": "legacy",
-    "custom_model_data": 7174.0,
-    "bedrock_identifier": "nereus:fish_koi_nereus",
+    "custom_model_data": 71553.0,
+    "bedrock_identifier": "nereus:fish_kakatua_3",
+    "display_name": "Ikan Kakatua",
+    "bedrock_options": {
+     "icon": "nereus_kakatua_3",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71743.0,
+    "bedrock_identifier": "nereus:fish_koi_nereus_3",
     "display_name": "Koi Nereus",
     "bedrock_options": {
-     "icon": "nereus_koi_nereus",
+     "icon": "nereus_koi_nereus_3",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 71744.0,
+    "bedrock_identifier": "nereus:fish_koi_nereus_4",
+    "display_name": "Koi Nereus",
+    "bedrock_options": {
+     "icon": "nereus_koi_nereus_4",
      "allow_offhand": true
     }
    }
@@ -772,7 +1532,7 @@
     "type": "legacy",
     "custom_model_data": 7011.0,
     "bedrock_identifier": "nereus:rod_wood",
-    "display_name": "Joran Kayu",
+    "display_name": "Driftwood Rod",
     "bedrock_options": {
      "icon": "nereus_rod_wood",
      "allow_offhand": true,
@@ -783,7 +1543,7 @@
     "type": "legacy",
     "custom_model_data": 7012.0,
     "bedrock_identifier": "nereus:rod_iron",
-    "display_name": "Joran Besi",
+    "display_name": "Ironclad Rod",
     "bedrock_options": {
      "icon": "nereus_rod_iron",
      "allow_offhand": true,
@@ -794,7 +1554,7 @@
     "type": "legacy",
     "custom_model_data": 7013.0,
     "bedrock_identifier": "nereus:rod_gold",
-    "display_name": "Joran Emas",
+    "display_name": "Aurum Rod",
     "bedrock_options": {
      "icon": "nereus_rod_gold",
      "allow_offhand": true,
@@ -805,7 +1565,7 @@
     "type": "legacy",
     "custom_model_data": 7014.0,
     "bedrock_identifier": "nereus:rod_leviathan",
-    "display_name": "Joran Leviathan",
+    "display_name": "Abyssal Leviathan",
     "bedrock_options": {
      "icon": "nereus_rod_leviathan",
      "allow_offhand": true,
@@ -815,10 +1575,10 @@
    {
     "type": "legacy",
     "custom_model_data": 7015.0,
-    "bedrock_identifier": "nereus:rod_mutiara",
-    "display_name": "Joran Nereus Mutiara",
+    "bedrock_identifier": "nereus:rod_nereid",
+    "display_name": "Nereid's Pearl",
     "bedrock_options": {
-     "icon": "nereus_rod_mutiara",
+     "icon": "nereus_rod_nereid",
      "allow_offhand": true,
      "display_handheld": true
     }
@@ -826,10 +1586,10 @@
    {
     "type": "legacy",
     "custom_model_data": 7016.0,
-    "bedrock_identifier": "nereus:rod_trisula",
-    "display_name": "Trisula Nereus",
+    "bedrock_identifier": "nereus:rod_trident",
+    "display_name": "Nereus Trident",
     "bedrock_options": {
-     "icon": "nereus_rod_trisula",
+     "icon": "nereus_rod_trident",
      "allow_offhand": true,
      "display_handheld": true
     }
@@ -837,10 +1597,10 @@
    {
     "type": "legacy",
     "custom_model_data": 7017.0,
-    "bedrock_identifier": "nereus:rod_tahta",
-    "display_name": "Tahta Nereus",
+    "bedrock_identifier": "nereus:rod_throne",
+    "display_name": "Throne of Nereus",
     "bedrock_options": {
-     "icon": "nereus_rod_tahta",
+     "icon": "nereus_rod_throne",
      "allow_offhand": true,
      "display_handheld": true
     }

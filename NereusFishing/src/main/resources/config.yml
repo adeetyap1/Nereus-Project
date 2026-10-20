@@ -59,76 +59,77 @@ rarities:
 # luck = bonus peluang rarity, speed = persen lebih cepat menggigit (maks 90).
 rods:
   wood:
-    name: "&fJoran Kayu"
+    name: "&fDriftwood Rod"
     material: FISHING_ROD
     model: 7011
     luck: 0
     speed: 0
     control: 0
     lore:
-      - "&7Joran dasar untuk pemula."
+      - "&7Joran dasar dari kayu apung."
   iron:
-    name: "&7Joran Besi"
+    name: "&7Ironclad Rod"
     material: FISHING_ROD
     model: 7012
     luck: 1
     speed: 10
     control: 1
     lore:
-      - "&7Lebih cepat dan sedikit beruntung."
+      - "&7Rangka baja berlapis garam laut."
   gold:
-    name: "&6Joran Emas"
+    name: "&6Aurum Rod"
     material: FISHING_ROD
     model: 7013
     luck: 2
     speed: 20
     control: 1
     lore:
-      - "&7Ikan langka lebih sering muncul."
+      - "&7Berlapis emas, ikan langka mendekat."
   leviathan:
-    name: "&b&lJoran Leviathan"
+    name: "&b&lAbyssal Leviathan"
     material: FISHING_ROD
     model: 7014
     luck: 4
     speed: 35
     control: 2
     lore:
-      - "&7Joran legenda dari dasar laut."
+      - "&7Ditempa di dasar palung terdalam."
 
-  mutiara:
-    name: "&b&lJoran Nereus Mutiara"
+  nereid:
+    name: "&b&lNereid's Pearl"
     material: FISHING_ROD
     model: 7015
     luck: 6
     speed: 45
     control: 3
     lore:
-      - "&7Joran berhias mutiara dan sirip duyung."
+      - "&7Mutiara para Nereid, putri sang dewa laut."
       - "&8Tier: &bNereus"
-  trisula:
-    name: "&3&lTrisula Nereus"
+  trident:
+    name: "&3&lNereus Trident"
     material: FISHING_ROD
     model: 7016
     luck: 8
     speed: 55
     control: 4
     lore:
-      - "&7Trisula sang dewa laut berwujud joran."
+      - "&7Trisula Nereus yang menaklukkan ombak."
       - "&8Tier: &3Nereus"
-  tahta:
-    name: "&6&lTahta Nereus"
+  throne:
+    name: "&6&lThrone of Nereus"
     material: FISHING_ROD
     model: 7017
     luck: 12
     speed: 70
     control: 6
     lore:
-      - "&7Joran milik penguasa samudra."
+      - "&7Takhta sang penguasa samudra."
       - "&8Tier: &6Nereus &8(tertinggi)"
 
 # Ikan: 70 ikan Indonesia (air tawar / laut / laut dalam) + 5 sampah.
-# habitat = tampil di lore. price-per-kg = harga jual per kilogram. model = custom_model_data di resource pack.
-# Berat tiap ikan acak antara min-weight dan max-weight; label ukuran (Mungil...Raksasa) dihitung dari posisinya.
+# habitat = tampil di lore. price-per-kg = harga jual per kilogram. Berat maksimal 700 kg.
+# model = nomor dasar custom_model_data. Ukuran item otomatis mengikuti berat (7 tingkat, resource pack):
+#   <0.25 | <1 | <5 | <25 | <100 | <300 | 300+ kg  -> makin berat makin besar.
 fish:
   teri:
     name: "Ikan Teri"
@@ -693,8 +694,8 @@ fish:
     material: SALMON
     rarity: LEGENDARY
     habitat: laut
-    min-weight: 500
-    max-weight: 9000
+    min-weight: 300
+    max-weight: 700
     price-per-kg: 6
     model: 7168
   ikan-bulan:
@@ -703,7 +704,7 @@ fish:
     rarity: LEGENDARY
     habitat: dalam
     min-weight: 100
-    max-weight: 1500
+    max-weight: 600
     price-per-kg: 9
     model: 7169
   arwana-emas:
@@ -729,8 +730,8 @@ fish:
     material: SALMON
     rarity: LEGENDARY
     habitat: dalam
-    min-weight: 200
-    max-weight: 1200
+    min-weight: 150
+    max-weight: 550
     price-per-kg: 14
     model: 7172
   naga-nusantara:
@@ -805,3 +806,10 @@ fish:
     max-weight: 0.5
     price-per-kg: 1
     model: 7125
+
+# Ikan sangat berat membuat pemain melambat (efek "diangkat dua tangan") saat dipegang.
+heavy-carry:
+  enabled: true
+  threshold: 100            # kg, mulai terasa berat
+  heavy: 300                # kg, makin lambat
+  extreme: 550              # kg, paling berat
