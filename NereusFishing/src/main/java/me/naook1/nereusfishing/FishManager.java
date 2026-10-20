@@ -20,11 +20,11 @@ import org.bukkit.persistence.PersistentDataType;
 public final class FishManager {
 
     public record Rarity(String id, String name, double weight, double luckBoost, boolean broadcast,
-                  boolean junk) {
+                  boolean junk, boolean broadcastTitle) {
     }
 
     public record Fish(String id, String name, Material material, Rarity rarity, double minWeight,
-                       double maxWeight, double pricePerKg, int model) {
+                       double maxWeight, double pricePerKg, int model, String habitat) {
     }
 
     public record Rod(String id, String name, Material material, int model, List<String> lore,
@@ -68,7 +68,7 @@ public final class FishManager {
                     continue;
                 }
                 rarities.put(id.toUpperCase(), new Rarity(id.toUpperCase(), s.getString("name", id),
-                        s.getDouble("weight", 1), s.getDouble("luck-boost", 0), s.getBoolean("broadcast", false), s.getBoolean("junk", false)));
+                        s.getDouble("weight", 1), s.getDouble("luck-boost", 0), s.getBoolean("broadcast", false), s.getBoolean("junk", false), s.getBoolean("broadcast-title", false)));
             }
         }
         ConfigurationSection fs = cfg.getConfigurationSection("fish");
@@ -87,7 +87,7 @@ public final class FishManager {
                 double min = s.getDouble("min-weight", 0.5);
                 double max = Math.max(min, s.getDouble("max-weight", min));
                 fish.put(id, new Fish(id, s.getString("name", id), mat, rarity, min, max,
-                        s.getDouble("price-per-kg", 1), s.getInt("model", 0)));
+                        s.getDouble("price-per-kg", 1), s.getInt("model", 0), s.getString("habitat", "laut")));
             }
         }
         ConfigurationSection ds = cfg.getConfigurationSection("rods");
@@ -209,14 +209,49 @@ public final class FishManager {
         return new Catch(f, weight, value);
     }
 
+    /** Colour code at the start of the rarity name (e.g. "&5"), used to tint item names by tier. */
+    public static String colorPrefix(Rarity r) {
+        String n = r.name();
+        if (n.startsWith("&#") && n.length() >= 8) {
+            return n.substring(0, 8);
+        }
+        return n.length() >= 2 && n.charAt(0) == '&' ? n.substring(0, 2) : "";
+    }
+
+    public static String habitatLabel(String h) {
+        return switch (h == null ? "" : h.toLowerCase()) {
+            case "tawar" -> "Air Tawar";
+            case "dalam" -> "Laut Dalam";
+            case "sampah" -> "Sampah";
+            default -> "Laut";
+        };
+    }
+
+    /** Size class from where the weight sits in the species range. */
+    public String sizeLabel(Fish f, double weight) {
+        double span = f.maxWeight() - f.minWeight();
+        double t = span <= 0 ? 0.5 : (weight - f.minWeight()) / span;
+        if (t < 0.15) {
+            return "&7" + sc("Mungil");
+        } else if (t < 0.4) {
+            return "&f" + sc("Kecil");
+        } else if (t < 0.65) {
+            return "&a" + sc("Sedang");
+        } else if (t < 0.88) {
+            return "&e" + sc("Besar");
+        }
+        return "&6&l" + sc("Raksasa");
+    }
+
     public ItemStack createFish(Catch c, String catcher) {
         Fish f = c.fish();
         ItemStack item = new ItemStack(f.material());
         ItemMeta meta = item.getItemMeta();
-        meta.displayName(Text.item(sc(f.name())));
+        meta.displayName(Text.item(colorPrefix(f.rarity()) + sc(f.name())));
         List<net.kyori.adventure.text.Component> lore = new ArrayList<>();
         for (String line : plugin.messages().list("fish-lore", "rarity", rarityLabel(f.rarity()),
-                "weight", fmt(c.weight()), "value", fmt(c.value()), "player", catcher)) {
+                "weight", fmt(c.weight()), "value", fmt(c.value()), "player", catcher,
+                "habitat", sc(habitatLabel(f.habitat())), "size", sizeLabel(f, c.weight()))) {
             lore.add(Text.item(line));
         }
         meta.lore(lore);

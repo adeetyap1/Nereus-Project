@@ -43,6 +43,10 @@ public final class Messages {
         cache.clear();
     }
 
+    public boolean has(String key) {
+        return cfg != null && cfg.contains(key);
+    }
+
     public String raw(String key) {
         return cache.computeIfAbsent(key, k -> {
             String s = cfg.getString(k);

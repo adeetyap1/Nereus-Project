@@ -402,9 +402,21 @@ public final class FishListener implements Listener {
         if (record && c.weight() > 0) {
             m.send(p, "caught-record", "fish", fishName, "weight", weight);
         }
-        if (c.fish().rarity().broadcast()) {
-            m.broadcast("caught-broadcast", "player", p.getName(), "fish", fishName, "weight", weight,
-                    "rod", mgr.sc(use.name()));
+        var rar = c.fish().rarity();
+        if (rar.broadcast()) {
+            String key = m.has("caught-broadcast-" + rar.id().toLowerCase())
+                    ? "caught-broadcast-" + rar.id().toLowerCase() : "caught-broadcast";
+            m.broadcast(key, "player", p.getName(), "fish", fishName, "weight", weight, "rod", mgr.sc(use.name()));
+        }
+        if (rar.broadcastTitle()) {
+            var title = Title.title(Text.parse(m.format("broadcast-title")),
+                    Text.parse(m.format("broadcast-sub", "player", p.getName(), "fish", fishName, "weight", weight)),
+                    Title.Times.times(java.time.Duration.ofMillis(300), java.time.Duration.ofMillis(3000),
+                            java.time.Duration.ofMillis(800)));
+            for (Player o : plugin.getServer().getOnlinePlayers()) {
+                o.showTitle(title);
+                o.playSound(o.getLocation(), Sound.UI_TOAST_CHALLENGE_COMPLETE, 0.8f, 1f);
+            }
         }
     }
 }
