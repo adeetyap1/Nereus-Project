@@ -1,0 +1,104 @@
+# Nereus Bank by naook1/adityap
+developer: naook1/adityap
+small-caps: false
+
+currency-symbol: "$"
+
+# Bunga dibayar otomatis ke saldo bank setiap interest-days hari (waktu nyata).
+interest-days: 30
+
+# Tier akun. Tier naik dengan membeli kartu (/card). Nilai -1 = tanpa batas.
+# interest       = % bunga per periode, interest-cap = maksimal bunga sekali bayar
+# transfer-fee   = % biaya transfer (ditanggung pengirim)
+# daily-limit    = batas total transfer keluar per hari, max-balance = batas saldo bank
+# loan-limit     = batas pinjaman, loan-rate = % bunga pinjaman
+# deposit-bonus  = tambahan % bunga deposito berjangka
+# card-price / card-min-balance = harga kartu dan saldo bank minimum untuk membelinya
+tiers:
+  STANDARD:
+    name: "Standard"
+    color: "&7"
+    interest: 0.5
+    interest-cap: 50000
+    transfer-fee: 5
+    daily-limit: 100000
+    max-balance: 1000000
+    loan-limit: 20000
+    loan-rate: 10
+    deposit-bonus: 0
+    card-price: 0
+    card-min-balance: 0
+    model: 8004
+  SILVER:
+    name: "Silver"
+    color: "&f"
+    interest: 1.5
+    interest-cap: 250000
+    transfer-fee: 3
+    daily-limit: 500000
+    max-balance: 10000000
+    loan-limit: 100000
+    loan-rate: 8
+    deposit-bonus: 0.5
+    card-price: 10000
+    card-min-balance: 0
+    model: 8001
+  GOLD:
+    name: "Gold"
+    color: "&6"
+    interest: 3
+    interest-cap: 2000000
+    transfer-fee: 1.5
+    daily-limit: 2000000
+    max-balance: 100000000
+    loan-limit: 500000
+    loan-rate: 6
+    deposit-bonus: 1.5
+    card-price: 50000
+    card-min-balance: 25000
+    model: 8002
+  PLATINUM:
+    name: "Platinum"
+    color: "&b"
+    interest: 5
+    interest-cap: 20000000
+    transfer-fee: 0
+    daily-limit: -1
+    max-balance: -1
+    loan-limit: 2000000
+    loan-rate: 4
+    deposit-bonus: 3
+    card-price: 250000
+    card-min-balance: 100000
+    model: 8003
+
+card:
+  replace-fee: 5000         # biaya cetak ulang kartu hilang
+  require-card-for-gui: false   # true = /bank hanya bisa dibuka bila memegang kartu (selain ATM)
+
+# Deposito berjangka: uang dikunci, bunga dibayar saat jatuh tempo.
+# periods: hari -> % bunga (ditambah deposit-bonus tier).
+fixed-deposit:
+  min-amount: 1000
+  periods:
+    7: 1.0
+    14: 2.5
+    30: 6.0
+  # mencairkan lebih awal: bunga hangus dan dikenai denda % dari pokok
+  early-break-penalty: 1
+
+loan:
+  due-days: 30
+  overdue-daily-penalty: 1   # % dari sisa tagihan per hari setelah jatuh tempo
+  min-amount: 1000
+
+transfer:
+  min-amount: 100
+
+# Tombol cepat di GUI jumlah
+amount-steps: [100, 1000, 10000, 100000, 1000000, 10000000]
+
+# ATM: blok yang bisa diklik untuk membuka bank (admin: /bank atm add)
+atm:
+  require-card: false
+  blocks: []

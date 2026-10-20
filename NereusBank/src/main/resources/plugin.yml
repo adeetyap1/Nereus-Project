@@ -1,0 +1,25 @@
+name: NereusBank
+version: '${project.version}'
+main: me.naook1.nereusbank.NereusBank
+api-version: '1.21'
+authors: [naook1, adityap]
+description: Nereus Bank - akun, transfer, bunga, deposito, pinjaman dan kartu by naook1/adityap
+softdepend: [Vault, PlaceholderAPI, floodgate]
+
+commands:
+  bank:
+    description: Buka Nereus Bank
+    aliases: [nbank, nb]
+    usage: /<command> [deposit|withdraw|transfer|history|savings|loan|repay|top|info|help]
+  card:
+    description: Ambil / upgrade kartu Nereus Bank
+    aliases: [kartu]
+    usage: /<command> [silver|gold|platinum|replace|info]
+
+permissions:
+  nereusbank.use:
+    description: Memakai /bank dan /card
+    default: true
+  nereusbank.admin:
+    description: Admin bank (give, take, set, atm, reload)
+    default: op
