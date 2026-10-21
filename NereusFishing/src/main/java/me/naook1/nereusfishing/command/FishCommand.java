@@ -34,8 +34,12 @@ public final class FishCommand implements CommandExecutor, TabCompleter {
             sell(sender);
             return true;
         }
-        if (args.length == 0) {
-            m.send(sender, "usage");
+        if (args.length == 0 || args[0].equalsIgnoreCase("menu") || args[0].equalsIgnoreCase("gui")) {
+            if (sender instanceof Player p) {
+                plugin.gui().open(p, true, 0);
+            } else {
+                m.send(sender, "player-only");
+            }
             return true;
         }
         switch (args[0].toLowerCase()) {
@@ -144,7 +148,7 @@ public final class FishCommand implements CommandExecutor, TabCompleter {
             return out;
         }
         if (args.length == 1) {
-            for (String s : List.of("rods", "top", "sell", "give", "reload")) {
+            for (String s : List.of("menu", "rods", "top", "sell", "give", "reload")) {
                 if (s.startsWith(args[0].toLowerCase()) && (sender.hasPermission("fishing.admin")
                         || !(s.equals("give") || s.equals("reload")))) {
                     out.add(s);

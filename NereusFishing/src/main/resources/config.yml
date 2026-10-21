@@ -55,7 +55,7 @@ rarities:
     junk: true              # tidak masuk rekor /fish top
 
 # control = tambahan lebar zona hijau di minigame menarik ikan.
-# Joran. model = custom_model_data (0 = tampilan vanilla). Model 7011-7014 = tampilan joran di resource pack.
+# Joran. model = custom_model_data (0 = tampilan vanilla). 7011-7017 = joran Nereus, 7021-7026 = joran 3D premium.
 # luck = bonus peluang rarity, speed = persen lebih cepat menggigit (maks 90).
 rods:
   wood:
@@ -125,6 +125,67 @@ rods:
     lore:
       - "&7Takhta sang penguasa samudra."
       - "&8Tier: &6Nereus &8(tertinggi)"
+
+  reaper:
+    name: "&8&lNecrotide Reaper"
+    material: FISHING_ROD
+    model: 7021
+    luck: 10
+    speed: 65
+    control: 5
+    lore:
+      - "&7Joran sang algojo samudra, ditempa dari tulang"
+      - "&7ksatria yang tenggelam bersama kapalnya."
+  phoenix:
+    name: "&6&lInfernal Phoenix"
+    material: FISHING_ROD
+    model: 7022
+    luck: 11
+    speed: 68
+    control: 5
+    lore:
+      - "&7Sayap api yang tak pernah padam,"
+      - "&7bahkan di dasar lautan."
+  tidecaller:
+    name: "&a&lEmerald Tidecaller"
+    material: FISHING_ROD
+    model: 7023
+    luck: 9
+    speed: 62
+    control: 6
+    lore:
+      - "&7Memanggil arus dan ikan dengan"
+      - "&7kilau zamrud dari palung terdalam."
+  voidtide:
+    name: "&5&lVoidtide Scepter"
+    material: FISHING_ROD
+    model: 7024
+    luck: 13
+    speed: 72
+    control: 6
+    lore:
+      - "&7Tongkat pasang kehampaan,"
+      - "&7menarik apa pun dari kegelapan."
+  orchid:
+    name: "&d&lCelestial Orchid"
+    material: FISHING_ROD
+    model: 7025
+    luck: 12
+    speed: 70
+    control: 7
+    lore:
+      - "&7Bunga bintang yang mekar di atas ombak,"
+      - "&7anggun namun mematikan."
+  sovereign:
+    name: "&c&lCrimson Sovereign"
+    material: FISHING_ROD
+    model: 7026
+    luck: 14
+    speed: 75
+    control: 7
+    lore:
+      - "&7Bilah merah penguasa lautan,"
+      - "&7tunduklah di hadapan Nereus."
 
 # Ikan: 45 spesies sesuai model 3D pack (nama disamakan). 5 sampah di bawah.
 # habitat = tampil di lore. price-per-kg = harga jual per kilogram. Berat maksimal 700 kg.
@@ -587,3 +648,8 @@ heavy-carry:
   threshold: 100            # kg, mulai terasa berat
   heavy: 300                # kg, makin lambat
   extreme: 550              # kg, paling berat
+
+
+# Menu /fish menu: semua orang bisa melihat, hanya admin yang bisa mengambil kecuali free-take: true
+menu:
+  free-take: false

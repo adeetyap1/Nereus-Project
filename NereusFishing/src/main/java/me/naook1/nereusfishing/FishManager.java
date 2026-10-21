@@ -110,6 +110,19 @@ public final class FishManager {
                 + rarities.size() + " rarities.");
     }
 
+    public java.util.Collection<Fish> fishList() {
+        return fish.values();
+    }
+
+    public Fish fishById(String id) {
+        return fish.get(id);
+    }
+
+    public Catch catchOf(Fish f, double weight) {
+        double value = Math.round(weight * f.pricePerKg() * plugin.getConfig().getDouble("sell-multiplier", 1.0) * 100.0) / 100.0;
+        return new Catch(f, weight, value);
+    }
+
     public Map<String, Rod> rods() {
         return rods;
     }

@@ -452,6 +452,68 @@
      "allow_offhand": true
     }
    }
+  ],
+  "minecraft:fishing_rod": [
+   {
+    "type": "legacy",
+    "custom_model_data": 7021.0,
+    "bedrock_identifier": "geyser_custom:gmdl_a4cc246",
+    "display_name": "reaper",
+    "bedrock_options": {
+     "icon": "nereus_rodicon_reaper",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7022.0,
+    "bedrock_identifier": "geyser_custom:gmdl_24c7468",
+    "display_name": "phoenix",
+    "bedrock_options": {
+     "icon": "nereus_rodicon_phoenix",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7023.0,
+    "bedrock_identifier": "geyser_custom:gmdl_fed54ed",
+    "display_name": "tidecaller",
+    "bedrock_options": {
+     "icon": "nereus_rodicon_tidecaller",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7024.0,
+    "bedrock_identifier": "geyser_custom:gmdl_804eb29",
+    "display_name": "voidtide",
+    "bedrock_options": {
+     "icon": "nereus_rodicon_voidtide",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7025.0,
+    "bedrock_identifier": "geyser_custom:gmdl_fa7d5d4",
+    "display_name": "orchid",
+    "bedrock_options": {
+     "icon": "nereus_rodicon_orchid",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7026.0,
+    "bedrock_identifier": "geyser_custom:gmdl_29e36e9",
+    "display_name": "sovereign",
+    "bedrock_options": {
+     "icon": "nereus_rodicon_sovereign",
+     "allow_offhand": true
+    }
+   }
   ]
  }
 }

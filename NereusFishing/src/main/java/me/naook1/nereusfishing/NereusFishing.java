@@ -14,6 +14,7 @@ public final class NereusFishing extends JavaPlugin {
     private EconomyHook economy;
     private FishManager fish;
     private FishStore store;
+    private FishGui gui;
 
     @Override
     public void onEnable() {
@@ -27,6 +28,8 @@ public final class NereusFishing extends JavaPlugin {
         store.load();
 
         getServer().getPluginManager().registerEvents(new FishListener(this), this);
+        gui = new FishGui(this);
+        getServer().getPluginManager().registerEvents(gui, this);
         FishCommand cmd = new FishCommand(this);
         getCommand("fish").setExecutor(cmd);
         getCommand("fish").setTabCompleter(cmd);
@@ -87,6 +90,10 @@ public final class NereusFishing extends JavaPlugin {
 
     public FishManager fish() {
         return fish;
+    }
+
+    public FishGui gui() {
+        return gui;
     }
 
     public FishStore store() {

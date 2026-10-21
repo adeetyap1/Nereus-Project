@@ -10,7 +10,7 @@ commands:
   fish:
     description: Menu memancing
     aliases: [mancing, fishing]
-    usage: /<command> rods | top | sell | give <rod> [player] | reload
+    usage: /<command> menu | rods | top | sell | give <rod> [player] | reload
   fishsell:
     description: Jual semua ikan di inventory
     aliases: [jualikan]
