@@ -139,7 +139,7 @@ fish:
     min-weight: 0.05
     max-weight: 0.3
     price-per-kg: 6
-    model: 50016
+    model: 3016
   kembung:
     name: "Ikan Kembung"
     material: COD
@@ -148,7 +148,7 @@ fish:
     min-weight: 0.3
     max-weight: 1.2
     price-per-kg: 10
-    model: 50010
+    model: 3038
   bandeng:
     name: "Ikan Bandeng"
     material: COD
@@ -157,7 +157,7 @@ fish:
     min-weight: 0.5
     max-weight: 2.0
     price-per-kg: 12
-    model: 50004
+    model: 3032
   mujair:
     name: "Ikan Mujair"
     material: COD
@@ -166,7 +166,7 @@ fish:
     min-weight: 0.2
     max-weight: 0.9
     price-per-kg: 9
-    model: 50019
+    model: 3010
   lele:
     name: "Ikan Lele"
     material: COD
@@ -175,7 +175,7 @@ fish:
     min-weight: 0.3
     max-weight: 1.8
     price-per-kg: 11
-    model: 50022
+    model: 3013
   tongkol:
     name: "Ikan Tongkol"
     material: COD
@@ -184,7 +184,7 @@ fish:
     min-weight: 0.8
     max-weight: 3.0
     price-per-kg: 13
-    model: 50001
+    model: 3022
   gurame:
     name: "Ikan Gurame"
     material: COD
@@ -193,7 +193,7 @@ fish:
     min-weight: 0.8
     max-weight: 3.5
     price-per-kg: 26
-    model: 50019
+    model: 3031
   patin:
     name: "Ikan Patin"
     material: COD
@@ -202,7 +202,7 @@ fish:
     min-weight: 1.0
     max-weight: 4.0
     price-per-kg: 22
-    model: 50022
+    model: 3013
   gabus:
     name: "Ikan Gabus"
     material: COD
@@ -211,7 +211,7 @@ fish:
     min-weight: 0.6
     max-weight: 2.8
     price-per-kg: 24
-    model: 50004
+    model: 3017
   nila:
     name: "Nila Merah"
     material: COD
@@ -220,7 +220,7 @@ fish:
     min-weight: 0.8
     max-weight: 3.2
     price-per-kg: 28
-    model: 50010
+    model: 3038
   bawal:
     name: "Ikan Bawal"
     material: COD
@@ -229,7 +229,7 @@ fish:
     min-weight: 0.7
     max-weight: 2.5
     price-per-kg: 30
-    model: 50013
+    model: 3016
   ikan-mas:
     name: "Ikan Mas Koki"
     material: COD
@@ -238,7 +238,7 @@ fish:
     min-weight: 0.1
     max-weight: 0.9
     price-per-kg: 60
-    model: 50007
+    model: 3014
   kakap-merah:
     name: "Kakap Merah"
     material: COD
@@ -247,7 +247,7 @@ fish:
     min-weight: 2
     max-weight: 9
     price-per-kg: 32
-    model: 50031
+    model: 3020
   kerapu:
     name: "Kerapu Macan"
     material: COD
@@ -256,7 +256,7 @@ fish:
     min-weight: 3
     max-weight: 15
     price-per-kg: 40
-    model: 50037
+    model: 3032
   tenggiri:
     name: "Ikan Tenggiri"
     material: COD
@@ -265,7 +265,7 @@ fish:
     min-weight: 3
     max-weight: 14
     price-per-kg: 34
-    model: 50001
+    model: 3009
   pari:
     name: "Pari Manta"
     material: COD
@@ -274,7 +274,7 @@ fish:
     min-weight: 10
     max-weight: 60
     price-per-kg: 25
-    model: 50028
+    model: 3035
   belida:
     name: "Ikan Belida"
     material: COD
@@ -283,7 +283,7 @@ fish:
     min-weight: 2
     max-weight: 10
     price-per-kg: 55
-    model: 50004
+    model: 3027
   arwana:
     name: "Arwana Super Red"
     material: COD
@@ -292,7 +292,7 @@ fish:
     min-weight: 3
     max-weight: 12
     price-per-kg: 160
-    model: 50007
+    model: 3042
   tuna:
     name: "Tuna Sirip Biru"
     material: COD
@@ -301,7 +301,7 @@ fish:
     min-weight: 30
     max-weight: 200
     price-per-kg: 28
-    model: 50001
+    model: 3037
   raja-laut:
     name: "Ikan Raja Laut"
     material: COD
@@ -310,8 +310,7 @@ fish:
     min-weight: 15
     max-weight: 90
     price-per-kg: 70
-    model: 50100
-    stars: false
+    model: 3043
   selar:
     name: "Ikan Selar Kuning"
     material: COD
@@ -320,7 +319,7 @@ fish:
     min-weight: 0.1
     max-weight: 0.6
     price-per-kg: 9
-    model: 50016
+    model: 3016
   layang:
     name: "Ikan Layang"
     material: COD
@@ -329,7 +328,7 @@ fish:
     min-weight: 0.15
     max-weight: 0.8
     price-per-kg: 8
-    model: 50016
+    model: 3038
   lemuru:
     name: "Ikan Lemuru"
     material: COD
@@ -338,7 +337,7 @@ fish:
     min-weight: 0.05
     max-weight: 0.4
     price-per-kg: 6
-    model: 50016
+    model: 3016
   julung-julung:
     name: "Julung-julung"
     material: COD
@@ -347,7 +346,7 @@ fish:
     min-weight: 0.1
     max-weight: 0.5
     price-per-kg: 8
-    model: 50004
+    model: 3042
   belanak:
     name: "Ikan Belanak"
     material: COD
@@ -356,7 +355,7 @@ fish:
     min-weight: 0.3
     max-weight: 2.0
     price-per-kg: 10
-    model: 50013
+    model: 3038
   pepetek:
     name: "Ikan Pepetek"
     material: COD
@@ -365,7 +364,7 @@ fish:
     min-weight: 0.05
     max-weight: 0.3
     price-per-kg: 5
-    model: 50028
+    model: 3010
   tembang:
     name: "Ikan Tembang"
     material: COD
@@ -374,7 +373,7 @@ fish:
     min-weight: 0.1
     max-weight: 0.7
     price-per-kg: 7
-    model: 50016
+    model: 3016
   sepat-siam:
     name: "Ikan Sepat Siam"
     material: COD
@@ -383,7 +382,7 @@ fish:
     min-weight: 0.05
     max-weight: 0.4
     price-per-kg: 8
-    model: 50007
+    model: 3011
   betok:
     name: "Ikan Betok"
     material: COD
@@ -392,7 +391,7 @@ fish:
     min-weight: 0.05
     max-weight: 0.35
     price-per-kg: 9
-    model: 50010
+    model: 3012
   wader:
     name: "Ikan Wader Pari"
     material: COD
@@ -401,7 +400,7 @@ fish:
     min-weight: 0.02
     max-weight: 0.2
     price-per-kg: 6
-    model: 50019
+    model: 3014
   tawes:
     name: "Ikan Tawes"
     material: COD
@@ -410,7 +409,7 @@ fish:
     min-weight: 0.3
     max-weight: 1.8
     price-per-kg: 11
-    model: 50019
+    model: 3038
   seluang:
     name: "Ikan Seluang"
     material: COD
@@ -419,7 +418,7 @@ fish:
     min-weight: 0.02
     max-weight: 0.15
     price-per-kg: 7
-    model: 50016
+    model: 3011
   bilih:
     name: "Ikan Bilih Singkarak"
     material: COD
@@ -428,7 +427,7 @@ fish:
     min-weight: 0.02
     max-weight: 0.12
     price-per-kg: 14
-    model: 50016
+    model: 3012
   keting:
     name: "Ikan Keting"
     material: COD
@@ -437,7 +436,7 @@ fish:
     min-weight: 0.1
     max-weight: 0.6
     price-per-kg: 12
-    model: 50022
+    model: 3013
   baronang:
     name: "Ikan Baronang"
     material: COD
@@ -446,7 +445,7 @@ fish:
     min-weight: 0.5
     max-weight: 2.5
     price-per-kg: 26
-    model: 50010
+    model: 3031
   kuwe:
     name: "Ikan Kuwe"
     material: COD
@@ -455,7 +454,7 @@ fish:
     min-weight: 1.0
     max-weight: 6
     price-per-kg: 30
-    model: 50001
+    model: 3022
   cakalang:
     name: "Ikan Cakalang"
     material: COD
@@ -464,7 +463,7 @@ fish:
     min-weight: 2
     max-weight: 10
     price-per-kg: 20
-    model: 50001
+    model: 3009
   kakap-putih:
     name: "Kakap Putih"
     material: COD
@@ -473,7 +472,7 @@ fish:
     min-weight: 2
     max-weight: 15
     price-per-kg: 32
-    model: 50013
+    model: 3032
   bawal-hitam:
     name: "Bawal Hitam"
     material: COD
@@ -482,7 +481,7 @@ fish:
     min-weight: 0.8
     max-weight: 3
     price-per-kg: 34
-    model: 50037
+    model: 3030
   ikan-terbang:
     name: "Ikan Terbang"
     material: COD
@@ -491,7 +490,7 @@ fish:
     min-weight: 0.2
     max-weight: 0.7
     price-per-kg: 40
-    model: 50043
+    model: 3024
   lepu-ayam:
     name: "Lepu Ayam"
     material: COD
@@ -500,7 +499,7 @@ fish:
     min-weight: 0.2
     max-weight: 1.2
     price-per-kg: 75
-    model: 50031
+    model: 3020
   sidat:
     name: "Ikan Sidat"
     material: COD
@@ -509,7 +508,7 @@ fish:
     min-weight: 0.5
     max-weight: 4
     price-per-kg: 55
-    model: 50022
+    model: 3007
   toman:
     name: "Ikan Toman"
     material: COD
@@ -518,7 +517,7 @@ fish:
     min-weight: 1
     max-weight: 12
     price-per-kg: 36
-    model: 50004
+    model: 3009
   jelawat:
     name: "Ikan Jelawat"
     material: COD
@@ -527,7 +526,7 @@ fish:
     min-weight: 0.8
     max-weight: 5
     price-per-kg: 30
-    model: 50019
+    model: 3030
   baung:
     name: "Ikan Baung"
     material: COD
@@ -536,7 +535,7 @@ fish:
     min-weight: 0.5
     max-weight: 4
     price-per-kg: 38
-    model: 50022
+    model: 3013
   hampala:
     name: "Ikan Hampala"
     material: COD
@@ -545,7 +544,7 @@ fish:
     min-weight: 0.8
     max-weight: 6
     price-per-kg: 44
-    model: 50010
+    model: 3030
   parang-parang:
     name: "Ikan Parang-parang"
     material: COD
@@ -554,7 +553,7 @@ fish:
     min-weight: 1
     max-weight: 6
     price-per-kg: 33
-    model: 50013
+    model: 3027
   boesemani:
     name: "Rainbow Boesemani"
     material: COD
@@ -563,7 +562,7 @@ fish:
     min-weight: 0.05
     max-weight: 0.4
     price-per-kg: 150
-    model: 50007
+    model: 3011
   cupang-hias:
     name: "Cupang Hias"
     material: COD
@@ -572,7 +571,7 @@ fish:
     min-weight: 0.01
     max-weight: 0.08
     price-per-kg: 400
-    model: 50007
+    model: 3012
   kakatua:
     name: "Ikan Kakatua"
     material: COD
@@ -581,8 +580,7 @@ fish:
     min-weight: 1
     max-weight: 8
     price-per-kg: 42
-    model: 50100
-    stars: false
+    model: 3024
   napoleon:
     name: "Ikan Napoleon"
     material: COD
@@ -591,7 +589,7 @@ fish:
     min-weight: 10
     max-weight: 120
     price-per-kg: 55
-    model: 50040
+    model: 3023
   todak:
     name: "Ikan Todak"
     material: COD
@@ -600,7 +598,7 @@ fish:
     min-weight: 8
     max-weight: 60
     price-per-kg: 48
-    model: 50004
+    model: 3037
   marlin-biru:
     name: "Marlin Biru"
     material: COD
@@ -609,7 +607,7 @@ fish:
     min-weight: 40
     max-weight: 450
     price-per-kg: 30
-    model: 50001
+    model: 3037
   layur-raksasa:
     name: "Layur Raksasa"
     material: COD
@@ -618,7 +616,7 @@ fish:
     min-weight: 3
     max-weight: 25
     price-per-kg: 60
-    model: 50037
+    model: 3027
   pari-elang:
     name: "Pari Elang"
     material: COD
@@ -627,7 +625,7 @@ fish:
     min-weight: 20
     max-weight: 180
     price-per-kg: 28
-    model: 50028
+    model: 3006
   hiu-sirip-putih:
     name: "Hiu Sirip Putih"
     material: COD
@@ -636,7 +634,7 @@ fish:
     min-weight: 25
     max-weight: 120
     price-per-kg: 38
-    model: 50034
+    model: 3033
   hiu-martil:
     name: "Hiu Martil"
     material: COD
@@ -645,7 +643,7 @@ fish:
     min-weight: 50
     max-weight: 300
     price-per-kg: 35
-    model: 50034
+    model: 3005
   tapah:
     name: "Ikan Tapah"
     material: COD
@@ -654,7 +652,7 @@ fish:
     min-weight: 8
     max-weight: 70
     price-per-kg: 40
-    model: 50022
+    model: 3013
   semah-emas:
     name: "Semah Emas"
     material: COD
@@ -663,7 +661,7 @@ fish:
     min-weight: 4
     max-weight: 35
     price-per-kg: 85
-    model: 50019
+    model: 3022
   angler:
     name: "Ikan Pancing Laut Dalam"
     material: COD
@@ -672,7 +670,7 @@ fish:
     min-weight: 3
     max-weight: 30
     price-per-kg: 70
-    model: 50025
+    model: 3008
   moray:
     name: "Belut Moray Raksasa"
     material: COD
@@ -681,7 +679,7 @@ fish:
     min-weight: 5
     max-weight: 40
     price-per-kg: 52
-    model: 50025
+    model: 3017
   hiu-zebra:
     name: "Hiu Macan Tutul"
     material: COD
@@ -690,7 +688,7 @@ fish:
     min-weight: 20
     max-weight: 140
     price-per-kg: 44
-    model: 50034
+    model: 3045
   hiu-paus:
     name: "Hiu Paus"
     material: COD
@@ -699,7 +697,7 @@ fish:
     min-weight: 300
     max-weight: 700
     price-per-kg: 6
-    model: 50034
+    model: 3044
   ikan-bulan:
     name: "Ikan Bulan Mola-mola"
     material: COD
@@ -708,7 +706,7 @@ fish:
     min-weight: 100
     max-weight: 600
     price-per-kg: 9
-    model: 50028
+    model: 3036
   arwana-emas:
     name: "Arwana Emas Kalimantan"
     material: COD
@@ -717,7 +715,7 @@ fish:
     min-weight: 5
     max-weight: 25
     price-per-kg: 320
-    model: 50007
+    model: 3027
   pari-raksasa:
     name: "Pari Air Tawar Raksasa"
     material: COD
@@ -726,7 +724,7 @@ fish:
     min-weight: 100
     max-weight: 600
     price-per-kg: 22
-    model: 50040
+    model: 3023
   megamouth:
     name: "Hiu Megamouth"
     material: COD
@@ -735,8 +733,7 @@ fish:
     min-weight: 150
     max-weight: 550
     price-per-kg: 14
-    model: 50000
-    stars: false
+    model: 3004
   naga-nusantara:
     name: "Naga Nusantara"
     material: COD
@@ -745,8 +742,7 @@ fish:
     min-weight: 80
     max-weight: 400
     price-per-kg: 40
-    model: 50100
-    stars: false
+    model: 3007
   koi-nereus:
     name: "Koi Nereus"
     material: COD
@@ -755,8 +751,7 @@ fish:
     min-weight: 5
     max-weight: 30
     price-per-kg: 280
-    model: 50100
-    stars: false
+    model: 3014
   leviathan-kecil:
     name: "Anak Leviathan"
     material: COD
@@ -765,7 +760,7 @@ fish:
     min-weight: 80
     max-weight: 250
     price-per-kg: 30
-    model: 50025
+    model: 3003
   sandal:
     name: "Sandal Butut"
     material: LEATHER

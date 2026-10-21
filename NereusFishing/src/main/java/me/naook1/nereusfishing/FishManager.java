@@ -87,7 +87,7 @@ public final class FishManager {
                 double min = s.getDouble("min-weight", 0.5);
                 double max = Math.max(min, s.getDouble("max-weight", min));
                 fish.put(id, new Fish(id, s.getString("name", id), mat, rarity, min, max,
-                        s.getDouble("price-per-kg", 1), s.getInt("model", 0), s.getString("habitat", "laut"), s.getBoolean("stars", true)));
+                        s.getDouble("price-per-kg", 1), s.getInt("model", 0), s.getString("habitat", "laut"), s.getBoolean("stars", false)));
             }
         }
         ConfigurationSection ds = cfg.getConfigurationSection("rods");
