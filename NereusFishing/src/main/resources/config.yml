@@ -653,3 +653,14 @@ heavy-carry:
 # Menu /fish menu: semua orang bisa melihat, hanya admin yang bisa mengambil kecuali free-take: true
 menu:
   free-take: false
+
+# Upgrade joran Nereus awal: /fish upgrade atau tombol Upgrade di /fish menu (pegang joran di tangan utama).
+upgrade:
+  enabled: true
+  chain:
+    wood: {to: iron, price: 5000}
+    iron: {to: gold, price: 20000}
+    gold: {to: leviathan, price: 75000}
+    leviathan: {to: nereid, price: 250000}
+    nereid: {to: trident, price: 750000}
+    trident: {to: throne, price: 2000000}

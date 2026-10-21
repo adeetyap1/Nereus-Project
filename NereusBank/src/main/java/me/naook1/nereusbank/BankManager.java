@@ -371,6 +371,8 @@ public final class BankManager {
         long interest = Math.round(amount * t.loanRate() / 100.0);
         boolean first = a.loan <= 0;
         a.loan += amount + interest;
+        a.loanInterest += interest;
+        a.loanAt = System.currentTimeMillis();
         if (first) {
             a.loanDue = System.currentTimeMillis() + plugin.getConfig().getInt("loan.due-days", 30) * DAY;
             a.loanPenaltyAt = 0;
@@ -387,6 +389,14 @@ public final class BankManager {
         if (amount <= 0) {
             return Result.fail("invalid-amount");
         }
+        // grace window: a loan repaid soon after borrowing costs no interest
+        long graceMs = plugin.getConfig().getLong("loan.grace-minutes", 60) * 60_000L;
+        if (a.loanInterest > 0 && System.currentTimeMillis() - a.loanAt <= graceMs) {
+            long waive = Math.min(a.loanInterest, a.loan);
+            a.loan -= waive;
+            a.loanInterest = 0;
+            log(a, "LOAN", 0, "grace");
+        }
         long pay = Math.min(amount, a.loan);
         if (a.balance < pay) {
             return Result.fail("not-enough-bank");
@@ -397,6 +407,7 @@ public final class BankManager {
             a.loan = 0;
             a.loanDue = 0;
             a.loanPenaltyAt = 0;
+            a.loanInterest = 0;
         }
         log(a, "REPAY", pay, "");
         return Result.ok();
@@ -518,6 +529,8 @@ public final class BankManager {
                 a.loan = c.getLong("loan");
                 a.loanDue = c.getLong("loan-due");
                 a.loanPenaltyAt = c.getLong("loan-penalty-at");
+                a.loanInterest = c.getLong("loan-interest");
+                a.loanAt = c.getLong("loan-at");
                 a.dayStamp = c.getLong("day-stamp");
                 a.dailyOut = c.getLong("daily-out");
                 for (Map<?, ?> m : c.getMapList("deposits")) {
@@ -560,6 +573,8 @@ public final class BankManager {
             y.set(p + ".loan", a.loan);
             y.set(p + ".loan-due", a.loanDue);
             y.set(p + ".loan-penalty-at", a.loanPenaltyAt);
+            y.set(p + ".loan-interest", a.loanInterest);
+            y.set(p + ".loan-at", a.loanAt);
             y.set(p + ".day-stamp", a.dayStamp);
             y.set(p + ".daily-out", a.dailyOut);
             List<Map<String, Object>> ds = new ArrayList<>();

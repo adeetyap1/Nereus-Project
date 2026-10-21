@@ -6,7 +6,7 @@
 
     <groupId>me.naook1</groupId>
     <artifactId>NereusBank</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
     <name>NereusBank</name>
     <description>Bank with accounts, cards, loans and interest by naook1/adityap</description>

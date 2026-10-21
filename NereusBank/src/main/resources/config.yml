@@ -91,6 +91,7 @@ loan:
   due-days: 30
   overdue-daily-penalty: 1   # % dari sisa tagihan per hari setelah jatuh tempo
   min-amount: 1000
+  grace-minutes: 60          # dilunasi dalam X menit setelah pinjam = bunga dibebaskan
 
 transfer:
   min-amount: 100

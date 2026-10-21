@@ -25,6 +25,8 @@ public final class Account {
     public long loan;          // amount still owed (principal + interest)
     public long loanDue;       // epoch millis, 0 = no loan
     public long loanPenaltyAt; // last time an overdue penalty was applied
+    public long loanInterest;  // interest added by the latest borrow (waived if repaid inside the grace window)
+    public long loanAt;        // time of the latest borrow
 
     public long dayStamp;      // epoch day of dailyOut
     public long dailyOut;

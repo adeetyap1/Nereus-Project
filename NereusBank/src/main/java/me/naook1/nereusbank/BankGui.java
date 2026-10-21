@@ -599,10 +599,16 @@ public final class BankGui {
         }
         l.add("&7Sisa bisa dipinjam: &a" + Fmt.money(Math.max(0, t.loanLimit() - a.loan)));
         put(h, 13, icon(M_LOANINFO, "&c&lLoan", l.toArray(new String[0])), null);
-        put(h, 29, icon(M_BORROW, "&a&lBorrow", "&7Pinjam uang ke saldo bank."),
+        put(h, 29, icon(M_BORROW, "&a&lBorrow", "&7Pinjam uang ke saldo bank.",
+                "&7Bunga &e" + Fmt.pct(t.loanRate()) + " &7langsung ditambahkan,",
+                "&7tapi &adibebaskan &7jika lunas dalam &f" + plugin.getConfig().getInt("loan.grace-minutes", 60) + " menit&7."),
                 c -> later(() -> openPicker(p, Mode.BORROW, null, 0, 0)));
-        put(h, 33, icon(M_REPAY, "&e&lRepay", "&7Bayar tagihan dari saldo bank."),
-                c -> later(() -> openPicker(p, Mode.REPAY, null, 0, 0)));
+        if (a.loan > 0) {
+            put(h, 33, icon(M_REPAY, "&e&lRepay", "&7Bayar tagihan dari saldo bank."),
+                    c -> later(() -> openPicker(p, Mode.REPAY, null, 0, 0)));
+        } else {
+            put(h, 33, icon(M_REPAY, "&8&lRepay", "&7Kamu tidak punya pinjaman."), null);
+        }
         backAndClose(p, h);
         finish(h);
     }

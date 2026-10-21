@@ -42,6 +42,76 @@ public final class FishGui implements Listener {
         }
     }
 
+    /** Upgrades the Nereus rod in the main hand to the next tier of the chain (wood -> ... -> throne). */
+    public void upgrade(Player p) {
+        FishManager fm = plugin.fish();
+        ItemStack hand = p.getInventory().getItemInMainHand();
+        FishManager.Rod cur = fm.rodOf(hand);
+        var cfg = plugin.getConfig();
+        if (!cfg.getBoolean("upgrade.enabled", true) || cur == null) {
+            p.sendMessage(Text.parse("&cPegang joran Nereus (Driftwood sampai Throne) di tangan utama."));
+            return;
+        }
+        var sec = cfg.getConfigurationSection("upgrade.chain." + cur.id());
+        if (sec == null) {
+            p.sendMessage(Text.parse("&eJoran ini sudah tidak bisa di-upgrade lagi."));
+            return;
+        }
+        FishManager.Rod next = fm.rod(sec.getString("to", ""));
+        long price = sec.getLong("price", 0);
+        if (next == null) {
+            p.sendMessage(Text.parse("&cTujuan upgrade tidak valid di config."));
+            return;
+        }
+        if (!plugin.economy().ready()) {
+            p.sendMessage(Text.parse("&cEkonomi (Vault) tidak tersedia."));
+            return;
+        }
+        if (price > 0 && !plugin.economy().has(p, price)) {
+            p.sendMessage(Text.parse("&cUang tidak cukup. Biaya upgrade: &e$" + FishManager.fmt(price)));
+            return;
+        }
+        if (price > 0 && !plugin.economy().withdraw(p, price)) {
+            p.sendMessage(Text.parse("&cGagal mengambil uang."));
+            return;
+        }
+        p.getInventory().setItemInMainHand(fm.createRod(next));
+        p.getWorld().spawnParticle(org.bukkit.Particle.TOTEM_OF_UNDYING, p.getLocation().add(0, 1.2, 0), 40, 0.4, 0.6, 0.4, 0.2);
+        p.playSound(p.getLocation(), org.bukkit.Sound.ENTITY_PLAYER_LEVELUP, 1f, 1.1f);
+        p.sendMessage(Text.parse("&aJoran di-upgrade: " + fm.sc(cur.name()) + " &7→ " + fm.sc(next.name())
+                + (price > 0 ? " &8(-$" + FishManager.fmt(price) + ")" : "")));
+    }
+
+    private ItemStack upgradeButton(Player p) {
+        FishManager fm = plugin.fish();
+        FishManager.Rod cur = fm.rodOf(p.getInventory().getItemInMainHand());
+        var sec = cur == null ? null : plugin.getConfig().getConfigurationSection("upgrade.chain." + cur.id());
+        FishManager.Rod next = sec == null ? null : fm.rod(sec.getString("to", ""));
+        List<String> lore = new ArrayList<>();
+        if (cur == null) {
+            lore.add("&7Pegang joran Nereus (Driftwood sampai Throne)");
+            lore.add("&7di tangan utama, lalu klik di sini.");
+        } else if (next == null) {
+            lore.add("&7Joran: " + fm.sc(cur.name()));
+            lore.add("&6Sudah level tertinggi!");
+        } else {
+            lore.add("&7Joran: " + fm.sc(cur.name()));
+            lore.add("&7Menjadi: " + fm.sc(next.name()));
+            lore.add("&7Biaya: &e$" + FishManager.fmt(sec.getLong("price", 0)));
+            lore.add("");
+            lore.add("&a▶ Klik untuk upgrade");
+        }
+        ItemStack it = named(Material.ANVIL, "&6&lUpgrade Joran");
+        ItemMeta meta = it.getItemMeta();
+        List<Component> l = new ArrayList<>();
+        for (String x : lore) {
+            l.add(Text.item(x));
+        }
+        meta.lore(l);
+        it.setItemMeta(meta);
+        return it;
+    }
+
     public boolean canTake(Player p) {
         return p.hasPermission("fishing.admin") || plugin.getConfig().getBoolean("menu.free-take", false);
     }
@@ -90,6 +160,7 @@ public final class FishGui implements Listener {
         if (page > 0) {
             inv.setItem(48, named(Material.ARROW, "&e« Sebelumnya"));
         }
+        inv.setItem(47, upgradeButton(p));
         inv.setItem(49, named(Material.BARRIER, "&cTutup"));
         if (page < pages - 1) {
             inv.setItem(50, named(Material.ARROW, "&eSelanjutnya »"));
@@ -133,6 +204,10 @@ public final class FishGui implements Listener {
         switch (slot) {
             case 45 -> open(p, true, 0);
             case 46 -> open(p, false, 0);
+            case 47 -> {
+                upgrade(p);
+                open(p, h.rods, h.page);
+            }
             case 48 -> open(p, h.rods, h.page - 1);
             case 50 -> open(p, h.rods, h.page + 1);
             case 49 -> p.closeInventory();
