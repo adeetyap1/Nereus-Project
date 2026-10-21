@@ -126,568 +126,360 @@ rods:
       - "&7Takhta sang penguasa samudra."
       - "&8Tier: &6Nereus &8(tertinggi)"
 
-# Ikan: 70 ikan Indonesia (air tawar / laut / laut dalam) + 5 sampah.
+# Ikan: 45 spesies sesuai model 3D pack (nama disamakan). 5 sampah di bawah.
 # habitat = tampil di lore. price-per-kg = harga jual per kilogram. Berat maksimal 700 kg.
-# model = nomor dasar custom_model_data. Ukuran item otomatis mengikuti berat (7 tingkat, resource pack):
-#   <0.25 | <1 | <5 | <25 | <100 | <300 | 300+ kg  -> makin berat makin besar.
+# model = custom_model_data (satu model per spesies; Java & Bedrock).
 fish:
-  teri:
-    name: "Ikan Teri"
+  dori:
+    name: "Ikan Dori Biru"
     material: COD
     rarity: COMMON
     habitat: laut
     min-weight: 0.05
-    max-weight: 0.3
-    price-per-kg: 6
+    max-weight: 0.5
+    price-per-kg: 8
     model: 3016
-  kembung:
-    name: "Ikan Kembung"
+  tropis:
+    name: "Ikan Tropis"
     material: COD
     rarity: COMMON
     habitat: laut
-    min-weight: 0.3
-    max-weight: 1.2
-    price-per-kg: 10
+    min-weight: 0.1
+    max-weight: 0.8
+    price-per-kg: 9
     model: 3038
-  bandeng:
-    name: "Ikan Bandeng"
+  badut:
+    name: "Ikan Badut"
     material: COD
     rarity: COMMON
     habitat: laut
-    min-weight: 0.5
-    max-weight: 2.0
+    min-weight: 0.02
+    max-weight: 0.3
     price-per-kg: 12
-    model: 3032
-  mujair:
-    name: "Ikan Mujair"
+    model: 3014
+  cupang-merah:
+    name: "Ikan Cupang Merah"
     material: COD
     rarity: COMMON
     habitat: tawar
-    min-weight: 0.2
-    max-weight: 0.9
-    price-per-kg: 9
+    min-weight: 0.01
+    max-weight: 0.1
+    price-per-kg: 30
     model: 3010
+  cupang-biru:
+    name: "Ikan Cupang Biru"
+    material: COD
+    rarity: COMMON
+    habitat: tawar
+    min-weight: 0.01
+    max-weight: 0.1
+    price-per-kg: 30
+    model: 3011
   lele:
     name: "Ikan Lele"
     material: COD
     rarity: COMMON
     habitat: tawar
     min-weight: 0.3
-    max-weight: 1.8
-    price-per-kg: 11
-    model: 3013
-  tongkol:
-    name: "Ikan Tongkol"
-    material: COD
-    rarity: COMMON
-    habitat: laut
-    min-weight: 0.8
-    max-weight: 3.0
-    price-per-kg: 13
-    model: 3022
-  gurame:
-    name: "Ikan Gurame"
-    material: COD
-    rarity: RARE
-    habitat: tawar
-    min-weight: 0.8
-    max-weight: 3.5
-    price-per-kg: 26
-    model: 3031
-  patin:
-    name: "Ikan Patin"
-    material: COD
-    rarity: RARE
-    habitat: tawar
-    min-weight: 1.0
-    max-weight: 4.0
-    price-per-kg: 22
-    model: 3013
-  gabus:
-    name: "Ikan Gabus"
-    material: COD
-    rarity: RARE
-    habitat: tawar
-    min-weight: 0.6
-    max-weight: 2.8
-    price-per-kg: 24
-    model: 3017
-  nila:
-    name: "Nila Merah"
-    material: COD
-    rarity: RARE
-    habitat: tawar
-    min-weight: 0.8
-    max-weight: 3.2
-    price-per-kg: 28
-    model: 3038
-  bawal:
-    name: "Ikan Bawal"
-    material: COD
-    rarity: RARE
-    habitat: laut
-    min-weight: 0.7
-    max-weight: 2.5
-    price-per-kg: 30
-    model: 3016
-  ikan-mas:
-    name: "Ikan Mas Koki"
-    material: COD
-    rarity: RARE
-    habitat: tawar
-    min-weight: 0.1
-    max-weight: 0.9
-    price-per-kg: 60
-    model: 3014
-  kakap-merah:
-    name: "Kakap Merah"
-    material: COD
-    rarity: EPIC
-    habitat: laut
-    min-weight: 2
-    max-weight: 9
-    price-per-kg: 32
-    model: 3020
-  kerapu:
-    name: "Kerapu Macan"
-    material: COD
-    rarity: EPIC
-    habitat: laut
-    min-weight: 3
-    max-weight: 15
-    price-per-kg: 40
-    model: 3032
-  tenggiri:
-    name: "Ikan Tenggiri"
-    material: COD
-    rarity: EPIC
-    habitat: laut
-    min-weight: 3
-    max-weight: 14
-    price-per-kg: 34
-    model: 3009
-  pari:
-    name: "Pari Manta"
-    material: COD
-    rarity: EPIC
-    habitat: laut
-    min-weight: 10
-    max-weight: 60
-    price-per-kg: 25
-    model: 3035
-  belida:
-    name: "Ikan Belida"
-    material: COD
-    rarity: EPIC
-    habitat: tawar
-    min-weight: 2
-    max-weight: 10
-    price-per-kg: 55
-    model: 3027
-  arwana:
-    name: "Arwana Super Red"
-    material: COD
-    rarity: LEGENDARY
-    habitat: tawar
-    min-weight: 3
-    max-weight: 12
-    price-per-kg: 160
-    model: 3042
-  tuna:
-    name: "Tuna Sirip Biru"
-    material: COD
-    rarity: LEGENDARY
-    habitat: laut
-    min-weight: 30
-    max-weight: 200
-    price-per-kg: 28
-    model: 3037
-  raja-laut:
-    name: "Ikan Raja Laut"
-    material: COD
-    rarity: LEGENDARY
-    habitat: dalam
-    min-weight: 15
-    max-weight: 90
-    price-per-kg: 70
-    model: 3043
-  selar:
-    name: "Ikan Selar Kuning"
-    material: COD
-    rarity: COMMON
-    habitat: laut
-    min-weight: 0.1
-    max-weight: 0.6
-    price-per-kg: 9
-    model: 3016
-  layang:
-    name: "Ikan Layang"
-    material: COD
-    rarity: COMMON
-    habitat: laut
-    min-weight: 0.15
-    max-weight: 0.8
-    price-per-kg: 8
-    model: 3038
-  lemuru:
-    name: "Ikan Lemuru"
-    material: COD
-    rarity: COMMON
-    habitat: laut
-    min-weight: 0.05
-    max-weight: 0.4
-    price-per-kg: 6
-    model: 3016
-  julung-julung:
-    name: "Julung-julung"
-    material: COD
-    rarity: COMMON
-    habitat: laut
-    min-weight: 0.1
-    max-weight: 0.5
-    price-per-kg: 8
-    model: 3042
-  belanak:
-    name: "Ikan Belanak"
-    material: COD
-    rarity: COMMON
-    habitat: laut
-    min-weight: 0.3
-    max-weight: 2.0
-    price-per-kg: 10
-    model: 3038
-  pepetek:
-    name: "Ikan Pepetek"
-    material: COD
-    rarity: COMMON
-    habitat: laut
-    min-weight: 0.05
-    max-weight: 0.3
-    price-per-kg: 5
-    model: 3010
-  tembang:
-    name: "Ikan Tembang"
-    material: COD
-    rarity: COMMON
-    habitat: laut
-    min-weight: 0.1
-    max-weight: 0.7
-    price-per-kg: 7
-    model: 3016
-  sepat-siam:
-    name: "Ikan Sepat Siam"
-    material: COD
-    rarity: COMMON
-    habitat: tawar
-    min-weight: 0.05
-    max-weight: 0.4
-    price-per-kg: 8
-    model: 3011
-  betok:
-    name: "Ikan Betok"
-    material: COD
-    rarity: COMMON
-    habitat: tawar
-    min-weight: 0.05
-    max-weight: 0.35
-    price-per-kg: 9
-    model: 3012
-  wader:
-    name: "Ikan Wader Pari"
-    material: COD
-    rarity: COMMON
-    habitat: tawar
-    min-weight: 0.02
-    max-weight: 0.2
-    price-per-kg: 6
-    model: 3014
-  tawes:
-    name: "Ikan Tawes"
-    material: COD
-    rarity: COMMON
-    habitat: tawar
-    min-weight: 0.3
-    max-weight: 1.8
-    price-per-kg: 11
-    model: 3038
-  seluang:
-    name: "Ikan Seluang"
-    material: COD
-    rarity: COMMON
-    habitat: tawar
-    min-weight: 0.02
-    max-weight: 0.15
-    price-per-kg: 7
-    model: 3011
-  bilih:
-    name: "Ikan Bilih Singkarak"
-    material: COD
-    rarity: COMMON
-    habitat: tawar
-    min-weight: 0.02
-    max-weight: 0.12
-    price-per-kg: 14
-    model: 3012
-  keting:
-    name: "Ikan Keting"
-    material: COD
-    rarity: COMMON
-    habitat: tawar
-    min-weight: 0.1
-    max-weight: 0.6
-    price-per-kg: 12
-    model: 3013
-  baronang:
-    name: "Ikan Baronang"
-    material: COD
-    rarity: RARE
-    habitat: laut
-    min-weight: 0.5
-    max-weight: 2.5
-    price-per-kg: 26
-    model: 3031
-  kuwe:
-    name: "Ikan Kuwe"
-    material: COD
-    rarity: RARE
-    habitat: laut
-    min-weight: 1.0
-    max-weight: 6
-    price-per-kg: 30
-    model: 3022
-  cakalang:
-    name: "Ikan Cakalang"
-    material: COD
-    rarity: RARE
-    habitat: laut
-    min-weight: 2
-    max-weight: 10
-    price-per-kg: 20
-    model: 3009
-  kakap-putih:
-    name: "Kakap Putih"
-    material: COD
-    rarity: RARE
-    habitat: laut
-    min-weight: 2
-    max-weight: 15
-    price-per-kg: 32
-    model: 3032
-  bawal-hitam:
-    name: "Bawal Hitam"
-    material: COD
-    rarity: RARE
-    habitat: laut
-    min-weight: 0.8
     max-weight: 3
-    price-per-kg: 34
-    model: 3030
-  ikan-terbang:
-    name: "Ikan Terbang"
-    material: COD
-    rarity: RARE
-    habitat: laut
-    min-weight: 0.2
-    max-weight: 0.7
-    price-per-kg: 40
-    model: 3024
-  lepu-ayam:
-    name: "Lepu Ayam"
-    material: COD
-    rarity: RARE
-    habitat: laut
-    min-weight: 0.2
-    max-weight: 1.2
-    price-per-kg: 75
-    model: 3020
-  sidat:
-    name: "Ikan Sidat"
-    material: COD
-    rarity: RARE
-    habitat: tawar
-    min-weight: 0.5
-    max-weight: 4
-    price-per-kg: 55
-    model: 3007
-  toman:
-    name: "Ikan Toman"
-    material: COD
-    rarity: RARE
-    habitat: tawar
-    min-weight: 1
-    max-weight: 12
-    price-per-kg: 36
-    model: 3009
-  jelawat:
-    name: "Ikan Jelawat"
-    material: COD
-    rarity: RARE
-    habitat: tawar
-    min-weight: 0.8
-    max-weight: 5
-    price-per-kg: 30
-    model: 3030
-  baung:
-    name: "Ikan Baung"
-    material: COD
-    rarity: RARE
-    habitat: tawar
-    min-weight: 0.5
-    max-weight: 4
-    price-per-kg: 38
+    price-per-kg: 10
     model: 3013
-  hampala:
-    name: "Ikan Hampala"
+  buntal:
+    name: "Ikan Buntal"
     material: COD
-    rarity: RARE
-    habitat: tawar
-    min-weight: 0.8
-    max-weight: 6
-    price-per-kg: 44
-    model: 3030
-  parang-parang:
-    name: "Ikan Parang-parang"
-    material: COD
-    rarity: RARE
+    rarity: COMMON
     habitat: laut
-    min-weight: 1
-    max-weight: 6
-    price-per-kg: 33
-    model: 3027
-  boesemani:
-    name: "Rainbow Boesemani"
+    min-weight: 0.2
+    max-weight: 2
+    price-per-kg: 14
+    model: 3031
+  kepiting:
+    name: "Kepiting"
     material: COD
-    rarity: RARE
-    habitat: tawar
-    min-weight: 0.05
-    max-weight: 0.4
-    price-per-kg: 150
-    model: 3011
-  cupang-hias:
-    name: "Cupang Hias"
+    rarity: COMMON
+    habitat: laut
+    min-weight: 0.2
+    max-weight: 3
+    price-per-kg: 16
+    model: 3015
+  cupang-ungu:
+    name: "Ikan Cupang Ungu"
     material: COD
     rarity: RARE
     habitat: tawar
     min-weight: 0.01
-    max-weight: 0.08
-    price-per-kg: 400
+    max-weight: 0.1
+    price-per-kg: 60
     model: 3012
-  kakatua:
-    name: "Ikan Kakatua"
+  dorado:
+    name: "Ikan Dorado"
+    material: COD
+    rarity: RARE
+    habitat: laut
+    min-weight: 1
+    max-weight: 12
+    price-per-kg: 30
+    model: 3022
+  kakap:
+    name: "Ikan Kakap"
+    material: COD
+    rarity: RARE
+    habitat: laut
+    min-weight: 1
+    max-weight: 15
+    price-per-kg: 28
+    model: 3032
+  piranha:
+    name: "Ikan Piranha"
+    material: COD
+    rarity: RARE
+    habitat: tawar
+    min-weight: 0.3
+    max-weight: 2.5
+    price-per-kg: 40
+    model: 3030
+  singa:
+    name: "Ikan Singa"
+    material: COD
+    rarity: RARE
+    habitat: laut
+    min-weight: 0.3
+    max-weight: 1.5
+    price-per-kg: 55
+    model: 3020
+  barakuda:
+    name: "Ikan Barakuda"
+    material: COD
+    rarity: RARE
+    habitat: laut
+    min-weight: 3
+    max-weight: 30
+    price-per-kg: 32
+    model: 3009
+  belut-listrik:
+    name: "Belut Listrik"
+    material: COD
+    rarity: RARE
+    habitat: tawar
+    min-weight: 2
+    max-weight: 20
+    price-per-kg: 45
+    model: 3017
+  moray:
+    name: "Belut Moray"
+    material: COD
+    rarity: RARE
+    habitat: laut
+    min-weight: 3
+    max-weight: 30
+    price-per-kg: 38
+    model: 3007
+  ular-laut:
+    name: "Ular Laut"
+    material: COD
+    rarity: RARE
+    habitat: laut
+    min-weight: 0.5
+    max-weight: 3
+    price-per-kg: 50
+    model: 3042
+  udang-mantis:
+    name: "Udang Mantis"
+    material: COD
+    rarity: RARE
+    habitat: laut
+    min-weight: 0.1
+    max-weight: 0.6
+    price-per-kg: 120
+    model: 3024
+  lobster:
+    name: "Lobster"
     material: COD
     rarity: RARE
     habitat: laut
     min-weight: 1
     max-weight: 8
-    price-per-kg: 42
-    model: 3024
-  napoleon:
-    name: "Ikan Napoleon"
+    price-per-kg: 60
+    model: 3021
+  nautilus:
+    name: "Nautilus"
+    material: COD
+    rarity: RARE
+    habitat: dalam
+    min-weight: 0.5
+    max-weight: 3
+    price-per-kg: 70
+    model: 3026
+  gurita:
+    name: "Gurita"
+    material: COD
+    rarity: RARE
+    habitat: laut
+    min-weight: 2
+    max-weight: 15
+    price-per-kg: 35
+    model: 3028
+  pari:
+    name: "Ikan Pari"
+    material: COD
+    rarity: RARE
+    habitat: laut
+    min-weight: 5
+    max-weight: 60
+    price-per-kg: 26
+    model: 3035
+  gurita-raksasa:
+    name: "Gurita Raksasa"
     material: COD
     rarity: EPIC
-    habitat: laut
+    habitat: dalam
     min-weight: 10
-    max-weight: 120
-    price-per-kg: 55
-    model: 3023
+    max-weight: 80
+    price-per-kg: 48
+    model: 3040
+  kepiting-laba-laba:
+    name: "Kepiting Laba-laba"
+    material: COD
+    rarity: EPIC
+    habitat: dalam
+    min-weight: 5
+    max-weight: 40
+    price-per-kg: 70
+    model: 3034
+  angler:
+    name: "Ikan Angler"
+    material: COD
+    rarity: EPIC
+    habitat: dalam
+    min-weight: 3
+    max-weight: 40
+    price-per-kg: 95
+    model: 3008
+  cumi-raksasa:
+    name: "Cumi Raksasa"
+    material: COD
+    rarity: EPIC
+    habitat: dalam
+    min-weight: 30
+    max-weight: 250
+    price-per-kg: 50
+    model: 3018
+  dayung:
+    name: "Ikan Dayung"
+    material: COD
+    rarity: EPIC
+    habitat: dalam
+    min-weight: 50
+    max-weight: 300
+    price-per-kg: 48
+    model: 3027
   todak:
     name: "Ikan Todak"
     material: COD
     rarity: EPIC
     habitat: laut
-    min-weight: 8
-    max-weight: 60
-    price-per-kg: 48
+    min-weight: 30
+    max-weight: 300
+    price-per-kg: 55
     model: 3037
-  marlin-biru:
-    name: "Marlin Biru"
-    material: COD
-    rarity: EPIC
-    habitat: laut
-    min-weight: 40
-    max-weight: 450
-    price-per-kg: 30
-    model: 3037
-  layur-raksasa:
-    name: "Layur Raksasa"
-    material: COD
-    rarity: EPIC
-    habitat: laut
-    min-weight: 3
-    max-weight: 25
-    price-per-kg: 60
-    model: 3027
-  pari-elang:
-    name: "Pari Elang"
-    material: COD
-    rarity: EPIC
-    habitat: laut
-    min-weight: 20
-    max-weight: 180
-    price-per-kg: 28
-    model: 3006
-  hiu-sirip-putih:
-    name: "Hiu Sirip Putih"
-    material: COD
-    rarity: EPIC
-    habitat: laut
-    min-weight: 25
-    max-weight: 120
-    price-per-kg: 38
-    model: 3033
-  hiu-martil:
-    name: "Hiu Martil"
+  pari-manta:
+    name: "Pari Manta"
     material: COD
     rarity: EPIC
     habitat: laut
     min-weight: 50
     max-weight: 300
-    price-per-kg: 35
-    model: 3005
-  tapah:
-    name: "Ikan Tapah"
-    material: COD
-    rarity: EPIC
-    habitat: tawar
-    min-weight: 8
-    max-weight: 70
-    price-per-kg: 40
-    model: 3013
-  semah-emas:
-    name: "Semah Emas"
-    material: COD
-    rarity: EPIC
-    habitat: tawar
-    min-weight: 4
-    max-weight: 35
-    price-per-kg: 85
-    model: 3022
-  angler:
-    name: "Ikan Pancing Laut Dalam"
-    material: COD
-    rarity: EPIC
-    habitat: dalam
-    min-weight: 3
-    max-weight: 30
-    price-per-kg: 70
-    model: 3008
-  moray:
-    name: "Belut Moray Raksasa"
-    material: COD
-    rarity: EPIC
-    habitat: laut
-    min-weight: 5
-    max-weight: 40
-    price-per-kg: 52
-    model: 3017
-  hiu-zebra:
-    name: "Hiu Macan Tutul"
+    price-per-kg: 50
+    model: 3023
+  hiu-karang:
+    name: "Hiu Karang"
     material: COD
     rarity: EPIC
     habitat: laut
     min-weight: 20
-    max-weight: 140
-    price-per-kg: 44
+    max-weight: 150
+    price-per-kg: 65
+    model: 3033
+  hiu-martil-muda:
+    name: "Hiu Martil Muda"
+    material: COD
+    rarity: EPIC
+    habitat: laut
+    min-weight: 20
+    max-weight: 100
+    price-per-kg: 72
+    model: 3019
+  lumba-lumba:
+    name: "Lumba-lumba"
+    material: COD
+    rarity: EPIC
+    habitat: laut
+    min-weight: 50
+    max-weight: 200
+    price-per-kg: 60
+    model: 3002
+  orca-muda:
+    name: "Orca Muda"
+    material: COD
+    rarity: EPIC
+    habitat: laut
+    min-weight: 100
+    max-weight: 300
+    price-per-kg: 55
+    model: 3029
+  narwhal-muda:
+    name: "Narwhal Muda"
+    material: COD
+    rarity: EPIC
+    habitat: dalam
+    min-weight: 80
+    max-weight: 250
+    price-per-kg: 60
+    model: 3025
+  hiu-martil:
+    name: "Hiu Martil"
+    material: COD
+    rarity: EPIC
+    habitat: laut
+    min-weight: 100
+    max-weight: 350
+    price-per-kg: 50
+    model: 3005
+  manta-raksasa:
+    name: "Manta Raksasa"
+    material: COD
+    rarity: LEGENDARY
+    habitat: laut
+    min-weight: 200
+    max-weight: 600
+    price-per-kg: 60
+    model: 3006
+  cumi-kolosal:
+    name: "Cumi Kolosal"
+    material: COD
+    rarity: LEGENDARY
+    habitat: dalam
+    min-weight: 200
+    max-weight: 700
+    price-per-kg: 62
+    model: 3003
+  ikan-bulan:
+    name: "Ikan Bulan"
+    material: COD
+    rarity: LEGENDARY
+    habitat: dalam
+    min-weight: 100
+    max-weight: 700
+    price-per-kg: 45
+    model: 3036
+  hiu-putih:
+    name: "Hiu Putih Besar"
+    material: COD
+    rarity: LEGENDARY
+    habitat: laut
+    min-weight: 300
+    max-weight: 700
+    price-per-kg: 52
     model: 3045
   hiu-paus:
     name: "Hiu Paus"
@@ -696,71 +488,53 @@ fish:
     habitat: laut
     min-weight: 300
     max-weight: 700
-    price-per-kg: 6
+    price-per-kg: 55
     model: 3044
-  ikan-bulan:
-    name: "Ikan Bulan Mola-mola"
-    material: COD
-    rarity: LEGENDARY
-    habitat: dalam
-    min-weight: 100
-    max-weight: 600
-    price-per-kg: 9
-    model: 3036
-  arwana-emas:
-    name: "Arwana Emas Kalimantan"
-    material: COD
-    rarity: LEGENDARY
-    habitat: tawar
-    min-weight: 5
-    max-weight: 25
-    price-per-kg: 320
-    model: 3027
-  pari-raksasa:
-    name: "Pari Air Tawar Raksasa"
-    material: COD
-    rarity: LEGENDARY
-    habitat: tawar
-    min-weight: 100
-    max-weight: 600
-    price-per-kg: 22
-    model: 3023
-  megamouth:
-    name: "Hiu Megamouth"
-    material: COD
-    rarity: LEGENDARY
-    habitat: dalam
-    min-weight: 150
-    max-weight: 550
-    price-per-kg: 14
-    model: 3004
-  naga-nusantara:
-    name: "Naga Nusantara"
-    material: COD
-    rarity: LEGENDARY
-    habitat: dalam
-    min-weight: 80
-    max-weight: 400
-    price-per-kg: 40
-    model: 3007
-  koi-nereus:
-    name: "Koi Nereus"
+  orca:
+    name: "Paus Orca"
     material: COD
     rarity: LEGENDARY
     habitat: laut
-    min-weight: 5
-    max-weight: 30
-    price-per-kg: 280
-    model: 3014
-  leviathan-kecil:
-    name: "Anak Leviathan"
+    min-weight: 300
+    max-weight: 700
+    price-per-kg: 58
+    model: 3041
+  narwhal:
+    name: "Narwhal"
     material: COD
     rarity: LEGENDARY
     habitat: dalam
-    min-weight: 80
-    max-weight: 250
-    price-per-kg: 30
-    model: 3003
+    min-weight: 200
+    max-weight: 600
+    price-per-kg: 65
+    model: 3039
+  beluga:
+    name: "Paus Beluga"
+    material: COD
+    rarity: LEGENDARY
+    habitat: laut
+    min-weight: 300
+    max-weight: 650
+    price-per-kg: 60
+    model: 3001
+  paus-biru:
+    name: "Paus Raksasa"
+    material: COD
+    rarity: LEGENDARY
+    habitat: dalam
+    min-weight: 400
+    max-weight: 700
+    price-per-kg: 62
+    model: 3004
+  paus-sperma:
+    name: "Paus Sperma"
+    material: COD
+    rarity: LEGENDARY
+    habitat: dalam
+    min-weight: 400
+    max-weight: 700
+    price-per-kg: 64
+    model: 3043
   sandal:
     name: "Sandal Butut"
     material: LEATHER
