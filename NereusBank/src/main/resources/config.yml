@@ -96,8 +96,6 @@ transfer:
   min-amount: 100
 
 # Tombol cepat di GUI jumlah
-amount-steps: [100, 1000, 10000, 100000, 1000000, 10000000]
-
 # ATM: blok yang bisa diklik untuk membuka bank (admin: /bank atm add)
 atm:
   require-card: false

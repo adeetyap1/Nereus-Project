@@ -1,0 +1,517 @@
+{
+ "format_version": 2,
+ "items": {
+  "minecraft:paper": [
+   {
+    "type": "legacy",
+    "custom_model_data": 8001.0,
+    "bedrock_identifier": "nereusbank:card_silver",
+    "display_name": "Card Silver",
+    "bedrock_options": {
+     "icon": "nereus_bank_card_silver",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8002.0,
+    "bedrock_identifier": "nereusbank:card_gold",
+    "display_name": "Card Gold",
+    "bedrock_options": {
+     "icon": "nereus_bank_card_gold",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8003.0,
+    "bedrock_identifier": "nereusbank:card_platinum",
+    "display_name": "Card Platinum",
+    "bedrock_options": {
+     "icon": "nereus_bank_card_platinum",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8004.0,
+    "bedrock_identifier": "nereusbank:card_standard",
+    "display_name": "Card Standard",
+    "bedrock_options": {
+     "icon": "nereus_bank_card_standard",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8010.0,
+    "bedrock_identifier": "nereusbank:deposit",
+    "display_name": "Deposit",
+    "bedrock_options": {
+     "icon": "nereus_bank_deposit",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8011.0,
+    "bedrock_identifier": "nereusbank:withdraw",
+    "display_name": "Withdraw",
+    "bedrock_options": {
+     "icon": "nereus_bank_withdraw",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8012.0,
+    "bedrock_identifier": "nereusbank:transfer",
+    "display_name": "Transfer",
+    "bedrock_options": {
+     "icon": "nereus_bank_transfer",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8013.0,
+    "bedrock_identifier": "nereusbank:history",
+    "display_name": "History",
+    "bedrock_options": {
+     "icon": "nereus_bank_history",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8014.0,
+    "bedrock_identifier": "nereusbank:savings",
+    "display_name": "Savings",
+    "bedrock_options": {
+     "icon": "nereus_bank_savings",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8015.0,
+    "bedrock_identifier": "nereusbank:loan",
+    "display_name": "Loan",
+    "bedrock_options": {
+     "icon": "nereus_bank_loan",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8016.0,
+    "bedrock_identifier": "nereusbank:cards",
+    "display_name": "Cards",
+    "bedrock_options": {
+     "icon": "nereus_bank_cards",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8017.0,
+    "bedrock_identifier": "nereusbank:top",
+    "display_name": "Top",
+    "bedrock_options": {
+     "icon": "nereus_bank_top",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8018.0,
+    "bedrock_identifier": "nereusbank:account",
+    "display_name": "Account",
+    "bedrock_options": {
+     "icon": "nereus_bank_account",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8019.0,
+    "bedrock_identifier": "nereusbank:close",
+    "display_name": "Close",
+    "bedrock_options": {
+     "icon": "nereus_bank_close",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8020.0,
+    "bedrock_identifier": "nereusbank:back",
+    "display_name": "Back",
+    "bedrock_options": {
+     "icon": "nereus_bank_back",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8042.0,
+    "bedrock_identifier": "nereusbank:all",
+    "display_name": "All",
+    "bedrock_options": {
+     "icon": "nereus_bank_all",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8043.0,
+    "bedrock_identifier": "nereusbank:half",
+    "display_name": "Half",
+    "bedrock_options": {
+     "icon": "nereus_bank_half",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8044.0,
+    "bedrock_identifier": "nereusbank:reset",
+    "display_name": "Reset",
+    "bedrock_options": {
+     "icon": "nereus_bank_reset",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8045.0,
+    "bedrock_identifier": "nereusbank:confirm",
+    "display_name": "Confirm",
+    "bedrock_options": {
+     "icon": "nereus_bank_confirm",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8046.0,
+    "bedrock_identifier": "nereusbank:cancel",
+    "display_name": "Cancel",
+    "bedrock_options": {
+     "icon": "nereus_bank_cancel",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8047.0,
+    "bedrock_identifier": "nereusbank:amount",
+    "display_name": "Amount",
+    "bedrock_options": {
+     "icon": "nereus_bank_amount",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8048.0,
+    "bedrock_identifier": "nereusbank:type",
+    "display_name": "Type",
+    "bedrock_options": {
+     "icon": "nereus_bank_type",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8050.0,
+    "bedrock_identifier": "nereusbank:prev",
+    "display_name": "Prev",
+    "bedrock_options": {
+     "icon": "nereus_bank_prev",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8051.0,
+    "bedrock_identifier": "nereusbank:next",
+    "display_name": "Next",
+    "bedrock_options": {
+     "icon": "nereus_bank_next",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8052.0,
+    "bedrock_identifier": "nereusbank:tx_in",
+    "display_name": "Tx In",
+    "bedrock_options": {
+     "icon": "nereus_bank_tx_in",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8053.0,
+    "bedrock_identifier": "nereusbank:tx_out",
+    "display_name": "Tx Out",
+    "bedrock_options": {
+     "icon": "nereus_bank_tx_out",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8054.0,
+    "bedrock_identifier": "nereusbank:tx_interest",
+    "display_name": "Tx Interest",
+    "bedrock_options": {
+     "icon": "nereus_bank_tx_interest",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8055.0,
+    "bedrock_identifier": "nereusbank:tx_loan",
+    "display_name": "Tx Loan",
+    "bedrock_options": {
+     "icon": "nereus_bank_tx_loan",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8056.0,
+    "bedrock_identifier": "nereusbank:tx_fd",
+    "display_name": "Tx Fd",
+    "bedrock_options": {
+     "icon": "nereus_bank_tx_fd",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8057.0,
+    "bedrock_identifier": "nereusbank:tx_fee",
+    "display_name": "Tx Fee",
+    "bedrock_options": {
+     "icon": "nereus_bank_tx_fee",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8058.0,
+    "bedrock_identifier": "nereusbank:tx_card",
+    "display_name": "Tx Card",
+    "bedrock_options": {
+     "icon": "nereus_bank_tx_card",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8060.0,
+    "bedrock_identifier": "nereusbank:p7",
+    "display_name": "P7",
+    "bedrock_options": {
+     "icon": "nereus_bank_p7",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8061.0,
+    "bedrock_identifier": "nereusbank:p14",
+    "display_name": "P14",
+    "bedrock_options": {
+     "icon": "nereus_bank_p14",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8062.0,
+    "bedrock_identifier": "nereusbank:p30",
+    "display_name": "P30",
+    "bedrock_options": {
+     "icon": "nereus_bank_p30",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8063.0,
+    "bedrock_identifier": "nereusbank:fd",
+    "display_name": "Fd",
+    "bedrock_options": {
+     "icon": "nereus_bank_fd",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8070.0,
+    "bedrock_identifier": "nereusbank:borrow",
+    "display_name": "Borrow",
+    "bedrock_options": {
+     "icon": "nereus_bank_borrow",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8071.0,
+    "bedrock_identifier": "nereusbank:repay",
+    "display_name": "Repay",
+    "bedrock_options": {
+     "icon": "nereus_bank_repay",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8072.0,
+    "bedrock_identifier": "nereusbank:loaninfo",
+    "display_name": "Loaninfo",
+    "bedrock_options": {
+     "icon": "nereus_bank_loaninfo",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8080.0,
+    "bedrock_identifier": "nereusbank:replace",
+    "display_name": "Replace",
+    "bedrock_options": {
+     "icon": "nereus_bank_replace",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8030.0,
+    "bedrock_identifier": "nereusbank:add0",
+    "display_name": "Add0",
+    "bedrock_options": {
+     "icon": "nereus_bank_add0",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8036.0,
+    "bedrock_identifier": "nereusbank:sub0",
+    "display_name": "Sub0",
+    "bedrock_options": {
+     "icon": "nereus_bank_sub0",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8031.0,
+    "bedrock_identifier": "nereusbank:add1",
+    "display_name": "Add1",
+    "bedrock_options": {
+     "icon": "nereus_bank_add1",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8037.0,
+    "bedrock_identifier": "nereusbank:sub1",
+    "display_name": "Sub1",
+    "bedrock_options": {
+     "icon": "nereus_bank_sub1",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8032.0,
+    "bedrock_identifier": "nereusbank:add2",
+    "display_name": "Add2",
+    "bedrock_options": {
+     "icon": "nereus_bank_add2",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8038.0,
+    "bedrock_identifier": "nereusbank:sub2",
+    "display_name": "Sub2",
+    "bedrock_options": {
+     "icon": "nereus_bank_sub2",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8033.0,
+    "bedrock_identifier": "nereusbank:add3",
+    "display_name": "Add3",
+    "bedrock_options": {
+     "icon": "nereus_bank_add3",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8039.0,
+    "bedrock_identifier": "nereusbank:sub3",
+    "display_name": "Sub3",
+    "bedrock_options": {
+     "icon": "nereus_bank_sub3",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8034.0,
+    "bedrock_identifier": "nereusbank:add4",
+    "display_name": "Add4",
+    "bedrock_options": {
+     "icon": "nereus_bank_add4",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8040.0,
+    "bedrock_identifier": "nereusbank:sub4",
+    "display_name": "Sub4",
+    "bedrock_options": {
+     "icon": "nereus_bank_sub4",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8035.0,
+    "bedrock_identifier": "nereusbank:add5",
+    "display_name": "Add5",
+    "bedrock_options": {
+     "icon": "nereus_bank_add5",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 8041.0,
+    "bedrock_identifier": "nereusbank:sub5",
+    "display_name": "Sub5",
+    "bedrock_options": {
+     "icon": "nereus_bank_sub5",
+     "allow_offhand": true
+    }
+   }
+  ]
+ }
+}
