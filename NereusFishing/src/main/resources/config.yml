@@ -131,7 +131,7 @@ rods:
 # model = custom_model_data (satu model per spesies; Java & Bedrock).
 fish:
   dori:
-    name: "Ikan Dori Biru"
+    name: "Azure Tang"
     material: COD
     rarity: COMMON
     habitat: laut
@@ -140,7 +140,7 @@ fish:
     price-per-kg: 8
     model: 3016
   tropis:
-    name: "Ikan Tropis"
+    name: "Reef Runner"
     material: COD
     rarity: COMMON
     habitat: laut
@@ -149,7 +149,7 @@ fish:
     price-per-kg: 9
     model: 3038
   badut:
-    name: "Ikan Badut"
+    name: "Clownfish"
     material: COD
     rarity: COMMON
     habitat: laut
@@ -158,7 +158,7 @@ fish:
     price-per-kg: 12
     model: 3014
   cupang-merah:
-    name: "Ikan Cupang Merah"
+    name: "Crimson Betta"
     material: COD
     rarity: COMMON
     habitat: tawar
@@ -167,7 +167,7 @@ fish:
     price-per-kg: 30
     model: 3010
   cupang-biru:
-    name: "Ikan Cupang Biru"
+    name: "Sapphire Betta"
     material: COD
     rarity: COMMON
     habitat: tawar
@@ -176,7 +176,7 @@ fish:
     price-per-kg: 30
     model: 3011
   lele:
-    name: "Ikan Lele"
+    name: "Catfish"
     material: COD
     rarity: COMMON
     habitat: tawar
@@ -185,7 +185,7 @@ fish:
     price-per-kg: 10
     model: 3013
   buntal:
-    name: "Ikan Buntal"
+    name: "Pufferfish"
     material: COD
     rarity: COMMON
     habitat: laut
@@ -194,7 +194,7 @@ fish:
     price-per-kg: 14
     model: 3031
   kepiting:
-    name: "Kepiting"
+    name: "Shore Crab"
     material: COD
     rarity: COMMON
     habitat: laut
@@ -203,7 +203,7 @@ fish:
     price-per-kg: 16
     model: 3015
   cupang-ungu:
-    name: "Ikan Cupang Ungu"
+    name: "Amethyst Betta"
     material: COD
     rarity: RARE
     habitat: tawar
@@ -212,7 +212,7 @@ fish:
     price-per-kg: 60
     model: 3012
   dorado:
-    name: "Ikan Dorado"
+    name: "Mahi-Mahi"
     material: COD
     rarity: RARE
     habitat: laut
@@ -221,7 +221,7 @@ fish:
     price-per-kg: 30
     model: 3022
   kakap:
-    name: "Ikan Kakap"
+    name: "Sea Bass"
     material: COD
     rarity: RARE
     habitat: laut
@@ -230,7 +230,7 @@ fish:
     price-per-kg: 28
     model: 3032
   piranha:
-    name: "Ikan Piranha"
+    name: "Piranha"
     material: COD
     rarity: RARE
     habitat: tawar
@@ -239,7 +239,7 @@ fish:
     price-per-kg: 40
     model: 3030
   singa:
-    name: "Ikan Singa"
+    name: "Lionfish"
     material: COD
     rarity: RARE
     habitat: laut
@@ -248,7 +248,7 @@ fish:
     price-per-kg: 55
     model: 3020
   barakuda:
-    name: "Ikan Barakuda"
+    name: "Barracuda"
     material: COD
     rarity: RARE
     habitat: laut
@@ -257,7 +257,7 @@ fish:
     price-per-kg: 32
     model: 3009
   belut-listrik:
-    name: "Belut Listrik"
+    name: "Electric Eel"
     material: COD
     rarity: RARE
     habitat: tawar
@@ -266,7 +266,7 @@ fish:
     price-per-kg: 45
     model: 3017
   moray:
-    name: "Belut Moray"
+    name: "Moray Eel"
     material: COD
     rarity: RARE
     habitat: laut
@@ -275,7 +275,7 @@ fish:
     price-per-kg: 38
     model: 3007
   ular-laut:
-    name: "Ular Laut"
+    name: "Sea Krait"
     material: COD
     rarity: RARE
     habitat: laut
@@ -284,7 +284,7 @@ fish:
     price-per-kg: 50
     model: 3042
   udang-mantis:
-    name: "Udang Mantis"
+    name: "Mantis Shrimp"
     material: COD
     rarity: RARE
     habitat: laut
@@ -293,7 +293,7 @@ fish:
     price-per-kg: 120
     model: 3024
   lobster:
-    name: "Lobster"
+    name: "Spiny Lobster"
     material: COD
     rarity: RARE
     habitat: laut
@@ -311,7 +311,7 @@ fish:
     price-per-kg: 70
     model: 3026
   gurita:
-    name: "Gurita"
+    name: "Octopus"
     material: COD
     rarity: RARE
     habitat: laut
@@ -320,7 +320,7 @@ fish:
     price-per-kg: 35
     model: 3028
   pari:
-    name: "Ikan Pari"
+    name: "Stingray"
     material: COD
     rarity: RARE
     habitat: laut
@@ -329,7 +329,7 @@ fish:
     price-per-kg: 26
     model: 3035
   gurita-raksasa:
-    name: "Gurita Raksasa"
+    name: "Giant Octopus"
     material: COD
     rarity: EPIC
     habitat: dalam
@@ -338,7 +338,7 @@ fish:
     price-per-kg: 48
     model: 3040
   kepiting-laba-laba:
-    name: "Kepiting Laba-laba"
+    name: "Spider Crab"
     material: COD
     rarity: EPIC
     habitat: dalam
@@ -347,7 +347,7 @@ fish:
     price-per-kg: 70
     model: 3034
   angler:
-    name: "Ikan Angler"
+    name: "Anglerfish"
     material: COD
     rarity: EPIC
     habitat: dalam
@@ -356,7 +356,7 @@ fish:
     price-per-kg: 95
     model: 3008
   cumi-raksasa:
-    name: "Cumi Raksasa"
+    name: "Giant Squid"
     material: COD
     rarity: EPIC
     habitat: dalam
@@ -365,7 +365,7 @@ fish:
     price-per-kg: 50
     model: 3018
   dayung:
-    name: "Ikan Dayung"
+    name: "Oarfish"
     material: COD
     rarity: EPIC
     habitat: dalam
@@ -374,7 +374,7 @@ fish:
     price-per-kg: 48
     model: 3027
   todak:
-    name: "Ikan Todak"
+    name: "Swordfish"
     material: COD
     rarity: EPIC
     habitat: laut
@@ -383,7 +383,7 @@ fish:
     price-per-kg: 55
     model: 3037
   pari-manta:
-    name: "Pari Manta"
+    name: "Manta Ray"
     material: COD
     rarity: EPIC
     habitat: laut
@@ -392,7 +392,7 @@ fish:
     price-per-kg: 50
     model: 3023
   hiu-karang:
-    name: "Hiu Karang"
+    name: "Reef Shark"
     material: COD
     rarity: EPIC
     habitat: laut
@@ -401,7 +401,7 @@ fish:
     price-per-kg: 65
     model: 3033
   hiu-martil-muda:
-    name: "Hiu Martil Muda"
+    name: "Young Hammerhead"
     material: COD
     rarity: EPIC
     habitat: laut
@@ -410,7 +410,7 @@ fish:
     price-per-kg: 72
     model: 3019
   lumba-lumba:
-    name: "Lumba-lumba"
+    name: "Dolphin"
     material: COD
     rarity: EPIC
     habitat: laut
@@ -419,7 +419,7 @@ fish:
     price-per-kg: 60
     model: 3002
   orca-muda:
-    name: "Orca Muda"
+    name: "Young Orca"
     material: COD
     rarity: EPIC
     habitat: laut
@@ -428,7 +428,7 @@ fish:
     price-per-kg: 55
     model: 3029
   narwhal-muda:
-    name: "Narwhal Muda"
+    name: "Young Narwhal"
     material: COD
     rarity: EPIC
     habitat: dalam
@@ -437,7 +437,7 @@ fish:
     price-per-kg: 60
     model: 3025
   hiu-martil:
-    name: "Hiu Martil"
+    name: "Hammerhead Shark"
     material: COD
     rarity: EPIC
     habitat: laut
@@ -446,7 +446,7 @@ fish:
     price-per-kg: 50
     model: 3005
   manta-raksasa:
-    name: "Manta Raksasa"
+    name: "Leviathan Manta"
     material: COD
     rarity: LEGENDARY
     habitat: laut
@@ -455,7 +455,7 @@ fish:
     price-per-kg: 60
     model: 3006
   cumi-kolosal:
-    name: "Cumi Kolosal"
+    name: "Colossal Squid"
     material: COD
     rarity: LEGENDARY
     habitat: dalam
@@ -464,7 +464,7 @@ fish:
     price-per-kg: 62
     model: 3003
   ikan-bulan:
-    name: "Ikan Bulan"
+    name: "Ocean Sunfish"
     material: COD
     rarity: LEGENDARY
     habitat: dalam
@@ -473,7 +473,7 @@ fish:
     price-per-kg: 45
     model: 3036
   hiu-putih:
-    name: "Hiu Putih Besar"
+    name: "Great White Shark"
     material: COD
     rarity: LEGENDARY
     habitat: laut
@@ -482,7 +482,7 @@ fish:
     price-per-kg: 52
     model: 3045
   hiu-paus:
-    name: "Hiu Paus"
+    name: "Whale Shark"
     material: COD
     rarity: LEGENDARY
     habitat: laut
@@ -491,7 +491,7 @@ fish:
     price-per-kg: 55
     model: 3044
   orca:
-    name: "Paus Orca"
+    name: "Orca"
     material: COD
     rarity: LEGENDARY
     habitat: laut
@@ -509,7 +509,7 @@ fish:
     price-per-kg: 65
     model: 3039
   beluga:
-    name: "Paus Beluga"
+    name: "Beluga Whale"
     material: COD
     rarity: LEGENDARY
     habitat: laut
@@ -518,7 +518,7 @@ fish:
     price-per-kg: 60
     model: 3001
   paus-biru:
-    name: "Paus Raksasa"
+    name: "Titan Whale"
     material: COD
     rarity: LEGENDARY
     habitat: dalam
@@ -527,7 +527,7 @@ fish:
     price-per-kg: 62
     model: 3004
   paus-sperma:
-    name: "Paus Sperma"
+    name: "Sperm Whale"
     material: COD
     rarity: LEGENDARY
     habitat: dalam
