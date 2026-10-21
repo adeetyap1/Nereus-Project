@@ -24,7 +24,7 @@ public final class FishManager {
     }
 
     public record Fish(String id, String name, Material material, Rarity rarity, double minWeight,
-                       double maxWeight, double pricePerKg, int model, String habitat) {
+                       double maxWeight, double pricePerKg, int model, String habitat, boolean stars) {
     }
 
     public record Rod(String id, String name, Material material, int model, List<String> lore,
@@ -87,7 +87,7 @@ public final class FishManager {
                 double min = s.getDouble("min-weight", 0.5);
                 double max = Math.max(min, s.getDouble("max-weight", min));
                 fish.put(id, new Fish(id, s.getString("name", id), mat, rarity, min, max,
-                        s.getDouble("price-per-kg", 1), s.getInt("model", 0), s.getString("habitat", "laut")));
+                        s.getDouble("price-per-kg", 1), s.getInt("model", 0), s.getString("habitat", "laut"), s.getBoolean("stars", true)));
             }
         }
         ConfigurationSection ds = cfg.getConfigurationSection("rods");
@@ -280,8 +280,13 @@ public final class FishManager {
         }
         meta.lore(lore);
         if (f.model() > 0) {
-            // the resource pack has one model per size tier, so heavier fish look bigger
-            meta.setCustomModelData(f.rarity().junk() ? f.model() : f.model() * 10 + sizeTier(c.weight()));
+            // model = the normal variant; +1 = silver star (big), +2 = golden star (huge)
+            int variant = 0;
+            if (!f.rarity().junk() && f.stars()) {
+                int t = sizeTier(c.weight());
+                variant = t >= 5 ? 2 : t >= 3 ? 1 : 0;
+            }
+            meta.setCustomModelData(f.model() + variant);
         }
         PersistentDataContainer pdc = meta.getPersistentDataContainer();
         pdc.set(keyFish, PersistentDataType.STRING, f.id());

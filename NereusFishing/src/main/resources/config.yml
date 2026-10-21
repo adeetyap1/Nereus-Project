@@ -139,7 +139,7 @@ fish:
     min-weight: 0.05
     max-weight: 0.3
     price-per-kg: 6
-    model: 7101
+    model: 50016
   kembung:
     name: "Ikan Kembung"
     material: COD
@@ -148,7 +148,7 @@ fish:
     min-weight: 0.3
     max-weight: 1.2
     price-per-kg: 10
-    model: 7102
+    model: 50010
   bandeng:
     name: "Ikan Bandeng"
     material: COD
@@ -157,7 +157,7 @@ fish:
     min-weight: 0.5
     max-weight: 2.0
     price-per-kg: 12
-    model: 7103
+    model: 50004
   mujair:
     name: "Ikan Mujair"
     material: COD
@@ -166,7 +166,7 @@ fish:
     min-weight: 0.2
     max-weight: 0.9
     price-per-kg: 9
-    model: 7104
+    model: 50019
   lele:
     name: "Ikan Lele"
     material: COD
@@ -175,7 +175,7 @@ fish:
     min-weight: 0.3
     max-weight: 1.8
     price-per-kg: 11
-    model: 7105
+    model: 50022
   tongkol:
     name: "Ikan Tongkol"
     material: COD
@@ -184,133 +184,134 @@ fish:
     min-weight: 0.8
     max-weight: 3.0
     price-per-kg: 13
-    model: 7106
+    model: 50001
   gurame:
     name: "Ikan Gurame"
-    material: SALMON
+    material: COD
     rarity: RARE
     habitat: tawar
     min-weight: 0.8
     max-weight: 3.5
     price-per-kg: 26
-    model: 7107
+    model: 50019
   patin:
     name: "Ikan Patin"
-    material: SALMON
+    material: COD
     rarity: RARE
     habitat: tawar
     min-weight: 1.0
     max-weight: 4.0
     price-per-kg: 22
-    model: 7108
+    model: 50022
   gabus:
     name: "Ikan Gabus"
-    material: SALMON
+    material: COD
     rarity: RARE
     habitat: tawar
     min-weight: 0.6
     max-weight: 2.8
     price-per-kg: 24
-    model: 7109
+    model: 50004
   nila:
     name: "Nila Merah"
-    material: SALMON
+    material: COD
     rarity: RARE
     habitat: tawar
     min-weight: 0.8
     max-weight: 3.2
     price-per-kg: 28
-    model: 7110
+    model: 50010
   bawal:
     name: "Ikan Bawal"
-    material: SALMON
+    material: COD
     rarity: RARE
     habitat: laut
     min-weight: 0.7
     max-weight: 2.5
     price-per-kg: 30
-    model: 7111
+    model: 50013
   ikan-mas:
     name: "Ikan Mas Koki"
-    material: TROPICAL_FISH
+    material: COD
     rarity: RARE
     habitat: tawar
     min-weight: 0.1
     max-weight: 0.9
     price-per-kg: 60
-    model: 7112
+    model: 50007
   kakap-merah:
     name: "Kakap Merah"
-    material: SALMON
+    material: COD
     rarity: EPIC
     habitat: laut
     min-weight: 2
     max-weight: 9
     price-per-kg: 32
-    model: 7113
+    model: 50031
   kerapu:
     name: "Kerapu Macan"
-    material: SALMON
+    material: COD
     rarity: EPIC
     habitat: laut
     min-weight: 3
     max-weight: 15
     price-per-kg: 40
-    model: 7114
+    model: 50037
   tenggiri:
     name: "Ikan Tenggiri"
-    material: SALMON
+    material: COD
     rarity: EPIC
     habitat: laut
     min-weight: 3
     max-weight: 14
     price-per-kg: 34
-    model: 7115
+    model: 50001
   pari:
     name: "Pari Manta"
-    material: SALMON
+    material: COD
     rarity: EPIC
     habitat: laut
     min-weight: 10
     max-weight: 60
     price-per-kg: 25
-    model: 7116
+    model: 50028
   belida:
     name: "Ikan Belida"
-    material: SALMON
+    material: COD
     rarity: EPIC
     habitat: tawar
     min-weight: 2
     max-weight: 10
     price-per-kg: 55
-    model: 7117
+    model: 50004
   arwana:
     name: "Arwana Super Red"
-    material: SALMON
+    material: COD
     rarity: LEGENDARY
     habitat: tawar
     min-weight: 3
     max-weight: 12
     price-per-kg: 160
-    model: 7118
+    model: 50007
   tuna:
     name: "Tuna Sirip Biru"
-    material: SALMON
+    material: COD
     rarity: LEGENDARY
     habitat: laut
     min-weight: 30
     max-weight: 200
     price-per-kg: 28
-    model: 7119
+    model: 50001
   raja-laut:
     name: "Ikan Raja Laut"
-    material: TROPICAL_FISH
+    material: COD
     rarity: LEGENDARY
     habitat: dalam
     min-weight: 15
     max-weight: 90
     price-per-kg: 70
-    model: 7120
+    model: 50100
+    stars: false
   selar:
     name: "Ikan Selar Kuning"
     material: COD
@@ -319,7 +320,7 @@ fish:
     min-weight: 0.1
     max-weight: 0.6
     price-per-kg: 9
-    model: 7126
+    model: 50016
   layang:
     name: "Ikan Layang"
     material: COD
@@ -328,7 +329,7 @@ fish:
     min-weight: 0.15
     max-weight: 0.8
     price-per-kg: 8
-    model: 7127
+    model: 50016
   lemuru:
     name: "Ikan Lemuru"
     material: COD
@@ -337,7 +338,7 @@ fish:
     min-weight: 0.05
     max-weight: 0.4
     price-per-kg: 6
-    model: 7128
+    model: 50016
   julung-julung:
     name: "Julung-julung"
     material: COD
@@ -346,7 +347,7 @@ fish:
     min-weight: 0.1
     max-weight: 0.5
     price-per-kg: 8
-    model: 7129
+    model: 50004
   belanak:
     name: "Ikan Belanak"
     material: COD
@@ -355,7 +356,7 @@ fish:
     min-weight: 0.3
     max-weight: 2.0
     price-per-kg: 10
-    model: 7130
+    model: 50013
   pepetek:
     name: "Ikan Pepetek"
     material: COD
@@ -364,7 +365,7 @@ fish:
     min-weight: 0.05
     max-weight: 0.3
     price-per-kg: 5
-    model: 7131
+    model: 50028
   tembang:
     name: "Ikan Tembang"
     material: COD
@@ -373,7 +374,7 @@ fish:
     min-weight: 0.1
     max-weight: 0.7
     price-per-kg: 7
-    model: 7132
+    model: 50016
   sepat-siam:
     name: "Ikan Sepat Siam"
     material: COD
@@ -382,7 +383,7 @@ fish:
     min-weight: 0.05
     max-weight: 0.4
     price-per-kg: 8
-    model: 7133
+    model: 50007
   betok:
     name: "Ikan Betok"
     material: COD
@@ -391,7 +392,7 @@ fish:
     min-weight: 0.05
     max-weight: 0.35
     price-per-kg: 9
-    model: 7134
+    model: 50010
   wader:
     name: "Ikan Wader Pari"
     material: COD
@@ -400,7 +401,7 @@ fish:
     min-weight: 0.02
     max-weight: 0.2
     price-per-kg: 6
-    model: 7135
+    model: 50019
   tawes:
     name: "Ikan Tawes"
     material: COD
@@ -409,7 +410,7 @@ fish:
     min-weight: 0.3
     max-weight: 1.8
     price-per-kg: 11
-    model: 7136
+    model: 50019
   seluang:
     name: "Ikan Seluang"
     material: COD
@@ -418,7 +419,7 @@ fish:
     min-weight: 0.02
     max-weight: 0.15
     price-per-kg: 7
-    model: 7137
+    model: 50016
   bilih:
     name: "Ikan Bilih Singkarak"
     material: COD
@@ -427,7 +428,7 @@ fish:
     min-weight: 0.02
     max-weight: 0.12
     price-per-kg: 14
-    model: 7138
+    model: 50016
   keting:
     name: "Ikan Keting"
     material: COD
@@ -436,331 +437,335 @@ fish:
     min-weight: 0.1
     max-weight: 0.6
     price-per-kg: 12
-    model: 7139
+    model: 50022
   baronang:
     name: "Ikan Baronang"
-    material: SALMON
+    material: COD
     rarity: RARE
     habitat: laut
     min-weight: 0.5
     max-weight: 2.5
     price-per-kg: 26
-    model: 7140
+    model: 50010
   kuwe:
     name: "Ikan Kuwe"
-    material: SALMON
+    material: COD
     rarity: RARE
     habitat: laut
     min-weight: 1.0
     max-weight: 6
     price-per-kg: 30
-    model: 7141
+    model: 50001
   cakalang:
     name: "Ikan Cakalang"
-    material: SALMON
+    material: COD
     rarity: RARE
     habitat: laut
     min-weight: 2
     max-weight: 10
     price-per-kg: 20
-    model: 7142
+    model: 50001
   kakap-putih:
     name: "Kakap Putih"
-    material: SALMON
+    material: COD
     rarity: RARE
     habitat: laut
     min-weight: 2
     max-weight: 15
     price-per-kg: 32
-    model: 7143
+    model: 50013
   bawal-hitam:
     name: "Bawal Hitam"
-    material: SALMON
+    material: COD
     rarity: RARE
     habitat: laut
     min-weight: 0.8
     max-weight: 3
     price-per-kg: 34
-    model: 7144
+    model: 50037
   ikan-terbang:
     name: "Ikan Terbang"
-    material: SALMON
+    material: COD
     rarity: RARE
     habitat: laut
     min-weight: 0.2
     max-weight: 0.7
     price-per-kg: 40
-    model: 7145
+    model: 50043
   lepu-ayam:
     name: "Lepu Ayam"
-    material: SALMON
+    material: COD
     rarity: RARE
     habitat: laut
     min-weight: 0.2
     max-weight: 1.2
     price-per-kg: 75
-    model: 7146
+    model: 50031
   sidat:
     name: "Ikan Sidat"
-    material: SALMON
+    material: COD
     rarity: RARE
     habitat: tawar
     min-weight: 0.5
     max-weight: 4
     price-per-kg: 55
-    model: 7147
+    model: 50022
   toman:
     name: "Ikan Toman"
-    material: SALMON
+    material: COD
     rarity: RARE
     habitat: tawar
     min-weight: 1
     max-weight: 12
     price-per-kg: 36
-    model: 7148
+    model: 50004
   jelawat:
     name: "Ikan Jelawat"
-    material: SALMON
+    material: COD
     rarity: RARE
     habitat: tawar
     min-weight: 0.8
     max-weight: 5
     price-per-kg: 30
-    model: 7149
+    model: 50019
   baung:
     name: "Ikan Baung"
-    material: SALMON
+    material: COD
     rarity: RARE
     habitat: tawar
     min-weight: 0.5
     max-weight: 4
     price-per-kg: 38
-    model: 7150
+    model: 50022
   hampala:
     name: "Ikan Hampala"
-    material: SALMON
+    material: COD
     rarity: RARE
     habitat: tawar
     min-weight: 0.8
     max-weight: 6
     price-per-kg: 44
-    model: 7151
+    model: 50010
   parang-parang:
     name: "Ikan Parang-parang"
-    material: SALMON
+    material: COD
     rarity: RARE
     habitat: laut
     min-weight: 1
     max-weight: 6
     price-per-kg: 33
-    model: 7152
+    model: 50013
   boesemani:
     name: "Rainbow Boesemani"
-    material: TROPICAL_FISH
+    material: COD
     rarity: RARE
     habitat: tawar
     min-weight: 0.05
     max-weight: 0.4
     price-per-kg: 150
-    model: 7153
+    model: 50007
   cupang-hias:
     name: "Cupang Hias"
-    material: TROPICAL_FISH
+    material: COD
     rarity: RARE
     habitat: tawar
     min-weight: 0.01
     max-weight: 0.08
     price-per-kg: 400
-    model: 7154
+    model: 50007
   kakatua:
     name: "Ikan Kakatua"
-    material: TROPICAL_FISH
+    material: COD
     rarity: RARE
     habitat: laut
     min-weight: 1
     max-weight: 8
     price-per-kg: 42
-    model: 7155
+    model: 50100
+    stars: false
   napoleon:
     name: "Ikan Napoleon"
-    material: SALMON
+    material: COD
     rarity: EPIC
     habitat: laut
     min-weight: 10
     max-weight: 120
     price-per-kg: 55
-    model: 7156
+    model: 50040
   todak:
     name: "Ikan Todak"
-    material: SALMON
+    material: COD
     rarity: EPIC
     habitat: laut
     min-weight: 8
     max-weight: 60
     price-per-kg: 48
-    model: 7157
+    model: 50004
   marlin-biru:
     name: "Marlin Biru"
-    material: SALMON
+    material: COD
     rarity: EPIC
     habitat: laut
     min-weight: 40
     max-weight: 450
     price-per-kg: 30
-    model: 7158
+    model: 50001
   layur-raksasa:
     name: "Layur Raksasa"
-    material: SALMON
+    material: COD
     rarity: EPIC
     habitat: laut
     min-weight: 3
     max-weight: 25
     price-per-kg: 60
-    model: 7159
+    model: 50037
   pari-elang:
     name: "Pari Elang"
-    material: SALMON
+    material: COD
     rarity: EPIC
     habitat: laut
     min-weight: 20
     max-weight: 180
     price-per-kg: 28
-    model: 7160
+    model: 50028
   hiu-sirip-putih:
     name: "Hiu Sirip Putih"
-    material: SALMON
+    material: COD
     rarity: EPIC
     habitat: laut
     min-weight: 25
     max-weight: 120
     price-per-kg: 38
-    model: 7161
+    model: 50034
   hiu-martil:
     name: "Hiu Martil"
-    material: SALMON
+    material: COD
     rarity: EPIC
     habitat: laut
     min-weight: 50
     max-weight: 300
     price-per-kg: 35
-    model: 7162
+    model: 50034
   tapah:
     name: "Ikan Tapah"
-    material: SALMON
+    material: COD
     rarity: EPIC
     habitat: tawar
     min-weight: 8
     max-weight: 70
     price-per-kg: 40
-    model: 7163
+    model: 50022
   semah-emas:
     name: "Semah Emas"
-    material: SALMON
+    material: COD
     rarity: EPIC
     habitat: tawar
     min-weight: 4
     max-weight: 35
     price-per-kg: 85
-    model: 7164
+    model: 50019
   angler:
     name: "Ikan Pancing Laut Dalam"
-    material: SALMON
+    material: COD
     rarity: EPIC
     habitat: dalam
     min-weight: 3
     max-weight: 30
     price-per-kg: 70
-    model: 7165
+    model: 50025
   moray:
     name: "Belut Moray Raksasa"
-    material: SALMON
+    material: COD
     rarity: EPIC
     habitat: laut
     min-weight: 5
     max-weight: 40
     price-per-kg: 52
-    model: 7166
+    model: 50025
   hiu-zebra:
     name: "Hiu Macan Tutul"
-    material: SALMON
+    material: COD
     rarity: EPIC
     habitat: laut
     min-weight: 20
     max-weight: 140
     price-per-kg: 44
-    model: 7167
+    model: 50034
   hiu-paus:
     name: "Hiu Paus"
-    material: SALMON
+    material: COD
     rarity: LEGENDARY
     habitat: laut
     min-weight: 300
     max-weight: 700
     price-per-kg: 6
-    model: 7168
+    model: 50034
   ikan-bulan:
     name: "Ikan Bulan Mola-mola"
-    material: SALMON
+    material: COD
     rarity: LEGENDARY
     habitat: dalam
     min-weight: 100
     max-weight: 600
     price-per-kg: 9
-    model: 7169
+    model: 50028
   arwana-emas:
     name: "Arwana Emas Kalimantan"
-    material: SALMON
+    material: COD
     rarity: LEGENDARY
     habitat: tawar
     min-weight: 5
     max-weight: 25
     price-per-kg: 320
-    model: 7170
+    model: 50007
   pari-raksasa:
     name: "Pari Air Tawar Raksasa"
-    material: SALMON
+    material: COD
     rarity: LEGENDARY
     habitat: tawar
     min-weight: 100
     max-weight: 600
     price-per-kg: 22
-    model: 7171
+    model: 50040
   megamouth:
     name: "Hiu Megamouth"
-    material: SALMON
+    material: COD
     rarity: LEGENDARY
     habitat: dalam
     min-weight: 150
     max-weight: 550
     price-per-kg: 14
-    model: 7172
+    model: 50000
+    stars: false
   naga-nusantara:
     name: "Naga Nusantara"
-    material: SALMON
+    material: COD
     rarity: LEGENDARY
     habitat: dalam
     min-weight: 80
     max-weight: 400
     price-per-kg: 40
-    model: 7173
+    model: 50100
+    stars: false
   koi-nereus:
     name: "Koi Nereus"
-    material: TROPICAL_FISH
+    material: COD
     rarity: LEGENDARY
     habitat: laut
     min-weight: 5
     max-weight: 30
     price-per-kg: 280
-    model: 7174
+    model: 50100
+    stars: false
   leviathan-kecil:
     name: "Anak Leviathan"
-    material: SALMON
+    material: COD
     rarity: LEGENDARY
     habitat: dalam
     min-weight: 80
     max-weight: 250
     price-per-kg: 30
-    model: 7175
+    model: 50025
   sandal:
     name: "Sandal Butut"
     material: LEATHER

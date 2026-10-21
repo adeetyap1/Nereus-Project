@@ -1,0 +1,517 @@
+{
+ "format_version": 2,
+ "items": {
+  "minecraft:cod": [
+   {
+    "type": "legacy",
+    "custom_model_data": 50000.0,
+    "bedrock_identifier": "geyser_custom:gmdl_57d869a",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_57d869a",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50001.0,
+    "bedrock_identifier": "geyser_custom:gmdl_86f96a9",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_86f96a9",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50002.0,
+    "bedrock_identifier": "geyser_custom:gmdl_4016a85",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_4016a85",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50003.0,
+    "bedrock_identifier": "geyser_custom:gmdl_5473e1d",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_5473e1d",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50004.0,
+    "bedrock_identifier": "geyser_custom:gmdl_bd0b9f3",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_bd0b9f3",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50005.0,
+    "bedrock_identifier": "geyser_custom:gmdl_961daa8",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_961daa8",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50006.0,
+    "bedrock_identifier": "geyser_custom:gmdl_4c95832",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_4c95832",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50007.0,
+    "bedrock_identifier": "geyser_custom:gmdl_2553189",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_2553189",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50008.0,
+    "bedrock_identifier": "geyser_custom:gmdl_c1c74d2",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_c1c74d2",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50009.0,
+    "bedrock_identifier": "geyser_custom:gmdl_1437421",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_1437421",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50010.0,
+    "bedrock_identifier": "geyser_custom:gmdl_465841b",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_465841b",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50011.0,
+    "bedrock_identifier": "geyser_custom:gmdl_c5cd8fd",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_c5cd8fd",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50012.0,
+    "bedrock_identifier": "geyser_custom:gmdl_935a731",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_935a731",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50013.0,
+    "bedrock_identifier": "geyser_custom:gmdl_46f379e",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_46f379e",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50014.0,
+    "bedrock_identifier": "geyser_custom:gmdl_354769c",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_354769c",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50015.0,
+    "bedrock_identifier": "geyser_custom:gmdl_a3d0ea3",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_a3d0ea3",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50016.0,
+    "bedrock_identifier": "geyser_custom:gmdl_8c858e8",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_8c858e8",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50017.0,
+    "bedrock_identifier": "geyser_custom:gmdl_bcfe381",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_bcfe381",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50018.0,
+    "bedrock_identifier": "geyser_custom:gmdl_47843cd",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_47843cd",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50019.0,
+    "bedrock_identifier": "geyser_custom:gmdl_d5bfdd7",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_d5bfdd7",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50020.0,
+    "bedrock_identifier": "geyser_custom:gmdl_bbc7601",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_bbc7601",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50021.0,
+    "bedrock_identifier": "geyser_custom:gmdl_c64fa59",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_c64fa59",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50022.0,
+    "bedrock_identifier": "geyser_custom:gmdl_80a38b9",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_80a38b9",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50023.0,
+    "bedrock_identifier": "geyser_custom:gmdl_34d6701",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_34d6701",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50024.0,
+    "bedrock_identifier": "geyser_custom:gmdl_65d8b96",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_65d8b96",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50025.0,
+    "bedrock_identifier": "geyser_custom:gmdl_304927a",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_304927a",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50026.0,
+    "bedrock_identifier": "geyser_custom:gmdl_5a94d65",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_5a94d65",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50027.0,
+    "bedrock_identifier": "geyser_custom:gmdl_0f71fc4",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_0f71fc4",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50028.0,
+    "bedrock_identifier": "geyser_custom:gmdl_f0145ce",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_f0145ce",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50029.0,
+    "bedrock_identifier": "geyser_custom:gmdl_45e8d0b",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_45e8d0b",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50030.0,
+    "bedrock_identifier": "geyser_custom:gmdl_e6a89ce",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_e6a89ce",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50031.0,
+    "bedrock_identifier": "geyser_custom:gmdl_e5eb930",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_e5eb930",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50032.0,
+    "bedrock_identifier": "geyser_custom:gmdl_2dae561",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_2dae561",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50033.0,
+    "bedrock_identifier": "geyser_custom:gmdl_a057f6b",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_a057f6b",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50034.0,
+    "bedrock_identifier": "geyser_custom:gmdl_0d0ab03",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_0d0ab03",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50035.0,
+    "bedrock_identifier": "geyser_custom:gmdl_8888d4f",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_8888d4f",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50036.0,
+    "bedrock_identifier": "geyser_custom:gmdl_f47b59d",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_f47b59d",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50037.0,
+    "bedrock_identifier": "geyser_custom:gmdl_361e709",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_361e709",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50038.0,
+    "bedrock_identifier": "geyser_custom:gmdl_6531e2e",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_6531e2e",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50039.0,
+    "bedrock_identifier": "geyser_custom:gmdl_ad2385b",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_ad2385b",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50040.0,
+    "bedrock_identifier": "geyser_custom:gmdl_e8e6342",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_e8e6342",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50041.0,
+    "bedrock_identifier": "geyser_custom:gmdl_30d8194",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_30d8194",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50042.0,
+    "bedrock_identifier": "geyser_custom:gmdl_58ad5f1",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_58ad5f1",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50043.0,
+    "bedrock_identifier": "geyser_custom:gmdl_2184ba9",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_2184ba9",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50044.0,
+    "bedrock_identifier": "geyser_custom:gmdl_278e312",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_278e312",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50045.0,
+    "bedrock_identifier": "geyser_custom:gmdl_3a57792",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_3a57792",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50046.0,
+    "bedrock_identifier": "geyser_custom:gmdl_7df7ce8",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_7df7ce8",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50047.0,
+    "bedrock_identifier": "geyser_custom:gmdl_2c2d2eb",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_2c2d2eb",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50048.0,
+    "bedrock_identifier": "geyser_custom:gmdl_d051d4a",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_d051d4a",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50100.0,
+    "bedrock_identifier": "geyser_custom:gmdl_589370b",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_589370b",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 50101.0,
+    "bedrock_identifier": "geyser_custom:gmdl_de006bb",
+    "display_name": "Nereus Fish",
+    "bedrock_options": {
+     "icon": "gmdl_de006bb",
+     "allow_offhand": true
+    }
+   }
+  ]
+ }
+}
