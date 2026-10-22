@@ -35,7 +35,6 @@ public final class EventManager {
         final long start;
         long end;
         final BossBar bar;
-        final java.util.Map<java.util.UUID, Long> nextSound = new java.util.HashMap<>();
 
         Active(Def def, long start, long end, BossBar bar) {
             this.def = def;
@@ -64,6 +63,8 @@ public final class EventManager {
     private final List<Item> rainDrops = new ArrayList<>();
     private final NamespacedKey rainKey;
     private long nextAuto;
+    /** sound key -> (player -> time the song ends for them). Events sharing a song share one track. */
+    private final Map<String, Map<java.util.UUID, Long>> tracks = new java.util.HashMap<>();
 
     public EventManager(NereusEvents plugin) {
         this.plugin = plugin;
@@ -194,7 +195,7 @@ public final class EventManager {
         for (String l : def.lore()) {
             Bukkit.broadcast(Text.parse("&8  » " + l));
         }
-        playSound(a, true);
+        playTracks();
         return true;
     }
 
@@ -218,8 +219,12 @@ public final class EventManager {
     private void finish(Active a, boolean natural) {
         for (Player p : Bukkit.getOnlinePlayers()) {
             p.hideBossBar(a.bar);
-            if (!a.def.sound().isEmpty()) {
-                p.stopSound(a.def.sound());
+        }
+        String key = a.def.sound();
+        if (key != null && !key.isEmpty() && active.values().stream().noneMatch(o -> key.equals(o.def.sound()))) {
+            tracks.remove(key);
+            for (Player p : Bukkit.getOnlinePlayers()) {
+                p.stopSound(key);
             }
         }
         var m = plugin.messages();
@@ -247,14 +252,19 @@ public final class EventManager {
     // ---------------------------------------------------------------- sound
 
     /**
-     * Plays the event's sound to every online player that is not currently hearing it. With sound-length > 0 the song
-     * is started again for each player when it has finished, until the event ends. Joiners start hearing it at once.
+     * Keeps every song of the running events playing: starts it for players that are not hearing it and, with
+     * sound-length > 0, starts it again when it has finished. Events with the same song share one track, so the
+     * song never overlaps itself and is only stopped when no running event uses it any more.
      */
-    private void playSound(Active a, boolean first) {
-        String key = a.def.sound();
-        if (key == null || key.isEmpty()) {
-            return;
+    private void playTracks() {
+        Map<String, Integer> keys = new LinkedHashMap<>();
+        for (Active a : active.values()) {
+            String key = a.def.sound();
+            if (key != null && !key.isEmpty()) {
+                keys.merge(key, a.def.soundLength(), Math::max);
+            }
         }
+        tracks.keySet().removeIf(k -> !keys.containsKey(k));
         float vol = (float) plugin.getConfig().getDouble("sound.volume", 1.0);
         SoundCategory cat;
         try {
@@ -263,21 +273,23 @@ public final class EventManager {
             cat = SoundCategory.RECORDS;
         }
         long now = System.currentTimeMillis();
-        for (Player p : Bukkit.getOnlinePlayers()) {
-            Long next = a.nextSound.get(p.getUniqueId());
-            if (next != null && now < next) {
-                continue;
+        for (Map.Entry<String, Integer> en : keys.entrySet()) {
+            Map<java.util.UUID, Long> track = tracks.computeIfAbsent(en.getKey(), k -> new java.util.HashMap<>());
+            for (Player p : Bukkit.getOnlinePlayers()) {
+                Long next = track.get(p.getUniqueId());
+                if (next != null && now < next) {
+                    continue;
+                }
+                p.playSound(p.getLocation(), en.getKey(), cat, vol, 1f);
+                track.put(p.getUniqueId(), en.getValue() > 0 ? now + en.getValue() * 1000L + 1000L : Long.MAX_VALUE);
             }
-            p.playSound(p.getLocation(), key, cat, vol, 1f);
-            a.nextSound.put(p.getUniqueId(), a.def.soundLength() > 0
-                    ? now + a.def.soundLength() * 1000L + 1000L : Long.MAX_VALUE);
         }
     }
 
-    /** Joiners get the sound on the next tick. */
+    /** Joiners get the songs on the next tick. */
     public void playFor(Player p) {
-        for (Active a : active.values()) {
-            a.nextSound.remove(p.getUniqueId());
+        for (Map<java.util.UUID, Long> t : tracks.values()) {
+            t.remove(p.getUniqueId());
         }
     }
 
@@ -295,8 +307,9 @@ public final class EventManager {
             }
             a.bar.progress(Math.max(0f, Math.min(1f, (float) left / total)));
             a.bar.name(Text.parse(a.def.name() + " &8| &f" + fmt(left)));
-            playSound(a, false);
+
         }
+        playTracks();
         if (hasRain()) {
             rain();
         }
