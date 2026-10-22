@@ -80,6 +80,102 @@
      "protection_value": 3
     }
    }
+  ],
+  "minecraft:netherite_helmet": [
+   {
+    "type": "legacy",
+    "custom_model_data": 9021.0,
+    "bedrock_identifier": "nereus:dragon_helmet",
+    "display_name": "Dragonhorn Helm",
+    "bedrock_options": {
+     "icon": "nereus_armory_dhelm",
+     "protection_value": 4
+    }
+   }
+  ],
+  "minecraft:netherite_chestplate": [
+   {
+    "type": "legacy",
+    "custom_model_data": 9022.0,
+    "bedrock_identifier": "nereus:dragon_chestplate",
+    "display_name": "Dragonhorn Cuirass",
+    "bedrock_options": {
+     "icon": "nereus_armory_dchest",
+     "protection_value": 9
+    }
+   }
+  ],
+  "minecraft:netherite_leggings": [
+   {
+    "type": "legacy",
+    "custom_model_data": 9023.0,
+    "bedrock_identifier": "nereus:dragon_leggings",
+    "display_name": "Dragonhorn Greaves",
+    "bedrock_options": {
+     "icon": "nereus_armory_dlegs",
+     "protection_value": 7
+    }
+   }
+  ],
+  "minecraft:netherite_boots": [
+   {
+    "type": "legacy",
+    "custom_model_data": 9024.0,
+    "bedrock_identifier": "nereus:dragon_boots",
+    "display_name": "Dragonhorn Sabatons",
+    "bedrock_options": {
+     "icon": "nereus_armory_dboots",
+     "protection_value": 4
+    }
+   }
+  ],
+  "minecraft:diamond_helmet": [
+   {
+    "type": "legacy",
+    "custom_model_data": 9031.0,
+    "bedrock_identifier": "nereus:frost_helmet",
+    "display_name": "Frostwing Helm",
+    "bedrock_options": {
+     "icon": "nereus_armory_fhelm",
+     "protection_value": 4
+    }
+   }
+  ],
+  "minecraft:diamond_chestplate": [
+   {
+    "type": "legacy",
+    "custom_model_data": 9032.0,
+    "bedrock_identifier": "nereus:frost_chestplate",
+    "display_name": "Frostwing Cuirass",
+    "bedrock_options": {
+     "icon": "nereus_armory_fchest",
+     "protection_value": 9
+    }
+   }
+  ],
+  "minecraft:diamond_leggings": [
+   {
+    "type": "legacy",
+    "custom_model_data": 9033.0,
+    "bedrock_identifier": "nereus:frost_leggings",
+    "display_name": "Frostwing Greaves",
+    "bedrock_options": {
+     "icon": "nereus_armory_flegs",
+     "protection_value": 7
+    }
+   }
+  ],
+  "minecraft:diamond_boots": [
+   {
+    "type": "legacy",
+    "custom_model_data": 9034.0,
+    "bedrock_identifier": "nereus:frost_boots",
+    "display_name": "Frostwing Sabatons",
+    "bedrock_options": {
+     "icon": "nereus_armory_fboots",
+     "protection_value": 4
+    }
+   }
   ]
  }
 }

@@ -47,6 +47,8 @@ public final class Overlay {
     private Part spawn(Player p, String kind, int side, double scale) {
         int cmd = switch (kind) {
             case "crest" -> 9101;
+            case "dhead" -> 9111;
+            case "fhead" -> 9112;
             case "wing" -> side > 0 ? 9102 : 9105;
             case "strip" -> 9103;
             default -> 9104;
@@ -98,9 +100,11 @@ public final class Overlay {
     public void tick() {
         boolean on = plugin.getConfig().getBoolean("overlay.enabled", true);
         for (Player p : Bukkit.getOnlinePlayers()) {
-            boolean helm = "helm".equals(plugin.items().idOf(p.getInventory().getHelmet()));
-            boolean chest = "chest".equals(plugin.items().idOf(p.getInventory().getChestplate()));
-            boolean want = on && (helm || chest) && !p.isDead() && !p.isInvisible() && p.getGameMode() != GameMode.SPECTATOR;
+            String hid = plugin.items().idOf(p.getInventory().getHelmet());
+            String cid = plugin.items().idOf(p.getInventory().getChestplate());
+            String headKind = "helm".equals(hid) ? "crest" : "dhelm".equals(hid) ? "dhead" : "fhelm".equals(hid) ? "fhead" : null;
+            boolean chest = "chest".equals(cid);
+            boolean want = on && (headKind != null || chest) && !p.isDead() && !p.isInvisible() && p.getGameMode() != GameMode.SPECTATOR;
             UUID id = p.getUniqueId();
             if (!want) {
                 if (parts.containsKey(id)) {
@@ -109,7 +113,7 @@ public final class Overlay {
                 continue;
             }
             List<Part> cur = parts.get(id);
-            int expect = (helm ? 1 : 0) + (chest ? 6 : 0);
+            int expect = (headKind != null ? 1 : 0) + (chest ? 6 : 0);
             boolean ok = cur != null && cur.size() == expect;
             if (ok) {
                 for (Part pt : cur) {
@@ -118,8 +122,9 @@ public final class Overlay {
                         break;
                     }
                 }
-                boolean hasCrown = cur.stream().anyMatch(x -> x.kind().equals("crest"));
-                if (hasCrown != helm) {
+                boolean headOk = headKind == null ? cur.stream().noneMatch(x -> x.kind().equals("crest") || x.kind().endsWith("head"))
+                        : cur.stream().anyMatch(x -> x.kind().equals(headKind));
+                if (!headOk) {
                     ok = false;
                 }
             }
@@ -127,8 +132,8 @@ public final class Overlay {
             if (!ok) {
                 remove(id);
                 List<Part> nl = new ArrayList<>();
-                if (helm) {
-                    nl.add(spawn(p, "crest", 0, c.getDouble("overlay.crest.scale", 1.0)));
+                if (headKind != null) {
+                    nl.add(spawn(p, headKind, 0, headKind.equals("crest") ? c.getDouble("overlay.crest.scale", 1.0) : c.getDouble("overlay.headplate.scale", 1.25)));
                 }
                 if (chest) {
                     double ws = c.getDouble("overlay.wing.scale", 0.75);
@@ -182,6 +187,14 @@ public final class Overlay {
                     y += c.getDouble("overlay.crest.y", 2.0) - sneak + 0.5 * s;
                     x += hfx * lean;
                     z += hfz * lean;
+                    yaw = head;
+                }
+                case "dhead", "fhead" -> {
+                    double s = c.getDouble("overlay.headplate.scale", 1.25);
+                    y += c.getDouble("overlay.headplate.y", 1.75) - sneak + 0.234 * s;
+                    double fw = c.getDouble("overlay.headplate.forward", 0.30);
+                    x += hfx * (fw + lean);
+                    z += hfz * (fw + lean);
                     yaw = head;
                 }
                 case "wing" -> {

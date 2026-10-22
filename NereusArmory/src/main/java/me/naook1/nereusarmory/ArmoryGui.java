@@ -1,6 +1,8 @@
 package me.naook1.nereusarmory;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -25,29 +27,45 @@ public final class ArmoryGui implements Listener {
         }
     }
 
-    private static final int[] WEAPON_SLOTS = {11, 13, 15};
-    private static final int[] ARMOR_SLOTS = {20, 21, 23, 24};
     private final NereusArmory plugin;
 
     public ArmoryGui(NereusArmory plugin) {
         this.plugin = plugin;
     }
 
+    private static final int[] COLS3 = {2, 4, 6};
+    private static final int[] COLS4 = {2, 3, 5, 6};
+
     public void open(Player p) {
+        boolean admin = p.hasPermission("nereusarmory.admin");
         Holder h = new Holder();
-        Inventory inv = Bukkit.createInventory(h, 36, Text.parse("&#2fd0c8&lPearlguard Armory"));
+        Inventory inv = Bukkit.createInventory(h, 54, Text.parse("&#2fd0c8&lNereus Armory"));
         ItemStack pane = new ItemStack(Material.BLUE_STAINED_GLASS_PANE);
         var pm = pane.getItemMeta();
         pm.displayName(Text.item("&r"));
         pane.setItemMeta(pm);
-        for (int i = 0; i < 36; i++) {
+        for (int i = 0; i < 54; i++) {
             inv.setItem(i, pane);
         }
-        int w = 0, a = 0;
-        for (var d : plugin.items().all().values()) {
-            int slot = d.weapon() ? WEAPON_SLOTS[w++] : ARMOR_SLOTS[a++];
-            inv.setItem(slot, plugin.items().create(d.id()));
-            h.slots.put(slot, d.id());
+        String[] groups = {"", "pearl", "dragon", "frost"};
+        int row = 1;
+        for (String g : groups) {
+            List<ArmoryItems.Def> list = new ArrayList<>();
+            for (var d : plugin.items().all().values()) {
+                if (d.set().equals(g) && (!d.adminOnly() || admin)) {
+                    list.add(d);
+                }
+            }
+            if (list.isEmpty()) {
+                continue;
+            }
+            int[] cols = list.size() == 3 ? COLS3 : COLS4;
+            for (int i = 0; i < list.size() && i < cols.length; i++) {
+                int slot = row * 9 + cols[i];
+                inv.setItem(slot, plugin.items().create(list.get(i).id()));
+                h.slots.put(slot, list.get(i).id());
+            }
+            row++;
         }
         p.openInventory(inv);
     }
@@ -65,7 +83,7 @@ public final class ArmoryGui implements Listener {
         if (id == null) {
             return;
         }
-        if (!plugin.getConfig().getBoolean("menu.free-take", true) && !p.hasPermission("nereusarmory.admin")) {
+        if ((plugin.items().def(id).adminOnly() || !plugin.getConfig().getBoolean("menu.free-take", true)) && !p.hasPermission("nereusarmory.admin")) {
             p.sendMessage(Text.parse("&cOnly admins can take items from this menu."));
             return;
         }

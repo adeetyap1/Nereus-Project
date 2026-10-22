@@ -350,43 +350,63 @@ public final class Skills implements Listener {
 
     // ---------------------------------------------------------------- Abyssal set
 
-    public int pieces(Player p) {
+    /** How many pieces of the given set the player wears (each in its own slot). */
+    public int pieces(Player p, String set) {
         int n = 0;
         var inv = p.getInventory();
-        if ("helm".equals(plugin.items().idOf(inv.getHelmet()))) {
-            n++;
-        }
-        if ("chest".equals(plugin.items().idOf(inv.getChestplate()))) {
-            n++;
-        }
-        if ("legs".equals(plugin.items().idOf(inv.getLeggings()))) {
-            n++;
-        }
-        if ("boots".equals(plugin.items().idOf(inv.getBoots()))) {
-            n++;
+        ItemStack[] worn = {inv.getHelmet(), inv.getChestplate(), inv.getLeggings(), inv.getBoots()};
+        for (int i = 0; i < 4; i++) {
+            String id = plugin.items().idOf(worn[i]);
+            if (id != null && ArmoryItems.slotOf(id) == i) {
+                var d = plugin.items().def(id);
+                if (d != null && !d.weapon() && d.set().equals(set)) {
+                    n++;
+                }
+            }
         }
         return n;
+    }
+
+    private static void eff(Player p, PotionEffectType t, int amp) {
+        p.addPotionEffect(new PotionEffect(t, 80, amp, true, false, false));
     }
 
     /** Every second: passive set effects. */
     public void tickSet() {
         for (Player p : Bukkit.getOnlinePlayers()) {
-            int n = pieces(p);
-            if (n < 2) {
-                continue;
-            }
-            boolean inWet = wet(p);
-            p.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING, 80, 0, true, false, false));
-            if (n >= 3 && p.isInWater()) {
-                p.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 80, 0, true, false, false));
-            }
-            if (n >= 4) {
-                if (inWet) {
-                    p.addPotionEffect(new PotionEffect(PotionEffectType.CONDUIT_POWER, 80, 0, true, false, false));
+            int n = pieces(p, "pearl");
+            if (n >= 2) {
+                boolean inWet = wet(p);
+                eff(p, PotionEffectType.WATER_BREATHING, 0);
+                if (n >= 3 && p.isInWater()) {
+                    eff(p, PotionEffectType.DOLPHINS_GRACE, 0);
+                }
+                if (n >= 4 && inWet) {
+                    eff(p, PotionEffectType.CONDUIT_POWER, 0);
                     if (p.getTicksLived() % 80 < 20) {
                         p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 60, 0, true, false, false));
                     }
                 }
+            }
+            n = pieces(p, "dragon");
+            if (n >= 2) {
+                eff(p, PotionEffectType.FIRE_RESISTANCE, 0);
+            }
+            if (n >= 3) {
+                eff(p, PotionEffectType.STRENGTH, 0);
+            }
+            if (n >= 4) {
+                eff(p, PotionEffectType.RESISTANCE, 0);
+            }
+            n = pieces(p, "frost");
+            if (n >= 2) {
+                eff(p, PotionEffectType.SPEED, 0);
+            }
+            if (n >= 3) {
+                eff(p, PotionEffectType.SLOW_FALLING, 0);
+            }
+            if (n >= 4) {
+                eff(p, PotionEffectType.JUMP_BOOST, 0);
             }
         }
     }
@@ -400,19 +420,41 @@ public final class Skills implements Listener {
         }
         auraStep += 0.35;
         for (Player p : Bukkit.getOnlinePlayers()) {
-            if (pieces(p) < 4 || p.isInvisible() || p.getGameMode() == GameMode.SPECTATOR) {
+            if (p.isInvisible() || p.getGameMode() == GameMode.SPECTATOR) {
                 continue;
             }
             Location b = p.getLocation();
             World w = p.getWorld();
-            for (int i = 0; i < 3; i++) {
-                double a = auraStep * 2 + i * 2.094;
-                double h = 0.2 + ((auraStep * 0.6 + i * 0.7) % 1.8);
-                w.spawnParticle(Particle.DUST, b.getX() + Math.cos(a) * 0.75, b.getY() + h, b.getZ() + Math.sin(a) * 0.75,
-                        1, 0, 0, 0, 0, new Particle.DustOptions(Color.fromRGB(47, 208, 200), 1.1f));
+            if (pieces(p, "pearl") >= 4) {
+                for (int i = 0; i < 3; i++) {
+                    double a = auraStep * 2 + i * 2.094;
+                    double h = 0.2 + ((auraStep * 0.6 + i * 0.7) % 1.8);
+                    w.spawnParticle(Particle.DUST, b.getX() + Math.cos(a) * 0.75, b.getY() + h, b.getZ() + Math.sin(a) * 0.75,
+                            1, 0, 0, 0, 0, new Particle.DustOptions(Color.fromRGB(47, 208, 200), 1.1f));
+                }
+                if (Math.random() < 0.3) {
+                    w.spawnParticle(Particle.DRIPPING_WATER, b.clone().add(0, 1.9, 0), 1, 0.3, 0.1, 0.3, 0);
+                }
             }
-            if (Math.random() < 0.3) {
-                w.spawnParticle(Particle.DRIPPING_WATER, b.clone().add(0, 1.9, 0), 1, 0.3, 0.1, 0.3, 0);
+            if (pieces(p, "dragon") >= 4) {
+                for (int i = 0; i < 2; i++) {
+                    double a = auraStep * 2.4 + i * Math.PI;
+                    double h = 0.1 + ((auraStep * 0.7 + i) % 1.9);
+                    w.spawnParticle(Particle.FLAME, b.getX() + Math.cos(a) * 0.7, b.getY() + h, b.getZ() + Math.sin(a) * 0.7, 1, 0, 0.02, 0, 0.005);
+                }
+                if (Math.random() < 0.25) {
+                    w.spawnParticle(Particle.SMOKE, b.clone().add(0, 2.1, 0), 1, 0.25, 0.1, 0.25, 0.01);
+                }
+            }
+            if (pieces(p, "frost") >= 4) {
+                for (int i = 0; i < 2; i++) {
+                    double a = auraStep * 1.8 + i * Math.PI;
+                    double h = 0.1 + ((auraStep * 0.5 + i) % 2.0);
+                    w.spawnParticle(Particle.SNOWFLAKE, b.getX() + Math.cos(a) * 0.8, b.getY() + h, b.getZ() + Math.sin(a) * 0.8, 1, 0.05, 0.05, 0.05, 0.0);
+                }
+                if (Math.random() < 0.3) {
+                    w.spawnParticle(Particle.END_ROD, b.clone().add(0, 2.0, 0), 1, 0.3, 0.2, 0.3, 0.01);
+                }
             }
         }
     }
@@ -425,12 +467,87 @@ public final class Skills implements Listener {
         Player p = e.getPlayer();
         long now = System.currentTimeMillis();
         Long last = lastSneak.put(p.getUniqueId(), now);
-        if (last != null && now - last < 500 && pieces(p) >= 4) {
-            lastSneak.remove(p.getUniqueId());
-            if (ready(p, "tsunami", "TSUNAMI", plugin.getConfig().getInt("set-bonus.tsunami.cooldown", 45))) {
-                tsunami(p);
+        if (last != null && now - last < 500) {
+            var c = plugin.getConfig();
+            if (pieces(p, "pearl") >= 4) {
+                lastSneak.remove(p.getUniqueId());
+                if (ready(p, "tsunami", "TSUNAMI", c.getInt("set-bonus.tsunami.cooldown", 45))) {
+                    tsunami(p);
+                }
+            } else if (pieces(p, "dragon") >= 4) {
+                lastSneak.remove(p.getUniqueId());
+                if (ready(p, "roar", "DRAGON ROAR", c.getInt("set-bonus.dragon-roar.cooldown", 40))) {
+                    shockwave(p, c.getDouble("set-bonus.dragon-roar.damage", 8.0), c.getDouble("set-bonus.dragon-roar.radius", 8), true);
+                }
+            } else if (pieces(p, "frost") >= 4) {
+                lastSneak.remove(p.getUniqueId());
+                if (ready(p, "blizzard", "BLIZZARD", c.getInt("set-bonus.blizzard.cooldown", 40))) {
+                    shockwave(p, c.getDouble("set-bonus.blizzard.damage", 6.0), c.getDouble("set-bonus.blizzard.radius", 9), false);
+                }
             }
         }
+    }
+
+    /** Dragon Roar (fire) and Blizzard (ice): expanding ring that hits everything around the wearer. */
+    private void shockwave(Player p, double dmg, double radius, boolean fire) {
+        World w = p.getWorld();
+        final Location c = p.getLocation().clone();
+        if (fire) {
+            w.playSound(c, Sound.ENTITY_ENDER_DRAGON_GROWL, 2f, 0.8f);
+            w.playSound(c, Sound.ENTITY_BLAZE_SHOOT, 1.5f, 0.6f);
+            p.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, 200, 1));
+        } else {
+            w.playSound(c, Sound.ENTITY_PLAYER_HURT_FREEZE, 2f, 0.6f);
+            w.playSound(c, Sound.BLOCK_GLASS_BREAK, 1.5f, 0.5f);
+            w.playSound(c, Sound.ENTITY_WARDEN_SONIC_BOOM, 0.8f, 1.6f);
+            p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 160, 2));
+        }
+        final Set<UUID> hit = new HashSet<>();
+        new BukkitRunnable() {
+            double r = 1.0;
+
+            @Override
+            public void run() {
+                if (r > radius) {
+                    cancel();
+                    return;
+                }
+                int pts = (int) (20 + r * 12);
+                for (int i = 0; i < pts; i++) {
+                    double a = i * 2 * Math.PI / pts;
+                    Location l = new Location(w, c.getX() + Math.cos(a) * r, c.getY() + 0.2, c.getZ() + Math.sin(a) * r);
+                    if (fire) {
+                        w.spawnParticle(Particle.FLAME, l, 2, 0.1, 0.4, 0.1, 0.03);
+                        if (i % 5 == 0) {
+                            w.spawnParticle(Particle.LAVA, l.clone().add(0, 0.5, 0), 1);
+                            w.spawnParticle(Particle.SMOKE, l.clone().add(0, 1.0, 0), 2, 0.2, 0.3, 0.2, 0.02);
+                        }
+                    } else {
+                        w.spawnParticle(Particle.SNOWFLAKE, l, 3, 0.1, 0.5, 0.1, 0.03);
+                        if (i % 5 == 0) {
+                            w.spawnParticle(Particle.END_ROD, l.clone().add(0, 0.8, 0), 1, 0.1, 0.3, 0.1, 0.02);
+                        }
+                    }
+                }
+                for (LivingEntity t : near(p, c, r + 0.8)) {
+                    if (hit.add(t.getUniqueId())) {
+                        hurt(p, t, dmg);
+                        Vector away = t.getLocation().toVector().subtract(c.toVector()).setY(0);
+                        if (away.lengthSquared() < 0.01) {
+                            away = new Vector(0, 0, 1);
+                        }
+                        t.setVelocity(away.normalize().multiply(1.3).setY(0.5));
+                        if (fire) {
+                            t.setFireTicks(80);
+                        } else {
+                            t.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 100, 2));
+                            t.setFreezeTicks(t.getMaxFreezeTicks() + 100);
+                        }
+                    }
+                }
+                r += 0.8;
+            }
+        }.runTaskTimer(plugin, 0L, 1L);
     }
 
     private void tsunami(Player p) {

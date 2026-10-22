@@ -15,6 +15,15 @@ armor:                     # per piece: armor points, toughness, knockback resis
   legs:  {armor: 6, toughness: 3, knockback: 0.05, health: 2}
   boots: {armor: 3, toughness: 3, knockback: 0.05, health: 2}
 
+  dhelm:  {armor: 3, toughness: 3, knockback: 0.1, health: 2}
+  dchest: {armor: 8, toughness: 3, knockback: 0.1, health: 2}
+  dlegs:  {armor: 6, toughness: 3, knockback: 0.1, health: 2}
+  dboots: {armor: 3, toughness: 3, knockback: 0.1, health: 2}
+  fhelm:  {armor: 3, toughness: 2, knockback: 0, health: 2}
+  fchest: {armor: 8, toughness: 2, knockback: 0, health: 2}
+  flegs:  {armor: 6, toughness: 2, knockback: 0, health: 2}
+  fboots: {armor: 3, toughness: 2, knockback: 0, health: 2}
+
 skills:                    # right click with the weapon
   tidal-surge:             # Tidecaller
     cooldown: 12
@@ -36,6 +45,14 @@ set-bonus:                 # full Abyssal set (4 pieces)
     cooldown: 45
     damage: 9.0
     radius: 9
+  dragon-roar:             # Dragonhorn set, sneak twice
+    cooldown: 40
+    damage: 8.0
+    radius: 8
+  blizzard:                # Frostwing set, sneak twice
+    cooldown: 40
+    damage: 6.0
+    radius: 9
   aura: true               # water particles around the wearer (visible to Java and Bedrock)
 
 overlay:                   # Java only: 3D shoulder wings, helm crest, chevrons and teal cape strips on the wearer (Bedrock sees the painted armor)
@@ -43,4 +60,5 @@ overlay:                   # Java only: 3D shoulder wings, helm crest, chevrons 
   crest:    {y: 2.0, scale: 1.0}
   wing:     {x: 0.31, y: 1.40, scale: 0.75}
   strip:    {x: 0.46, back: 0.10, top: 1.50, scale: 1.0}
+  headplate: {y: 1.75, forward: 0.30, scale: 1.25}   # Dragonhorn / Frostwing helm plate
   chevron:  {y: 1.02, hip-y: 0.66, forward: 0.17, scale: 1.0}

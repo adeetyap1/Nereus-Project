@@ -19,7 +19,7 @@ import org.bukkit.persistence.PersistentDataType;
 /** All Armory items. Java and Bedrock look comes from custom_model_data (resource pack). */
 public final class ArmoryItems {
 
-    public record Def(String id, Material material, int cmd, String name, boolean weapon, List<String> lore) {
+    public record Def(String id, Material material, int cmd, String name, boolean weapon, String set, boolean adminOnly, List<String> lore) {
     }
 
     private final NereusArmory plugin;
@@ -55,10 +55,32 @@ public final class ArmoryItems {
                 "&7Part of the &bPearlguard &7set.");
         add("boots", Material.CHAINMAIL_BOOTS, 9014, "&#f2fbfb&lPearlguard Sabatons", false,
                 "&7Part of the &bPearlguard &7set.");
+        String[] pcs = {"Helm", "Cuirass", "Greaves", "Sabatons"};
+        addSet("dragon", "&#e6b34a", "Dragonhorn", new Material[]{Material.NETHERITE_HELMET, Material.NETHERITE_CHESTPLATE,
+                Material.NETHERITE_LEGGINGS, Material.NETHERITE_BOOTS}, 9021, new String[]{"dhelm", "dchest", "dlegs", "dboots"}, pcs,
+                "&72 pcs &fFire Resistance", "&73 pcs &fStrength I", "&74 pcs &fResistance I, flame aura +",
+                "&7      &c&lDRAGON ROAR &7(sneak twice)");
+        addSet("frost", "&#8fd8ff", "Frostwing", new Material[]{Material.DIAMOND_HELMET, Material.DIAMOND_CHESTPLATE,
+                Material.DIAMOND_LEGGINGS, Material.DIAMOND_BOOTS}, 9031, new String[]{"fhelm", "fchest", "flegs", "fboots"}, pcs,
+                "&72 pcs &fSpeed I", "&73 pcs &fSlow Falling", "&74 pcs &fJump Boost, snow aura +",
+                "&7      &b&lBLIZZARD &7(sneak twice)");
     }
 
     private void add(String id, Material m, int cmd, String name, boolean weapon, String... lore) {
-        defs.put(id, new Def(id, m, cmd, name, weapon, List.of(lore)));
+        defs.put(id, new Def(id, m, cmd, name, weapon, weapon ? "" : "pearl", false, List.of(lore)));
+    }
+
+    private void addSet(String set, String color, String title, Material[] mats, int cmd0, String[] ids, String[] pieces, String... bonus) {
+        for (int i = 0; i < 4; i++) {
+            List<String> lore = new ArrayList<>();
+            lore.add("&7Part of the " + color + title + " &7set. &c(admin item)");
+            lore.add("");
+            lore.add("&6Full set bonus:");
+            for (String b : bonus) {
+                lore.add(b);
+            }
+            defs.put(ids[i], new Def(ids[i], mats[i], cmd0 + i, color + "&l" + title + " " + pieces[i], false, set, true, lore));
+        }
     }
 
     public Map<String, Def> all() {
@@ -83,7 +105,7 @@ public final class ArmoryItems {
         for (String l : d.lore()) {
             lore.add(Text.item(l));
         }
-        if (!d.weapon()) {
+        if (!d.weapon() && d.set().equals("pearl")) {
             lore.add(Component.empty());
             lore.add(Text.item("&6Full set bonus:"));
             lore.add(Text.item("&72 pcs &fWater Breathing"));
@@ -100,12 +122,8 @@ public final class ArmoryItems {
             mod(meta, Attribute.GENERIC_ATTACK_DAMAGE, "dmg", dmg - 1.0, EquipmentSlotGroup.MAINHAND);
             mod(meta, Attribute.GENERIC_ATTACK_SPEED, "spd", spd - 4.0, EquipmentSlotGroup.MAINHAND);
         } else {
-            EquipmentSlotGroup g = switch (id) {
-                case "helm" -> EquipmentSlotGroup.HEAD;
-                case "chest" -> EquipmentSlotGroup.CHEST;
-                case "legs" -> EquipmentSlotGroup.LEGS;
-                default -> EquipmentSlotGroup.FEET;
-            };
+            EquipmentSlotGroup g = id.endsWith("helm") ? EquipmentSlotGroup.HEAD : id.endsWith("chest") ? EquipmentSlotGroup.CHEST
+                    : id.endsWith("legs") ? EquipmentSlotGroup.LEGS : EquipmentSlotGroup.FEET;
             String p = "armor." + id + ".";
             mod(meta, Attribute.GENERIC_ARMOR, "armor", c.getDouble(p + "armor", 3), g);
             mod(meta, Attribute.GENERIC_ARMOR_TOUGHNESS, "tough", c.getDouble(p + "toughness", 3), g);
@@ -123,6 +141,11 @@ public final class ArmoryItems {
         }
         meta.addAttributeModifier(a, new AttributeModifier(new NamespacedKey(plugin, key), amount,
                 AttributeModifier.Operation.ADD_NUMBER, g));
+    }
+
+    /** Slot index 0..3 (helmet, chestplate, leggings, boots) of an armor id. */
+    public static int slotOf(String id) {
+        return id.endsWith("helm") ? 0 : id.endsWith("chest") ? 1 : id.endsWith("legs") ? 2 : 3;
     }
 
     /** Armory id of an item, or null. */
