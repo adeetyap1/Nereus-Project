@@ -223,14 +223,27 @@ public final class EventManager {
         String key = a.def.sound();
         if (key != null && !key.isEmpty() && active.values().stream().noneMatch(o -> key.equals(o.def.sound()))) {
             tracks.remove(key);
-            for (Player p : Bukkit.getOnlinePlayers()) {
-                p.stopSound(key);
-            }
+            stopSong(key);
         }
         var m = plugin.messages();
         Bukkit.broadcast(Text.parse(m.get("prefix") + Text.fill(m.get(natural ? "ended" : "stopped"), "name", a.def.name())));
         if (!hasRain()) {
             clearRain();
+        }
+    }
+
+    /** Stops the song for everybody (any category), so it can never keep playing after the event. */
+    private void stopSong(String key) {
+        SoundCategory cat;
+        try {
+            cat = SoundCategory.valueOf(plugin.getConfig().getString("sound.category", "RECORDS").toUpperCase());
+        } catch (IllegalArgumentException e) {
+            cat = SoundCategory.RECORDS;
+        }
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            p.stopSound(key);
+            p.stopSound(key, cat);
+            p.stopSound(cat);
         }
     }
 

@@ -6,7 +6,7 @@
 
     <groupId>me.naook1</groupId>
     <artifactId>NereusEvents</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <packaging>jar</packaging>
     <name>NereusEvents</name>
     <description>Global timed events (admin abuse) for fishing, farming and luck by naook1/adityap</description>

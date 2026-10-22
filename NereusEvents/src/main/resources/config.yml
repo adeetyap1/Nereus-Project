@@ -7,7 +7,8 @@
 #   farm_sell      (kali)    : pengali harga jual hasil farm (via NereusFarmPrice + EconomyShopGUI)
 #   lottery_pot    (kali)    : pengali hadiah saat undian lottery (bonus dari server)
 # sound: nama suara custom dari resource pack (lihat README di repo). Kosong = tanpa suara.
-# sound-length: panjang lagu (detik). Jika > 0, lagu diputar ulang sampai event habis.
+# sound-length: panjang lagu (detik, lagu Raining Tacos = 105). Jika > 0, lagu diulang sampai event habis.
+# Semua event memakai SATU lagu yang sama; jika beberapa event jalan bersamaan, lagunya tetap satu.
 
 auto:
   enabled: true
@@ -39,7 +40,7 @@ events:
     weight: 10
     rain: true
     sound: "nereus:event.tacos"
-    sound-length: 290
+    sound-length: 105
     subtitle: "&eTaco jatuh dari langit! &7Farm &a+50% &7| Luck &a+3"
     lore:
       - "&7Taco berjatuhan dari langit, ambil sepuasnya!"
@@ -51,7 +52,8 @@ events:
     minutes: 10
     icon: FISHING_ROD
     weight: 20
-    sound: "minecraft:ui.toast.challenge_complete"
+    sound: "nereus:event.tacos"
+    sound-length: 105
     subtitle: "&bPasang keberuntungan! &7Luck pancing &a+8 &7| Gigitan &a+40%"
     lore:
       - "&7Ikan epic dan legendary jauh lebih sering."
@@ -62,7 +64,8 @@ events:
     minutes: 10
     icon: WHEAT
     weight: 20
-    sound: "minecraft:ui.toast.challenge_complete"
+    sound: "nereus:event.tacos"
+    sound-length: 105
     subtitle: "&6Panen emas! &7Harga jual farm &a×2"
     lore:
       - "&7Semua hasil farm laku dua kali lipat."
@@ -73,7 +76,8 @@ events:
     minutes: 8
     icon: COD
     weight: 15
-    sound: "minecraft:ui.toast.challenge_complete"
+    sound: "nereus:event.tacos"
+    sound-length: 105
     subtitle: "&aPasar ikan gila! &7Harga jual ikan &a×2"
     lore:
       - "&7Jual semua ikanmu dengan /fish sell."
@@ -84,7 +88,8 @@ events:
     minutes: 15
     icon: GOLD_INGOT
     weight: 12
-    sound: "minecraft:ui.toast.challenge_complete"
+    sound: "nereus:event.tacos"
+    sound-length: 105
     subtitle: "&dHadiah undian &a×2 &7jika undian terjadi saat event ini!"
     lore:
       - "&7Server menambah hadiah lottery."
@@ -95,7 +100,8 @@ events:
     minutes: 6
     icon: HEART_OF_THE_SEA
     weight: 6
-    sound: "minecraft:ui.toast.challenge_complete"
+    sound: "nereus:event.tacos"
+    sound-length: 105
     subtitle: "&5Penghuni palung bangkit! &7Luck &a+20 &7| Berat ikan &a×1.5"
     lore:
       - "&7Ikan raksasa mengamuk di lautan."
@@ -108,7 +114,7 @@ events:
     weight: 2
     rain: true
     sound: "nereus:event.tacos"
-    sound-length: 290
+    sound-length: 105
     subtitle: "&cSEMUA BONUS AKTIF! &7Luck &a+25 &7| Farm &a×3 &7| Jual ikan &a×2"
     lore:
       - "&7Kekacauan total. Nikmati selagi sempat!"
