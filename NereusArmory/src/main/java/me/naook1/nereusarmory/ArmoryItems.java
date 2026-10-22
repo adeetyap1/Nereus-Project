@@ -47,14 +47,14 @@ public final class ArmoryItems {
                 "&7Calls lightning on your target and",
                 "&7chains it to enemies nearby.",
                 "&7Passive: &f15% chance of a shock hit.");
-        add("helm", Material.CHAINMAIL_HELMET, 9011, "&#2fd0c8&lAbyssal Crown", false,
-                "&7Part of the &bAbyssal Throne &7set.");
-        add("chest", Material.CHAINMAIL_CHESTPLATE, 9012, "&#2fd0c8&lAbyssal Cuirass", false,
-                "&7Part of the &bAbyssal Throne &7set.");
-        add("legs", Material.CHAINMAIL_LEGGINGS, 9013, "&#2fd0c8&lAbyssal Greaves", false,
-                "&7Part of the &bAbyssal Throne &7set.");
-        add("boots", Material.CHAINMAIL_BOOTS, 9014, "&#2fd0c8&lAbyssal Striders", false,
-                "&7Part of the &bAbyssal Throne &7set.");
+        add("helm", Material.CHAINMAIL_HELMET, 9011, "&#f2fbfb&lPearlguard Helm", false,
+                "&7Part of the &bPearlguard &7set.");
+        add("chest", Material.CHAINMAIL_CHESTPLATE, 9012, "&#f2fbfb&lPearlguard Cuirass", false,
+                "&7Part of the &bPearlguard &7set.");
+        add("legs", Material.CHAINMAIL_LEGGINGS, 9013, "&#f2fbfb&lPearlguard Greaves", false,
+                "&7Part of the &bPearlguard &7set.");
+        add("boots", Material.CHAINMAIL_BOOTS, 9014, "&#f2fbfb&lPearlguard Sabatons", false,
+                "&7Part of the &bPearlguard &7set.");
     }
 
     private void add(String id, Material m, int cmd, String name, boolean weapon, String... lore) {

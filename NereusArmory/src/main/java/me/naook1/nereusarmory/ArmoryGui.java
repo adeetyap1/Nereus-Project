@@ -35,7 +35,7 @@ public final class ArmoryGui implements Listener {
 
     public void open(Player p) {
         Holder h = new Holder();
-        Inventory inv = Bukkit.createInventory(h, 36, Text.parse("&#2fd0c8&lAbyssal Armory"));
+        Inventory inv = Bukkit.createInventory(h, 36, Text.parse("&#2fd0c8&lPearlguard Armory"));
         ItemStack pane = new ItemStack(Material.BLUE_STAINED_GLASS_PANE);
         var pm = pane.getItemMeta();
         pm.displayName(Text.item("&r"));

@@ -37,8 +37,8 @@
    {
     "type": "legacy",
     "custom_model_data": 9011.0,
-    "bedrock_identifier": "nereus:abyss_helmet",
-    "display_name": "Abyssal Crown",
+    "bedrock_identifier": "nereus:pearl_helmet",
+    "display_name": "Pearlguard Helm",
     "bedrock_options": {
      "icon": "nereus_armory_helm",
      "protection_value": 3
@@ -49,8 +49,8 @@
    {
     "type": "legacy",
     "custom_model_data": 9012.0,
-    "bedrock_identifier": "nereus:abyss_chestplate",
-    "display_name": "Abyssal Cuirass",
+    "bedrock_identifier": "nereus:pearl_chestplate",
+    "display_name": "Pearlguard Cuirass",
     "bedrock_options": {
      "icon": "nereus_armory_chest",
      "protection_value": 8
@@ -61,8 +61,8 @@
    {
     "type": "legacy",
     "custom_model_data": 9013.0,
-    "bedrock_identifier": "nereus:abyss_leggings",
-    "display_name": "Abyssal Greaves",
+    "bedrock_identifier": "nereus:pearl_leggings",
+    "display_name": "Pearlguard Greaves",
     "bedrock_options": {
      "icon": "nereus_armory_legs",
      "protection_value": 6
@@ -73,8 +73,8 @@
    {
     "type": "legacy",
     "custom_model_data": 9014.0,
-    "bedrock_identifier": "nereus:abyss_boots",
-    "display_name": "Abyssal Striders",
+    "bedrock_identifier": "nereus:pearl_boots",
+    "display_name": "Pearlguard Sabatons",
     "bedrock_options": {
      "icon": "nereus_armory_boots",
      "protection_value": 3

@@ -46,9 +46,10 @@ public final class Overlay {
 
     private Part spawn(Player p, String kind, int side, double scale) {
         int cmd = switch (kind) {
-            case "crown" -> 9101;
-            case "pauldron" -> 9102;
-            default -> 9103;
+            case "crest" -> 9101;
+            case "wing" -> side > 0 ? 9102 : 9105;
+            case "strip" -> 9103;
+            default -> 9104;
         };
         ItemDisplay d = p.getWorld().spawn(p.getLocation(), ItemDisplay.class, e -> {
             e.setItemStack(model(cmd));
@@ -108,7 +109,7 @@ public final class Overlay {
                 continue;
             }
             List<Part> cur = parts.get(id);
-            int expect = (helm ? 1 : 0) + (chest ? 3 : 0);
+            int expect = (helm ? 1 : 0) + (chest ? 6 : 0);
             boolean ok = cur != null && cur.size() == expect;
             if (ok) {
                 for (Part pt : cur) {
@@ -117,7 +118,7 @@ public final class Overlay {
                         break;
                     }
                 }
-                boolean hasCrown = cur.stream().anyMatch(x -> x.kind().equals("crown"));
+                boolean hasCrown = cur.stream().anyMatch(x -> x.kind().equals("crest"));
                 if (hasCrown != helm) {
                     ok = false;
                 }
@@ -127,12 +128,17 @@ public final class Overlay {
                 remove(id);
                 List<Part> nl = new ArrayList<>();
                 if (helm) {
-                    nl.add(spawn(p, "crown", 0, c.getDouble("overlay.crown.scale", 1.0)));
+                    nl.add(spawn(p, "crest", 0, c.getDouble("overlay.crest.scale", 1.0)));
                 }
                 if (chest) {
-                    nl.add(spawn(p, "pauldron", -1, c.getDouble("overlay.pauldron.scale", 1.0)));
-                    nl.add(spawn(p, "pauldron", 1, c.getDouble("overlay.pauldron.scale", 1.0)));
-                    nl.add(spawn(p, "cape", 0, c.getDouble("overlay.cape.scale", 1.0)));
+                    double ws = c.getDouble("overlay.wing.scale", 0.75);
+                    nl.add(spawn(p, "wing", 1, ws));
+                    nl.add(spawn(p, "wing", -1, ws));
+                    double ss = c.getDouble("overlay.strip.scale", 1.0);
+                    nl.add(spawn(p, "strip", 1, ss));
+                    nl.add(spawn(p, "strip", -1, ss));
+                    nl.add(spawn(p, "chevron", 1, c.getDouble("overlay.chevron.scale", 1.0)));
+                    nl.add(spawn(p, "chevron", 2, c.getDouble("overlay.chevron.scale", 1.0) * 1.25));
                 }
                 parts.put(id, nl);
                 cur = nl;
@@ -171,26 +177,36 @@ public final class Overlay {
             double x = pl.getX(), y = pl.getY(), z = pl.getZ();
             float yaw = by;
             switch (pt.kind()) {
-                case "crown" -> {
-                    double s = c.getDouble("overlay.crown.scale", 1.0);
-                    y += c.getDouble("overlay.crown.y", 1.93) - sneak + 0.5 * s;
+                case "crest" -> {
+                    double s = c.getDouble("overlay.crest.scale", 1.0);
+                    y += c.getDouble("overlay.crest.y", 2.0) - sneak + 0.5 * s;
                     x += hfx * lean;
                     z += hfz * lean;
                     yaw = head;
                 }
-                case "pauldron" -> {
-                    double s = c.getDouble("overlay.pauldron.scale", 1.0);
-                    double off = c.getDouble("overlay.pauldron.x", 0.36) * pt.side();
-                    y += c.getDouble("overlay.pauldron.y", 1.38) - sneak + 0.5 * s;
+                case "wing" -> {
+                    double s = c.getDouble("overlay.wing.scale", 0.75);
+                    double off = c.getDouble("overlay.wing.x", 0.31) * pt.side();
+                    y += c.getDouble("overlay.wing.y", 1.40) - sneak + 0.5 * s;
                     x += rx * off + fx * lean;
                     z += rz * off + fz * lean;
                 }
+                case "strip" -> {
+                    double s = c.getDouble("overlay.strip.scale", 1.0);
+                    double off = c.getDouble("overlay.strip.x", 0.46) * pt.side();
+                    double back = c.getDouble("overlay.strip.back", 0.10);
+                    y += c.getDouble("overlay.strip.top", 1.50) - sneak - 0.5625 * s;
+                    x += rx * off - fx * back + fx * lean;
+                    z += rz * off - fz * back + fz * lean;
+                }
                 default -> {
-                    double s = c.getDouble("overlay.cape.scale", 1.0);
-                    double back = c.getDouble("overlay.cape.back", 0.2);
-                    y += c.getDouble("overlay.cape.top", 1.45) - sneak - 0.625 * s;
-                    x += -fx * back + fx * lean;
-                    z += -fz * back + fz * lean;
+                    boolean hip = pt.side() == 2;
+                    double s = c.getDouble("overlay.chevron.scale", 1.0) * (hip ? 1.25 : 1.0);
+                    double ty = hip ? c.getDouble("overlay.chevron.hip-y", 0.66) : c.getDouble("overlay.chevron.y", 1.02);
+                    double fwd = c.getDouble("overlay.chevron.forward", 0.17) + (hip ? 0.02 : 0.0);
+                    y += ty - (p.isSneaking() ? (hip ? 0.1 : 0.22) : 0.0) + 0.5 * s;
+                    x += fx * (fwd + lean);
+                    z += fz * (fwd + lean);
                 }
             }
             pt.d().teleport(new Location(pl.getWorld(), x, y, z, yaw, 0f));
