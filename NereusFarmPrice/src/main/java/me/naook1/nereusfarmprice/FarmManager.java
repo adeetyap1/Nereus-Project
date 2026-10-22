@@ -309,6 +309,21 @@ public final class FarmManager {
         return System.currentTimeMillis() < periodEnd && active.contains(m);
     }
 
+    /** Event bonus (NereusEvents farm_sell) applied to every farm item while an event runs. */
+    public double eventFactor() {
+        return EventsHook.multiplier("farm_sell");
+    }
+
+    /** Boosted by the daily rotation OR by a running global event (farm items only). */
+    public boolean sellBoosted(Material m) {
+        return isBoosted(m) || (enabled && eventFactor() > 1.0 && candidate(m) != null);
+    }
+
+    /** Total factor used when selling: rotation boost times event bonus. */
+    public double sellFactor(Material m) {
+        return factor(m) * eventFactor();
+    }
+
     /** 1 + percent/100 for the boosted farms, otherwise 1. */
     public double factor(Material m) {
         return isBoosted(m) ? 1.0 + percent / 100.0 : 1.0;

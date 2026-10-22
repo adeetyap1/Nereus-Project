@@ -191,7 +191,7 @@ public final class FishManager {
             if (!has) {
                 continue;
             }
-            double w = Math.max(0, r.weight() * (1 + rod.luck() * r.luckBoost()));
+            double w = Math.max(0, r.weight() * (1 + (rod.luck() + EventsHook.bonus("fishing_luck")) * r.luckBoost()));
             if (w > 0) {
                 chances.put(r, w);
                 total += w;
@@ -217,6 +217,7 @@ public final class FishManager {
         }
         Fish f = pool.get(random.nextInt(pool.size()));
         double weight = f.minWeight() + (f.maxWeight() - f.minWeight()) * Math.pow(random.nextDouble(), 1.6);
+        weight = Math.min(700.0, weight * EventsHook.multiplier("fishing_weight"));
         weight = Math.round(weight * 100.0) / 100.0;
         double value = Math.round(weight * f.pricePerKg() * plugin.getConfig().getDouble("sell-multiplier", 1.0) * 100.0) / 100.0;
         return new Catch(f, weight, value);

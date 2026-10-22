@@ -2,6 +2,7 @@ package me.naook1.nereusfishing.command;
 
 import java.util.ArrayList;
 import java.util.List;
+import me.naook1.nereusfishing.EventsHook;
 import me.naook1.nereusfishing.FishManager;
 import me.naook1.nereusfishing.FishStore;
 import me.naook1.nereusfishing.NereusFishing;
@@ -138,6 +139,7 @@ public final class FishCommand implements CommandExecutor, TabCompleter {
             m.send(p, "sell-none");
             return;
         }
+        total = Math.round(total * EventsHook.multiplier("fishing_sell") * 100.0) / 100.0;
         if (!plugin.economy().depositExact(p, total)) {
             m.send(p, "sell-no-economy");
             return;

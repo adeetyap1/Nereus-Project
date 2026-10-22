@@ -74,9 +74,11 @@ public final class FishListener implements Listener {
                 e.setCancelled(true);
                 return;
             }
-            if (rod != null && rod.speed() > 0) {
+            double evSpeed = EventsHook.bonus("fishing_speed");
+            double sp = (rod != null ? rod.speed() : 0) + evSpeed;
+            if ((rod != null || plugin.getConfig().getBoolean("vanilla-rods-too", false)) && sp > 0) {
                 FishHook hook = e.getHook();
-                double f = 1.0 - Math.min(0.9, rod.speed() / 100.0);
+                double f = 1.0 - Math.min(0.9, sp / 100.0);
                 hook.setMinWaitTime(Math.max(20, (int) (hook.getMinWaitTime() * f)));
                 hook.setMaxWaitTime(Math.max(40, (int) (hook.getMaxWaitTime() * f)));
             }

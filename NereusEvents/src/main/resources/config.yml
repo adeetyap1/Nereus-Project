@@ -1,0 +1,129 @@
+# NereusEvents - event global ala "admin abuse" (by naook1/adityap)
+# effects:
+#   fishing_luck   (tambah)  : tambahan luck joran -> ikan langka lebih sering
+#   fishing_speed  (tambah %): ikan lebih cepat menggigit
+#   fishing_sell   (kali)    : pengali harga jual ikan (/fish sell)
+#   fishing_weight (kali)    : pengali berat ikan (maks 700 kg)
+#   farm_sell      (kali)    : pengali harga jual hasil farm (via NereusFarmPrice + EconomyShopGUI)
+#   lottery_pot    (kali)    : pengali hadiah saat undian lottery (bonus dari server)
+# sound: nama suara custom dari resource pack (lihat README di repo). Kosong = tanpa suara.
+# sound-length: panjang lagu (detik). Jika > 0, lagu diputar ulang sampai event habis.
+
+auto:
+  enabled: true
+  min-minutes: 30      # jeda acak antar event otomatis
+  max-minutes: 60
+  min-players: 1
+
+sound:
+  category: RECORDS
+  volume: 1.0
+
+rain:                  # hujan item untuk event yang punya rain: true
+  per-second: 3        # item per detik per pemain
+  radius: 7
+  height: 14
+  life-seconds: 25
+  max-entities: 200
+  items:               # MATERIAL:nama:bobot
+    - "COOKED_BEEF:&eTaco:70"
+    - "COOKED_CHICKEN:&6Taco Ayam:20"
+    - "GOLDEN_CARROT:&6&lTaco Emas:10"
+
+events:
+  taco_rain:
+    name: "&6&lIT'S RAINING TACOS"
+    bar-color: YELLOW
+    minutes: 5
+    icon: COOKED_BEEF
+    weight: 10
+    rain: true
+    sound: "nereus:event.tacos"
+    sound-length: 290
+    subtitle: "&eTaco jatuh dari langit! &7Farm &a+50% &7| Luck &a+3"
+    lore:
+      - "&7Taco berjatuhan dari langit, ambil sepuasnya!"
+      - "&7Harga jual farm &a×1.5&7, luck pancing &a+3&7."
+    effects: {farm_sell: 1.5, fishing_luck: 3}
+  lucky_tide:
+    name: "&b&lLUCKY TIDE"
+    bar-color: BLUE
+    minutes: 10
+    icon: FISHING_ROD
+    weight: 20
+    sound: "minecraft:ui.toast.challenge_complete"
+    subtitle: "&bPasang keberuntungan! &7Luck pancing &a+8 &7| Gigitan &a+40%"
+    lore:
+      - "&7Ikan epic dan legendary jauh lebih sering."
+    effects: {fishing_luck: 8, fishing_speed: 40}
+  golden_harvest:
+    name: "&6&lGOLDEN HARVEST"
+    bar-color: YELLOW
+    minutes: 10
+    icon: WHEAT
+    weight: 20
+    sound: "minecraft:ui.toast.challenge_complete"
+    subtitle: "&6Panen emas! &7Harga jual farm &a×2"
+    lore:
+      - "&7Semua hasil farm laku dua kali lipat."
+    effects: {farm_sell: 2.0}
+  fish_market_frenzy:
+    name: "&a&lFISH MARKET FRENZY"
+    bar-color: GREEN
+    minutes: 8
+    icon: COD
+    weight: 15
+    sound: "minecraft:ui.toast.challenge_complete"
+    subtitle: "&aPasar ikan gila! &7Harga jual ikan &a×2"
+    lore:
+      - "&7Jual semua ikanmu dengan /fish sell."
+    effects: {fishing_sell: 2.0}
+  jackpot_fever:
+    name: "&d&lJACKPOT FEVER"
+    bar-color: PINK
+    minutes: 15
+    icon: GOLD_INGOT
+    weight: 12
+    sound: "minecraft:ui.toast.challenge_complete"
+    subtitle: "&dHadiah undian &a×2 &7jika undian terjadi saat event ini!"
+    lore:
+      - "&7Server menambah hadiah lottery."
+    effects: {lottery_pot: 2.0, fishing_luck: 3}
+  kraken_awakening:
+    name: "&5&lKRAKEN AWAKENING"
+    bar-color: PURPLE
+    minutes: 6
+    icon: HEART_OF_THE_SEA
+    weight: 6
+    sound: "minecraft:ui.toast.challenge_complete"
+    subtitle: "&5Penghuni palung bangkit! &7Luck &a+20 &7| Berat ikan &a×1.5"
+    lore:
+      - "&7Ikan raksasa mengamuk di lautan."
+    effects: {fishing_luck: 20, fishing_weight: 1.5, fishing_speed: 30}
+  admin_abuse:
+    name: "&c&l&nADMIN ABUSE"
+    bar-color: RED
+    minutes: 5
+    icon: NETHER_STAR
+    weight: 2
+    rain: true
+    sound: "nereus:event.tacos"
+    sound-length: 290
+    subtitle: "&cSEMUA BONUS AKTIF! &7Luck &a+25 &7| Farm &a×3 &7| Jual ikan &a×2"
+    lore:
+      - "&7Kekacauan total. Nikmati selagi sempat!"
+    effects: {fishing_luck: 25, fishing_speed: 60, fishing_sell: 2.0, fishing_weight: 1.5, farm_sell: 3.0, lottery_pot: 3.0}
+
+messages:
+  prefix: "&#ff5252&lnereus&#ffd54f&levents &8» &7"
+  started: "&e{name} &7dimulai selama &f{minutes} menit&7!"
+  ended: "&7Event &e{name} &7telah berakhir."
+  none-active: "&7Tidak ada event yang sedang berjalan."
+  active-line: "&8• {name} &7- sisa &f{left}"
+  next-auto: "&7Event otomatis berikutnya dalam &f{left}&7."
+  no-permission: "&cKamu tidak punya izin."
+  unknown-event: "&cEvent tidak dikenal: &f{id}"
+  already-active: "&cEvent itu sudah berjalan."
+  stopped: "&7Event &e{name} &7dihentikan."
+  reloaded: "&aConfig dimuat ulang."
+  usage: "&7Pakai: &e/event [list|gui|start <id> [menit]|stop <id|all>|random|reload]"

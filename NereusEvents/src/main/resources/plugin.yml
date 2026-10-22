@@ -1,0 +1,21 @@
+name: NereusEvents
+version: '${project.version}'
+main: me.naook1.nereusevents.NereusEvents
+api-version: '1.21'
+authors: [naook1, adityap]
+description: Global timed events (admin abuse) for fishing, farming and luck by naook1/adityap
+softdepend: [NereusFishing, NereusFarmPrice, NereusLottery]
+
+commands:
+  event:
+    description: Event global Nereus
+    aliases: [events, nevent, abuse]
+    usage: /<command> [list|gui|start <id> [menit]|stop <id|all>|random|reload]
+
+permissions:
+  nereusevents.use:
+    description: Lihat event yang sedang berjalan
+    default: true
+  nereusevents.admin:
+    description: Mulai / hentikan event, reload
+    default: op

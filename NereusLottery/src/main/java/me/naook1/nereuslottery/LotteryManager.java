@@ -332,7 +332,7 @@ public final class LotteryManager {
             resetAnnounced();
             return false;
         }
-        long total = pot;
+        long total = Math.round(pot * EventsHook.multiplier("lottery_pot"));
         int totalTickets = totalTickets();
         int players = tickets.size();
         List<UUID> pool = new ArrayList<>(tickets.keySet());

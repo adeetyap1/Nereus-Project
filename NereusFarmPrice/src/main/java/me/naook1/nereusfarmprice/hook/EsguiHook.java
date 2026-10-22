@@ -142,7 +142,7 @@ public final class EsguiHook {
 
     private void single(Event e, FarmManager fm, Player player) {
         Material mat = materialOf(call(e, "getShopItem"));
-        if (mat == null || !fm.isBoosted(mat)) {
+        if (mat == null || !fm.sellBoosted(mat)) {
             return;
         }
         Object old = call(e, "getPrice");
@@ -150,7 +150,7 @@ public final class EsguiHook {
             return;
         }
         double before = n.doubleValue();
-        double f = fm.factor(mat);
+        double f = fm.sellFactor(mat);
         double after = before * f;
         try {
             e.getClass().getMethod("setPrice", double.class).invoke(e, after);
@@ -169,14 +169,14 @@ public final class EsguiHook {
         Material shown = null;
         for (Map.Entry<?, ?> en : items.entrySet()) {
             Material mat = materialOf(en.getKey());
-            if (mat == null || !fm.isBoosted(mat) || !(en.getValue() instanceof Number qty)) {
+            if (mat == null || !fm.sellBoosted(mat) || !(en.getValue() instanceof Number qty)) {
                 continue;
             }
             double base = fm.normalPrice(mat);
             if (base <= 0) {
                 continue;
             }
-            delta += qty.doubleValue() * base * (fm.factor(mat) - 1.0);
+            delta += qty.doubleValue() * base * (fm.sellFactor(mat) - 1.0);
             if (shown == null) {
                 shown = mat;
             }
