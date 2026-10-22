@@ -26,7 +26,7 @@ import org.bukkit.persistence.PersistentDataType;
 public final class EventManager {
 
     public record Def(String id, String name, BossBar.Color color, int minutes, Material icon, int weight,
-                      boolean rain, boolean lights, String sound, int soundLength, String subtitle, List<String> lore,
+                      boolean rain, boolean lights, String sound, double soundLength, String subtitle, List<String> lore,
                       Map<String, Double> effects) {
     }
 
@@ -63,8 +63,10 @@ public final class EventManager {
     private final List<Item> rainDrops = new ArrayList<>();
     private final NamespacedKey rainKey;
     private long nextAuto;
-    private final Map<java.util.UUID, List<Location>> lit = new java.util.HashMap<>();
     private int discoStep;
+    private boolean skyActive;
+    /** players that just joined: the song waits until their resource pack is loaded. */
+    private final Map<java.util.UUID, Long> waitUntil = new java.util.HashMap<>();
     /** sound key -> (player -> time the song ends for them). Events sharing a song share one track. */
     private final Map<String, Map<java.util.UUID, Long>> tracks = new java.util.HashMap<>();
 
@@ -103,7 +105,7 @@ public final class EventManager {
                 defs.put(id.toLowerCase(), new Def(id.toLowerCase(), s.getString("name", id), color,
                         Math.max(1, s.getInt("minutes", 5)), icon == null ? Material.NETHER_STAR : icon,
                         s.getInt("weight", 10), s.getBoolean("rain", false), s.getBoolean("lights", true), s.getString("sound", ""),
-                        s.getInt("sound-length", 0), s.getString("subtitle", ""), s.getStringList("lore"), eff));
+                        s.getDouble("sound-length", 0), s.getString("subtitle", ""), s.getStringList("lore"), eff));
             }
         }
         for (String line : cfg.getStringList("rain.items")) {
@@ -211,7 +213,6 @@ public final class EventManager {
     }
 
     public void stopAll() {
-        clearLights();
         for (Active a : new ArrayList<>(active.values())) {
             active.remove(a.def.id());
             finish(a, false);
@@ -269,11 +270,15 @@ public final class EventManager {
 
     /**
      * Keeps every song of the running events playing: starts it for players that are not hearing it and, with
-     * sound-length > 0, starts it again when it has finished. Events with the same song share one track, so the
-     * song never overlaps itself and is only stopped when no running event uses it any more.
+     * sound-length > 0, starts it again slightly BEFORE it ends (sound.overlap-ms), so the loop has no silent gap.
+     * Events with the same song share one track, so the song never overlaps itself and is only stopped when no
+     * running event uses it any more. Runs every 2 ticks.
      */
-    private void playTracks() {
-        Map<String, Integer> keys = new LinkedHashMap<>();
+    public void playTracks() {
+        if (active.isEmpty()) {
+            return;
+        }
+        Map<String, Double> keys = new LinkedHashMap<>();
         for (Active a : active.values()) {
             String key = a.def.sound();
             if (key != null && !key.isEmpty()) {
@@ -282,6 +287,7 @@ public final class EventManager {
         }
         tracks.keySet().removeIf(k -> !keys.containsKey(k));
         float vol = (float) plugin.getConfig().getDouble("sound.volume", 1.0);
+        long overlap = plugin.getConfig().getLong("sound.overlap-ms", 350);
         SoundCategory cat;
         try {
             cat = SoundCategory.valueOf(plugin.getConfig().getString("sound.category", "RECORDS").toUpperCase());
@@ -289,27 +295,53 @@ public final class EventManager {
             cat = SoundCategory.RECORDS;
         }
         long now = System.currentTimeMillis();
-        for (Map.Entry<String, Integer> en : keys.entrySet()) {
+        for (Map.Entry<String, Double> en : keys.entrySet()) {
             Map<java.util.UUID, Long> track = tracks.computeIfAbsent(en.getKey(), k -> new java.util.HashMap<>());
             for (Player p : Bukkit.getOnlinePlayers()) {
+                Long wait = waitUntil.get(p.getUniqueId());
+                if (wait != null) {
+                    if (now < wait) {
+                        continue;
+                    }
+                    waitUntil.remove(p.getUniqueId());
+                }
                 Long next = track.get(p.getUniqueId());
                 if (next != null && now < next) {
                     continue;
                 }
                 p.playSound(p.getLocation(), en.getKey(), cat, vol, 1f);
-                track.put(p.getUniqueId(), en.getValue() > 0 ? now + en.getValue() * 1000L + 1000L : Long.MAX_VALUE);
+                track.put(p.getUniqueId(), en.getValue() > 0
+                        ? now + Math.max(1000L, (long) (en.getValue() * 1000.0) - overlap) : Long.MAX_VALUE);
             }
         }
     }
 
-    /** Joiners get the songs on the next tick. */
-    public void playFor(Player p) {
+    /** A player joined: the song restarts for them once their resource pack is loaded (Bedrock: a few seconds). */
+    public void joined(Player p) {
+        for (Map<java.util.UUID, Long> t : tracks.values()) {
+            t.remove(p.getUniqueId());
+        }
+        boolean bedrock = p.getUniqueId().getMostSignificantBits() == 0L;
+        waitUntil.put(p.getUniqueId(), System.currentTimeMillis() + (bedrock ? 4000L : 25000L));
+        showBars(p);
+    }
+
+    /** Java client finished loading the server resource pack: play the song now (small delay for the audio engine). */
+    public void packLoaded(Player p) {
+        waitUntil.put(p.getUniqueId(), System.currentTimeMillis() + 1500L);
         for (Map<java.util.UUID, Long> t : tracks.values()) {
             t.remove(p.getUniqueId());
         }
     }
 
-    // ---------------------------------------------------------------- disco lights
+    public void left(Player p) {
+        waitUntil.remove(p.getUniqueId());
+        for (Map<java.util.UUID, Long> t : tracks.values()) {
+            t.remove(p.getUniqueId());
+        }
+    }
+
+    // ---------------------------------------------------------------- disco lights (sky)
 
     private boolean hasLights() {
         if (!plugin.getConfig().getBoolean("lights.enabled", true)) {
@@ -326,72 +358,130 @@ public final class EventManager {
     private static final BossBar.Color[] BAR_COLORS = {BossBar.Color.RED, BossBar.Color.YELLOW, BossBar.Color.GREEN,
             BossBar.Color.BLUE, BossBar.Color.PURPLE, BossBar.Color.PINK};
 
-    /** Colourful blinking: dust particles, client-side light blocks and a colour-cycling boss bar. */
+    /** Blinking sky: colour-cycling sky time, light beams and fireworks high above, colour-cycling boss bar. */
     public void disco() {
         if (!hasLights()) {
-            if (!lit.isEmpty()) {
+            if (skyActive) {
                 clearLights();
             }
             return;
         }
+        skyActive = true;
         discoStep++;
         var cfg = plugin.getConfig();
-        int blocks = cfg.getInt("lights.light-blocks", 5);
-        int radius = cfg.getInt("lights.radius", 6);
-        int particles = cfg.getInt("lights.particles", 12);
-        boolean on = discoStep % 2 == 0;
-        int rgb = java.awt.Color.HSBtoRGB((discoStep * 0.11f) % 1f, 1f, 1f) & 0xFFFFFF;
-        org.bukkit.Color col = org.bukkit.Color.fromRGB(rgb);
+        int beams = cfg.getInt("lights.beams", 4);
+        int bursts = cfg.getInt("lights.sky-bursts", 3);
+        boolean flash = cfg.getBoolean("lights.sky-flash", true);
+        List<Long> times = cfg.getLongList("lights.sky-times");
+        if (times.isEmpty()) {
+            times = List.of(12600L, 13500L, 18000L, 22800L);
+        }
         for (Active a : active.values()) {
             if (a.def.lights()) {
                 a.bar.color(BAR_COLORS[discoStep % BAR_COLORS.length]);
             }
         }
         for (Player p : Bukkit.getOnlinePlayers()) {
-            List<Location> old = lit.remove(p.getUniqueId());
-            if (old != null) {
-                for (Location l : old) {
-                    p.sendBlockChange(l, l.getBlock().getBlockData());
+            if (p.getWorld().getEnvironment() != org.bukkit.World.Environment.NORMAL) {
+                continue;
+            }
+            if (flash) {
+                p.setPlayerTime(times.get(discoStep % times.size()), false);
+            }
+            Location base = p.getLocation();
+            // rotating light beams standing on the ground and shooting up into the sky
+            for (int b = 0; b < beams; b++) {
+                double ang = Math.toRadians(discoStep * 17 + b * (360.0 / Math.max(1, beams)));
+                double dist = 9 + 5 * Math.sin(discoStep * 0.3 + b);
+                double x = base.getX() + Math.cos(ang) * dist;
+                double z = base.getZ() + Math.sin(ang) * dist;
+                int y0 = p.getWorld().getHighestBlockYAt((int) x, (int) z) + 1;
+                int rgb = java.awt.Color.HSBtoRGB(((discoStep * 0.09f) + b / (float) Math.max(1, beams)) % 1f, 1f, 1f) & 0xFFFFFF;
+                Particle.DustOptions dust = new Particle.DustOptions(org.bukkit.Color.fromRGB(rgb), 2.4f);
+                for (int h = 0; h < 22; h += 2) {
+                    p.spawnParticle(Particle.DUST, x, y0 + h, z, 2, 0.15, 0.4, 0.15, 0, dust);
                 }
             }
-            Location base = p.getLocation().add(0, 1, 0);
-            if (blocks > 0 && on) {
-                List<Location> now = new ArrayList<>();
-                for (int i = 0; i < blocks; i++) {
-                    Location l = base.clone().add(random.nextInt(radius * 2 + 1) - radius,
-                            random.nextInt(5) - 1, random.nextInt(radius * 2 + 1) - radius);
-                    if (l.getBlock().getType().isAir()) {
-                        org.bukkit.block.data.type.Light light = (org.bukkit.block.data.type.Light)
-                                Material.LIGHT.createBlockData();
-                        light.setLevel(15);
-                        p.sendBlockChange(l, light);
-                        now.add(l);
-                    }
-                }
-                lit.put(p.getUniqueId(), now);
-            }
-            if (particles > 0) {
-                p.getWorld().spawnParticle(Particle.DUST, base, particles, radius / 2.0, 1.2, radius / 2.0, 0,
-                        new Particle.DustOptions(col, 1.6f), false);
-                if (discoStep % 3 == 0) {
-                    p.getWorld().spawnParticle(Particle.FIREWORK, base.clone().add(0, 1, 0), 4, 1.5, 1, 1.5, 0.05);
+            // colourful bursts high in the sky
+            for (int i = 0; i < bursts; i++) {
+                double x = base.getX() + (random.nextDouble() * 2 - 1) * 14;
+                double z = base.getZ() + (random.nextDouble() * 2 - 1) * 14;
+                double y = base.getY() + 16 + random.nextDouble() * 10;
+                int rgb = java.awt.Color.HSBtoRGB(random.nextFloat(), 1f, 1f) & 0xFFFFFF;
+                p.spawnParticle(Particle.DUST, x, y, z, 40, 2.2, 1.6, 2.2, 0,
+                        new Particle.DustOptions(org.bukkit.Color.fromRGB(rgb), 3.5f));
+                if (discoStep % 2 == 0) {
+                    p.spawnParticle(Particle.FIREWORK, x, y, z, 10, 1.2, 1.2, 1.2, 0.08);
                 }
             }
         }
     }
 
     private void clearLights() {
-        for (Map.Entry<java.util.UUID, List<Location>> en : lit.entrySet()) {
-            Player p = Bukkit.getPlayer(en.getKey());
-            if (p != null) {
-                for (Location l : en.getValue()) {
-                    p.sendBlockChange(l, l.getBlock().getBlockData());
-                }
-            }
+        skyActive = false;
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            p.resetPlayerTime();
         }
-        lit.clear();
         for (Active a : active.values()) {
             a.bar.color(a.def.color());
+        }
+    }
+
+    // ---------------------------------------------------------------- HUD under the hotbar
+
+    private static String num(double v) {
+        return v == Math.rint(v) ? String.valueOf((long) v) : String.format(java.util.Locale.US, "%.1f", v);
+    }
+
+    /** Action bar text: event name(s) and the real combined boosts. */
+    public String boostLine() {
+        if (active.isEmpty()) {
+            return "";
+        }
+        StringBuilder sb = new StringBuilder();
+        if (active.size() == 1) {
+            sb.append(active.values().iterator().next().def.name());
+        } else {
+            sb.append("&6&l").append(active.size()).append(" EVENTS");
+        }
+        List<String> parts = new ArrayList<>();
+        double v = bonus("fishing_luck");
+        if (v != 0) {
+            parts.add("&bFish Luck &a+" + num(v));
+        }
+        v = bonus("fishing_speed");
+        if (v != 0) {
+            parts.add("&bBite Speed &a+" + num(v) + "%");
+        }
+        v = multiplier("fishing_sell");
+        if (v != 1.0) {
+            parts.add("&bFish Sell &a×" + num(v));
+        }
+        v = multiplier("fishing_weight");
+        if (v != 1.0) {
+            parts.add("&bFish Size &a×" + num(v));
+        }
+        v = multiplier("farm_sell");
+        if (v != 1.0) {
+            parts.add("&eFarm Sell &a×" + num(v));
+        }
+        v = multiplier("lottery_pot");
+        if (v != 1.0) {
+            parts.add("&dGacha Prize &a×" + num(v));
+        }
+        for (String part : parts) {
+            sb.append(" &8| ").append(part);
+        }
+        return sb.toString();
+    }
+
+    private void hud() {
+        if (!plugin.getConfig().getBoolean("hud.enabled", true) || active.isEmpty()) {
+            return;
+        }
+        Component line = Text.parse(boostLine());
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            p.sendActionBar(line);
         }
     }
 
@@ -411,7 +501,7 @@ public final class EventManager {
             a.bar.name(Text.parse(a.def.name() + " &8| &f" + fmt(left)));
 
         }
-        playTracks();
+        hud();
         if (hasRain()) {
             rain();
         }

@@ -7,6 +7,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerResourcePackStatusEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -32,6 +34,7 @@ public final class NereusEvents extends JavaPlugin implements Listener {
         getCommand("event").setExecutor(cmd);
         getCommand("event").setTabCompleter(cmd);
         getServer().getScheduler().runTaskTimer(this, events::tick, 20L, 20L);
+        getServer().getScheduler().runTaskTimer(this, events::playTracks, 20L, 2L);
         long iv = Math.max(4L, getConfig().getLong("lights.interval-ticks", 10L));
         getServer().getScheduler().runTaskTimer(this, events::disco, 20L, iv);
         getLogger().info("NereusEvents v" + getDescription().getVersion() + " enabled | developer: naook1/adityap");
@@ -82,10 +85,20 @@ public final class NereusEvents extends JavaPlugin implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
         Player p = e.getPlayer();
-        Bukkit.getScheduler().runTaskLater(this, () -> {
-            events.showBars(p);
-            events.playFor(p);
-        }, 40L);
+        events.joined(p);
+        Bukkit.getScheduler().runTaskLater(this, () -> events.showBars(p), 40L);
+    }
+
+    @EventHandler
+    public void onQuit(PlayerQuitEvent e) {
+        events.left(e.getPlayer());
+    }
+
+    @EventHandler
+    public void onPack(PlayerResourcePackStatusEvent e) {
+        if (e.getStatus() == PlayerResourcePackStatusEvent.Status.SUCCESSFULLY_LOADED) {
+            events.packLoaded(e.getPlayer());
+        }
     }
 
     // ---------------------------------------------------------------- API (used by other plugins via reflection)

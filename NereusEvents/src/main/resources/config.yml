@@ -20,13 +20,18 @@ auto:
 sound:
   category: RECORDS
   volume: 1.0
+  overlap-ms: 350      # lagu diulang sedikit SEBELUM habis supaya tidak ada jeda
 
 lights:                # efek lampu kelap-kelip (warna-warni) selama event; hanya terlihat di sisi pemain
   enabled: true        # matikan jika ada pemain yang sensitif terhadap kedipan cahaya
   interval-ticks: 10   # makin besar = makin pelan kedipnya (20 tick = 1 detik)
-  light-blocks: 5      # blok cahaya palsu per pemain (tidak mengubah dunia)
-  radius: 6
-  particles: 12
+  beams: 4             # tiang cahaya warna-warni menembak ke langit
+  sky-bursts: 3        # ledakan warna di langit per kedip
+  sky-flash: true      # langit berkedip (waktu langit diganti per pemain, hanya terlihat di sisi pemain)
+  sky-times: [12600, 13500, 18000, 22800]
+
+hud:
+  enabled: true        # tampilkan boost event aktif di bawah hotbar
 
 rain:                  # hujan item untuk event yang punya rain: true
   per-second: 3        # item per detik per pemain
@@ -48,7 +53,7 @@ events:
     weight: 10
     rain: true
     sound: "nereus:event.tacos"
-    sound-length: 105
+    sound-length: 104.7
     subtitle: "&eTaco jatuh dari langit! &7Farm &a+50% &7| Luck &a+3"
     lore:
       - "&7Taco berjatuhan dari langit, ambil sepuasnya!"
@@ -61,7 +66,7 @@ events:
     icon: FISHING_ROD
     weight: 20
     sound: "nereus:event.tacos"
-    sound-length: 105
+    sound-length: 104.7
     subtitle: "&bPasang keberuntungan! &7Luck pancing &a+8 &7| Gigitan &a+40%"
     lore:
       - "&7Ikan epic dan legendary jauh lebih sering."
@@ -73,7 +78,7 @@ events:
     icon: WHEAT
     weight: 20
     sound: "nereus:event.tacos"
-    sound-length: 105
+    sound-length: 104.7
     subtitle: "&6Panen emas! &7Harga jual farm &a×2"
     lore:
       - "&7Semua hasil farm laku dua kali lipat."
@@ -85,7 +90,7 @@ events:
     icon: COD
     weight: 15
     sound: "nereus:event.tacos"
-    sound-length: 105
+    sound-length: 104.7
     subtitle: "&aPasar ikan gila! &7Harga jual ikan &a×2"
     lore:
       - "&7Jual semua ikanmu dengan /fish sell."
@@ -97,7 +102,7 @@ events:
     icon: GOLD_INGOT
     weight: 12
     sound: "nereus:event.tacos"
-    sound-length: 105
+    sound-length: 104.7
     subtitle: "&dHadiah undian &a×2 &7jika undian terjadi saat event ini!"
     lore:
       - "&7Server menambah hadiah lottery."
@@ -109,7 +114,7 @@ events:
     icon: HEART_OF_THE_SEA
     weight: 6
     sound: "nereus:event.tacos"
-    sound-length: 105
+    sound-length: 104.7
     subtitle: "&5Penghuni palung bangkit! &7Luck &a+20 &7| Berat ikan &a×1.5"
     lore:
       - "&7Ikan raksasa mengamuk di lautan."
@@ -122,7 +127,7 @@ events:
     weight: 2
     rain: true
     sound: "nereus:event.tacos"
-    sound-length: 105
+    sound-length: 104.7
     subtitle: "&cSEMUA BONUS AKTIF! &7Luck &a+25 &7| Farm &a×3 &7| Jual ikan &a×2"
     lore:
       - "&7Kekacauan total. Nikmati selagi sempat!"
