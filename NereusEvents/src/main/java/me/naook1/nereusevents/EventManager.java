@@ -26,7 +26,7 @@ import org.bukkit.persistence.PersistentDataType;
 public final class EventManager {
 
     public record Def(String id, String name, BossBar.Color color, int minutes, Material icon, int weight,
-                      boolean rain, String sound, int soundLength, String subtitle, List<String> lore,
+                      boolean rain, boolean lights, String sound, int soundLength, String subtitle, List<String> lore,
                       Map<String, Double> effects) {
     }
 
@@ -63,6 +63,8 @@ public final class EventManager {
     private final List<Item> rainDrops = new ArrayList<>();
     private final NamespacedKey rainKey;
     private long nextAuto;
+    private final Map<java.util.UUID, List<Location>> lit = new java.util.HashMap<>();
+    private int discoStep;
     /** sound key -> (player -> time the song ends for them). Events sharing a song share one track. */
     private final Map<String, Map<java.util.UUID, Long>> tracks = new java.util.HashMap<>();
 
@@ -100,7 +102,7 @@ public final class EventManager {
                 }
                 defs.put(id.toLowerCase(), new Def(id.toLowerCase(), s.getString("name", id), color,
                         Math.max(1, s.getInt("minutes", 5)), icon == null ? Material.NETHER_STAR : icon,
-                        s.getInt("weight", 10), s.getBoolean("rain", false), s.getString("sound", ""),
+                        s.getInt("weight", 10), s.getBoolean("rain", false), s.getBoolean("lights", true), s.getString("sound", ""),
                         s.getInt("sound-length", 0), s.getString("subtitle", ""), s.getStringList("lore"), eff));
             }
         }
@@ -209,6 +211,7 @@ public final class EventManager {
     }
 
     public void stopAll() {
+        clearLights();
         for (Active a : new ArrayList<>(active.values())) {
             active.remove(a.def.id());
             finish(a, false);
@@ -303,6 +306,92 @@ public final class EventManager {
     public void playFor(Player p) {
         for (Map<java.util.UUID, Long> t : tracks.values()) {
             t.remove(p.getUniqueId());
+        }
+    }
+
+    // ---------------------------------------------------------------- disco lights
+
+    private boolean hasLights() {
+        if (!plugin.getConfig().getBoolean("lights.enabled", true)) {
+            return false;
+        }
+        for (Active a : active.values()) {
+            if (a.def.lights()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static final BossBar.Color[] BAR_COLORS = {BossBar.Color.RED, BossBar.Color.YELLOW, BossBar.Color.GREEN,
+            BossBar.Color.BLUE, BossBar.Color.PURPLE, BossBar.Color.PINK};
+
+    /** Colourful blinking: dust particles, client-side light blocks and a colour-cycling boss bar. */
+    public void disco() {
+        if (!hasLights()) {
+            if (!lit.isEmpty()) {
+                clearLights();
+            }
+            return;
+        }
+        discoStep++;
+        var cfg = plugin.getConfig();
+        int blocks = cfg.getInt("lights.light-blocks", 5);
+        int radius = cfg.getInt("lights.radius", 6);
+        int particles = cfg.getInt("lights.particles", 12);
+        boolean on = discoStep % 2 == 0;
+        int rgb = java.awt.Color.HSBtoRGB((discoStep * 0.11f) % 1f, 1f, 1f) & 0xFFFFFF;
+        org.bukkit.Color col = org.bukkit.Color.fromRGB(rgb);
+        for (Active a : active.values()) {
+            if (a.def.lights()) {
+                a.bar.color(BAR_COLORS[discoStep % BAR_COLORS.length]);
+            }
+        }
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            List<Location> old = lit.remove(p.getUniqueId());
+            if (old != null) {
+                for (Location l : old) {
+                    p.sendBlockChange(l, l.getBlock().getBlockData());
+                }
+            }
+            Location base = p.getLocation().add(0, 1, 0);
+            if (blocks > 0 && on) {
+                List<Location> now = new ArrayList<>();
+                for (int i = 0; i < blocks; i++) {
+                    Location l = base.clone().add(random.nextInt(radius * 2 + 1) - radius,
+                            random.nextInt(5) - 1, random.nextInt(radius * 2 + 1) - radius);
+                    if (l.getBlock().getType().isAir()) {
+                        org.bukkit.block.data.type.Light light = (org.bukkit.block.data.type.Light)
+                                Material.LIGHT.createBlockData();
+                        light.setLevel(15);
+                        p.sendBlockChange(l, light);
+                        now.add(l);
+                    }
+                }
+                lit.put(p.getUniqueId(), now);
+            }
+            if (particles > 0) {
+                p.getWorld().spawnParticle(Particle.DUST, base, particles, radius / 2.0, 1.2, radius / 2.0, 0,
+                        new Particle.DustOptions(col, 1.6f), false);
+                if (discoStep % 3 == 0) {
+                    p.getWorld().spawnParticle(Particle.FIREWORK, base.clone().add(0, 1, 0), 4, 1.5, 1, 1.5, 0.05);
+                }
+            }
+        }
+    }
+
+    private void clearLights() {
+        for (Map.Entry<java.util.UUID, List<Location>> en : lit.entrySet()) {
+            Player p = Bukkit.getPlayer(en.getKey());
+            if (p != null) {
+                for (Location l : en.getValue()) {
+                    p.sendBlockChange(l, l.getBlock().getBlockData());
+                }
+            }
+        }
+        lit.clear();
+        for (Active a : active.values()) {
+            a.bar.color(a.def.color());
         }
     }
 

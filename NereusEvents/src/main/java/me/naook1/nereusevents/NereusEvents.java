@@ -32,6 +32,8 @@ public final class NereusEvents extends JavaPlugin implements Listener {
         getCommand("event").setExecutor(cmd);
         getCommand("event").setTabCompleter(cmd);
         getServer().getScheduler().runTaskTimer(this, events::tick, 20L, 20L);
+        long iv = Math.max(4L, getConfig().getLong("lights.interval-ticks", 10L));
+        getServer().getScheduler().runTaskTimer(this, events::disco, 20L, iv);
         getLogger().info("NereusEvents v" + getDescription().getVersion() + " enabled | developer: naook1/adityap");
     }
 

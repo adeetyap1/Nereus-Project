@@ -6,6 +6,7 @@
 #   fishing_weight (kali)    : pengali berat ikan (maks 700 kg)
 #   farm_sell      (kali)    : pengali harga jual hasil farm (via NereusFarmPrice + EconomyShopGUI)
 #   lottery_pot    (kali)    : pengali hadiah saat undian lottery (bonus dari server)
+# lights: true/false per event (default true) = efek lampu kelap-kelip.
 # sound: nama suara custom dari resource pack (lihat README di repo). Kosong = tanpa suara.
 # sound-length: panjang lagu (detik, lagu Raining Tacos = 105). Jika > 0, lagu diulang sampai event habis.
 # Semua event memakai SATU lagu yang sama; jika beberapa event jalan bersamaan, lagunya tetap satu.
@@ -19,6 +20,13 @@ auto:
 sound:
   category: RECORDS
   volume: 1.0
+
+lights:                # efek lampu kelap-kelip (warna-warni) selama event; hanya terlihat di sisi pemain
+  enabled: true        # matikan jika ada pemain yang sensitif terhadap kedipan cahaya
+  interval-ticks: 10   # makin besar = makin pelan kedipnya (20 tick = 1 detik)
+  light-blocks: 5      # blok cahaya palsu per pemain (tidak mengubah dunia)
+  radius: 6
+  particles: 12
 
 rain:                  # hujan item untuk event yang punya rain: true
   per-second: 3        # item per detik per pemain
