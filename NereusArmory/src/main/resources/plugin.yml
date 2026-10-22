@@ -1,0 +1,20 @@
+name: NereusArmory
+version: '${project.version}'
+main: me.naook1.nereusarmory.NereusArmory
+api-version: '1.21'
+authors: [naook1, adityap]
+description: Abyssal armor set and weapons with skills by naook1/adityap
+
+commands:
+  armory:
+    description: Nereus Armory
+    aliases: [nereusarmory, abyss]
+    usage: /<command> [gui|list|give <player> <id>|reload]
+
+permissions:
+  nereusarmory.use:
+    description: Open the armory menu and use items
+    default: true
+  nereusarmory.admin:
+    description: Give items, reload
+    default: op

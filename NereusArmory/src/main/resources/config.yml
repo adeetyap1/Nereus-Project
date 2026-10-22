@@ -1,0 +1,45 @@
+# NereusArmory by naook1/adityap
+# Item ids: tidecaller, frostpearl, stormpiercer (weapons) | helm, chest, legs, boots (Abyssal set)
+
+menu:
+  free-take: true          # true = everyone can take items from /armory, false = admins only
+
+weapons:                   # attack damage (total) and attack speed
+  tidecaller:   {damage: 9.0, speed: 1.6}
+  frostpearl:   {damage: 8.0, speed: 1.8}
+  stormpiercer: {damage: 9.0, speed: 1.5}
+
+armor:                     # per piece: armor points, toughness, knockback resistance, bonus health points (2 = 1 heart)
+  helm:  {armor: 3, toughness: 3, knockback: 0.05, health: 2}
+  chest: {armor: 8, toughness: 3, knockback: 0.05, health: 2}
+  legs:  {armor: 6, toughness: 3, knockback: 0.05, health: 2}
+  boots: {armor: 3, toughness: 3, knockback: 0.05, health: 2}
+
+skills:                    # right click with the weapon
+  tidal-surge:             # Tidecaller
+    cooldown: 12
+    damage: 8.0
+    range: 14
+  frost-nova:              # Frostpearl
+    cooldown: 16
+    damage: 7.0
+    radius: 7
+  thunder-judgment:        # Stormpiercer
+    cooldown: 18
+    damage: 10.0
+    chain-damage: 6.0
+    chain-targets: 3
+    range: 28
+
+set-bonus:                 # full Abyssal set (4 pieces)
+  tsunami:                 # sneak twice quickly
+    cooldown: 45
+    damage: 9.0
+    radius: 9
+  aura: true               # water particles around the wearer (visible to Java and Bedrock)
+
+overlay:                   # Java only: 3D crown, shoulder shells and cape on the wearer (Bedrock sees the painted armor)
+  enabled: true
+  crown:    {y: 1.93, scale: 1.0}
+  pauldron: {x: 0.36, y: 1.38, scale: 1.0}
+  cape:     {back: 0.2, top: 1.45, scale: 1.0}

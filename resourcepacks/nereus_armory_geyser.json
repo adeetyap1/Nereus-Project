@@ -1,0 +1,85 @@
+{
+ "format_version": 2,
+ "items": {
+  "minecraft:netherite_sword": [
+   {
+    "type": "legacy",
+    "custom_model_data": 9001.0,
+    "bedrock_identifier": "nereus:tidecaller",
+    "display_name": "Tidecaller",
+    "bedrock_options": {
+     "icon": "nereus_armory_tidecaller",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9002.0,
+    "bedrock_identifier": "nereus:frostpearl",
+    "display_name": "Frostpearl Reaver",
+    "bedrock_options": {
+     "icon": "nereus_armory_frostpearl",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9003.0,
+    "bedrock_identifier": "nereus:stormpiercer",
+    "display_name": "Stormpiercer",
+    "bedrock_options": {
+     "icon": "nereus_armory_stormpiercer",
+     "allow_offhand": true
+    }
+   }
+  ],
+  "minecraft:chainmail_helmet": [
+   {
+    "type": "legacy",
+    "custom_model_data": 9011.0,
+    "bedrock_identifier": "nereus:abyss_helmet",
+    "display_name": "Abyssal Crown",
+    "bedrock_options": {
+     "icon": "nereus_armory_helm",
+     "protection_value": 3
+    }
+   }
+  ],
+  "minecraft:chainmail_chestplate": [
+   {
+    "type": "legacy",
+    "custom_model_data": 9012.0,
+    "bedrock_identifier": "nereus:abyss_chestplate",
+    "display_name": "Abyssal Cuirass",
+    "bedrock_options": {
+     "icon": "nereus_armory_chest",
+     "protection_value": 8
+    }
+   }
+  ],
+  "minecraft:chainmail_leggings": [
+   {
+    "type": "legacy",
+    "custom_model_data": 9013.0,
+    "bedrock_identifier": "nereus:abyss_leggings",
+    "display_name": "Abyssal Greaves",
+    "bedrock_options": {
+     "icon": "nereus_armory_legs",
+     "protection_value": 6
+    }
+   }
+  ],
+  "minecraft:chainmail_boots": [
+   {
+    "type": "legacy",
+    "custom_model_data": 9014.0,
+    "bedrock_identifier": "nereus:abyss_boots",
+    "display_name": "Abyssal Striders",
+    "bedrock_options": {
+     "icon": "nereus_armory_boots",
+     "protection_value": 3
+    }
+   }
+  ]
+ }
+}
