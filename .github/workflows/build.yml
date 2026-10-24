@@ -19,7 +19,12 @@ jobs:
           set -o pipefail
           mkdir out
           for dir in NereusRealm NereusLottery NereusFarmPrice NereusBarter NereusLand NereusHide NereusFishing NereusSize NereusBank NereusEvents NereusArmory NereusCosmetics; do
-            if ! mvn -B -f "$dir/pom.xml" clean package 2>&1 | tee "$dir-build.log"; then
+            ok=0
+            for try in 1 2 3; do
+              if mvn -B -f "$dir/pom.xml" clean package 2>&1 | tee "$dir-build.log"; then ok=1; break; fi
+              echo "Build of $dir failed (try $try), retrying in 15s"; sleep 15
+            done
+            if [ "$ok" != 1 ]; then
               # show compile errors as annotations so they are visible on the run page
               grep -E '^\[ERROR\]' "$dir-build.log" | head -40 | while read -r line; do echo "::error::$dir: $line"; done
               exit 1
