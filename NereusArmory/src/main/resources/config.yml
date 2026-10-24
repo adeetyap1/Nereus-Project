@@ -55,11 +55,7 @@ set-bonus:                 # full Abyssal set (4 pieces)
     radius: 9
   aura: true               # water particles around the wearer (visible to Java and Bedrock)
 
-overlay:                   # Java only: 3D shoulder wings, helm crest, chevrons and teal cape strips on the wearer (Bedrock sees the painted armor)
+overlay:                   # Java only: 3D horns, pauldrons and cape on the wearer (Bedrock sees the painted armor)
   enabled: true
-  crest:    {y: 2.0, scale: 1.0}
-  wing:     {x: 0.31, y: 1.40, scale: 0.75}
-  strip:    {x: 0.46, back: 0.10, top: 1.50, scale: 1.0}
-  headgear: {scale: 1.0, dragon-y: 1.85, frost-y: 1.98}   # Dragonhorn horns / Frostwing crown
-  shoulder: {x: 0.36, y: 1.40}                           # Dragonhorn / Frostwing shoulder pieces
-  chevron:  {y: 1.02, hip-y: 0.66, forward: 0.17, scale: 1.0}
+  head: {y: 1.75, scale: 1.0}   # helm overlay anchor = head centre
+  body: {y: 1.125, scale: 1.0}  # chest overlay anchor = torso centre
