@@ -25,6 +25,10 @@
             <id>placeholderapi</id>
             <url>https://repo.extendedclip.com/releases/</url>
         </repository>
+        <repository>
+            <id>placeholderapi-helpch</id>
+            <url>https://repo.helpch.at/releases/</url>
+        </repository>
     </repositories>
 
     <dependencies>
