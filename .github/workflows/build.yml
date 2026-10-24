@@ -19,8 +19,7 @@ jobs:
           key: m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             m2-
-            setup-java-Linux-x64-maven-
-            setup-java-Linux-maven-
+            setup-java-
       - name: Build plugins
         run: |
           set -o pipefail
