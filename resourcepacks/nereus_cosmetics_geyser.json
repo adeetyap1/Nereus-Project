@@ -1,0 +1,737 @@
+{
+ "format_version": 2,
+ "items": {
+  "minecraft:coal": [
+   {
+    "type": "legacy",
+    "custom_model_data": 7001.0,
+    "bedrock_identifier": "nereuscos:aegismask",
+    "display_name": "Aegismask",
+    "bedrock_options": {
+     "icon": "nereus_cos_aegismask",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7002.0,
+    "bedrock_identifier": "nereuscos:ajuleyes",
+    "display_name": "Ajuleyes",
+    "bedrock_options": {
+     "icon": "nereus_cos_ajuleyes",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7003.0,
+    "bedrock_identifier": "nereuscos:angel_wing",
+    "display_name": "Angel Wing",
+    "bedrock_options": {
+     "icon": "nereus_cos_angel_wing",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7004.0,
+    "bedrock_identifier": "nereuscos:api_mefelz",
+    "display_name": "Api Mefelz",
+    "bedrock_options": {
+     "icon": "nereus_cos_api_mefelz",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7005.0,
+    "bedrock_identifier": "nereuscos:armisticemask",
+    "display_name": "Armisticemask",
+    "bedrock_options": {
+     "icon": "nereus_cos_armisticemask",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7006.0,
+    "bedrock_identifier": "nereuscos:asepplaguemask",
+    "display_name": "Asepplaguemask",
+    "bedrock_options": {
+     "icon": "nereus_cos_asepplaguemask",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7007.0,
+    "bedrock_identifier": "nereuscos:axolotlmaji",
+    "display_name": "Axolotlmaji",
+    "bedrock_options": {
+     "icon": "nereus_cos_axolotlmaji",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7008.0,
+    "bedrock_identifier": "nereuscos:ayoneyehornear_v2",
+    "display_name": "Ayoneyehornear V2",
+    "bedrock_options": {
+     "icon": "nereus_cos_ayoneyehornear_v2",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7009.0,
+    "bedrock_identifier": "nereuscos:bearmask",
+    "display_name": "Bearmask",
+    "bedrock_options": {
+     "icon": "nereus_cos_bearmask",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7010.0,
+    "bedrock_identifier": "nereuscos:beemask",
+    "display_name": "Beemask",
+    "bedrock_options": {
+     "icon": "nereus_cos_beemask",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7011.0,
+    "bedrock_identifier": "nereuscos:bowl",
+    "display_name": "Bowl",
+    "bedrock_options": {
+     "icon": "nereus_cos_bowl",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7012.0,
+    "bedrock_identifier": "nereuscos:damonglasses",
+    "display_name": "Damonglasses",
+    "bedrock_options": {
+     "icon": "nereus_cos_damonglasses",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7013.0,
+    "bedrock_identifier": "nereuscos:damonhorn",
+    "display_name": "Damonhorn",
+    "bedrock_options": {
+     "icon": "nereus_cos_damonhorn",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7014.0,
+    "bedrock_identifier": "nereuscos:eaglemask",
+    "display_name": "Eaglemask",
+    "bedrock_options": {
+     "icon": "nereus_cos_eaglemask",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7015.0,
+    "bedrock_identifier": "nereuscos:faizmask",
+    "display_name": "Faizmask",
+    "bedrock_options": {
+     "icon": "nereus_cos_faizmask",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7016.0,
+    "bedrock_identifier": "nereuscos:faizscarf",
+    "display_name": "Faizscarf",
+    "bedrock_options": {
+     "icon": "nereus_cos_faizscarf",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7017.0,
+    "bedrock_identifier": "nereuscos:febfebhorn",
+    "display_name": "Febfebhorn",
+    "bedrock_options": {
+     "icon": "nereus_cos_febfebhorn",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7018.0,
+    "bedrock_identifier": "nereuscos:febfebmask",
+    "display_name": "Febfebmask",
+    "bedrock_options": {
+     "icon": "nereus_cos_febfebmask",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7019.0,
+    "bedrock_identifier": "nereuscos:fenrir1mask",
+    "display_name": "Fenrir1Mask",
+    "bedrock_options": {
+     "icon": "nereus_cos_fenrir1mask",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7020.0,
+    "bedrock_identifier": "nereuscos:fenrir2mask",
+    "display_name": "Fenrir2Mask",
+    "bedrock_options": {
+     "icon": "nereus_cos_fenrir2mask",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7021.0,
+    "bedrock_identifier": "nereuscos:fenrircape",
+    "display_name": "Fenrircape",
+    "bedrock_options": {
+     "icon": "nereus_cos_fenrircape",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7022.0,
+    "bedrock_identifier": "nereuscos:fenrirmask",
+    "display_name": "Fenrirmask",
+    "bedrock_options": {
+     "icon": "nereus_cos_fenrirmask",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7023.0,
+    "bedrock_identifier": "nereuscos:fernandesmask",
+    "display_name": "Fernandesmask",
+    "bedrock_options": {
+     "icon": "nereus_cos_fernandesmask",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7024.0,
+    "bedrock_identifier": "nereuscos:flowercrown",
+    "display_name": "Flowercrown",
+    "bedrock_options": {
+     "icon": "nereus_cos_flowercrown",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7025.0,
+    "bedrock_identifier": "nereuscos:gempitamask",
+    "display_name": "Gempitamask",
+    "bedrock_options": {
+     "icon": "nereus_cos_gempitamask",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7026.0,
+    "bedrock_identifier": "nereuscos:ghostmask",
+    "display_name": "Ghostmask",
+    "bedrock_options": {
+     "icon": "nereus_cos_ghostmask",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7027.0,
+    "bedrock_identifier": "nereuscos:googleglasses",
+    "display_name": "Googleglasses",
+    "bedrock_options": {
+     "icon": "nereus_cos_googleglasses",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7028.0,
+    "bedrock_identifier": "nereuscos:guitar",
+    "display_name": "Guitar",
+    "bedrock_options": {
+     "icon": "nereus_cos_guitar",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7029.0,
+    "bedrock_identifier": "nereuscos:hawkincape",
+    "display_name": "Hawkincape",
+    "bedrock_options": {
+     "icon": "nereus_cos_hawkincape",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7030.0,
+    "bedrock_identifier": "nereuscos:horsemask",
+    "display_name": "Horsemask",
+    "bedrock_options": {
+     "icon": "nereus_cos_horsemask",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7031.0,
+    "bedrock_identifier": "nereuscos:indramask",
+    "display_name": "Indramask",
+    "bedrock_options": {
+     "icon": "nereus_cos_indramask",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7032.0,
+    "bedrock_identifier": "nereuscos:lethemask",
+    "display_name": "Lethemask",
+    "bedrock_options": {
+     "icon": "nereus_cos_lethemask",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7033.0,
+    "bedrock_identifier": "nereuscos:leviathanboobs",
+    "display_name": "Leviathanboobs",
+    "bedrock_options": {
+     "icon": "nereus_cos_leviathanboobs",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7034.0,
+    "bedrock_identifier": "nereuscos:leviathanhorn",
+    "display_name": "Leviathanhorn",
+    "bedrock_options": {
+     "icon": "nereus_cos_leviathanhorn",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7035.0,
+    "bedrock_identifier": "nereuscos:lightpendant",
+    "display_name": "Lightpendant",
+    "bedrock_options": {
+     "icon": "nereus_cos_lightpendant",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7036.0,
+    "bedrock_identifier": "nereuscos:majihorn",
+    "display_name": "Majihorn",
+    "bedrock_options": {
+     "icon": "nereus_cos_majihorn",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7037.0,
+    "bedrock_identifier": "nereuscos:majimask",
+    "display_name": "Majimask",
+    "bedrock_options": {
+     "icon": "nereus_cos_majimask",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7038.0,
+    "bedrock_identifier": "nereuscos:mammonhorn",
+    "display_name": "Mammonhorn",
+    "bedrock_options": {
+     "icon": "nereus_cos_mammonhorn",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7039.0,
+    "bedrock_identifier": "nereuscos:maskfreezemay",
+    "display_name": "Maskfreezemay",
+    "bedrock_options": {
+     "icon": "nereus_cos_maskfreezemay",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7040.0,
+    "bedrock_identifier": "nereuscos:mataindra",
+    "display_name": "Mataindra",
+    "bedrock_options": {
+     "icon": "nereus_cos_mataindra",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7041.0,
+    "bedrock_identifier": "nereuscos:matemmask",
+    "display_name": "Matemmask",
+    "bedrock_options": {
+     "icon": "nereus_cos_matemmask",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7042.0,
+    "bedrock_identifier": "nereuscos:mefelzmask",
+    "display_name": "Mefelzmask",
+    "bedrock_options": {
+     "icon": "nereus_cos_mefelzmask",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7043.0,
+    "bedrock_identifier": "nereuscos:michanmask",
+    "display_name": "Michanmask",
+    "bedrock_options": {
+     "icon": "nereus_cos_michanmask",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7044.0,
+    "bedrock_identifier": "nereuscos:moendearhorn",
+    "display_name": "Moendearhorn",
+    "bedrock_options": {
+     "icon": "nereus_cos_moendearhorn",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7045.0,
+    "bedrock_identifier": "nereuscos:moendmask",
+    "display_name": "Moendmask",
+    "bedrock_options": {
+     "icon": "nereus_cos_moendmask",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7046.0,
+    "bedrock_identifier": "nereuscos:mokadmask",
+    "display_name": "Mokadmask",
+    "bedrock_options": {
+     "icon": "nereus_cos_mokadmask",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7047.0,
+    "bedrock_identifier": "nereuscos:monoclemerchant",
+    "display_name": "Monoclemerchant",
+    "bedrock_options": {
+     "icon": "nereus_cos_monoclemerchant",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7048.0,
+    "bedrock_identifier": "nereuscos:mysteriomask",
+    "display_name": "Mysteriomask",
+    "bedrock_options": {
+     "icon": "nereus_cos_mysteriomask",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7049.0,
+    "bedrock_identifier": "nereuscos:nakki_manusia",
+    "display_name": "Nakki Manusia",
+    "bedrock_options": {
+     "icon": "nereus_cos_nakki_manusia",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7050.0,
+    "bedrock_identifier": "nereuscos:nakkimask",
+    "display_name": "Nakkimask",
+    "bedrock_options": {
+     "icon": "nereus_cos_nakkimask",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7051.0,
+    "bedrock_identifier": "nereuscos:nakkitail",
+    "display_name": "Nakkitail",
+    "bedrock_options": {
+     "icon": "nereus_cos_nakkitail",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7052.0,
+    "bedrock_identifier": "nereuscos:omendplushie",
+    "display_name": "Omendplushie",
+    "bedrock_options": {
+     "icon": "nereus_cos_omendplushie",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7053.0,
+    "bedrock_identifier": "nereuscos:pandamask",
+    "display_name": "Pandamask",
+    "bedrock_options": {
+     "icon": "nereus_cos_pandamask",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7054.0,
+    "bedrock_identifier": "nereuscos:peppeymask",
+    "display_name": "Peppeymask",
+    "bedrock_options": {
+     "icon": "nereus_cos_peppeymask",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7055.0,
+    "bedrock_identifier": "nereuscos:polarbearmask",
+    "display_name": "Polarbearmask",
+    "bedrock_options": {
+     "icon": "nereus_cos_polarbearmask",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7056.0,
+    "bedrock_identifier": "nereuscos:quiver",
+    "display_name": "Quiver",
+    "bedrock_options": {
+     "icon": "nereus_cos_quiver",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7057.0,
+    "bedrock_identifier": "nereuscos:rafilnm",
+    "display_name": "Rafilnm",
+    "bedrock_options": {
+     "icon": "nereus_cos_rafilnm",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7058.0,
+    "bedrock_identifier": "nereuscos:ragnarokmask",
+    "display_name": "Ragnarokmask",
+    "bedrock_options": {
+     "icon": "nereus_cos_ragnarokmask",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7059.0,
+    "bedrock_identifier": "nereuscos:reysmask",
+    "display_name": "Reysmask",
+    "bedrock_options": {
+     "icon": "nereus_cos_reysmask",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7060.0,
+    "bedrock_identifier": "nereuscos:samsulmask",
+    "display_name": "Samsulmask",
+    "bedrock_options": {
+     "icon": "nereus_cos_samsulmask",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7061.0,
+    "bedrock_identifier": "nereuscos:satanmode",
+    "display_name": "Satanmode",
+    "bedrock_options": {
+     "icon": "nereus_cos_satanmode",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7062.0,
+    "bedrock_identifier": "nereuscos:satanwing",
+    "display_name": "Satanwing",
+    "bedrock_options": {
+     "icon": "nereus_cos_satanwing",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7063.0,
+    "bedrock_identifier": "nereuscos:scortchmask",
+    "display_name": "Scortchmask",
+    "bedrock_options": {
+     "icon": "nereus_cos_scortchmask",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7064.0,
+    "bedrock_identifier": "nereuscos:shadowhorn",
+    "display_name": "Shadowhorn",
+    "bedrock_options": {
+     "icon": "nereus_cos_shadowhorn",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7065.0,
+    "bedrock_identifier": "nereuscos:shadowmask",
+    "display_name": "Shadowmask",
+    "bedrock_options": {
+     "icon": "nereus_cos_shadowmask",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7066.0,
+    "bedrock_identifier": "nereuscos:starnecklace",
+    "display_name": "Starnecklace",
+    "bedrock_options": {
+     "icon": "nereus_cos_starnecklace",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7067.0,
+    "bedrock_identifier": "nereuscos:tapacmask",
+    "display_name": "Tapacmask",
+    "bedrock_options": {
+     "icon": "nereus_cos_tapacmask",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7068.0,
+    "bedrock_identifier": "nereuscos:telingamichan",
+    "display_name": "Telingamichan",
+    "bedrock_options": {
+     "icon": "nereus_cos_telingamichan",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7069.0,
+    "bedrock_identifier": "nereuscos:turban",
+    "display_name": "Turban",
+    "bedrock_options": {
+     "icon": "nereus_cos_turban",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7070.0,
+    "bedrock_identifier": "nereuscos:ubimask",
+    "display_name": "Ubimask",
+    "bedrock_options": {
+     "icon": "nereus_cos_ubimask",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7071.0,
+    "bedrock_identifier": "nereuscos:ubitanduk",
+    "display_name": "Ubitanduk",
+    "bedrock_options": {
+     "icon": "nereus_cos_ubitanduk",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7072.0,
+    "bedrock_identifier": "nereuscos:witchcrown",
+    "display_name": "Witchcrown",
+    "bedrock_options": {
+     "icon": "nereus_cos_witchcrown",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7073.0,
+    "bedrock_identifier": "nereuscos:zerocape",
+    "display_name": "Zerocape",
+    "bedrock_options": {
+     "icon": "nereus_cos_zerocape",
+     "allow_offhand": true
+    }
+   }
+  ]
+ }
+}

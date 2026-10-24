@@ -1,215 +1,450 @@
-# NereusCosmetics - cosmetic untuk Java dan Bedrock (digambar dengan partikel dari server, tanpa resource pack)
-# Rank: tiap cosmetic punya "permission". Kasih permission itu lewat LuckPerms ke rank yang boleh pakai, contoh:
-#   /lp group vip permission set nereuscosmetics.use.halo_gold true
-#   /lp group admin permission set nereuscosmetics.all true     (semua cosmetic)
-# Kosongkan permission ("") kalau cosmetic itu boleh dipakai semua orang.
-# Admin (nereuscosmetics.admin) otomatis bisa ambil semua lewat /cosmetics (GUI) dan /cosmetics give <player> <id|all>.
-
+# NereusCosmetics - semua cosmetic. Atur permission per rank (LuckPerms): nereuscosmetics.use.<id>
+# Contoh: lp group vip permission set nereuscosmetics.use.angel_wing true
 settings:
-  interval: 3            # tick antar frame (3 = 6.7x per detik). Besar = lebih hemat, kecil = lebih halus
-  view-distance: 24      # jarak pemain lain bisa lihat partikel
-  show-self: true        # pemakai ikut melihat cosmetic sendiri
-
+  interval: 2
+  view-distance: 40
+  show-own-back: true
+  sneak-drop: 0.25
 menu:
   title: "&8Cosmetics"
-
 messages:
   prefix: "&b[Cosmetics] &r"
-  locked: "&cRank kamu belum boleh pakai cosmetic ini."
-  equipped: "&aDipasang: &r"
-  removed: "&eCosmetic dilepas."
-  unknown: "&cCosmetic tidak ditemukan."
-  noperm: "&cKamu tidak punya izin."
-  offline: "&cPemain tidak online."
-  done: "&aSelesai."
-  reloaded: "&aConfig dimuat ulang, cosmetic: "
-  list: "&fDaftar: &7"
-
-# type: HAT | BACK | AURA | TRAIL        effect: halo | crown | horns | wings | cape | orbit | spiral | trail
-# particle: DUST (pakai color dan color2 sebagai gradasi) atau nama particle lain, mis. END_ROD, FLAME, SOUL_FIRE_FLAME, HEART, NOTE
 cosmetics:
-  halo_gold:
-    name: "&6Halo Emas"
-    description: "&7Cincin cahaya emas di atas kepala"
+  aegismask:
+    name: "Aegismask"
     type: HAT
-    effect: halo
-    particle: DUST
-    color: "#FFD54A"
-    color2: "#FFF3B0"
-    size: 1.0
-    icon: GOLD_INGOT
-    permission: "nereuscosmetics.use.halo_gold"
-  halo_ice:
-    name: "&bHalo Es"
-    description: "&7Cincin kristal es"
+    cmd: 7001
+    permission: "nereuscosmetics.use.aegismask"
+    description: ""
+  ajuleyes:
+    name: "Ajuleyes"
     type: HAT
-    effect: halo
-    particle: END_ROD
-    icon: PRISMARINE_CRYSTALS
-    permission: "nereuscosmetics.use.halo_ice"
-  crown_royal:
-    name: "&eMahkota Raja"
-    description: "&7Mahkota emas dengan 6 duri"
-    type: HAT
-    effect: crown
-    particle: DUST
-    color: "#FFC107"
-    color2: "#FF9800"
-    size: 1.0
-    icon: GOLDEN_HELMET
-    permission: "nereuscosmetics.use.crown_royal"
-  crown_ember:
-    name: "&cMahkota Bara"
-    description: "&7Mahkota api"
-    type: HAT
-    effect: crown
-    particle: FLAME
-    icon: BLAZE_POWDER
-    permission: "nereuscosmetics.use.crown_ember"
-  horns_demon:
-    name: "&4Tanduk Iblis"
-    description: "&7Tanduk merah gelap"
-    type: HAT
-    effect: horns
-    particle: DUST
-    color: "#C0392B"
-    color2: "#3B0A0A"
-    size: 1.1
-    icon: NETHERITE_HELMET
-    permission: "nereuscosmetics.use.horns_demon"
-  horns_frost:
-    name: "&3Tanduk Beku"
-    description: "&7Tanduk biru es"
-    type: HAT
-    effect: horns
-    particle: DUST
-    color: "#6FB4FF"
-    color2: "#E8F7FF"
-    size: 1.1
-    icon: DIAMOND_HELMET
-    permission: "nereuscosmetics.use.horns_frost"
-  wings_angel:
-    name: "&fSayap Malaikat"
-    description: "&7Sayap putih mengepak"
+    cmd: 7002
+    permission: "nereuscosmetics.use.ajuleyes"
+    description: ""
+  angel_wing:
+    name: "Angel Wing"
     type: BACK
-    effect: wings
-    particle: DUST
-    color: "#FFFFFF"
-    color2: "#BFE6FF"
-    size: 1.0
-    icon: FEATHER
-    permission: "nereuscosmetics.use.wings_angel"
-  wings_shadow:
-    name: "&5Sayap Bayangan"
-    description: "&7Sayap ungu gelap"
+    cmd: 7003
+    permission: "nereuscosmetics.use.angel_wing"
+    description: ""
+  api_mefelz:
+    name: "Api Mefelz"
+    type: HAND
+    cmd: 7004
+    permission: "nereuscosmetics.use.api_mefelz"
+    description: ""
+  armisticemask:
+    name: "Armisticemask"
+    type: HAT
+    cmd: 7005
+    permission: "nereuscosmetics.use.armisticemask"
+    description: ""
+  asepplaguemask:
+    name: "Asepplaguemask"
+    type: HAT
+    cmd: 7006
+    permission: "nereuscosmetics.use.asepplaguemask"
+    description: ""
+  axolotlmaji:
+    name: "Axolotlmaji"
     type: BACK
-    effect: wings
-    particle: DUST
-    color: "#2B1B4A"
-    color2: "#8E44FF"
-    size: 1.0
-    icon: PHANTOM_MEMBRANE
-    permission: "nereuscosmetics.use.wings_shadow"
-  wings_flame:
-    name: "&6Sayap Api"
-    description: "&7Sayap membara"
+    cmd: 7007
+    permission: "nereuscosmetics.use.axolotlmaji"
+    description: ""
+  ayoneyehornear_v2:
+    name: "Ayoneyehornear V2"
+    type: HAT
+    cmd: 7008
+    permission: "nereuscosmetics.use.ayoneyehornear_v2"
+    description: ""
+  bearmask:
+    name: "Bearmask"
+    type: HAT
+    cmd: 7009
+    permission: "nereuscosmetics.use.bearmask"
+    description: ""
+  beemask:
+    name: "Beemask"
+    type: HAT
+    cmd: 7010
+    permission: "nereuscosmetics.use.beemask"
+    description: ""
+  bowl:
+    name: "Bowl"
+    type: HAND
+    cmd: 7011
+    permission: "nereuscosmetics.use.bowl"
+    description: ""
+  damonglasses:
+    name: "Damonglasses"
+    type: HAT
+    cmd: 7012
+    permission: "nereuscosmetics.use.damonglasses"
+    description: ""
+  damonhorn:
+    name: "Damonhorn"
+    type: HAT
+    cmd: 7013
+    permission: "nereuscosmetics.use.damonhorn"
+    description: ""
+  eaglemask:
+    name: "Eaglemask"
+    type: HAT
+    cmd: 7014
+    permission: "nereuscosmetics.use.eaglemask"
+    description: ""
+  faizmask:
+    name: "Faizmask"
+    type: HAT
+    cmd: 7015
+    permission: "nereuscosmetics.use.faizmask"
+    description: ""
+  faizscarf:
+    name: "Faizscarf"
     type: BACK
-    effect: wings
-    particle: DUST
-    color: "#FF5722"
-    color2: "#FFC107"
-    size: 1.0
-    icon: BLAZE_ROD
-    permission: "nereuscosmetics.use.wings_flame"
-  cape_ember:
-    name: "&cJubah Bara"
-    description: "&7Jubah bara yang berkibar"
+    cmd: 7016
+    permission: "nereuscosmetics.use.faizscarf"
+    description: ""
+  febfebhorn:
+    name: "Febfebhorn"
+    type: HAT
+    cmd: 7017
+    permission: "nereuscosmetics.use.febfebhorn"
+    description: ""
+  febfebmask:
+    name: "Febfebmask"
+    type: HAT
+    cmd: 7018
+    permission: "nereuscosmetics.use.febfebmask"
+    description: ""
+  fenrir1mask:
+    name: "Fenrir1Mask"
+    type: HAT
+    cmd: 7019
+    permission: "nereuscosmetics.use.fenrir1mask"
+    description: ""
+  fenrir2mask:
+    name: "Fenrir2Mask"
+    type: HAT
+    cmd: 7020
+    permission: "nereuscosmetics.use.fenrir2mask"
+    description: ""
+  fenrircape:
+    name: "Fenrircape"
     type: BACK
-    effect: cape
-    particle: DUST
-    color: "#FF3D00"
-    color2: "#4A0E0E"
-    size: 1.0
-    icon: RED_BANNER
-    permission: "nereuscosmetics.use.cape_ember"
-  cape_ocean:
-    name: "&9Jubah Samudra"
-    description: "&7Jubah air biru"
+    cmd: 7021
+    permission: "nereuscosmetics.use.fenrircape"
+    description: ""
+  fenrirmask:
+    name: "Fenrirmask"
+    type: HAT
+    cmd: 7022
+    permission: "nereuscosmetics.use.fenrirmask"
+    description: ""
+  fernandesmask:
+    name: "Fernandesmask"
+    type: HAT
+    cmd: 7023
+    permission: "nereuscosmetics.use.fernandesmask"
+    description: ""
+  flowercrown:
+    name: "Flowercrown"
+    type: HAT
+    cmd: 7024
+    permission: "nereuscosmetics.use.flowercrown"
+    description: ""
+  gempitamask:
+    name: "Gempitamask"
+    type: HAT
+    cmd: 7025
+    permission: "nereuscosmetics.use.gempitamask"
+    description: ""
+  ghostmask:
+    name: "Ghostmask"
+    type: HAT
+    cmd: 7026
+    permission: "nereuscosmetics.use.ghostmask"
+    description: ""
+  googleglasses:
+    name: "Googleglasses"
+    type: HAT
+    cmd: 7027
+    permission: "nereuscosmetics.use.googleglasses"
+    description: ""
+  guitar:
+    name: "Guitar"
+    type: HAND
+    cmd: 7028
+    permission: "nereuscosmetics.use.guitar"
+    description: ""
+  hawkincape:
+    name: "Hawkincape"
     type: BACK
-    effect: cape
-    particle: DUST
-    color: "#1E4FA8"
-    color2: "#5FE0FF"
-    size: 1.0
-    icon: BLUE_BANNER
-    permission: "nereuscosmetics.use.cape_ocean"
-  orbit_stars:
-    name: "&eBintang Mengorbit"
-    description: "&7Tiga bintang mengitari badan"
-    type: AURA
-    effect: orbit
-    particle: END_ROD
-    icon: NETHER_STAR
-    permission: "nereuscosmetics.use.orbit_stars"
-  orbit_souls:
-    name: "&bJiwa Mengorbit"
-    description: "&7Api jiwa berputar"
-    type: AURA
-    effect: orbit
-    particle: SOUL_FIRE_FLAME
-    icon: SOUL_LANTERN
-    permission: "nereuscosmetics.use.orbit_souls"
-  spiral_water:
-    name: "&9Pusaran Air"
-    description: "&7Spiral air di sekeliling badan"
-    type: AURA
-    effect: spiral
-    particle: DUST
-    color: "#1E88E5"
-    color2: "#80D8FF"
-    size: 1.0
-    icon: HEART_OF_THE_SEA
-    permission: "nereuscosmetics.use.spiral_water"
-  spiral_dark:
-    name: "&8Pusaran Gelap"
-    description: "&7Spiral bayangan"
-    type: AURA
-    effect: spiral
-    particle: DUST
-    color: "#1B1B2F"
-    color2: "#6C3BAA"
-    size: 1.0
-    icon: ECHO_SHARD
-    permission: "nereuscosmetics.use.spiral_dark"
-  trail_flame:
-    name: "&cJejak Api"
-    description: "&7Api di jejak kaki"
-    type: TRAIL
-    effect: trail
-    particle: FLAME
-    icon: FLINT_AND_STEEL
-    permission: "nereuscosmetics.use.trail_flame"
-  trail_sakura:
-    name: "&dJejak Sakura"
-    description: "&7Kelopak sakura"
-    type: TRAIL
-    effect: trail
-    particle: CHERRY_LEAVES
-    icon: CHERRY_SAPLING
-    permission: "nereuscosmetics.use.trail_sakura"
-  trail_notes:
-    name: "&aJejak Nada"
-    description: "&7Not musik"
-    type: TRAIL
-    effect: trail
-    particle: NOTE
-    icon: NOTE_BLOCK
-    permission: "nereuscosmetics.use.trail_notes"
-  trail_magic:
-    name: "&5Jejak Sihir"
-    description: "&7Percikan sihir"
-    type: TRAIL
-    effect: trail
-    particle: WITCH
-    icon: ENCHANTED_BOOK
-    permission: "nereuscosmetics.use.trail_magic"
+    cmd: 7029
+    permission: "nereuscosmetics.use.hawkincape"
+    description: ""
+  horsemask:
+    name: "Horsemask"
+    type: HAT
+    cmd: 7030
+    permission: "nereuscosmetics.use.horsemask"
+    description: ""
+  indramask:
+    name: "Indramask"
+    type: HAT
+    cmd: 7031
+    permission: "nereuscosmetics.use.indramask"
+    description: ""
+  lethemask:
+    name: "Lethemask"
+    type: HAT
+    cmd: 7032
+    permission: "nereuscosmetics.use.lethemask"
+    description: ""
+  leviathanboobs:
+    name: "Leviathanboobs"
+    type: BACK
+    cmd: 7033
+    permission: "nereuscosmetics.use.leviathanboobs"
+    description: ""
+  leviathanhorn:
+    name: "Leviathanhorn"
+    type: HAT
+    cmd: 7034
+    permission: "nereuscosmetics.use.leviathanhorn"
+    description: ""
+  lightpendant:
+    name: "Lightpendant"
+    type: BACK
+    cmd: 7035
+    permission: "nereuscosmetics.use.lightpendant"
+    description: ""
+  majihorn:
+    name: "Majihorn"
+    type: HAT
+    cmd: 7036
+    permission: "nereuscosmetics.use.majihorn"
+    description: ""
+  majimask:
+    name: "Majimask"
+    type: HAT
+    cmd: 7037
+    permission: "nereuscosmetics.use.majimask"
+    description: ""
+  mammonhorn:
+    name: "Mammonhorn"
+    type: HAT
+    cmd: 7038
+    permission: "nereuscosmetics.use.mammonhorn"
+    description: ""
+  maskfreezemay:
+    name: "Maskfreezemay"
+    type: HAT
+    cmd: 7039
+    permission: "nereuscosmetics.use.maskfreezemay"
+    description: ""
+  mataindra:
+    name: "Mataindra"
+    type: HAT
+    cmd: 7040
+    permission: "nereuscosmetics.use.mataindra"
+    description: ""
+  matemmask:
+    name: "Matemmask"
+    type: HAT
+    cmd: 7041
+    permission: "nereuscosmetics.use.matemmask"
+    description: ""
+  mefelzmask:
+    name: "Mefelzmask"
+    type: HAT
+    cmd: 7042
+    permission: "nereuscosmetics.use.mefelzmask"
+    description: ""
+  michanmask:
+    name: "Michanmask"
+    type: HAT
+    cmd: 7043
+    permission: "nereuscosmetics.use.michanmask"
+    description: ""
+  moendearhorn:
+    name: "Moendearhorn"
+    type: HAT
+    cmd: 7044
+    permission: "nereuscosmetics.use.moendearhorn"
+    description: ""
+  moendmask:
+    name: "Moendmask"
+    type: HAT
+    cmd: 7045
+    permission: "nereuscosmetics.use.moendmask"
+    description: ""
+  mokadmask:
+    name: "Mokadmask"
+    type: HAT
+    cmd: 7046
+    permission: "nereuscosmetics.use.mokadmask"
+    description: ""
+  monoclemerchant:
+    name: "Monoclemerchant"
+    type: HAT
+    cmd: 7047
+    permission: "nereuscosmetics.use.monoclemerchant"
+    description: ""
+  mysteriomask:
+    name: "Mysteriomask"
+    type: HAT
+    cmd: 7048
+    permission: "nereuscosmetics.use.mysteriomask"
+    description: ""
+  nakki_manusia:
+    name: "Nakki Manusia"
+    type: HAT
+    cmd: 7049
+    permission: "nereuscosmetics.use.nakki_manusia"
+    description: ""
+  nakkimask:
+    name: "Nakkimask"
+    type: HAT
+    cmd: 7050
+    permission: "nereuscosmetics.use.nakkimask"
+    description: ""
+  nakkitail:
+    name: "Nakkitail"
+    type: BACK
+    cmd: 7051
+    permission: "nereuscosmetics.use.nakkitail"
+    description: ""
+  omendplushie:
+    name: "Omendplushie"
+    type: HAND
+    cmd: 7052
+    permission: "nereuscosmetics.use.omendplushie"
+    description: ""
+  pandamask:
+    name: "Pandamask"
+    type: HAT
+    cmd: 7053
+    permission: "nereuscosmetics.use.pandamask"
+    description: ""
+  peppeymask:
+    name: "Peppeymask"
+    type: HAT
+    cmd: 7054
+    permission: "nereuscosmetics.use.peppeymask"
+    description: ""
+  polarbearmask:
+    name: "Polarbearmask"
+    type: HAT
+    cmd: 7055
+    permission: "nereuscosmetics.use.polarbearmask"
+    description: ""
+  quiver:
+    name: "Quiver"
+    type: BACK
+    cmd: 7056
+    permission: "nereuscosmetics.use.quiver"
+    description: ""
+  rafilnm:
+    name: "Rafilnm"
+    type: HAT
+    cmd: 7057
+    permission: "nereuscosmetics.use.rafilnm"
+    description: ""
+  ragnarokmask:
+    name: "Ragnarokmask"
+    type: HAT
+    cmd: 7058
+    permission: "nereuscosmetics.use.ragnarokmask"
+    description: ""
+  reysmask:
+    name: "Reysmask"
+    type: HAT
+    cmd: 7059
+    permission: "nereuscosmetics.use.reysmask"
+    description: ""
+  samsulmask:
+    name: "Samsulmask"
+    type: HAT
+    cmd: 7060
+    permission: "nereuscosmetics.use.samsulmask"
+    description: ""
+  satanmode:
+    name: "Satanmode"
+    type: HAT
+    cmd: 7061
+    permission: "nereuscosmetics.use.satanmode"
+    description: ""
+  satanwing:
+    name: "Satanwing"
+    type: BACK
+    cmd: 7062
+    permission: "nereuscosmetics.use.satanwing"
+    description: ""
+  scortchmask:
+    name: "Scortchmask"
+    type: HAT
+    cmd: 7063
+    permission: "nereuscosmetics.use.scortchmask"
+    description: ""
+  shadowhorn:
+    name: "Shadowhorn"
+    type: HAT
+    cmd: 7064
+    permission: "nereuscosmetics.use.shadowhorn"
+    description: ""
+  shadowmask:
+    name: "Shadowmask"
+    type: HAT
+    cmd: 7065
+    permission: "nereuscosmetics.use.shadowmask"
+    description: ""
+  starnecklace:
+    name: "Starnecklace"
+    type: BACK
+    cmd: 7066
+    permission: "nereuscosmetics.use.starnecklace"
+    description: ""
+  tapacmask:
+    name: "Tapacmask"
+    type: HAT
+    cmd: 7067
+    permission: "nereuscosmetics.use.tapacmask"
+    description: ""
+  telingamichan:
+    name: "Telingamichan"
+    type: HAT
+    cmd: 7068
+    permission: "nereuscosmetics.use.telingamichan"
+    description: ""
+  turban:
+    name: "Turban"
+    type: HAT
+    cmd: 7069
+    permission: "nereuscosmetics.use.turban"
+    description: ""
+  ubimask:
+    name: "Ubimask"
+    type: HAT
+    cmd: 7070
+    permission: "nereuscosmetics.use.ubimask"
+    description: ""
+  ubitanduk:
+    name: "Ubitanduk"
+    type: HAT
+    cmd: 7071
+    permission: "nereuscosmetics.use.ubitanduk"
+    description: ""
+  witchcrown:
+    name: "Witchcrown"
+    type: HAT
+    cmd: 7072
+    permission: "nereuscosmetics.use.witchcrown"
+    description: ""
+  zerocape:
+    name: "Zerocape"
+    type: BACK
+    cmd: 7073
+    permission: "nereuscosmetics.use.zerocape"
+    description: ""

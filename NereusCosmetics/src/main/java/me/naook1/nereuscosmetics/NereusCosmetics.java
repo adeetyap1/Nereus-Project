@@ -12,36 +12,50 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import org.bukkit.Bukkit;
-import org.bukkit.Color;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.Particle;
+import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.ItemDisplay;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.inventory.ClickType;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.event.player.PlayerSwapHandItemsEvent;
+import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.metadata.FixedMetadataValue;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.util.Transformation;
+import org.joml.AxisAngle4f;
+import org.joml.Vector3f;
 
 public final class NereusCosmetics extends JavaPlugin implements Listener, TabExecutor {
 
     private final Map<String, Cosmetic> registry = new LinkedHashMap<>();
     private final Map<UUID, Map<Cosmetic.Type, String>> equipped = new HashMap<>();
     private final Map<UUID, Set<String>> granted = new HashMap<>();
-    private final Map<UUID, Location> last = new HashMap<>();
     private File dataFile;
     private CosmeticsGui gui;
-    private double t = 0;
-    private int permTick = 0;
 
     @Override
     public void onEnable() {
         saveDefaultConfig();
+        tagKey = new NamespacedKey(this, "carrier");
         dataFile = new File(getDataFolder(), "data.yml");
         loadCosmetics();
         loadData();
@@ -50,13 +64,20 @@ public final class NereusCosmetics extends JavaPlugin implements Listener, TabEx
         getServer().getPluginManager().registerEvents(gui, this);
         getCommand("cosmetics").setExecutor(this);
         getCommand("cosmetics").setTabCompleter(this);
-        int iv = Math.max(1, getConfig().getInt("settings.interval", 3));
+        int iv = Math.max(1, getConfig().getInt("settings.interval", 2));
         Bukkit.getScheduler().runTaskTimer(this, () -> tick(iv), 20L, iv);
         getLogger().info("NereusCosmetics v" + getDescription().getVersion() + " enabled, " + registry.size() + " cosmetics | developer: naook1/adityap");
     }
 
     @Override
     public void onDisable() {
+        for (ItemDisplay d : displays.values()) {
+            d.remove();
+        }
+        displays.clear();
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            clearCarriers(p);
+        }
         saveData();
     }
 
@@ -77,35 +98,14 @@ public final class NereusCosmetics extends JavaPlugin implements Listener, TabEx
                 getLogger().warning("Cosmetic " + id + ": unknown type");
                 continue;
             }
-            Particle particle;
-            try {
-                particle = Particle.valueOf(s.getString("particle", "DUST").toUpperCase());
-            } catch (Exception e) {
-                getLogger().warning("Cosmetic " + id + ": unknown particle, using END_ROD");
-                particle = Particle.END_ROD;
-            }
-            Material icon = Material.matchMaterial(s.getString("icon", "NETHER_STAR"));
-            if (icon == null) {
-                icon = Material.NETHER_STAR;
-            }
             String perm = s.getString("permission", "nereuscosmetics.use." + id);
-            registry.put(id, new Cosmetic(id, color(s.getString("name", id)), type, s.getString("effect", "halo").toLowerCase(), particle,
-                    hex(s.getString("color", "#FFFFFF")), s.getString("color2") == null || s.getString("color2").isBlank() ? null : hex(s.getString("color2")),
-                    (float) s.getDouble("size", 1.0), icon, perm == null ? "" : perm.trim(), color(s.getString("description", ""))));
+            registry.put(id, new Cosmetic(id, color(s.getString("name", id)), type, s.getInt("cmd", 0),
+                    perm == null ? "" : perm.trim(), color(s.getString("description", ""))));
         }
     }
 
     static String color(String s) {
         return s == null ? "" : s.replace('&', '§');
-    }
-
-    static Color hex(String h) {
-        try {
-            h = h.replace("#", "");
-            return Color.fromRGB(Integer.parseInt(h, 16));
-        } catch (Exception e) {
-            return Color.WHITE;
-        }
     }
 
     // ------------------------------------------------------------ data
@@ -176,7 +176,7 @@ public final class NereusCosmetics extends JavaPlugin implements Listener, TabEx
         if (isAdmin(p) || p.hasPermission("nereuscosmetics.all")) {
             return true;
         }
-        if (c.permission().isEmpty() || p.hasPermission(c.permission())) {
+        if (c.permission().isEmpty() || p.hasPermission(c.permission()) || p.hasPermission("nereuscosmetics.type." + c.type().name().toLowerCase())) {
             return true;
         }
         return granted.getOrDefault(p.getUniqueId(), Collections.emptySet()).contains(c.id());
@@ -189,6 +189,7 @@ public final class NereusCosmetics extends JavaPlugin implements Listener, TabEx
     void equip(Player p, Cosmetic c) {
         equipped.computeIfAbsent(p.getUniqueId(), k -> new EnumMap<>(Cosmetic.Type.class)).put(c.type(), c.id());
         saveData();
+        refresh(p);
     }
 
     void unequip(Player p, Cosmetic.Type t) {
@@ -196,60 +197,323 @@ public final class NereusCosmetics extends JavaPlugin implements Listener, TabEx
         if (m != null) {
             m.remove(t);
             saveData();
+            refresh(p);
         }
     }
 
     void unequipAll(Player p) {
         equipped.remove(p.getUniqueId());
         saveData();
+        refresh(p);
     }
 
     String msg(String key, String def) {
         return color(getConfig().getString("messages.prefix", "&b[Cosmetics] &r")) + color(getConfig().getString("messages." + key, def));
     }
 
+    // ------------------------------------------------------------ items
+    private NamespacedKey tagKey;
+    private final Map<UUID, ItemDisplay> displays = new HashMap<>();
+    private final Map<UUID, Float> displayYaw = new HashMap<>();
+    private final Map<UUID, Set<EquipmentSlot>> shown = new HashMap<>();
+    private int tickCount = 0;
+
+    ItemStack carrier(Cosmetic c, boolean tagged) {
+        ItemStack it = new ItemStack(Material.COAL);
+        ItemMeta meta = it.getItemMeta();
+        meta.setCustomModelData(c.cmd());
+        meta.setDisplayName(c.name());
+        if (tagged) {
+            meta.getPersistentDataContainer().set(tagKey, PersistentDataType.INTEGER, c.cmd());
+        }
+        it.setItemMeta(meta);
+        return it;
+    }
+
+    private int tagOf(ItemStack it) {
+        if (it == null || it.getType() != Material.COAL || !it.hasItemMeta()) {
+            return -1;
+        }
+        Integer v = it.getItemMeta().getPersistentDataContainer().get(tagKey, PersistentDataType.INTEGER);
+        return v == null ? -1 : v;
+    }
+
+    static boolean isBedrock(Player p) {
+        return p.getUniqueId().getMostSignificantBits() == 0L;
+    }
+
+    private static EquipmentSlot slotOf(Cosmetic.Type t) {
+        return switch (t) {
+            case HAT -> EquipmentSlot.HEAD;
+            case BACK -> EquipmentSlot.CHEST;
+            case HAND -> EquipmentSlot.OFF_HAND;
+        };
+    }
+
+    private static int invIndex(EquipmentSlot s) {
+        return switch (s) {
+            case HEAD -> 39;
+            case CHEST -> 38;
+            default -> 40;
+        };
+    }
+
+    /** Put a hidden carrier item in the player's own slot so they can see it themselves (only if the slot is free). */
+    private void syncReal(Player p, EquipmentSlot slot, Cosmetic c) {
+        ItemStack cur = p.getInventory().getItem(slot);
+        boolean empty = cur == null || cur.getType().isAir();
+        int tag = tagOf(cur);
+        if (c == null) {
+            if (tag >= 0) {
+                p.getInventory().setItem(slot, null);
+            }
+            return;
+        }
+        if (empty || (tag >= 0 && tag != c.cmd())) {
+            p.getInventory().setItem(slot, carrier(c, true));
+        }
+    }
+
+    private void sweepStray(Player p) {
+        ItemStack[] cont = p.getInventory().getContents();
+        for (int i = 0; i < cont.length; i++) {
+            if (tagOf(cont[i]) >= 0 && i != 38 && i != 39 && i != 40) {
+                p.getInventory().setItem(i, null);
+            }
+        }
+        if (tagOf(p.getItemOnCursor()) >= 0) {
+            p.setItemOnCursor(null);
+        }
+    }
+
+    private void clearCarriers(Player p) {
+        for (EquipmentSlot s : new EquipmentSlot[]{EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.OFF_HAND}) {
+            syncReal(p, s, null);
+        }
+        sweepStray(p);
+    }
+
     // ------------------------------------------------------------ rendering
     private void tick(int iv) {
-        t += iv;
-        boolean showSelf = getConfig().getBoolean("settings.show-self", true);
-        double vd = getConfig().getDouble("settings.view-distance", 24);
+        tickCount += iv;
+        boolean checkPerm = tickCount % 100 < iv;
+        boolean sendFake = tickCount % 10 < iv;
+        boolean showOwnBack = getConfig().getBoolean("settings.show-own-back", true);
+        double vd = getConfig().getDouble("settings.view-distance", 40);
         double vd2 = vd * vd;
-        boolean checkPerm = (permTick += iv) >= 100;
-        if (checkPerm) {
-            permTick = 0;
-        }
         for (Player p : Bukkit.getOnlinePlayers()) {
-            Map<Cosmetic.Type, String> m = equipped.get(p.getUniqueId());
-            if (m == null || m.isEmpty()) {
+            UUID id = p.getUniqueId();
+            boolean wasDirty = dirty.remove(id);
+            Map<Cosmetic.Type, String> m = equipped.get(id);
+            boolean has = m != null && !m.isEmpty();
+            if (!has && !shown.containsKey(id) && !displays.containsKey(id)) {
                 continue;
             }
-            if (p.isDead() || p.isInvisible() || p.getGameMode() == GameMode.SPECTATOR) {
+            if (has && checkPerm) {
+                for (Cosmetic.Type ty : new ArrayList<>(m.keySet())) {
+                    Cosmetic c = registry.get(m.get(ty));
+                    if (c == null || !canUse(p, c)) {
+                        m.remove(ty);
+                    }
+                }
+            }
+            has = m != null && !m.isEmpty();
+            boolean hidden = p.isDead() || p.isInvisible() || p.getGameMode() == GameMode.SPECTATOR;
+            boolean bedrock = isBedrock(p);
+            Cosmetic hat = has && !hidden ? registry.get(m.get(Cosmetic.Type.HAT)) : null;
+            Cosmetic back = has && !hidden ? registry.get(m.get(Cosmetic.Type.BACK)) : null;
+            Cosmetic hand = has && !hidden ? registry.get(m.get(Cosmetic.Type.HAND)) : null;
+
+            // own view: real carrier items
+            if (checkPerm || sendFake || wasDirty) {
+                syncReal(p, EquipmentSlot.HEAD, hat);
+                syncReal(p, EquipmentSlot.OFF_HAND, hand);
+                syncReal(p, EquipmentSlot.CHEST, bedrock ? back : null);
+                sweepStray(p);
+            }
+
+            // other players: fake equipment packets
+            if (sendFake || wasDirty) {
+                Set<EquipmentSlot> prev = shown.getOrDefault(id, Collections.emptySet());
+                Set<EquipmentSlot> now = new HashSet<>();
+                for (Player v : p.getWorld().getPlayers()) {
+                    if (v == p || v.getLocation().distanceSquared(p.getLocation()) > vd2) {
+                        continue;
+                    }
+                    boolean vb = isBedrock(v);
+                    Map<EquipmentSlot, ItemStack> map = new EnumMap<>(EquipmentSlot.class);
+                    if (hat != null) {
+                        map.put(EquipmentSlot.HEAD, carrier(hat, false));
+                    }
+                    if (hand != null) {
+                        map.put(EquipmentSlot.OFF_HAND, carrier(hand, false));
+                    }
+                    if (back != null && vb) {
+                        map.put(EquipmentSlot.CHEST, carrier(back, false));
+                    }
+                    for (EquipmentSlot s : prev) {
+                        if (!map.containsKey(s)) {
+                            ItemStack real = p.getInventory().getItem(s);
+                            map.put(s, tagOf(real) >= 0 || real == null ? new ItemStack(Material.AIR) : real);
+                        }
+                    }
+                    if (!map.isEmpty()) {
+                        v.sendEquipmentChange(p, map);
+                    }
+                    now.addAll(map.keySet());
+                }
+                Set<EquipmentSlot> keep = new HashSet<>();
+                if (hat != null) {
+                    keep.add(EquipmentSlot.HEAD);
+                }
+                if (hand != null) {
+                    keep.add(EquipmentSlot.OFF_HAND);
+                }
+                if (back != null) {
+                    keep.add(EquipmentSlot.CHEST);
+                }
+                if (keep.isEmpty()) {
+                    shown.remove(id);
+                } else {
+                    shown.put(id, keep);
+                }
+            }
+
+            // Java viewers: item display for BACK
+            ItemDisplay d = displays.get(id);
+            if (back == null) {
+                if (d != null) {
+                    d.remove();
+                    displays.remove(id);
+                    displayYaw.remove(id);
+                }
                 continue;
             }
-            Location now = p.getLocation();
-            Location prev = last.put(p.getUniqueId(), now.clone());
-            boolean moving = prev != null && prev.getWorld() == now.getWorld()
-                    && prev.toVector().setY(0).distanceSquared(now.toVector().setY(0)) > 0.0009;
-            List<Player> viewers = new ArrayList<>();
-            for (Player v : p.getWorld().getPlayers()) {
-                if ((v != p || showSelf) && v.getLocation().distanceSquared(now) <= vd2) {
-                    viewers.add(v);
+            Location base = p.getLocation();
+            if (d == null || !d.isValid() || d.getWorld() != p.getWorld()) {
+                if (d != null) {
+                    d.remove();
                 }
+                d = p.getWorld().spawn(base, ItemDisplay.class, e -> {
+                    e.setPersistent(false);
+                    e.setItemDisplayTransform(ItemDisplay.ItemDisplayTransform.HEAD);
+                    e.setTeleportDuration(3);
+                    e.setViewRange(1.5f);
+                    e.setTransformation(new Transformation(new Vector3f(0, 0.234f, 0), new AxisAngle4f((float) Math.PI, 0, 1, 0),
+                            new Vector3f(0.586f, 0.586f, 0.586f), new AxisAngle4f()));
+                });
+                displays.put(id, d);
+                displayYaw.put(id, base.getYaw());
+                d.setMetadata("nereuscos_cmd", new FixedMetadataValue(this, -1));
             }
-            for (Cosmetic.Type ty : new ArrayList<>(m.keySet())) {
-                Cosmetic c = registry.get(m.get(ty));
-                if (c == null || (checkPerm && !canUse(p, c))) {
-                    m.remove(ty);
-                    continue;
+            int shownCmd = d.getMetadata("nereuscos_cmd").isEmpty() ? -1 : d.getMetadata("nereuscos_cmd").get(0).asInt();
+            if (shownCmd != back.cmd()) {
+                d.setItemStack(carrier(back, false));
+                d.setMetadata("nereuscos_cmd", new FixedMetadataValue(this, back.cmd()));
+            }
+            float yaw = displayYaw.getOrDefault(id, base.getYaw());
+            float target = p.getBodyYaw();
+            float delta = target - yaw;
+            while (delta > 180) {
+                delta -= 360;
+            }
+            while (delta < -180) {
+                delta += 360;
+            }
+            yaw += delta;
+            displayYaw.put(id, yaw);
+            double drop = p.isSneaking() ? getConfig().getDouble("settings.sneak-drop", 0.25) : 0;
+            Location at = new Location(base.getWorld(), base.getX(), base.getY() + 1.406 - drop, base.getZ(), yaw, 0f);
+            d.teleport(at);
+            if (checkPerm || sendFake || wasDirty) {
+                for (Player v : Bukkit.getOnlinePlayers()) {
+                    boolean hide = isBedrock(v) || (v == p && !showOwnBack);
+                    if (hide) {
+                        v.hideEntity(this, d);
+                    } else {
+                        v.showEntity(this, d);
+                    }
                 }
-                Effects.draw(c, p, t, moving, viewers);
             }
         }
     }
 
+    private final Set<UUID> dirty = new HashSet<>();
+
+    void refresh(Player p) {
+        dirty.add(p.getUniqueId());
+        Bukkit.getScheduler().runTask(this, () -> tick(0));
+    }
+
+    private void cleanup(Player p) {
+        ItemDisplay d = displays.remove(p.getUniqueId());
+        if (d != null) {
+            d.remove();
+        }
+        displayYaw.remove(p.getUniqueId());
+        shown.remove(p.getUniqueId());
+        clearCarriers(p);
+    }
+
     @EventHandler
     public void onQuit(PlayerQuitEvent e) {
-        last.remove(e.getPlayer().getUniqueId());
+        cleanup(e.getPlayer());
+    }
+
+    @EventHandler
+    public void onJoin(PlayerJoinEvent e) {
+        Bukkit.getScheduler().runTaskLater(this, () -> {
+            sweepStray(e.getPlayer());
+            dirty.add(e.getPlayer().getUniqueId());
+        }, 20L);
+    }
+
+    @EventHandler
+    public void onRespawn(PlayerRespawnEvent e) {
+        dirty.add(e.getPlayer().getUniqueId());
+    }
+
+    @EventHandler
+    public void onDeath(PlayerDeathEvent e) {
+        e.getDrops().removeIf(it -> tagOf(it) >= 0);
+    }
+
+    @EventHandler(ignoreCancelled = true)
+    public void onClickCarrier(InventoryClickEvent e) {
+        if (e.getInventory().getHolder() instanceof CosmeticsGui.Holder) {
+            return;
+        }
+        boolean bad = tagOf(e.getCurrentItem()) >= 0 || tagOf(e.getCursor()) >= 0;
+        if (!bad && e.getClick() == ClickType.NUMBER_KEY && e.getWhoClicked() instanceof Player p) {
+            bad = tagOf(p.getInventory().getItem(e.getHotbarButton())) >= 0;
+        }
+        if (!bad && e.getClick() == ClickType.SWAP_OFFHAND && e.getWhoClicked() instanceof Player p) {
+            bad = tagOf(p.getInventory().getItemInOffHand()) >= 0;
+        }
+        if (bad) {
+            e.setCancelled(true);
+        }
+    }
+
+    @EventHandler(ignoreCancelled = true)
+    public void onDragCarrier(InventoryDragEvent e) {
+        if (tagOf(e.getOldCursor()) >= 0) {
+            e.setCancelled(true);
+        }
+    }
+
+    @EventHandler(ignoreCancelled = true)
+    public void onDrop(PlayerDropItemEvent e) {
+        if (tagOf(e.getItemDrop().getItemStack()) >= 0) {
+            e.setCancelled(true);
+        }
+    }
+
+    @EventHandler(ignoreCancelled = true)
+    public void onSwap(PlayerSwapHandItemsEvent e) {
+        if (tagOf(e.getMainHandItem()) >= 0 || tagOf(e.getOffHandItem()) >= 0) {
+            e.setCancelled(true);
+        }
     }
 
     // ------------------------------------------------------------ commands
@@ -291,7 +555,7 @@ public final class NereusCosmetics extends JavaPlugin implements Listener, TabEx
                 } else {
                     Cosmetic.Type ty = Cosmetic.Type.of(w);
                     if (ty == null) {
-                        p.sendMessage(msg("unknown", "Type: hat, back, aura, trail, all"));
+                        p.sendMessage(msg("unknown", "Type: hat, back, hand, all"));
                         return true;
                     }
                     unequip(p, ty);
@@ -342,7 +606,7 @@ public final class NereusCosmetics extends JavaPlugin implements Listener, TabEx
                 loadCosmetics();
                 s.sendMessage(msg("reloaded", "Reloaded, ") + registry.size() + " cosmetics.");
             }
-            default -> s.sendMessage("/cosmetics [gui|list|equip <id>|unequip <type|all>|give|take|reload]");
+            default -> s.sendMessage("/cosmetics [gui|list|equip <id>|unequip <hat|back|hand|all>|give|take|reload]");
         }
         return true;
     }
@@ -358,7 +622,7 @@ public final class NereusCosmetics extends JavaPlugin implements Listener, TabEx
         } else if (a.length == 2 && a[0].equalsIgnoreCase("equip")) {
             out.addAll(registry.keySet());
         } else if (a.length == 2 && a[0].equalsIgnoreCase("unequip")) {
-            out.addAll(List.of("hat", "back", "aura", "trail", "all"));
+            out.addAll(List.of("hat", "back", "hand", "all"));
         } else if (a.length == 2 && (a[0].equalsIgnoreCase("give") || a[0].equalsIgnoreCase("take"))) {
             Bukkit.getOnlinePlayers().forEach(p -> out.add(p.getName()));
         } else if (a.length == 3 && (a[0].equalsIgnoreCase("give") || a[0].equalsIgnoreCase("take"))) {

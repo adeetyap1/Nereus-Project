@@ -24,7 +24,7 @@ public final class CosmeticsGui implements Listener {
         this.plugin = plugin;
     }
 
-    private static final class Holder implements InventoryHolder {
+    static final class Holder implements InventoryHolder {
         Cosmetic.Type filter;
         int page;
         List<Cosmetic> shown = new ArrayList<>();
@@ -83,7 +83,15 @@ public final class CosmeticsGui implements Listener {
             if (admin) {
                 lore.add("§8Permission: " + (c.permission().isEmpty() ? "(semua)" : c.permission()));
             }
-            ItemStack it = named(ok ? c.icon() : Material.GRAY_DYE, (ok ? "" : "§7") + c.name(), lore);
+            ItemStack it;
+            if (ok) {
+                it = plugin.carrier(c, false);
+                ItemMeta im = it.getItemMeta();
+                im.setLore(lore);
+                it.setItemMeta(im);
+            } else {
+                it = named(Material.GRAY_DYE, "§7" + c.name(), lore);
+            }
             if (on) {
                 ItemMeta meta = it.getItemMeta();
                 meta.addEnchant(org.bukkit.enchantments.Enchantment.UNBREAKING, 1, true);
@@ -99,8 +107,8 @@ public final class CosmeticsGui implements Listener {
         h.inv.setItem(45, named(Material.ARROW, "§eSebelumnya", List.of("§7Halaman " + (h.page + 1) + "/" + pages)));
         h.inv.setItem(46, named(Material.GOLDEN_HELMET, "§6Topi / Kepala", List.of("§7Filter: HAT")));
         h.inv.setItem(47, named(Material.ELYTRA, "§bPunggung", List.of("§7Filter: BACK")));
-        h.inv.setItem(48, named(Material.NETHER_STAR, "§dAura", List.of("§7Filter: AURA")));
-        h.inv.setItem(49, named(Material.FEATHER, "§aJejak Kaki", List.of("§7Filter: TRAIL")));
+        h.inv.setItem(48, named(Material.STICK, "§dTangan", List.of("§7Filter: HAND")));
+        h.inv.setItem(49, pane);
         h.inv.setItem(50, named(Material.BOOK, "§fSemua", List.of("§7Tampilkan semua")));
         h.inv.setItem(51, named(Material.BARRIER, "§cLepas Semua", List.of("§7Copot semua cosmetic")));
         h.inv.setItem(52, named(admin ? Material.COMMAND_BLOCK : Material.PAPER, admin ? "§6Mode Admin" : "§fInfo",
@@ -142,8 +150,7 @@ public final class CosmeticsGui implements Listener {
             case 45 -> open(p, h.filter, h.page - 1);
             case 46 -> open(p, Cosmetic.Type.HAT, 0);
             case 47 -> open(p, Cosmetic.Type.BACK, 0);
-            case 48 -> open(p, Cosmetic.Type.AURA, 0);
-            case 49 -> open(p, Cosmetic.Type.TRAIL, 0);
+            case 48 -> open(p, Cosmetic.Type.HAND, 0);
             case 50 -> open(p, null, 0);
             case 51 -> {
                 plugin.unequipAll(p);

@@ -9,7 +9,7 @@ commands:
   cosmetics:
     description: Nereus Cosmetics
     aliases: [cos, cosmetic, kosmetik]
-    usage: /<command> [gui|equip <id>|unequip <hat|back|aura|trail|all>|list|give <player> <id|all>|take <player> <id|all>|reload]
+    usage: /<command> [gui|equip <id>|unequip <hat|back|hand|all>|list|give <player> <id|all>|take <player> <id|all>|reload]
 
 permissions:
   nereuscosmetics.use:
@@ -21,3 +21,12 @@ permissions:
   nereuscosmetics.admin:
     description: Take any cosmetic, give or take cosmetics, reload
     default: op
+  nereuscosmetics.type.hat:
+    description: Use every HAT cosmetic
+    default: false
+  nereuscosmetics.type.back:
+    description: Use every BACK cosmetic
+    default: false
+  nereuscosmetics.type.hand:
+    description: Use every HAND cosmetic
+    default: false

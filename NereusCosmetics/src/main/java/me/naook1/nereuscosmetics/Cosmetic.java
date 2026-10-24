@@ -1,14 +1,9 @@
 package me.naook1.nereuscosmetics;
 
-import org.bukkit.Color;
-import org.bukkit.Material;
-import org.bukkit.Particle;
-
-public record Cosmetic(String id, String name, Type type, String effect, Particle particle, Color c1, Color c2, float size,
-                       Material icon, String permission, String desc) {
+public record Cosmetic(String id, String name, Type type, int cmd, String permission, String desc) {
 
     public enum Type {
-        HAT, BACK, AURA, TRAIL;
+        HAT, BACK, HAND;
 
         public static Type of(String s) {
             try {
