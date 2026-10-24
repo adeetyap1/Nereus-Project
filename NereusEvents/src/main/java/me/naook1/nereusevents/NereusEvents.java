@@ -6,7 +6,9 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerResourcePackStatusEvent;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -44,6 +46,9 @@ public final class NereusEvents extends JavaPlugin implements Listener {
     public void onDisable() {
         if (events != null) {
             events.stopAll();
+            for (Player p : Bukkit.getOnlinePlayers()) {
+                events.clearLuck(p);
+            }
         }
     }
 
@@ -87,6 +92,16 @@ public final class NereusEvents extends JavaPlugin implements Listener {
         Player p = e.getPlayer();
         events.joined(p);
         Bukkit.getScheduler().runTaskLater(this, () -> events.showBars(p), 40L);
+    }
+
+    @EventHandler
+    public void onWorld(PlayerChangedWorldEvent e) {
+        events.moved(e.getPlayer());
+    }
+
+    @EventHandler
+    public void onRespawn(PlayerRespawnEvent e) {
+        Bukkit.getScheduler().runTaskLater(this, () -> events.moved(e.getPlayer()), 5L);
     }
 
     @EventHandler

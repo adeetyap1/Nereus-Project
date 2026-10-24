@@ -30,8 +30,8 @@ lights:                # efek lampu kelap-kelip (warna-warni) selama event; hany
   sky-flash: true      # langit berkedip (waktu langit diganti per pemain, hanya terlihat di sisi pemain)
   sky-times: [12600, 13500, 18000, 22800]
 
-hud:
-  enabled: true        # tampilkan boost event aktif di bawah hotbar
+# Boost tiap event tampil di boss bar kedua tepat di bawah boss bar event (bukan di atas hotbar).
+# fishing_luck juga diberikan sebagai atribut Luck vanilla ke semua pemain selama event.
 
 rain:                  # hujan item untuk event yang punya rain: true
   per-second: 3        # item per detik per pemain

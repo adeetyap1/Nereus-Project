@@ -35,12 +35,14 @@ public final class EventManager {
         final long start;
         long end;
         final BossBar bar;
+        final BossBar boost;
 
-        Active(Def def, long start, long end, BossBar bar) {
+        Active(Def def, long start, long end, BossBar bar, BossBar boost) {
             this.def = def;
             this.start = start;
             this.end = end;
             this.bar = bar;
+            this.boost = boost;
         }
 
         public Def def() {
@@ -185,10 +187,12 @@ public final class EventManager {
         long now = System.currentTimeMillis();
         long end = now + minutes * 60_000L;
         BossBar bar = BossBar.bossBar(Text.parse(def.name()), 1f, def.color(), BossBar.Overlay.PROGRESS);
-        Active a = new Active(def, now, end, bar);
+        BossBar boost = BossBar.bossBar(Text.parse(effectLine(def)), 1f, def.color(), BossBar.Overlay.PROGRESS);
+        Active a = new Active(def, now, end, bar, boost);
         active.put(def.id(), a);
         for (Player p : Bukkit.getOnlinePlayers()) {
             p.showBossBar(bar);
+            p.showBossBar(boost);
             p.showTitle(Title.title(Text.parse(def.name()), Text.parse(def.subtitle()),
                     Title.Times.times(java.time.Duration.ofMillis(300), java.time.Duration.ofSeconds(4),
                             java.time.Duration.ofMillis(800))));
@@ -199,6 +203,7 @@ public final class EventManager {
         for (String l : def.lore()) {
             Bukkit.broadcast(Text.parse("&8  » " + l));
         }
+        applyLuck();
         playTracks();
         return true;
     }
@@ -223,7 +228,9 @@ public final class EventManager {
     private void finish(Active a, boolean natural) {
         for (Player p : Bukkit.getOnlinePlayers()) {
             p.hideBossBar(a.bar);
+            p.hideBossBar(a.boost);
         }
+        applyLuck();
         String key = a.def.sound();
         if (key != null && !key.isEmpty() && active.values().stream().noneMatch(o -> key.equals(o.def.sound()))) {
             tracks.remove(key);
@@ -263,6 +270,7 @@ public final class EventManager {
     public void showBars(Player p) {
         for (Active a : active.values()) {
             p.showBossBar(a.bar);
+            p.showBossBar(a.boost);
         }
     }
 
@@ -309,10 +317,40 @@ public final class EventManager {
                 if (next != null && now < next) {
                     continue;
                 }
-                p.playSound(p.getLocation(), en.getKey(), cat, vol, 1f);
+                p.playSound(net.kyori.adventure.sound.Sound.sound(net.kyori.adventure.key.Key.key(en.getKey()), source(cat), vol, 1f),
+                        net.kyori.adventure.sound.Sound.Emitter.self());
                 track.put(p.getUniqueId(), en.getValue() > 0
                         ? now + Math.max(1000L, (long) (en.getValue() * 1000.0) - overlap) : Long.MAX_VALUE);
             }
+        }
+    }
+
+    private static net.kyori.adventure.sound.Sound.Source source(SoundCategory c) {
+        return switch (c) {
+            case MASTER -> net.kyori.adventure.sound.Sound.Source.MASTER;
+            case MUSIC -> net.kyori.adventure.sound.Sound.Source.MUSIC;
+            case WEATHER -> net.kyori.adventure.sound.Sound.Source.WEATHER;
+            case BLOCKS -> net.kyori.adventure.sound.Sound.Source.BLOCK;
+            case HOSTILE -> net.kyori.adventure.sound.Sound.Source.HOSTILE;
+            case NEUTRAL -> net.kyori.adventure.sound.Sound.Source.NEUTRAL;
+            case PLAYERS -> net.kyori.adventure.sound.Sound.Source.PLAYER;
+            case AMBIENT -> net.kyori.adventure.sound.Sound.Source.AMBIENT;
+            case VOICE -> net.kyori.adventure.sound.Sound.Source.VOICE;
+            default -> net.kyori.adventure.sound.Sound.Source.RECORD;
+        };
+    }
+
+    /** players whose server resource pack is already loaded this session. */
+    private final java.util.Set<java.util.UUID> packReady = new java.util.HashSet<>();
+
+    /** Teleport / world change: restart the song for them so it never goes silent. */
+    public void moved(Player p) {
+        for (String k : tracks.keySet()) {
+            p.stopSound(k);
+        }
+        waitUntil.put(p.getUniqueId(), System.currentTimeMillis() + 500L);
+        for (Map<java.util.UUID, Long> t : tracks.values()) {
+            t.remove(p.getUniqueId());
         }
     }
 
@@ -322,12 +360,14 @@ public final class EventManager {
             t.remove(p.getUniqueId());
         }
         boolean bedrock = p.getUniqueId().getMostSignificantBits() == 0L;
-        waitUntil.put(p.getUniqueId(), System.currentTimeMillis() + (bedrock ? 4000L : 25000L));
+        long wait = bedrock ? 4000L : packReady.contains(p.getUniqueId()) ? 2500L : 20000L;
+        waitUntil.put(p.getUniqueId(), System.currentTimeMillis() + wait);
         showBars(p);
     }
 
     /** Java client finished loading the server resource pack: play the song now (small delay for the audio engine). */
     public void packLoaded(Player p) {
+        packReady.add(p.getUniqueId());
         waitUntil.put(p.getUniqueId(), System.currentTimeMillis() + 1500L);
         for (Map<java.util.UUID, Long> t : tracks.values()) {
             t.remove(p.getUniqueId());
@@ -335,6 +375,8 @@ public final class EventManager {
     }
 
     public void left(Player p) {
+        packReady.remove(p.getUniqueId());
+        clearLuck(p);
         waitUntil.remove(p.getUniqueId());
         for (Map<java.util.UUID, Long> t : tracks.values()) {
             t.remove(p.getUniqueId());
@@ -379,6 +421,7 @@ public final class EventManager {
         for (Active a : active.values()) {
             if (a.def.lights()) {
                 a.bar.color(BAR_COLORS[discoStep % BAR_COLORS.length]);
+                a.boost.color(BAR_COLORS[(discoStep + 3) % BAR_COLORS.length]);
             }
         }
         for (Player p : Bukkit.getOnlinePlayers()) {
@@ -424,64 +467,100 @@ public final class EventManager {
         }
         for (Active a : active.values()) {
             a.bar.color(a.def.color());
+            a.boost.color(a.def.color());
         }
     }
 
-    // ---------------------------------------------------------------- HUD under the hotbar
+    // ---------------------------------------------------------------- boosts (second boss bar, under the event bar)
 
     private static String num(double v) {
         return v == Math.rint(v) ? String.valueOf((long) v) : String.format(java.util.Locale.US, "%.1f", v);
     }
 
-    /** Action bar text: event name(s) and the real combined boosts. */
+    /** Text of the boost bar of one event: its real boosts. */
+    public static String effectLine(Def def) {
+        List<String> parts = new ArrayList<>();
+        Map<String, Double> e = def.effects();
+        Double v = e.get("fishing_luck");
+        if (v != null && v != 0) {
+            parts.add("&bLuck &a+" + num(v));
+        }
+        v = e.get("fishing_speed");
+        if (v != null && v != 0) {
+            parts.add("&bGigitan &a+" + num(v) + "%");
+        }
+        v = e.get("fishing_sell");
+        if (v != null && v != 1.0) {
+            parts.add("&bJual Ikan &a×" + num(v));
+        }
+        v = e.get("fishing_weight");
+        if (v != null && v != 1.0) {
+            parts.add("&bBerat Ikan &a×" + num(v));
+        }
+        v = e.get("farm_sell");
+        if (v != null && v != 1.0) {
+            parts.add("&eJual Farm &a×" + num(v));
+        }
+        v = e.get("lottery_pot");
+        if (v != null && v != 1.0) {
+            parts.add("&dHadiah Undian &a×" + num(v));
+        }
+        return parts.isEmpty() ? "&7Tanpa bonus" : String.join(" &8| ", parts);
+    }
+
+    /** Combined boosts (used by the GUI / command). */
     public String boostLine() {
         if (active.isEmpty()) {
             return "";
         }
-        StringBuilder sb = new StringBuilder();
-        if (active.size() == 1) {
-            sb.append(active.values().iterator().next().def.name());
-        } else {
-            sb.append("&6&l").append(active.size()).append(" EVENTS");
-        }
-        List<String> parts = new ArrayList<>();
-        double v = bonus("fishing_luck");
-        if (v != 0) {
-            parts.add("&bFish Luck &a+" + num(v));
-        }
-        v = bonus("fishing_speed");
-        if (v != 0) {
-            parts.add("&bBite Speed &a+" + num(v) + "%");
-        }
-        v = multiplier("fishing_sell");
-        if (v != 1.0) {
-            parts.add("&bFish Sell &a×" + num(v));
-        }
-        v = multiplier("fishing_weight");
-        if (v != 1.0) {
-            parts.add("&bFish Size &a×" + num(v));
-        }
-        v = multiplier("farm_sell");
-        if (v != 1.0) {
-            parts.add("&eFarm Sell &a×" + num(v));
-        }
-        v = multiplier("lottery_pot");
-        if (v != 1.0) {
-            parts.add("&dGacha Prize &a×" + num(v));
-        }
-        for (String part : parts) {
-            sb.append(" &8| ").append(part);
-        }
-        return sb.toString();
+        return String.join(" &8| ", active.values().stream().map(a -> effectLine(a.def)).toList());
     }
 
-    private void hud() {
-        if (!plugin.getConfig().getBoolean("hud.enabled", true) || active.isEmpty()) {
+    private final org.bukkit.NamespacedKey luckKey = new org.bukkit.NamespacedKey("nereusevents", "event_luck");
+    private double appliedLuck = 0;
+
+    /**
+     * Gives every online player the real vanilla Luck attribute while an event with fishing_luck is running, so luck
+     * works for vanilla fishing and for other fishing plugins too (NereusFishing also reads fishing_luck itself).
+     */
+    public void applyLuck() {
+        double luck = bonus("fishing_luck");
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            var attr = p.getAttribute(org.bukkit.attribute.Attribute.GENERIC_LUCK);
+            if (attr == null) {
+                continue;
+            }
+            org.bukkit.attribute.AttributeModifier cur = null;
+            for (var mod : attr.getModifiers()) {
+                if (luckKey.equals(mod.getKey())) {
+                    cur = mod;
+                    break;
+                }
+            }
+            if (cur != null && cur.getAmount() == luck) {
+                continue;
+            }
+            if (cur != null) {
+                attr.removeModifier(cur);
+            }
+            if (luck != 0) {
+                attr.addModifier(new org.bukkit.attribute.AttributeModifier(luckKey, luck,
+                        org.bukkit.attribute.AttributeModifier.Operation.ADD_NUMBER));
+            }
+        }
+        appliedLuck = luck;
+    }
+
+    /** Removes the event luck from a player (quit / plugin disable). */
+    public void clearLuck(Player p) {
+        var attr = p.getAttribute(org.bukkit.attribute.Attribute.GENERIC_LUCK);
+        if (attr == null) {
             return;
         }
-        Component line = Text.parse(boostLine());
-        for (Player p : Bukkit.getOnlinePlayers()) {
-            p.sendActionBar(line);
+        for (var mod : new ArrayList<>(attr.getModifiers())) {
+            if (luckKey.equals(mod.getKey())) {
+                attr.removeModifier(mod);
+            }
         }
     }
 
@@ -497,11 +576,13 @@ public final class EventManager {
                 finish(a, true);
                 continue;
             }
-            a.bar.progress(Math.max(0f, Math.min(1f, (float) left / total)));
+            float prog = Math.max(0f, Math.min(1f, (float) left / total));
+            a.bar.progress(prog);
+            a.boost.progress(prog);
             a.bar.name(Text.parse(a.def.name() + " &8| &f" + fmt(left)));
 
         }
-        hud();
+        applyLuck();
         if (hasRain()) {
             rain();
         }
