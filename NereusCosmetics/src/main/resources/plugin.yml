@@ -1,0 +1,23 @@
+name: NereusCosmetics
+version: '${project.version}'
+main: me.naook1.nereuscosmetics.NereusCosmetics
+api-version: '1.21'
+authors: [naook1, adityap]
+description: Cross-platform cosmetics (Java + Bedrock) with rank permissions and admin GUI by naook1/adityap
+
+commands:
+  cosmetics:
+    description: Nereus Cosmetics
+    aliases: [cos, cosmetic, kosmetik]
+    usage: /<command> [gui|equip <id>|unequip <hat|back|aura|trail|all>|list|give <player> <id|all>|take <player> <id|all>|reload]
+
+permissions:
+  nereuscosmetics.use:
+    description: Open the cosmetics menu and equip cosmetics you have permission for
+    default: true
+  nereuscosmetics.all:
+    description: Use every cosmetic (give this to a rank to unlock everything)
+    default: false
+  nereuscosmetics.admin:
+    description: Take any cosmetic, give or take cosmetics, reload
+    default: op

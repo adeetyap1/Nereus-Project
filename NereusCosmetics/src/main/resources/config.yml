@@ -1,0 +1,215 @@
+# NereusCosmetics - cosmetic untuk Java dan Bedrock (digambar dengan partikel dari server, tanpa resource pack)
+# Rank: tiap cosmetic punya "permission". Kasih permission itu lewat LuckPerms ke rank yang boleh pakai, contoh:
+#   /lp group vip permission set nereuscosmetics.use.halo_gold true
+#   /lp group admin permission set nereuscosmetics.all true     (semua cosmetic)
+# Kosongkan permission ("") kalau cosmetic itu boleh dipakai semua orang.
+# Admin (nereuscosmetics.admin) otomatis bisa ambil semua lewat /cosmetics (GUI) dan /cosmetics give <player> <id|all>.
+
+settings:
+  interval: 3            # tick antar frame (3 = 6.7x per detik). Besar = lebih hemat, kecil = lebih halus
+  view-distance: 24      # jarak pemain lain bisa lihat partikel
+  show-self: true        # pemakai ikut melihat cosmetic sendiri
+
+menu:
+  title: "&8Cosmetics"
+
+messages:
+  prefix: "&b[Cosmetics] &r"
+  locked: "&cRank kamu belum boleh pakai cosmetic ini."
+  equipped: "&aDipasang: &r"
+  removed: "&eCosmetic dilepas."
+  unknown: "&cCosmetic tidak ditemukan."
+  noperm: "&cKamu tidak punya izin."
+  offline: "&cPemain tidak online."
+  done: "&aSelesai."
+  reloaded: "&aConfig dimuat ulang, cosmetic: "
+  list: "&fDaftar: &7"
+
+# type: HAT | BACK | AURA | TRAIL        effect: halo | crown | horns | wings | cape | orbit | spiral | trail
+# particle: DUST (pakai color dan color2 sebagai gradasi) atau nama particle lain, mis. END_ROD, FLAME, SOUL_FIRE_FLAME, HEART, NOTE
+cosmetics:
+  halo_gold:
+    name: "&6Halo Emas"
+    description: "&7Cincin cahaya emas di atas kepala"
+    type: HAT
+    effect: halo
+    particle: DUST
+    color: "#FFD54A"
+    color2: "#FFF3B0"
+    size: 1.0
+    icon: GOLD_INGOT
+    permission: "nereuscosmetics.use.halo_gold"
+  halo_ice:
+    name: "&bHalo Es"
+    description: "&7Cincin kristal es"
+    type: HAT
+    effect: halo
+    particle: END_ROD
+    icon: PRISMARINE_CRYSTALS
+    permission: "nereuscosmetics.use.halo_ice"
+  crown_royal:
+    name: "&eMahkota Raja"
+    description: "&7Mahkota emas dengan 6 duri"
+    type: HAT
+    effect: crown
+    particle: DUST
+    color: "#FFC107"
+    color2: "#FF9800"
+    size: 1.0
+    icon: GOLDEN_HELMET
+    permission: "nereuscosmetics.use.crown_royal"
+  crown_ember:
+    name: "&cMahkota Bara"
+    description: "&7Mahkota api"
+    type: HAT
+    effect: crown
+    particle: FLAME
+    icon: BLAZE_POWDER
+    permission: "nereuscosmetics.use.crown_ember"
+  horns_demon:
+    name: "&4Tanduk Iblis"
+    description: "&7Tanduk merah gelap"
+    type: HAT
+    effect: horns
+    particle: DUST
+    color: "#C0392B"
+    color2: "#3B0A0A"
+    size: 1.1
+    icon: NETHERITE_HELMET
+    permission: "nereuscosmetics.use.horns_demon"
+  horns_frost:
+    name: "&3Tanduk Beku"
+    description: "&7Tanduk biru es"
+    type: HAT
+    effect: horns
+    particle: DUST
+    color: "#6FB4FF"
+    color2: "#E8F7FF"
+    size: 1.1
+    icon: DIAMOND_HELMET
+    permission: "nereuscosmetics.use.horns_frost"
+  wings_angel:
+    name: "&fSayap Malaikat"
+    description: "&7Sayap putih mengepak"
+    type: BACK
+    effect: wings
+    particle: DUST
+    color: "#FFFFFF"
+    color2: "#BFE6FF"
+    size: 1.0
+    icon: FEATHER
+    permission: "nereuscosmetics.use.wings_angel"
+  wings_shadow:
+    name: "&5Sayap Bayangan"
+    description: "&7Sayap ungu gelap"
+    type: BACK
+    effect: wings
+    particle: DUST
+    color: "#2B1B4A"
+    color2: "#8E44FF"
+    size: 1.0
+    icon: PHANTOM_MEMBRANE
+    permission: "nereuscosmetics.use.wings_shadow"
+  wings_flame:
+    name: "&6Sayap Api"
+    description: "&7Sayap membara"
+    type: BACK
+    effect: wings
+    particle: DUST
+    color: "#FF5722"
+    color2: "#FFC107"
+    size: 1.0
+    icon: BLAZE_ROD
+    permission: "nereuscosmetics.use.wings_flame"
+  cape_ember:
+    name: "&cJubah Bara"
+    description: "&7Jubah bara yang berkibar"
+    type: BACK
+    effect: cape
+    particle: DUST
+    color: "#FF3D00"
+    color2: "#4A0E0E"
+    size: 1.0
+    icon: RED_BANNER
+    permission: "nereuscosmetics.use.cape_ember"
+  cape_ocean:
+    name: "&9Jubah Samudra"
+    description: "&7Jubah air biru"
+    type: BACK
+    effect: cape
+    particle: DUST
+    color: "#1E4FA8"
+    color2: "#5FE0FF"
+    size: 1.0
+    icon: BLUE_BANNER
+    permission: "nereuscosmetics.use.cape_ocean"
+  orbit_stars:
+    name: "&eBintang Mengorbit"
+    description: "&7Tiga bintang mengitari badan"
+    type: AURA
+    effect: orbit
+    particle: END_ROD
+    icon: NETHER_STAR
+    permission: "nereuscosmetics.use.orbit_stars"
+  orbit_souls:
+    name: "&bJiwa Mengorbit"
+    description: "&7Api jiwa berputar"
+    type: AURA
+    effect: orbit
+    particle: SOUL_FIRE_FLAME
+    icon: SOUL_LANTERN
+    permission: "nereuscosmetics.use.orbit_souls"
+  spiral_water:
+    name: "&9Pusaran Air"
+    description: "&7Spiral air di sekeliling badan"
+    type: AURA
+    effect: spiral
+    particle: DUST
+    color: "#1E88E5"
+    color2: "#80D8FF"
+    size: 1.0
+    icon: HEART_OF_THE_SEA
+    permission: "nereuscosmetics.use.spiral_water"
+  spiral_dark:
+    name: "&8Pusaran Gelap"
+    description: "&7Spiral bayangan"
+    type: AURA
+    effect: spiral
+    particle: DUST
+    color: "#1B1B2F"
+    color2: "#6C3BAA"
+    size: 1.0
+    icon: ECHO_SHARD
+    permission: "nereuscosmetics.use.spiral_dark"
+  trail_flame:
+    name: "&cJejak Api"
+    description: "&7Api di jejak kaki"
+    type: TRAIL
+    effect: trail
+    particle: FLAME
+    icon: FLINT_AND_STEEL
+    permission: "nereuscosmetics.use.trail_flame"
+  trail_sakura:
+    name: "&dJejak Sakura"
+    description: "&7Kelopak sakura"
+    type: TRAIL
+    effect: trail
+    particle: CHERRY_LEAVES
+    icon: CHERRY_SAPLING
+    permission: "nereuscosmetics.use.trail_sakura"
+  trail_notes:
+    name: "&aJejak Nada"
+    description: "&7Not musik"
+    type: TRAIL
+    effect: trail
+    particle: NOTE
+    icon: NOTE_BLOCK
+    permission: "nereuscosmetics.use.trail_notes"
+  trail_magic:
+    name: "&5Jejak Sihir"
+    description: "&7Percikan sihir"
+    type: TRAIL
+    effect: trail
+    particle: WITCH
+    icon: ENCHANTED_BOOK
+    permission: "nereuscosmetics.use.trail_magic"
