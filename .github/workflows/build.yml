@@ -13,7 +13,14 @@ jobs:
         with:
           distribution: temurin
           java-version: '21'
-          cache: maven
+      - uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            m2-
+            setup-java-Linux-x64-maven-
+            setup-java-Linux-maven-
       - name: Build plugins
         run: |
           set -o pipefail
