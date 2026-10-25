@@ -1,7 +1,7 @@
 # NereusCosmetics - semua cosmetic. Atur permission per rank (LuckPerms): nereuscosmetics.use.<id>
 # Contoh: lp group vip permission set nereuscosmetics.use.angel_wing true
 settings:
-  interval: 2
+  interval: 1
   view-distance: 40
   show-own-back: true
   sneak-drop: 0.25

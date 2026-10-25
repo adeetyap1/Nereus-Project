@@ -399,7 +399,7 @@ public final class NereusCosmetics extends JavaPlugin implements Listener, TabEx
                     e.setItemDisplayTransform(ItemDisplay.ItemDisplayTransform.HEAD);
                     e.setTeleportDuration(3);
                     e.setViewRange(1.5f);
-                    e.setTransformation(new Transformation(new Vector3f(0, 0.234f, 0), new AxisAngle4f((float) Math.PI, 0, 1, 0),
+                    e.setTransformation(new Transformation(new Vector3f(0, 0.234f, 0), new AxisAngle4f(),
                             new Vector3f(0.586f, 0.586f, 0.586f), new AxisAngle4f()));
                 });
                 displays.put(id, d);
