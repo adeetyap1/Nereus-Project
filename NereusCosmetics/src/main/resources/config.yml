@@ -10,441 +10,147 @@ menu:
 messages:
   prefix: "&b[Cosmetics] &r"
 cosmetics:
-  aegismask:
-    name: "Aegismask"
+  cemetery_witch_hat:
+    name: "Cemetery Witch Hat"
     type: HAT
     cmd: 7001
-    permission: "nereuscosmetics.use.aegismask"
+    permission: "nereuscosmetics.use.cemetery_witch_hat"
     description: ""
-  ajuleyes:
-    name: "Ajuleyes"
-    type: HAT
+  cemetery_witch_cloak:
+    name: "Cemetery Witch Cloak"
+    type: BACK
     cmd: 7002
-    permission: "nereuscosmetics.use.ajuleyes"
+    permission: "nereuscosmetics.use.cemetery_witch_cloak"
     description: ""
-  angel_wing:
-    name: "Angel Wing"
-    type: BACK
-    cmd: 7003
-    permission: "nereuscosmetics.use.angel_wing"
-    description: ""
-  api_mefelz:
-    name: "Api Mefelz"
+  cemetery_witch_broom:
+    name: "Cemetery Witch Broom"
     type: HAND
+    cmd: 7003
+    permission: "nereuscosmetics.use.cemetery_witch_broom"
+    description: ""
+  chained_monstruosity_collar:
+    name: "Chained Monstruosity Collar"
+    type: HAT
     cmd: 7004
-    permission: "nereuscosmetics.use.api_mefelz"
+    permission: "nereuscosmetics.use.chained_monstruosity_collar"
     description: ""
-  armisticemask:
-    name: "Armisticemask"
-    type: HAT
-    cmd: 7005
-    permission: "nereuscosmetics.use.armisticemask"
-    description: ""
-  asepplaguemask:
-    name: "Asepplaguemask"
-    type: HAT
-    cmd: 7006
-    permission: "nereuscosmetics.use.asepplaguemask"
-    description: ""
-  axolotlmaji:
-    name: "Axolotlmaji"
+  chained_monstruosity_back:
+    name: "Chained Monstruosity Back"
     type: BACK
+    cmd: 7005
+    permission: "nereuscosmetics.use.chained_monstruosity_back"
+    description: ""
+  chained_monstruosity_sword:
+    name: "Chained Monstruosity Sword"
+    type: HAND
+    cmd: 7006
+    permission: "nereuscosmetics.use.chained_monstruosity_sword"
+    description: ""
+  crow_lord_hat:
+    name: "Crow Lord Hat"
+    type: HAT
     cmd: 7007
-    permission: "nereuscosmetics.use.axolotlmaji"
+    permission: "nereuscosmetics.use.crow_lord_hat"
     description: ""
-  ayoneyehornear_v2:
-    name: "Ayoneyehornear V2"
-    type: HAT
+  crow_lord_wings:
+    name: "Crow Lord Wings"
+    type: BACK
     cmd: 7008
-    permission: "nereuscosmetics.use.ayoneyehornear_v2"
+    permission: "nereuscosmetics.use.crow_lord_wings"
     description: ""
-  bearmask:
-    name: "Bearmask"
-    type: HAT
+  crow_lord_staff:
+    name: "Crow Lord Staff"
+    type: HAND
     cmd: 7009
-    permission: "nereuscosmetics.use.bearmask"
+    permission: "nereuscosmetics.use.crow_lord_staff"
     description: ""
-  beemask:
-    name: "Beemask"
+  noir_elegance_tophat:
+    name: "Noir Elegance Tophat"
     type: HAT
     cmd: 7010
-    permission: "nereuscosmetics.use.beemask"
+    permission: "nereuscosmetics.use.noir_elegance_tophat"
     description: ""
-  bowl:
-    name: "Bowl"
-    type: HAND
+  noir_elegance_shoulderpads:
+    name: "Noir Elegance Shoulderpads"
+    type: BACK
     cmd: 7011
-    permission: "nereuscosmetics.use.bowl"
+    permission: "nereuscosmetics.use.noir_elegance_shoulderpads"
     description: ""
-  damonglasses:
-    name: "Damonglasses"
-    type: HAT
+  noir_elegance_staff:
+    name: "Noir Elegance Staff"
+    type: HAND
     cmd: 7012
-    permission: "nereuscosmetics.use.damonglasses"
+    permission: "nereuscosmetics.use.noir_elegance_staff"
     description: ""
-  damonhorn:
-    name: "Damonhorn"
+  archmage_hat:
+    name: "Archmage Hat"
     type: HAT
     cmd: 7013
-    permission: "nereuscosmetics.use.damonhorn"
+    permission: "nereuscosmetics.use.archmage_hat"
     description: ""
-  eaglemask:
-    name: "Eaglemask"
-    type: HAT
-    cmd: 7014
-    permission: "nereuscosmetics.use.eaglemask"
-    description: ""
-  faizmask:
-    name: "Faizmask"
-    type: HAT
-    cmd: 7015
-    permission: "nereuscosmetics.use.faizmask"
-    description: ""
-  faizscarf:
-    name: "Faizscarf"
+  archmage_shoulderpads:
+    name: "Archmage Shoulderpads"
     type: BACK
+    cmd: 7014
+    permission: "nereuscosmetics.use.archmage_shoulderpads"
+    description: ""
+  archmage_staff:
+    name: "Archmage Staff"
+    type: HAND
+    cmd: 7015
+    permission: "nereuscosmetics.use.archmage_staff"
+    description: ""
+  ritualistic_hoodie:
+    name: "Ritualistic Hoodie"
+    type: HAT
     cmd: 7016
-    permission: "nereuscosmetics.use.faizscarf"
+    permission: "nereuscosmetics.use.ritualistic_hoodie"
     description: ""
-  febfebhorn:
-    name: "Febfebhorn"
-    type: HAT
+  ritualistic_back:
+    name: "Ritualistic Back"
+    type: BACK
     cmd: 7017
-    permission: "nereuscosmetics.use.febfebhorn"
+    permission: "nereuscosmetics.use.ritualistic_back"
     description: ""
-  febfebmask:
-    name: "Febfebmask"
-    type: HAT
+  ritualistic_staff:
+    name: "Ritualistic Staff"
+    type: HAND
     cmd: 7018
-    permission: "nereuscosmetics.use.febfebmask"
+    permission: "nereuscosmetics.use.ritualistic_staff"
     description: ""
-  fenrir1mask:
-    name: "Fenrir1Mask"
+  skeleton_control_hat:
+    name: "Skeleton Control Hat"
     type: HAT
     cmd: 7019
-    permission: "nereuscosmetics.use.fenrir1mask"
+    permission: "nereuscosmetics.use.skeleton_control_hat"
     description: ""
-  fenrir2mask:
-    name: "Fenrir2Mask"
-    type: HAT
-    cmd: 7020
-    permission: "nereuscosmetics.use.fenrir2mask"
-    description: ""
-  fenrircape:
-    name: "Fenrircape"
+  skeleton_control_wings:
+    name: "Skeleton Control Wings"
     type: BACK
-    cmd: 7021
-    permission: "nereuscosmetics.use.fenrircape"
+    cmd: 7020
+    permission: "nereuscosmetics.use.skeleton_control_wings"
     description: ""
-  fenrirmask:
-    name: "Fenrirmask"
+  skeleton_control_mace:
+    name: "Skeleton Control Mace"
+    type: HAND
+    cmd: 7021
+    permission: "nereuscosmetics.use.skeleton_control_mace"
+    description: ""
+  spike_lord_helmet:
+    name: "Spike Lord Helmet"
     type: HAT
     cmd: 7022
-    permission: "nereuscosmetics.use.fenrirmask"
+    permission: "nereuscosmetics.use.spike_lord_helmet"
     description: ""
-  fernandesmask:
-    name: "Fernandesmask"
-    type: HAT
+  spike_lord_wings:
+    name: "Spike Lord Wings"
+    type: BACK
     cmd: 7023
-    permission: "nereuscosmetics.use.fernandesmask"
+    permission: "nereuscosmetics.use.spike_lord_wings"
     description: ""
-  flowercrown:
-    name: "Flowercrown"
-    type: HAT
+  spike_lord_sword:
+    name: "Spike Lord Sword"
+    type: HAND
     cmd: 7024
-    permission: "nereuscosmetics.use.flowercrown"
-    description: ""
-  gempitamask:
-    name: "Gempitamask"
-    type: HAT
-    cmd: 7025
-    permission: "nereuscosmetics.use.gempitamask"
-    description: ""
-  ghostmask:
-    name: "Ghostmask"
-    type: HAT
-    cmd: 7026
-    permission: "nereuscosmetics.use.ghostmask"
-    description: ""
-  googleglasses:
-    name: "Googleglasses"
-    type: HAT
-    cmd: 7027
-    permission: "nereuscosmetics.use.googleglasses"
-    description: ""
-  guitar:
-    name: "Guitar"
-    type: HAND
-    cmd: 7028
-    permission: "nereuscosmetics.use.guitar"
-    description: ""
-  hawkincape:
-    name: "Hawkincape"
-    type: BACK
-    cmd: 7029
-    permission: "nereuscosmetics.use.hawkincape"
-    description: ""
-  horsemask:
-    name: "Horsemask"
-    type: HAT
-    cmd: 7030
-    permission: "nereuscosmetics.use.horsemask"
-    description: ""
-  indramask:
-    name: "Indramask"
-    type: HAT
-    cmd: 7031
-    permission: "nereuscosmetics.use.indramask"
-    description: ""
-  lethemask:
-    name: "Lethemask"
-    type: HAT
-    cmd: 7032
-    permission: "nereuscosmetics.use.lethemask"
-    description: ""
-  leviathanboobs:
-    name: "Leviathanboobs"
-    type: BACK
-    cmd: 7033
-    permission: "nereuscosmetics.use.leviathanboobs"
-    description: ""
-  leviathanhorn:
-    name: "Leviathanhorn"
-    type: HAT
-    cmd: 7034
-    permission: "nereuscosmetics.use.leviathanhorn"
-    description: ""
-  lightpendant:
-    name: "Lightpendant"
-    type: BACK
-    cmd: 7035
-    permission: "nereuscosmetics.use.lightpendant"
-    description: ""
-  majihorn:
-    name: "Majihorn"
-    type: HAT
-    cmd: 7036
-    permission: "nereuscosmetics.use.majihorn"
-    description: ""
-  majimask:
-    name: "Majimask"
-    type: HAT
-    cmd: 7037
-    permission: "nereuscosmetics.use.majimask"
-    description: ""
-  mammonhorn:
-    name: "Mammonhorn"
-    type: HAT
-    cmd: 7038
-    permission: "nereuscosmetics.use.mammonhorn"
-    description: ""
-  maskfreezemay:
-    name: "Maskfreezemay"
-    type: HAT
-    cmd: 7039
-    permission: "nereuscosmetics.use.maskfreezemay"
-    description: ""
-  mataindra:
-    name: "Mataindra"
-    type: HAT
-    cmd: 7040
-    permission: "nereuscosmetics.use.mataindra"
-    description: ""
-  matemmask:
-    name: "Matemmask"
-    type: HAT
-    cmd: 7041
-    permission: "nereuscosmetics.use.matemmask"
-    description: ""
-  mefelzmask:
-    name: "Mefelzmask"
-    type: HAT
-    cmd: 7042
-    permission: "nereuscosmetics.use.mefelzmask"
-    description: ""
-  michanmask:
-    name: "Michanmask"
-    type: HAT
-    cmd: 7043
-    permission: "nereuscosmetics.use.michanmask"
-    description: ""
-  moendearhorn:
-    name: "Moendearhorn"
-    type: HAT
-    cmd: 7044
-    permission: "nereuscosmetics.use.moendearhorn"
-    description: ""
-  moendmask:
-    name: "Moendmask"
-    type: HAT
-    cmd: 7045
-    permission: "nereuscosmetics.use.moendmask"
-    description: ""
-  mokadmask:
-    name: "Mokadmask"
-    type: HAT
-    cmd: 7046
-    permission: "nereuscosmetics.use.mokadmask"
-    description: ""
-  monoclemerchant:
-    name: "Monoclemerchant"
-    type: HAT
-    cmd: 7047
-    permission: "nereuscosmetics.use.monoclemerchant"
-    description: ""
-  mysteriomask:
-    name: "Mysteriomask"
-    type: HAT
-    cmd: 7048
-    permission: "nereuscosmetics.use.mysteriomask"
-    description: ""
-  nakki_manusia:
-    name: "Nakki Manusia"
-    type: HAT
-    cmd: 7049
-    permission: "nereuscosmetics.use.nakki_manusia"
-    description: ""
-  nakkimask:
-    name: "Nakkimask"
-    type: HAT
-    cmd: 7050
-    permission: "nereuscosmetics.use.nakkimask"
-    description: ""
-  nakkitail:
-    name: "Nakkitail"
-    type: BACK
-    cmd: 7051
-    permission: "nereuscosmetics.use.nakkitail"
-    description: ""
-  omendplushie:
-    name: "Omendplushie"
-    type: HAND
-    cmd: 7052
-    permission: "nereuscosmetics.use.omendplushie"
-    description: ""
-  pandamask:
-    name: "Pandamask"
-    type: HAT
-    cmd: 7053
-    permission: "nereuscosmetics.use.pandamask"
-    description: ""
-  peppeymask:
-    name: "Peppeymask"
-    type: HAT
-    cmd: 7054
-    permission: "nereuscosmetics.use.peppeymask"
-    description: ""
-  polarbearmask:
-    name: "Polarbearmask"
-    type: HAT
-    cmd: 7055
-    permission: "nereuscosmetics.use.polarbearmask"
-    description: ""
-  quiver:
-    name: "Quiver"
-    type: BACK
-    cmd: 7056
-    permission: "nereuscosmetics.use.quiver"
-    description: ""
-  rafilnm:
-    name: "Rafilnm"
-    type: HAT
-    cmd: 7057
-    permission: "nereuscosmetics.use.rafilnm"
-    description: ""
-  ragnarokmask:
-    name: "Ragnarokmask"
-    type: HAT
-    cmd: 7058
-    permission: "nereuscosmetics.use.ragnarokmask"
-    description: ""
-  reysmask:
-    name: "Reysmask"
-    type: HAT
-    cmd: 7059
-    permission: "nereuscosmetics.use.reysmask"
-    description: ""
-  samsulmask:
-    name: "Samsulmask"
-    type: HAT
-    cmd: 7060
-    permission: "nereuscosmetics.use.samsulmask"
-    description: ""
-  satanmode:
-    name: "Satanmode"
-    type: HAT
-    cmd: 7061
-    permission: "nereuscosmetics.use.satanmode"
-    description: ""
-  satanwing:
-    name: "Satanwing"
-    type: BACK
-    cmd: 7062
-    permission: "nereuscosmetics.use.satanwing"
-    description: ""
-  scortchmask:
-    name: "Scortchmask"
-    type: HAT
-    cmd: 7063
-    permission: "nereuscosmetics.use.scortchmask"
-    description: ""
-  shadowhorn:
-    name: "Shadowhorn"
-    type: HAT
-    cmd: 7064
-    permission: "nereuscosmetics.use.shadowhorn"
-    description: ""
-  shadowmask:
-    name: "Shadowmask"
-    type: HAT
-    cmd: 7065
-    permission: "nereuscosmetics.use.shadowmask"
-    description: ""
-  starnecklace:
-    name: "Starnecklace"
-    type: BACK
-    cmd: 7066
-    permission: "nereuscosmetics.use.starnecklace"
-    description: ""
-  tapacmask:
-    name: "Tapacmask"
-    type: HAT
-    cmd: 7067
-    permission: "nereuscosmetics.use.tapacmask"
-    description: ""
-  telingamichan:
-    name: "Telingamichan"
-    type: HAT
-    cmd: 7068
-    permission: "nereuscosmetics.use.telingamichan"
-    description: ""
-  turban:
-    name: "Turban"
-    type: HAT
-    cmd: 7069
-    permission: "nereuscosmetics.use.turban"
-    description: ""
-  ubimask:
-    name: "Ubimask"
-    type: HAT
-    cmd: 7070
-    permission: "nereuscosmetics.use.ubimask"
-    description: ""
-  ubitanduk:
-    name: "Ubitanduk"
-    type: HAT
-    cmd: 7071
-    permission: "nereuscosmetics.use.ubitanduk"
-    description: ""
-  witchcrown:
-    name: "Witchcrown"
-    type: HAT
-    cmd: 7072
-    permission: "nereuscosmetics.use.witchcrown"
-    description: ""
-  zerocape:
-    name: "Zerocape"
-    type: BACK
-    cmd: 7073
-    permission: "nereuscosmetics.use.zerocape"
+    permission: "nereuscosmetics.use.spike_lord_sword"
     description: ""

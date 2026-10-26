@@ -24,7 +24,7 @@ jobs:
         run: |
           set -o pipefail
           mkdir out
-          for dir in NereusRealm NereusLottery NereusFarmPrice NereusBarter NereusLand NereusHide NereusFishing NereusSize NereusBank NereusEvents; do
+          for dir in NereusRealm NereusLottery NereusFarmPrice NereusBarter NereusLand NereusHide NereusFishing NereusSize NereusBank NereusEvents NereusCosmetics; do
             ok=0
             for try in 1 2 3; do
               if mvn -B -f "$dir/pom.xml" clean package 2>&1 | tee "$dir-build.log"; then ok=1; break; fi

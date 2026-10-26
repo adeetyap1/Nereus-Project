@@ -1,0 +1,20 @@
+name: NereusRPG
+version: '${project.version}'
+main: me.naook1.nereusrpg.NereusRPG
+api-version: '1.21'
+authors: [naook1, adityap]
+description: MMO-style RPG core (levels, stats, classes, skills, loot, casual/competitive mode) by naook1/adityap
+
+commands:
+  rpg:
+    description: Nereus RPG
+    aliases: [nrpg, karakter]
+    usage: /<command> [menu|stats|grimoire|mode <casual|comp>|top <level|season|pvp>|respec|admin ...]
+
+permissions:
+  nereusrpg.use:
+    description: Play the RPG system
+    default: true
+  nereusrpg.admin:
+    description: Admin commands (set level, give loot, season, reload)
+    default: op
