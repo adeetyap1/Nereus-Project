@@ -1,0 +1,23 @@
+name: NereusWeapons
+version: '${project.version}'
+main: me.naook1.nereusweapons.NereusWeapons
+api-version: '1.21'
+authors: [naook1, adityap]
+description: Dark Fantasy weapons with active skills (Java + Bedrock) by naook1/adityap
+
+commands:
+  weapons:
+    description: Nereus Weapons
+    aliases: [weapon, senjata]
+    usage: /<command> [menu|list|give <player> <id>|reload]
+
+permissions:
+  nereusweapons.use:
+    description: Open the weapon menu and claim weapons you have permission for
+    default: true
+  nereusweapons.all:
+    description: Use every weapon
+    default: false
+  nereusweapons.admin:
+    description: Take any weapon, give weapons, reload
+    default: op
