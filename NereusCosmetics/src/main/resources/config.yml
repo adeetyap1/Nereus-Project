@@ -22,12 +22,6 @@ cosmetics:
     cmd: 7002
     permission: "nereuscosmetics.use.cemetery_witch_cloak"
     description: ""
-  cemetery_witch_broom:
-    name: "Cemetery Witch Broom"
-    type: HAND
-    cmd: 7003
-    permission: "nereuscosmetics.use.cemetery_witch_broom"
-    description: ""
   chained_monstruosity_collar:
     name: "Chained Monstruosity Collar"
     type: HAT
@@ -39,12 +33,6 @@ cosmetics:
     type: BACK
     cmd: 7005
     permission: "nereuscosmetics.use.chained_monstruosity_back"
-    description: ""
-  chained_monstruosity_sword:
-    name: "Chained Monstruosity Sword"
-    type: HAND
-    cmd: 7006
-    permission: "nereuscosmetics.use.chained_monstruosity_sword"
     description: ""
   crow_lord_hat:
     name: "Crow Lord Hat"
@@ -58,12 +46,6 @@ cosmetics:
     cmd: 7008
     permission: "nereuscosmetics.use.crow_lord_wings"
     description: ""
-  crow_lord_staff:
-    name: "Crow Lord Staff"
-    type: HAND
-    cmd: 7009
-    permission: "nereuscosmetics.use.crow_lord_staff"
-    description: ""
   noir_elegance_tophat:
     name: "Noir Elegance Tophat"
     type: HAT
@@ -75,12 +57,6 @@ cosmetics:
     type: BACK
     cmd: 7011
     permission: "nereuscosmetics.use.noir_elegance_shoulderpads"
-    description: ""
-  noir_elegance_staff:
-    name: "Noir Elegance Staff"
-    type: HAND
-    cmd: 7012
-    permission: "nereuscosmetics.use.noir_elegance_staff"
     description: ""
   archmage_hat:
     name: "Archmage Hat"
@@ -94,12 +70,6 @@ cosmetics:
     cmd: 7014
     permission: "nereuscosmetics.use.archmage_shoulderpads"
     description: ""
-  archmage_staff:
-    name: "Archmage Staff"
-    type: HAND
-    cmd: 7015
-    permission: "nereuscosmetics.use.archmage_staff"
-    description: ""
   ritualistic_hoodie:
     name: "Ritualistic Hoodie"
     type: HAT
@@ -111,12 +81,6 @@ cosmetics:
     type: BACK
     cmd: 7017
     permission: "nereuscosmetics.use.ritualistic_back"
-    description: ""
-  ritualistic_staff:
-    name: "Ritualistic Staff"
-    type: HAND
-    cmd: 7018
-    permission: "nereuscosmetics.use.ritualistic_staff"
     description: ""
   skeleton_control_hat:
     name: "Skeleton Control Hat"
@@ -130,12 +94,6 @@ cosmetics:
     cmd: 7020
     permission: "nereuscosmetics.use.skeleton_control_wings"
     description: ""
-  skeleton_control_mace:
-    name: "Skeleton Control Mace"
-    type: HAND
-    cmd: 7021
-    permission: "nereuscosmetics.use.skeleton_control_mace"
-    description: ""
   spike_lord_helmet:
     name: "Spike Lord Helmet"
     type: HAT
@@ -147,10 +105,4 @@ cosmetics:
     type: BACK
     cmd: 7023
     permission: "nereuscosmetics.use.spike_lord_wings"
-    description: ""
-  spike_lord_sword:
-    name: "Spike Lord Sword"
-    type: HAND
-    cmd: 7024
-    permission: "nereuscosmetics.use.spike_lord_sword"
     description: ""
