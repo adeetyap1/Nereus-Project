@@ -1,0 +1,167 @@
+{
+ "format_version": 2,
+ "items": {
+  "minecraft:coal": [
+   {
+    "type": "legacy",
+    "custom_model_data": 7001.0,
+    "bedrock_identifier": "nereuscos:cemetery_witch_hat",
+    "display_name": "Cemetery Witch Hat",
+    "bedrock_options": {
+     "icon": "nereus_cos_cemetery_witch_hat",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7002.0,
+    "bedrock_identifier": "nereuscos:cemetery_witch_cloak",
+    "display_name": "Cemetery Witch Cloak",
+    "bedrock_options": {
+     "icon": "nereus_cos_cemetery_witch_cloak",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7004.0,
+    "bedrock_identifier": "nereuscos:chained_monstruosity_collar",
+    "display_name": "Chained Monstruosity Collar",
+    "bedrock_options": {
+     "icon": "nereus_cos_chained_monstruosity_collar",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7005.0,
+    "bedrock_identifier": "nereuscos:chained_monstruosity_back",
+    "display_name": "Chained Monstruosity Back",
+    "bedrock_options": {
+     "icon": "nereus_cos_chained_monstruosity_back",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7007.0,
+    "bedrock_identifier": "nereuscos:crow_lord_hat",
+    "display_name": "Crow Lord Hat",
+    "bedrock_options": {
+     "icon": "nereus_cos_crow_lord_hat",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7008.0,
+    "bedrock_identifier": "nereuscos:crow_lord_wings",
+    "display_name": "Crow Lord Wings",
+    "bedrock_options": {
+     "icon": "nereus_cos_crow_lord_wings",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7010.0,
+    "bedrock_identifier": "nereuscos:noir_elegance_tophat",
+    "display_name": "Noir Elegance Tophat",
+    "bedrock_options": {
+     "icon": "nereus_cos_noir_elegance_tophat",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7011.0,
+    "bedrock_identifier": "nereuscos:noir_elegance_shoulderpads",
+    "display_name": "Noir Elegance Shoulderpads",
+    "bedrock_options": {
+     "icon": "nereus_cos_noir_elegance_shoulderpads",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7013.0,
+    "bedrock_identifier": "nereuscos:archmage_hat",
+    "display_name": "Archmage Hat",
+    "bedrock_options": {
+     "icon": "nereus_cos_archmage_hat",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7014.0,
+    "bedrock_identifier": "nereuscos:archmage_shoulderpads",
+    "display_name": "Archmage Shoulderpads",
+    "bedrock_options": {
+     "icon": "nereus_cos_archmage_shoulderpads",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7016.0,
+    "bedrock_identifier": "nereuscos:ritualistic_hoodie",
+    "display_name": "Ritualistic Hoodie",
+    "bedrock_options": {
+     "icon": "nereus_cos_ritualistic_hoodie",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7017.0,
+    "bedrock_identifier": "nereuscos:ritualistic_back",
+    "display_name": "Ritualistic Back",
+    "bedrock_options": {
+     "icon": "nereus_cos_ritualistic_back",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7019.0,
+    "bedrock_identifier": "nereuscos:skeleton_control_hat",
+    "display_name": "Skeleton Control Hat",
+    "bedrock_options": {
+     "icon": "nereus_cos_skeleton_control_hat",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7020.0,
+    "bedrock_identifier": "nereuscos:skeleton_control_wings",
+    "display_name": "Skeleton Control Wings",
+    "bedrock_options": {
+     "icon": "nereus_cos_skeleton_control_wings",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7022.0,
+    "bedrock_identifier": "nereuscos:spike_lord_helmet",
+    "display_name": "Spike Lord Helmet",
+    "bedrock_options": {
+     "icon": "nereus_cos_spike_lord_helmet",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7023.0,
+    "bedrock_identifier": "nereuscos:spike_lord_wings",
+    "display_name": "Spike Lord Wings",
+    "bedrock_options": {
+     "icon": "nereus_cos_spike_lord_wings",
+     "allow_offhand": true
+    }
+   }
+  ]
+ }
+}

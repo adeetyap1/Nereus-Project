@@ -1,0 +1,91 @@
+{
+ "format_version": 2,
+ "items": {
+  "minecraft:netherite_sword": [
+   {
+    "type": "legacy",
+    "custom_model_data": 7101.0,
+    "bedrock_identifier": "nereuswpn:cemetery_witch_broom",
+    "display_name": "Cemetery Witch Broom",
+    "bedrock_options": {
+     "icon": "nereus_wpn_cemetery_witch_broom",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7102.0,
+    "bedrock_identifier": "nereuswpn:chained_monstruosity_sword",
+    "display_name": "Chained Monstruosity Sword",
+    "bedrock_options": {
+     "icon": "nereus_wpn_chained_monstruosity_sword",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7108.0,
+    "bedrock_identifier": "nereuswpn:spike_lord_sword",
+    "display_name": "Spike Lord Sword",
+    "bedrock_options": {
+     "icon": "nereus_wpn_spike_lord_sword",
+     "allow_offhand": true
+    }
+   }
+  ],
+  "minecraft:blaze_rod": [
+   {
+    "type": "legacy",
+    "custom_model_data": 7103.0,
+    "bedrock_identifier": "nereuswpn:crow_lord_staff",
+    "display_name": "Crow Lord Staff",
+    "bedrock_options": {
+     "icon": "nereus_wpn_crow_lord_staff",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7104.0,
+    "bedrock_identifier": "nereuswpn:noir_elegance_staff",
+    "display_name": "Noir Elegance Staff",
+    "bedrock_options": {
+     "icon": "nereus_wpn_noir_elegance_staff",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7105.0,
+    "bedrock_identifier": "nereuswpn:archmage_staff",
+    "display_name": "Archmage Staff",
+    "bedrock_options": {
+     "icon": "nereus_wpn_archmage_staff",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7106.0,
+    "bedrock_identifier": "nereuswpn:ritualistic_staff",
+    "display_name": "Ritualistic Staff",
+    "bedrock_options": {
+     "icon": "nereus_wpn_ritualistic_staff",
+     "allow_offhand": true
+    }
+   }
+  ],
+  "minecraft:mace": [
+   {
+    "type": "legacy",
+    "custom_model_data": 7107.0,
+    "bedrock_identifier": "nereuswpn:skeleton_control_mace",
+    "display_name": "Skeleton Control Mace",
+    "bedrock_options": {
+     "icon": "nereus_wpn_skeleton_control_mace",
+     "allow_offhand": true
+    }
+   }
+  ]
+ }
+}
