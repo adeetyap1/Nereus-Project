@@ -18,4 +18,5 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           cd /tmp/deps && zip -q -r /tmp/deps.zip . 
-          gh release upload latest /tmp/deps.zip --clobber -R "$GITHUB_REPOSITORY"
+          gh release view deps -R "$GITHUB_REPOSITORY" >/dev/null 2>&1 || gh release create deps --title deps --notes deps --target "$GITHUB_SHA" -R "$GITHUB_REPOSITORY"
+          gh release upload deps /tmp/deps.zip --clobber -R "$GITHUB_REPOSITORY"
