@@ -390,6 +390,7 @@ public final class NereusCosmetics extends JavaPlugin implements Listener, TabEx
                 continue;
             }
             Location base = p.getLocation();
+            boolean fresh = false;
             if (d == null || !d.isValid() || d.getWorld() != p.getWorld()) {
                 if (d != null) {
                     d.remove();
@@ -397,34 +398,44 @@ public final class NereusCosmetics extends JavaPlugin implements Listener, TabEx
                 d = p.getWorld().spawn(base, ItemDisplay.class, e -> {
                     e.setPersistent(false);
                     e.setItemDisplayTransform(ItemDisplay.ItemDisplayTransform.HEAD);
-                    e.setTeleportDuration(3);
+                    e.setTeleportDuration(0);
+                    e.setInterpolationDelay(0);
+                    e.setInterpolationDuration(2);
                     e.setViewRange(1.5f);
-                    e.setTransformation(new Transformation(new Vector3f(0, 0.234f, 0), new AxisAngle4f(),
-                            new Vector3f(0.586f, 0.586f, 0.586f), new AxisAngle4f()));
                 });
                 displays.put(id, d);
-                displayYaw.put(id, base.getYaw());
+                displayYaw.put(id, Float.NaN);
                 d.setMetadata("nereuscos_cmd", new FixedMetadataValue(this, -1));
+                fresh = true;
             }
             int shownCmd = d.getMetadata("nereuscos_cmd").isEmpty() ? -1 : d.getMetadata("nereuscos_cmd").get(0).asInt();
             if (shownCmd != back.cmd()) {
                 d.setItemStack(carrier(back, false));
                 d.setMetadata("nereuscos_cmd", new FixedMetadataValue(this, back.cmd()));
             }
-            float yaw = displayYaw.getOrDefault(id, base.getYaw());
-            float target = p.getBodyYaw();
-            float delta = target - yaw;
-            while (delta > 180) {
-                delta -= 360;
+            // the display rides the player (client moves it together with the body = no lag, follows crouch/swim)
+            if (d.getVehicle() != p) {
+                d.leaveVehicle();
+                p.addPassenger(d);
+                fresh = true;
             }
-            while (delta < -180) {
-                delta += 360;
+            float yaw = p.getBodyYaw();
+            Float last = displayYaw.get(id);
+            float dy = last == null || last.isNaN() ? 999f : Math.abs(((yaw - last + 540f) % 360f) - 180f);
+            if (fresh || dy > 1.0f || wasDirty) {
+                displayYaw.put(id, yaw);
+                float oy = (float) getConfig().getDouble("settings.back-offset-y", 0.0);
+                float oz = (float) getConfig().getDouble("settings.back-offset-z", 0.0);
+                float rad = (float) Math.toRadians(-yaw);
+                // rider sits at player y + height (1.8); item centre must be at 1.406 + 0.234
+                // back offset (z) is applied along the body direction
+                float sx = (float) (-Math.sin(Math.toRadians(yaw)) * -oz);
+                float sz = (float) (Math.cos(Math.toRadians(yaw)) * -oz);
+                d.setInterpolationDelay(0);
+                d.setInterpolationDuration(fresh ? 0 : 2);
+                d.setTransformation(new Transformation(new Vector3f(sx, 1.406f + 0.234f - 1.8f + oy, sz),
+                        new AxisAngle4f(rad, 0, 1, 0), new Vector3f(0.586f, 0.586f, 0.586f), new AxisAngle4f()));
             }
-            yaw += delta;
-            displayYaw.put(id, yaw);
-            double drop = p.isSneaking() ? getConfig().getDouble("settings.sneak-drop", 0.25) : 0;
-            Location at = new Location(base.getWorld(), base.getX(), base.getY() + 1.406 - drop, base.getZ(), yaw, 0f);
-            d.teleport(at);
             if (checkPerm || sendFake || wasDirty) {
                 for (Player v : Bukkit.getOnlinePlayers()) {
                     boolean hide = isBedrock(v) || (v == p && !showOwnBack);
