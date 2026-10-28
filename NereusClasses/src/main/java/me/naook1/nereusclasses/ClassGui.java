@@ -100,6 +100,8 @@ final class ClassGui implements Listener {
         for (int i = 9; i < 18; i++) {
             h.inv.setItem(i, pane);
         }
+        h.inv.setItem(16, named(Material.NETHERITE_SWORD, "&6Senjata Dark Fantasy", List.of("&7Klik untuk buka menu senjata")));
+        h.inv.setItem(17, named(Material.LEATHER_HELMET, "&bCosmetics", List.of("&7Klik untuk buka menu cosmetics")));
         int s = 18;
         for (NereusClasses.Gear g : pl.gear.values()) {
             if (cls != null && !g.cls.equals(cls)) {
@@ -150,6 +152,11 @@ final class ClassGui implements Listener {
             return;
         }
         int s = e.getRawSlot();
+        if (s == 16 || s == 17) {
+            p.closeInventory();
+            Bukkit.getScheduler().runTask(pl, () -> p.performCommand(s == 16 ? "weapons" : "cosmetics"));
+            return;
+        }
         if (s >= 0 && s < 9) {
             if (s < h.classIds.size()) {
                 open(p, h.classIds.get(s), 0);
