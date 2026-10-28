@@ -1,0 +1,252 @@
+######## created by samus2002 #########
+
+# Fire Immune #
+
+Fire_Immune:
+  Skills:
+  - potion{type=FIRE_RESISTANCE;duration=20;level=2;hasParticles=false} @self
+
+Fire_Immune_Crucible_Head:
+  Conditions:
+  - wearing{slot=HEAD;m=flamos_head} true
+  - wearing{slot=CHEST;m=flamos_chestplate} true
+  - wearing{slot=LEGS;m=flamos_leggings} true
+  - wearing{slot=FEET;m=flamos_boots} true
+  Skills:
+  - potion{type=FIRE_RESISTANCE;duration=20;level=2;hasParticles=false} @self
+  
+Fire_Immune_Crucible_Helmet:
+  Conditions:
+  - wearing{slot=HEAD;m=flamos_helmet} true
+  - wearing{slot=CHEST;m=flamos_chestplate} true
+  - wearing{slot=LEGS;m=flamos_leggings} true
+  - wearing{slot=FEET;m=flamos_boots} true
+  Skills:
+  - potion{type=FIRE_RESISTANCE;duration=20;level=2;hasParticles=false} @self
+  
+# Flame Slash #
+
+Flame_Slash:
+  Cooldown: 1
+  Conditions:
+  - hasaurastacks{auraName=Hellfire_aura} castinstead Hellfire_Slash
+  Skills:
+  - randomskill{skills=Flame_Slash_1,Flame_Slash_2,Flame_Slash_3,Flame_Slash_4}
+  
+Flame_Slash_1:
+  Skills:
+  - effect:sound{s=doombringer_axe_sounds:samus.flamos_slash;volume=1;pitch=1} @self
+  - totem{md=2;c=1;oH=Flame_Slash_DAMAGE;hnp=true;hp=true;hR=1;vR=1;i=1} @forward{f=1}
+  - summon{type=Flame_Slash_1;amount=1;radius=0;yRadius=0;onSurface=true} @forward{f=3;y=0.3}
+  
+Flame_Slash_2:
+  Skills:
+  - effect:sound{s=doombringer_axe_sounds:samus.flamos_slash;volume=1;pitch=1} @self
+  - totem{md=2;c=1;oH=Flame_Slash_DAMAGE;hnp=true;hp=true;hR=1;vR=1;i=1} @forward{f=1}
+  - summon{type=Flame_Slash_2;amount=1;radius=0;yRadius=0;onSurface=true} @forward{f=3;y=-0.5}
+  
+Flame_Slash_3:
+  Skills:
+  - effect:sound{s=doombringer_axe_sounds:samus.flamos_slash;volume=1;pitch=1} @self
+  - totem{md=2;c=1;oH=Flame_Slash_DAMAGE;hnp=true;hp=true;hR=1;vR=1;i=1} @forward{f=1}
+  - summon{type=Flame_Slash_3;amount=1;radius=0;yRadius=0;onSurface=true} @forward{f=3;y=0.3;so=-0.5}
+  
+Flame_Slash_4:
+  Skills:
+  - effect:sound{s=doombringer_axe_sounds:samus.flamos_slash;volume=1;pitch=1} @self
+  - totem{md=2;c=1;oH=Flame_Slash_DAMAGE;hnp=true;hp=true;hR=1;vR=1;i=1} @forward{f=1}
+  - summon{type=Flame_Slash_4;amount=1;radius=0;yRadius=0;onSurface=true} @forward{f=3;y=-0.5;so=-0.5}
+  
+Flame_Slash_DAMAGE:
+  Skills:
+  - damage{a=15;pkb=false;hnp=false;hp=true}
+  
+Hellfire_Slash:
+  Cooldown: 0.5
+  Skills:
+  - randomskill{skills=Hellfire_Slash_1,Hellfire_Slash_2,Hellfire_Slash_3,Hellfire_Slash_4}
+  
+Hellfire_Slash_1:
+  Skills:
+  - effect:sound{s=doombringer_axe_sounds:samus.flamos_big_slash;volume=1;pitch=1} @self
+  - totem{md=2;c=1;oH=Hellfire_Slash_DAMAGE;hnp=true;hp=true;hR=1.5;vR=1.5;i=1} @forward{f=2}
+  - summon{type=Hellfire_Slash_1;amount=1;radius=0;yRadius=0;onSurface=true} @forward{f=4;y=0.3}
+  
+Hellfire_Slash_2:
+  Skills:
+  - effect:sound{s=doombringer_axe_sounds:samus.flamos_big_slash;volume=1;pitch=1} @self
+  - totem{md=2;c=1;oH=Hellfire_Slash_DAMAGE;hnp=true;hp=true;hR=1.5;vR=1.5;i=1} @forward{f=2}
+  - summon{type=Hellfire_Slash_2;amount=1;radius=0;yRadius=0;onSurface=true} @forward{f=4;y=-0.5}
+  
+Hellfire_Slash_3:
+  Skills:
+  - effect:sound{s=doombringer_axe_sounds:samus.flamos_big_slash;volume=1;pitch=1} @self
+  - totem{md=2;c=1;oH=Hellfire_Slash_DAMAGE;hnp=true;hp=true;hR=1.5;vR=1.5;i=1} @forward{f=2}
+  - summon{type=Hellfire_Slash_3;amount=1;radius=0;yRadius=0;onSurface=true} @forward{f=4;y=0.3;so=-0.5}
+  
+Hellfire_Slash_4:
+  Skills:
+  - effect:sound{s=doombringer_axe_sounds:samus.flamos_big_slash;volume=1;pitch=1} @self
+  - totem{md=2;c=1;oH=Hellfire_Slash_DAMAGE;hnp=true;hp=true;hR=1.5;vR=1.5;i=1} @forward{f=2}
+  - summon{type=Hellfire_Slash_4;amount=1;radius=0;yRadius=0;onSurface=true} @forward{f=4;y=-0.5;so=-0.5}
+  
+Hellfire_Slash_DAMAGE:
+  Skills:
+  - damage{a=40;pkb=false;hnp=false;hp=true}
+  - ignite{ticks=80}
+  
+# Inferno Wheel #
+
+Inferno_Wheel:
+  Conditions:
+  - hasaurastacks{auraName=Blazing_Leap_aura} castinstead Hellfire_Skill
+  Cooldown: 0
+  Skills:
+  - effect:sound{s=doombringer_axe_sounds:samus.flamos_big_slash;volume=1;pitch=0.9} @self
+  - orbital{bulletType=MOB;mob=Inferno_Wheel;r=0;points=1;i=1;duration=20;oy=1.3;rx=0;ry=0;rz=0;avx=0;avy=0;avz=0} @forward{f=4;y=0}
+  - damage{a=64;pkb=false;hnp=false;hp=true;delay=1} @EIR{r=4}
+  - ignite{ticks=80} @EIR{r=4}
+  
+# Blazing Leap #
+
+Blazing_Leap:
+  Conditions:
+  - crouching true
+  Skills:
+  - Aura{auraName=Blazing_Leap_aura;interval=1;duration=30} @self
+  - leap{velocity=150} @forward{f=2;y=6}
+  - onDamaged{auraName=landresist;d=40;damageMods="FALL 0"} @self
+  - effect:sound{s=doombringer_axe_sounds:samus.flamos_leap;volume=1;pitch=1} @self
+  - effect:particles{particle=lava;amount=20;hS=1;vS=0.15;speed=0;y=0.1} @self
+  #- effect:particles{particle=smoke_large;amount=17;hS=1;vS=0.15;speed=0;y=0.1} @self
+  - summon{type=Blazing_Leap;amount=1;radius=0;yRadius=0;onSurface=true} @forward{f=0;y=0.1}
+  
+# Inferno Orbs #
+
+Inferno_Orbs:
+  Conditions:
+  - hasaurastacks{auraName=Inferno_Orbs_aura} castinstead Inferno_Orbs_Skill
+  Skills:
+  - Aura{auraName=Inferno_Orbs_aura;interval=1;duration=5} @self
+  
+Inferno_Orbs_Skill:
+  Cooldown: 13
+  Skills:
+  - orbital{onTick=Inferno_Orbs_FX;bulletType=MOB;mob=Inferno_Orbs;c=1;hr=1;vr=1;onHit=Inferno_Orbs_HIT;hp=true;hnp=true;r=2;points=80;i=1;duration=140;oy=1;rx=0;ry=0;rz=0;avx=0;avy=0;avz=0} @self
+  - orbital{onTick=Inferno_Orbs_FX;bulletType=MOB;mob=Inferno_Orbs;c=1;hr=1;vr=1;onHit=Inferno_Orbs_HIT;hp=true;hnp=true;r=2;points=80;i=1;duration=140;oy=1;rx=0;ry=0;rz=0;avx=0;avy=0;avz=0;delay=30} @self
+  - orbital{onTick=Inferno_Orbs_FX;bulletType=MOB;mob=Inferno_Orbs;c=1;hr=1;vr=1;onHit=Inferno_Orbs_HIT;hp=true;hnp=true;r=2;points=80;i=1;duration=140;oy=1;rx=0;ry=0;rz=0;avx=0;avy=0;avz=0;delay=60} @self
+  
+Inferno_Orbs_FX:
+  Skills:
+  - effect:particles{particle=flame;amount=1;hS=0;vS=0;speed=0;y=-0.4} @origin
+  - effect:particles{particle=flame;amount=1;hS=0;vS=0;speed=0;y=0.5} @origin
+
+Inferno_Orbs_HIT:
+  Skills:
+  - damage{a=30;pkb=false;hnp=true;hp=true}
+  - ignite{ticks=80}
+  
+# Hellfire Scythe #
+
+Hellfire_Scythe:
+  Conditions:
+  - crouching true
+  Skills:
+  - potion{type=SPEED;duration=200;level=1;hasParticles=false} @self
+  - effect:sound{s=doombringer_axe_sounds:samus.flamos_ult;volume=1;pitch=1} @self
+  - Aura{auraName=Hellfire_aura;interval=1;duration=200} @self
+  - orbital{onTick=Hellfire_Scythe_FX;r=2;points=20;i=1;duration=200;oy=1.3;rx=4;ry=0;rz=0;avx=0;avy=0;avz=0} @self
+  - orbital{onTick=Hellfire_Scythe_FX;r=2;points=20;i=1;duration=200;oy=1.3;rx=-4;ry=0;rz=0;avx=0;avy=0;avz=0} @self
+  #- effect:particles{particle=lava;amount=15;hS=0.8;vS=0.1;speed=0;y=0.15;repeat=50;repeatinterval=4} @self
+
+Hellfire_Scythe_FX:
+  Skills:
+  - effect:particles{particle=flame;amount=3;hS=0.1;vS=0.1;speed=0;y=0.7} @origin
+  - effect:particles{particle=redstone;amount=2;hS=0.1;vS=0.1;speed=0;y=0.7} @origin
+    
+Hellfire_Scythe_FX:
+  Skills:
+  - effect:particles{particle=flame;amount=3;hS=0.1;vS=0.1;speed=0;y=0.7} @origin
+  - effect:particles{particle=redstone;amount=2;hS=0.1;vS=0.1;speed=0;y=0.7} @origin
+  
+# Hellfire Wheel #
+
+Hellfire_Skill:
+  Skills:
+  - randomskill{skills=Hellfire_Wheel,Hellfire_Wheel_Ultimate}
+  
+Hellfire_Wheel_Ultimate:
+  Cooldown: 2
+  Skills:
+  - effect:sound{s=doombringer_axe_sounds:samus.flamos_big_slash;volume=1;pitch=0.9} @self
+  - orbital{bulletType=MOB;mob=Inferno_Wheel;r=0;points=1;i=1;duration=20;oy=1.3;rx=0;ry=0;rz=0;avx=0;avy=0;avz=0} @forward{f=4;y=2}
+  - damage{a=25;pkb=false;hnp=false;hp=true;delay=1} @EIR{r=4}
+  - delay 3
+  - leap{velocity=35} @forward{f=2;y=-3}
+  - effect:sound{s=doombringer_axe_sounds:samus.flamos_big_slash;volume=1;pitch=0.9} @self
+  - orbital{bulletType=MOB;mob=Inferno_Wheel;r=0;points=1;i=1;duration=20;oy=1.3;rx=0;ry=0;rz=0;avx=0;avy=0;avz=0} @forward{f=4;y=2}
+  - damage{a=28;pkb=false;hnp=false;hp=true;delay=1} @EIR{r=4}
+  - ignite{ticks=25} @EIR{r=4}
+  - delay 3
+  - effect:sound{s=doombringer_axe_sounds:samus.flamos_big_slash;volume=1;pitch=0.9} @self
+  - orbital{bulletType=MOB;mob=Inferno_Wheel;r=0;points=1;i=1;duration=20;oy=1.3;rx=0;ry=0;rz=0;avx=0;avy=0;avz=0} @forward{f=4;y=2}
+  - damage{a=45;pkb=false;hnp=false;hp=true;delay=1} @EIR{r=6}
+  - ignite{ticks=450} @EIR{r=6}
+  - effect:particles{particle=explosion_huge;amount=1;hS=0;vS=0;speed=0;y=0.4;delay=3} @self
+  - effect:sound{s=entity.generic.explode;volume=1;pitch=0.9;delay=3} @self
+Brutal_Strike:
+  Cooldown: 0
+  Conditions:
+  - crouching false
+  Skills:
+  - randomskill{skills=Brutal_Strike_1,Brutal_Strike_2,Brutal_Strike_3}
+
+Brutal_Strike_1:
+  Cooldown: 1
+  Skills:
+  - effect:sound{s=doombringer_axe_sounds:samus.warrior_slash;volume=1;pitch=1} @self
+  - totem{md=2;c=1;oH=Brutal_Strike_DAMAGE;hnp=true;hp=true;hR=2;vR=1;i=1} @forward{f=3}
+  - summon{type=doombringer_axe_Brutal_Strike_1;amount=1;radius=0;yRadius=0;onSurface=true} @forward{f=7;y=0.3;sideOffset=0.5}
+  
+Brutal_Strike_2:
+  Cooldown: 1
+  Skills:
+  - effect:sound{s=doombringer_axe_sounds:samus.warrior_slash;volume=1;pitch=1} @self
+  - totem{md=2;c=1;oH=Brutal_Strike_DAMAGE;hnp=true;hp=true;hR=2;vR=1;i=1} @forward{f=3}
+  - summon{type=doombringer_axe_Brutal_Strike_2;amount=1;radius=0;yRadius=0;onSurface=true} @forward{f=7;y=-0.5;sideOffset=-1}
+  
+Brutal_Strike_3:
+  Cooldown: 1
+  Skills:
+  - effect:sound{s=doombringer_axe_sounds:samus.warrior_slash;volume=1;pitch=1} @self
+  - totem{md=2;c=1;oH=Brutal_Strike_DAMAGE;hnp=true;hp=true;hR=2;vR=1;i=1} @forward{f=3}
+  - summon{type=doombringer_axe_Brutal_Strike_3;amount=1;radius=0;yRadius=0;onSurface=true} @forward{f=7;y=0;sideOffset=-0.8}
+  
+Brutal_Strike_DAMAGE:
+  Skills:
+  - damage{a=20;pkb=false;hnp=true;hp=true}
+  
+Charge:
+  Cooldown: 3
+  Conditions:
+  - crouching true
+  Skills:
+  - lunge{velocity=3;velocityY=0.2} @forward{f=12;y=0.1}
+  - effect:sound{s=doombringer_axe_sounds:samus.warrior_charge;volume=1;pitch=1} @self
+  - effect:particles{particle=lava;amount=7;hS=0.3;vS=0.5;speed=0;repeat=4;repeatinterval=3} @self
+  - summon{type=doombringer_axe_Charge;amount=1;radius=0;yRadius=0;onSurface=true} @forward{f=0;y=0}
+  
+Whirwind:
+  Conditions:
+  - hasaurastacks{auraName=Whirlwind_Skill_aura} castinstead Whirlwind_Skill
+  Skills:
+  - Aura{auraName=Whirlwind_Skill_aura;interval=1;duration=5} @self
+Whirlwind_Skill:
+  Cooldown: 20
+  Skills:
+  - Aura{auraName=Whirlwind_Skill;interval=1;duration=20} @self
+  - potion{type=SLOW;duration=60;level=50;hasParticles=false} @self
+  - lunge{velocity=0.15;velocityY=0;repeat=55;repeatinterval=1} @forward{f=2;y=0}
+  - effect:sound{s=doombringer_axe_sounds:samus.whirlwind;volume=1;pitch=1;repeat=6;repeatinterval=8} @self
+  - summon{type=doombringer_axe_Whirlwind;amount=1;radius=0;yRadius=0;onSurface=true;repeat=6;repeatinterval=8} @forward{f=5;y=0.15}
+  - damage{a=16;pkb=false;hnp=true;hp=true;repeat=6;repeatinterval=8} @EIR{r=5}

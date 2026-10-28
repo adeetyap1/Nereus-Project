@@ -1,0 +1,56 @@
+name: NereusClasses
+version: '${project.version}'
+main: me.naook1.nereusclasses.NereusClasses
+api-version: '1.21'
+authors: [naook1, adityap]
+description: Classes, weapons and cosmetics with custom skills (Java + Bedrock) by naook1/adityap
+
+commands:
+  classes:
+    description: Nereus Classes
+    aliases: [class, kelas, senjata]
+    usage: /<command> [menu|list|skill|give|cast|reload]
+
+  cosmetics:
+    description: Cosmetics (hat / back / hand)
+    aliases: [cos, cosmetic, kosmetik]
+    usage: /<command> [gui|equip <id>|unequip <hat|back|hand|all>|list|give <player> <id|all>|take <player> <id|all>|reload]
+  weapons:
+    description: Dark Fantasy weapons
+    aliases: [weapon]
+    usage: /<command> [menu|list|give <player> <id>|reload]
+
+permissions:
+  nereusclasses.use:
+    description: Use class weapons you own
+    default: true
+  nereusclasses.all:
+    description: Unlock every class
+    default: false
+  nereusclasses.admin:
+    description: Give items, cast any skill, reload
+    default: op
+  nereuscosmetics.use:
+    description: Open the cosmetics menu
+    default: true
+  nereuscosmetics.all:
+    description: Use every cosmetic
+    default: false
+  nereuscosmetics.admin:
+    description: Give/take cosmetics, reload
+    default: op
+  nereuscosmetics.type.hat:
+    default: false
+  nereuscosmetics.type.back:
+    default: false
+  nereuscosmetics.type.hand:
+    default: false
+  nereusweapons.use:
+    description: Open the weapon menu
+    default: true
+  nereusweapons.all:
+    description: Use every weapon
+    default: false
+  nereusweapons.admin:
+    description: Give weapons, reload
+    default: op

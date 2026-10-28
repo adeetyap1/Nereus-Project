@@ -1,0 +1,296 @@
+######## created by samus2002 #########
+
+# Gravitational Boost #
+
+Gravitational_Boost:
+  Skills:
+  - potion{type=SPEED;duration=20;level=1;hasParticles=false} @self
+  - potion{type=JUMP;duration=20;level=1;hasParticles=false} @self
+  - effect:particlering{particle=redstone;color=#c70fd4;radius=0.75;points=20;amount=1;hS=0;vS=0;y=0.1} @self
+  
+Gravitational_Boost_FX:
+  Skills:
+  - effect:particlering{particle=redstone;color=#c70fd4;radius=0.75;points=20;amount=1;hS=0;vS=0;y=0.1} @self
+  
+Gravitational_Boost_Crucible_Head:
+  Conditions:
+  - wearing{slot=HEAD;m=null_head} true
+  - wearing{slot=CHEST;m=null_chestplate} true
+  - wearing{slot=LEGS;m=null_leggings} true
+  - wearing{slot=FEET;m=null_boots} true
+  Skills:
+  - potion{type=SPEED;duration=20;level=1;hasParticles=false} @self
+  - potion{type=JUMP;duration=20;level=1;hasParticles=false} @self
+  - effect:particlering{particle=redstone;color=#c70fd4;radius=0.75;points=20;amount=1;hS=0;vS=0;y=0.1} @self
+  
+Gravitational_Boost_Crucible_Helmet:
+  Conditions:
+  - wearing{slot=HEAD;m=null_helmet} true
+  - wearing{slot=CHEST;m=null_chestplate} true
+  - wearing{slot=LEGS;m=null_leggings} true
+  - wearing{slot=FEET;m=null_boots} true
+  Skills:
+  - potion{type=SPEED;duration=20;level=1;hasParticles=false} @self
+  - potion{type=JUMP;duration=20;level=1;hasParticles=false} @self
+  - effect:particlering{particle=redstone;color=#c70fd4;radius=0.75;points=20;amount=1;hS=0;vS=0;y=0.1} @self
+  
+WITHER_FX_60:
+  Skills:
+  - effect:particles{particle=redstone;color=#230a3d;amount=15;hS=0.35;vS=0.15;y=1;speed=0;forwardOffset=0;sideOffset=0;repeat=11;repeatinterval=5}
+  
+WITHER_FX_100:
+  Skills:
+  - effect:particles{particle=block_crack;m=ICE;amount=15;hS=0.35;vS=0.15;y=0.1;speed=0;forwardOffset=0;sideOffset=0;repeat=19;repeatinterval=5}
+  
+# Void Arrow #
+
+Void_Arrow:
+  Conditions:
+  - crouching false
+  - hasaurastacks{auraName=Retreat_aura} castinstead Void_Missile
+  - hasaurastacks{auraName=Pulse_Mode_aura} castinstead Pulse_Mode_Shoot
+  Cooldown: 0.4
+  Skills:
+  - recoil{r=1;pitch=-3} @self
+  - effect:sound{s=null_sounds:samus.void_arrow_shoot;volume=0.9;pitch=1} @self
+  - projectile{bulletType=MOB;mob=Void_Arrow;onEnd=Void_Arrow_END;onHit=Void_Arrow_HIT;v=35;i=1;hR=1;vR=1;mr=40;hnp=true;hO=0;sE=true;sB=true;hs=false;hfs=0;syo=1.5;tyo=1.5} @Forward{f=20;y=0}
+  
+Void_Arrow_HIT:
+  TargetConditions:
+  - owner{} false
+  - mythicmobtype{t=Retreat} false
+  - mythicmobtype{t=Blackhole_Shot} false
+  - mythicmobtype{t=Blackhole} false
+  - mythicmobtype{t=Void_Rain} false
+  - mythicmobtype{t=Void_Rain_Arrow} false
+  - mythicmobtype{t=Pulse_Arrow} false
+  - mythicmobtype{t=Void_Missile} false
+  Skills:
+  - damage{a=11} @EntitiesNearOrigin{r=3;limit=1;sort=NEAREST}
+  - skill{s=Void_Arrow_HIT_CHANCE} @EntitiesNearOrigin{r=3;limit=1;sort=NEAREST} 0.15
+  - effect:sound{s=entity.ender_dragon.hurt;volume=1;pitch=0.8} @self
+  
+Void_Arrow_HIT_CHANCE:
+  Skills:
+  - potion{type=WITHER;duration=60;level=1;hasParticles=false}
+  - skill{s=WITHER_FX_60}
+  
+Void_Arrow_END:
+  Skills:
+  - skill{s=Void_Arrow_HIT_FX} @origin
+  
+Void_Arrow_HIT_FX:
+  Skills:
+  - effect:particlesphere{particle=redstone;color=#c70fd4;radius=1;amount=10} @origin
+  - effect:particlesphere{particle=redstone;color=#c70fd4;radius=1.5;amount=15;delay=1} @origin
+  - effect:particlesphere{particle=redstone;color=#c70fd4;radius=2;amount=20;delay=2} @origin
+  - effect:particlesphere{particle=redstone;color=#c70fd4;radius=2.5;amount=25;delay=3} @origin
+
+# Retreat #
+
+Retreat:
+  Conditions:
+  - crouching false
+  - hasaurastacks{auraName=Pulse_Mode_aura} false
+  Cooldown: 2
+  Skills:
+  - effect:sound{s=null_sounds:samus.void_teleport;volume=1;pitch=1} @self
+  - summon{type=Retreat;amount=1;radius=0;yRadius=0;onSurface=true} @forward{f=0.7;y=0.1}
+  - delay 3
+  - projectile{onEnd=Retreat_END;v=35;i=1;hR=1;vR=1;mr=9;hnp=false;hO=0;sE=false;sB=false;hs=true;hfs=0;syo=1;tyo=1} @Forward{f=-10;y=0}
+  - delay 7
+  - Aura{auraName=Retreat_aura;interval=1;duration=20} @self
+  - effect:sound{s=null_sounds:samus.void_teleport;volume=1;pitch=1} @self
+  - summon{type=Retreat;amount=1;radius=0;yRadius=0;onSurface=true} @forward{f=0.7;y=0.1}
+  
+Retreat_END:
+  Skills:
+  - teleport{spreadh=0;spreadv=0} @origin
+  
+# Blackhole Shot #
+
+Blackhole_Shot:
+  Conditions:
+  - crouching true
+  - hasaurastacks{auraName=Pulse_Mode_aura} false
+  Cooldown: 5
+  Skills:
+  - effect:sound{s=null_sounds:samus.void_arrow_shoot;volume=1;pitch=1} @self
+  - projectile{bulletType=MOB;mob=Blackhole_Shot;onEnd=Blackhole_Shot_HIT;onHit=Blackhole_Shot_HIT;v=35;i=1;hR=1;vR=1;mr=30;hnp=true;hO=0;sE=true;sB=true;hs=false;hfs=0;syo=1.5;tyo=1.5} @Forward{f=20;y=0}
+  
+Blackhole_Shot_HIT:
+  TargetConditions:
+  - owner{} false
+  - mythicmobtype{t=Retreat} false
+  - mythicmobtype{t=Blackhole_Shot} false
+  - mythicmobtype{t=Blackhole} false
+  - mythicmobtype{t=Void_Rain} false
+  - mythicmobtype{t=Void_Rain_Arrow} false
+  - mythicmobtype{t=Pulse_Arrow} false
+  - mythicmobtype{t=Void_Missile} false
+  Skills:
+  - effect:sound{s=null_sounds:samus.void_blackhole_summon;volume=1;pitch=1} @self
+  - summon{type=Blackhole;amount=1;radius=0;yRadius=0;onSurface=false} @origin
+  
+blackhole_skill_DAMAGE:
+  Skills:
+  - damage{a=20;pkb=false;hnp=false;hp=true} #total damage
+  
+Blackhole_Pull:
+  TargetConditions:
+  - owner{} false
+  Skills:
+  - pull{velocity=3.5}
+  - totem{md=6;c=10;oH=blackhole_skill_DAMAGE;hnp=true;hp=true;hR=1;vR=1;i=1} @forward{f=1}
+  
+# Void Rain #
+
+Void_Rain:
+  Conditions:
+  - hasaurastacks{auraName=Void_Rain_aura} castinstead Void_Rain_Skill
+  Skills:
+  - Aura{auraName=Void_Rain_aura;interval=1;duration=5} @self
+  
+Void_Rain_Skill:
+  Cooldown: 3
+  Conditions:
+  - hasaurastacks{auraName=Pulse_Mode_aura} false
+  Skills:
+  - delay 2
+  - projectile{onEnd=Void_Rain_Skill_HIT;v=40;i=1;hR=1;vR=1;mr=80;hnp=false;hp=false;hO=0;sE=false;sB=true;hs=false;hfs=0} @forward{f=50;y=1}
+  
+Void_Rain_Skill_HIT:
+  Skills:
+  - summon{type=Void_Rain;amount=1;radius=0;yRadius=0;onSurface=true} @origin
+  
+Void_Rain_HIT:
+  TargetConditions:
+  - owner{} false
+  - mythicmobtype{t=Retreat} false
+  - mythicmobtype{t=Blackhole_Shot} false
+  - mythicmobtype{t=Blackhole} false
+  - mythicmobtype{t=Void_Rain} false
+  - mythicmobtype{t=Void_Rain_Arrow} false
+  - mythicmobtype{t=Pulse_Arrow} false
+  - mythicmobtype{t=Void_Missile} false
+  Skills:
+  - damage{a=22} @EntitiesNearOrigin{r=3;limit=1;sort=NEAREST}
+  - skill{s=Void_Arrow_HIT_CHANCE} @EntitiesNearOrigin{r=3;limit=1;sort=NEAREST} 0.15
+  - effect:sound{s=entity.ender_dragon.hurt;volume=1;pitch=0.8} @self
+  
+# Void Missile #
+
+Void_Missile:
+  Cooldown: 1
+  Conditions:
+  - hasaurastacks{auraName=Pulse_Mode_aura} false
+  Skills:
+  - recoil{r=1;pitch=-6} @self
+  - effect:sound{s=null_sounds:samus.void_missile;volume=0.6;pitch=1;repeat=1;repeatinterval=2} @self
+  - skill{s=Void_Missile_Missiles} @EntitiesNearOrigin{r=20;limit=1;sort=NEAREST}
+  
+Void_Missile_Missiles:
+  TargetConditions:
+  - owner{} false
+  - mythicmobtype{t=Retreat} false
+  - mythicmobtype{t=Blackhole_Shot} false
+  - mythicmobtype{t=Blackhole} false
+  - mythicmobtype{t=Void_Rain} false
+  - mythicmobtype{t=Void_Rain_Arrow} false
+  - mythicmobtype{t=Pulse_Arrow} false
+  - mythicmobtype{t=Void_Missile} false
+  Skills:
+  - missile{bulletType=MOB;mob=Void_Missile;onEnd=Void_Missile_END;onHit=Void_Missile_HIT;in=1;v=23;i=1;hR=1;vR=1;md=80;mr=30;hnp=true;hO=0;sE=true;sB=true;hs=false;hfs=0;syo=1.5;tyo=1.5}
+  - missile{bulletType=MOB;mob=Void_Missile;onEnd=Void_Missile_END;onHit=Void_Missile_HIT;in=1;v=23;i=1;hR=1;vR=1;md=80;mr=30;hnp=true;hO=60;sE=true;sB=true;hs=false;hfs=0;syo=1.5;tyo=1.5;delay=1}
+  - missile{bulletType=MOB;mob=Void_Missile;onEnd=Void_Missile_END;onHit=Void_Missile_HIT;in=1;v=23;i=1;hR=1;vR=1;md=80;mr=30;hnp=true;hO=-60;sE=true;sB=true;hs=false;hfs=0;syo=1.5;tyo=1.5;delay=5}
+  - missile{bulletType=MOB;mob=Void_Missile;onEnd=Void_Missile_END;onHit=Void_Missile_HIT;in=1;v=23;i=1;hR=1;vR=1;md=80;mr=30;hnp=true;hO=0;vO=1;sE=true;sB=true;hs=false;hfs=0;syo=1.5;tyo=1.5;delay=2}
+  - missile{bulletType=MOB;mob=Void_Missile;onEnd=Void_Missile_END;onHit=Void_Missile_HIT;in=1;v=23;i=1;hR=1;vR=1;md=80;mr=30;hnp=true;hO=30;vO=1;sE=true;sB=true;hs=false;hfs=0;syo=1.5;tyo=1.5;delay=4}
+  - missile{bulletType=MOB;mob=Void_Missile;onEnd=Void_Missile_END;onHit=Void_Missile_HIT;in=1;v=23;i=1;hR=1;vR=1;md=80;mr=30;hnp=true;hO=-30;vO=1;sE=true;sB=true;hs=false;hfs=0;syo=1.5;tyo=1.5;delay=3}
+  
+Void_Missile_HIT:
+  TargetConditions:
+  - owner{} false
+  - mythicmobtype{t=Retreat} false
+  - mythicmobtype{t=Blackhole_Shot} false
+  - mythicmobtype{t=Blackhole} false
+  - mythicmobtype{t=Void_Rain} false
+  - mythicmobtype{t=Void_Rain_Arrow} false
+  - mythicmobtype{t=Pulse_Arrow} false
+  - mythicmobtype{t=Void_Missile} false
+  Skills:
+  - damage{a=24} @EntitiesNearOrigin{r=3;limit=1;sort=NEAREST}
+  - skill{s=Void_Missile_HIT_CHANCE} @EntitiesNearOrigin{r=3;limit=1;sort=NEAREST}
+  - effect:sound{s=entity.ender_dragon.hurt;volume=1;pitch=0.8} @self
+  
+Void_Missile_HIT_CHANCE:
+  Skills:
+  - potion{type=WITHER;duration=60;level=1;hasParticles=false}
+  - skill{s=WITHER_FX_60}
+  
+Void_Missile_END:
+  Skills:
+  - skill{s=Void_Missile_HIT_FX} @origin
+  
+Void_Missile_HIT_FX:
+  Skills:
+  - effect:particlesphere{particle=redstone;color=#c70fd4;radius=0.1;amount=5} @origin
+  - effect:particlesphere{particle=redstone;color=#c70fd4;radius=0.4;amount=10;delay=1} @origin
+  - effect:particlesphere{particle=redstone;color=#c70fd4;radius=0.8;amount=15;delay=2} @origin
+  - effect:particlesphere{particle=redstone;color=#c70fd4;radius=1.2;amount=20;delay=3} @origin
+  
+# Pulse Mode #
+
+Pulse_Mode:
+  Cooldown: 10
+  Conditions:
+  - crouching true
+  Skills:
+  - Aura{auraName=Pulse_Mode_aura;interval=1;duration=160} @self
+  - effect:sound{s=entity.ender_dragon.growl;volume=1;pitch=0.7} @self
+  - potion{type=SLOW;duration=160;level=49;hasParticles=false} @self
+  - orbital{onTick=Pulse_Mode_FX;r=2;points=20;i=1;duration=160;oy=1.3;rx=4;ry=0;rz=0;avx=0;avy=0;avz=0} @self
+  - orbital{onTick=Pulse_Mode_FX;r=2;points=20;i=1;duration=160;oy=1.3;rx=-4;ry=0;rz=0;avx=0;avy=0;avz=0} @self
+  
+Pulse_Mode_FX:
+  Skills:
+  - effect:particles{particle=redstone;color=#440c87;amount=3;hS=0.1;vS=0.1;speed=0;y=0.7} @origin
+  - effect:particles{particle=redstone;color=#c70fd4;amount=2;hS=0.1;vS=0.1;speed=0;y=0.7} @origin
+  
+Pulse_Mode_Shoot:
+  Cooldown: 0
+  Skills:
+  - effect:sound{s=null_sounds:samus.void_pulse;volume=1;pitch=1} @self
+  - delay 10
+  - recoil{r=1;pitch=-2} @self
+  - projectile{bulletType=MOB;mob=Pulse_Arrow;onEnd=Pulse_Mode_END;onHit=Pulse_Mode_HIT;v=30;i=1;hR=1;vR=1;mr=40;hnp=true;hO=0;sE=false;sB=false;hs=false;hfs=0;syo=1.5;tyo=1.5} @Forward{f=25;y=0}
+  
+Pulse_Mode_HIT:
+  TargetConditions:
+  - owner{} false
+  - mythicmobtype{t=Retreat} false
+  - mythicmobtype{t=Blackhole_Shot} false
+  - mythicmobtype{t=Blackhole} false
+  - mythicmobtype{t=Void_Rain} false
+  - mythicmobtype{t=Void_Rain_Arrow} false
+  - mythicmobtype{t=Pulse_Arrow} false
+  - mythicmobtype{t=Void_Missile} false
+  Skills:
+  - damage{a=8} @EntitiesNearOrigin{r=3;limit=1;sort=NEAREST}
+  - skill{s=Void_Arrow_HIT_CHANCE} @EntitiesNearOrigin{r=3;limit=1;sort=NEAREST} 0.5
+  - effect:sound{s=entity.ender_dragon.hurt;volume=1;pitch=0.8} @self
+  
+Pulse_Mode_HIT_CHANCE:
+  Skills:
+  - potion{type=WITHER;duration=60;level=1;hasParticles=false}
+  - skill{s=WITHER_FX_60}
+  
+Pulse_Mode_END:
+  Skills:
+  - skill{s=Pulse_Mode_HIT_FX} @origin
+  
+Pulse_Mode_HIT_FX:
+  Skills:
+  - effect:particlesphere{particle=redstone;color=#440c87;radius=1;amount=10} @origin
+  - effect:particlesphere{particle=redstone;color=#440c87;radius=1.5;amount=15;delay=1} @origin
+  - effect:particlesphere{particle=redstone;color=#440c87;radius=2;amount=20;delay=2} @origin
+  - effect:particlesphere{particle=redstone;color=#440c87;radius=2.5;amount=25;delay=3} @origin

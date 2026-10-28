@@ -1,0 +1,220 @@
+# created and remake by Lenathaaa #
+  
+# Blade_Slash_Evo #
+
+Blue_Flame_Slash_1:
+  Type: ARMOR_STAND
+  Pose:
+      RightArm: 0,0,-25
+  ItemHand: blue_flame_slash_1
+  Options:
+    Marker: true
+    Small: false
+    HasArms: true
+    Invisible: true
+    Invincible: true
+  Skills:
+  - equip{item=blue_flame_slash_1:0;delay=2} ~onSpawn
+  - equip{item=blue_flame_slash_2:0;delay=4} ~onSpawn
+  - equip{item=blue_flame_slash_3:0;delay=6} ~onSpawn
+  - equip{item=blue_flame_slash_4:0;delay=8} ~onSpawn
+  - equip{item=blue_flame_slash_5:0;delay=10} ~onSpawn
+  - equip{item=blue_flame_slash_6:0;delay=12} ~onSpawn
+  - equip{item=blue_flame_slash_7:0;delay=14} ~onSpawn
+  - remove{delay=16} @self ~onSpawn
+  
+Blue_Flame_Slash_2:
+  Type: ARMOR_STAND
+  Pose:
+      RightArm: 0,0,-155
+  ItemHand: blue_flame_slash_1
+  Options:
+    Marker: true
+    Small: false
+    HasArms: true
+    Invisible: true
+    Invincible: true
+  Skills:
+  - equip{item=blue_flame_slash_1:0;delay=2} ~onSpawn
+  - equip{item=blue_flame_slash_2:0;delay=4} ~onSpawn
+  - equip{item=blue_flame_slash_3:0;delay=6} ~onSpawn
+  - equip{item=blue_flame_slash_4:0;delay=8} ~onSpawn
+  - equip{item=blue_flame_slash_5:0;delay=10} ~onSpawn
+  - equip{item=blue_flame_slash_6:0;delay=12} ~onSpawn
+  - equip{item=blue_flame_slash_7:0;delay=14} ~onSpawn
+  - remove{delay=16} @self ~onSpawn
+  
+Blue_Flame_Slash_3:
+  Type: ARMOR_STAND
+  Pose:
+      RightArm: 0,0,0
+  ItemHand: blue_flame_slash_1
+  Options:
+    Marker: true
+    Small: false
+    HasArms: true
+    Invisible: true
+    Invincible: true
+  Skills:
+  - equip{item=blue_flame_slash_1:0;delay=2} ~onSpawn
+  - equip{item=blue_flame_slash_2:0;delay=4} ~onSpawn
+  - equip{item=blue_flame_slash_3:0;delay=6} ~onSpawn
+  - equip{item=blue_flame_slash_4:0;delay=8} ~onSpawn
+  - equip{item=blue_flame_slash_5:0;delay=10} ~onSpawn
+  - equip{item=blue_flame_slash_6:0;delay=12} ~onSpawn
+  - equip{item=blue_flame_slash_7:0;delay=14} ~onSpawn
+  - remove{delay=16} @self ~onSpawn
+
+# Blue Flame Cross Slash #
+
+Blue_Flame_Cross_1:
+  Type: ARMOR_STAND
+  Pose:
+      RightArm: 0,0,45
+  ItemHand: blue_flame_slash_1
+  Options:
+    Marker: true
+    Small: true
+    HasArms: true
+    Invisible: true
+    Invincible: true
+  Skills:
+  - equip{item=blue_flame_slash_1:0;delay=2} ~onSpawn
+  - equip{item=blue_flame_slash_2:0;delay=4} ~onSpawn
+  - equip{item=blue_flame_slash_3:0;delay=6} ~onSpawn
+  - equip{item=blue_flame_slash_4:0;delay=8} ~onSpawn
+  - equip{item=blue_flame_slash_5:0;delay=10} ~onSpawn
+  - equip{item=blue_flame_slash_6:0;delay=12} ~onSpawn
+  - equip{item=blue_flame_slash_7:0;delay=14} ~onSpawn
+  - remove{delay=16} @self ~onSpawn
+  
+Blue_Flame_Cross_2:
+  Type: ARMOR_STAND
+  Pose:
+      RightArm: 0,0,135
+  ItemHand: blue_flame_slash_1
+  Options:
+    Marker: true
+    Small: true
+    HasArms: true
+    Invisible: true
+    Invincible: true
+  Skills:
+  - equip{item=blue_flame_slash_1:0;delay=2} ~onSpawn
+  - equip{item=blue_flame_slash_2:0;delay=4} ~onSpawn
+  - equip{item=blue_flame_slash_3:0;delay=6} ~onSpawn
+  - equip{item=blue_flame_slash_4:0;delay=8} ~onSpawn
+  - equip{item=blue_flame_slash_5:0;delay=10} ~onSpawn
+  - equip{item=blue_flame_slash_6:0;delay=12} ~onSpawn
+  - equip{item=blue_flame_slash_7:0;delay=14} ~onSpawn
+  - remove{delay=16} @self ~onSpawn
+  
+# Piercing Shuriken #
+
+Piercing_Shuriken:
+  Type: ARMOR_STAND
+  Pose:
+      Head: 0,0,0
+  ItemHead: shuriken_blade_a
+  Options:
+    Marker: true
+    Small: false
+    Collidable: false
+    HasArms: true
+    Invisible: true
+    Invincible: true
+  Skills:
+  - equip{item=blue_flame_shuriken_blade:4} ~onSpawn
+  
+Shuriken_Mark:
+  Type: ARMOR_STAND
+  Pose:
+      Head: 0,0,0
+  ItemHead: shuriken_mark
+  Options:
+    Marker: true
+    Small: false
+    HasArms: true
+    Invisible: true
+    Invincible: true
+  Skills:
+  - equip{item=blue_flame_mark:4} ~onSpawn
+  - remove{delay=80} @self ~onSpawn
+  
+# Death Charge #
+
+Death_Charge:
+  Type: ARMOR_STAND
+  Pose:
+      Head: 0,0,0
+  ItemHead: death_charge_spin
+  Options:
+    Marker: true
+    Small: false
+    Collidable: false
+    HasArms: true
+    Invisible: true
+    Invincible: true
+  Skills:
+  - mounttarget{delay=1} @owner ~onSpawn
+  - equip{item=blue_flame_charge_spin:4} ~onSpawn
+  - remove{delay=5} @self ~onSpawn
+  
+Death_Charge_Longer:
+  Type: ARMOR_STAND
+  Pose:
+      Head: 0,0,0
+  ItemHead: death_charge_spin
+  Options:
+    Marker: true
+    Small: false
+    Collidable: false
+    HasArms: true
+    Invisible: true
+    Invincible: true
+  Skills:
+  - mounttarget{delay=1} @owner ~onSpawn
+  - equip{item=blue_flame_charge_spin:4} ~onSpawn
+  - remove{delay=10} @self ~onSpawn
+
+# Soul Surge #
+
+Soul_Surge:
+  Type: ARMOR_STAND
+  Pose:
+      RightArm: 0,0,0
+  Options:
+    Marker: true
+    Small: false
+    HasArms: true
+    Invisible: true
+    Invincible: true
+  Skills:
+  - equip{item=blue_flame_1:0;delay=3} ~onSpawn
+  - equip{item=blue_flame_2:0;delay=4} ~onSpawn
+  - equip{item=blue_flame_3:0;delay=5} ~onSpawn
+  - equip{item=blue_flame_4:0;delay=6} ~onSpawn
+  - equip{item=blue_flame_5:0;delay=7} ~onSpawn
+  - equip{item=blue_flame_6:0;delay=8} ~onSpawn
+  - equip{item=blue_flame_7:0;delay=9} ~onSpawn
+  - equip{item=blue_flame_8:0;delay=10} ~onSpawn
+  - remove{delay=11} @self ~onSpawn
+  
+# Evo Shadow Walk #
+
+Evo_Shadow_Walk:
+  Type: ARMOR_STAND
+  Pose:
+      Head: 0,0,0
+  ItemHead: assassin_impact_1
+  Options:
+    Marker: true
+    Small: false
+    Invisible: true
+    Invincible: true
+  Skills:
+  - equip{item=assassin_impact_1:4;delay=2} ~onSpawn
+  - equip{item=assassin_impact_2:4;delay=4} ~onSpawn
+  - equip{item=assassin_impact_3:4;delay=6} ~onSpawn
+  - equip{item=assassin_impact_4:4;delay=8} ~onSpawn
+  - remove{delay=10} @self ~onSpawn

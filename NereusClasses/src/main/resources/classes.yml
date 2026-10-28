@@ -1,0 +1,257 @@
+classes:
+  archmage:
+    name: '&bArchmage'
+  assassin:
+    name: '&8Assassin'
+  cleric:
+    name: '&fCleric'
+  dragon_warrior:
+    name: '&5Dragon Warrior'
+  flamos:
+    name: '&cFlamos'
+  gluttony_evo:
+    name: '&9Gluttony'
+  ninja_samurai:
+    name: '&7Ninja Samurai'
+  'null':
+    name: '&dNull'
+  reaper:
+    name: '&aReaper'
+weapons:
+  archmage_staff:
+    class: archmage
+    damage: 6
+    speed: 1.6
+    lore:
+    - '&7Class: &bArchmage'
+    skills: &id001
+    - skill{s=Arcane_Slash} @self ~onSwing
+    - skill{s=Arcane_Shield} @self ~onTimer:20
+    - skill{s=Meteor_Storm} @self ~onTimer:10
+    - skill{s=Blizzard} @self ~onUse
+    - skill{s=Cloak_Of_Hastur} @self ~onUse
+    - skill{s=Chains_Of_Void} @self ~onUse
+    - skill{s=Arcane_Devastation} @self ~onUse
+  archmage_staff_shiny:
+    class: archmage
+    damage: 6
+    speed: 1.6
+    lore:
+    - '&7Class: &bArchmage'
+    skills: *id001
+  assassin_blade:
+    class: assassin
+    damage: 6.5
+    speed: 1.8
+    lore:
+    - '&7Class: &8Assassin'
+    skills: &id002
+    - skill{s=Blade_Slash} @self ~onSwing
+    - skill{s=Assassins_Blade} @self ~onTimer:20
+    - skill{s=Assassin_Dash} @self ~onUse
+    - skill{s=Shadow_Walk} @self ~onUse
+    - skill{s=Dagger_Throw} @self ~onUse
+    - skill{s=Blade_Dance} @self ~onUse
+  assassin_blade_shiny:
+    class: assassin
+    damage: 6.5
+    speed: 1.8
+    lore:
+    - '&7Class: &8Assassin'
+    skills: *id002
+  cleric_mace:
+    class: cleric
+    damage: 9
+    speed: 1.0
+    lore:
+    - '&7Class: &fCleric'
+    skills: &id003
+    - skill{s=Divine_Immolation} @self ~onSwing
+    - skill{s=Dawnbringer_Angel} @self ~onTimer:20
+    - skill{s=Tears_Of_God} @self ~onTimer:10
+    - skill{s=Luminous_Wave} @self ~onUse
+    - skill{s=Blessing_Of_The_White_Lantern} @self ~onUse
+    - skill{s=Divine_Cross} @self ~onUse
+    - skill{s=Divine_Punishment} @self ~onUse
+  cleric_mace_shiny:
+    class: cleric
+    damage: 9
+    speed: 1.0
+    lore:
+    - '&7Class: &fCleric'
+    skills: *id003
+  sin_of_gluttony_evo:
+    class: gluttony_evo
+    damage: 8
+    speed: 1.6
+    lore:
+    - '&7Class: &9Gluttony'
+    skills:
+    - skill{s=Blade_Slash_Evo} @self ~onSwing
+    - skill{s=Piercing_Shuriken} @self ~onTimer:20
+    - skill{s=Death_Charge} @self ~onUse
+    - skill{s=Soul_Surge} @self ~onUse
+    - skill{s=Evo_Shadow_Walk} @self ~onUse
+  ninja_blade:
+    class: ninja_samurai
+    damage: 7
+    speed: 1.8
+    lore:
+    - '&7Class: &7Ninja Samurai'
+    skills:
+    - skill{s=Laceration} @self ~onSwing
+    - skill{s=Forbidden_Art} @self ~onUse
+    - skill{s=Shadow_Cut} @self ~onUse
+  dragon_warrior_spear:
+    class: dragon_warrior
+    damage: 8
+    speed: 1.6
+    lore:
+    - '&7Class: &5Dragon Warrior'
+    skills:
+    - skill{s=Dragon_Skin} @self ~onDamaged
+    - skill{s=Dragon_Slash} @self ~onSwing
+    - skill{s=Dragon_Dash} @self ~onUse
+    - skill{s=Dragon_Breath} @self ~onUse
+    - skill{s=Dragon_Zone} @self ~onCrouch
+    - skill{s=Dragonborn} @self ~onSwing
+  dragon_warrior_spear_shiny:
+    class: dragon_warrior
+    damage: 8
+    speed: 1.6
+    lore:
+    - '&7Class: &5Dragon Warrior'
+    skills:
+    - skill{s=Dragon_Skin} @self ~onDamaged
+    - skill{s=Dragon_Slash} @self ~onSwing
+    - skill{s=Dragon_Dash} @self ~onUse
+    - skill{s=Dragon_Breath} @self ~onUse
+    - skill{s=Dragon_Zone} @self ~onCrouch
+    - skill{s=Dragonborn} @self ~onSwing
+  flamos_scythe:
+    class: flamos
+    damage: 10
+    speed: 1.1
+    lore:
+    - '&7Class: &cFlamos'
+    skills:
+    - skill{s=Flame_Slash} @self ~onSwing
+    - skill{s=Inferno_Wheel} @self ~onUse
+    - skill{s=Blazing_Leap} @self ~onUse
+    - skill{s=Inferno_Orbs} @self ~onCrouch
+    - skill{s=Hellfire_Scythe} @self ~onSwing
+  flamos_scythe_shiny:
+    class: flamos
+    damage: 10
+    speed: 1.1
+    lore:
+    - '&7Class: &cFlamos'
+    skills:
+    - skill{s=Flame_Slash} @self ~onSwing
+    - skill{s=Inferno_Wheel} @self ~onUse
+    - skill{s=Blazing_Leap} @self ~onUse
+    - skill{s=Inferno_Orbs} @self ~onCrouch
+    - skill{s=Hellfire_Scythe} @self ~onSwing
+  scythe_reaper:
+    class: reaper
+    damage: 9
+    speed: 1.3
+    lore:
+    - '&7Class: &aReaper'
+    skills:
+    - skill{s=Soul_Collector} @self ~onTimer:20
+    - skill{s=Soul_Slice} @self ~onSwing
+    - skill{s=Soul_Slice} @self ~onAttack
+    - skill{s=Death_Spin} @self ~onUse
+    - skill{s=Reaping_Claw} @self ~onCrouch
+    - skill{s=Surge} @self ~onUse
+    - skill{s=Soul_Scythe} @self ~onTimer:10
+    - skill{s=God_Of_Death} @self ~onSwing
+  scythe_reaper_shiny:
+    class: reaper
+    damage: 9
+    speed: 1.3
+    lore:
+    - '&7Class: &aReaper'
+    skills:
+    - skill{s=Soul_Collector} @self ~onTimer:20
+    - skill{s=Soul_Slice} @self ~onSwing
+    - skill{s=Soul_Slice} @self ~onAttack
+    - skill{s=Death_Spin} @self ~onUse
+    - skill{s=Reaping_Claw} @self ~onCrouch
+    - skill{s=Surge} @self ~onUse
+    - skill{s=Soul_Scythe} @self ~onTimer:10
+    - skill{s=God_Of_Death} @self ~onSwing
+  null_bow:
+    class: 'null'
+    damage: 0
+    speed: 1.6
+    lore:
+    - '&7Class: &dNull'
+    skills:
+    - skill{s=Void_Arrow} @self ~onUse
+    - skill{s=Retreat} @self ~onSwing
+    - skill{s=Blackhole_Shot} @self ~onUse
+    - skill{s=Void_Rain} @self ~onCrouch
+    - skill{s=Pulse_Mode} @self ~onSwing
+  null_bow_shiny:
+    class: 'null'
+    damage: 0
+    speed: 1.6
+    lore:
+    - '&7Class: &dNull'
+    skills:
+    - skill{s=Void_Arrow} @self ~onUse
+    - skill{s=Retreat} @self ~onSwing
+    - skill{s=Blackhole_Shot} @self ~onUse
+    - skill{s=Void_Rain} @self ~onCrouch
+    - skill{s=Pulse_Mode} @self ~onSwing
+  scythe_reaper_evo:
+    class: reaper
+    damage: 10
+    speed: 1.3
+    lore:
+    - '&7Class: &aReaper'
+    skills:
+    - skill{s=Soul_Collector_Evo} @self ~onTimer:20
+    - skill{s=Soul_Slice_Evo} @self ~onSwing
+    - skill{s=Soul_Slice_Evo} @self ~onAttack
+    - skill{s=Death_Spin} @self ~onUse
+    - skill{s=Reaping_Claw} @self ~onUse
+    - skill{s=Surge} @self ~onUse
+    - skill{s=Death_Strike_Evo} @self ~onUse
+  flamos_helmet:
+    class: flamos
+    damage: 0
+    speed: 0
+    lore:
+    - '&7Class: &cFlamos'
+    skills:
+    - skill{s=Fire_Immune_Crucible_Helmet} @self ~onTimer:10
+  flamos_chestplate:
+    class: flamos
+    damage: 0
+    speed: 0
+    lore:
+    - '&7Class: &cFlamos'
+    skills:
+    - skill{s=Fire_Immune_Crucible_Head} @self ~onTimer:10
+    - skill{s=Fire_Immune_Crucible_Helmet} @self ~onTimer:10
+  flamos_leggings:
+    class: flamos
+    damage: 0
+    speed: 0
+    lore:
+    - '&7Class: &cFlamos'
+    skills:
+    - skill{s=Fire_Immune_Crucible_Head} @self ~onTimer:10
+    - skill{s=Fire_Immune_Crucible_Helmet} @self ~onTimer:10
+  flamos_boots:
+    class: flamos
+    damage: 0
+    speed: 0
+    lore:
+    - '&7Class: &cFlamos'
+    skills:
+    - skill{s=Fire_Immune_Crucible_Head} @self ~onTimer:10
+    - skill{s=Fire_Immune_Crucible_Helmet} @self ~onTimer:10

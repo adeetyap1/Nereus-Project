@@ -1,0 +1,4161 @@
+{
+ "format_version": 2,
+ "items": {
+  "minecraft:paper": [
+   {
+    "type": "legacy",
+    "custom_model_data": 60000.0,
+    "bedrock_identifier": "nereuscls:death_slice_1",
+    "display_name": "death_slice_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60001.0,
+    "bedrock_identifier": "nereuscls:death_slice_2",
+    "display_name": "death_slice_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60002.0,
+    "bedrock_identifier": "nereuscls:death_slice_3",
+    "display_name": "death_slice_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60003.0,
+    "bedrock_identifier": "nereuscls:death_slice_4",
+    "display_name": "death_slice_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60004.0,
+    "bedrock_identifier": "nereuscls:death_slice_5",
+    "display_name": "death_slice_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60005.0,
+    "bedrock_identifier": "nereuscls:death_slice_6",
+    "display_name": "death_slice_6",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60006.0,
+    "bedrock_identifier": "nereuscls:death_slice_7",
+    "display_name": "death_slice_7",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60007.0,
+    "bedrock_identifier": "nereuscls:death_slice_8",
+    "display_name": "death_slice_8",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60008.0,
+    "bedrock_identifier": "nereuscls:death_spin",
+    "display_name": "death_spin",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60009.0,
+    "bedrock_identifier": "nereuscls:soul_cross_1",
+    "display_name": "soul_cross_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60010.0,
+    "bedrock_identifier": "nereuscls:soul_cross_2",
+    "display_name": "soul_cross_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60011.0,
+    "bedrock_identifier": "nereuscls:soul_cross_3",
+    "display_name": "soul_cross_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60012.0,
+    "bedrock_identifier": "nereuscls:soul_cross_4",
+    "display_name": "soul_cross_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60013.0,
+    "bedrock_identifier": "nereuscls:soul_cross_5",
+    "display_name": "soul_cross_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60014.0,
+    "bedrock_identifier": "nereuscls:soul_cross_6",
+    "display_name": "soul_cross_6",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60015.0,
+    "bedrock_identifier": "nereuscls:soul_cross_7",
+    "display_name": "soul_cross_7",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60016.0,
+    "bedrock_identifier": "nereuscls:soul_cross_8",
+    "display_name": "soul_cross_8",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60017.0,
+    "bedrock_identifier": "nereuscls:soul_slice_1",
+    "display_name": "soul_slice_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60018.0,
+    "bedrock_identifier": "nereuscls:soul_slice_2",
+    "display_name": "soul_slice_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60019.0,
+    "bedrock_identifier": "nereuscls:soul_slice_3",
+    "display_name": "soul_slice_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60020.0,
+    "bedrock_identifier": "nereuscls:soul_slice_4",
+    "display_name": "soul_slice_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60021.0,
+    "bedrock_identifier": "nereuscls:soul_slice_5",
+    "display_name": "soul_slice_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60022.0,
+    "bedrock_identifier": "nereuscls:soul_slice_6",
+    "display_name": "soul_slice_6",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60023.0,
+    "bedrock_identifier": "nereuscls:soul_slice_7",
+    "display_name": "soul_slice_7",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60024.0,
+    "bedrock_identifier": "nereuscls:soul_slice_8",
+    "display_name": "soul_slice_8",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60025.0,
+    "bedrock_identifier": "nereuscls:soul_spin",
+    "display_name": "soul_spin",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60026.0,
+    "bedrock_identifier": "nereuscls:soul_wave_1",
+    "display_name": "soul_wave_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60027.0,
+    "bedrock_identifier": "nereuscls:soul_wave_2",
+    "display_name": "soul_wave_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60028.0,
+    "bedrock_identifier": "nereuscls:soul_wave_3",
+    "display_name": "soul_wave_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60029.0,
+    "bedrock_identifier": "nereuscls:soul_wave_4",
+    "display_name": "soul_wave_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60030.0,
+    "bedrock_identifier": "nereuscls:soul_wave_5",
+    "display_name": "soul_wave_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60031.0,
+    "bedrock_identifier": "nereuscls:soul_wave_6",
+    "display_name": "soul_wave_6",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60032.0,
+    "bedrock_identifier": "nereuscls:soul_wave_7",
+    "display_name": "soul_wave_7",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60033.0,
+    "bedrock_identifier": "nereuscls:death_slice_evo_1",
+    "display_name": "death_slice_evo_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60034.0,
+    "bedrock_identifier": "nereuscls:death_slice_evo_2",
+    "display_name": "death_slice_evo_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60035.0,
+    "bedrock_identifier": "nereuscls:death_slice_evo_3",
+    "display_name": "death_slice_evo_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60036.0,
+    "bedrock_identifier": "nereuscls:death_slice_evo_4",
+    "display_name": "death_slice_evo_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60037.0,
+    "bedrock_identifier": "nereuscls:death_slice_evo_5",
+    "display_name": "death_slice_evo_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60038.0,
+    "bedrock_identifier": "nereuscls:death_slice_evo_6",
+    "display_name": "death_slice_evo_6",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60039.0,
+    "bedrock_identifier": "nereuscls:death_slice_evo_7",
+    "display_name": "death_slice_evo_7",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60040.0,
+    "bedrock_identifier": "nereuscls:death_slice_evo_8",
+    "display_name": "death_slice_evo_8",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60041.0,
+    "bedrock_identifier": "nereuscls:soul_slice_evo_1",
+    "display_name": "soul_slice_evo_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60042.0,
+    "bedrock_identifier": "nereuscls:soul_slice_evo_2",
+    "display_name": "soul_slice_evo_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60043.0,
+    "bedrock_identifier": "nereuscls:soul_slice_evo_3",
+    "display_name": "soul_slice_evo_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60044.0,
+    "bedrock_identifier": "nereuscls:soul_slice_evo_4",
+    "display_name": "soul_slice_evo_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60045.0,
+    "bedrock_identifier": "nereuscls:soul_slice_evo_5",
+    "display_name": "soul_slice_evo_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60046.0,
+    "bedrock_identifier": "nereuscls:soul_slice_evo_6",
+    "display_name": "soul_slice_evo_6",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60047.0,
+    "bedrock_identifier": "nereuscls:soul_slice_evo_7",
+    "display_name": "soul_slice_evo_7",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60048.0,
+    "bedrock_identifier": "nereuscls:soul_slice_evo_8",
+    "display_name": "soul_slice_evo_8",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60049.0,
+    "bedrock_identifier": "nereuscls:blood_cut_1",
+    "display_name": "blood_cut_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60050.0,
+    "bedrock_identifier": "nereuscls:blood_cut_2",
+    "display_name": "blood_cut_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60051.0,
+    "bedrock_identifier": "nereuscls:blood_cut_3",
+    "display_name": "blood_cut_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60052.0,
+    "bedrock_identifier": "nereuscls:blood_cut_4",
+    "display_name": "blood_cut_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60053.0,
+    "bedrock_identifier": "nereuscls:blood_cut_5",
+    "display_name": "blood_cut_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60054.0,
+    "bedrock_identifier": "nereuscls:blood_cut_6",
+    "display_name": "blood_cut_6",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60055.0,
+    "bedrock_identifier": "nereuscls:blood_cut_7",
+    "display_name": "blood_cut_7",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60056.0,
+    "bedrock_identifier": "nereuscls:blood_cut_8",
+    "display_name": "blood_cut_8",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60057.0,
+    "bedrock_identifier": "nereuscls:death_mark_1",
+    "display_name": "death_mark_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60058.0,
+    "bedrock_identifier": "nereuscls:death_mark_2",
+    "display_name": "death_mark_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60059.0,
+    "bedrock_identifier": "nereuscls:death_mark_3",
+    "display_name": "death_mark_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60060.0,
+    "bedrock_identifier": "nereuscls:death_mark_4",
+    "display_name": "death_mark_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60061.0,
+    "bedrock_identifier": "nereuscls:death_mark_5",
+    "display_name": "death_mark_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60062.0,
+    "bedrock_identifier": "nereuscls:ground_pound_1",
+    "display_name": "ground_pound_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60063.0,
+    "bedrock_identifier": "nereuscls:ground_pound_2",
+    "display_name": "ground_pound_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60064.0,
+    "bedrock_identifier": "nereuscls:ground_pound_3",
+    "display_name": "ground_pound_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60065.0,
+    "bedrock_identifier": "nereuscls:ground_pound_4",
+    "display_name": "ground_pound_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60066.0,
+    "bedrock_identifier": "nereuscls:ground_pound_5",
+    "display_name": "ground_pound_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60067.0,
+    "bedrock_identifier": "nereuscls:ground_pound_6",
+    "display_name": "ground_pound_6",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60068.0,
+    "bedrock_identifier": "nereuscls:ground_pound_7",
+    "display_name": "ground_pound_7",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60069.0,
+    "bedrock_identifier": "nereuscls:laceration_dash_1",
+    "display_name": "laceration_dash_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60070.0,
+    "bedrock_identifier": "nereuscls:laceration_dash_2",
+    "display_name": "laceration_dash_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60071.0,
+    "bedrock_identifier": "nereuscls:laceration_dash_3",
+    "display_name": "laceration_dash_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60072.0,
+    "bedrock_identifier": "nereuscls:laceration_dash_4",
+    "display_name": "laceration_dash_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60073.0,
+    "bedrock_identifier": "nereuscls:laceration_dash_5",
+    "display_name": "laceration_dash_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60074.0,
+    "bedrock_identifier": "nereuscls:laceration_dash_6",
+    "display_name": "laceration_dash_6",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60075.0,
+    "bedrock_identifier": "nereuscls:laceration_slash_1",
+    "display_name": "laceration_slash_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60076.0,
+    "bedrock_identifier": "nereuscls:laceration_slash_2",
+    "display_name": "laceration_slash_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60077.0,
+    "bedrock_identifier": "nereuscls:laceration_slash_3",
+    "display_name": "laceration_slash_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60078.0,
+    "bedrock_identifier": "nereuscls:laceration_slash_4",
+    "display_name": "laceration_slash_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60079.0,
+    "bedrock_identifier": "nereuscls:laceration_slash_5",
+    "display_name": "laceration_slash_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60080.0,
+    "bedrock_identifier": "nereuscls:ninja_shadow_1_1",
+    "display_name": "ninja_shadow_1_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60081.0,
+    "bedrock_identifier": "nereuscls:ninja_shadow_1_2",
+    "display_name": "ninja_shadow_1_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60082.0,
+    "bedrock_identifier": "nereuscls:ninja_shadow_1_3",
+    "display_name": "ninja_shadow_1_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60083.0,
+    "bedrock_identifier": "nereuscls:ninja_shadow_1_4",
+    "display_name": "ninja_shadow_1_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60084.0,
+    "bedrock_identifier": "nereuscls:ninja_shadow_2_1",
+    "display_name": "ninja_shadow_2_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60085.0,
+    "bedrock_identifier": "nereuscls:ninja_shadow_2_2",
+    "display_name": "ninja_shadow_2_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60086.0,
+    "bedrock_identifier": "nereuscls:ninja_shadow_2_3",
+    "display_name": "ninja_shadow_2_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60087.0,
+    "bedrock_identifier": "nereuscls:ninja_shadow_2_4",
+    "display_name": "ninja_shadow_2_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60088.0,
+    "bedrock_identifier": "nereuscls:ninja_shadow_3_1",
+    "display_name": "ninja_shadow_3_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60089.0,
+    "bedrock_identifier": "nereuscls:ninja_shadow_3_2",
+    "display_name": "ninja_shadow_3_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60090.0,
+    "bedrock_identifier": "nereuscls:ninja_shadow_3_3",
+    "display_name": "ninja_shadow_3_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60091.0,
+    "bedrock_identifier": "nereuscls:ninja_shadow_3_4",
+    "display_name": "ninja_shadow_3_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60092.0,
+    "bedrock_identifier": "nereuscls:ninja_shadow_4_1",
+    "display_name": "ninja_shadow_4_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60093.0,
+    "bedrock_identifier": "nereuscls:ninja_shadow_4_2",
+    "display_name": "ninja_shadow_4_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60094.0,
+    "bedrock_identifier": "nereuscls:ninja_shadow_4_3",
+    "display_name": "ninja_shadow_4_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60095.0,
+    "bedrock_identifier": "nereuscls:ninja_shadow_4_4",
+    "display_name": "ninja_shadow_4_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60096.0,
+    "bedrock_identifier": "nereuscls:shadow_cut_1",
+    "display_name": "shadow_cut_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60097.0,
+    "bedrock_identifier": "nereuscls:shadow_cut_2",
+    "display_name": "shadow_cut_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60098.0,
+    "bedrock_identifier": "nereuscls:shadow_cut_3",
+    "display_name": "shadow_cut_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60099.0,
+    "bedrock_identifier": "nereuscls:shadow_cut_4",
+    "display_name": "shadow_cut_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60100.0,
+    "bedrock_identifier": "nereuscls:shadow_cut_5",
+    "display_name": "shadow_cut_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60101.0,
+    "bedrock_identifier": "nereuscls:shadow_cut_6",
+    "display_name": "shadow_cut_6",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60102.0,
+    "bedrock_identifier": "nereuscls:shadow_cut_7",
+    "display_name": "shadow_cut_7",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60103.0,
+    "bedrock_identifier": "nereuscls:shadow_cut_8",
+    "display_name": "shadow_cut_8",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60104.0,
+    "bedrock_identifier": "nereuscls:shadow_slash_1",
+    "display_name": "shadow_slash_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60105.0,
+    "bedrock_identifier": "nereuscls:shadow_slash_2",
+    "display_name": "shadow_slash_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60106.0,
+    "bedrock_identifier": "nereuscls:shadow_slash_3",
+    "display_name": "shadow_slash_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60107.0,
+    "bedrock_identifier": "nereuscls:shadow_slash_4",
+    "display_name": "shadow_slash_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60108.0,
+    "bedrock_identifier": "nereuscls:shadow_slash_5",
+    "display_name": "shadow_slash_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60109.0,
+    "bedrock_identifier": "nereuscls:shadow_slash_6",
+    "display_name": "shadow_slash_6",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60110.0,
+    "bedrock_identifier": "nereuscls:shadow_slash_7",
+    "display_name": "shadow_slash_7",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60111.0,
+    "bedrock_identifier": "nereuscls:shadow_spin",
+    "display_name": "shadow_spin",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60112.0,
+    "bedrock_identifier": "nereuscls:shadow_pierce_1",
+    "display_name": "shadow_pierce_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60113.0,
+    "bedrock_identifier": "nereuscls:shadow_pierce_2",
+    "display_name": "shadow_pierce_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60114.0,
+    "bedrock_identifier": "nereuscls:shadow_pierce_3",
+    "display_name": "shadow_pierce_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60115.0,
+    "bedrock_identifier": "nereuscls:shadow_pierce_4",
+    "display_name": "shadow_pierce_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60116.0,
+    "bedrock_identifier": "nereuscls:shadow_pierce_5",
+    "display_name": "shadow_pierce_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60117.0,
+    "bedrock_identifier": "nereuscls:null_head",
+    "display_name": "null_head",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60118.0,
+    "bedrock_identifier": "nereuscls:void_arrow",
+    "display_name": "void_arrow",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60119.0,
+    "bedrock_identifier": "nereuscls:void_arrow_vertical",
+    "display_name": "void_arrow_vertical",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60120.0,
+    "bedrock_identifier": "nereuscls:void_blackhole_1",
+    "display_name": "void_blackhole_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60121.0,
+    "bedrock_identifier": "nereuscls:void_blackhole_2",
+    "display_name": "void_blackhole_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60122.0,
+    "bedrock_identifier": "nereuscls:void_blackhole_3",
+    "display_name": "void_blackhole_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60123.0,
+    "bedrock_identifier": "nereuscls:void_blackhole_4",
+    "display_name": "void_blackhole_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60124.0,
+    "bedrock_identifier": "nereuscls:void_circle_1",
+    "display_name": "void_circle_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60125.0,
+    "bedrock_identifier": "nereuscls:void_circle_2",
+    "display_name": "void_circle_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60126.0,
+    "bedrock_identifier": "nereuscls:void_circle_3",
+    "display_name": "void_circle_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60127.0,
+    "bedrock_identifier": "nereuscls:void_circle_4",
+    "display_name": "void_circle_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60128.0,
+    "bedrock_identifier": "nereuscls:void_missile",
+    "display_name": "void_missile",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60129.0,
+    "bedrock_identifier": "nereuscls:void_portal_1",
+    "display_name": "void_portal_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60130.0,
+    "bedrock_identifier": "nereuscls:void_portal_2",
+    "display_name": "void_portal_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60131.0,
+    "bedrock_identifier": "nereuscls:void_portal_3",
+    "display_name": "void_portal_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60132.0,
+    "bedrock_identifier": "nereuscls:void_portal_4",
+    "display_name": "void_portal_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60133.0,
+    "bedrock_identifier": "nereuscls:void_pulse",
+    "display_name": "void_pulse",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60134.0,
+    "bedrock_identifier": "nereuscls:arcane_bolt_1",
+    "display_name": "arcane_bolt_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60135.0,
+    "bedrock_identifier": "nereuscls:arcane_bolt_2",
+    "display_name": "arcane_bolt_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60136.0,
+    "bedrock_identifier": "nereuscls:arcane_bolt_3",
+    "display_name": "arcane_bolt_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60137.0,
+    "bedrock_identifier": "nereuscls:arcane_bolt_4",
+    "display_name": "arcane_bolt_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60138.0,
+    "bedrock_identifier": "nereuscls:arcane_bolt_5",
+    "display_name": "arcane_bolt_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60139.0,
+    "bedrock_identifier": "nereuscls:arcane_bolt_6",
+    "display_name": "arcane_bolt_6",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60140.0,
+    "bedrock_identifier": "nereuscls:arcane_bolt_7",
+    "display_name": "arcane_bolt_7",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60141.0,
+    "bedrock_identifier": "nereuscls:arcane_bolt_8",
+    "display_name": "arcane_bolt_8",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60142.0,
+    "bedrock_identifier": "nereuscls:arcane_bolt_9",
+    "display_name": "arcane_bolt_9",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60143.0,
+    "bedrock_identifier": "nereuscls:arcane_impact_1",
+    "display_name": "arcane_impact_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60144.0,
+    "bedrock_identifier": "nereuscls:arcane_impact_2",
+    "display_name": "arcane_impact_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60145.0,
+    "bedrock_identifier": "nereuscls:arcane_impact_3",
+    "display_name": "arcane_impact_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60146.0,
+    "bedrock_identifier": "nereuscls:arcane_impact_4",
+    "display_name": "arcane_impact_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60147.0,
+    "bedrock_identifier": "nereuscls:arcane_impact_5",
+    "display_name": "arcane_impact_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60148.0,
+    "bedrock_identifier": "nereuscls:arcane_impact_6",
+    "display_name": "arcane_impact_6",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60149.0,
+    "bedrock_identifier": "nereuscls:arcane_impact_7",
+    "display_name": "arcane_impact_7",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60150.0,
+    "bedrock_identifier": "nereuscls:arcane_slash_1",
+    "display_name": "arcane_slash_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60151.0,
+    "bedrock_identifier": "nereuscls:arcane_slash_2",
+    "display_name": "arcane_slash_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60152.0,
+    "bedrock_identifier": "nereuscls:arcane_slash_3",
+    "display_name": "arcane_slash_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60153.0,
+    "bedrock_identifier": "nereuscls:arcane_slash_4",
+    "display_name": "arcane_slash_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60154.0,
+    "bedrock_identifier": "nereuscls:arcane_slash_5",
+    "display_name": "arcane_slash_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60155.0,
+    "bedrock_identifier": "nereuscls:arcane_slash_6",
+    "display_name": "arcane_slash_6",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60156.0,
+    "bedrock_identifier": "nereuscls:arcane_slash_7",
+    "display_name": "arcane_slash_7",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60157.0,
+    "bedrock_identifier": "nereuscls:arcane_thunder_1",
+    "display_name": "arcane_thunder_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60158.0,
+    "bedrock_identifier": "nereuscls:arcane_thunder_2",
+    "display_name": "arcane_thunder_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60159.0,
+    "bedrock_identifier": "nereuscls:arcane_thunder_3",
+    "display_name": "arcane_thunder_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60160.0,
+    "bedrock_identifier": "nereuscls:arcane_thunder_4",
+    "display_name": "arcane_thunder_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60161.0,
+    "bedrock_identifier": "nereuscls:arcane_thunder_5",
+    "display_name": "arcane_thunder_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60162.0,
+    "bedrock_identifier": "nereuscls:arcane_thunder_6",
+    "display_name": "arcane_thunder_6",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60163.0,
+    "bedrock_identifier": "nereuscls:arcane_thunder_7",
+    "display_name": "arcane_thunder_7",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60164.0,
+    "bedrock_identifier": "nereuscls:arcane_thunder_8",
+    "display_name": "arcane_thunder_8",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60165.0,
+    "bedrock_identifier": "nereuscls:arcane_thunder_9",
+    "display_name": "arcane_thunder_9",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60166.0,
+    "bedrock_identifier": "nereuscls:blizzard_icicle",
+    "display_name": "blizzard_icicle",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60167.0,
+    "bedrock_identifier": "nereuscls:blizzard_impact_1",
+    "display_name": "blizzard_impact_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60168.0,
+    "bedrock_identifier": "nereuscls:blizzard_impact_2",
+    "display_name": "blizzard_impact_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60169.0,
+    "bedrock_identifier": "nereuscls:blizzard_impact_3",
+    "display_name": "blizzard_impact_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60170.0,
+    "bedrock_identifier": "nereuscls:blizzard_impact_4",
+    "display_name": "blizzard_impact_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60171.0,
+    "bedrock_identifier": "nereuscls:blizzard_impact_5",
+    "display_name": "blizzard_impact_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60172.0,
+    "bedrock_identifier": "nereuscls:blizzard_impact_6",
+    "display_name": "blizzard_impact_6",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60173.0,
+    "bedrock_identifier": "nereuscls:blizzard_impact_7",
+    "display_name": "blizzard_impact_7",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60174.0,
+    "bedrock_identifier": "nereuscls:meteor_storm_explosion_1",
+    "display_name": "meteor_storm_explosion_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60175.0,
+    "bedrock_identifier": "nereuscls:meteor_storm_explosion_2",
+    "display_name": "meteor_storm_explosion_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60176.0,
+    "bedrock_identifier": "nereuscls:meteor_storm_explosion_3",
+    "display_name": "meteor_storm_explosion_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60177.0,
+    "bedrock_identifier": "nereuscls:meteor_storm_explosion_4",
+    "display_name": "meteor_storm_explosion_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60178.0,
+    "bedrock_identifier": "nereuscls:meteor_storm_explosion_5",
+    "display_name": "meteor_storm_explosion_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60179.0,
+    "bedrock_identifier": "nereuscls:meteor_storm_explosion_6",
+    "display_name": "meteor_storm_explosion_6",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60180.0,
+    "bedrock_identifier": "nereuscls:void_rupture_1",
+    "display_name": "void_rupture_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60181.0,
+    "bedrock_identifier": "nereuscls:void_rupture_2",
+    "display_name": "void_rupture_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60182.0,
+    "bedrock_identifier": "nereuscls:void_rupture_3",
+    "display_name": "void_rupture_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60183.0,
+    "bedrock_identifier": "nereuscls:void_rupture_4",
+    "display_name": "void_rupture_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60184.0,
+    "bedrock_identifier": "nereuscls:void_rupture_5",
+    "display_name": "void_rupture_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60185.0,
+    "bedrock_identifier": "nereuscls:void_rupture_6",
+    "display_name": "void_rupture_6",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60186.0,
+    "bedrock_identifier": "nereuscls:blue_flame_1",
+    "display_name": "blue_flame_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60187.0,
+    "bedrock_identifier": "nereuscls:blue_flame_2",
+    "display_name": "blue_flame_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60188.0,
+    "bedrock_identifier": "nereuscls:blue_flame_3",
+    "display_name": "blue_flame_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60189.0,
+    "bedrock_identifier": "nereuscls:blue_flame_4",
+    "display_name": "blue_flame_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60190.0,
+    "bedrock_identifier": "nereuscls:blue_flame_5",
+    "display_name": "blue_flame_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60191.0,
+    "bedrock_identifier": "nereuscls:blue_flame_6",
+    "display_name": "blue_flame_6",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60192.0,
+    "bedrock_identifier": "nereuscls:blue_flame_7",
+    "display_name": "blue_flame_7",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60193.0,
+    "bedrock_identifier": "nereuscls:blue_flame_8",
+    "display_name": "blue_flame_8",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60194.0,
+    "bedrock_identifier": "nereuscls:blue_flame_slash_1",
+    "display_name": "blue_flame_slash_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60195.0,
+    "bedrock_identifier": "nereuscls:blue_flame_slash_2",
+    "display_name": "blue_flame_slash_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60196.0,
+    "bedrock_identifier": "nereuscls:blue_flame_slash_3",
+    "display_name": "blue_flame_slash_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60197.0,
+    "bedrock_identifier": "nereuscls:blue_flame_slash_4",
+    "display_name": "blue_flame_slash_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60198.0,
+    "bedrock_identifier": "nereuscls:blue_flame_slash_5",
+    "display_name": "blue_flame_slash_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60199.0,
+    "bedrock_identifier": "nereuscls:blue_flame_slash_6",
+    "display_name": "blue_flame_slash_6",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60200.0,
+    "bedrock_identifier": "nereuscls:blue_flame_slash_7",
+    "display_name": "blue_flame_slash_7",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60201.0,
+    "bedrock_identifier": "nereuscls:blue_flame_charge_spin",
+    "display_name": "blue_flame_charge_spin",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60202.0,
+    "bedrock_identifier": "nereuscls:blue_flame_shuriken_blade",
+    "display_name": "blue_flame_shuriken_blade",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60203.0,
+    "bedrock_identifier": "nereuscls:blue_flame_mark",
+    "display_name": "blue_flame_mark",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60204.0,
+    "bedrock_identifier": "nereuscls:dragon_circle_1",
+    "display_name": "dragon_circle_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60205.0,
+    "bedrock_identifier": "nereuscls:dragon_circle_2",
+    "display_name": "dragon_circle_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60206.0,
+    "bedrock_identifier": "nereuscls:dragon_circle_3",
+    "display_name": "dragon_circle_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60207.0,
+    "bedrock_identifier": "nereuscls:dragon_circle_4",
+    "display_name": "dragon_circle_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60208.0,
+    "bedrock_identifier": "nereuscls:dragon_circle_5",
+    "display_name": "dragon_circle_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60209.0,
+    "bedrock_identifier": "nereuscls:dragon_dash_charge_1",
+    "display_name": "dragon_dash_charge_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60210.0,
+    "bedrock_identifier": "nereuscls:dragon_dash_charge_2",
+    "display_name": "dragon_dash_charge_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60211.0,
+    "bedrock_identifier": "nereuscls:dragon_dash_charge_3",
+    "display_name": "dragon_dash_charge_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60212.0,
+    "bedrock_identifier": "nereuscls:dragon_dash_charge_4",
+    "display_name": "dragon_dash_charge_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60213.0,
+    "bedrock_identifier": "nereuscls:dragon_dash_pierce_1",
+    "display_name": "dragon_dash_pierce_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60214.0,
+    "bedrock_identifier": "nereuscls:dragon_dash_pierce_2",
+    "display_name": "dragon_dash_pierce_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60215.0,
+    "bedrock_identifier": "nereuscls:dragon_dash_pierce_3",
+    "display_name": "dragon_dash_pierce_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60216.0,
+    "bedrock_identifier": "nereuscls:dragon_dash_pierce_4",
+    "display_name": "dragon_dash_pierce_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60217.0,
+    "bedrock_identifier": "nereuscls:dragon_dash_pierce_5",
+    "display_name": "dragon_dash_pierce_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60218.0,
+    "bedrock_identifier": "nereuscls:dragon_ground_slash",
+    "display_name": "dragon_ground_slash",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60219.0,
+    "bedrock_identifier": "nereuscls:dragon_slash_1",
+    "display_name": "dragon_slash_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60220.0,
+    "bedrock_identifier": "nereuscls:dragon_slash_2",
+    "display_name": "dragon_slash_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60221.0,
+    "bedrock_identifier": "nereuscls:dragon_slash_3",
+    "display_name": "dragon_slash_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60222.0,
+    "bedrock_identifier": "nereuscls:dragon_slash_4",
+    "display_name": "dragon_slash_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60223.0,
+    "bedrock_identifier": "nereuscls:dragon_slash_5",
+    "display_name": "dragon_slash_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60224.0,
+    "bedrock_identifier": "nereuscls:dragon_slash_6",
+    "display_name": "dragon_slash_6",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60225.0,
+    "bedrock_identifier": "nereuscls:dragon_smash_rupture_1",
+    "display_name": "dragon_smash_rupture_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60226.0,
+    "bedrock_identifier": "nereuscls:dragon_smash_rupture_2",
+    "display_name": "dragon_smash_rupture_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60227.0,
+    "bedrock_identifier": "nereuscls:dragon_smash_rupture_3",
+    "display_name": "dragon_smash_rupture_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60228.0,
+    "bedrock_identifier": "nereuscls:dragon_smash_rupture_4",
+    "display_name": "dragon_smash_rupture_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60229.0,
+    "bedrock_identifier": "nereuscls:dragon_smash_rupture_5",
+    "display_name": "dragon_smash_rupture_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60230.0,
+    "bedrock_identifier": "nereuscls:dragon_smash_rupture_6",
+    "display_name": "dragon_smash_rupture_6",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60231.0,
+    "bedrock_identifier": "nereuscls:dragon_spin",
+    "display_name": "dragon_spin",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60232.0,
+    "bedrock_identifier": "nereuscls:dragon_spin_1",
+    "display_name": "dragon_spin_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60233.0,
+    "bedrock_identifier": "nereuscls:dragon_spin_2",
+    "display_name": "dragon_spin_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60234.0,
+    "bedrock_identifier": "nereuscls:dragon_spin_3",
+    "display_name": "dragon_spin_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60235.0,
+    "bedrock_identifier": "nereuscls:dragon_warrior_spear_spirit_1",
+    "display_name": "dragon_warrior_spear_spirit_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60236.0,
+    "bedrock_identifier": "nereuscls:dragon_warrior_spear_spirit_2",
+    "display_name": "dragon_warrior_spear_spirit_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60237.0,
+    "bedrock_identifier": "nereuscls:dragon_warrior_spear_spirit_3",
+    "display_name": "dragon_warrior_spear_spirit_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60238.0,
+    "bedrock_identifier": "nereuscls:dragon_warrior_spear_spirit_4",
+    "display_name": "dragon_warrior_spear_spirit_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60239.0,
+    "bedrock_identifier": "nereuscls:dragon_wings_1",
+    "display_name": "dragon_wings_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60240.0,
+    "bedrock_identifier": "nereuscls:dragon_wings_2",
+    "display_name": "dragon_wings_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60241.0,
+    "bedrock_identifier": "nereuscls:dragon_wings_3",
+    "display_name": "dragon_wings_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60242.0,
+    "bedrock_identifier": "nereuscls:dragon_wings_4",
+    "display_name": "dragon_wings_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60243.0,
+    "bedrock_identifier": "nereuscls:dragon_wings_5",
+    "display_name": "dragon_wings_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60244.0,
+    "bedrock_identifier": "nereuscls:dragon_wings_6",
+    "display_name": "dragon_wings_6",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60245.0,
+    "bedrock_identifier": "nereuscls:dragon_wings_7",
+    "display_name": "dragon_wings_7",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60246.0,
+    "bedrock_identifier": "nereuscls:dragon_wings_8",
+    "display_name": "dragon_wings_8",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60247.0,
+    "bedrock_identifier": "nereuscls:dragon_wings_9",
+    "display_name": "dragon_wings_9",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60248.0,
+    "bedrock_identifier": "nereuscls:dragon_wings_a",
+    "display_name": "dragon_wings_a",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60249.0,
+    "bedrock_identifier": "nereuscls:dragon_slash_2_opp",
+    "display_name": "dragon_slash_2_opp",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60250.0,
+    "bedrock_identifier": "nereuscls:assassin_dagger_a",
+    "display_name": "assassin_dagger_a",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60251.0,
+    "bedrock_identifier": "nereuscls:assassin_dash_1",
+    "display_name": "assassin_dash_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60252.0,
+    "bedrock_identifier": "nereuscls:assassin_dash_2",
+    "display_name": "assassin_dash_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60253.0,
+    "bedrock_identifier": "nereuscls:assassin_dash_3",
+    "display_name": "assassin_dash_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60254.0,
+    "bedrock_identifier": "nereuscls:assassin_dash_4",
+    "display_name": "assassin_dash_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60255.0,
+    "bedrock_identifier": "nereuscls:assassin_impact_1",
+    "display_name": "assassin_impact_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60256.0,
+    "bedrock_identifier": "nereuscls:assassin_impact_2",
+    "display_name": "assassin_impact_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60257.0,
+    "bedrock_identifier": "nereuscls:assassin_impact_3",
+    "display_name": "assassin_impact_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60258.0,
+    "bedrock_identifier": "nereuscls:assassin_impact_4",
+    "display_name": "assassin_impact_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60259.0,
+    "bedrock_identifier": "nereuscls:assassin_slash_1",
+    "display_name": "assassin_slash_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60260.0,
+    "bedrock_identifier": "nereuscls:assassin_slash_2",
+    "display_name": "assassin_slash_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60261.0,
+    "bedrock_identifier": "nereuscls:assassin_slash_3",
+    "display_name": "assassin_slash_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60262.0,
+    "bedrock_identifier": "nereuscls:assassin_slash_4",
+    "display_name": "assassin_slash_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60263.0,
+    "bedrock_identifier": "nereuscls:assassin_slash_5",
+    "display_name": "assassin_slash_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60264.0,
+    "bedrock_identifier": "nereuscls:assassin_slash_6",
+    "display_name": "assassin_slash_6",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60265.0,
+    "bedrock_identifier": "nereuscls:assassin_spin_1",
+    "display_name": "assassin_spin_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60266.0,
+    "bedrock_identifier": "nereuscls:assassin_spin_2",
+    "display_name": "assassin_spin_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60267.0,
+    "bedrock_identifier": "nereuscls:assassin_spin_3",
+    "display_name": "assassin_spin_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60268.0,
+    "bedrock_identifier": "nereuscls:assassin_spin_4",
+    "display_name": "assassin_spin_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60269.0,
+    "bedrock_identifier": "nereuscls:assassin_spin_5",
+    "display_name": "assassin_spin_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60270.0,
+    "bedrock_identifier": "nereuscls:assassin_spin_6",
+    "display_name": "assassin_spin_6",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60271.0,
+    "bedrock_identifier": "nereuscls:assassin_x_1",
+    "display_name": "assassin_x_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60272.0,
+    "bedrock_identifier": "nereuscls:assassin_x_2",
+    "display_name": "assassin_x_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60273.0,
+    "bedrock_identifier": "nereuscls:assassin_x_3",
+    "display_name": "assassin_x_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60274.0,
+    "bedrock_identifier": "nereuscls:assassin_x_4",
+    "display_name": "assassin_x_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60275.0,
+    "bedrock_identifier": "nereuscls:assassin_x_5",
+    "display_name": "assassin_x_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60276.0,
+    "bedrock_identifier": "nereuscls:flamos_head",
+    "display_name": "flamos_head",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60277.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_blaze_leap_1",
+    "display_name": "doombringer_axe_blaze_leap_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60278.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_blaze_leap_2",
+    "display_name": "doombringer_axe_blaze_leap_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60279.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_blaze_leap_3",
+    "display_name": "doombringer_axe_blaze_leap_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60280.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_blaze_leap_4",
+    "display_name": "doombringer_axe_blaze_leap_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60281.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_blaze_leap_5",
+    "display_name": "doombringer_axe_blaze_leap_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60282.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_blaze_leap_6",
+    "display_name": "doombringer_axe_blaze_leap_6",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60283.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_blaze_leap_7",
+    "display_name": "doombringer_axe_blaze_leap_7",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60284.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_flame_slash_1",
+    "display_name": "doombringer_axe_flame_slash_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60285.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_flame_slash_2",
+    "display_name": "doombringer_axe_flame_slash_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60286.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_flame_slash_3",
+    "display_name": "doombringer_axe_flame_slash_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60287.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_flame_slash_4",
+    "display_name": "doombringer_axe_flame_slash_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60288.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_flame_slash_5",
+    "display_name": "doombringer_axe_flame_slash_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60289.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_flame_slash_6",
+    "display_name": "doombringer_axe_flame_slash_6",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60290.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_flame_slash_7",
+    "display_name": "doombringer_axe_flame_slash_7",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60291.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_hellfire_slash_1",
+    "display_name": "doombringer_axe_hellfire_slash_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60292.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_hellfire_slash_2",
+    "display_name": "doombringer_axe_hellfire_slash_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60293.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_hellfire_slash_3",
+    "display_name": "doombringer_axe_hellfire_slash_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60294.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_hellfire_slash_4",
+    "display_name": "doombringer_axe_hellfire_slash_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60295.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_hellfire_slash_5",
+    "display_name": "doombringer_axe_hellfire_slash_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60296.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_hellfire_slash_6",
+    "display_name": "doombringer_axe_hellfire_slash_6",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60297.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_hellfire_slash_7",
+    "display_name": "doombringer_axe_hellfire_slash_7",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60298.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_inferno_orb",
+    "display_name": "doombringer_axe_inferno_orb",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60299.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_inferno_wheel_1",
+    "display_name": "doombringer_axe_inferno_wheel_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60300.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_inferno_wheel_2",
+    "display_name": "doombringer_axe_inferno_wheel_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60301.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_inferno_wheel_3",
+    "display_name": "doombringer_axe_inferno_wheel_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60302.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_inferno_wheel_4",
+    "display_name": "doombringer_axe_inferno_wheel_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60303.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_inferno_wheel_5",
+    "display_name": "doombringer_axe_inferno_wheel_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60304.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_inferno_wheel_6",
+    "display_name": "doombringer_axe_inferno_wheel_6",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60305.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_inferno_wheel_7",
+    "display_name": "doombringer_axe_inferno_wheel_7",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60306.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_inferno_wheel_8",
+    "display_name": "doombringer_axe_inferno_wheel_8",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60307.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_inferno_wheel_9",
+    "display_name": "doombringer_axe_inferno_wheel_9",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60308.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_inferno_wheel_10",
+    "display_name": "doombringer_axe_inferno_wheel_10",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60309.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_charge_1",
+    "display_name": "doombringer_axe_charge_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60310.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_charge_2",
+    "display_name": "doombringer_axe_charge_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60311.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_charge_3",
+    "display_name": "doombringer_axe_charge_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60312.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_charge_4",
+    "display_name": "doombringer_axe_charge_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60313.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_charge_5",
+    "display_name": "doombringer_axe_charge_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60314.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_warrior_slash_1",
+    "display_name": "doombringer_axe_warrior_slash_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60315.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_warrior_slash_2",
+    "display_name": "doombringer_axe_warrior_slash_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60316.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_warrior_slash_3",
+    "display_name": "doombringer_axe_warrior_slash_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60317.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_warrior_slash_4",
+    "display_name": "doombringer_axe_warrior_slash_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60318.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_warrior_slash_5",
+    "display_name": "doombringer_axe_warrior_slash_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60319.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_warrior_slash_6",
+    "display_name": "doombringer_axe_warrior_slash_6",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60320.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_warrior_slash_7",
+    "display_name": "doombringer_axe_warrior_slash_7",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60321.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_whirlwind_1",
+    "display_name": "doombringer_axe_whirlwind_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60322.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_whirlwind_2",
+    "display_name": "doombringer_axe_whirlwind_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60323.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_whirlwind_3",
+    "display_name": "doombringer_axe_whirlwind_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60324.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_whirlwind_4",
+    "display_name": "doombringer_axe_whirlwind_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60325.0,
+    "bedrock_identifier": "nereuscls:doombringer_axe_whirlwind_5",
+    "display_name": "doombringer_axe_whirlwind_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60326.0,
+    "bedrock_identifier": "nereuscls:divine_immolation_1",
+    "display_name": "divine_immolation_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60327.0,
+    "bedrock_identifier": "nereuscls:divine_immolation_2",
+    "display_name": "divine_immolation_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60328.0,
+    "bedrock_identifier": "nereuscls:divine_immolation_3",
+    "display_name": "divine_immolation_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60329.0,
+    "bedrock_identifier": "nereuscls:divine_immolation_4",
+    "display_name": "divine_immolation_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60330.0,
+    "bedrock_identifier": "nereuscls:divine_immolation_5",
+    "display_name": "divine_immolation_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60331.0,
+    "bedrock_identifier": "nereuscls:divine_immolation_6",
+    "display_name": "divine_immolation_6",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60332.0,
+    "bedrock_identifier": "nereuscls:divine_impact_1",
+    "display_name": "divine_impact_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60333.0,
+    "bedrock_identifier": "nereuscls:divine_impact_2",
+    "display_name": "divine_impact_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60334.0,
+    "bedrock_identifier": "nereuscls:divine_impact_3",
+    "display_name": "divine_impact_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60335.0,
+    "bedrock_identifier": "nereuscls:divine_impact_4",
+    "display_name": "divine_impact_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60336.0,
+    "bedrock_identifier": "nereuscls:divine_impact_5",
+    "display_name": "divine_impact_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60337.0,
+    "bedrock_identifier": "nereuscls:divine_impact_6",
+    "display_name": "divine_impact_6",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60338.0,
+    "bedrock_identifier": "nereuscls:divine_impact_7",
+    "display_name": "divine_impact_7",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60339.0,
+    "bedrock_identifier": "nereuscls:divine_impact_8",
+    "display_name": "divine_impact_8",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60340.0,
+    "bedrock_identifier": "nereuscls:luminous_wave_1",
+    "display_name": "luminous_wave_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60341.0,
+    "bedrock_identifier": "nereuscls:luminous_wave_2",
+    "display_name": "luminous_wave_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60342.0,
+    "bedrock_identifier": "nereuscls:luminous_wave_3",
+    "display_name": "luminous_wave_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60343.0,
+    "bedrock_identifier": "nereuscls:luminous_wave_4",
+    "display_name": "luminous_wave_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60344.0,
+    "bedrock_identifier": "nereuscls:luminous_wave_5",
+    "display_name": "luminous_wave_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60345.0,
+    "bedrock_identifier": "nereuscls:luminous_wave_6",
+    "display_name": "luminous_wave_6",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60346.0,
+    "bedrock_identifier": "nereuscls:luminous_wave_7",
+    "display_name": "luminous_wave_7",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60347.0,
+    "bedrock_identifier": "nereuscls:luminous_wave_8",
+    "display_name": "luminous_wave_8",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60348.0,
+    "bedrock_identifier": "nereuscls:luminous_wave_9",
+    "display_name": "luminous_wave_9",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60349.0,
+    "bedrock_identifier": "nereuscls:tear_impact_1",
+    "display_name": "tear_impact_1",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60350.0,
+    "bedrock_identifier": "nereuscls:tear_impact_2",
+    "display_name": "tear_impact_2",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60351.0,
+    "bedrock_identifier": "nereuscls:tear_impact_3",
+    "display_name": "tear_impact_3",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60352.0,
+    "bedrock_identifier": "nereuscls:tear_impact_4",
+    "display_name": "tear_impact_4",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60353.0,
+    "bedrock_identifier": "nereuscls:tear_impact_5",
+    "display_name": "tear_impact_5",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60354.0,
+    "bedrock_identifier": "nereuscls:tear_impact_6",
+    "display_name": "tear_impact_6",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60355.0,
+    "bedrock_identifier": "nereuscls:tear_impact_7",
+    "display_name": "tear_impact_7",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60356.0,
+    "bedrock_identifier": "nereuscls:tear_impact_8",
+    "display_name": "tear_impact_8",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60374.0,
+    "bedrock_identifier": "nereuscls:null_head",
+    "display_name": "Null Mask",
+    "bedrock_options": {
+     "icon": "nereus_cls_null_head",
+     "allow_offhand": true
+    }
+   }
+  ],
+  "minecraft:stick": [
+   {
+    "type": "legacy",
+    "custom_model_data": 60357.0,
+    "bedrock_identifier": "nereuscls:archmage_staff",
+    "display_name": "Staff of Archmage",
+    "bedrock_options": {
+     "icon": "nereus_cls_archmage_staff",
+     "allow_offhand": true
+    }
+   }
+  ],
+  "minecraft:stone_sword": [
+   {
+    "type": "legacy",
+    "custom_model_data": 60358.0,
+    "bedrock_identifier": "nereuscls:archmage_staff_shiny",
+    "display_name": "Shiny Staff of Archmage",
+    "bedrock_options": {
+     "icon": "nereus_cls_archmage_staff_shiny",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60359.0,
+    "bedrock_identifier": "nereuscls:assassin_blade",
+    "display_name": "Assassin Blade",
+    "bedrock_options": {
+     "icon": "nereus_cls_assassin_blade",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60360.0,
+    "bedrock_identifier": "nereuscls:assassin_blade_shiny",
+    "display_name": "Shiny Assassin Blade",
+    "bedrock_options": {
+     "icon": "nereus_cls_assassin_blade_shiny",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60362.0,
+    "bedrock_identifier": "nereuscls:cleric_mace_shiny",
+    "display_name": "Shiny Mace of Cleric",
+    "bedrock_options": {
+     "icon": "nereus_cls_cleric_mace_shiny",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60363.0,
+    "bedrock_identifier": "nereuscls:dragon_warrior_spear",
+    "display_name": "Spear of Dragon Warrior",
+    "bedrock_options": {
+     "icon": "nereus_cls_dragon_warrior_spear",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60364.0,
+    "bedrock_identifier": "nereuscls:dragon_warrior_spear_shiny",
+    "display_name": "Shiny Spear of Dragon Warrior",
+    "bedrock_options": {
+     "icon": "nereus_cls_dragon_warrior_spear_shiny",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60371.0,
+    "bedrock_identifier": "nereuscls:ninja_blade",
+    "display_name": "Blade of Ninja Samurai",
+    "bedrock_options": {
+     "icon": "nereus_cls_ninja_blade",
+     "allow_offhand": true
+    }
+   }
+  ],
+  "minecraft:diamond_axe": [
+   {
+    "type": "legacy",
+    "custom_model_data": 60361.0,
+    "bedrock_identifier": "nereuscls:cleric_mace",
+    "display_name": "Mace of Cleric",
+    "bedrock_options": {
+     "icon": "nereus_cls_cleric_mace",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60365.0,
+    "bedrock_identifier": "nereuscls:flamos_scythe",
+    "display_name": "Sin of Wrath",
+    "bedrock_options": {
+     "icon": "nereus_cls_flamos_scythe",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60366.0,
+    "bedrock_identifier": "nereuscls:flamos_scythe_shiny",
+    "display_name": "Shiny Scythe of Flamos",
+    "bedrock_options": {
+     "icon": "nereus_cls_flamos_scythe_shiny",
+     "allow_offhand": true
+    }
+   }
+  ],
+  "minecraft:diamond_sword": [
+   {
+    "type": "legacy",
+    "custom_model_data": 60367.0,
+    "bedrock_identifier": "nereuscls:sin_of_gluttony_evo",
+    "display_name": "Sin of Gluttony",
+    "bedrock_options": {
+     "icon": "nereus_cls_sin_of_gluttony_evo",
+     "allow_offhand": true
+    }
+   }
+  ],
+  "minecraft:diamond_hoe": [
+   {
+    "type": "legacy",
+    "custom_model_data": 60368.0,
+    "bedrock_identifier": "nereuscls:scythe_reaper",
+    "display_name": "Scythe of Reaper",
+    "bedrock_options": {
+     "icon": "nereus_cls_scythe_reaper",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60369.0,
+    "bedrock_identifier": "nereuscls:scythe_reaper_shiny",
+    "display_name": "Shiny Scythe of Reaper",
+    "bedrock_options": {
+     "icon": "nereus_cls_scythe_reaper_shiny",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60370.0,
+    "bedrock_identifier": "nereuscls:scythe_reaper_evo",
+    "display_name": "Avarice Scythe",
+    "bedrock_options": {
+     "icon": "nereus_cls_scythe_reaper_evo",
+     "allow_offhand": true
+    }
+   }
+  ],
+  "minecraft:bow": [
+   {
+    "type": "legacy",
+    "custom_model_data": 60372.0,
+    "bedrock_identifier": "nereuscls:null_bow",
+    "display_name": "Bow of Null",
+    "bedrock_options": {
+     "icon": "nereus_cls_null_bow",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60373.0,
+    "bedrock_identifier": "nereuscls:null_bow_shiny",
+    "display_name": "Shiny Bow of Null",
+    "bedrock_options": {
+     "icon": "nereus_cls_null_bow_shiny",
+     "allow_offhand": true
+    }
+   }
+  ],
+  "minecraft:coal": [
+   {
+    "type": "legacy",
+    "custom_model_data": 60375.0,
+    "bedrock_identifier": "nereuscls:icon_arcane_devastation",
+    "display_name": "Arcane Devastation",
+    "bedrock_options": {
+     "icon": "nereus_cls_icon_arcane_devastation",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60376.0,
+    "bedrock_identifier": "nereuscls:icon_arcane_shield",
+    "display_name": "Arcane Shield",
+    "bedrock_options": {
+     "icon": "nereus_cls_icon_arcane_shield",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60377.0,
+    "bedrock_identifier": "nereuscls:icon_arcane_slash",
+    "display_name": "Arcane Slash",
+    "bedrock_options": {
+     "icon": "nereus_cls_icon_arcane_slash",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60378.0,
+    "bedrock_identifier": "nereuscls:icon_blizzard",
+    "display_name": "Blizzard",
+    "bedrock_options": {
+     "icon": "nereus_cls_icon_blizzard",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60379.0,
+    "bedrock_identifier": "nereuscls:icon_chains_of_void",
+    "display_name": "Chains Of Void",
+    "bedrock_options": {
+     "icon": "nereus_cls_icon_chains_of_void",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60380.0,
+    "bedrock_identifier": "nereuscls:icon_cloak_of_hastur",
+    "display_name": "Cloak Of Hastur",
+    "bedrock_options": {
+     "icon": "nereus_cls_icon_cloak_of_hastur",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60381.0,
+    "bedrock_identifier": "nereuscls:icon_meteor_storm",
+    "display_name": "Meteor Storm",
+    "bedrock_options": {
+     "icon": "nereus_cls_icon_meteor_storm",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60382.0,
+    "bedrock_identifier": "nereuscls:icon_assassins_blade",
+    "display_name": "Assassins Blade",
+    "bedrock_options": {
+     "icon": "nereus_cls_icon_assassins_blade",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60383.0,
+    "bedrock_identifier": "nereuscls:icon_blade_dance",
+    "display_name": "Blade Dance",
+    "bedrock_options": {
+     "icon": "nereus_cls_icon_blade_dance",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60384.0,
+    "bedrock_identifier": "nereuscls:icon_blade_slash",
+    "display_name": "Blade Slash",
+    "bedrock_options": {
+     "icon": "nereus_cls_icon_blade_slash",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60385.0,
+    "bedrock_identifier": "nereuscls:icon_dagger_throw",
+    "display_name": "Dagger Throw",
+    "bedrock_options": {
+     "icon": "nereus_cls_icon_dagger_throw",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60386.0,
+    "bedrock_identifier": "nereuscls:icon_dash",
+    "display_name": "Dash",
+    "bedrock_options": {
+     "icon": "nereus_cls_icon_dash",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60387.0,
+    "bedrock_identifier": "nereuscls:icon_shadow_walk",
+    "display_name": "Shadow Walk",
+    "bedrock_options": {
+     "icon": "nereus_cls_icon_shadow_walk",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60388.0,
+    "bedrock_identifier": "nereuscls:icon_blessing_of_the_white_lantern",
+    "display_name": "Blessing Of The White Lantern",
+    "bedrock_options": {
+     "icon": "nereus_cls_icon_blessing_of_the_white_lantern",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60389.0,
+    "bedrock_identifier": "nereuscls:icon_dawnbringer_angel",
+    "display_name": "Dawnbringer Angel",
+    "bedrock_options": {
+     "icon": "nereus_cls_icon_dawnbringer_angel",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60390.0,
+    "bedrock_identifier": "nereuscls:icon_divine_cross",
+    "display_name": "Divine Cross",
+    "bedrock_options": {
+     "icon": "nereus_cls_icon_divine_cross",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60391.0,
+    "bedrock_identifier": "nereuscls:icon_divine_immolation",
+    "display_name": "Divine Immolation",
+    "bedrock_options": {
+     "icon": "nereus_cls_icon_divine_immolation",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60392.0,
+    "bedrock_identifier": "nereuscls:icon_divine_punishment",
+    "display_name": "Divine Punishment",
+    "bedrock_options": {
+     "icon": "nereus_cls_icon_divine_punishment",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60393.0,
+    "bedrock_identifier": "nereuscls:icon_luminous_wave",
+    "display_name": "Luminous Wave",
+    "bedrock_options": {
+     "icon": "nereus_cls_icon_luminous_wave",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60394.0,
+    "bedrock_identifier": "nereuscls:icon_tears_of_god",
+    "display_name": "Tears Of God",
+    "bedrock_options": {
+     "icon": "nereus_cls_icon_tears_of_god",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60395.0,
+    "bedrock_identifier": "nereuscls:icon_dragon_breath",
+    "display_name": "Dragon Breath",
+    "bedrock_options": {
+     "icon": "nereus_cls_icon_dragon_breath",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60396.0,
+    "bedrock_identifier": "nereuscls:icon_dragon_dash",
+    "display_name": "Dragon Dash",
+    "bedrock_options": {
+     "icon": "nereus_cls_icon_dragon_dash",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60397.0,
+    "bedrock_identifier": "nereuscls:icon_dragon_skin",
+    "display_name": "Dragon Skin",
+    "bedrock_options": {
+     "icon": "nereus_cls_icon_dragon_skin",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60398.0,
+    "bedrock_identifier": "nereuscls:icon_dragon_slash",
+    "display_name": "Dragon Slash",
+    "bedrock_options": {
+     "icon": "nereus_cls_icon_dragon_slash",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60399.0,
+    "bedrock_identifier": "nereuscls:icon_dragon_zone",
+    "display_name": "Dragon Zone",
+    "bedrock_options": {
+     "icon": "nereus_cls_icon_dragon_zone",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60400.0,
+    "bedrock_identifier": "nereuscls:icon_dragonborn",
+    "display_name": "Dragonborn",
+    "bedrock_options": {
+     "icon": "nereus_cls_icon_dragonborn",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60401.0,
+    "bedrock_identifier": "nereuscls:icon_death_spin",
+    "display_name": "Death Spin",
+    "bedrock_options": {
+     "icon": "nereus_cls_icon_death_spin",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60402.0,
+    "bedrock_identifier": "nereuscls:icon_god_of_death",
+    "display_name": "God Of Death",
+    "bedrock_options": {
+     "icon": "nereus_cls_icon_god_of_death",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60403.0,
+    "bedrock_identifier": "nereuscls:icon_reaping_claw",
+    "display_name": "Reaping Claw",
+    "bedrock_options": {
+     "icon": "nereus_cls_icon_reaping_claw",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60404.0,
+    "bedrock_identifier": "nereuscls:icon_soul_collector",
+    "display_name": "Soul Collector",
+    "bedrock_options": {
+     "icon": "nereus_cls_icon_soul_collector",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60405.0,
+    "bedrock_identifier": "nereuscls:icon_soul_scythe",
+    "display_name": "Soul Scythe",
+    "bedrock_options": {
+     "icon": "nereus_cls_icon_soul_scythe",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60406.0,
+    "bedrock_identifier": "nereuscls:icon_soul_slice",
+    "display_name": "Soul Slice",
+    "bedrock_options": {
+     "icon": "nereus_cls_icon_soul_slice",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60407.0,
+    "bedrock_identifier": "nereuscls:icon_surge",
+    "display_name": "Surge",
+    "bedrock_options": {
+     "icon": "nereus_cls_icon_surge",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60408.0,
+    "bedrock_identifier": "nereuscls:icon_blackhole_shot",
+    "display_name": "Blackhole Shot",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60409.0,
+    "bedrock_identifier": "nereuscls:icon_gravitational_boost",
+    "display_name": "Gravitational Boost",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60410.0,
+    "bedrock_identifier": "nereuscls:icon_pulse_mode",
+    "display_name": "Pulse Mode",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60411.0,
+    "bedrock_identifier": "nereuscls:icon_retreat",
+    "display_name": "Retreat",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60412.0,
+    "bedrock_identifier": "nereuscls:icon_void_arrow",
+    "display_name": "Void Arrow",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 60413.0,
+    "bedrock_identifier": "nereuscls:icon_void_rain",
+    "display_name": "Void Rain",
+    "bedrock_options": {
+     "icon": "nereus_cls_blank",
+     "allow_offhand": true
+    }
+   }
+  ]
+ }
+}

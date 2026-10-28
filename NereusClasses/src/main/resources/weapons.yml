@@ -1,0 +1,245 @@
+# NereusWeapons - senjata Dark Fantasy dengan skill (Java + Bedrock) by naook1/adityap
+# Permission per senjata: nereusweapons.use.<id>  (semua: nereusweapons.all)
+# Skill: klik kanan = primary, sneak + klik kanan = secondary. Semua angka bisa diubah.
+# type: BEAM NOVA DASH BLINK PULL LEAP LINE RITUAL SWARM GLIDE
+settings:
+  view-distance: 48
+messages:
+  prefix: '&c[Weapons] &r'
+  locked: '&cRank kamu belum bisa memakai senjata ini.'
+  cooldown: '&7{skill} &8| &cisi ulang {sec}s'
+  claimed: '&aKamu mendapat &f{name}&a.'
+  have: '&eKamu sudah punya senjata itu.'
+menu:
+  title: '&8Dark Fantasy Weapons'
+weapons:
+  cemetery_witch_broom:
+    name: '&5Cemetery Witch Broom'
+    material: NETHERITE_SWORD
+    cmd: 7101
+    damage: 6
+    attack-speed: 1.6
+    permission: nereusweapons.use.cemetery_witch_broom
+    lore: []
+    skills:
+      primary:
+        type: GLIDE
+        name: Broom Flight
+        cooldown: 12
+        damage: 0
+        power: 1.1
+        particle: CLOUD
+        color: '#8E44AD'
+        desc: Terbang meluncur ke depan dan melayang pelan.
+      secondary:
+        type: NOVA
+        name: Hex Burst
+        cooldown: 10
+        damage: 5
+        radius: 4.5
+        effect: WEAKNESS
+        effect_seconds: 6
+        particle: WITCH
+        color: '#9B59B6'
+        desc: 'Ledakan kutukan: melukai dan melemahkan musuh di sekitar.'
+  chained_monstruosity_sword:
+    name: '&7Chained Monstruosity Sword'
+    material: NETHERITE_SWORD
+    cmd: 7102
+    damage: 9
+    attack-speed: 1.4
+    permission: nereusweapons.use.chained_monstruosity_sword
+    lore: []
+    skills:
+      primary:
+        type: PULL
+        name: Chain Pull
+        cooldown: 8
+        damage: 6
+        range: 15
+        particle: CRIT
+        color: '#95A5A6'
+        desc: Rantai menarik target ke arahmu.
+      secondary:
+        type: LEAP
+        name: Chain Slam
+        cooldown: 14
+        damage: 9
+        radius: 4.0
+        particle: CRIT
+        color: '#7F8C8D'
+        desc: Melompat lalu menghantam tanah.
+  crow_lord_staff:
+    name: '&8Crow Lord Staff'
+    material: BLAZE_ROD
+    cmd: 7103
+    damage: 5
+    attack-speed: 1.6
+    permission: nereusweapons.use.crow_lord_staff
+    lore: []
+    skills:
+      primary:
+        type: SWARM
+        name: Crow Swarm
+        cooldown: 8
+        damage: 8
+        range: 10
+        angle: 40
+        effect: BLINDNESS
+        effect_seconds: 3
+        particle: SQUID_INK
+        color: '#2C3E50'
+        desc: Kawanan gagak menyerang musuh di depanmu dan membutakan mereka.
+      secondary:
+        type: BLINK
+        name: Raven Step
+        cooldown: 10
+        damage: 4
+        range: 8
+        radius: 3.0
+        particle: SMOKE
+        color: '#34495E'
+        desc: Berpindah cepat ke depan dalam kepulan bulu.
+  noir_elegance_staff:
+    name: '&fNoir Elegance Staff'
+    material: BLAZE_ROD
+    cmd: 7104
+    damage: 5
+    attack-speed: 1.6
+    permission: nereusweapons.use.noir_elegance_staff
+    lore: []
+    skills:
+      primary:
+        type: BEAM
+        name: Noir Bolt
+        cooldown: 6
+        damage: 9
+        range: 26
+        knockback: 0.6
+        particle: DUST
+        color: '#6C3483'
+        desc: Sinar bayangan lurus ke target.
+      secondary:
+        type: NOVA
+        name: Elegant Waltz
+        cooldown: 11
+        damage: 6
+        radius: 5.0
+        effect: SLOWNESS
+        effect_seconds: 4
+        particle: DUST
+        color: '#D2B4DE'
+        desc: Gelombang anggun yang memperlambat musuh.
+  archmage_staff:
+    name: '&bArchmage Staff'
+    material: BLAZE_ROD
+    cmd: 7105
+    damage: 5
+    attack-speed: 1.6
+    permission: nereusweapons.use.archmage_staff
+    lore: []
+    skills:
+      primary:
+        type: BEAM
+        name: Arcane Blast
+        cooldown: 6
+        damage: 12
+        range: 30
+        knockback: 1.0
+        particle: END_ROD
+        color: '#5DADE2'
+        desc: Tembakan arcane jarak jauh.
+      secondary:
+        type: NOVA
+        name: Mana Surge
+        cooldown: 14
+        damage: 8
+        radius: 6.0
+        knockback: 1.2
+        particle: ENCHANT
+        color: '#3498DB'
+        desc: Ledakan mana yang mendorong semua musuh.
+  ritualistic_staff:
+    name: '&4Ritualistic Staff'
+    material: BLAZE_ROD
+    cmd: 7106
+    damage: 5
+    attack-speed: 1.6
+    permission: nereusweapons.use.ritualistic_staff
+    lore: []
+    skills:
+      primary:
+        type: RITUAL
+        name: Blood Ritual
+        cooldown: 15
+        damage: 8
+        radius: 5.0
+        heal_percent: 30
+        particle: DUST
+        color: '#B03A2E'
+        desc: Lingkaran ritual melukai musuh dan menyembuhkanmu.
+      secondary:
+        type: PULL
+        name: Soul Grasp
+        cooldown: 9
+        damage: 5
+        range: 12
+        particle: SOUL
+        color: '#85C1E9'
+        desc: Menarik jiwa target ke arahmu.
+  skeleton_control_mace:
+    name: '&fSkeleton Control Mace'
+    material: MACE
+    cmd: 7107
+    damage: 11
+    attack-speed: 0.9
+    permission: nereusweapons.use.skeleton_control_mace
+    lore: []
+    skills:
+      primary:
+        type: LEAP
+        name: Bone Slam
+        cooldown: 12
+        damage: 12
+        radius: 5.0
+        particle: CRIT
+        color: '#ECF0F1'
+        desc: Melompat dan menghantam tanah dengan keras.
+      secondary:
+        type: NOVA
+        name: Rattle
+        cooldown: 8
+        damage: 5
+        radius: 4.0
+        knockback: 1.0
+        particle: CRIT
+        color: '#BDC3C7'
+        desc: Getaran tulang yang mendorong musuh.
+  spike_lord_sword:
+    name: '&cSpike Lord Sword'
+    material: NETHERITE_SWORD
+    cmd: 7108
+    damage: 10
+    attack-speed: 1.5
+    permission: nereusweapons.use.spike_lord_sword
+    lore: []
+    skills:
+      primary:
+        type: LINE
+        name: Spike Eruption
+        cooldown: 9
+        damage: 9
+        range: 12
+        particle: CRIT
+        color: '#E74C3C'
+        desc: Duri-duri muncul dari tanah lurus ke depan.
+      secondary:
+        type: DASH
+        name: Spike Rush
+        cooldown: 8
+        damage: 7
+        power: 1.5
+        radius: 2.2
+        particle: CRIT
+        color: '#C0392B'
+        desc: Menerjang maju dan menusuk musuh di jalur.

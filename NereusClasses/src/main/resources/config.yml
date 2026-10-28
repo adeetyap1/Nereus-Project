@@ -1,0 +1,18 @@
+# NereusClasses - class, senjata, cosmetic dengan skill custom (by naook1/adityap)
+# Izin per class (LuckPerms): nereusclasses.class.<archmage|assassin|cleric|dragon_warrior|flamos|gluttony_evo|ninja_samurai|null|reaper>
+# Semua class: nereusclasses.all   |  Admin: nereusclasses.admin
+menu:
+  title: "&8Classes"
+ui:
+  actionbar: true          # tampilkan skill terpilih + cooldown di action bar
+engine:
+  max-stands: 500          # batas armor stand efek aktif
+  max-vfx-life-ticks: 1200 # armor stand efek dihapus paksa setelah ini
+  damage-multiplier: 1.0   # pengali semua damage skill
+  pvp: true                # skill boleh melukai pemain lain (butuh pvp world aktif)
+  swing-cooldown-ticks: 5
+  no-damage-worlds: []     # world tempat skill tidak melukai siapa pun (contoh: spawn)
+modifiers:                 # nilai default <modifier.xxx> di file skill
+  damage: 15
+  duration: 4
+  heal: 6

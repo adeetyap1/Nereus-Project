@@ -1,0 +1,108 @@
+# NereusCosmetics - semua cosmetic. Atur permission per rank (LuckPerms): nereuscosmetics.use.<id>
+# Contoh: lp group vip permission set nereuscosmetics.use.angel_wing true
+settings:
+  interval: 2
+  view-distance: 40
+  show-own-back: true
+  sneak-drop: 0.25
+menu:
+  title: "&8Cosmetics"
+messages:
+  prefix: "&b[Cosmetics] &r"
+cosmetics:
+  cemetery_witch_hat:
+    name: "Cemetery Witch Hat"
+    type: HAT
+    cmd: 7001
+    permission: "nereuscosmetics.use.cemetery_witch_hat"
+    description: ""
+  cemetery_witch_cloak:
+    name: "Cemetery Witch Cloak"
+    type: BACK
+    cmd: 7002
+    permission: "nereuscosmetics.use.cemetery_witch_cloak"
+    description: ""
+  chained_monstruosity_collar:
+    name: "Chained Monstruosity Collar"
+    type: HAT
+    cmd: 7004
+    permission: "nereuscosmetics.use.chained_monstruosity_collar"
+    description: ""
+  chained_monstruosity_back:
+    name: "Chained Monstruosity Back"
+    type: BACK
+    cmd: 7005
+    permission: "nereuscosmetics.use.chained_monstruosity_back"
+    description: ""
+  crow_lord_hat:
+    name: "Crow Lord Hat"
+    type: HAT
+    cmd: 7007
+    permission: "nereuscosmetics.use.crow_lord_hat"
+    description: ""
+  crow_lord_wings:
+    name: "Crow Lord Wings"
+    type: BACK
+    cmd: 7008
+    permission: "nereuscosmetics.use.crow_lord_wings"
+    description: ""
+  noir_elegance_tophat:
+    name: "Noir Elegance Tophat"
+    type: HAT
+    cmd: 7010
+    permission: "nereuscosmetics.use.noir_elegance_tophat"
+    description: ""
+  noir_elegance_shoulderpads:
+    name: "Noir Elegance Shoulderpads"
+    type: BACK
+    cmd: 7011
+    permission: "nereuscosmetics.use.noir_elegance_shoulderpads"
+    description: ""
+  archmage_hat:
+    name: "Archmage Hat"
+    type: HAT
+    cmd: 7013
+    permission: "nereuscosmetics.use.archmage_hat"
+    description: ""
+  archmage_shoulderpads:
+    name: "Archmage Shoulderpads"
+    type: BACK
+    cmd: 7014
+    permission: "nereuscosmetics.use.archmage_shoulderpads"
+    description: ""
+  ritualistic_hoodie:
+    name: "Ritualistic Hoodie"
+    type: HAT
+    cmd: 7016
+    permission: "nereuscosmetics.use.ritualistic_hoodie"
+    description: ""
+  ritualistic_back:
+    name: "Ritualistic Back"
+    type: BACK
+    cmd: 7017
+    permission: "nereuscosmetics.use.ritualistic_back"
+    description: ""
+  skeleton_control_hat:
+    name: "Skeleton Control Hat"
+    type: HAT
+    cmd: 7019
+    permission: "nereuscosmetics.use.skeleton_control_hat"
+    description: ""
+  skeleton_control_wings:
+    name: "Skeleton Control Wings"
+    type: BACK
+    cmd: 7020
+    permission: "nereuscosmetics.use.skeleton_control_wings"
+    description: ""
+  spike_lord_helmet:
+    name: "Spike Lord Helmet"
+    type: HAT
+    cmd: 7022
+    permission: "nereuscosmetics.use.spike_lord_helmet"
+    description: ""
+  spike_lord_wings:
+    name: "Spike Lord Wings"
+    type: BACK
+    cmd: 7023
+    permission: "nereuscosmetics.use.spike_lord_wings"
+    description: ""

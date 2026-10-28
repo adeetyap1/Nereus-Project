@@ -1,0 +1,382 @@
+######## created by samus2002 #########
+
+# Flame Slash #
+
+Flame_Slash_1:
+  Type: ARMOR_STAND
+  Pose:
+      Head: 0,0,0
+  ItemHead: doombringer_axe_flame_slash_1
+  Options:
+    Marker: true
+    Small: false
+    Invisible: true
+    Invincible: true
+  Skills:
+  - effect:particles{particle=flame;amount=20;hS=1.2;vS=0.1;speed=0.1;forwardOffset=-2} @self ~onSpawn
+  #- effect:particles{particle=smoke_large;amount=12;hS=1.2;vS=0.1;speed=0.1;forwardOffset=-2} @self ~onSpawn
+  - equip{item=doombringer_axe_flame_slash_1:4} ~onSpawn
+  - equip{item=doombringer_axe_flame_slash_2:4;delay=1} ~onSpawn
+  - equip{item=doombringer_axe_flame_slash_3:4;delay=2} ~onSpawn
+  - equip{item=doombringer_axe_flame_slash_4:4;delay=3} ~onSpawn
+  - equip{item=doombringer_axe_flame_slash_5:4;delay=4} ~onSpawn
+  - equip{item=doombringer_axe_flame_slash_6:4;delay=5} ~onSpawn
+  - equip{item=doombringer_axe_flame_slash_7:4;delay=6} ~onSpawn
+  - remove{delay=7} @self ~onSpawn
+  
+Flame_Slash_2:
+  Type: ARMOR_STAND
+  Pose:
+      Head: 0,0,180
+  ItemHead: doombringer_axe_flame_slash_1
+  Options:
+    Marker: true
+    Small: false
+    Invisible: true
+    Invincible: true
+  Skills:
+  - effect:particles{particle=flame;amount=20;hS=1.2;vS=0.1;speed=0.1;forwardOffset=-2} @self ~onSpawn
+  #- effect:particles{particle=smoke_large;amount=12;hS=1.2;vS=0.1;speed=0.1;forwardOffset=-2} @self ~onSpawn
+  - equip{item=doombringer_axe_flame_slash_1:4} ~onSpawn
+  - equip{item=doombringer_axe_flame_slash_2:4;delay=1} ~onSpawn
+  - equip{item=doombringer_axe_flame_slash_3:4;delay=2} ~onSpawn
+  - equip{item=doombringer_axe_flame_slash_4:4;delay=3} ~onSpawn
+  - equip{item=doombringer_axe_flame_slash_5:4;delay=4} ~onSpawn
+  - equip{item=doombringer_axe_flame_slash_6:4;delay=5} ~onSpawn
+  - equip{item=doombringer_axe_flame_slash_7:4;delay=6} ~onSpawn
+  - remove{delay=7} @self ~onSpawn
+  
+Flame_Slash_3:
+  Type: ARMOR_STAND
+  Pose:
+      Head: 0,0,45
+  ItemHead: doombringer_axe_flame_slash_1
+  Options:
+    Marker: true
+    Small: false
+    Invisible: true
+    Invincible: true
+  Skills:
+  - effect:particles{particle=flame;amount=20;hS=1.2;vS=0.1;speed=0.1;forwardOffset=-2} @self ~onSpawn
+  #- effect:particles{particle=smoke_large;amount=12;hS=1.2;vS=0.1;speed=0.1;forwardOffset=-2} @self ~onSpawn
+  - equip{item=doombringer_axe_flame_slash_1:4} ~onSpawn
+  - equip{item=doombringer_axe_flame_slash_2:4;delay=1} ~onSpawn
+  - equip{item=doombringer_axe_flame_slash_3:4;delay=2} ~onSpawn
+  - equip{item=doombringer_axe_flame_slash_4:4;delay=3} ~onSpawn
+  - equip{item=doombringer_axe_flame_slash_5:4;delay=4} ~onSpawn
+  - equip{item=doombringer_axe_flame_slash_6:4;delay=5} ~onSpawn
+  - equip{item=doombringer_axe_flame_slash_7:4;delay=6} ~onSpawn
+  - remove{delay=7} @self ~onSpawn
+  
+Flame_Slash_4:
+  Type: ARMOR_STAND
+  Pose:
+      Head: 0,0,135
+  ItemHead: doombringer_axe_flame_slash_1
+  Options:
+    Marker: true
+    Small: false
+    Invisible: true
+    Invincible: true
+  Skills:
+  - effect:particles{particle=flame;amount=20;hS=1.2;vS=0.1;speed=0.1;forwardOffset=-2} @self ~onSpawn
+  #- effect:particles{particle=smoke_large;amount=12;hS=1.2;vS=0.1;speed=0.1;forwardOffset=-2} @self ~onSpawn
+  - equip{item=doombringer_axe_flame_slash_1:4} ~onSpawn
+  - equip{item=doombringer_axe_flame_slash_2:4;delay=1} ~onSpawn
+  - equip{item=doombringer_axe_flame_slash_3:4;delay=2} ~onSpawn
+  - equip{item=doombringer_axe_flame_slash_4:4;delay=3} ~onSpawn
+  - equip{item=doombringer_axe_flame_slash_5:4;delay=4} ~onSpawn
+  - equip{item=doombringer_axe_flame_slash_6:4;delay=5} ~onSpawn
+  - equip{item=doombringer_axe_flame_slash_7:4;delay=6} ~onSpawn
+  - remove{delay=7} @self ~onSpawn
+  
+Hellfire_Slash_1:
+  Type: ARMOR_STAND
+  Pose:
+      Head: 0,0,0
+  ItemHead: doombringer_axe_hellfire_slash_1
+  Options:
+    Marker: true
+    Small: false
+    Invisible: true
+    Invincible: true
+  Skills:
+  - effect:particles{particle=lava;amount=6;hS=1;vS=0.1;speed=0;y=0.5;forwardOffset=-2} @self ~onSpawn
+  - effect:particles{particle=redstone;color=#ff9300;amount=20;hS=1;vS=0.1;speed=0;y=1;forwardOffset=-2} @self ~onSpawn
+  - effect:particles{particle=redstone;color=#ffea47;amount=20;hS=1;vS=0.1;speed=0;y=1;forwardOffset=-2} @self ~onSpawn
+  - effect:particles{particle=flame;amount=30;hS=1.4;vS=0.1;speed=0.15;forwardOffset=-2} @self ~onSpawn
+  #- effect:particles{particle=smoke_large;amount=12;hS=1.2;vS=0.1;speed=0.1;forwardOffset=-2} @self ~onSpawn
+  - equip{item=doombringer_axe_hellfire_slash_1:4} ~onSpawn
+  - equip{item=doombringer_axe_hellfire_slash_2:4;delay=1} ~onSpawn
+  - equip{item=doombringer_axe_hellfire_slash_3:4;delay=2} ~onSpawn
+  - equip{item=doombringer_axe_hellfire_slash_4:4;delay=3} ~onSpawn
+  - equip{item=doombringer_axe_hellfire_slash_5:4;delay=4} ~onSpawn
+  - equip{item=doombringer_axe_hellfire_slash_6:4;delay=5} ~onSpawn
+  - equip{item=doombringer_axe_hellfire_slash_7:4;delay=6} ~onSpawn
+  - remove{delay=7} @self ~onSpawn
+  
+Hellfire_Slash_2:
+  Type: ARMOR_STAND
+  Pose:
+      Head: 0,0,180
+  ItemHead: doombringer_axe_hellfire_slash_1
+  Options:
+    Marker: true
+    Small: false
+    Invisible: true
+    Invincible: true
+  Skills:
+  - effect:particles{particle=lava;amount=6;hS=1;vS=0.1;speed=0;y=0.5;forwardOffset=-2} @self ~onSpawn
+  - effect:particles{particle=redstone;color=#ff9300;amount=20;hS=1;vS=0.1;speed=0;y=1;forwardOffset=-2} @self ~onSpawn
+  - effect:particles{particle=redstone;color=#ffea47;amount=20;hS=1;vS=0.1;speed=0;y=1;forwardOffset=-2} @self ~onSpawn
+  - effect:particles{particle=flame;amount=30;hS=1.4;vS=0.1;speed=0.15;forwardOffset=-2} @self ~onSpawn
+  #- effect:particles{particle=smoke_large;amount=12;hS=1.2;vS=0.1;speed=0.1;forwardOffset=-2} @self ~onSpawn
+  - equip{item=doombringer_axe_hellfire_slash_1:4} ~onSpawn
+  - equip{item=doombringer_axe_hellfire_slash_2:4;delay=1} ~onSpawn
+  - equip{item=doombringer_axe_hellfire_slash_3:4;delay=2} ~onSpawn
+  - equip{item=doombringer_axe_hellfire_slash_4:4;delay=3} ~onSpawn
+  - equip{item=doombringer_axe_hellfire_slash_5:4;delay=4} ~onSpawn
+  - equip{item=doombringer_axe_hellfire_slash_6:4;delay=5} ~onSpawn
+  - equip{item=doombringer_axe_hellfire_slash_7:4;delay=6} ~onSpawn
+  - remove{delay=7} @self ~onSpawn
+  
+Hellfire_Slash_3:
+  Type: ARMOR_STAND
+  Pose:
+      Head: 0,0,45
+  ItemHead: doombringer_axehellfire_slash_1
+  Options:
+    Marker: true
+    Small: false
+    Invisible: true
+    Invincible: true
+  Skills:
+  - effect:particles{particle=lava;amount=6;hS=1;vS=0.1;speed=0;y=0.5;forwardOffset=-2} @self ~onSpawn
+  - effect:particles{particle=redstone;color=#ff9300;amount=20;hS=1;vS=0.1;speed=0;y=1;forwardOffset=-2} @self ~onSpawn
+  - effect:particles{particle=redstone;color=#ffea47;amount=20;hS=1;vS=0.1;speed=0;y=1;forwardOffset=-2} @self ~onSpawn
+  - effect:particles{particle=flame;amount=30;hS=1.4;vS=0.1;speed=0.15;forwardOffset=-2} @self ~onSpawn
+  #- effect:particles{particle=smoke_large;amount=12;hS=1.2;vS=0.1;speed=0.1;forwardOffset=-2} @self ~onSpawn
+  - equip{item=doombringer_axe_hellfire_slash_1:4} ~onSpawn
+  - equip{item=doombringer_axe_hellfire_slash_2:4;delay=1} ~onSpawn
+  - equip{item=doombringer_axe_hellfire_slash_3:4;delay=2} ~onSpawn
+  - equip{item=doombringer_axe_hellfire_slash_4:4;delay=3} ~onSpawn
+  - equip{item=doombringer_axe_hellfire_slash_5:4;delay=4} ~onSpawn
+  - equip{item=doombringer_axe_hellfire_slash_6:4;delay=5} ~onSpawn
+  - equip{item=doombringer_axe_hellfire_slash_7:4;delay=6} ~onSpawn
+  - remove{delay=7} @self ~onSpawn
+  
+Hellfire_Slash_4:
+  Type: ARMOR_STAND
+  Pose:
+      Head: 0,0,135
+  ItemHead: doombringer_axe_hellfire_slash_1
+  Options:
+    Marker: true
+    Small: false
+    Invisible: true
+    Invincible: true
+  Skills:
+  - effect:particles{particle=lava;amount=6;hS=1;vS=0.1;speed=0;y=0.5;forwardOffset=-2} @self ~onSpawn
+  - effect:particles{particle=redstone;color=#ff9300;amount=20;hS=1;vS=0.1;speed=0;y=1;forwardOffset=-2} @self ~onSpawn
+  - effect:particles{particle=redstone;color=#ffea47;amount=20;hS=1;vS=0.1;speed=0;y=1;forwardOffset=-2} @self ~onSpawn
+  - effect:particles{particle=flame;amount=30;hS=1.4;vS=0.1;speed=0.15;forwardOffset=-2} @self ~onSpawn
+  #- effect:particles{particle=smoke_large;amount=12;hS=1.2;vS=0.1;speed=0.1;forwardOffset=-2} @self ~onSpawn
+  - equip{item=doombringer_axe_hellfire_slash_1:4} ~onSpawn
+  - equip{item=doombringer_axe_hellfire_slash_2:4;delay=1} ~onSpawn
+  - equip{item=doombringer_axe_hellfire_slash_3:4;delay=2} ~onSpawn
+  - equip{item=doombringer_axe_hellfire_slash_4:4;delay=3} ~onSpawn
+  - equip{item=doombringer_axe_hellfire_slash_5:4;delay=4} ~onSpawn
+  - equip{item=doombringer_axe_hellfire_slash_6:4;delay=5} ~onSpawn
+  - equip{item=doombringer_axe_hellfire_slash_7:4;delay=6} ~onSpawn
+  - remove{delay=7} @self ~onSpawn
+  
+# Inferno Wheel #
+
+Inferno_Wheel:
+  Type: ARMOR_STAND
+  Pose:
+      Head: 0,0,0
+  ItemHead: doombringer_axe_inferno_wheel_1
+  Options:
+    Marker: true
+    Small: false
+    Invisible: true
+    Invincible: true
+  Skills:
+  - effect:particles{particle=flame;amount=35;hS=1;vS=1;speed=0.1;delay=1} @self ~onSpawn
+  #- effect:particles{particle=smoke_large;amount=20;hS=1;vS=1;speed=0.1;delay=1} @self ~onSpawn
+  - effect:particles{particle=lava;amount=12;hS=1;vS=1;speed=0.1;delay=1} @self ~onSpawn
+  - equip{item=doombringer_axe_inferno_wheel_1:4} ~onSpawn
+  - equip{item=doombringer_axe_inferno_wheel_2:4;delay=1} ~onSpawn
+  - equip{item=doombringer_axe_inferno_wheel_3:4;delay=2} ~onSpawn
+  - equip{item=doombringer_axe_inferno_wheel_4:4;delay=3} ~onSpawn
+  - equip{item=doombringer_axe_inferno_wheel_5:4;delay=4} ~onSpawn
+  - equip{item=doombringer_axe_inferno_wheel_6:4;delay=5} ~onSpawn
+  - equip{item=doombringer_axe_inferno_wheel_7:4;delay=6} ~onSpawn
+  - equip{item=doombringer_axe_inferno_wheel_8:4;delay=7} ~onSpawn
+  - equip{item=doombringer_axe_inferno_wheel_9:4;delay=8} ~onSpawn
+  - equip{item=doombringer_axe_inferno_wheel_10:4;delay=9} ~onSpawn
+  - remove{delay=10} @self ~onSpawn
+  
+# Blazing Leap #
+
+Blazing_Leap:
+  Type: ARMOR_STAND
+  Pose:
+      Head: 0,0,0
+  ItemHead: flamos_blaze_leap_1
+  Options:
+    Marker: true
+    Small: false
+    Invisible: true
+    Invincible: true
+  Skills:
+  - effect:particles{particle=lava;amount=20;hS=1;vS=0.15;speed=0;y=0.1} @self ~onSpawn
+  #- effect:particles{particle=smoke_large;amount=17;hS=1;vS=0.15;speed=0;y=0.1} @self ~onSpawn
+  - equip{item=doombringer_axe_blaze_leap_1:4} ~onSpawn
+  - equip{item=doombringer_axe_blaze_leap_2:4;delay=1} ~onSpawn
+  - equip{item=doombringer_axe_blaze_leap_3:4;delay=2} ~onSpawn
+  - equip{item=doombringer_axe_blaze_leap_4:4;delay=3} ~onSpawn
+  - equip{item=doombringer_axe_blaze_leap_5:4;delay=4} ~onSpawn
+  - equip{item=doombringer_axe_blaze_leap_6:4;delay=5} ~onSpawn
+  - equip{item=doombringer_axe_blaze_leap_7:4;delay=6} ~onSpawn
+  - remove{delay=7} @self ~onSpawn
+  
+# Inferno Orbs #
+
+Inferno_Orbs:
+  Type: ARMOR_STAND
+  Options:
+    Marker: true
+    Small: false
+    Invisible: true
+    Invincible: true
+  ItemHead: doombringer_axe_inferno_orb
+  Skills:
+  #- damage{a=5;pkb=false;hnp=false;hp=true;delay=1} @EIR{r=1.5} ~onTimer:10
+  #- ignite{ticks=80} @EIR{r=1.5} ~onTimer:10
+  - equip{item=doombringer_axe_inferno_orb:4} ~onSpawn
+  - potion{type=INVISIBILITY;duration=99999;level=99;hasParticles=false} @self ~onSpawn
+  - effect:sound{s=doombringer_axe_sounds:samus.flamos_fire_orb;volume=1;pitch=1} @self ~onSpawn
+  - effect:particles{particle=lava;amount=20;hS=0.8;vS=0.8;speed=0;y=0.5} @self ~onSpawn
+  - remove{delay=140} @self ~onSpawn
+  
+zombiee:
+  Type: ZOMBIE
+  Health: 70
+  Damage: 1
+  Options:
+    PreventRandomEquipment: true
+    PreventSunburn: true
+    PreventOtherDrops: true
+    
+    
+
+doombringer_axe_Brutal_Strike_1:
+  Type: ARMOR_STAND
+  Pose:
+      RightArm: 0,0,0
+  ItemHand: warrior_slash_1
+  Options:
+    Marker: true
+    Small: false
+    HasArms: true
+    Invisible: true
+    Invincible: true
+  Skills:
+  - equip{item=doombringer_axe_warrior_slash_1:0;delay=2} ~onSpawn
+  - equip{item=doombringer_axe_warrior_slash_2:0;delay=4} ~onSpawn
+  - equip{item=doombringer_axe_warrior_slash_3:0;delay=6} ~onSpawn
+  - equip{item=doombringer_axe_warrior_slash_4:0;delay=8} ~onSpawn
+  - equip{item=doombringer_axe_warrior_slash_5:0;delay=10} ~onSpawn
+  - equip{item=doombringer_axe_warrior_slash_6:0;delay=12} ~onSpawn
+  - equip{item=doombringer_axe_warrior_slash_7:0;delay=14} ~onSpawn
+  - remove{delay=16} @self ~onSpawn
+  
+doombringer_axe_Brutal_Strike_2:
+  Type: ARMOR_STAND
+  Pose:
+      RightArm: 0,0,180
+  ItemHand: warrior_slash_1
+  Options:
+    Marker: true
+    Small: false
+    HasArms: true
+    Invisible: true
+    Invincible: true
+  Skills:
+  - equip{item=doombringer_axe_warrior_slash_1:0;delay=2} ~onSpawn
+  - equip{item=doombringer_axe_warrior_slash_2:0;delay=4} ~onSpawn
+  - equip{item=doombringer_axe_warrior_slash_3:0;delay=6} ~onSpawn
+  - equip{item=doombringer_axe_warrior_slash_4:0;delay=8} ~onSpawn
+  - equip{item=doombringer_axe_warrior_slash_5:0;delay=10} ~onSpawn
+  - equip{item=doombringer_axe_warrior_slash_6:0;delay=12} ~onSpawn
+  - equip{item=doombringer_axe_warrior_slash_7:0;delay=14} ~onSpawn
+  - remove{delay=16} @self ~onSpawn
+  
+doombringer_axe_Brutal_Strike_3:
+  Type: ARMOR_STAND
+  Pose:
+      RightArm: 0,0,90
+  ItemHand: warrior_slash_1
+  Options:
+    Marker: true
+    Small: false
+    HasArms: true
+    Invisible: true
+    Invincible: true
+  Skills:
+  - equip{item=doombringer_axe_warrior_slash_1:0;delay=2} ~onSpawn
+  - equip{item=doombringer_axe_warrior_slash_2:0;delay=4} ~onSpawn
+  - equip{item=doombringer_axe_warrior_slash_3:0;delay=6} ~onSpawn
+  - equip{item=doombringer_axe_warrior_slash_4:0;delay=8} ~onSpawn
+  - equip{item=doombringer_axe_warrior_slash_5:0;delay=10} ~onSpawn
+  - equip{item=doombringer_axe_warrior_slash_6:0;delay=12} ~onSpawn
+  - equip{item=doombringer_axe_warrior_slash_7:0;delay=14} ~onSpawn
+  - remove{delay=16} @self ~onSpawn
+
+# Charge #
+
+doombringer_axe_Charge:
+  Type: ARMOR_STAND
+  Pose:
+      RightArm: 0,0,0
+  ItemHand: charge_1
+  Options:
+    Marker: true
+    Small: false
+    HasArms: true
+    Invisible: true
+    Invincible: true
+  Skills:
+  - equip{item=doombringer_axe_charge_1:0;delay=2} ~onSpawn
+  - equip{item=doombringer_axe_charge_2:0;delay=4} ~onSpawn
+  - equip{item=doombringer_axe_charge_3:0;delay=6} ~onSpawn
+  - equip{item=doombringer_axe_charge_4:0;delay=8} ~onSpawn
+  - equip{item=doombringer_axe_charge_5:0;delay=10} ~onSpawn
+  - remove{delay=12} @self ~onSpawn
+  
+
+
+# Whirlwind #
+
+doombringer_axe_Whirlwind:
+  Type: ARMOR_STAND
+  Pose:
+    RightArm: 0,0,0
+  ItemHand: whirlwind_1
+  Options:
+    Marker: true
+    HasArms: true
+    Small: false
+    Invisible: true
+    Invincible: true
+  Skills:
+  - equip{item=doombringer_axe_whirlwind_1:0;delay=2} ~onSpawn
+  - equip{item=doombringer_axe_whirlwind_2:0;delay=4} ~onSpawn
+  - equip{item=doombringer_axe_whirlwind_3:0;delay=6} ~onSpawn
+  - equip{item=doombringer_axe_whirlwind_4:0;delay=8} ~onSpawn
+  - equip{item=doombringer_axe_whirlwind_5:0;delay=10} ~onSpawn
+  - remove{delay=12} @self ~onSpawn
+  
+#w2bidVQ5JmN1wkZ3JWTr5mav12Y5VFVOpXTq50MFRUT4BTbNdVM5V1bYlzNsRXaYlnSQxmM

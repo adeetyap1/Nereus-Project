@@ -1,0 +1,158 @@
+######## created by samus2002 #########
+
+# Void Arrow #
+
+Void_Arrow:
+  Type: ARMOR_STAND
+  ItemHead: void_arrow
+  Options:
+    Marker: true
+    Small: false
+    Invisible: true
+    Invincible: true
+  Skills:
+  - equip{item=void_arrow:4} ~onSpawn
+  - look{headOnly=false;immediately=true} @forward{f=5;y=1.5} ~onSpawn
+  - effect:particles{particle=redstone;color=#c70fd4;amount=2;hS=0.1;vS=0.1;y=1;speed=0;forwardOffset=-1;sideOffset=0} @self ~onTimer:1
+  
+# Retreat #
+
+Retreat:
+  Type: ARMOR_STAND
+  ItemHead: void_portal_1
+  Options:
+    Marker: true
+    Small: false
+    Invisible: true
+    Invincible: true
+  Skills:
+  - equip{item=void_portal_1:4} ~onSpawn
+  - equip{item=void_portal_2:4;delay=1} ~onSpawn
+  - equip{item=void_portal_3:4;delay=2} ~onSpawn
+  - equip{item=void_portal_4:4;delay=3} ~onSpawn
+  - equip{item=void_portal_3:4;delay=37} ~onSpawn
+  - equip{item=void_portal_2:4;delay=38} ~onSpawn
+  - equip{item=void_portal_1:4;delay=39} ~onSpawn
+  - effect:particles{particle=portal;amount=10;hS=0.5;vS=1;y=0.5;speed=0;forwardOffset=0;sideOffset=0} @self ~onSpawn
+  - effect:particles{particle=redstone;color=#c70fd4;amount=10;hS=0.5;vS=1;y=0.5;speed=0;forwardOffset=0;sideOffset=0} @self ~onTimer:5
+  - effect:particles{particle=portal;amount=10;hS=0.5;vS=1;y=0.5;speed=0;forwardOffset=0;sideOffset=0;delay=40} @self ~onSpawn
+  - remove{delay=40} @self ~onSpawn
+  
+# Blackhole Shot #
+
+Blackhole_Shot:
+  Type: ARMOR_STAND
+  ItemHead: void_arrow
+  Options:
+    Marker: true
+    Small: false
+    Invisible: true
+    Invincible: true
+  Skills:
+  - equip{item=void_arrow:4} ~onSpawn
+  - look{headOnly=false;immediately=true} @forward{f=5;y=1.5} ~onSpawn
+  - effect:particles{particle=redstone;color=#120021;amount=10;hS=0.1;vS=0.1;y=1;speed=0;forwardOffset=-1;sideOffset=0} @self ~onTimer:1
+  
+Blackhole:
+  Type: ARMOR_STAND
+  ItemHead: void_blackhole_1
+  Options:
+    Marker: true
+    Small: false
+    Invisible: true
+    Invincible: true
+  Skills:
+  - equip{item=void_blackhole_1:4} ~onSpawn
+  - equip{item=void_blackhole_2:4;delay=2} ~onSpawn
+  - equip{item=void_blackhole_3:4;delay=4} ~onSpawn
+  - equip{item=void_blackhole_4:4;delay=6} ~onSpawn
+  - effect:sound{s=null_sounds:samus.void_blackhole_summon;volume=1.5;pitch=1} @self ~onSpawn
+  - effect:sound{s=null_sounds:samus.void_blackhole;volume=1;pitch=1.5;delay=20} @self ~onSpawn
+  - effect:particles{particle=redstone;color=#120021;amount=10;hS=0.1;vS=0.1;y=1;speed=0;forwardOffset=0;sideOffset=0} @self ~onSpawn
+  - effect:particles{particle=redstone;color=#120021;amount=15;hS=0.5;vS=0.5;y=1;speed=0;forwardOffset=0;sideOffset=0;delay=2} @self ~onSpawn
+  - effect:sound{s=null_sounds:samus.void_blackhole;volume=1;pitch=1.5;delay=20} @self ~onSpawn
+  - effect:particles{particle=redstone;color=#120021;amount=20;hS=1;vS=1;y=1;speed=0;forwardOffset=0;sideOffset=0;delay=4} @self ~onSpawn
+  - effect:particles{particle=redstone;color=#120021;amount=25;hS=1.5;vS=1.5;y=1;speed=0;forwardOffset=0;sideOffset=0;delay=6} @self ~onTimer:2
+  - effect:sound{s=null_sounds:samus.void_blackhole;volume=1;pitch=1.5;delay=20} @self ~onSpawn
+  - effect:particles{particle=redstone;color=#c70fd4;amount=10;hS=0.1;vS=0.1;y=1;speed=0;forwardOffset=0;sideOffset=0} @self ~onSpawn
+  - effect:particles{particle=redstone;color=#c70fd4;amount=15;hS=0.5;vS=0.5;y=1;speed=0;forwardOffset=0;sideOffset=0;delay=2} @self ~onSpawn
+  - effect:sound{s=null_sounds:samus.void_blackhole;volume=1;pitch=1.5;delay=20} @self ~onSpawn
+  - effect:particles{particle=redstone;color=#c70fd4;amount=20;hS=1;vS=1;y=1;speed=0;forwardOffset=0;sideOffset=0;delay=4} @self ~onSpawn
+  - effect:particles{particle=redstone;color=#c70fd4;amount=25;hS=1.5;vS=1.5;y=1;speed=0;forwardOffset=0;sideOffset=0;delay=6} @self ~onTimer:2
+  - skill{s=Blackhole_Pull} @EIR{r=15} ~onTimer:2
+  - remove{delay=100} @self ~onSpawn
+  
+# Void Rain #
+
+Void_Rain:
+  Type: ARMOR_STAND
+  ItemHead: void_circle_1
+  Options:
+    Marker: true
+    Small: false
+    Invisible: true
+    Invincible: true
+  KillMessages:
+  - '<target.name> got sucked into the void'
+  Skills:
+  - equip{item=void_circle_1:4} ~onSpawn
+  - equip{item=void_circle_2:4;delay=2} ~onSpawn
+  - equip{item=void_circle_3:4;delay=4} ~onSpawn
+  - equip{item=void_circle_4:4;delay=6} ~onSpawn
+  - effect:sound{s=null_sounds:samus.void_rain_circle;volume=1;pitch=1} @self ~onSpawn
+  - effect:particles{particle=redstone;color=#440c87;amount=10;hS=0.1;vS=0.1;y=0.05;speed=0;forwardOffset=0;sideOffset=0} @self ~onSpawn
+  - effect:particles{particle=redstone;color=#440c87;amount=20;hS=0.5;vS=0.1;y=0.05;speed=0;forwardOffset=0;sideOffset=0;delay=2} @self ~onSpawn
+  - effect:particles{particle=redstone;color=#440c87;amount=30;hS=1;vS=0.1;y=0.05;speed=0;forwardOffset=0;sideOffset=0;delay=4} @self ~onSpawn
+  - effect:particles{particle=redstone;color=#440c87;amount=40;hS=1.5;vS=0.1;y=0.05;speed=0;forwardOffset=0;sideOffset=0;delay=6} @self ~onTimer:2
+  - projectile{bulletType=MOB;mob=Void_Rain_Arrow;vO=-5;onHit=Void_Rain_HIT;v=30;i=1;hR=1;vR=1;mr=20;hnp=true;hO=0;sE=true;sB=true;hs=false;hfs=0;syo=12;tyo=0} @Forward{f=0;y=0} ~onTimer:15
+  - projectile{bulletType=MOB;mob=Void_Rain_Arrow;vO=-5;onHit=Void_Rain_HIT;v=30;i=1;hR=1;vR=1;mr=20;hnp=true;hO=0;sE=true;sB=true;hs=false;hfs=0;syo=12;tyo=0;sfo=2;delay=5} @Forward{f=0;y=0} ~onTimer:15
+  - projectile{bulletType=MOB;mob=Void_Rain_Arrow;vO=-5;onHit=Void_Rain_HIT;v=30;i=1;hR=1;vR=1;mr=20;hnp=true;hO=0;sE=true;sB=true;hs=false;hfs=0;syo=12;tyo=0;sfo=2;delay=8} @Forward{f=0;y=0} ~onTimer:15
+  - projectile{bulletType=MOB;mob=Void_Rain_Arrow;vO=-5;onHit=Void_Rain_HIT;v=30;i=1;hR=1;vR=1;mr=20;hnp=true;hO=0;sE=true;sB=true;hs=false;hfs=0;syo=12;tyo=0;sfo=-2;delay=11} @Forward{f=0;y=0} ~onTimer:15
+  - projectile{bulletType=MOB;mob=Void_Rain_Arrow;vO=-5;onHit=Void_Rain_HIT;v=30;i=1;hR=1;vR=1;mr=20;hnp=true;hO=0;sE=true;sB=true;hs=false;hfs=0;syo=12;tyo=0;sso=2;delay=13} @Forward{f=0;y=0} ~onTimer:15
+  - projectile{bulletType=MOB;mob=Void_Rain_Arrow;vO=-5;onHit=Void_Rain_HIT;v=30;i=1;hR=1;vR=1;mr=20;hnp=true;hO=0;sE=true;sB=true;hs=false;hfs=0;syo=12;tyo=0;sso=-2;delay=9} @Forward{f=0;y=0} ~onTimer:15
+  - projectile{bulletType=MOB;mob=Void_Rain_Arrow;vO=-5;onHit=Void_Rain_HIT;v=30;i=1;hR=1;vR=1;mr=20;hnp=true;hO=0;sE=true;sB=true;hs=false;hfs=0;syo=12;tyo=0;sfo=1;sso=1;delay=3} @Forward{f=0;y=0} ~onTimer:15
+  - remove{delay=120} @self ~onSpawn
+  
+Void_Rain_Arrow:
+  Type: ARMOR_STAND
+  ItemHead: void_arrow_vertical
+  Options:
+    Marker: true
+    Small: false
+    Invisible: true
+    Invincible: true
+  Skills:
+  - equip{item=void_arrow_vertical:4} ~onSpawn
+  - effect:sound{s=null_sounds:samus.void_rain_arrow;volume=1.2;pitch=1} @self ~onSpawn
+  - effect:particles{particle=redstone;color=#c70fd4;amount=2;hS=0.1;vS=0.1;y=1.4;speed=0;forwardOffset=0;sideOffset=0} @self ~onTimer:1
+  
+# Void Missile #
+
+Void_Missile:
+  Type: ARMOR_STAND
+  ItemHead: void_missile
+  Options:
+    Marker: true
+    Small: false
+    Invisible: true
+    Invincible: true
+  Skills:
+  - equip{item=void_missile:4} ~onSpawn
+  - look{headOnly=false;immediately=true} @forward{f=5;y=1.5} ~onSpawn
+  - effect:particles{particle=redstone;color=#440c87;amount=2;hS=0.1;vS=0.1;y=1;speed=0;forwardOffset=-1;sideOffset=0} @self ~onTimer:1
+  
+# Pulse Mode #
+
+Pulse_Arrow:
+  Type: ARMOR_STAND
+  ItemHead: void_pulse
+  Options:
+    Marker: true
+    Small: false
+    Invisible: true
+    Invincible: true
+  Skills:
+  - equip{item=void_pulse:4} ~onSpawn
+  - look{headOnly=false;immediately=true} @forward{f=5;y=1.5} ~onSpawn
+  - effect:particles{particle=redstone;color=#440c87;amount=5;hS=0.3;vS=0.3;y=1;speed=0;forwardOffset=-1;sideOffset=0} @self ~onTimer:1
+  
