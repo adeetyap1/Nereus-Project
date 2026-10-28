@@ -106,3 +106,17 @@ cosmetics:
     cmd: 7023
     permission: "nereuscosmetics.use.spike_lord_wings"
     description: ""
+  flamos_head:
+    name: "Head of Flamos"
+    type: HAT
+    cmd: 60276
+    carrier: PAPER
+    permission: "nereuscosmetics.use.flamos_head"
+    description: "Bagian set Flamos"
+  null_head:
+    name: "Null Mask"
+    type: HAT
+    cmd: 60117
+    carrier: PAPER
+    permission: "nereuscosmetics.use.null_head"
+    description: "Topeng Null"

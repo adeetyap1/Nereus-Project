@@ -15,6 +15,10 @@ import org.bukkit.util.Vector;
 
 /** particle / sound / vector helpers. */
 final class Fx {
+    static double particleMult = 2.0;
+    static long soundGapMs = 300;
+    private static final java.util.Map<String, Long> LAST_SOUND = new java.util.HashMap<>();
+
     private Fx() {
     }
 
@@ -105,7 +109,7 @@ final class Fx {
         if (w == null) {
             return;
         }
-        int n = Math.max(1, amount);
+        int n = Math.min(300, Math.max(1, (int) Math.ceil(amount * particleMult)));
         if (p == Particle.DUST) {
             w.spawnParticle(p, l, n, hs, vs, hs, 0, new Particle.DustOptions(c == null ? Color.RED : c, Math.max(0.2f, size)));
         } else {
@@ -117,6 +121,16 @@ final class Fx {
         if (l.getWorld() == null || name == null || name.isEmpty()) {
             return;
         }
+        long now = System.currentTimeMillis();
+        String key = name + '|' + l.getWorld().getName() + '|' + (l.getBlockX() >> 3) + '|' + (l.getBlockZ() >> 3);
+        Long last = LAST_SOUND.get(key);
+        if (last != null && now - last < soundGapMs) {
+            return;
+        }
+        if (LAST_SOUND.size() > 2000) {
+            LAST_SOUND.clear();
+        }
+        LAST_SOUND.put(key, now);
         l.getWorld().playSound(l, name, SoundCategory.PLAYERS, vol, pitch);
     }
 

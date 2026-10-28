@@ -50,6 +50,34 @@ final class ClassGui implements Listener {
         return it;
     }
 
+    static final class SkillHolder implements InventoryHolder {
+        NereusClasses.Gear gear;
+        Inventory inv;
+
+        @Override
+        public Inventory getInventory() {
+            return inv;
+        }
+    }
+
+    void openSkills(Player p, NereusClasses.Gear g) {
+        SkillHolder h = new SkillHolder();
+        h.gear = g;
+        int rows = Math.max(1, (g.slots.size() + 8) / 9);
+        h.inv = Bukkit.createInventory(h, rows * 9, NereusClasses.color("&8Pilih skill"));
+        int cur = pl.triggers.selected(p, g);
+        for (int i = 0; i < g.slots.size(); i++) {
+            Model.Line l = g.slots.get(i);
+            String id = l.o.str("", "s", "skill", "meta", "m");
+            long left = pl.engine.cooldownLeftMs(p, id);
+            List<String> lore = new ArrayList<>();
+            lore.add(i == cur ? "&a✔ Terpilih" : "&7Klik untuk pilih");
+            lore.add(left > 0 ? "&cCooldown " + String.format("%.1fs", left / 1000.0) : "&aSiap");
+            h.inv.setItem(i, named(i == cur ? Material.ENCHANTED_BOOK : Material.BOOK, "&e" + NereusClasses.skillName(l), lore));
+        }
+        p.openInventory(h.inv);
+    }
+
     void open(Player p, String cls, int page) {
         Holder h = new Holder();
         h.cls = cls;
@@ -105,6 +133,15 @@ final class ClassGui implements Listener {
 
     @EventHandler
     public void onClick(InventoryClickEvent e) {
+        if (e.getInventory().getHolder() instanceof SkillHolder sh) {
+            e.setCancelled(true);
+            if (e.getWhoClicked() instanceof Player sp && e.getClickedInventory() == e.getView().getTopInventory()
+                    && e.getRawSlot() >= 0 && e.getRawSlot() < sh.gear.slots.size()) {
+                pl.triggers.select(sp, sh.gear, e.getRawSlot());
+                sp.closeInventory();
+            }
+            return;
+        }
         if (!(e.getInventory().getHolder() instanceof Holder h)) {
             return;
         }
@@ -140,7 +177,7 @@ final class ClassGui implements Listener {
 
     @EventHandler
     public void onDrag(InventoryDragEvent e) {
-        if (e.getInventory().getHolder() instanceof Holder) {
+        if (e.getInventory().getHolder() instanceof Holder || e.getInventory().getHolder() instanceof SkillHolder) {
             e.setCancelled(true);
         }
     }

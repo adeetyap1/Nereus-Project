@@ -6,6 +6,8 @@ menu:
 ui:
   actionbar: true          # tampilkan skill terpilih + cooldown di action bar
 engine:
+  particle-multiplier: 2.0   # efek lebih rapat/sering (1.0 = asli)
+  sound-gap-ms: 300          # jeda minimal suara yang sama di area yang sama (anti-spam)
   max-stands: 500          # batas armor stand efek aktif
   max-vfx-life-ticks: 1200 # armor stand efek dihapus paksa setelah ini
   damage-multiplier: 1.0   # pengali semua damage skill

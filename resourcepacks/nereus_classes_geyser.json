@@ -1176,9 +1176,9 @@
     "type": "legacy",
     "custom_model_data": 60117.0,
     "bedrock_identifier": "nereuscls:null_head",
-    "display_name": "null_head",
+    "display_name": "Null Mask",
     "bedrock_options": {
-     "icon": "nereus_cls_blank",
+     "icon": "nereus_cls_null_head",
      "allow_offhand": true
     }
    },
@@ -2766,9 +2766,9 @@
     "type": "legacy",
     "custom_model_data": 60276.0,
     "bedrock_identifier": "nereuscls:flamos_head",
-    "display_name": "flamos_head",
+    "display_name": "Head of Flamos",
     "bedrock_options": {
-     "icon": "nereus_cls_blank",
+     "icon": "nereus_cls_flamos_head",
      "allow_offhand": true
     }
    },
@@ -3571,16 +3571,6 @@
      "icon": "nereus_cls_blank",
      "allow_offhand": true
     }
-   },
-   {
-    "type": "legacy",
-    "custom_model_data": 60374.0,
-    "bedrock_identifier": "nereuscls:null_head",
-    "display_name": "Null Mask",
-    "bedrock_options": {
-     "icon": "nereus_cls_null_head",
-     "allow_offhand": true
-    }
    }
   ],
   "minecraft:stick": [
@@ -3768,7 +3758,7 @@
   "minecraft:coal": [
    {
     "type": "legacy",
-    "custom_model_data": 60375.0,
+    "custom_model_data": 60374.0,
     "bedrock_identifier": "nereuscls:icon_arcane_devastation",
     "display_name": "Arcane Devastation",
     "bedrock_options": {
@@ -3778,7 +3768,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60376.0,
+    "custom_model_data": 60375.0,
     "bedrock_identifier": "nereuscls:icon_arcane_shield",
     "display_name": "Arcane Shield",
     "bedrock_options": {
@@ -3788,7 +3778,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60377.0,
+    "custom_model_data": 60376.0,
     "bedrock_identifier": "nereuscls:icon_arcane_slash",
     "display_name": "Arcane Slash",
     "bedrock_options": {
@@ -3798,7 +3788,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60378.0,
+    "custom_model_data": 60377.0,
     "bedrock_identifier": "nereuscls:icon_blizzard",
     "display_name": "Blizzard",
     "bedrock_options": {
@@ -3808,7 +3798,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60379.0,
+    "custom_model_data": 60378.0,
     "bedrock_identifier": "nereuscls:icon_chains_of_void",
     "display_name": "Chains Of Void",
     "bedrock_options": {
@@ -3818,7 +3808,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60380.0,
+    "custom_model_data": 60379.0,
     "bedrock_identifier": "nereuscls:icon_cloak_of_hastur",
     "display_name": "Cloak Of Hastur",
     "bedrock_options": {
@@ -3828,7 +3818,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60381.0,
+    "custom_model_data": 60380.0,
     "bedrock_identifier": "nereuscls:icon_meteor_storm",
     "display_name": "Meteor Storm",
     "bedrock_options": {
@@ -3838,7 +3828,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60382.0,
+    "custom_model_data": 60381.0,
     "bedrock_identifier": "nereuscls:icon_assassins_blade",
     "display_name": "Assassins Blade",
     "bedrock_options": {
@@ -3848,7 +3838,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60383.0,
+    "custom_model_data": 60382.0,
     "bedrock_identifier": "nereuscls:icon_blade_dance",
     "display_name": "Blade Dance",
     "bedrock_options": {
@@ -3858,7 +3848,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60384.0,
+    "custom_model_data": 60383.0,
     "bedrock_identifier": "nereuscls:icon_blade_slash",
     "display_name": "Blade Slash",
     "bedrock_options": {
@@ -3868,7 +3858,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60385.0,
+    "custom_model_data": 60384.0,
     "bedrock_identifier": "nereuscls:icon_dagger_throw",
     "display_name": "Dagger Throw",
     "bedrock_options": {
@@ -3878,7 +3868,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60386.0,
+    "custom_model_data": 60385.0,
     "bedrock_identifier": "nereuscls:icon_dash",
     "display_name": "Dash",
     "bedrock_options": {
@@ -3888,7 +3878,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60387.0,
+    "custom_model_data": 60386.0,
     "bedrock_identifier": "nereuscls:icon_shadow_walk",
     "display_name": "Shadow Walk",
     "bedrock_options": {
@@ -3898,7 +3888,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60388.0,
+    "custom_model_data": 60387.0,
     "bedrock_identifier": "nereuscls:icon_blessing_of_the_white_lantern",
     "display_name": "Blessing Of The White Lantern",
     "bedrock_options": {
@@ -3908,7 +3898,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60389.0,
+    "custom_model_data": 60388.0,
     "bedrock_identifier": "nereuscls:icon_dawnbringer_angel",
     "display_name": "Dawnbringer Angel",
     "bedrock_options": {
@@ -3918,7 +3908,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60390.0,
+    "custom_model_data": 60389.0,
     "bedrock_identifier": "nereuscls:icon_divine_cross",
     "display_name": "Divine Cross",
     "bedrock_options": {
@@ -3928,7 +3918,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60391.0,
+    "custom_model_data": 60390.0,
     "bedrock_identifier": "nereuscls:icon_divine_immolation",
     "display_name": "Divine Immolation",
     "bedrock_options": {
@@ -3938,7 +3928,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60392.0,
+    "custom_model_data": 60391.0,
     "bedrock_identifier": "nereuscls:icon_divine_punishment",
     "display_name": "Divine Punishment",
     "bedrock_options": {
@@ -3948,7 +3938,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60393.0,
+    "custom_model_data": 60392.0,
     "bedrock_identifier": "nereuscls:icon_luminous_wave",
     "display_name": "Luminous Wave",
     "bedrock_options": {
@@ -3958,7 +3948,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60394.0,
+    "custom_model_data": 60393.0,
     "bedrock_identifier": "nereuscls:icon_tears_of_god",
     "display_name": "Tears Of God",
     "bedrock_options": {
@@ -3968,7 +3958,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60395.0,
+    "custom_model_data": 60394.0,
     "bedrock_identifier": "nereuscls:icon_dragon_breath",
     "display_name": "Dragon Breath",
     "bedrock_options": {
@@ -3978,7 +3968,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60396.0,
+    "custom_model_data": 60395.0,
     "bedrock_identifier": "nereuscls:icon_dragon_dash",
     "display_name": "Dragon Dash",
     "bedrock_options": {
@@ -3988,7 +3978,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60397.0,
+    "custom_model_data": 60396.0,
     "bedrock_identifier": "nereuscls:icon_dragon_skin",
     "display_name": "Dragon Skin",
     "bedrock_options": {
@@ -3998,7 +3988,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60398.0,
+    "custom_model_data": 60397.0,
     "bedrock_identifier": "nereuscls:icon_dragon_slash",
     "display_name": "Dragon Slash",
     "bedrock_options": {
@@ -4008,7 +3998,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60399.0,
+    "custom_model_data": 60398.0,
     "bedrock_identifier": "nereuscls:icon_dragon_zone",
     "display_name": "Dragon Zone",
     "bedrock_options": {
@@ -4018,7 +4008,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60400.0,
+    "custom_model_data": 60399.0,
     "bedrock_identifier": "nereuscls:icon_dragonborn",
     "display_name": "Dragonborn",
     "bedrock_options": {
@@ -4028,7 +4018,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60401.0,
+    "custom_model_data": 60400.0,
     "bedrock_identifier": "nereuscls:icon_death_spin",
     "display_name": "Death Spin",
     "bedrock_options": {
@@ -4038,7 +4028,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60402.0,
+    "custom_model_data": 60401.0,
     "bedrock_identifier": "nereuscls:icon_god_of_death",
     "display_name": "God Of Death",
     "bedrock_options": {
@@ -4048,7 +4038,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60403.0,
+    "custom_model_data": 60402.0,
     "bedrock_identifier": "nereuscls:icon_reaping_claw",
     "display_name": "Reaping Claw",
     "bedrock_options": {
@@ -4058,7 +4048,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60404.0,
+    "custom_model_data": 60403.0,
     "bedrock_identifier": "nereuscls:icon_soul_collector",
     "display_name": "Soul Collector",
     "bedrock_options": {
@@ -4068,7 +4058,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60405.0,
+    "custom_model_data": 60404.0,
     "bedrock_identifier": "nereuscls:icon_soul_scythe",
     "display_name": "Soul Scythe",
     "bedrock_options": {
@@ -4078,7 +4068,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60406.0,
+    "custom_model_data": 60405.0,
     "bedrock_identifier": "nereuscls:icon_soul_slice",
     "display_name": "Soul Slice",
     "bedrock_options": {
@@ -4088,7 +4078,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60407.0,
+    "custom_model_data": 60406.0,
     "bedrock_identifier": "nereuscls:icon_surge",
     "display_name": "Surge",
     "bedrock_options": {
@@ -4098,7 +4088,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60408.0,
+    "custom_model_data": 60407.0,
     "bedrock_identifier": "nereuscls:icon_blackhole_shot",
     "display_name": "Blackhole Shot",
     "bedrock_options": {
@@ -4108,7 +4098,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60409.0,
+    "custom_model_data": 60408.0,
     "bedrock_identifier": "nereuscls:icon_gravitational_boost",
     "display_name": "Gravitational Boost",
     "bedrock_options": {
@@ -4118,7 +4108,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60410.0,
+    "custom_model_data": 60409.0,
     "bedrock_identifier": "nereuscls:icon_pulse_mode",
     "display_name": "Pulse Mode",
     "bedrock_options": {
@@ -4128,7 +4118,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60411.0,
+    "custom_model_data": 60410.0,
     "bedrock_identifier": "nereuscls:icon_retreat",
     "display_name": "Retreat",
     "bedrock_options": {
@@ -4138,7 +4128,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60412.0,
+    "custom_model_data": 60411.0,
     "bedrock_identifier": "nereuscls:icon_void_arrow",
     "display_name": "Void Arrow",
     "bedrock_options": {
@@ -4148,7 +4138,7 @@
    },
    {
     "type": "legacy",
-    "custom_model_data": 60413.0,
+    "custom_model_data": 60412.0,
     "bedrock_identifier": "nereuscls:icon_void_rain",
     "display_name": "Void Rain",
     "bedrock_options": {

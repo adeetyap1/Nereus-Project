@@ -124,6 +124,8 @@ final class Engine {
         skills.clear();
         mobs.clear();
         maxStands = plugin.getConfig().getInt("engine.max-stands", 500);
+        Fx.particleMult = plugin.getConfig().getDouble("engine.particle-multiplier", 2.0);
+        Fx.soundGapMs = plugin.getConfig().getLong("engine.sound-gap-ms", 300);
         maxLifeTicks = plugin.getConfig().getInt("engine.max-vfx-life-ticks", 1200);
         File sd = new File(plugin.getDataFolder(), "skills");
         File[] fs = sd.listFiles((d, n) -> n.endsWith(".yml"));
@@ -659,7 +661,10 @@ final class Engine {
                     default -> it = p.getInventory().getHelmet();
                 }
                 String k = items.keyOf(it);
-                return k != null && k.equalsIgnoreCase(want);
+                if (k != null && k.equalsIgnoreCase(want)) {
+                    return true;
+                }
+                return slot.equals("HEAD") && plugin.cosmetics != null && want.equalsIgnoreCase(plugin.cosmetics.hatId(p));
             }
             case "entitytype" -> {
                 String t = cd.o.str("", "t", "type");

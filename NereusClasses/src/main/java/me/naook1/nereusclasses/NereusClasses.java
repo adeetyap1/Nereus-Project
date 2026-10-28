@@ -231,8 +231,9 @@ public final class NereusClasses extends JavaPlugin implements TabExecutor {
             lore.addAll(g.lore);
             if (!g.slots.isEmpty()) {
                 lore.add("&8");
-                lore.add("&7Klik kanan: &fskill terpilih");
-                lore.add("&7Sneak + klik kiri: &fganti skill");
+                lore.add("&7Klik kanan: &fpakai skill terpilih");
+                lore.add("&7Jongkok + klik kanan: &fmenu pilih skill");
+                lore.add("&7Tombol tukar tangan (F): &fskill berikutnya");
             }
         }
         return items.make(key, g == null ? 0 : g.damage, g == null ? 1.6 : g.speed, lore);

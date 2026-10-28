@@ -259,6 +259,11 @@ final class Triggers implements Listener {
             return;
         }
         e.setUseItemInHand(Event.Result.DENY);
+        if (p.isSneaking() && g.slots.size() > 1) {
+            e.setCancelled(true);
+            pl.gui.openSkills(p, g);
+            return;
+        }
         int i = sel(p, g);
         Line l = g.slots.get(i);
         String id = l.o.str("", "s", "skill", "meta", "m");
@@ -276,6 +281,24 @@ final class Triggers implements Listener {
             });
         }
         actionBar(p, status(p, g));
+    }
+
+    @EventHandler
+    public void onSwap(org.bukkit.event.player.PlayerSwapHandItemsEvent e) {
+        NereusClasses.Gear g = held(e.getPlayer());
+        if (g != null && g.slots.size() > 1) {
+            e.setCancelled(true);
+            cycle(e.getPlayer(), 1);
+        }
+    }
+
+    void select(Player p, NereusClasses.Gear g, int idx) {
+        pl.selected.computeIfAbsent(p.getUniqueId(), k -> new HashMap<>()).put(g.key, idx);
+        actionBar(p, status(p, g));
+    }
+
+    int selected(Player p, NereusClasses.Gear g) {
+        return sel(p, g);
     }
 
     @EventHandler

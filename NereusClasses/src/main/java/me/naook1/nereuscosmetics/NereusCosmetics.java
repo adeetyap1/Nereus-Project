@@ -60,6 +60,15 @@ public final class NereusCosmetics extends me.naook1.nereusclasses.Module implem
         saveDefaultConfig();
         tagKey = new NamespacedKey(host(), "carrier");
         dataFile = new File(getDataFolder(), "data.yml");
+        File old = new File(getDataFolder().getParentFile(), "NereusCosmetics/data.yml");
+        if (!dataFile.exists() && old.exists()) {
+            try {
+                getDataFolder().mkdirs();
+                java.nio.file.Files.copy(old.toPath(), dataFile.toPath());
+            } catch (java.io.IOException ignored) {
+                // start fresh
+            }
+        }
         loadCosmetics();
         loadData();
         gui = new CosmeticsGui(this);
@@ -103,7 +112,8 @@ public final class NereusCosmetics extends me.naook1.nereusclasses.Module implem
             }
             String perm = s.getString("permission", "nereuscosmetics.use." + id);
             registry.put(id, new Cosmetic(id, color(s.getString("name", id)), type, s.getInt("cmd", 0),
-                    perm == null ? "" : perm.trim(), color(s.getString("description", ""))));
+                    perm == null ? "" : perm.trim(), color(s.getString("description", "")),
+                    org.bukkit.Material.matchMaterial(s.getString("carrier", "COAL")) == null ? Material.COAL : org.bukkit.Material.matchMaterial(s.getString("carrier", "COAL"))));
         }
     }
 
@@ -185,6 +195,10 @@ public final class NereusCosmetics extends me.naook1.nereusclasses.Module implem
         return granted.getOrDefault(p.getUniqueId(), Collections.emptySet()).contains(c.id());
     }
 
+    public String hatId(Player p) {
+        return equippedId(p, Cosmetic.Type.HAT);
+    }
+
     String equippedId(Player p, Cosmetic.Type t) {
         return equipped.getOrDefault(p.getUniqueId(), Collections.emptyMap()).get(t);
     }
@@ -222,7 +236,7 @@ public final class NereusCosmetics extends me.naook1.nereusclasses.Module implem
     private int tickCount = 0;
 
     ItemStack carrier(Cosmetic c, boolean tagged) {
-        ItemStack it = new ItemStack(Material.COAL);
+        ItemStack it = new ItemStack(c.mat());
         ItemMeta meta = it.getItemMeta();
         meta.setCustomModelData(c.cmd());
         meta.setDisplayName(c.name());
@@ -234,7 +248,7 @@ public final class NereusCosmetics extends me.naook1.nereusclasses.Module implem
     }
 
     private int tagOf(ItemStack it) {
-        if (it == null || it.getType() != Material.COAL || !it.hasItemMeta()) {
+        if (it == null || !it.hasItemMeta()) {
             return -1;
         }
         Integer v = it.getItemMeta().getPersistentDataContainer().get(tagKey, PersistentDataType.INTEGER);
