@@ -309,6 +309,49 @@ public final class NereusClasses extends JavaPlugin implements TabExecutor {
                 boolean ok = engine.castByName(a[1], p, p.getLocation(), null, new HashMap<>(baseMods));
                 p.sendMessage(ok ? "§aCast " + a[1] : "§cSkill tidak ada / cooldown / syarat belum terpenuhi.");
             }
+            case "test" -> {
+                if (!(s instanceof Player p) || !p.hasPermission("nereusclasses.admin") || a.length < 3) {
+                    s.sendMessage("§c/classes test <head|hand> <frame_key>  (admin) - spawn model uji di depanmu 60 detik");
+                    return true;
+                }
+                ItemStack fr = items.frame(a[2].toLowerCase(Locale.ROOT));
+                if (fr == null) {
+                    s.sendMessage("§cFrame tidak ditemukan.");
+                    return true;
+                }
+                org.bukkit.Location at = p.getLocation().add(p.getLocation().getDirection().setY(0).normalize().multiply(3));
+                at.setYaw(p.getLocation().getYaw() + 180f);
+                org.bukkit.entity.ArmorStand st = at.getWorld().spawn(at, org.bukkit.entity.ArmorStand.class, e -> {
+                    e.setVisible(false);
+                    e.setGravity(false);
+                    e.setMarker(true);
+                    e.setBasePlate(false);
+                    e.setArms(true);
+                    e.setPersistent(false);
+                    e.getPersistentDataContainer().set(engine.vfxKey, org.bukkit.persistence.PersistentDataType.BYTE, (byte) 1);
+                    if (a[1].equalsIgnoreCase("hand")) {
+                        e.getEquipment().setItemInMainHand(fr);
+                    } else {
+                        e.getEquipment().setHelmet(fr);
+                    }
+                });
+                Bukkit.getScheduler().runTaskTimer(this, new Runnable() {
+                    int t = 0;
+
+                    @Override
+                    public void run() {
+                        if (!st.isValid() || t++ > 120) {
+                            st.remove();
+                            return;
+                        }
+                        for (double y = 0; y <= 2.0; y += 0.5) {
+                            st.getWorld().spawnParticle(org.bukkit.Particle.END_ROD, st.getLocation().add(0, y, 0), 1, 0, 0, 0, 0);
+                        }
+                        st.getWorld().spawnParticle(org.bukkit.Particle.HAPPY_VILLAGER, st.getLocation().add(0, 1.5, 0), 3, 0.02, 0.02, 0.02, 0);
+                    }
+                }, 10L, 10L);
+                s.sendMessage("§aModel uji muncul 3 blok di depanmu. Tiang partikel putih = posisi stand (tinggi 0-2 blok); hijau = 1.5 blok.");
+            }
             case "reload" -> {
                 if (!s.hasPermission("nereusclasses.admin")) {
                     s.sendMessage("§cTidak ada izin.");
