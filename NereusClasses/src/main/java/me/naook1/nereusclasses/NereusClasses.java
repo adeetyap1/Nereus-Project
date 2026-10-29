@@ -51,6 +51,7 @@ public final class NereusClasses extends JavaPlugin implements TabExecutor {
     Items items;
     Engine engine;
     Triggers triggers;
+    Hud hud;
     ClassGui gui;
     final Map<String, Gear> gear = new LinkedHashMap<>();
     final Map<String, String> classNames = new LinkedHashMap<>();
@@ -95,6 +96,8 @@ public final class NereusClasses extends JavaPlugin implements TabExecutor {
         cosmetics.onEnable();
         weapons = new me.naook1.nereusweapons.NereusWeapons(this);
         weapons.onEnable();
+        hud = new Hud(this);
+        hud.start();
         // sweep leftover VFX stands (after crash)
         Bukkit.getScheduler().runTaskLater(this, () -> {
             int n = 0;
@@ -114,6 +117,9 @@ public final class NereusClasses extends JavaPlugin implements TabExecutor {
 
     @Override
     public void onDisable() {
+        if (hud != null) {
+            hud.stop();
+        }
         if (cosmetics != null) {
             cosmetics.onDisable();
         }

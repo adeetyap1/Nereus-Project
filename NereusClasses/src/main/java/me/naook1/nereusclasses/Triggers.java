@@ -78,6 +78,10 @@ final class Triggers implements Listener {
     }
 
     private void actionBar(Player p, String s) {
+        if (pl.hud != null && pl.hud.enabled) {
+            pl.hud.status(p, s);
+            return;
+        }
         p.sendActionBar(LegacyComponentSerializer.legacySection().deserialize(NereusClasses.color(s)));
     }
 

@@ -18,3 +18,7 @@ modifiers:                 # nilai default <modifier.xxx> di file skill
   damage: 15
   duration: 4
   heal: 6
+
+hud:
+  enabled: true        # custom HUD (Java: font glyphs in actionbar, Bedrock: plain text)
+  period-ticks: 3      # refresh rate
