@@ -113,7 +113,8 @@ public final class NereusCosmetics extends me.naook1.nereusclasses.Module implem
             String perm = s.getString("permission", "nereuscosmetics.use." + id);
             registry.put(id, new Cosmetic(id, color(s.getString("name", id)), type, s.getInt("cmd", 0),
                     perm == null ? "" : perm.trim(), color(s.getString("description", "")),
-                    org.bukkit.Material.matchMaterial(s.getString("carrier", "COAL")) == null ? Material.COAL : org.bukkit.Material.matchMaterial(s.getString("carrier", "COAL"))));
+                    org.bukkit.Material.matchMaterial(s.getString("carrier", "COAL")) == null ? Material.COAL : org.bukkit.Material.matchMaterial(s.getString("carrier", "COAL")),
+                    s.getBoolean("suit", false)));
         }
     }
 
@@ -412,9 +413,15 @@ public final class NereusCosmetics extends me.naook1.nereusclasses.Module implem
                 if (d != null) {
                     d.remove();
                 }
-                d = p.getWorld().spawn(base, ItemDisplay.class, e -> {
+                Location spawnAt = base.clone();
+                if (back.suit()) {
+                    spawnAt.setYaw(0f);
+                    spawnAt.setPitch(0f);
+                }
+                final boolean suitNow = back.suit();
+                d = p.getWorld().spawn(spawnAt, ItemDisplay.class, e -> {
                     e.setPersistent(false);
-                    e.setItemDisplayTransform(ItemDisplay.ItemDisplayTransform.HEAD);
+                    e.setItemDisplayTransform(suitNow ? ItemDisplay.ItemDisplayTransform.NONE : ItemDisplay.ItemDisplayTransform.HEAD);
                     e.setTeleportDuration(0);
                     e.setInterpolationDelay(0);
                     e.setInterpolationDuration(2);
@@ -427,6 +434,7 @@ public final class NereusCosmetics extends me.naook1.nereusclasses.Module implem
             }
             int shownCmd = d.getMetadata("nereuscos_cmd").isEmpty() ? -1 : d.getMetadata("nereuscos_cmd").get(0).asInt();
             if (shownCmd != back.cmd()) {
+                d.setItemDisplayTransform(back.suit() ? ItemDisplay.ItemDisplayTransform.NONE : ItemDisplay.ItemDisplayTransform.HEAD);
                 d.setItemStack(carrier(back, false));
                 d.setMetadata("nereuscos_cmd", new FixedMetadataValue(host(), back.cmd()));
             }
@@ -450,8 +458,15 @@ public final class NereusCosmetics extends me.naook1.nereusclasses.Module implem
                 float sz = (float) (Math.cos(Math.toRadians(yaw)) * -oz);
                 d.setInterpolationDelay(0);
                 d.setInterpolationDuration(fresh ? 0 : 2);
-                d.setTransformation(new Transformation(new Vector3f(sx, 1.406f + 0.234f - 1.8f + oy, sz),
-                        new AxisAngle4f(rad, 0, 1, 0), new Vector3f(0.586f, 0.586f, 0.586f), new AxisAngle4f()));
+                if (back.suit()) {
+                    float so = (float) getConfig().getDouble("settings.suit-offset-y", 0.0);
+                    float suitRad = (float) (Math.PI - Math.toRadians(yaw));
+                    d.setTransformation(new Transformation(new Vector3f(0f, 1.125f - 1.8f + so, 0f),
+                            new AxisAngle4f(suitRad, 0, 1, 0), new Vector3f(1f, 1f, 1f), new AxisAngle4f()));
+                } else {
+                    d.setTransformation(new Transformation(new Vector3f(sx, 1.406f + 0.234f - 1.8f + oy, sz),
+                            new AxisAngle4f(rad, 0, 1, 0), new Vector3f(0.586f, 0.586f, 0.586f), new AxisAngle4f()));
+                }
             }
             if (checkPerm || sendFake || wasDirty) {
                 for (Player v : Bukkit.getOnlinePlayers()) {

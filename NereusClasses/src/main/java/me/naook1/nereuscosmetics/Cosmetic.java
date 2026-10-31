@@ -1,6 +1,10 @@
 package me.naook1.nereuscosmetics;
 
-public record Cosmetic(String id, String name, Type type, int cmd, String permission, String desc, org.bukkit.Material mat) {
+public record Cosmetic(String id, String name, Type type, int cmd, String permission, String desc, org.bukkit.Material mat, boolean suit) {
+
+    public Cosmetic(String id, String name, Type type, int cmd, String permission, String desc, org.bukkit.Material mat) {
+        this(id, name, type, cmd, permission, desc, mat, false);
+    }
 
     public Cosmetic(String id, String name, Type type, int cmd, String permission, String desc) {
         this(id, name, type, cmd, permission, desc, org.bukkit.Material.COAL);

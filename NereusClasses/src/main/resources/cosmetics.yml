@@ -120,3 +120,63 @@ cosmetics:
     carrier: PAPER
     permission: "nereuscosmetics.use.null_head"
     description: "Topeng Null"
+  armor_shogun_helm:
+    name: "Shogun Hitam-Emas - Helm"
+    type: HAT
+    cmd: 7101
+    carrier: PAPER
+    permission: "nereuscosmetics.use.armor_shogun_helm"
+    description: "Set armor 3D Shogun Hitam-Emas"
+  armor_shogun_suit:
+    name: "Shogun Hitam-Emas - Armor"
+    type: BACK
+    cmd: 7102
+    carrier: PAPER
+    suit: true
+    permission: "nereuscosmetics.use.armor_shogun_suit"
+    description: "Set armor 3D Shogun Hitam-Emas"
+  armor_crimson_helm:
+    name: "Crimson Demon - Helm"
+    type: HAT
+    cmd: 7103
+    carrier: PAPER
+    permission: "nereuscosmetics.use.armor_crimson_helm"
+    description: "Set armor 3D Crimson Demon"
+  armor_crimson_suit:
+    name: "Crimson Demon - Armor"
+    type: BACK
+    cmd: 7104
+    carrier: PAPER
+    suit: true
+    permission: "nereuscosmetics.use.armor_crimson_suit"
+    description: "Set armor 3D Crimson Demon"
+  armor_verdant_helm:
+    name: "Verdant Warden - Helm"
+    type: HAT
+    cmd: 7105
+    carrier: PAPER
+    permission: "nereuscosmetics.use.armor_verdant_helm"
+    description: "Set armor 3D Verdant Warden"
+  armor_verdant_suit:
+    name: "Verdant Warden - Armor"
+    type: BACK
+    cmd: 7106
+    carrier: PAPER
+    suit: true
+    permission: "nereuscosmetics.use.armor_verdant_suit"
+    description: "Set armor 3D Verdant Warden"
+  armor_arcane_helm:
+    name: "Arcane Witch - Helm"
+    type: HAT
+    cmd: 7107
+    carrier: PAPER
+    permission: "nereuscosmetics.use.armor_arcane_helm"
+    description: "Set armor 3D Arcane Witch"
+  armor_arcane_suit:
+    name: "Arcane Witch - Armor"
+    type: BACK
+    cmd: 7108
+    carrier: PAPER
+    suit: true
+    permission: "nereuscosmetics.use.armor_arcane_suit"
+    description: "Set armor 3D Arcane Witch"

@@ -1,0 +1,87 @@
+{
+ "format_version": 2,
+ "items": {
+  "minecraft:paper": [
+   {
+    "type": "legacy",
+    "custom_model_data": 7101.0,
+    "bedrock_identifier": "nereusarm:shogun_helm",
+    "display_name": "Shogun Hitam-Emas - Helm",
+    "bedrock_options": {
+     "icon": "nereus_arm_shogun_helm",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7102.0,
+    "bedrock_identifier": "nereusarm:shogun_suit",
+    "display_name": "Shogun Hitam-Emas - Armor",
+    "bedrock_options": {
+     "icon": "nereus_arm_shogun_suit",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7103.0,
+    "bedrock_identifier": "nereusarm:crimson_helm",
+    "display_name": "Crimson Demon - Helm",
+    "bedrock_options": {
+     "icon": "nereus_arm_crimson_helm",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7104.0,
+    "bedrock_identifier": "nereusarm:crimson_suit",
+    "display_name": "Crimson Demon - Armor",
+    "bedrock_options": {
+     "icon": "nereus_arm_crimson_suit",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7105.0,
+    "bedrock_identifier": "nereusarm:verdant_helm",
+    "display_name": "Verdant Warden - Helm",
+    "bedrock_options": {
+     "icon": "nereus_arm_verdant_helm",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7106.0,
+    "bedrock_identifier": "nereusarm:verdant_suit",
+    "display_name": "Verdant Warden - Armor",
+    "bedrock_options": {
+     "icon": "nereus_arm_verdant_suit",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7107.0,
+    "bedrock_identifier": "nereusarm:arcane_helm",
+    "display_name": "Arcane Witch - Helm",
+    "bedrock_options": {
+     "icon": "nereus_arm_arcane_helm",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 7108.0,
+    "bedrock_identifier": "nereusarm:arcane_suit",
+    "display_name": "Arcane Witch - Armor",
+    "bedrock_options": {
+     "icon": "nereus_arm_arcane_suit",
+     "allow_offhand": true
+    }
+   }
+  ]
+ }
+}
