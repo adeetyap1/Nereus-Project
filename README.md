@@ -21,4 +21,8 @@ Custom Paper 1.21.1 plugins (Java 21) by naook1/adityap.
 - **NereusSize** - `/ukuran` (alias `/size`, `/resize`): ubah ukuran badan pemain (atribut scale), batas per tier, cooldown, dunia terlarang
   kecuali `/hide join`, menu admin `/hide admin`, inventory pemain disimpan aman ke file.
 
+- **NereusArmorySets** - `/armoryset` (alias `/aset`): set bonus atribut untuk 16 set armor mod Armory (RPG Series), dibedakan per tier
+  (Lost x1.0, Forgotten x1.5). Pakai 2/4 piece sekeluarga -> bonus atribut vanilla aktif. Semua angka di `config.yml`.
+  Item lewat `/armoryset give <pemain> <set> [head|chest|legs|feet|all]`.
+
 Build: buka tab Actions, jalankan "Build" terbaru, unduh artifact `plugins` (berisi 6 jar).

@@ -1,0 +1,16 @@
+name: NereusArmorySets
+version: '${project.version}'
+main: me.naook1.nereusarmorysets.NereusArmorySets
+api-version: '1.21'
+authors: [naook1, adityap]
+description: Set bonus atribut untuk armor Armory (RPG Series), dibedakan per tier.
+commands:
+  armoryset:
+    description: Perintah admin ArmorySets
+    usage: /<command> <give|list|info|reload>
+    aliases: [aset]
+    permission: nereusarmorysets.admin
+permissions:
+  nereusarmorysets.admin:
+    description: Akses semua perintah ArmorySets
+    default: op

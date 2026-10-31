@@ -1,0 +1,263 @@
+# ArmorySets - set bonus atribut untuk armor Armory (RPG Series)
+#
+# Cara kerja: pakai 2 piece / 4 piece dari set yang sama -> bonus atribut aktif.
+# Bonus 2 piece tetap aktif saat 4 piece (kumulatif).
+# Nilai "amount" di bawah adalah nilai dasar (tier 1). Nilai akhir = amount x multiplier tier.
+#
+# operation:
+#   add             -> tambah angka langsung (contoh: max_health 2.0 = 1 heart)
+#   multiply_base   -> +% dari nilai dasar atribut
+#   multiply_total  -> +% dari total atribut (termasuk senjata) - cocok untuk attack_damage / attack_speed
+#
+# attribute: max_health, armor, armor_toughness, attack_damage, attack_speed,
+#            movement_speed, knockback_resistance, luck, safe_fall_distance, dll
+#            (nama atribut vanilla tanpa prefix "generic.")
+
+update-interval-ticks: 10     # seberapa sering bonus dicek ulang (20 tick = 1 detik)
+actionbar-on-change: true     # tampilkan pesan di action bar saat bonus set berubah
+custom-model-data-base: 0     # 0 = nonaktif. Jika > 0, tiap item diberi CustomModelData (untuk resource pack nanti)
+
+tiers:
+  1:
+    name: "Lost"
+    color: "&9"
+    multiplier: 1.0
+  2:
+    name: "Forgotten"
+    color: "&6"
+    multiplier: 1.5
+    # Tambah tier baru dengan menambah blok "3:" dst, lalu set "tier: 3" di set yang diinginkan.
+
+sets:
+  astral:
+    display: "Astral Regalia"
+    tier: 1
+    material: LEATHER   # LEATHER / CHAINMAIL / IRON / GOLDEN / DIAMOND / NETHERITE
+    color: "#7B3FE4"   # hanya untuk LEATHER
+    pieces:
+      head: "Astral Hat"
+      chest: "Astral Robe"
+      legs: "Astral Breeches"
+      feet: "Astral Boots"
+    bonuses:
+      2:
+        - { attribute: attack_damage, operation: multiply_total, amount: 0.06 }
+      4:
+        - { attribute: attack_speed, operation: multiply_total, amount: 0.05 }
+  scarlet:
+    display: "Scarlet Raiment"
+    tier: 1
+    material: LEATHER   # LEATHER / CHAINMAIL / IRON / GOLDEN / DIAMOND / NETHERITE
+    color: "#C0392B"   # hanya untuk LEATHER
+    pieces:
+      head: "Scarlet Hat"
+      chest: "Scarlet Robe"
+      legs: "Scarlet Breeches"
+      feet: "Scarlet Boots"
+    bonuses:
+      2:
+        - { attribute: attack_damage, operation: multiply_total, amount: 0.06 }
+      4:
+        - { attribute: max_health, operation: add, amount: 2.0 }
+  glacier:
+    display: "Glacier Mantle"
+    tier: 1
+    material: LEATHER   # LEATHER / CHAINMAIL / IRON / GOLDEN / DIAMOND / NETHERITE
+    color: "#4FC3F7"   # hanya untuk LEATHER
+    pieces:
+      head: "Glacier Hat"
+      chest: "Glacier Robe"
+      legs: "Glacier Breeches"
+      feet: "Glacier Boots"
+    bonuses:
+      2:
+        - { attribute: armor_toughness, operation: add, amount: 1.0 }
+      4:
+        - { attribute: knockback_resistance, operation: add, amount: 0.1 }
+  avatar:
+    display: "Avatar Raiment"
+    tier: 1
+    material: LEATHER   # LEATHER / CHAINMAIL / IRON / GOLDEN / DIAMOND / NETHERITE
+    color: "#F5E6A8"   # hanya untuk LEATHER
+    pieces:
+      head: "Avatar Cowl"
+      chest: "Avatar Vestment"
+      legs: "Avatar Breeches"
+      feet: "Avatar Boots"
+    bonuses:
+      2:
+        - { attribute: max_health, operation: add, amount: 2.0 }
+      4:
+        - { attribute: armor, operation: add, amount: 2.0 }
+  justicar:
+    display: "Justicar Regalia"
+    tier: 1
+    material: IRON   # LEATHER / CHAINMAIL / IRON / GOLDEN / DIAMOND / NETHERITE
+    pieces:
+      head: "Justicar Faceguard"
+      chest: "Justicar Chestplate"
+      legs: "Justicar Legguards"
+      feet: "Justicar Boots"
+    bonuses:
+      2:
+        - { attribute: max_health, operation: add, amount: 4.0 }
+      4:
+        - { attribute: armor_toughness, operation: add, amount: 2.0 }
+  destroyer:
+    display: "Destroyer Armor"
+    tier: 1
+    material: IRON   # LEATHER / CHAINMAIL / IRON / GOLDEN / DIAMOND / NETHERITE
+    pieces:
+      head: "Destroyer Greathelm"
+      chest: "Destroyer Chestplate"
+      legs: "Destroyer Greaves"
+      feet: "Destroyer Boots"
+    bonuses:
+      2:
+        - { attribute: attack_damage, operation: multiply_total, amount: 0.05 }
+      4:
+        - { attribute: knockback_resistance, operation: add, amount: 0.1 }
+  deathmantle:
+    display: "Deathmantle"
+    tier: 1
+    material: CHAINMAIL   # LEATHER / CHAINMAIL / IRON / GOLDEN / DIAMOND / NETHERITE
+    pieces:
+      head: "Deathmantle Hood"
+      chest: "Deathmantle Tunic"
+      legs: "Deathmantle Leggings"
+      feet: "Deathmantle Boots"
+    bonuses:
+      2:
+        - { attribute: movement_speed, operation: multiply_total, amount: 0.05 }
+      4:
+        - { attribute: attack_speed, operation: multiply_total, amount: 0.05 }
+  strider:
+    display: "Strider Armor"
+    tier: 1
+    material: CHAINMAIL   # LEATHER / CHAINMAIL / IRON / GOLDEN / DIAMOND / NETHERITE
+    pieces:
+      head: "Strider Hood"
+      chest: "Strider Tunic"
+      legs: "Strider Leggings"
+      feet: "Strider Boots"
+    bonuses:
+      2:
+        - { attribute: movement_speed, operation: multiply_total, amount: 0.04 }
+      4:
+        - { attribute: safe_fall_distance, operation: add, amount: 2.0 }
+  tempest:
+    display: "Tempest Regalia"
+    tier: 2
+    material: LEATHER   # LEATHER / CHAINMAIL / IRON / GOLDEN / DIAMOND / NETHERITE
+    color: "#5B2A9E"   # hanya untuk LEATHER
+    pieces:
+      head: "Tempest Hat"
+      chest: "Tempest Robe"
+      legs: "Tempest Breeches"
+      feet: "Tempest Boots"
+    bonuses:
+      2:
+        - { attribute: attack_speed, operation: multiply_total, amount: 0.05 }
+      4:
+        - { attribute: attack_damage, operation: multiply_total, amount: 0.05 }
+  smouldering:
+    display: "Smouldering Raiment"
+    tier: 2
+    material: LEATHER   # LEATHER / CHAINMAIL / IRON / GOLDEN / DIAMOND / NETHERITE
+    color: "#E67E22"   # hanya untuk LEATHER
+    pieces:
+      head: "Smouldering Hat"
+      chest: "Smouldering Robe"
+      legs: "Smouldering Breeches"
+      feet: "Smouldering Boots"
+    bonuses:
+      2:
+        - { attribute: luck, operation: add, amount: 1.0 }
+      4:
+        - { attribute: max_health, operation: add, amount: 2.0 }
+  rimeweave:
+    display: "Rimeweave Mantle"
+    tier: 2
+    material: LEATHER   # LEATHER / CHAINMAIL / IRON / GOLDEN / DIAMOND / NETHERITE
+    color: "#1E88E5"   # hanya untuk LEATHER
+    pieces:
+      head: "Rimeweave Hat"
+      chest: "Rimeweave Robe"
+      legs: "Rimeweave Breeches"
+      feet: "Rimeweave Boots"
+    bonuses:
+      2:
+        - { attribute: attack_damage, operation: multiply_total, amount: 0.06 }
+      4:
+        - { attribute: armor_toughness, operation: add, amount: 1.0 }
+  absolution:
+    display: "Absolution Raiment"
+    tier: 2
+    material: LEATHER   # LEATHER / CHAINMAIL / IRON / GOLDEN / DIAMOND / NETHERITE
+    color: "#FFF3B0"   # hanya untuk LEATHER
+    pieces:
+      head: "Absolution Cowl"
+      chest: "Absolution Vestment"
+      legs: "Absolution Breeches"
+      feet: "Absolution Boots"
+    bonuses:
+      2:
+        - { attribute: attack_speed, operation: multiply_total, amount: 0.05 }
+      4:
+        - { attribute: max_health, operation: add, amount: 2.0 }
+  lightbringer:
+    display: "Lightbringer Regalia"
+    tier: 2
+    material: IRON   # LEATHER / CHAINMAIL / IRON / GOLDEN / DIAMOND / NETHERITE
+    pieces:
+      head: "Lightbringer Crown"
+      chest: "Lightbringer Chestplate"
+      legs: "Lightbringer Legguards"
+      feet: "Lightbringer Boots"
+    bonuses:
+      2:
+        - { attribute: attack_damage, operation: multiply_total, amount: 0.05 }
+      4:
+        - { attribute: armor, operation: add, amount: 2.0 }
+  onslaught:
+    display: "Onslaught Armor"
+    tier: 2
+    material: IRON   # LEATHER / CHAINMAIL / IRON / GOLDEN / DIAMOND / NETHERITE
+    pieces:
+      head: "Onslaught Greathelm"
+      chest: "Onslaught Chestplate"
+      legs: "Onslaught Greaves"
+      feet: "Onslaught Boots"
+    bonuses:
+      2:
+        - { attribute: attack_speed, operation: multiply_total, amount: 0.05 }
+      4:
+        - { attribute: knockback_resistance, operation: add, amount: 0.1 }
+  slayer:
+    display: "Slayer Armor"
+    tier: 2
+    material: CHAINMAIL   # LEATHER / CHAINMAIL / IRON / GOLDEN / DIAMOND / NETHERITE
+    pieces:
+      head: "Slayer Hood"
+      chest: "Slayer Tunic"
+      legs: "Slayer Leggings"
+      feet: "Slayer Boots"
+    bonuses:
+      2:
+        - { attribute: attack_damage, operation: multiply_total, amount: 0.05 }
+      4:
+        - { attribute: movement_speed, operation: multiply_total, amount: 0.04 }
+  riftstalker:
+    display: "Riftstalker Armor"
+    tier: 2
+    material: CHAINMAIL   # LEATHER / CHAINMAIL / IRON / GOLDEN / DIAMOND / NETHERITE
+    pieces:
+      head: "Riftstalker Hood"
+      chest: "Riftstalker Tunic"
+      legs: "Riftstalker Leggings"
+      feet: "Riftstalker Boots"
+    bonuses:
+      2:
+        - { attribute: movement_speed, operation: multiply_total, amount: 0.05 }
+      4:
+        - { attribute: safe_fall_distance, operation: add, amount: 2.0 }
