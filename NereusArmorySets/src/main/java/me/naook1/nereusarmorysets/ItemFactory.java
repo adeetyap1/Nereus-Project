@@ -8,9 +8,12 @@ import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
+import org.bukkit.inventory.EquipmentSlotGroup;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -21,9 +24,12 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-/** Membuat item armor set dan membaca tag set dari item. */
+/** Membuat item armor set (dengan pertahanan nyata) dan membaca tag set dari item. */
 public final class ItemFactory {
     private static final LegacyComponentSerializer AMP = LegacyComponentSerializer.legacyAmpersand();
+
+    /** Item pembawa model 3D untuk ItemDisplay (tidak pernah dipegang pemain). */
+    public static final Material CARRIER = Material.ARMADILLO_SCUTE;
 
     private final NereusArmorySets plugin;
     private final NamespacedKey setKey;
@@ -48,20 +54,87 @@ public final class ItemFactory {
         };
     }
 
-    /** @return item atau null jika material tidak valid. */
+    private static EquipmentSlotGroup groupOf(String slot) {
+        return switch (slot) {
+            case "head" -> EquipmentSlotGroup.HEAD;
+            case "chest" -> EquipmentSlotGroup.CHEST;
+            case "legs" -> EquipmentSlotGroup.LEGS;
+            default -> EquipmentSlotGroup.FEET;
+        };
+    }
+
+    // ---- nilai pertahanan ----
+
+    /** Armor satu piece: nilai kelas x pengali tier, dibulatkan ke 0.5. */
+    public double armorOf(SetDef set, String slot) {
+        double base = plugin.registry().classOf(set).armor()[SetRegistry.slotIndex(slot)];
+        return Math.round(base * set.tier().armorMultiplier() * 2.0) / 2.0;
+    }
+
+    public double toughnessOf(SetDef set) {
+        return plugin.registry().classOf(set).toughness() + set.tier().toughnessBonus();
+    }
+
+    public double knockbackOf(SetDef set) {
+        return plugin.registry().classOf(set).knockback();
+    }
+
+    public int durabilityOf(SetDef set, String slot) {
+        return (int) Math.round(plugin.registry().durabilityBase(SetRegistry.slotIndex(slot))
+                * set.tier().durabilityMultiplier());
+    }
+
+    /** Total armor satu set penuh. */
+    public double totalArmor(SetDef set) {
+        double sum = 0;
+        for (String slot : SetRegistry.SLOTS) sum += armorOf(set, slot);
+        return sum;
+    }
+
+    // ---- CustomModelData ----
+
+    private int base() {
+        return plugin.getConfig().getInt("custom-model-data-base", 9000);
+    }
+
+    /** CMD ikon item (2D). */
+    public int iconCmd(SetDef set, String slot) {
+        return base() + set.index() * 4 + SetRegistry.slotIndex(slot);
+    }
+
+    /** CMD model 3D untuk ItemDisplay. */
+    public int displayCmd(SetDef set, String slot) {
+        return iconCmd(set, slot) + 100;
+    }
+
+    public ItemStack carrier(SetDef set, String slot) {
+        ItemStack item = new ItemStack(CARRIER);
+        ItemMeta meta = item.getItemMeta();
+        meta.setCustomModelData(displayCmd(set, slot));
+        item.setItemMeta(meta);
+        return item;
+    }
+
+    // ---- item ----
+
     public ItemStack create(SetDef set, String slot) {
-        Material mat = Material.matchMaterial(set.material() + "_" + vanillaSuffix(slot));
-        if (mat == null) {
-            return null;
-        }
+        Material mat = Material.matchMaterial("LEATHER_" + vanillaSuffix(slot));
+        if (mat == null) return null;
+
         ItemStack item = new ItemStack(mat);
         ItemMeta meta = item.getItemMeta();
         String tc = set.tier().color();
 
         meta.displayName(text(tc + set.pieces().get(slot)));
 
+        double armor = armorOf(set, slot);
+        double tough = toughnessOf(set);
+        double kb = knockbackOf(set);
+
         List<Component> lore = new ArrayList<>();
         lore.add(text("&7Set: " + tc + set.display() + " &8(" + set.tier().name() + ")"));
+        lore.add(text("&7Armor &f" + trim(armor) + "&7  Toughness &f" + trim(tough)
+                + (kb > 0 ? "&7  Knockback Res. &f" + trim(kb) : "")));
         for (Map.Entry<Integer, List<Bonus>> e : set.bonuses().entrySet()) {
             lore.add(Component.empty());
             lore.add(text("&7Set Bonus (" + e.getKey() + "/4):"));
@@ -71,17 +144,21 @@ public final class ItemFactory {
         }
         meta.lore(lore);
 
-        if (meta instanceof LeatherArmorMeta leather && set.leatherColor() != null) {
-            leather.setColor(Color.fromRGB(set.leatherColor()));
+        // pertahanan sungguhan: atribut ada di item, jadi dihitung oleh sistem armor vanilla.
+        // (atribut kustom MENGGANTIKAN nilai bawaan leather, jadi angka di sini yang berlaku)
+        EquipmentSlotGroup group = groupOf(slot);
+        addAttr(meta, "armor", armor, group, slot);
+        if (tough > 0) addAttr(meta, "armor_toughness", tough, group, slot);
+        if (kb > 0) addAttr(meta, "knockback_resistance", kb, group, slot);
+
+        if (meta instanceof Damageable dmg) {
+            dmg.setMaxDamage(durabilityOf(set, slot));
+        }
+        if (meta instanceof LeatherArmorMeta leather && set.color() != null) {
+            leather.setColor(Color.fromRGB(set.color()));
         }
         meta.addItemFlags(ItemFlag.HIDE_DYE);
-
-        int cmdBase = plugin.getConfig().getInt("custom-model-data-base", 0);
-        if (cmdBase > 0) {
-            int setIndex = new ArrayList<>(plugin.registry().sets().keySet()).indexOf(set.id());
-            int slotIndex = List.of(SetRegistry.SLOTS).indexOf(slot);
-            meta.setCustomModelData(cmdBase + setIndex * 4 + slotIndex);
-        }
+        meta.setCustomModelData(iconCmd(set, slot));
 
         PersistentDataContainer pdc = meta.getPersistentDataContainer();
         pdc.set(setKey, PersistentDataType.STRING, set.id());
@@ -91,7 +168,18 @@ public final class ItemFactory {
         return item;
     }
 
-    /** @return id set dari item, atau null jika bukan item ArmorySets. */
+    private void addAttr(ItemMeta meta, String attrName, double value, EquipmentSlotGroup group, String slot) {
+        Attribute attribute = Attrs.resolve(attrName);
+        if (attribute == null) {
+            plugin.getLogger().warning("Atribut tidak ditemukan: " + attrName);
+            return;
+        }
+        NamespacedKey key = new NamespacedKey(plugin, "def_" + slot + "_" + attrName);
+        meta.addAttributeModifier(attribute,
+                new AttributeModifier(key, value, AttributeModifier.Operation.ADD_NUMBER, group));
+    }
+
+    /** @return id set dari item, atau null jika bukan item NereusArmorySets. */
     public String setIdOf(ItemStack item) {
         if (item == null || item.getType().isAir() || !item.hasItemMeta()) {
             return null;
@@ -109,7 +197,7 @@ public final class ItemFactory {
         return "+" + trim(v * 100.0) + "% " + name;
     }
 
-    private static String trim(double v) {
+    public static String trim(double v) {
         double r = Math.round(v * 100.0) / 100.0;
         return r == Math.floor(r) ? String.valueOf((long) r) : String.valueOf(r);
     }

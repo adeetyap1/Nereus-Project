@@ -1,39 +1,71 @@
-# ArmorySets - set bonus atribut untuk armor Armory (RPG Series)
+# NereusArmorySets - armor Armory (RPG Series) dengan pertahanan nyata, set bonus atribut, model 3D, dan menu.
+# Dipakai: /armoryset (buka menu).  Admin: /armoryset give|list|info|reload
 #
-# Cara kerja: pakai 2 piece / 4 piece dari set yang sama -> bonus atribut aktif.
-# Bonus 2 piece tetap aktif saat 4 piece (kumulatif).
-# Nilai "amount" di bawah adalah nilai dasar (tier 1). Nilai akhir = amount x multiplier tier.
+# PERTAHANAN
+#   Tiap piece membawa atribut armor / armor_toughness / knockback_resistance di item itu sendiri,
+#   jadi perhitungan damage memakai sistem armor vanilla (bukan tiruan).
+#   Nilai per piece = defense.classes.<class>.armor[slot] x tiers.<n>.armor-multiplier (dibulatkan 0.5).
 #
-# operation:
-#   add             -> tambah angka langsung (contoh: max_health 2.0 = 1 heart)
-#   multiply_base   -> +% dari nilai dasar atribut
-#   multiply_total  -> +% dari total atribut (termasuk senjata) - cocok untuk attack_damage / attack_speed
+# SET BONUS (2 / 4 piece) -> atribut tambahan, kumulatif. amount di bawah = nilai tier 1, dikali tiers.<n>.multiplier.
+#   operation: add | multiply_base | multiply_total
 #
-# attribute: max_health, armor, armor_toughness, attack_damage, attack_speed,
-#            movement_speed, knockback_resistance, luck, safe_fall_distance, dll
-#            (nama atribut vanilla tanpa prefix "generic.")
+# MODEL 3D (butuh resource pack di folder resourcepacks/ repo):
+#   Java    : Nereus-ArmorySets-Java.zip  (+ ItemDisplay yang menempel di pemain, lihat display:)
+#   Bedrock : Nereus-ArmorySets-Bedrock.mcpack + nereus_armorysets_geyser.json (taruh di plugins/Geyser-Spigot/custom_mappings/)
 
-update-interval-ticks: 10     # seberapa sering bonus dicek ulang (20 tick = 1 detik)
-actionbar-on-change: true     # tampilkan pesan di action bar saat bonus set berubah
-custom-model-data-base: 0     # 0 = nonaktif. Jika > 0, tiap item diberi CustomModelData (untuk resource pack nanti)
+update-interval-ticks: 10
+actionbar-on-change: true
+
+# Nomor CustomModelData. Ikon item = base + setIndex*4 + slot ; model 3D (display) = base + 100 + yang sama.
+# Jika diubah, jalankan ulang tools/build_pack.py supaya resource pack ikut berubah.
+custom-model-data-base: 9000
+
+menu:
+  free-take: true        # true = semua pemain boleh ambil dari menu. false = hanya admin / punya permission take
+  title: "&8Nereus Armory Sets"
+  # permission saat free-take false: nereusarmorysets.take.tier<N> , nereusarmorysets.take.<set> , nereusarmorysets.admin
+
+display:
+  enabled: true          # model 3D di badan pemain Java (Bedrock memakai attachable dari resource pack)
+  interval-ticks: 2
+  offset-y: 0.0          # geser model naik/turun jika terlihat melayang/tenggelam
+  scale: 1.0             # 1.0 = ukuran armor vanilla
+  show-own: true         # tampilkan juga ke pemain itu sendiri (third person)
+  view-range: 1.5
+
+defense:
+  # nilai dasar per slot: [head, chest, legs, feet]  (sama dengan material di mod Armory)
+  durability-base: [11, 16, 15, 13]
+  classes:
+    robe:  { armor: [1, 3, 2, 1], toughness: 0.0, knockback: 0.0 }
+    light: { armor: [2, 4, 4, 2], toughness: 0.0, knockback: 0.0 }
+    heavy: { armor: [3, 8, 6, 3], toughness: 1.0, knockback: 0.0 }
 
 tiers:
   1:
     name: "Lost"
     color: "&9"
-    multiplier: 1.0
+    icon: IRON_CHESTPLATE
+    multiplier: 1.0            # pengali set bonus
+    armor-multiplier: 1.0      # pengali armor per piece
+    toughness-bonus: 0.0       # tambahan toughness per piece
+    durability-multiplier: 40  # durability = durability-base x ini
   2:
     name: "Forgotten"
     color: "&6"
+    icon: NETHERITE_CHESTPLATE
     multiplier: 1.5
-    # Tambah tier baru dengan menambah blok "3:" dst, lalu set "tier: 3" di set yang diinginkan.
+    armor-multiplier: 1.15
+    toughness-bonus: 0.5
+    durability-multiplier: 48
+  # Tambah tier baru dengan blok "3:" dst lalu set "tier: 3" di set.
 
 sets:
   astral:
     display: "Astral Regalia"
     tier: 1
-    material: LEATHER   # LEATHER / CHAINMAIL / IRON / GOLDEN / DIAMOND / NETHERITE
-    color: "#7B3FE4"   # hanya untuk LEATHER
+    class: robe              # robe / light / heavy
+    color: "#6C698F"             # warna dasar item (leather)
     pieces:
       head: "Astral Hat"
       chest: "Astral Robe"
@@ -47,8 +79,8 @@ sets:
   scarlet:
     display: "Scarlet Raiment"
     tier: 1
-    material: LEATHER   # LEATHER / CHAINMAIL / IRON / GOLDEN / DIAMOND / NETHERITE
-    color: "#C0392B"   # hanya untuk LEATHER
+    class: robe              # robe / light / heavy
+    color: "#7E1F31"             # warna dasar item (leather)
     pieces:
       head: "Scarlet Hat"
       chest: "Scarlet Robe"
@@ -62,8 +94,8 @@ sets:
   glacier:
     display: "Glacier Mantle"
     tier: 1
-    material: LEATHER   # LEATHER / CHAINMAIL / IRON / GOLDEN / DIAMOND / NETHERITE
-    color: "#4FC3F7"   # hanya untuk LEATHER
+    class: robe              # robe / light / heavy
+    color: "#265567"             # warna dasar item (leather)
     pieces:
       head: "Glacier Hat"
       chest: "Glacier Robe"
@@ -77,8 +109,8 @@ sets:
   avatar:
     display: "Avatar Raiment"
     tier: 1
-    material: LEATHER   # LEATHER / CHAINMAIL / IRON / GOLDEN / DIAMOND / NETHERITE
-    color: "#F5E6A8"   # hanya untuk LEATHER
+    class: robe              # robe / light / heavy
+    color: "#A99072"             # warna dasar item (leather)
     pieces:
       head: "Avatar Cowl"
       chest: "Avatar Vestment"
@@ -92,7 +124,8 @@ sets:
   justicar:
     display: "Justicar Regalia"
     tier: 1
-    material: IRON   # LEATHER / CHAINMAIL / IRON / GOLDEN / DIAMOND / NETHERITE
+    class: heavy              # robe / light / heavy
+    color: "#D0A05F"             # warna dasar item (leather)
     pieces:
       head: "Justicar Faceguard"
       chest: "Justicar Chestplate"
@@ -106,7 +139,8 @@ sets:
   destroyer:
     display: "Destroyer Armor"
     tier: 1
-    material: IRON   # LEATHER / CHAINMAIL / IRON / GOLDEN / DIAMOND / NETHERITE
+    class: heavy              # robe / light / heavy
+    color: "#EB9358"             # warna dasar item (leather)
     pieces:
       head: "Destroyer Greathelm"
       chest: "Destroyer Chestplate"
@@ -120,7 +154,8 @@ sets:
   deathmantle:
     display: "Deathmantle"
     tier: 1
-    material: CHAINMAIL   # LEATHER / CHAINMAIL / IRON / GOLDEN / DIAMOND / NETHERITE
+    class: light              # robe / light / heavy
+    color: "#481D2F"             # warna dasar item (leather)
     pieces:
       head: "Deathmantle Hood"
       chest: "Deathmantle Tunic"
@@ -134,7 +169,8 @@ sets:
   strider:
     display: "Strider Armor"
     tier: 1
-    material: CHAINMAIL   # LEATHER / CHAINMAIL / IRON / GOLDEN / DIAMOND / NETHERITE
+    class: light              # robe / light / heavy
+    color: "#C49159"             # warna dasar item (leather)
     pieces:
       head: "Strider Hood"
       chest: "Strider Tunic"
@@ -148,8 +184,8 @@ sets:
   tempest:
     display: "Tempest Regalia"
     tier: 2
-    material: LEATHER   # LEATHER / CHAINMAIL / IRON / GOLDEN / DIAMOND / NETHERITE
-    color: "#5B2A9E"   # hanya untuk LEATHER
+    class: robe              # robe / light / heavy
+    color: "#72555E"             # warna dasar item (leather)
     pieces:
       head: "Tempest Hat"
       chest: "Tempest Robe"
@@ -163,8 +199,8 @@ sets:
   smouldering:
     display: "Smouldering Raiment"
     tier: 2
-    material: LEATHER   # LEATHER / CHAINMAIL / IRON / GOLDEN / DIAMOND / NETHERITE
-    color: "#E67E22"   # hanya untuk LEATHER
+    class: robe              # robe / light / heavy
+    color: "#723B25"             # warna dasar item (leather)
     pieces:
       head: "Smouldering Hat"
       chest: "Smouldering Robe"
@@ -178,8 +214,8 @@ sets:
   rimeweave:
     display: "Rimeweave Mantle"
     tier: 2
-    material: LEATHER   # LEATHER / CHAINMAIL / IRON / GOLDEN / DIAMOND / NETHERITE
-    color: "#1E88E5"   # hanya untuk LEATHER
+    class: robe              # robe / light / heavy
+    color: "#39617D"             # warna dasar item (leather)
     pieces:
       head: "Rimeweave Hat"
       chest: "Rimeweave Robe"
@@ -193,8 +229,8 @@ sets:
   absolution:
     display: "Absolution Raiment"
     tier: 2
-    material: LEATHER   # LEATHER / CHAINMAIL / IRON / GOLDEN / DIAMOND / NETHERITE
-    color: "#FFF3B0"   # hanya untuk LEATHER
+    class: robe              # robe / light / heavy
+    color: "#B0A77D"             # warna dasar item (leather)
     pieces:
       head: "Absolution Cowl"
       chest: "Absolution Vestment"
@@ -208,7 +244,8 @@ sets:
   lightbringer:
     display: "Lightbringer Regalia"
     tier: 2
-    material: IRON   # LEATHER / CHAINMAIL / IRON / GOLDEN / DIAMOND / NETHERITE
+    class: heavy              # robe / light / heavy
+    color: "#EEBA0A"             # warna dasar item (leather)
     pieces:
       head: "Lightbringer Crown"
       chest: "Lightbringer Chestplate"
@@ -222,7 +259,8 @@ sets:
   onslaught:
     display: "Onslaught Armor"
     tier: 2
-    material: IRON   # LEATHER / CHAINMAIL / IRON / GOLDEN / DIAMOND / NETHERITE
+    class: heavy              # robe / light / heavy
+    color: "#616164"             # warna dasar item (leather)
     pieces:
       head: "Onslaught Greathelm"
       chest: "Onslaught Chestplate"
@@ -236,7 +274,8 @@ sets:
   slayer:
     display: "Slayer Armor"
     tier: 2
-    material: CHAINMAIL   # LEATHER / CHAINMAIL / IRON / GOLDEN / DIAMOND / NETHERITE
+    class: light              # robe / light / heavy
+    color: "#8A4A31"             # warna dasar item (leather)
     pieces:
       head: "Slayer Hood"
       chest: "Slayer Tunic"
@@ -250,7 +289,8 @@ sets:
   riftstalker:
     display: "Riftstalker Armor"
     tier: 2
-    material: CHAINMAIL   # LEATHER / CHAINMAIL / IRON / GOLDEN / DIAMOND / NETHERITE
+    class: light              # robe / light / heavy
+    color: "#507985"             # warna dasar item (leather)
     pieces:
       head: "Riftstalker Hood"
       chest: "Riftstalker Tunic"

@@ -11,7 +11,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -29,11 +28,20 @@ public final class ArmoryCommand implements CommandExecutor, TabCompleter {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (args.length == 0) {
-            msg(sender, "&6/" + label + " give <pemain> <set> [head|chest|legs|feet|all]");
-            msg(sender, "&6/" + label + " list &7- daftar set dan tier");
-            msg(sender, "&6/" + label + " info <set> &7- detail bonus");
-            msg(sender, "&6/" + label + " reload");
+        boolean admin = sender.hasPermission("nereusarmorysets.admin");
+        if (args.length == 0 || args[0].equalsIgnoreCase("menu")) {
+            if (sender instanceof Player p) {
+                plugin.gui().open(p);
+            } else {
+                msg(sender, "&cMenu hanya bisa dibuka pemain.");
+            }
+            if (args.length == 0 && admin) {
+                msg(sender, "&7Admin: /" + label + " give|list|info|reload");
+            }
+            return true;
+        }
+        if (!admin) {
+            msg(sender, "&cKamu tidak punya izin untuk perintah ini.");
             return true;
         }
         switch (args[0].toLowerCase(Locale.ROOT)) {
@@ -75,7 +83,7 @@ public final class ArmoryCommand implements CommandExecutor, TabCompleter {
             }
             ItemStack item = plugin.items().create(set, slot);
             if (item == null) {
-                msg(sender, "&cMaterial '" + set.material() + "' di config set '" + set.id() + "' tidak valid.");
+                msg(sender, "&cGagal membuat item untuk set '" + set.id() + "'.");
                 return;
             }
             Map<Integer, ItemStack> leftover = target.getInventory().addItem(item);
@@ -92,7 +100,8 @@ public final class ArmoryCommand implements CommandExecutor, TabCompleter {
             StringBuilder sb = new StringBuilder("&7  ");
             for (SetDef s : plugin.registry().sets().values()) {
                 if (s.tier().id() == tier.id()) {
-                    sb.append(s.id()).append(", ");
+                    sb.append(s.id()).append(" (").append(s.armorClass()).append(", armor ")
+                            .append(ItemFactory.trim(plugin.items().totalArmor(s))).append("), ");
                 }
             }
             msg(sender, sb.toString().replaceAll(", $", ""));
@@ -123,8 +132,11 @@ public final class ArmoryCommand implements CommandExecutor, TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         List<String> out = new ArrayList<>();
+        if (!sender.hasPermission("nereusarmorysets.admin")) {
+            return out;
+        }
         if (args.length == 1) {
-            out.addAll(List.of("give", "list", "info", "reload"));
+            out.addAll(List.of("menu", "give", "list", "info", "reload"));
         } else if (args.length == 2 && args[0].equalsIgnoreCase("give")) {
             Bukkit.getOnlinePlayers().forEach(p -> out.add(p.getName()));
         } else if ((args.length == 3 && args[0].equalsIgnoreCase("give"))

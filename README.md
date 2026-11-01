@@ -21,8 +21,10 @@ Custom Paper 1.21.1 plugins (Java 21) by naook1/adityap.
 - **NereusSize** - `/ukuran` (alias `/size`, `/resize`): ubah ukuran badan pemain (atribut scale), batas per tier, cooldown, dunia terlarang
   kecuali `/hide join`, menu admin `/hide admin`, inventory pemain disimpan aman ke file.
 
-- **NereusArmorySets** - `/armoryset` (alias `/aset`): set bonus atribut untuk 16 set armor mod Armory (RPG Series), dibedakan per tier
-  (Lost x1.0, Forgotten x1.5). Pakai 2/4 piece sekeluarga -> bonus atribut vanilla aktif. Semua angka di `config.yml`.
-  Item lewat `/armoryset give <pemain> <set> [head|chest|legs|feet|all]`.
+- **NereusArmorySets** 2.0 - `/armoryset` (alias `/aset`): menu ambil armor, dipisah per tier (Lost x1.0, Forgotten x1.5), 16 set dari mod
+  Armory (RPG Series). Pertahanan nyata (armor/toughness/durability ada di item, dihitung sistem armor vanilla, beda tiap tier),
+  set bonus atribut 2/4 piece, model 3D. Admin: `/armoryset give|list|info|reload`.
+  Resource pack (folder `resourcepacks/`): `Nereus-ArmorySets-Java.zip` (gabung ke pack Java server), `Nereus-ArmorySets-Bedrock.mcpack`
+  + `nereus_armorysets_geyser.json` (taruh di `plugins/Geyser-Spigot/custom_mappings/`). Pembuat pack: `NereusArmorySets/tools/build_pack.py`.
 
 Build: buka tab Actions, jalankan "Build" terbaru, unduh artifact `plugins` (berisi 6 jar).

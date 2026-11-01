@@ -80,7 +80,8 @@ public final class BonusManager {
             AttributeInstance inst = p.getAttribute(attribute);
             if (inst == null) continue;
             for (AttributeModifier m : new ArrayList<>(inst.getModifiers())) {
-                if (m.getKey().getNamespace().equals(ns)) {
+                // hanya modifier bonus set; atribut pertahanan (def_*) milik item tidak boleh disentuh
+                if (m.getKey().getNamespace().equals(ns) && m.getKey().getKey().startsWith("bonus_")) {
                     inst.removeModifier(m);
                 }
             }
@@ -110,7 +111,7 @@ public final class BonusManager {
             if (count < e.getKey()) continue;
             int index = 0;
             for (Bonus b : e.getValue()) {
-                Attribute attribute = resolve(b.attribute());
+                Attribute attribute = Attrs.resolve(b.attribute());
                 if (attribute == null) {
                     plugin.getLogger().warning("Atribut tidak dikenal di set '" + set.id() + "': " + b.attribute());
                     continue;
@@ -122,14 +123,5 @@ public final class BonusManager {
                         key, b.amount() * mult, b.operation(), EquipmentSlotGroup.ANY));
             }
         }
-    }
-
-    /** Cari atribut berdasarkan nama pendek (mis. "max_health"); mencoba prefix generic./player. */
-    private static Attribute resolve(String name) {
-        for (String prefix : new String[] {"generic.", "player.", ""}) {
-            Attribute a = Registry.ATTRIBUTE.get(NamespacedKey.minecraft(prefix + name));
-            if (a != null) return a;
-        }
-        return null;
     }
 }

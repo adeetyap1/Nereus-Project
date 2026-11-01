@@ -3,14 +3,19 @@ version: '${project.version}'
 main: me.naook1.nereusarmorysets.NereusArmorySets
 api-version: '1.21'
 authors: [naook1, adityap]
-description: Set bonus atribut untuk armor Armory (RPG Series), dibedakan per tier.
+description: Armor Armory (RPG Series) per tier - pertahanan nyata, set bonus atribut, model 3D, menu
 commands:
   armoryset:
-    description: Perintah admin ArmorySets
-    usage: /<command> <give|list|info|reload>
-    aliases: [aset]
-    permission: nereusarmorysets.admin
+    description: Menu armor set (admin - give, list, info, reload)
+    usage: /<command> [menu|give|list|info|reload]
+    aliases: [aset, armorysets]
 permissions:
+  nereusarmorysets.use:
+    description: Buka menu dan memakai set
+    default: true
   nereusarmorysets.admin:
-    description: Akses semua perintah ArmorySets
+    description: Give, list, info, reload, dan ambil semua set dari menu
     default: op
+  nereusarmorysets.take.*:
+    description: Ambil semua set saat menu.free-take=false
+    default: false

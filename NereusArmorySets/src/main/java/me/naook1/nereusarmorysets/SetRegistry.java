@@ -1,8 +1,10 @@
 package me.naook1.nereusarmorysets;
 
 import me.naook1.nereusarmorysets.Model.Bonus;
+import me.naook1.nereusarmorysets.Model.ClassDef;
 import me.naook1.nereusarmorysets.Model.SetDef;
 import me.naook1.nereusarmorysets.Model.Tier;
+import org.bukkit.Material;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -15,17 +17,49 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.logging.Logger;
 
-/** Memuat tier dan set dari config.yml. */
+/** Memuat tier, kelas pertahanan, dan set dari config.yml. */
 public final class SetRegistry {
     public static final String[] SLOTS = {"head", "chest", "legs", "feet"};
 
     private final Map<Integer, Tier> tiers = new LinkedHashMap<>();
+    private final Map<String, ClassDef> classes = new LinkedHashMap<>();
     private final Map<String, SetDef> sets = new LinkedHashMap<>();
+    private double[] durabilityBase = {11, 16, 15, 13};
+
+    public static int slotIndex(String slot) {
+        for (int i = 0; i < SLOTS.length; i++) {
+            if (SLOTS[i].equals(slot)) return i;
+        }
+        return -1;
+    }
 
     public void load(FileConfiguration cfg, Logger log) {
         tiers.clear();
+        classes.clear();
         sets.clear();
 
+        // pertahanan
+        List<Double> dur = cfg.getDoubleList("defense.durability-base");
+        if (dur.size() == 4) {
+            durabilityBase = new double[] {dur.get(0), dur.get(1), dur.get(2), dur.get(3)};
+        }
+        ConfigurationSection cs = cfg.getConfigurationSection("defense.classes");
+        if (cs != null) {
+            for (String key : cs.getKeys(false)) {
+                ConfigurationSection c = cs.getConfigurationSection(key);
+                if (c == null) continue;
+                List<Double> a = c.getDoubleList("armor");
+                if (a.size() != 4) {
+                    log.warning("Kelas '" + key + "' dilewati: armor harus 4 angka [head, chest, legs, feet].");
+                    continue;
+                }
+                classes.put(key.toLowerCase(Locale.ROOT), new ClassDef(key.toLowerCase(Locale.ROOT),
+                        new double[] {a.get(0), a.get(1), a.get(2), a.get(3)},
+                        c.getDouble("toughness", 0.0), c.getDouble("knockback", 0.0)));
+            }
+        }
+
+        // tier
         ConfigurationSection tierSec = cfg.getConfigurationSection("tiers");
         if (tierSec != null) {
             for (String key : tierSec.getKeys(false)) {
@@ -38,16 +72,21 @@ public final class SetRegistry {
                     log.warning("Tier '" + key + "' dilewati: id harus angka.");
                     continue;
                 }
-                tiers.put(id, new Tier(id, t.getString("name", "Tier " + id),
-                        t.getString("color", "&f"), t.getDouble("multiplier", 1.0)));
+                Material icon = Material.matchMaterial(t.getString("icon", "IRON_CHESTPLATE"));
+                if (icon == null) icon = Material.IRON_CHESTPLATE;
+                tiers.put(id, new Tier(id, t.getString("name", "Tier " + id), t.getString("color", "&f"), icon,
+                        t.getDouble("multiplier", 1.0), t.getDouble("armor-multiplier", 1.0),
+                        t.getDouble("toughness-bonus", 0.0), t.getDouble("durability-multiplier", 40.0)));
             }
         }
 
+        // set
         ConfigurationSection setSec = cfg.getConfigurationSection("sets");
         if (setSec == null) {
             log.warning("config.yml tidak punya bagian 'sets'.");
             return;
         }
+        int index = 0;
         for (String rawId : setSec.getKeys(false)) {
             ConfigurationSection s = setSec.getConfigurationSection(rawId);
             if (s == null) continue;
@@ -58,8 +97,12 @@ public final class SetRegistry {
                 log.warning("Set '" + id + "' dilewati: tier " + s.getInt("tier", 1) + " tidak ada.");
                 continue;
             }
+            String cls = s.getString("class", "heavy").toLowerCase(Locale.ROOT);
+            if (!classes.containsKey(cls)) {
+                log.warning("Set '" + id + "' dilewati: kelas '" + cls + "' tidak ada di defense.classes.");
+                continue;
+            }
 
-            String material = s.getString("material", "IRON").toUpperCase(Locale.ROOT);
             Integer color = null;
             String colorStr = s.getString("color");
             if (colorStr != null) {
@@ -108,7 +151,7 @@ public final class SetRegistry {
                 }
             }
 
-            sets.put(id, new SetDef(id, s.getString("display", id), tier, material, color, pieces, bonuses));
+            sets.put(id, new SetDef(id, index++, s.getString("display", id), tier, cls, color, pieces, bonuses));
         }
         log.info("Dimuat " + sets.size() + " set dalam " + tiers.size() + " tier.");
     }
@@ -132,5 +175,21 @@ public final class SetRegistry {
 
     public Map<Integer, Tier> tiers() {
         return tiers;
+    }
+
+    public ClassDef classOf(SetDef set) {
+        return classes.get(set.armorClass());
+    }
+
+    public double durabilityBase(int slotIndex) {
+        return durabilityBase[slotIndex];
+    }
+
+    public List<SetDef> setsOfTier(int tierId) {
+        List<SetDef> out = new ArrayList<>();
+        for (SetDef s : sets.values()) {
+            if (s.tier().id() == tierId) out.add(s);
+        }
+        return out;
     }
 }

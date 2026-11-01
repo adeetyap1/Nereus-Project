@@ -1,0 +1,653 @@
+{
+ "format_version": 2,
+ "items": {
+  "minecraft:leather_helmet": [
+   {
+    "type": "legacy",
+    "custom_model_data": 9000.0,
+    "bedrock_identifier": "nereusset:astral_head",
+    "display_name": "Astral Hat",
+    "bedrock_options": {
+     "icon": "nereus_set_astral_head",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9004.0,
+    "bedrock_identifier": "nereusset:scarlet_head",
+    "display_name": "Scarlet Hat",
+    "bedrock_options": {
+     "icon": "nereus_set_scarlet_head",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9008.0,
+    "bedrock_identifier": "nereusset:glacier_head",
+    "display_name": "Glacier Hat",
+    "bedrock_options": {
+     "icon": "nereus_set_glacier_head",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9012.0,
+    "bedrock_identifier": "nereusset:avatar_head",
+    "display_name": "Avatar Cowl",
+    "bedrock_options": {
+     "icon": "nereus_set_avatar_head",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9016.0,
+    "bedrock_identifier": "nereusset:justicar_head",
+    "display_name": "Justicar Faceguard",
+    "bedrock_options": {
+     "icon": "nereus_set_justicar_head",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9020.0,
+    "bedrock_identifier": "nereusset:destroyer_head",
+    "display_name": "Destroyer Greathelm",
+    "bedrock_options": {
+     "icon": "nereus_set_destroyer_head",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9024.0,
+    "bedrock_identifier": "nereusset:deathmantle_head",
+    "display_name": "Deathmantle Hood",
+    "bedrock_options": {
+     "icon": "nereus_set_deathmantle_head",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9028.0,
+    "bedrock_identifier": "nereusset:strider_head",
+    "display_name": "Strider Hood",
+    "bedrock_options": {
+     "icon": "nereus_set_strider_head",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9032.0,
+    "bedrock_identifier": "nereusset:tempest_head",
+    "display_name": "Tempest Hat",
+    "bedrock_options": {
+     "icon": "nereus_set_tempest_head",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9036.0,
+    "bedrock_identifier": "nereusset:smouldering_head",
+    "display_name": "Smouldering Hat",
+    "bedrock_options": {
+     "icon": "nereus_set_smouldering_head",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9040.0,
+    "bedrock_identifier": "nereusset:rimeweave_head",
+    "display_name": "Rimeweave Hat",
+    "bedrock_options": {
+     "icon": "nereus_set_rimeweave_head",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9044.0,
+    "bedrock_identifier": "nereusset:absolution_head",
+    "display_name": "Absolution Cowl",
+    "bedrock_options": {
+     "icon": "nereus_set_absolution_head",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9048.0,
+    "bedrock_identifier": "nereusset:lightbringer_head",
+    "display_name": "Lightbringer Crown",
+    "bedrock_options": {
+     "icon": "nereus_set_lightbringer_head",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9052.0,
+    "bedrock_identifier": "nereusset:onslaught_head",
+    "display_name": "Onslaught Greathelm",
+    "bedrock_options": {
+     "icon": "nereus_set_onslaught_head",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9056.0,
+    "bedrock_identifier": "nereusset:slayer_head",
+    "display_name": "Slayer Hood",
+    "bedrock_options": {
+     "icon": "nereus_set_slayer_head",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9060.0,
+    "bedrock_identifier": "nereusset:riftstalker_head",
+    "display_name": "Riftstalker Hood",
+    "bedrock_options": {
+     "icon": "nereus_set_riftstalker_head",
+     "allow_offhand": true
+    }
+   }
+  ],
+  "minecraft:leather_chestplate": [
+   {
+    "type": "legacy",
+    "custom_model_data": 9001.0,
+    "bedrock_identifier": "nereusset:astral_chest",
+    "display_name": "Astral Robe",
+    "bedrock_options": {
+     "icon": "nereus_set_astral_chest",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9005.0,
+    "bedrock_identifier": "nereusset:scarlet_chest",
+    "display_name": "Scarlet Robe",
+    "bedrock_options": {
+     "icon": "nereus_set_scarlet_chest",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9009.0,
+    "bedrock_identifier": "nereusset:glacier_chest",
+    "display_name": "Glacier Robe",
+    "bedrock_options": {
+     "icon": "nereus_set_glacier_chest",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9013.0,
+    "bedrock_identifier": "nereusset:avatar_chest",
+    "display_name": "Avatar Vestment",
+    "bedrock_options": {
+     "icon": "nereus_set_avatar_chest",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9017.0,
+    "bedrock_identifier": "nereusset:justicar_chest",
+    "display_name": "Justicar Chestplate",
+    "bedrock_options": {
+     "icon": "nereus_set_justicar_chest",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9021.0,
+    "bedrock_identifier": "nereusset:destroyer_chest",
+    "display_name": "Destroyer Chestplate",
+    "bedrock_options": {
+     "icon": "nereus_set_destroyer_chest",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9025.0,
+    "bedrock_identifier": "nereusset:deathmantle_chest",
+    "display_name": "Deathmantle Tunic",
+    "bedrock_options": {
+     "icon": "nereus_set_deathmantle_chest",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9029.0,
+    "bedrock_identifier": "nereusset:strider_chest",
+    "display_name": "Strider Tunic",
+    "bedrock_options": {
+     "icon": "nereus_set_strider_chest",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9033.0,
+    "bedrock_identifier": "nereusset:tempest_chest",
+    "display_name": "Tempest Robe",
+    "bedrock_options": {
+     "icon": "nereus_set_tempest_chest",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9037.0,
+    "bedrock_identifier": "nereusset:smouldering_chest",
+    "display_name": "Smouldering Robe",
+    "bedrock_options": {
+     "icon": "nereus_set_smouldering_chest",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9041.0,
+    "bedrock_identifier": "nereusset:rimeweave_chest",
+    "display_name": "Rimeweave Robe",
+    "bedrock_options": {
+     "icon": "nereus_set_rimeweave_chest",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9045.0,
+    "bedrock_identifier": "nereusset:absolution_chest",
+    "display_name": "Absolution Vestment",
+    "bedrock_options": {
+     "icon": "nereus_set_absolution_chest",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9049.0,
+    "bedrock_identifier": "nereusset:lightbringer_chest",
+    "display_name": "Lightbringer Chestplate",
+    "bedrock_options": {
+     "icon": "nereus_set_lightbringer_chest",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9053.0,
+    "bedrock_identifier": "nereusset:onslaught_chest",
+    "display_name": "Onslaught Chestplate",
+    "bedrock_options": {
+     "icon": "nereus_set_onslaught_chest",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9057.0,
+    "bedrock_identifier": "nereusset:slayer_chest",
+    "display_name": "Slayer Tunic",
+    "bedrock_options": {
+     "icon": "nereus_set_slayer_chest",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9061.0,
+    "bedrock_identifier": "nereusset:riftstalker_chest",
+    "display_name": "Riftstalker Tunic",
+    "bedrock_options": {
+     "icon": "nereus_set_riftstalker_chest",
+     "allow_offhand": true
+    }
+   }
+  ],
+  "minecraft:leather_leggings": [
+   {
+    "type": "legacy",
+    "custom_model_data": 9002.0,
+    "bedrock_identifier": "nereusset:astral_legs",
+    "display_name": "Astral Breeches",
+    "bedrock_options": {
+     "icon": "nereus_set_astral_legs",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9006.0,
+    "bedrock_identifier": "nereusset:scarlet_legs",
+    "display_name": "Scarlet Breeches",
+    "bedrock_options": {
+     "icon": "nereus_set_scarlet_legs",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9010.0,
+    "bedrock_identifier": "nereusset:glacier_legs",
+    "display_name": "Glacier Breeches",
+    "bedrock_options": {
+     "icon": "nereus_set_glacier_legs",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9014.0,
+    "bedrock_identifier": "nereusset:avatar_legs",
+    "display_name": "Avatar Breeches",
+    "bedrock_options": {
+     "icon": "nereus_set_avatar_legs",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9018.0,
+    "bedrock_identifier": "nereusset:justicar_legs",
+    "display_name": "Justicar Legguards",
+    "bedrock_options": {
+     "icon": "nereus_set_justicar_legs",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9022.0,
+    "bedrock_identifier": "nereusset:destroyer_legs",
+    "display_name": "Destroyer Greaves",
+    "bedrock_options": {
+     "icon": "nereus_set_destroyer_legs",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9026.0,
+    "bedrock_identifier": "nereusset:deathmantle_legs",
+    "display_name": "Deathmantle Leggings",
+    "bedrock_options": {
+     "icon": "nereus_set_deathmantle_legs",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9030.0,
+    "bedrock_identifier": "nereusset:strider_legs",
+    "display_name": "Strider Leggings",
+    "bedrock_options": {
+     "icon": "nereus_set_strider_legs",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9034.0,
+    "bedrock_identifier": "nereusset:tempest_legs",
+    "display_name": "Tempest Breeches",
+    "bedrock_options": {
+     "icon": "nereus_set_tempest_legs",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9038.0,
+    "bedrock_identifier": "nereusset:smouldering_legs",
+    "display_name": "Smouldering Breeches",
+    "bedrock_options": {
+     "icon": "nereus_set_smouldering_legs",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9042.0,
+    "bedrock_identifier": "nereusset:rimeweave_legs",
+    "display_name": "Rimeweave Breeches",
+    "bedrock_options": {
+     "icon": "nereus_set_rimeweave_legs",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9046.0,
+    "bedrock_identifier": "nereusset:absolution_legs",
+    "display_name": "Absolution Breeches",
+    "bedrock_options": {
+     "icon": "nereus_set_absolution_legs",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9050.0,
+    "bedrock_identifier": "nereusset:lightbringer_legs",
+    "display_name": "Lightbringer Legguards",
+    "bedrock_options": {
+     "icon": "nereus_set_lightbringer_legs",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9054.0,
+    "bedrock_identifier": "nereusset:onslaught_legs",
+    "display_name": "Onslaught Greaves",
+    "bedrock_options": {
+     "icon": "nereus_set_onslaught_legs",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9058.0,
+    "bedrock_identifier": "nereusset:slayer_legs",
+    "display_name": "Slayer Leggings",
+    "bedrock_options": {
+     "icon": "nereus_set_slayer_legs",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9062.0,
+    "bedrock_identifier": "nereusset:riftstalker_legs",
+    "display_name": "Riftstalker Leggings",
+    "bedrock_options": {
+     "icon": "nereus_set_riftstalker_legs",
+     "allow_offhand": true
+    }
+   }
+  ],
+  "minecraft:leather_boots": [
+   {
+    "type": "legacy",
+    "custom_model_data": 9003.0,
+    "bedrock_identifier": "nereusset:astral_feet",
+    "display_name": "Astral Boots",
+    "bedrock_options": {
+     "icon": "nereus_set_astral_feet",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9007.0,
+    "bedrock_identifier": "nereusset:scarlet_feet",
+    "display_name": "Scarlet Boots",
+    "bedrock_options": {
+     "icon": "nereus_set_scarlet_feet",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9011.0,
+    "bedrock_identifier": "nereusset:glacier_feet",
+    "display_name": "Glacier Boots",
+    "bedrock_options": {
+     "icon": "nereus_set_glacier_feet",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9015.0,
+    "bedrock_identifier": "nereusset:avatar_feet",
+    "display_name": "Avatar Boots",
+    "bedrock_options": {
+     "icon": "nereus_set_avatar_feet",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9019.0,
+    "bedrock_identifier": "nereusset:justicar_feet",
+    "display_name": "Justicar Boots",
+    "bedrock_options": {
+     "icon": "nereus_set_justicar_feet",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9023.0,
+    "bedrock_identifier": "nereusset:destroyer_feet",
+    "display_name": "Destroyer Boots",
+    "bedrock_options": {
+     "icon": "nereus_set_destroyer_feet",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9027.0,
+    "bedrock_identifier": "nereusset:deathmantle_feet",
+    "display_name": "Deathmantle Boots",
+    "bedrock_options": {
+     "icon": "nereus_set_deathmantle_feet",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9031.0,
+    "bedrock_identifier": "nereusset:strider_feet",
+    "display_name": "Strider Boots",
+    "bedrock_options": {
+     "icon": "nereus_set_strider_feet",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9035.0,
+    "bedrock_identifier": "nereusset:tempest_feet",
+    "display_name": "Tempest Boots",
+    "bedrock_options": {
+     "icon": "nereus_set_tempest_feet",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9039.0,
+    "bedrock_identifier": "nereusset:smouldering_feet",
+    "display_name": "Smouldering Boots",
+    "bedrock_options": {
+     "icon": "nereus_set_smouldering_feet",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9043.0,
+    "bedrock_identifier": "nereusset:rimeweave_feet",
+    "display_name": "Rimeweave Boots",
+    "bedrock_options": {
+     "icon": "nereus_set_rimeweave_feet",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9047.0,
+    "bedrock_identifier": "nereusset:absolution_feet",
+    "display_name": "Absolution Boots",
+    "bedrock_options": {
+     "icon": "nereus_set_absolution_feet",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9051.0,
+    "bedrock_identifier": "nereusset:lightbringer_feet",
+    "display_name": "Lightbringer Boots",
+    "bedrock_options": {
+     "icon": "nereus_set_lightbringer_feet",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9055.0,
+    "bedrock_identifier": "nereusset:onslaught_feet",
+    "display_name": "Onslaught Boots",
+    "bedrock_options": {
+     "icon": "nereus_set_onslaught_feet",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9059.0,
+    "bedrock_identifier": "nereusset:slayer_feet",
+    "display_name": "Slayer Boots",
+    "bedrock_options": {
+     "icon": "nereus_set_slayer_feet",
+     "allow_offhand": true
+    }
+   },
+   {
+    "type": "legacy",
+    "custom_model_data": 9063.0,
+    "bedrock_identifier": "nereusset:riftstalker_feet",
+    "display_name": "Riftstalker Boots",
+    "bedrock_options": {
+     "icon": "nereus_set_riftstalker_feet",
+     "allow_offhand": true
+    }
+   }
+  ]
+ }
+}
