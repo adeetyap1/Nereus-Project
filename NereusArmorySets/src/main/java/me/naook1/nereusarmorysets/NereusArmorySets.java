@@ -10,6 +10,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
 public final class NereusArmorySets extends JavaPlugin implements Listener {
+    /** Naikkan jika format config.yml berubah; config lama dicadangkan lalu diganti. */
+    private static final int CONFIG_VERSION = 2;
+
     private final SetRegistry registry = new SetRegistry();
     private ItemFactory items;
     private BonusManager bonuses;
@@ -21,6 +24,7 @@ public final class NereusArmorySets extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         saveDefaultConfig();
+        migrateConfig();
         items = new ItemFactory(this);
         bonuses = new BonusManager(this);
         display = new ArmorDisplay(this);
@@ -45,6 +49,26 @@ public final class NereusArmorySets extends JavaPlugin implements Listener {
         if (display != null) display.clearAll();
         for (Player p : getServer().getOnlinePlayers()) {
             bonuses.removeAll(p);
+        }
+    }
+
+    /** Config dari versi lama (tanpa defense/class) membuat semua set dilewati, jadi diganti otomatis. */
+    private void migrateConfig() {
+        if (getConfig().getInt("config-version", 1) >= CONFIG_VERSION) {
+            return;
+        }
+        java.io.File current = new java.io.File(getDataFolder(), "config.yml");
+        java.io.File backup = new java.io.File(getDataFolder(), "config.old.yml");
+        try {
+            java.nio.file.Files.copy(current.toPath(), backup.toPath(),
+                    java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+            saveResource("config.yml", true);
+            reloadConfig();
+            getLogger().warning("config.yml versi lama diganti dengan versi " + CONFIG_VERSION
+                    + ". Cadangan: config.old.yml");
+        } catch (java.io.IOException e) {
+            getLogger().severe("Gagal memperbarui config.yml: " + e.getMessage()
+                    + " - hapus file itu lalu restart server.");
         }
     }
 

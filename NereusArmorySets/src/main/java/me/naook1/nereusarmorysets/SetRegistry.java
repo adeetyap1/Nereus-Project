@@ -153,6 +153,9 @@ public final class SetRegistry {
 
             sets.put(id, new SetDef(id, index++, s.getString("display", id), tier, cls, color, pieces, bonuses));
         }
+        if (sets.isEmpty()) {
+            log.severe("Tidak ada set yang dimuat! Cek pesan 'dilewati' di atas, atau hapus config.yml lalu restart.");
+        }
         log.info("Dimuat " + sets.size() + " set dalam " + tiers.size() + " tier.");
     }
 

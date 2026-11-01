@@ -13,6 +13,8 @@
 #   Java    : Nereus-ArmorySets-Java.zip  (+ ItemDisplay yang menempel di pemain, lihat display:)
 #   Bedrock : Nereus-ArmorySets-Bedrock.mcpack + nereus_armorysets_geyser.json (taruh di plugins/Geyser-Spigot/custom_mappings/)
 
+config-version: 2          # jangan diubah; dipakai untuk mengganti config lama otomatis
+
 update-interval-ticks: 10
 actionbar-on-change: true
 
