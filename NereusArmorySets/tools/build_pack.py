@@ -76,6 +76,24 @@ def slot_bones(bones, slot):
     return keep
 
 
+HEAD_OFFSET_Y = 4.0   # helm Bedrock terlihat turun ~4 satuan model dari kepala; geser ke atas (ubah via --head-offset-y)
+
+
+def shift_y(bone, dy):
+    """Geser semua kubus (dan pivot) satu bone ke atas sebesar dy satuan model."""
+    if "pivot" in bone:
+        bone["pivot"] = [bone["pivot"][0], bone["pivot"][1] + dy, bone["pivot"][2]]
+    cubes = []
+    for c in bone.get("cubes", []):
+        c = dict(c)
+        c["origin"] = [c["origin"][0], c["origin"][1] + dy, c["origin"][2]]
+        if "pivot" in c:
+            c["pivot"] = [c["pivot"][0], c["pivot"][1] + dy, c["pivot"][2]]
+        cubes.append(c)
+    if cubes:
+        bone["cubes"] = cubes
+
+
 def bedrock_geometry(geo, set_id, slot):
     g = geo["minecraft:geometry"][0]
     keep = slot_bones(g["bones"], slot)
@@ -87,6 +105,9 @@ def bedrock_geometry(geo, set_id, slot):
         nb["name"] = ROOTS.get(b["name"], b["name"])
         if "parent" in nb:
             nb["parent"] = ROOTS.get(nb["parent"], nb["parent"])
+        # bone akar "head" tetap di pivot kepala; hanya isinya yang digeser
+        if slot == "head" and b["name"] != "bipedHead" and HEAD_OFFSET_Y:
+            shift_y(nb, HEAD_OFFSET_Y)
         out.append(nb)
     desc = dict(g["description"])
     desc["identifier"] = f"geometry.nereusset.{set_id}_{slot}"
@@ -256,11 +277,16 @@ def validate(elements, name):
 # ------------------------------------------------------------------ main
 
 def main():
+    global HEAD_OFFSET_Y
     ap = argparse.ArgumentParser()
     ap.add_argument("--mod", required=True)
     ap.add_argument("--config", required=True)
     ap.add_argument("--out", required=True)
+    ap.add_argument("--head-offset-y", type=float, default=HEAD_OFFSET_Y)
+    ap.add_argument("--bedrock-version", default="1,0,1", help="versi manifest Bedrock; naikkan tiap pack berubah")
     args = ap.parse_args()
+    HEAD_OFFSET_Y = args.head_offset_y
+    bver = [int(x) for x in args.bedrock_version.split(",")]
 
     cfg = yaml.safe_load(open(args.config))
     base = cfg.get("custom-model-data-base", 9000)
@@ -361,8 +387,8 @@ def main():
     add_json(bed_files, "manifest.json", {
         "format_version": 2,
         "header": {"name": "Nereus Armory Sets", "description": "Armor 3D Armory (RPG Series)",
-                   "uuid": str(uuid.uuid5(ns, "header")), "version": [1, 0, 0], "min_engine_version": [1, 21, 0]},
-        "modules": [{"type": "resources", "uuid": str(uuid.uuid5(ns, "module")), "version": [1, 0, 0]}],
+                   "uuid": str(uuid.uuid5(ns, "header")), "version": bver, "min_engine_version": [1, 21, 0]},
+        "modules": [{"type": "resources", "uuid": str(uuid.uuid5(ns, "module")), "version": bver}],
     })
     add_file(bed_files, "pack_icon.png", icon)
     add_json(bed_files, "textures/item_texture.json", {
