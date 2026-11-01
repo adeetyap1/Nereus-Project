@@ -314,7 +314,7 @@ def main():
         tex_png = os.path.join(assets, "textures", "armor", tex + ".png")
         tw = geo["minecraft:geometry"][0]["description"]["texture_width"]
         th = geo["minecraft:geometry"][0]["description"]["texture_height"]
-        add_file(java_files, f"assets/nereus_armorysets/textures/armor/{tex}.png", tex_png)
+        add_file(java_files, f"assets/nereus_armorysets/textures/item/armor/{tex}.png", tex_png)
         add_file(bed_files, f"textures/nereus_sets/{tex}.png", tex_png)
 
         display_names = cfg["sets"][sid]["pieces"]
@@ -338,7 +338,7 @@ def main():
             els = java_elements(geo, slot, tw, th)
             validate(els, key)
             add_json(java_files, f"assets/nereus_armorysets/models/piece/{key}.json", {
-                "textures": {"0": f"nereus_armorysets:armor/{tex}", "particle": f"nereus_armorysets:armor/{tex}"},
+                "textures": {"0": f"nereus_armorysets:item/armor/{tex}", "particle": f"nereus_armorysets:item/armor/{tex}"},
                 "elements": els,
             })
             carrier_overrides.append({"predicate": {"custom_model_data": disp_cmd},
