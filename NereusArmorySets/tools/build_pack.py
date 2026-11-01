@@ -76,7 +76,7 @@ def slot_bones(bones, slot):
     return keep
 
 
-HEAD_OFFSET_Y = 4.0   # helm Bedrock terlihat turun ~4 satuan model dari kepala; geser ke atas (ubah via --head-offset-y)
+HEAD_OFFSET_Y = 8.0   # helm Bedrock terlihat turun ~4 satuan model dari kepala; geser ke atas (ubah via --head-offset-y)
 
 
 def shift_y(bone, dy):
