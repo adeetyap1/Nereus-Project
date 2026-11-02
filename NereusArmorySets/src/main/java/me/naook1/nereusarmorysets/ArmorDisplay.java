@@ -33,6 +33,8 @@ public final class ArmorDisplay {
     private final Map<UUID, Map<String, Float>> lastYaw = new HashMap<>();
     private final Map<UUID, Map<String, Integer>> shownCmd = new HashMap<>();
     private int counter;
+    private boolean errorLogged;
+    private boolean mountWarned;
 
     public ArmorDisplay(NereusArmorySets plugin) {
         this.plugin = plugin;
@@ -52,7 +54,15 @@ public final class ArmorDisplay {
         boolean recheckVisibility = counter % 10 == 0;
 
         for (Player p : Bukkit.getOnlinePlayers()) {
-            update(p, recheckVisibility);
+            try {
+                update(p, recheckVisibility);
+            } catch (Throwable t) {
+                if (!errorLogged) {
+                    errorLogged = true;
+                    plugin.getLogger().log(java.util.logging.Level.SEVERE,
+                            "Gagal memperbarui model 3D untuk " + p.getName() + " (hanya dicatat sekali)", t);
+                }
+            }
         }
         // bersihkan data pemain yang sudah offline
         displays.keySet().removeIf(id -> {
@@ -124,7 +134,12 @@ public final class ArmorDisplay {
         // display menunggangi pemain: klien menggerakkannya bersama badan
         if (d.getVehicle() != p) {
             d.leaveVehicle();
-            p.addPassenger(d);
+            boolean mounted = p.addPassenger(d);
+            if (!mounted && !mountWarned) {
+                mountWarned = true;
+                plugin.getLogger().warning("addPassenger() ditolak untuk " + p.getName()
+                        + " - penampil 3D tidak bisa menempel (mungkin dibatalkan plugin lain).");
+            }
             fresh = true;
         }
 
@@ -191,5 +206,24 @@ public final class ArmorDisplay {
         displays.clear();
         lastYaw.clear();
         shownCmd.clear();
+    }
+
+    /** Ringkasan keadaan untuk /armoryset debug. */
+    public java.util.List<String> debug(Player p) {
+        java.util.List<String> out = new java.util.ArrayList<>();
+        out.add("display.enabled=" + plugin.getConfig().getBoolean("display.enabled", true)
+                + " bedrock=" + isBedrock(p) + " errorLogged=" + errorLogged + " mountWarned=" + mountWarned);
+        ItemStack[] armor = p.getInventory().getArmorContents();
+        String[] byIndex = {"feet", "legs", "chest", "head"};
+        Map<String, ItemDisplay> mine = displays.getOrDefault(p.getUniqueId(), java.util.Map.of());
+        for (int i = 0; i < 4; i++) {
+            String setId = plugin.items().setIdOf(armor[i]);
+            ItemDisplay d = mine.get(byIndex[i]);
+            out.add(byIndex[i] + ": set=" + setId + " known=" + (plugin.registry().get(setId) != null)
+                    + " display=" + (d == null ? "tidak ada" : "valid=" + d.isValid()
+                    + " vehicle=" + (d.getVehicle() == p) + " viewRange=" + d.getViewRange()));
+        }
+        out.add("passengers=" + p.getPassengers().size());
+        return out;
     }
 }

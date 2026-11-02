@@ -46,6 +46,13 @@ public final class ArmoryCommand implements CommandExecutor, TabCompleter {
         }
         switch (args[0].toLowerCase(Locale.ROOT)) {
             case "give" -> give(sender, label, args);
+            case "debug" -> {
+                if (sender instanceof Player p) {
+                    plugin.display().debug(p).forEach(l -> msg(sender, "&7" + l));
+                } else {
+                    msg(sender, "&cDebug hanya untuk pemain.");
+                }
+            }
             case "list" -> list(sender);
             case "info" -> info(sender, args);
             case "reload" -> {
@@ -136,7 +143,7 @@ public final class ArmoryCommand implements CommandExecutor, TabCompleter {
             return out;
         }
         if (args.length == 1) {
-            out.addAll(List.of("menu", "give", "list", "info", "reload"));
+            out.addAll(List.of("menu", "give", "list", "info", "reload", "debug"));
         } else if (args.length == 2 && args[0].equalsIgnoreCase("give")) {
             Bukkit.getOnlinePlayers().forEach(p -> out.add(p.getName()));
         } else if ((args.length == 3 && args[0].equalsIgnoreCase("give"))

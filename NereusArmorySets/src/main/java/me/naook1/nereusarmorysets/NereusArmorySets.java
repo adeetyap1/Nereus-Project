@@ -100,6 +100,10 @@ public final class NereusArmorySets extends JavaPlugin implements Listener {
         return items;
     }
 
+    public ArmorDisplay display() {
+        return display;
+    }
+
     public ArmoryGui gui() {
         return gui;
     }

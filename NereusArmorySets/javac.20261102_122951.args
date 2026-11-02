@@ -1,0 +1,14 @@
+-proc:none
+-d
+/tmp/jc_x
+--release
+21
+src/main/java/me/naook1/nereusarmorysets/ArmorDisplay.java
+src/main/java/me/naook1/nereusarmorysets/ArmoryCommand.java
+src/main/java/me/naook1/nereusarmorysets/ArmoryGui.java
+src/main/java/me/naook1/nereusarmorysets/Attrs.java
+src/main/java/me/naook1/nereusarmorysets/BonusManager.java
+src/main/java/me/naook1/nereusarmorysets/ItemFactory.java
+src/main/java/me/naook1/nereusarmorysets/Model.java
+src/main/java/me/naook1/nereusarmorysets/NereusArmorySets.java
+src/main/java/me/naook1/nereusarmorysets/SetRegistry.java
