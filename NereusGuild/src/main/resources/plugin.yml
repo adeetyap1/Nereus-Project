@@ -1,0 +1,22 @@
+name: NereusGuild
+version: 1.0.0
+main: com.nereus.guild.NereusGuild
+api-version: '1.21'
+description: Rank guild petualang F sampai SSS dengan GP dan ujian promosi untuk Nereus MC
+authors: [Nereus MC]
+softdepend: [PlayerPoints, LuckPerms, ODailyQuests]
+
+commands:
+  guild:
+    description: Guild petualang, rank, GP, dan ujian promosi
+    usage: /guild [info|abandon|set|exam|sync|reload]
+    aliases: [advrank]
+    permission: nereusguild.use
+
+permissions:
+  nereusguild.use:
+    description: Memakai menu guild
+    default: true
+  nereusguild.admin:
+    description: Mengatur rank pemain, ujian, dan reload
+    default: op

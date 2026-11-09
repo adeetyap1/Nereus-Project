@@ -29,5 +29,9 @@ Custom Paper 1.21.1 plugins (Java 21) by naook1/adityap.
 - **NereusPets** - `/pets` (alias `/pet`): pet mini ala Pokémon dari mob vanilla (atribut scale, tanpa resource pack). Tangkap mob liar
   dengan Pet Orb (bola salju bertanda, peluang naik kalau HP mob rendah), pet mengikuti dan bertarung real-time, ada level, XP, skill,
   kelangkaan, dan pingsan (tidak mati permanen). Menu Pet Box berupa inventory (aman untuk Bedrock). Admin: `/pets give orb|pet`, `/pets reload`.
+- **NereusGuild** - `/guild` (alias `/advrank`): rank guild petualang F sampai SSS. GP dari PlayerPoints, ujian promosi per rank
+  (bunuh mob dengan batas waktu, atau diselesaikan staff/dungeon), permission quest otomatis (rank X boleh quest X, semua di bawahnya,
+  dan satu tingkat di atas lewat `nereus.guild.<rank>` dan `nereus.guild.tantangan.<rank>`), meta tampilan TAB, dan `dqa reset` saat naik rank.
+  Admin: `/guild set|exam|sync|reload`.
 
 Build: buka tab Actions, jalankan "Build" terbaru, unduh artifact `plugins` (berisi 6 jar).

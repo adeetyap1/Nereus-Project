@@ -1,0 +1,165 @@
+# ============================================================
+# NereusGuild - rank guild petualang
+# Warna memakai kode & (contoh &a hijau, &6 emas).
+# Ubah angka, lalu jalankan /guild reload.
+#
+# Cara kerja:
+# - Pemain mulai di rank pertama (F). Naik rank butuh GP (PlayerPoints) yang cukup
+#   dan lulus ujian promosi rank tujuan.
+# - Aturan quest: rank X boleh quest X, semua rank di bawahnya, dan satu tingkat di atas X.
+#   Plugin ini memberi permission ke pemain (tanpa LuckPerms):
+#     nereus.guild.<rank>            untuk X dan semua rank di bawahnya
+#     nereus.guild.tantangan.<rank>  untuk satu rank di atas X (quest tantangan)
+#   Permission itu dipakai required_permissions di ODailyQuests.
+# - GP tidak berkurang saat naik rank.
+# ============================================================
+
+points:
+  # true  = GP dibaca dari PlayerPoints (hadiah quest: points give %player% <jumlah>)
+  # false = syarat GP diabaikan (hanya ujian yang menentukan)
+  enabled: true
+
+permissions:
+  quest-prefix: "nereus.guild."
+  challenge-prefix: "nereus.guild.tantangan."
+
+exam:
+  # Jeda sebelum boleh mengulang ujian yang gagal.
+  cooldown-minutes: 10
+  # Gagal otomatis kalau pemain mati saat ujian.
+  fail-on-death: false
+  # Tampilkan progres ujian di actionbar.
+  actionbar: true
+
+menu-title: "&8Guild Petualang"
+
+# Perintah konsol yang dijalankan setiap rank diterapkan (naik rank, /guild set, /guild sync).
+# Placeholder: %player%  %rank% (kode rank baru)  %rank_name%  %old_rank%
+# Baris ini mengisi meta adv_rank di LuckPerms untuk tampilan TAB (%luckperms_meta_adv_rank%).
+sync-commands:
+  - "lp user %player% meta set adv_rank %rank%"
+
+# Perintah konsol tambahan saat NAIK rank lewat ujian.
+# dqa reset quests: bagi quest baru supaya quest rank baru langsung muncul.
+promote-commands:
+  - "dqa reset quests %player%"
+
+# Urutan dari rank terendah ke tertinggi. Kode rank = nama kunci (F, E, D, ...).
+# Nilai gp dan ujian di bawah adalah usulan awal. Ubah sesuai keinginanmu.
+#
+# gp        : GP minimal untuk mulai ujian rank ini
+# exam.type : KILL   = bunuh mob (entity, amount, minutes opsional, worlds opsional)
+#             MANUAL = selesai lewat staff, dungeon, atau plugin lain:
+#                      /guild exam complete <pemain>
+#             NONE   = tanpa ujian, langsung naik kalau GP cukup
+# broadcast : umumkan ke seluruh server saat ada yang naik ke rank ini
+# commands  : perintah konsol hadiah naik rank (contoh: eco give %player% 1000)
+ranks:
+  F:
+    name: "Rank F"
+    color: "&f"
+  E:
+    name: "Rank E"
+    color: "&7"
+    gp: 100
+    exam:
+      type: KILL
+      entity: ZOMBIE
+      amount: 20
+      minutes: 15
+      description: "Bunuh 20 zombie dalam 15 menit"
+  D:
+    name: "Rank D"
+    color: "&a"
+    gp: 250
+    exam:
+      type: KILL
+      entity: SKELETON
+      amount: 25
+      minutes: 20
+      description: "Bunuh 25 skeleton dalam 20 menit"
+  C:
+    name: "Rank C"
+    color: "&9"
+    gp: 500
+    exam:
+      type: KILL
+      entity: BLAZE
+      amount: 15
+      minutes: 20
+      description: "Bunuh 15 blaze dalam 20 menit"
+  B:
+    name: "Rank B"
+    color: "&5"
+    gp: 1000
+    broadcast: true
+    exam:
+      type: KILL
+      entity: WITHER_SKELETON
+      amount: 15
+      minutes: 25
+      description: "Bunuh 15 wither skeleton dalam 25 menit"
+  A:
+    name: "Rank A"
+    color: "&c"
+    gp: 2000
+    broadcast: true
+    exam:
+      type: MANUAL
+      description: "Kalahkan boss area (diselesaikan oleh staff atau dungeon)"
+  S:
+    name: "Rank S"
+    color: "&6"
+    gp: 4000
+    broadcast: true
+    exam:
+      type: MANUAL
+      description: "Selesaikan dungeon tingkat tinggi"
+  SS:
+    name: "Rank SS"
+    color: "&d"
+    gp: 8000
+    broadcast: true
+    exam:
+      type: MANUAL
+      description: "Kalahkan boss besar"
+  SSS:
+    name: "Rank SSS"
+    color: "&4&l"
+    gp: 15000
+    broadcast: true
+    exam:
+      type: MANUAL
+      description: "Ujian khusus dari Guild Master"
+
+messages:
+  prefix: "&8[&6Guild&8] &7"
+  no-permission: "&cKamu tidak punya izin."
+  players-only: "&cPerintah ini hanya untuk pemain."
+  unknown-player: "&cPemain tidak ditemukan atau sedang offline."
+  unknown-rank: "&cRank tidak dikenal. Rank yang ada: &f{ranks}"
+  max-rank: "&6Kamu sudah di rank tertinggi."
+  exam-active: "&cKamu masih punya ujian yang berjalan."
+  exam-cooldown: "&cUjian baru bisa diulang dalam &f{time}&c."
+  not-enough-gp: "&cGP belum cukup untuk ujian {rank}&c. Kamu punya &f{gp}&c, butuh &f{need}&c."
+  exam-started: "&aUjian {rank}&a dimulai! &f{desc}"
+  exam-timeout: "&cWaktu ujian habis. Kamu gagal."
+  exam-death: "&cKamu mati saat ujian. Kamu gagal."
+  exam-abandoned: "&7Ujian dibatalkan."
+  no-exam: "&cTidak ada ujian yang berjalan."
+  actionbar: "&6Ujian {rank} &8| &f{progress}&7/&f{amount} &8| &c{time}"
+  actionbar-manual: "&6Ujian {rank} &8| &7{desc} &8| &c{time}"
+  promoted: "&aSelamat! Kamu naik ke {rank}&a!"
+  promoted-broadcast: "&6{player} &etelah naik ke {rank}&e!"
+  title-main: "&6Naik Rank!"
+  title-sub: "{rank}"
+  rank-set: "&aRank {player} diatur ke {rank}&a."
+  exam-completed: "&aUjian {player} diselesaikan."
+  exam-cancelled: "&7Ujian {player} dibatalkan."
+  sync-done: "&aPermission dan perintah rank {player} disinkronkan."
+  reload-done: "&aKonfigurasi dimuat ulang."
+  points-missing: "&cPlayerPoints tidak ditemukan, GP dianggap 0."
+  info-header: "&8&m---&r &6Guild {player} &8&m---"
+  info-rank: "&7Rank: {rank}"
+  info-gp: "&7GP: &b{gp}"
+  info-exam: "&7Ujian: &f{desc} &8({progress})"
