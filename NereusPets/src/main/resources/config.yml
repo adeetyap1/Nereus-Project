@@ -1,0 +1,280 @@
+# ============================================================
+# NereusPets - konfigurasi
+# Warna memakai kode & (contoh &a hijau, &6 emas).
+# Ubah angka, lalu jalankan /pets reload.
+# ============================================================
+
+# Ukuran pet di dunia. 0.5 = setengah ukuran asli (bisa diganti per jenis dengan "scale").
+pet-scale: 0.5
+
+# Maksimal pet yang boleh disimpan satu pemain.
+box-limit: 90
+
+# Panggil lagi pet terakhir yang aktif saat pemain masuk server.
+auto-summon: true
+
+# Pet otomatis menyerang monster di sekitar pemain.
+auto-engage: true
+engage-range: 8
+# Monster yang tidak diserang otomatis (supaya tidak memancing amarah mereka).
+engage-blacklist: [ENDERMAN, ZOMBIFIED_PIGLIN, WARDEN, PIGLIN_BRUTE]
+
+# Jarak serang jarak dekat (blok) dan jeda antar serangan (milidetik).
+melee-reach: 1.8
+attack-interval-ms: 1000
+
+# Perilaku mengikuti pemain.
+follow-distance: 4.0
+teleport-distance: 20.0
+follow-speed: 1.3
+
+# Pet pingsan saat HP habis. Pemain tidak kehilangan pet-nya.
+faint-seconds: 60
+# Pemulihan HP pet yang disimpan di box, persen HP maksimal per detik.
+regen-percent-per-second: 1.0
+
+# Level pet liar saat ditangkap: 1 sampai angka ini.
+wild-level-max: 5
+
+capture:
+  min-chance: 0.03
+  max-chance: 0.95
+  # Tambahan peluang saat HP mob rendah. 1.0 = HP hampir habis memberi hingga +100%.
+  low-hp-bonus: 1.0
+  show-chance: true
+
+xp:
+  # XP yang didapat pet = HP maksimal monster x angka ini.
+  per-health: 1.0
+  # XP untuk naik dari level L: base + growth x L x L
+  base: 20
+  growth: 5
+  max-level: 50
+
+disabled-worlds: []
+
+menu-title: "&8Pet Box"
+
+# Pet Orb dilempar seperti bola salju. Multiplier mengalikan peluang tangkap.
+orbs:
+  basic:
+    name: "&bPet Orb"
+    multiplier: 1.0
+    lore:
+      - "&7Lempar ke mob untuk menangkapnya."
+      - "&7Lebih mudah kalau HP mob rendah."
+  great:
+    name: "&aGreat Orb"
+    multiplier: 1.6
+    lore:
+      - "&7Lempar ke mob untuk menangkapnya."
+      - "&7Peluang tangkap lebih besar."
+  ultra:
+    name: "&6Ultra Orb"
+    multiplier: 2.5
+    lore:
+      - "&7Lempar ke mob untuk menangkapnya."
+      - "&7Peluang tangkap sangat besar."
+
+# Jenis pet yang bisa ditangkap. Nama harus sama dengan EntityType Minecraft.
+# rarity   : COMMON, UNCOMMON, RARE, EPIC, LEGENDARY
+# range    : 0 = serang jarak dekat, lebih dari 0 = serang dari jauh (blok)
+# skill    : none, crit, heal, slow, poison, ignite, thunder
+# Pakai mob berbasis goal AI (zombie, skeleton, dll). Hindari mob terbang dan mob berbasis brain
+# (piglin, hoglin, warden, allay).
+species:
+  CHICKEN:
+    name: "Ayam Mini"
+    rarity: COMMON
+    hp: 10
+    attack: 1.5
+    hp-per-level: 1.0
+    attack-per-level: 0.25
+    capture-rate: 0.60
+    skill: none
+  PIG:
+    name: "Babi Mini"
+    rarity: COMMON
+    hp: 14
+    attack: 2.0
+    hp-per-level: 1.3
+    attack-per-level: 0.25
+    capture-rate: 0.55
+    skill: none
+  SHEEP:
+    name: "Domba Mini"
+    rarity: COMMON
+    hp: 14
+    attack: 1.5
+    hp-per-level: 1.2
+    attack-per-level: 0.2
+    capture-rate: 0.50
+    skill: heal
+    skill-level: 8
+  RABBIT:
+    name: "Kelinci Mini"
+    rarity: COMMON
+    hp: 10
+    attack: 2.5
+    hp-per-level: 1.0
+    attack-per-level: 0.3
+    capture-rate: 0.50
+    skill: crit
+    skill-level: 5
+  SILVERFISH:
+    name: "Silverfish Mini"
+    rarity: UNCOMMON
+    hp: 8
+    attack: 2.5
+    hp-per-level: 0.9
+    attack-per-level: 0.3
+    capture-rate: 0.45
+    skill: poison
+    skill-level: 5
+  ZOMBIE:
+    name: "Zombie Mini"
+    rarity: UNCOMMON
+    hp: 20
+    attack: 3.5
+    hp-per-level: 1.8
+    attack-per-level: 0.4
+    capture-rate: 0.40
+    skill: slow
+    skill-level: 6
+  SKELETON:
+    name: "Skeleton Mini"
+    rarity: UNCOMMON
+    hp: 16
+    attack: 3.0
+    hp-per-level: 1.4
+    attack-per-level: 0.4
+    capture-rate: 0.40
+    range: 8
+    skill: crit
+    skill-level: 8
+  SPIDER:
+    name: "Laba-laba Mini"
+    rarity: UNCOMMON
+    hp: 16
+    attack: 3.0
+    hp-per-level: 1.4
+    attack-per-level: 0.35
+    capture-rate: 0.40
+    skill: slow
+    skill-level: 5
+  CAVE_SPIDER:
+    name: "Laba-laba Gua Mini"
+    rarity: UNCOMMON
+    hp: 12
+    attack: 2.5
+    hp-per-level: 1.1
+    attack-per-level: 0.35
+    capture-rate: 0.40
+    skill: poison
+    skill-level: 5
+  WOLF:
+    name: "Serigala Mini"
+    rarity: RARE
+    hp: 20
+    attack: 4.5
+    hp-per-level: 1.8
+    attack-per-level: 0.5
+    capture-rate: 0.30
+    skill: crit
+    skill-level: 10
+  HUSK:
+    name: "Husk Mini"
+    rarity: RARE
+    hp: 24
+    attack: 4.0
+    hp-per-level: 2.0
+    attack-per-level: 0.45
+    capture-rate: 0.30
+    skill: slow
+    skill-level: 8
+  STRAY:
+    name: "Stray Mini"
+    rarity: RARE
+    hp: 18
+    attack: 3.5
+    hp-per-level: 1.5
+    attack-per-level: 0.45
+    capture-rate: 0.28
+    range: 8
+    skill: slow
+    skill-level: 5
+  VINDICATOR:
+    name: "Vindicator Mini"
+    rarity: RARE
+    hp: 24
+    attack: 5.0
+    hp-per-level: 2.0
+    attack-per-level: 0.55
+    capture-rate: 0.25
+    skill: crit
+    skill-level: 10
+  WITHER_SKELETON:
+    name: "Wither Skeleton Mini"
+    rarity: EPIC
+    hp: 30
+    attack: 6.0
+    hp-per-level: 2.4
+    attack-per-level: 0.7
+    capture-rate: 0.15
+    skill: ignite
+    skill-level: 10
+  RAVAGER:
+    name: "Ravager Mini"
+    rarity: EPIC
+    hp: 55
+    attack: 8.0
+    hp-per-level: 3.0
+    attack-per-level: 0.8
+    capture-rate: 0.10
+    scale: 0.35
+    skill: crit
+    skill-level: 12
+  IRON_GOLEM:
+    name: "Golem Besi Mini"
+    rarity: LEGENDARY
+    hp: 80
+    attack: 9.0
+    hp-per-level: 3.5
+    attack-per-level: 0.9
+    capture-rate: 0.05
+    scale: 0.35
+    skill: thunder
+    skill-level: 15
+
+messages:
+  prefix: "&8[&bPet&8] &7"
+  no-permission: "&cKamu tidak punya izin."
+  players-only: "&cPerintah ini hanya untuk pemain."
+  unknown-player: "&cPemain tidak ditemukan atau sedang offline."
+  unknown-tier: "&cJenis orb tidak dikenal."
+  unknown-species: "&cJenis pet tidak dikenal atau tidak diaktifkan di config."
+  orb-given: "&aMemberi &f{amount}x {orb}&a ke &f{player}&a."
+  pet-given: "&aMemberi pet &f{pet}&a ke &f{player}&a."
+  reload-done: "&aKonfigurasi dimuat ulang."
+  summoned: "&a{pet}&a siap menemanimu!"
+  recalled: "&7{pet}&7 kembali ke Pet Box."
+  fainted: "&cPet ini masih pingsan. Siap lagi dalam &f{time} &cdetik."
+  pet-fainted: "&c{pet}&c pingsan! Siap lagi dalam &f{time} &cdetik."
+  pet-lost: "&cPet-mu menghilang dan dikembalikan ke Pet Box."
+  no-active: "&cKamu tidak punya pet aktif."
+  world-disabled: "&cPet tidak bisa dipakai di dunia ini."
+  species-disabled: "&cJenis pet ini sedang dinonaktifkan."
+  spawn-failed: "&cPet gagal dipanggil. Coba lagi."
+  box-full: "&cPet Box penuh (maksimal {limit} pet)."
+  capture-success: "&a✔ Berhasil menangkap &f{pet} &7(Lv.{level}, {rarity}&7)&a!"
+  capture-fail: "&c✘ {pet}&c lolos dari orb! &7(peluang tadi {chance}%)"
+  capture-fail-short: "&c✘ {pet}&c lolos dari orb!"
+  capture-species: "&cMob ini tidak bisa ditangkap."
+  capture-named: "&cMob ini tidak bisa ditangkap."
+  capture-invalid: "&cOrb hanya bisa menangkap mob liar."
+  level-up: "&6{pet} &anaik ke &eLv.{level}&a!"
+  xp-gain: "&a+{xp} XP &7({pet}&7)"
+  renamed: "&aNama pet diubah menjadi &f{name}&a."
+  release-confirm: "&eKetik &f/pets release {index} confirm &euntuk melepas {pet}&e selamanya."
+  released: "&7{pet}&7 dilepas ke alam liar."
+  invalid-index: "&cNomor pet tidak valid. Lihat nomor (#) di Pet Box."

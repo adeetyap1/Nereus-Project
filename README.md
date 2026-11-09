@@ -26,5 +26,8 @@ Custom Paper 1.21.1 plugins (Java 21) by naook1/adityap.
   set bonus atribut 2/4 piece, model 3D. Admin: `/armoryset give|list|info|reload`.
   Resource pack (folder `resourcepacks/`): `Nereus-ArmorySets-Java.zip` (gabung ke pack Java server), `Nereus-ArmorySets-Bedrock.mcpack`
   + `nereus_armorysets_geyser.json` (taruh di `plugins/Geyser-Spigot/custom_mappings/`). Pembuat pack: `NereusArmorySets/tools/build_pack.py`.
+- **NereusPets** - `/pets` (alias `/pet`): pet mini ala Pokémon dari mob vanilla (atribut scale, tanpa resource pack). Tangkap mob liar
+  dengan Pet Orb (bola salju bertanda, peluang naik kalau HP mob rendah), pet mengikuti dan bertarung real-time, ada level, XP, skill,
+  kelangkaan, dan pingsan (tidak mati permanen). Menu Pet Box berupa inventory (aman untuk Bedrock). Admin: `/pets give orb|pet`, `/pets reload`.
 
 Build: buka tab Actions, jalankan "Build" terbaru, unduh artifact `plugins` (berisi 6 jar).
