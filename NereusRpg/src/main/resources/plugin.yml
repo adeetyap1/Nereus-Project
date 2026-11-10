@@ -1,0 +1,42 @@
+name: NereusRpg
+version: 1.0.0
+main: com.nereus.rpg.NereusRpg
+api-version: '1.21'
+description: RPG lengkap Nereus MC - class, skill, quest, misi cerita, rank guild
+authors: [Nereus MC]
+softdepend: [PlaceholderAPI, LuckPerms, TAB]
+
+commands:
+  rpg:
+    description: Menu petualang dan perintah admin
+    usage: /rpg [reload|admin]
+    aliases: [nereus]
+  quest:
+    description: Papan quest harian
+    aliases: [quests, qb]
+  story:
+    description: Misi cerita
+    usage: /story [serahkan]
+    aliases: [misi, cerita]
+  class:
+    description: Pilih atau ganti class
+    aliases: [kelas]
+  stats:
+    description: Stat karakter
+    aliases: [stat]
+  skill:
+    description: Pakai skill
+    usage: /skill [nomor]
+    aliases: [skills]
+  rank:
+    description: Rank guild dan ujian
+    usage: /rank [abandon]
+    aliases: [guild, advrank]
+
+permissions:
+  nereusrpg.use:
+    description: Memakai fitur RPG
+    default: true
+  nereusrpg.admin:
+    description: Perintah admin /rpg admin
+    default: op

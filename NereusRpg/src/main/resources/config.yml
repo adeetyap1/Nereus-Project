@@ -1,0 +1,194 @@
+# ============================================================
+# NereusRpg - RPG lengkap: class, level/stat/mana/skill, quest harian,
+# misi cerita isekai, dan rank guild F sampai SSS.
+# Warna memakai & (contoh &a hijau). Setelah mengubah: /rpg reload
+# ============================================================
+
+timezone: "Asia/Jakarta"      # quest harian reset tengah malam zona ini
+
+# ---------- Level, XP, stat ----------
+level:
+  max: 100
+  # XP naik level = base + level*level*per-level-squared
+  xp-base: 100
+  xp-per-level-squared: 25
+  stat-points-per-level: 3
+  # XP dari membunuh mob = max health mob * kali ini (maksimal xp-kill-cap)
+  xp-kill-multiplier: 0.5
+  xp-kill-cap: 60
+  # XP quest harian = base * (nomor rank + 1); tantangan x1.5
+  xp-quest-base: 40
+
+stats:
+  # Efek 1 poin stat
+  str-melee-damage-percent: 1.0     # +1% damage jarak dekat per STR
+  dex-crit-chance-percent: 0.5      # +0.5% peluang crit per DEX
+  dex-bow-damage-percent: 1.0       # +1% damage panah per DEX
+  int-mana-per-point: 5             # +5 mana maksimal per INT
+  int-skill-power-percent: 2.0      # +2% kekuatan skill per INT
+  vit-health-per-point: 1.0         # +1 HP (0.5 hati) per VIT
+  luk-reward-chance-percent: 0.5    # peluang hadiah gold/XP quest x1.5 per LUK
+
+mana:
+  base: 50
+  per-level: 2
+  regen-per-second: 2.0
+  actionbar: true                   # tampilkan Lv / HP / mana / skill terpilih
+
+# ---------- Intro isekai ----------
+intro:
+  enabled: true
+  title: "&5&lMATI DI DUNIA LAMA"
+  subtitle: "&7Lalu terbangun di dunia yang asing..."
+  lines:
+    - "&8&m                                        "
+    - "&7Gelap. Dingin. Lalu cahaya menelanmu."
+    - "&7Suara asing berbisik: &d\"Pahlawan dari dunia lain...\""
+    - "&7Kamu terbangun di &fNereus&7, dunia yang sedang dirayapi kegelapan."
+    - "&7Pilih jalanmu, &dPetualang&7. Guild menunggu."
+    - "&8&m                                        "
+  # Pemain wajib memilih class. Sebelum itu menu class dibuka terus.
+  force-class-choice: true
+
+# ---------- Class: ganti class ----------
+class-change:
+  allowed: true
+  cooldown-hours: 24
+  # Perintah konsol dijalankan saat ganti class (mis. biaya). Kosongkan jika gratis.
+  # Jika perintah gagal (uang kurang) pemain tetap ganti, jadi isi hanya jika perlu.
+  commands: []
+
+# ---------- Daftar quest harian ----------
+quests:
+  max-active: 3                     # maksimal quest aktif sekaligus
+  per-day-limit: 6                  # maksimal quest selesai per hari
+  # Rank X boleh quest X dan di bawahnya. Quest tantangan = satu rank di atas X.
+  # Blok buatan pemain tidak dihitung untuk quest BREAK.
+
+# ---------- Login harian ----------
+daily-login:
+  enabled: true
+  # hari ke-1, 2, 3 ... (hari ke-7 lalu mengulang). Perintah konsol.
+  rewards:
+    1: ["eco give %player% 30"]
+    2: ["eco give %player% 40"]
+    3: ["eco give %player% 50", "give %player% bread 8"]
+    4: ["eco give %player% 60"]
+    5: ["eco give %player% 80", "give %player% golden_apple 1"]
+    6: ["eco give %player% 100"]
+    7: ["eco give %player% 250", "give %player% diamond 2"]
+
+# ---------- Pencapaian (jumlah quest selesai) ----------
+milestones:
+  quests-completed:
+    10:
+      name: "Pekerja Guild"
+      commands: ["eco give %player% 200"]
+    50:
+      name: "Veteran Guild"
+      commands: ["eco give %player% 1000", "give %player% diamond 5"]
+    200:
+      name: "Legenda Papan Quest"
+      commands: ["eco give %player% 5000", "give %player% netherite_ingot 2"]
+  kills:
+    500:
+      name: "Pemburu Monster"
+      commands: ["eco give %player% 500"]
+    5000:
+      name: "Malapetaka Monster"
+      commands: ["eco give %player% 5000"]
+
+# ---------- Tampilan rank di atas kepala dan TAB ----------
+# Rank petualang [F-SSS] terpisah dari rank donatur.
+# Cara 1 (disarankan, TAB): pakai placeholder PlaceholderAPI
+#   %nereusrpg_rank%        -> kode rank berwarna, mis. &6S (sudah berwarna)
+#   %nereusrpg_rank_plain%  -> kode rank tanpa warna
+#   %nereusrpg_class% %nereusrpg_level% %nereusrpg_gp% %nereusrpg_mana%
+# Cara 2: meta LuckPerms lewat sync-commands (placeholder %luckperms_meta_adv_rank%).
+# Cara 3: nametag bawaan plugin (matikan jika TAB yang mengatur nametag).
+display:
+  builtin-nametag: false
+  nametag-format: "&8[%rank%&8] "       # prefix di atas kepala & TAB jika builtin aktif
+  tab-list-name: false                  # ubah nama di TAB juga (jika builtin aktif)
+
+# Dijalankan konsol setiap rank diterapkan (naik rank, /rpg admin setrank, login).
+# Placeholder: %player% %rank% (kode, mis. SSS) %old_rank%
+sync-commands:
+  - "lp user %player% meta set adv_rank %rank%"
+
+# Perintah konsol tambahan saat naik rank (sesudah ujian).
+promote-commands: []
+
+exam:
+  cooldown-minutes: 10
+  fail-on-death: false
+
+# ---------- Rank guild ----------
+# gp = GP minimal untuk mulai ujian rank itu.
+# exam.type: KILL (entity, amount) | BREAK (block, amount) | GET (item, amount, diserahkan)
+#            MANUAL (staff: /rpg admin examdone <pemain>) | NONE
+# minutes: batas waktu ujian (opsional). commands: hadiah naik rank.
+ranks:
+  F:
+    name: "Rank F"
+    color: "&f"
+  E:
+    name: "Rank E"
+    color: "&7"
+    gp: 100
+    exam: {type: KILL, entity: ZOMBIE, amount: 20, minutes: 15, description: "Bunuh 20 zombie dalam 15 menit"}
+    commands: ["eco give %player% 500"]
+  D:
+    name: "Rank D"
+    color: "&a"
+    gp: 250
+    exam: {type: KILL, entity: SKELETON, amount: 25, minutes: 20, description: "Bunuh 25 skeleton dalam 20 menit"}
+    commands: ["eco give %player% 1200"]
+  C:
+    name: "Rank C"
+    color: "&9"
+    gp: 500
+    exam: {type: KILL, entity: BLAZE, amount: 15, minutes: 20, description: "Bunuh 15 blaze dalam 20 menit"}
+    commands: ["eco give %player% 3000"]
+  B:
+    name: "Rank B"
+    color: "&5"
+    gp: 1000
+    broadcast: true
+    exam: {type: KILL, entity: WITHER_SKELETON, amount: 15, minutes: 25, description: "Bunuh 15 wither skeleton dalam 25 menit"}
+    commands: ["eco give %player% 8000"]
+  A:
+    name: "Rank A"
+    color: "&c"
+    gp: 2000
+    broadcast: true
+    exam: {type: MANUAL, description: "Kalahkan boss area (diselesaikan staff atau dungeon)"}
+    commands: ["eco give %player% 20000"]
+  S:
+    name: "Rank S"
+    color: "&6"
+    gp: 4000
+    broadcast: true
+    exam: {type: MANUAL, description: "Selesaikan dungeon tingkat tinggi"}
+    commands: ["eco give %player% 50000"]
+  SS:
+    name: "Rank SS"
+    color: "&d"
+    gp: 8000
+    broadcast: true
+    exam: {type: MANUAL, description: "Kalahkan boss besar"}
+    commands: ["eco give %player% 100000"]
+  SSS:
+    name: "Rank SSS"
+    color: "&4&l"
+    gp: 15000
+    broadcast: true
+    exam: {type: MANUAL, description: "Ujian khusus dari Guild Master"}
+    commands: ["eco give %player% 250000"]
+
+menu-titles:
+  hub: "&8Petualang"
+  quests: "&8Papan Quest"
+  class: "&8Pilih Class"
+  stats: "&8Stat Karakter"
+  rank: "&8Guild Petualang"

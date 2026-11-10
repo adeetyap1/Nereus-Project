@@ -1,0 +1,1313 @@
+# Quest harian. Diimpor dari ODailyQuests, boleh diedit.
+# type: KILL (entity) | BREAK (blok) | GET (item, diserahkan)
+# gp = Guild Point. commands = perintah konsol hadiah. %player% diganti nama pemain.
+quests:
+  f-1:
+    rank: F
+    challenge: false
+    name: '&fPatroli Malam'
+    icon: ROTTEN_FLESH
+    type: KILL
+    target: ZOMBIE
+    amount: 10
+    gp: 10
+    commands:
+    - eco give %player% 50
+    - give %player% bread 8
+    reward-lore:
+    - ' &3&l| &650 Gold'
+    - ' &3&l| &b10 GP'
+    - ' &3&l| &78 Roti'
+  f-2:
+    rank: F
+    challenge: false
+    name: '&fPengumpul Gandum'
+    icon: WHEAT
+    type: GET
+    target: WHEAT
+    amount: 16
+    gp: 10
+    commands:
+    - eco give %player% 70
+    - give %player% stone_sword 1
+    reward-lore:
+    - ' &3&l| &670 Gold'
+    - ' &3&l| &b10 GP'
+    - ' &3&l| &7Pedang Batu'
+  f-3:
+    rank: F
+    challenge: false
+    name: '&fPenebang Kayu'
+    icon: IRON_AXE
+    type: BREAK
+    target: '[''OAK_LOG'', ''BIRCH_LOG'', ''SPRUCE_LOG'', ''JUNGLE_LOG'', ''ACACIA_LOG'', ''DARK_OAK_LOG'', ''MANGROVE_LOG'', ''CHERRY_LOG'']'
+    amount: 24
+    gp: 10
+    commands:
+    - eco give %player% 90
+    - give %player% potion[potion_contents={potion:"minecraft:healing"}] 2
+    reward-lore:
+    - ' &3&l| &690 Gold'
+    - ' &3&l| &b10 GP'
+    - ' &3&l| &72 Potion Healing'
+  f-4:
+    rank: F
+    challenge: false
+    name: '&fTulang Berserakan'
+    icon: BONE
+    type: KILL
+    target: SKELETON
+    amount: 8
+    gp: 10
+    commands:
+    - eco give %player% 110
+    - give %player% stone_pickaxe 1
+    reward-lore:
+    - ' &3&l| &6110 Gold'
+    - ' &3&l| &b10 GP'
+    - ' &3&l| &7Beliung Batu'
+  f-5:
+    rank: F
+    challenge: false
+    name: '&fPenggali Batu'
+    icon: STONE_PICKAXE
+    type: BREAK
+    target: '[''STONE'', ''DEEPSLATE'', ''COBBLESTONE'']'
+    amount: 48
+    gp: 10
+    commands:
+    - eco give %player% 130
+    - give %player% cooked_beef 8
+    reward-lore:
+    - ' &3&l| &6130 Gold'
+    - ' &3&l| &b10 GP'
+    - ' &3&l| &78 Daging Panggang'
+  f-6:
+    rank: F
+    challenge: false
+    name: '&fStok Batu Bara'
+    icon: COAL
+    type: GET
+    target: COAL
+    amount: 12
+    gp: 10
+    commands:
+    - eco give %player% 150
+    - give %player% wooden_axe 1
+    - give %player% bread 4
+    reward-lore:
+    - ' &3&l| &6150 Gold'
+    - ' &3&l| &b10 GP'
+    - ' &3&l| &7Kapak Kayu dan 4 Roti'
+  e-1:
+    rank: E
+    challenge: false
+    name: '&7Sarang Laba-laba'
+    icon: STRING
+    type: KILL
+    target: SPIDER
+    amount: 10
+    gp: 25
+    commands:
+    - eco give %player% 200
+    - give %player% iron_ingot 12
+    reward-lore:
+    - ' &3&l| &6200 Gold'
+    - ' &3&l| &b25 GP'
+    - ' &3&l| &712 Batang Besi'
+  e-2:
+    rank: E
+    challenge: false
+    name: '&7Penyamak Kulit'
+    icon: LEATHER
+    type: GET
+    target: LEATHER
+    amount: 10
+    gp: 25
+    commands:
+    - eco give %player% 240
+    - mi give MATERIAL STEEL_INGOT %player% 4
+    reward-lore:
+    - ' &3&l| &6240 Gold'
+    - ' &3&l| &b25 GP'
+    - ' &3&l| &74 Steel Ingot'
+  e-3:
+    rank: E
+    challenge: false
+    name: '&7Gerombolan Mayat'
+    icon: ZOMBIE_HEAD
+    type: KILL
+    target: ZOMBIE
+    amount: 20
+    gp: 25
+    commands:
+    - eco give %player% 280
+    - give %player% iron_helmet 1
+    reward-lore:
+    - ' &3&l| &6280 Gold'
+    - ' &3&l| &b25 GP'
+    - ' &3&l| &7Helm Besi'
+  e-4:
+    rank: E
+    challenge: false
+    name: '&7Bijih Besi'
+    icon: RAW_IRON
+    type: BREAK
+    target: '[''IRON_ORE'', ''DEEPSLATE_IRON_ORE'']'
+    amount: 16
+    gp: 25
+    commands:
+    - eco give %player% 320
+    - give %player% iron_chestplate 1
+    reward-lore:
+    - ' &3&l| &6320 Gold'
+    - ' &3&l| &b25 GP'
+    - ' &3&l| &7Zirah Besi'
+  e-5:
+    rank: E
+    challenge: false
+    name: '&7Ledakan Hijau'
+    icon: GUNPOWDER
+    type: KILL
+    target: CREEPER
+    amount: 6
+    gp: 25
+    commands:
+    - eco give %player% 360
+    - give %player% iron_leggings 1
+    reward-lore:
+    - ' &3&l| &6360 Gold'
+    - ' &3&l| &b25 GP'
+    - ' &3&l| &7Celana Besi'
+  e-6:
+    rank: E
+    challenge: false
+    name: '&7Pandai Besi Muda'
+    icon: IRON_INGOT
+    type: GET
+    target: IRON_INGOT
+    amount: 16
+    gp: 25
+    commands:
+    - eco give %player% 400
+    - give %player% iron_boots 1
+    reward-lore:
+    - ' &3&l| &6400 Gold'
+    - ' &3&l| &b25 GP'
+    - ' &3&l| &7Sepatu Besi'
+  e-1-t:
+    rank: E
+    challenge: true
+    name: '&7Sarang Laba-laba'
+    icon: STRING
+    type: KILL
+    target: SPIDER
+    amount: 10
+    gp: 31
+    commands:
+    - eco give %player% 250
+    - give %player% iron_ingot 12
+    reward-lore:
+    - ' &3&l| &6250 Gold'
+    - ' &3&l| &b31 GP'
+    - ' &3&l| &712 Batang Besi'
+  e-2-t:
+    rank: E
+    challenge: true
+    name: '&7Penyamak Kulit'
+    icon: LEATHER
+    type: GET
+    target: LEATHER
+    amount: 10
+    gp: 31
+    commands:
+    - eco give %player% 300
+    - mi give MATERIAL STEEL_INGOT %player% 4
+    reward-lore:
+    - ' &3&l| &6300 Gold'
+    - ' &3&l| &b31 GP'
+    - ' &3&l| &74 Steel Ingot'
+  e-3-t:
+    rank: E
+    challenge: true
+    name: '&7Gerombolan Mayat'
+    icon: ZOMBIE_HEAD
+    type: KILL
+    target: ZOMBIE
+    amount: 20
+    gp: 31
+    commands:
+    - eco give %player% 350
+    - give %player% iron_helmet 1
+    reward-lore:
+    - ' &3&l| &6350 Gold'
+    - ' &3&l| &b31 GP'
+    - ' &3&l| &7Helm Besi'
+  e-4-t:
+    rank: E
+    challenge: true
+    name: '&7Bijih Besi'
+    icon: RAW_IRON
+    type: BREAK
+    target: '[''IRON_ORE'', ''DEEPSLATE_IRON_ORE'']'
+    amount: 16
+    gp: 31
+    commands:
+    - eco give %player% 400
+    - give %player% iron_chestplate 1
+    reward-lore:
+    - ' &3&l| &6400 Gold'
+    - ' &3&l| &b31 GP'
+    - ' &3&l| &7Zirah Besi'
+  e-5-t:
+    rank: E
+    challenge: true
+    name: '&7Ledakan Hijau'
+    icon: GUNPOWDER
+    type: KILL
+    target: CREEPER
+    amount: 6
+    gp: 31
+    commands:
+    - eco give %player% 450
+    - give %player% iron_leggings 1
+    reward-lore:
+    - ' &3&l| &6450 Gold'
+    - ' &3&l| &b31 GP'
+    - ' &3&l| &7Celana Besi'
+  e-6-t:
+    rank: E
+    challenge: true
+    name: '&7Pandai Besi Muda'
+    icon: IRON_INGOT
+    type: GET
+    target: IRON_INGOT
+    amount: 16
+    gp: 31
+    commands:
+    - eco give %player% 500
+    - give %player% iron_boots 1
+    reward-lore:
+    - ' &3&l| &6500 Gold'
+    - ' &3&l| &b31 GP'
+    - ' &3&l| &7Sepatu Besi'
+  d-1:
+    rank: D
+    challenge: false
+    name: '&aPemanah Bangkit'
+    icon: BOW
+    type: KILL
+    target: SKELETON
+    amount: 25
+    gp: 50
+    commands:
+    - eco give %player% 500
+    - crazycrates give virtual common 1 %player% -s
+    reward-lore:
+    - ' &3&l| &6500 Gold'
+    - ' &3&l| &b50 GP'
+    - ' &3&l| &71 Key Crate Common'
+  d-2:
+    rank: D
+    challenge: false
+    name: '&aPenjinak Creeper'
+    icon: TNT
+    type: KILL
+    target: CREEPER
+    amount: 12
+    gp: 50
+    commands:
+    - eco give %player% 600
+    - crazycrates give virtual common 1 %player% -s
+    reward-lore:
+    - ' &3&l| &6600 Gold'
+    - ' &3&l| &b50 GP'
+    - ' &3&l| &71 Key Crate Common'
+  d-3:
+    rank: D
+    challenge: false
+    name: '&aKilau Emas'
+    icon: GOLD_INGOT
+    type: GET
+    target: GOLD_INGOT
+    amount: 10
+    gp: 50
+    commands:
+    - eco give %player% 700
+    - crazycrates give virtual common 1 %player% -s
+    reward-lore:
+    - ' &3&l| &6700 Gold'
+    - ' &3&l| &b50 GP'
+    - ' &3&l| &71 Key Crate Common'
+  d-4:
+    rank: D
+    challenge: false
+    name: '&aPenyihir Rawa'
+    icon: GLASS_BOTTLE
+    type: KILL
+    target: WITCH
+    amount: 4
+    gp: 50
+    commands:
+    - eco give %player% 800
+    - crazycrates give virtual common 1 %player% -s
+    reward-lore:
+    - ' &3&l| &6800 Gold'
+    - ' &3&l| &b50 GP'
+    - ' &3&l| &71 Key Crate Common'
+  d-5:
+    rank: D
+    challenge: false
+    name: '&aUrat Besi Dalam'
+    icon: IRON_PICKAXE
+    type: BREAK
+    target: '[''IRON_ORE'', ''DEEPSLATE_IRON_ORE'']'
+    amount: 32
+    gp: 50
+    commands:
+    - eco give %player% 900
+    - crazycrates give virtual common 1 %player% -s
+    reward-lore:
+    - ' &3&l| &6900 Gold'
+    - ' &3&l| &b50 GP'
+    - ' &3&l| &71 Key Crate Common'
+  d-1-t:
+    rank: D
+    challenge: true
+    name: '&aPemanah Bangkit'
+    icon: BOW
+    type: KILL
+    target: SKELETON
+    amount: 25
+    gp: 62
+    commands:
+    - eco give %player% 620
+    - crazycrates give virtual common 1 %player% -s
+    reward-lore:
+    - ' &3&l| &6620 Gold'
+    - ' &3&l| &b62 GP'
+    - ' &3&l| &71 Key Crate Common'
+  d-2-t:
+    rank: D
+    challenge: true
+    name: '&aPenjinak Creeper'
+    icon: TNT
+    type: KILL
+    target: CREEPER
+    amount: 12
+    gp: 62
+    commands:
+    - eco give %player% 750
+    - crazycrates give virtual common 1 %player% -s
+    reward-lore:
+    - ' &3&l| &6750 Gold'
+    - ' &3&l| &b62 GP'
+    - ' &3&l| &71 Key Crate Common'
+  d-3-t:
+    rank: D
+    challenge: true
+    name: '&aKilau Emas'
+    icon: GOLD_INGOT
+    type: GET
+    target: GOLD_INGOT
+    amount: 10
+    gp: 62
+    commands:
+    - eco give %player% 880
+    - crazycrates give virtual common 1 %player% -s
+    reward-lore:
+    - ' &3&l| &6880 Gold'
+    - ' &3&l| &b62 GP'
+    - ' &3&l| &71 Key Crate Common'
+  d-4-t:
+    rank: D
+    challenge: true
+    name: '&aPenyihir Rawa'
+    icon: GLASS_BOTTLE
+    type: KILL
+    target: WITCH
+    amount: 4
+    gp: 62
+    commands:
+    - eco give %player% 1000
+    - crazycrates give virtual common 1 %player% -s
+    reward-lore:
+    - ' &3&l| &61.000 Gold'
+    - ' &3&l| &b62 GP'
+    - ' &3&l| &71 Key Crate Common'
+  d-5-t:
+    rank: D
+    challenge: true
+    name: '&aUrat Besi Dalam'
+    icon: IRON_PICKAXE
+    type: BREAK
+    target: '[''IRON_ORE'', ''DEEPSLATE_IRON_ORE'']'
+    amount: 32
+    gp: 62
+    commands:
+    - eco give %player% 1120
+    - crazycrates give virtual common 1 %player% -s
+    reward-lore:
+    - ' &3&l| &61.120 Gold'
+    - ' &3&l| &b62 GP'
+    - ' &3&l| &71 Key Crate Common'
+  c-1:
+    rank: C
+    challenge: false
+    name: '&bPemburu Enderman'
+    icon: ENDER_PEARL
+    type: KILL
+    target: ENDERMAN
+    amount: 12
+    gp: 100
+    commands:
+    - eco give %player% 1000
+    - crazycrates give virtual rare 1 %player% -s
+    reward-lore:
+    - ' &3&l| &61.000 Gold'
+    - ' &3&l| &b100 GP'
+    - ' &3&l| &71 Key Crate Rare'
+  c-2:
+    rank: C
+    challenge: false
+    name: '&bMata Berlian'
+    icon: DIAMOND_PICKAXE
+    type: BREAK
+    target: '[''DIAMOND_ORE'', ''DEEPSLATE_DIAMOND_ORE'']'
+    amount: 5
+    gp: 100
+    commands:
+    - eco give %player% 1250
+    - crazycrates give virtual rare 1 %player% -s
+    reward-lore:
+    - ' &3&l| &61.250 Gold'
+    - ' &3&l| &b100 GP'
+    - ' &3&l| &71 Key Crate Rare'
+  c-3:
+    rank: C
+    challenge: false
+    name: '&bPenjaga Laut'
+    icon: PRISMARINE_SHARD
+    type: KILL
+    target: GUARDIAN
+    amount: 10
+    gp: 100
+    commands:
+    - eco give %player% 1500
+    - crazycrates give virtual rare 1 %player% -s
+    reward-lore:
+    - ' &3&l| &61.500 Gold'
+    - ' &3&l| &b100 GP'
+    - ' &3&l| &71 Key Crate Rare'
+  c-4:
+    rank: C
+    challenge: false
+    name: '&bWabah Creeper'
+    icon: CREEPER_HEAD
+    type: KILL
+    target: CREEPER
+    amount: 20
+    gp: 100
+    commands:
+    - eco give %player% 1750
+    - crazycrates give virtual rare 1 %player% -s
+    reward-lore:
+    - ' &3&l| &61.750 Gold'
+    - ' &3&l| &b100 GP'
+    - ' &3&l| &71 Key Crate Rare'
+  c-5:
+    rank: C
+    challenge: false
+    name: '&bKutukan Rawa'
+    icon: SPLASH_POTION
+    type: KILL
+    target: WITCH
+    amount: 8
+    gp: 100
+    commands:
+    - eco give %player% 2000
+    - crazycrates give virtual rare 1 %player% -s
+    reward-lore:
+    - ' &3&l| &62.000 Gold'
+    - ' &3&l| &b100 GP'
+    - ' &3&l| &71 Key Crate Rare'
+  c-1-t:
+    rank: C
+    challenge: true
+    name: '&bPemburu Enderman'
+    icon: ENDER_PEARL
+    type: KILL
+    target: ENDERMAN
+    amount: 12
+    gp: 125
+    commands:
+    - eco give %player% 1250
+    - crazycrates give virtual rare 1 %player% -s
+    reward-lore:
+    - ' &3&l| &61.250 Gold'
+    - ' &3&l| &b125 GP'
+    - ' &3&l| &71 Key Crate Rare'
+  c-2-t:
+    rank: C
+    challenge: true
+    name: '&bMata Berlian'
+    icon: DIAMOND_PICKAXE
+    type: BREAK
+    target: '[''DIAMOND_ORE'', ''DEEPSLATE_DIAMOND_ORE'']'
+    amount: 5
+    gp: 125
+    commands:
+    - eco give %player% 1560
+    - crazycrates give virtual rare 1 %player% -s
+    reward-lore:
+    - ' &3&l| &61.560 Gold'
+    - ' &3&l| &b125 GP'
+    - ' &3&l| &71 Key Crate Rare'
+  c-3-t:
+    rank: C
+    challenge: true
+    name: '&bPenjaga Laut'
+    icon: PRISMARINE_SHARD
+    type: KILL
+    target: GUARDIAN
+    amount: 10
+    gp: 125
+    commands:
+    - eco give %player% 1880
+    - crazycrates give virtual rare 1 %player% -s
+    reward-lore:
+    - ' &3&l| &61.880 Gold'
+    - ' &3&l| &b125 GP'
+    - ' &3&l| &71 Key Crate Rare'
+  c-4-t:
+    rank: C
+    challenge: true
+    name: '&bWabah Creeper'
+    icon: CREEPER_HEAD
+    type: KILL
+    target: CREEPER
+    amount: 20
+    gp: 125
+    commands:
+    - eco give %player% 2190
+    - crazycrates give virtual rare 1 %player% -s
+    reward-lore:
+    - ' &3&l| &62.190 Gold'
+    - ' &3&l| &b125 GP'
+    - ' &3&l| &71 Key Crate Rare'
+  c-5-t:
+    rank: C
+    challenge: true
+    name: '&bKutukan Rawa'
+    icon: SPLASH_POTION
+    type: KILL
+    target: WITCH
+    amount: 8
+    gp: 125
+    commands:
+    - eco give %player% 2500
+    - crazycrates give virtual rare 1 %player% -s
+    reward-lore:
+    - ' &3&l| &62.500 Gold'
+    - ' &3&l| &b125 GP'
+    - ' &3&l| &71 Key Crate Rare'
+  b-1:
+    rank: B
+    challenge: false
+    name: '&9Penjinak Api'
+    icon: BLAZE_ROD
+    type: KILL
+    target: BLAZE
+    amount: 15
+    gp: 200
+    commands:
+    - eco give %player% 2500
+    - mi give MATERIAL RARE_DIAMOND %player% 2
+    - crazycrates forceopen hadiah_b %player%
+    reward-lore:
+    - ' &3&l| &62.500 Gold'
+    - ' &3&l| &b200 GP'
+    - ' &3&l| &72 Rare Diamond, peluang senjata/armor Epic'
+  b-2:
+    rank: B
+    challenge: false
+    name: '&9Benteng Nether'
+    icon: WITHER_SKELETON_SKULL
+    type: KILL
+    target: WITHER_SKELETON
+    amount: 10
+    gp: 200
+    commands:
+    - eco give %player% 3120
+    - mi give MATERIAL MAGIC_ESSENCE %player% 1
+    - crazycrates forceopen hadiah_b %player%
+    reward-lore:
+    - ' &3&l| &63.120 Gold'
+    - ' &3&l| &b200 GP'
+    - ' &3&l| &71 Magic Essence, peluang senjata/armor Epic'
+  b-3:
+    rank: B
+    challenge: false
+    name: '&9Babi Zombi'
+    icon: GOLD_NUGGET
+    type: KILL
+    target: ZOMBIFIED_PIGLIN
+    amount: 30
+    gp: 200
+    commands:
+    - eco give %player% 3750
+    - mi give MATERIAL DARK_NETHERITE %player% 1
+    - crazycrates forceopen hadiah_b %player%
+    reward-lore:
+    - ' &3&l| &63.750 Gold'
+    - ' &3&l| &b200 GP'
+    - ' &3&l| &71 Dark Netherite, peluang senjata/armor Epic'
+  b-4:
+    rank: B
+    challenge: false
+    name: '&9Urat Berlian'
+    icon: DIAMOND
+    type: BREAK
+    target: '[''DIAMOND_ORE'', ''DEEPSLATE_DIAMOND_ORE'']'
+    amount: 12
+    gp: 200
+    commands:
+    - eco give %player% 4380
+    - mi give MATERIAL RARE_DIAMOND %player% 2
+    - crazycrates forceopen hadiah_b %player%
+    reward-lore:
+    - ' &3&l| &64.380 Gold'
+    - ' &3&l| &b200 GP'
+    - ' &3&l| &72 Rare Diamond, peluang senjata/armor Epic'
+  b-5:
+    rank: B
+    challenge: false
+    name: '&9Penyerbu Desa'
+    icon: CROSSBOW
+    type: KILL
+    target: PILLAGER
+    amount: 15
+    gp: 200
+    commands:
+    - eco give %player% 5000
+    - mi give MATERIAL MAGIC_ESSENCE %player% 1
+    - crazycrates forceopen hadiah_b %player%
+    reward-lore:
+    - ' &3&l| &65.000 Gold'
+    - ' &3&l| &b200 GP'
+    - ' &3&l| &71 Magic Essence, peluang senjata/armor Epic'
+  b-1-t:
+    rank: B
+    challenge: true
+    name: '&9Penjinak Api'
+    icon: BLAZE_ROD
+    type: KILL
+    target: BLAZE
+    amount: 15
+    gp: 250
+    commands:
+    - eco give %player% 3120
+    - mi give MATERIAL RARE_DIAMOND %player% 2
+    - crazycrates forceopen hadiah_b %player%
+    reward-lore:
+    - ' &3&l| &63.120 Gold'
+    - ' &3&l| &b250 GP'
+    - ' &3&l| &72 Rare Diamond, peluang senjata/armor Epic'
+  b-2-t:
+    rank: B
+    challenge: true
+    name: '&9Benteng Nether'
+    icon: WITHER_SKELETON_SKULL
+    type: KILL
+    target: WITHER_SKELETON
+    amount: 10
+    gp: 250
+    commands:
+    - eco give %player% 3900
+    - mi give MATERIAL MAGIC_ESSENCE %player% 1
+    - crazycrates forceopen hadiah_b %player%
+    reward-lore:
+    - ' &3&l| &63.900 Gold'
+    - ' &3&l| &b250 GP'
+    - ' &3&l| &71 Magic Essence, peluang senjata/armor Epic'
+  b-3-t:
+    rank: B
+    challenge: true
+    name: '&9Babi Zombi'
+    icon: GOLD_NUGGET
+    type: KILL
+    target: ZOMBIFIED_PIGLIN
+    amount: 30
+    gp: 250
+    commands:
+    - eco give %player% 4690
+    - mi give MATERIAL DARK_NETHERITE %player% 1
+    - crazycrates forceopen hadiah_b %player%
+    reward-lore:
+    - ' &3&l| &64.690 Gold'
+    - ' &3&l| &b250 GP'
+    - ' &3&l| &71 Dark Netherite, peluang senjata/armor Epic'
+  b-4-t:
+    rank: B
+    challenge: true
+    name: '&9Urat Berlian'
+    icon: DIAMOND
+    type: BREAK
+    target: '[''DIAMOND_ORE'', ''DEEPSLATE_DIAMOND_ORE'']'
+    amount: 12
+    gp: 250
+    commands:
+    - eco give %player% 5480
+    - mi give MATERIAL RARE_DIAMOND %player% 2
+    - crazycrates forceopen hadiah_b %player%
+    reward-lore:
+    - ' &3&l| &65.480 Gold'
+    - ' &3&l| &b250 GP'
+    - ' &3&l| &72 Rare Diamond, peluang senjata/armor Epic'
+  b-5-t:
+    rank: B
+    challenge: true
+    name: '&9Penyerbu Desa'
+    icon: CROSSBOW
+    type: KILL
+    target: PILLAGER
+    amount: 15
+    gp: 250
+    commands:
+    - eco give %player% 6250
+    - mi give MATERIAL MAGIC_ESSENCE %player% 1
+    - crazycrates forceopen hadiah_b %player%
+    reward-lore:
+    - ' &3&l| &66.250 Gold'
+    - ' &3&l| &b250 GP'
+    - ' &3&l| &71 Magic Essence, peluang senjata/armor Epic'
+  a-1:
+    rank: A
+    challenge: false
+    name: '&dPasukan Wither'
+    icon: COAL_BLOCK
+    type: KILL
+    target: WITHER_SKELETON
+    amount: 25
+    gp: 400
+    commands:
+    - eco give %player% 6000
+    - crazycrates give virtual epic 1 %player% -s
+    - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
+    reward-lore:
+    - ' &3&l| &66.000 Gold'
+    - ' &3&l| &b400 GP'
+    - ' &3&l| &71 Key Crate Epic dan 1 Fragmen Artefak'
+  a-2:
+    rank: A
+    challenge: false
+    name: '&dBadai Api'
+    icon: BLAZE_POWDER
+    type: KILL
+    target: BLAZE
+    amount: 25
+    gp: 400
+    commands:
+    - eco give %player% 7000
+    - crazycrates give virtual epic 1 %player% -s
+    - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
+    reward-lore:
+    - ' &3&l| &67.000 Gold'
+    - ' &3&l| &b400 GP'
+    - ' &3&l| &71 Key Crate Epic dan 1 Fragmen Artefak'
+  a-3:
+    rank: A
+    challenge: false
+    name: '&dPuing Kuno'
+    icon: ANCIENT_DEBRIS
+    type: BREAK
+    target: ANCIENT_DEBRIS
+    amount: 4
+    gp: 400
+    commands:
+    - eco give %player% 8000
+    - crazycrates give virtual epic 1 %player% -s
+    - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
+    reward-lore:
+    - ' &3&l| &68.000 Gold'
+    - ' &3&l| &b400 GP'
+    - ' &3&l| &71 Key Crate Epic dan 1 Fragmen Artefak'
+  a-4:
+    rank: A
+    challenge: false
+    name: '&dPenjaga Benteng'
+    icon: GOLDEN_AXE
+    type: KILL
+    target: PIGLIN_BRUTE
+    amount: 5
+    gp: 400
+    commands:
+    - eco give %player% 9000
+    - crazycrates give virtual epic 1 %player% -s
+    - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
+    reward-lore:
+    - ' &3&l| &69.000 Gold'
+    - ' &3&l| &b400 GP'
+    - ' &3&l| &71 Key Crate Epic dan 1 Fragmen Artefak'
+  a-5:
+    rank: A
+    challenge: false
+    name: '&dPemanggil Roh'
+    icon: TOTEM_OF_UNDYING
+    type: KILL
+    target: EVOKER
+    amount: 3
+    gp: 400
+    commands:
+    - eco give %player% 10000
+    - crazycrates give virtual epic 1 %player% -s
+    - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
+    reward-lore:
+    - ' &3&l| &610.000 Gold'
+    - ' &3&l| &b400 GP'
+    - ' &3&l| &71 Key Crate Epic dan 1 Fragmen Artefak'
+  a-1-t:
+    rank: A
+    challenge: true
+    name: '&dPasukan Wither'
+    icon: COAL_BLOCK
+    type: KILL
+    target: WITHER_SKELETON
+    amount: 25
+    gp: 500
+    commands:
+    - eco give %player% 7500
+    - crazycrates give virtual epic 1 %player% -s
+    - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
+    reward-lore:
+    - ' &3&l| &67.500 Gold'
+    - ' &3&l| &b500 GP'
+    - ' &3&l| &71 Key Crate Epic dan 1 Fragmen Artefak'
+  a-2-t:
+    rank: A
+    challenge: true
+    name: '&dBadai Api'
+    icon: BLAZE_POWDER
+    type: KILL
+    target: BLAZE
+    amount: 25
+    gp: 500
+    commands:
+    - eco give %player% 8750
+    - crazycrates give virtual epic 1 %player% -s
+    - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
+    reward-lore:
+    - ' &3&l| &68.750 Gold'
+    - ' &3&l| &b500 GP'
+    - ' &3&l| &71 Key Crate Epic dan 1 Fragmen Artefak'
+  a-3-t:
+    rank: A
+    challenge: true
+    name: '&dPuing Kuno'
+    icon: ANCIENT_DEBRIS
+    type: BREAK
+    target: ANCIENT_DEBRIS
+    amount: 4
+    gp: 500
+    commands:
+    - eco give %player% 10000
+    - crazycrates give virtual epic 1 %player% -s
+    - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
+    reward-lore:
+    - ' &3&l| &610.000 Gold'
+    - ' &3&l| &b500 GP'
+    - ' &3&l| &71 Key Crate Epic dan 1 Fragmen Artefak'
+  a-4-t:
+    rank: A
+    challenge: true
+    name: '&dPenjaga Benteng'
+    icon: GOLDEN_AXE
+    type: KILL
+    target: PIGLIN_BRUTE
+    amount: 5
+    gp: 500
+    commands:
+    - eco give %player% 11250
+    - crazycrates give virtual epic 1 %player% -s
+    - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
+    reward-lore:
+    - ' &3&l| &611.250 Gold'
+    - ' &3&l| &b500 GP'
+    - ' &3&l| &71 Key Crate Epic dan 1 Fragmen Artefak'
+  a-5-t:
+    rank: A
+    challenge: true
+    name: '&dPemanggil Roh'
+    icon: TOTEM_OF_UNDYING
+    type: KILL
+    target: EVOKER
+    amount: 3
+    gp: 500
+    commands:
+    - eco give %player% 12500
+    - crazycrates give virtual epic 1 %player% -s
+    - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
+    reward-lore:
+    - ' &3&l| &612.500 Gold'
+    - ' &3&l| &b500 GP'
+    - ' &3&l| &71 Key Crate Epic dan 1 Fragmen Artefak'
+  s-1:
+    rank: S
+    challenge: false
+    name: '&6Raksasa Penyerbu'
+    icon: SADDLE
+    type: KILL
+    target: RAVAGER
+    amount: 5
+    gp: 800
+    commands:
+    - eco give %player% 12000
+    - crazycrates forceopen hadiah_s %player%
+    reward-lore:
+    - ' &3&l| &612.000 Gold'
+    - ' &3&l| &b800 GP'
+    - ' &3&l| &7Peluang senjata/armor Legendary'
+  s-2:
+    rank: S
+    challenge: false
+    name: '&6Puing Neraka'
+    icon: NETHERITE_SCRAP
+    type: BREAK
+    target: ANCIENT_DEBRIS
+    amount: 10
+    gp: 800
+    commands:
+    - eco give %player% 16330
+    - crazycrates forceopen hadiah_s %player%
+    reward-lore:
+    - ' &3&l| &616.330 Gold'
+    - ' &3&l| &b800 GP'
+    - ' &3&l| &7Peluang senjata/armor Legendary'
+  s-3:
+    rank: S
+    challenge: false
+    name: '&6Legiun Wither'
+    icon: WITHER_ROSE
+    type: KILL
+    target: WITHER_SKELETON
+    amount: 40
+    gp: 800
+    commands:
+    - eco give %player% 20670
+    - crazycrates forceopen hadiah_s %player%
+    reward-lore:
+    - ' &3&l| &620.670 Gold'
+    - ' &3&l| &b800 GP'
+    - ' &3&l| &7Peluang senjata/armor Legendary'
+  s-4:
+    rank: S
+    challenge: false
+    name: '&6Tetua Samudra'
+    icon: SPONGE
+    type: KILL
+    target: ELDER_GUARDIAN
+    amount: 2
+    gp: 800
+    commands:
+    - eco give %player% 25000
+    - crazycrates forceopen hadiah_s %player%
+    reward-lore:
+    - ' &3&l| &625.000 Gold'
+    - ' &3&l| &b800 GP'
+    - ' &3&l| &7Peluang senjata/armor Legendary'
+  s-1-t:
+    rank: S
+    challenge: true
+    name: '&6Raksasa Penyerbu'
+    icon: SADDLE
+    type: KILL
+    target: RAVAGER
+    amount: 5
+    gp: 1000
+    commands:
+    - eco give %player% 15000
+    - crazycrates forceopen hadiah_s %player%
+    reward-lore:
+    - ' &3&l| &615.000 Gold'
+    - ' &3&l| &b1.000 GP'
+    - ' &3&l| &7Peluang senjata/armor Legendary'
+  s-2-t:
+    rank: S
+    challenge: true
+    name: '&6Puing Neraka'
+    icon: NETHERITE_SCRAP
+    type: BREAK
+    target: ANCIENT_DEBRIS
+    amount: 10
+    gp: 1000
+    commands:
+    - eco give %player% 20410
+    - crazycrates forceopen hadiah_s %player%
+    reward-lore:
+    - ' &3&l| &620.410 Gold'
+    - ' &3&l| &b1.000 GP'
+    - ' &3&l| &7Peluang senjata/armor Legendary'
+  s-3-t:
+    rank: S
+    challenge: true
+    name: '&6Legiun Wither'
+    icon: WITHER_ROSE
+    type: KILL
+    target: WITHER_SKELETON
+    amount: 40
+    gp: 1000
+    commands:
+    - eco give %player% 25840
+    - crazycrates forceopen hadiah_s %player%
+    reward-lore:
+    - ' &3&l| &625.840 Gold'
+    - ' &3&l| &b1.000 GP'
+    - ' &3&l| &7Peluang senjata/armor Legendary'
+  s-4-t:
+    rank: S
+    challenge: true
+    name: '&6Tetua Samudra'
+    icon: SPONGE
+    type: KILL
+    target: ELDER_GUARDIAN
+    amount: 2
+    gp: 1000
+    commands:
+    - eco give %player% 31250
+    - crazycrates forceopen hadiah_s %player%
+    reward-lore:
+    - ' &3&l| &631.250 Gold'
+    - ' &3&l| &b1.000 GP'
+    - ' &3&l| &7Peluang senjata/armor Legendary'
+  ss-1:
+    rank: SS
+    challenge: false
+    name: '&cPembantai Shulker'
+    icon: SHULKER_SHELL
+    type: KILL
+    target: SHULKER
+    amount: 15
+    gp: 1500
+    commands:
+    - eco give %player% 30000
+    - crazycrates forceopen hadiah_ss %player%
+    - lp user %player% meta setsuffix 20 " &d[Legenda Guild]"
+    reward-lore:
+    - ' &3&l| &630.000 Gold'
+    - ' &3&l| &b1.500 GP'
+    - ' &3&l| &7Peluang artefak, title Legenda Guild'
+  ss-2:
+    rank: SS
+    challenge: false
+    name: '&cPemburu End'
+    icon: ENDER_EYE
+    type: KILL
+    target: ENDERMAN
+    amount: 60
+    gp: 1500
+    commands:
+    - eco give %player% 40000
+    - crazycrates forceopen hadiah_ss %player%
+    - lp user %player% meta setsuffix 20 " &d[Legenda Guild]"
+    reward-lore:
+    - ' &3&l| &640.000 Gold'
+    - ' &3&l| &b1.500 GP'
+    - ' &3&l| &7Peluang artefak, title Legenda Guild'
+  ss-3:
+    rank: SS
+    challenge: false
+    name: '&cKehancuran Wither'
+    icon: NETHER_STAR
+    type: KILL
+    target: WITHER
+    amount: 1
+    gp: 1500
+    commands:
+    - eco give %player% 50000
+    - crazycrates forceopen hadiah_ss %player%
+    - lp user %player% meta setsuffix 20 " &d[Legenda Guild]"
+    reward-lore:
+    - ' &3&l| &650.000 Gold'
+    - ' &3&l| &b1.500 GP'
+    - ' &3&l| &7Peluang artefak, title Legenda Guild'
+  ss-4:
+    rank: SS
+    challenge: false
+    name: '&cPenjaga Kegelapan'
+    icon: SCULK_CATALYST
+    type: KILL
+    target: WARDEN
+    amount: 1
+    gp: 1500
+    commands:
+    - eco give %player% 60000
+    - crazycrates forceopen hadiah_ss %player%
+    - lp user %player% meta setsuffix 20 " &d[Legenda Guild]"
+    reward-lore:
+    - ' &3&l| &660.000 Gold'
+    - ' &3&l| &b1.500 GP'
+    - ' &3&l| &7Peluang artefak, title Legenda Guild'
+  ss-1-t:
+    rank: SS
+    challenge: true
+    name: '&cPembantai Shulker'
+    icon: SHULKER_SHELL
+    type: KILL
+    target: SHULKER
+    amount: 15
+    gp: 1875
+    commands:
+    - eco give %player% 37500
+    - crazycrates forceopen hadiah_ss %player%
+    - lp user %player% meta setsuffix 20 " &d[Legenda Guild]"
+    reward-lore:
+    - ' &3&l| &637.500 Gold'
+    - ' &3&l| &b1.875 GP'
+    - ' &3&l| &7Peluang artefak, title Legenda Guild'
+  ss-2-t:
+    rank: SS
+    challenge: true
+    name: '&cPemburu End'
+    icon: ENDER_EYE
+    type: KILL
+    target: ENDERMAN
+    amount: 60
+    gp: 1875
+    commands:
+    - eco give %player% 50000
+    - crazycrates forceopen hadiah_ss %player%
+    - lp user %player% meta setsuffix 20 " &d[Legenda Guild]"
+    reward-lore:
+    - ' &3&l| &650.000 Gold'
+    - ' &3&l| &b1.875 GP'
+    - ' &3&l| &7Peluang artefak, title Legenda Guild'
+  ss-3-t:
+    rank: SS
+    challenge: true
+    name: '&cKehancuran Wither'
+    icon: NETHER_STAR
+    type: KILL
+    target: WITHER
+    amount: 1
+    gp: 1875
+    commands:
+    - eco give %player% 62500
+    - crazycrates forceopen hadiah_ss %player%
+    - lp user %player% meta setsuffix 20 " &d[Legenda Guild]"
+    reward-lore:
+    - ' &3&l| &662.500 Gold'
+    - ' &3&l| &b1.875 GP'
+    - ' &3&l| &7Peluang artefak, title Legenda Guild'
+  ss-4-t:
+    rank: SS
+    challenge: true
+    name: '&cPenjaga Kegelapan'
+    icon: SCULK_CATALYST
+    type: KILL
+    target: WARDEN
+    amount: 1
+    gp: 1875
+    commands:
+    - eco give %player% 75000
+    - crazycrates forceopen hadiah_ss %player%
+    - lp user %player% meta setsuffix 20 " &d[Legenda Guild]"
+    reward-lore:
+    - ' &3&l| &675.000 Gold'
+    - ' &3&l| &b1.875 GP'
+    - ' &3&l| &7Peluang artefak, title Legenda Guild'
+  sss-1:
+    rank: SSS
+    challenge: false
+    name: '&4Pembunuh Naga'
+    icon: DRAGON_HEAD
+    type: KILL
+    target: ENDER_DRAGON
+    amount: 1
+    gp: 3000
+    commands:
+    - eco give %player% 80000
+    - lp user %player% meta setsuffix 30 " &4&l[SSS]"
+    reward-lore:
+    - ' &3&l| &680.000 Gold'
+    - ' &3&l| &b3.000 GP'
+    - ' &3&l| &7Title SSS'
+  sss-2:
+    rank: SSS
+    challenge: false
+    name: '&4Tiga Bencana'
+    icon: WITHER_SKELETON_SKULL
+    type: KILL
+    target: WITHER
+    amount: 3
+    gp: 3000
+    commands:
+    - eco give %player% 100000
+    - lp user %player% meta setsuffix 30 " &4&l[SSS]"
+    reward-lore:
+    - ' &3&l| &6100.000 Gold'
+    - ' &3&l| &b3.000 GP'
+    - ' &3&l| &7Title SSS'
+  sss-3:
+    rank: SSS
+    challenge: false
+    name: '&4Gema Kehampaan'
+    icon: ECHO_SHARD
+    type: KILL
+    target: WARDEN
+    amount: 2
+    gp: 3000
+    commands:
+    - eco give %player% 120000
+    - lp user %player% meta setsuffix 30 " &4&l[SSS]"
+    reward-lore:
+    - ' &3&l| &6120.000 Gold'
+    - ' &3&l| &b3.000 GP'
+    - ' &3&l| &7Title SSS'
+  sss-1-t:
+    rank: SSS
+    challenge: true
+    name: '&4Pembunuh Naga'
+    icon: DRAGON_HEAD
+    type: KILL
+    target: ENDER_DRAGON
+    amount: 1
+    gp: 3750
+    commands:
+    - eco give %player% 100000
+    - lp user %player% meta setsuffix 30 " &4&l[SSS]"
+    reward-lore:
+    - ' &3&l| &6100.000 Gold'
+    - ' &3&l| &b3.750 GP'
+    - ' &3&l| &7Title SSS'
+  sss-2-t:
+    rank: SSS
+    challenge: true
+    name: '&4Tiga Bencana'
+    icon: WITHER_SKELETON_SKULL
+    type: KILL
+    target: WITHER
+    amount: 3
+    gp: 3750
+    commands:
+    - eco give %player% 125000
+    - lp user %player% meta setsuffix 30 " &4&l[SSS]"
+    reward-lore:
+    - ' &3&l| &6125.000 Gold'
+    - ' &3&l| &b3.750 GP'
+    - ' &3&l| &7Title SSS'
+  sss-3-t:
+    rank: SSS
+    challenge: true
+    name: '&4Gema Kehampaan'
+    icon: ECHO_SHARD
+    type: KILL
+    target: WARDEN
+    amount: 2
+    gp: 3750
+    commands:
+    - eco give %player% 150000
+    - lp user %player% meta setsuffix 30 " &4&l[SSS]"
+    reward-lore:
+    - ' &3&l| &6150.000 Gold'
+    - ' &3&l| &b3.750 GP'
+    - ' &3&l| &7Title SSS'

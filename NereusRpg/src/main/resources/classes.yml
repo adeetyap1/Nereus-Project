@@ -1,0 +1,78 @@
+# ============================================================
+# Class NereusRpg. Setiap class punya:
+#   attributes : buff permanen (atribut Minecraft). operation: ADD (tambah angka) atau SCALAR (persen, 0.1 = +10%)
+#   passives   : buff permanen lain (damage, crit, dll)
+#   skills     : skill yang terbuka berdasarkan level
+# Senjata class TIDAK diatur di sini, tapi lewat perintah:
+#   /rpg admin weapon add <class>    (pegang item di tangan; cocok material + nama)
+#   /rpg admin weapon list|remove <class> [nomor]
+# Daftar senjata disimpan di weapons.yml. Jika kosong, semua item dianggap senjata class.
+#
+# Skill tersedia (type): cleave, charge, warcry, shadowstep, venom_strike, smoke_bomb,
+#                        power_shot, arrow_rain, roll
+# ============================================================
+classes:
+  warrior:
+    name: "&cWarrior"
+    icon: IRON_SWORD
+    description:
+      - "&7Garda depan yang kuat dan tahan banting."
+      - "&7Cocok untuk pertarungan jarak dekat."
+    attributes:
+      max_health: {operation: ADD, amount: 8.0}          # +4 hati
+      armor: {operation: ADD, amount: 2.0}
+      knockback_resistance: {operation: ADD, amount: 0.15}
+      movement_speed: {operation: SCALAR, amount: -0.03}
+    passives:
+      melee-damage-percent: 10        # +10% damage senjata class
+      damage-taken-percent: -10       # terima 10% lebih sedikit damage
+    buff-lore:
+      - "&a+4 hati, +2 armor, tahan dorongan"
+      - "&a+10% damage jarak dekat, -10% damage diterima"
+    skills:
+      - {type: cleave, name: "Tebasan Sapuan", level: 1, mana: 15, cooldown: 6, power: 7.0, description: "Tebas semua musuh di sekitarmu"}
+      - {type: charge, name: "Terjangan", level: 5, mana: 20, cooldown: 10, power: 8.0, description: "Menerjang maju dan menghantam musuh"}
+      - {type: warcry, name: "Raungan Perang", level: 10, mana: 30, cooldown: 30, power: 1.0, description: "Kekuatan untukmu dan rekan sekitar"}
+  assassin:
+    name: "&5Assassin"
+    icon: NETHERITE_SWORD
+    description:
+      - "&7Cepat, mematikan, muncul dari bayangan."
+      - "&7Cocok untuk serangan kritis dan kabur."
+    attributes:
+      movement_speed: {operation: SCALAR, amount: 0.15}
+      attack_speed: {operation: SCALAR, amount: 0.10}
+      safe_fall_distance: {operation: ADD, amount: 4.0}
+      max_health: {operation: ADD, amount: -2.0}         # -1 hati
+    passives:
+      crit-chance-percent: 20         # +20% peluang crit
+      crit-multiplier: 1.6            # damage crit x1.6
+      fall-damage-percent: -50
+    buff-lore:
+      - "&a+15% kecepatan, +10% kecepatan serang, tahan jatuh"
+      - "&a+20% crit (x1.6), &c-1 hati"
+    skills:
+      - {type: shadowstep, name: "Langkah Bayangan", level: 1, mana: 18, cooldown: 7, power: 6.0, description: "Menyelinap ke belakang target dan menusuk"}
+      - {type: venom_strike, name: "Tusukan Racun", level: 5, mana: 20, cooldown: 9, power: 5.0, description: "Serang target dengan racun"}
+      - {type: smoke_bomb, name: "Bom Asap", level: 10, mana: 30, cooldown: 25, power: 1.0, description: "Menghilang dan membutakan musuh"}
+  archer:
+    name: "&aArcher"
+    icon: BOW
+    description:
+      - "&7Penembak jitu dari kejauhan."
+      - "&7Cocok untuk menjaga jarak dan serangan area."
+    attributes:
+      entity_interaction_range: {operation: ADD, amount: 0.5}
+      movement_speed: {operation: SCALAR, amount: 0.05}
+      luck: {operation: ADD, amount: 1.0}
+    passives:
+      bow-damage-percent: 20          # +20% damage panah
+      crit-chance-percent: 8
+      crit-multiplier: 1.4
+    buff-lore:
+      - "&a+20% damage panah, +8% crit"
+      - "&a+5% kecepatan, +1 luck"
+    skills:
+      - {type: power_shot, name: "Tembakan Kuat", level: 1, mana: 15, cooldown: 5, power: 9.0, description: "Panah cepat bertenaga besar"}
+      - {type: roll, name: "Guling Mundur", level: 5, mana: 12, cooldown: 8, power: 1.0, description: "Melompat mundur menghindar"}
+      - {type: arrow_rain, name: "Hujan Panah", level: 10, mana: 35, cooldown: 20, power: 4.0, description: "Hujan panah di titik yang kamu lihat"}

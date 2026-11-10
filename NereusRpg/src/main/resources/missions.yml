@@ -1,0 +1,139 @@
+# ============================================================
+# Misi cerita isekai (berantai, urut). Selesai satu, terbuka berikutnya.
+# type: KILL | BREAK | GET (diserahkan lewat /story serahkan) | RANK (capai rank tertentu) | TALK (selesai langsung di /story)
+# min-rank: rank minimal agar misi ini terbuka (opsional).
+# gp, xp, commands: hadiah. %player% diganti nama pemain.
+# ============================================================
+missions:
+  - id: prolog-1
+    title: "&dBangun di Dunia Asing"
+    story:
+      - "&7Seorang wanita berjubah putih menyambutmu di gerbang desa."
+      - "&d\"Kau pahlawan yang diramalkan. Mulailah dengan menguji dirimu.\""
+    type: KILL
+    target: ZOMBIE
+    amount: 5
+    xp: 60
+    gp: 10
+    commands: ["eco give %player% 100", "give %player% bread 12"]
+  - id: prolog-2
+    title: "&dBahan Pertama"
+    story:
+      - "&7\"Senjata tanpa tempaan hanya tongkat,\" kata pandai besi tua."
+    type: BREAK
+    target: OAK_LOG
+    amount: 20
+    xp: 70
+    gp: 10
+    commands: ["eco give %player% 100", "give %player% stone_pickaxe 1"]
+  - id: prolog-3
+    title: "&dTerdaftar di Guild"
+    story:
+      - "&7Resepsionis guild menyerahkan kartu bertinta merah: &fRank F&7."
+      - "&7\"Kerjakan quest di papan, kumpulkan GP, lalu ambil ujian.\""
+    type: TALK
+    target: guild
+    amount: 1
+    xp: 80
+    gp: 15
+    commands: ["eco give %player% 150"]
+  - id: kisah-e
+    title: "&aBayangan di Ladang"
+    story:
+      - "&7Petani mengeluh: mayat hidup bangkit tiap malam dan merusak ladang."
+    min-rank: F
+    type: KILL
+    target: SKELETON
+    amount: 15
+    xp: 150
+    gp: 30
+    commands: ["eco give %player% 400", "give %player% iron_sword 1"]
+  - id: kisah-d1
+    title: "&aUrat Bumi"
+    story:
+      - "&7Penambang butuh bijih besi untuk menempa senjata melawan kegelapan."
+    min-rank: E
+    type: GET
+    target: IRON_INGOT
+    amount: 32
+    xp: 250
+    gp: 50
+    commands: ["eco give %player% 800", "give %player% shield 1"]
+  - id: kisah-d2
+    title: "&aSetelah Gelap Datang"
+    story:
+      - "&7Laba-laba raksasa muncul di hutan. Sesuatu mengusik sarang mereka."
+    min-rank: D
+    type: KILL
+    target: SPIDER
+    amount: 30
+    xp: 400
+    gp: 80
+    commands: ["eco give %player% 1500"]
+  - id: kisah-c
+    title: "&9Api dari Dunia Bawah"
+    story:
+      - "&7Sebuah celah ke Nether terbuka. Penyihir guild memintamu menyelidiki."
+    min-rank: C
+    type: KILL
+    target: BLAZE
+    amount: 20
+    xp: 700
+    gp: 150
+    commands: ["eco give %player% 4000", "give %player% blaze_rod 4"]
+  - id: kisah-b
+    title: "&5Raja Kerangka"
+    story:
+      - "&7Di benteng Nether, tulang-tulang hitam berjalan membawa pedang kutukan."
+    min-rank: B
+    type: KILL
+    target: WITHER_SKELETON
+    amount: 25
+    xp: 1200
+    gp: 300
+    commands: ["eco give %player% 9000", "give %player% diamond 4"]
+  - id: kisah-a
+    title: "&cPenyihir Hitam"
+    story:
+      - "&7Sang penyihir hitam, dalang kegelapan, bersembunyi di kuil terkutuk."
+    min-rank: A
+    type: KILL
+    target: WITCH
+    amount: 25
+    xp: 2000
+    gp: 500
+    commands: ["eco give %player% 20000", "give %player% netherite_scrap 2"]
+  - id: kisah-s
+    title: "&6Gerbang Akhir"
+    story:
+      - "&7Penjaga lautan dalam terbangun. Hanya yang terkuat berani menghadapinya."
+    min-rank: S
+    type: KILL
+    target: ELDER_GUARDIAN
+    amount: 2
+    xp: 4000
+    gp: 1000
+    commands: ["eco give %player% 50000", "give %player% netherite_ingot 3"]
+  - id: kisah-ss
+    title: "&dSang Penjaga Kehampaan"
+    story:
+      - "&7Ancaman terbesar tidur di bawah tanah: sang Warden."
+    min-rank: SS
+    type: KILL
+    target: WARDEN
+    amount: 1
+    xp: 8000
+    gp: 2000
+    commands: ["eco give %player% 120000", "give %player% netherite_block 1"]
+  - id: kisah-sss
+    title: "&4&lPahlawan Nereus"
+    story:
+      - "&7Kegelapan terakhir menanti. Naga di ujung dunia."
+      - "&7Kalahkan dan kisahmu menjadi legenda."
+    min-rank: SSS
+    type: KILL
+    target: ENDER_DRAGON
+    amount: 1
+    xp: 20000
+    gp: 5000
+    commands: ["eco give %player% 300000", "give %player% dragon_egg 1"]
