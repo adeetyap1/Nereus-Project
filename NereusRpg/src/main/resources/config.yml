@@ -40,8 +40,18 @@ controls:
 # %gp% %class% %rank% %skill% %cd% (cooldown skill terpilih) | ujian: %exam% %exam_progress% %exam_time%
 # Matikan HUD ini dengan mana.actionbar: false (misal jika TAB / plugin lain yang tampilkan).
 hud:
+  # true = bar HP dan mana bergambar (ItemsAdder + konten itemsadder/nereus_ui). Pemain Bedrock
+  # otomatis memakai teks di bawah ini.
+  itemsadder: false
   format: "&cHP &f%hp% &8| &9Mana &f%mana%&7/&f%maxmana% &8| &6Lv &f%level% &8| &e%skill% &7%cd%"
   exam-format: "&6Ujian %exam% &8| &f%exam_progress% &8| &c%exam_time%"
+
+# Menu bergambar lewat ItemsAdder (pasang folder itemsadder/nereus_ui lebih dulu, lalu /iazip).
+# Bedrock otomatis memakai menu biasa. Jika gambar bergeser, setel offset di bawah.
+gui:
+  itemsadder-class-menu: false
+  title-offset: 0
+  texture-offset: 0
 
 mana:
   base: 50

@@ -55,7 +55,26 @@ public final class Menus {
             inv.setItem(backSlot(), Text.item(Material.SPECTRAL_ARROW, "&cKembali", "&7Ke menu utama"));
         }
 
+        /** Id font image ItemsAdder untuk latar menu, atau null untuk menu biasa. */
+        protected String texturedImage() {
+            return null;
+        }
+
         public void open() {
+            String img = texturedImage();
+            if (img != null) {
+                var cfg = core.plugin.getConfig();
+                Object w = IA.textured(this, size(), img, cfg.getInt("gui.title-offset", 0), cfg.getInt("gui.texture-offset", 0));
+                Inventory in = w == null ? null : IA.internal(w);
+                if (in != null) {
+                    inv = in;
+                    render();
+                    if (IA.show(w, player)) {
+                        return;
+                    }
+                }
+                core.plugin.getLogger().warning("Menu bertekstur ItemsAdder gagal dibuka, memakai menu biasa.");
+            }
             inv = Bukkit.createInventory(this, size(), titleComponent());
             render();
             player.openInventory(inv);
@@ -160,16 +179,33 @@ public final class Menus {
     // ------------------------------------------------------------ class
 
     public static final class ClassMenu extends Base {
+        private static final int[] TEX_SLOTS = {10, 13, 16};
         private final List<Defs.Clazz> list = new ArrayList<>();
         private String confirm = "";
         private int start;
+        private final boolean tex;
 
         public ClassMenu(Core core, Player p) {
             super(core, p);
             list.addAll(core.classes.values());
             start = 9 + Math.max(0, (9 - list.size()) / 2);
+            tex = core.plugin.getConfig().getBoolean("gui.itemsadder-class-menu", false)
+                    && IA.present() && !IA.bedrock(p) && list.size() <= TEX_SLOTS.length;
         }
 
+        private int slotOf(int i) {
+            return tex ? TEX_SLOTS[i] : start + i;
+        }
+
+        @Override
+        protected String texturedImage() {
+            return tex ? "nereus_ui:class_select" : null;
+        }
+
+        @Override
+        protected int backSlot() {
+            return tex ? 8 : super.backSlot();
+        }
         @Override
         protected String title() {
             return t("class", "&8Pilih Class");
@@ -182,9 +218,11 @@ public final class Menus {
 
         @Override
         protected void render() {
-            fill();
+            if (!tex) {
+                fill();
+            }
             Profile pr = core.profile(player);
-            for (int i = 0; i < list.size() && start + i < 18; i++) {
+            for (int i = 0; i < list.size() && (tex || start + i < 18); i++) {
                 Defs.Clazz c = list.get(i);
                 List<String> lore = new ArrayList<>(c.desc());
                 lore.add("");
@@ -210,15 +248,20 @@ public final class Menus {
                 boolean cur = c.key().equals(pr.cls);
                 lore.add(cur ? "&aClass kamu sekarang" : (pr.cls == null ? "&eKlik untuk memilih" : "&eKlik untuk ganti class"));
                 ItemStack it = Text.item(c.icon(), c.name(), lore);
-                inv.setItem(start + i, cur ? Text.glow(it) : it);
+                inv.setItem(slotOf(i), cur ? Text.glow(it) : it);
             }
             addBack();
         }
 
         @Override
         public void click(int slot, boolean shift) {
-            int i = slot - start;
-            if (i < 0 || i >= list.size()) {
+            int i = -1;
+            for (int k = 0; k < list.size(); k++) {
+                if (slotOf(k) == slot) {
+                    i = k;
+                }
+            }
+            if (i < 0) {
                 return;
             }
             Defs.Clazz c = list.get(i);

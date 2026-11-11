@@ -52,3 +52,12 @@ atau `display.builtin-nametag: true` (matikan jika TAB sudah mengatur nametag).
 ## Hadiah
 Perintah konsol di config memakai `eco give %player% N` (EssentialsX). GP disimpan internal.
 Belum diuji di server: cek hadiah item (mi give, CrazyCrates) satu per satu setelah dipasang.
+
+## Tampilan bergambar (ItemsAdder)
+1. Salin folder `itemsadder/nereus_ui` ke `plugins/ItemsAdder/contents/`, lalu jalankan `/iazip`.
+2. Di `config.yml`: `gui.itemsadder-class-menu: true` dan/atau `hud.itemsadder: true`, lalu `/rpg reload`.
+3. Gambar bergeser atau terpotong: setel `gui.title-offset` / `gui.texture-offset`, atau ubah `HUD_Y` / `GUI_Y`
+   di `tools/make_pack.py` lalu jalankan ulang (butuh Pillow):
+   `python3 tools/make_pack.py itemsadder/nereus_ui`.
+Pemain Bedrock tidak melihat font gambar, jadi otomatis memakai menu dan HUD teks.
+Pixel art dibuat orisinal oleh generator `tools/make_pack.py`.

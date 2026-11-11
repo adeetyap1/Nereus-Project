@@ -768,6 +768,7 @@ public final class Core {
         boolean hud = c.getBoolean("mana.actionbar", true);
         String hudFmt = c.getString("hud.format", DEF_HUD);
         String examFmt = c.getString("hud.exam-format", DEF_EXAM);
+        boolean iaHud = c.getBoolean("hud.itemsadder", false) && IA.present();
         long now = System.currentTimeMillis();
         for (Player p : Bukkit.getOnlinePlayers()) {
             Profile pr = profiles.get(p.getUniqueId());
@@ -783,7 +784,18 @@ public final class Core {
             if (pr.examTarget >= 0 && rank(pr.examTarget) != null && rank(pr.examTarget).exam() != null) {
                 p.sendActionBar(Text.c(hudText(p, pr, examFmt)));
             } else if (hud && pr.cls != null) {
-                p.sendActionBar(Text.c(hudText(p, pr, hudFmt)));
+                String glyph = null;
+                if (iaHud && !IA.bedrock(p)) {
+                    var mh = p.getAttribute(Attribute.MAX_HEALTH);
+                    int h = (int) Math.round(Math.min(1.0, p.getHealth() / (mh == null ? 20 : mh.getValue())) * 10);
+                    int m = (int) Math.round(Math.min(1.0, pr.mana / Math.max(1, max)) * 10);
+                    glyph = IA.image("nereus_ui:hud_" + h + "_" + m);
+                }
+                if (glyph != null) {
+                    p.sendActionBar(Component.text(glyph).color(net.kyori.adventure.text.format.NamedTextColor.WHITE));
+                } else {
+                    p.sendActionBar(Text.c(hudText(p, pr, hudFmt)));
+                }
             }
         }
     }

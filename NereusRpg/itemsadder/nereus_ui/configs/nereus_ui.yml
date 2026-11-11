@@ -1,0 +1,614 @@
+info:
+  namespace: nereus_ui
+
+font_images:
+  class_select:
+    path: "ui/class_select.png"
+    scale_ratio: 166
+    y_position: 13
+    show_in_gui: true
+  hud_0_0:
+    path: "ui/hud_0_0.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_0_1:
+    path: "ui/hud_0_1.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_0_2:
+    path: "ui/hud_0_2.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_0_3:
+    path: "ui/hud_0_3.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_0_4:
+    path: "ui/hud_0_4.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_0_5:
+    path: "ui/hud_0_5.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_0_6:
+    path: "ui/hud_0_6.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_0_7:
+    path: "ui/hud_0_7.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_0_8:
+    path: "ui/hud_0_8.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_0_9:
+    path: "ui/hud_0_9.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_0_10:
+    path: "ui/hud_0_10.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_1_0:
+    path: "ui/hud_1_0.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_1_1:
+    path: "ui/hud_1_1.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_1_2:
+    path: "ui/hud_1_2.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_1_3:
+    path: "ui/hud_1_3.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_1_4:
+    path: "ui/hud_1_4.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_1_5:
+    path: "ui/hud_1_5.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_1_6:
+    path: "ui/hud_1_6.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_1_7:
+    path: "ui/hud_1_7.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_1_8:
+    path: "ui/hud_1_8.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_1_9:
+    path: "ui/hud_1_9.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_1_10:
+    path: "ui/hud_1_10.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_2_0:
+    path: "ui/hud_2_0.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_2_1:
+    path: "ui/hud_2_1.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_2_2:
+    path: "ui/hud_2_2.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_2_3:
+    path: "ui/hud_2_3.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_2_4:
+    path: "ui/hud_2_4.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_2_5:
+    path: "ui/hud_2_5.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_2_6:
+    path: "ui/hud_2_6.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_2_7:
+    path: "ui/hud_2_7.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_2_8:
+    path: "ui/hud_2_8.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_2_9:
+    path: "ui/hud_2_9.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_2_10:
+    path: "ui/hud_2_10.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_3_0:
+    path: "ui/hud_3_0.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_3_1:
+    path: "ui/hud_3_1.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_3_2:
+    path: "ui/hud_3_2.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_3_3:
+    path: "ui/hud_3_3.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_3_4:
+    path: "ui/hud_3_4.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_3_5:
+    path: "ui/hud_3_5.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_3_6:
+    path: "ui/hud_3_6.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_3_7:
+    path: "ui/hud_3_7.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_3_8:
+    path: "ui/hud_3_8.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_3_9:
+    path: "ui/hud_3_9.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_3_10:
+    path: "ui/hud_3_10.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_4_0:
+    path: "ui/hud_4_0.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_4_1:
+    path: "ui/hud_4_1.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_4_2:
+    path: "ui/hud_4_2.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_4_3:
+    path: "ui/hud_4_3.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_4_4:
+    path: "ui/hud_4_4.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_4_5:
+    path: "ui/hud_4_5.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_4_6:
+    path: "ui/hud_4_6.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_4_7:
+    path: "ui/hud_4_7.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_4_8:
+    path: "ui/hud_4_8.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_4_9:
+    path: "ui/hud_4_9.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_4_10:
+    path: "ui/hud_4_10.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_5_0:
+    path: "ui/hud_5_0.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_5_1:
+    path: "ui/hud_5_1.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_5_2:
+    path: "ui/hud_5_2.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_5_3:
+    path: "ui/hud_5_3.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_5_4:
+    path: "ui/hud_5_4.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_5_5:
+    path: "ui/hud_5_5.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_5_6:
+    path: "ui/hud_5_6.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_5_7:
+    path: "ui/hud_5_7.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_5_8:
+    path: "ui/hud_5_8.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_5_9:
+    path: "ui/hud_5_9.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_5_10:
+    path: "ui/hud_5_10.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_6_0:
+    path: "ui/hud_6_0.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_6_1:
+    path: "ui/hud_6_1.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_6_2:
+    path: "ui/hud_6_2.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_6_3:
+    path: "ui/hud_6_3.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_6_4:
+    path: "ui/hud_6_4.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_6_5:
+    path: "ui/hud_6_5.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_6_6:
+    path: "ui/hud_6_6.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_6_7:
+    path: "ui/hud_6_7.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_6_8:
+    path: "ui/hud_6_8.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_6_9:
+    path: "ui/hud_6_9.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_6_10:
+    path: "ui/hud_6_10.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_7_0:
+    path: "ui/hud_7_0.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_7_1:
+    path: "ui/hud_7_1.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_7_2:
+    path: "ui/hud_7_2.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_7_3:
+    path: "ui/hud_7_3.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_7_4:
+    path: "ui/hud_7_4.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_7_5:
+    path: "ui/hud_7_5.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_7_6:
+    path: "ui/hud_7_6.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_7_7:
+    path: "ui/hud_7_7.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_7_8:
+    path: "ui/hud_7_8.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_7_9:
+    path: "ui/hud_7_9.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_7_10:
+    path: "ui/hud_7_10.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_8_0:
+    path: "ui/hud_8_0.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_8_1:
+    path: "ui/hud_8_1.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_8_2:
+    path: "ui/hud_8_2.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_8_3:
+    path: "ui/hud_8_3.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_8_4:
+    path: "ui/hud_8_4.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_8_5:
+    path: "ui/hud_8_5.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_8_6:
+    path: "ui/hud_8_6.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_8_7:
+    path: "ui/hud_8_7.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_8_8:
+    path: "ui/hud_8_8.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_8_9:
+    path: "ui/hud_8_9.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_8_10:
+    path: "ui/hud_8_10.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_9_0:
+    path: "ui/hud_9_0.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_9_1:
+    path: "ui/hud_9_1.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_9_2:
+    path: "ui/hud_9_2.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_9_3:
+    path: "ui/hud_9_3.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_9_4:
+    path: "ui/hud_9_4.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_9_5:
+    path: "ui/hud_9_5.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_9_6:
+    path: "ui/hud_9_6.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_9_7:
+    path: "ui/hud_9_7.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_9_8:
+    path: "ui/hud_9_8.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_9_9:
+    path: "ui/hud_9_9.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_9_10:
+    path: "ui/hud_9_10.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_10_0:
+    path: "ui/hud_10_0.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_10_1:
+    path: "ui/hud_10_1.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_10_2:
+    path: "ui/hud_10_2.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_10_3:
+    path: "ui/hud_10_3.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_10_4:
+    path: "ui/hud_10_4.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_10_5:
+    path: "ui/hud_10_5.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_10_6:
+    path: "ui/hud_10_6.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_10_7:
+    path: "ui/hud_10_7.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_10_8:
+    path: "ui/hud_10_8.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_10_9:
+    path: "ui/hud_10_9.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
+  hud_10_10:
+    path: "ui/hud_10_10.png"
+    scale_ratio: 11
+    y_position: -1
+    show_in_gui: true
