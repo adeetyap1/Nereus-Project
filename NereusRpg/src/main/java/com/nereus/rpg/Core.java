@@ -213,10 +213,26 @@ public final class Core {
                 plugin.getLogger().warning("Quest " + id + " dilewati: rank tidak dikenal.");
                 continue;
             }
-            Objective o = Objective.parse(q.getString("type", "KILL"), q.getString("target", ""), q.getInt("amount", 1));
+            double gpMul = plugin.getConfig().getDouble("quests.gp-multiplier", 1.0);
+            double amtMul = plugin.getConfig().getDouble("quests.amount-multiplier", 1.0);
+            Objective o = Objective.parse(q.getString("type", "KILL"), q.getString("target", ""),
+                    (int) Math.round(q.getInt("amount", 1) * amtMul));
+            List<String> lore = new ArrayList<>();
+            for (String l : q.getStringList("reward-lore")) {
+                java.util.regex.Matcher mt = java.util.regex.Pattern.compile("([\\d.]+) GP").matcher(l);
+                if (mt.find()) {
+                    try {
+                        long v = Math.round(Long.parseLong(mt.group(1).replace(".", "")) * gpMul);
+                        l = l.substring(0, mt.start()) + String.format(Locale.ROOT, "%,d", v).replace(',', '.') + " GP" + l.substring(mt.end());
+                    } catch (NumberFormatException ignored) {
+                        // biarkan teks apa adanya
+                    }
+                }
+                lore.add(l);
+            }
             quests.put(id, new Defs.Quest(id, rank, q.getBoolean("challenge", false), q.getString("name", id),
-                    mat(q.getString("icon"), Material.PAPER), o, q.getInt("gp", 0),
-                    q.getStringList("commands"), q.getStringList("reward-lore")));
+                    mat(q.getString("icon"), Material.PAPER), o, (int) Math.round(q.getInt("gp", 0) * gpMul),
+                    q.getStringList("commands"), lore));
         }
     }
 
@@ -227,7 +243,8 @@ public final class Core {
             missions.add(new Defs.Mission(str(m, "id", "m" + missions.size()), str(m, "title", "Misi"),
                     strList(m.get("story")), Math.max(0, minRank),
                     Objective.parse(str(m, "type", "KILL"), str(m, "target", ""), (int) num(m, "amount", 1)),
-                    (int) num(m, "xp", 0), (int) num(m, "gp", 0), strList(m.get("commands"))));
+                    (int) num(m, "xp", 0), (int) Math.round(num(m, "gp", 0) * plugin.getConfig().getDouble("quests.gp-multiplier", 1.0)),
+                    strList(m.get("commands"))));
         }
     }
 

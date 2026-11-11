@@ -24,7 +24,7 @@ public final class MenuListener implements Listener {
         if (e.getClickedInventory() == null || e.getClickedInventory() != e.getView().getTopInventory()) {
             return;
         }
-        menu.click(e.getSlot(), e.isShiftClick());
+        menu.handle(e.getSlot(), e.isShiftClick());
     }
 
     @EventHandler

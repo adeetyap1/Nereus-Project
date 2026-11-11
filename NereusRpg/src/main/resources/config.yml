@@ -61,7 +61,10 @@ class-change:
 # ---------- Daftar quest harian ----------
 quests:
   max-active: 3                     # maksimal quest aktif sekaligus
-  per-day-limit: 6                  # maksimal quest selesai per hari
+  per-day-limit: 4                  # maksimal quest selesai per hari (membatasi grinding GP)
+  # Pengali kesulitan, dipakai saat quests.yml dimuat. Ubah lalu /rpg reload.
+  gp-multiplier: 0.5                # hadiah GP quest dan misi cerita x0.5
+  amount-multiplier: 2.0            # jumlah tugas quest x2 (bunuh 10 jadi 20)
   # Rank X boleh quest X dan di bawahnya. Quest tantangan = satu rank di atas X.
   # Blok buatan pemain tidak dihitung untuk quest BREAK.
 
@@ -120,8 +123,8 @@ sync-commands:
 promote-commands: []
 
 exam:
-  cooldown-minutes: 10
-  fail-on-death: false
+  cooldown-minutes: 60
+  fail-on-death: true      # mati saat ujian = gagal
 
 # ---------- Rank guild ----------
 # gp = GP minimal untuk mulai ujian rank itu.
@@ -135,53 +138,53 @@ ranks:
   E:
     name: "Rank E"
     color: "&7"
-    gp: 100
-    exam: {type: KILL, entity: ZOMBIE, amount: 20, minutes: 15, description: "Bunuh 20 zombie dalam 15 menit"}
+    gp: 400
+    exam: {type: KILL, entity: ZOMBIE, amount: 60, minutes: 20, description: "Bunuh 60 zombie dalam 20 menit"}
     commands: ["eco give %player% 500"]
   D:
     name: "Rank D"
     color: "&a"
-    gp: 250
-    exam: {type: KILL, entity: SKELETON, amount: 25, minutes: 20, description: "Bunuh 25 skeleton dalam 20 menit"}
+    gp: 900
+    exam: {type: KILL, entity: SKELETON, amount: 80, minutes: 25, description: "Bunuh 80 skeleton dalam 25 menit"}
     commands: ["eco give %player% 1200"]
   C:
     name: "Rank C"
     color: "&9"
-    gp: 500
-    exam: {type: KILL, entity: BLAZE, amount: 15, minutes: 20, description: "Bunuh 15 blaze dalam 20 menit"}
+    gp: 1750
+    exam: {type: KILL, entity: BLAZE, amount: 50, minutes: 25, description: "Bunuh 50 blaze dalam 25 menit"}
     commands: ["eco give %player% 3000"]
   B:
     name: "Rank B"
     color: "&5"
-    gp: 1000
+    gp: 3500
     broadcast: true
-    exam: {type: KILL, entity: WITHER_SKELETON, amount: 15, minutes: 25, description: "Bunuh 15 wither skeleton dalam 25 menit"}
+    exam: {type: KILL, entity: WITHER_SKELETON, amount: 50, minutes: 30, description: "Bunuh 50 wither skeleton dalam 30 menit"}
     commands: ["eco give %player% 8000"]
   A:
     name: "Rank A"
     color: "&c"
-    gp: 2000
+    gp: 7000
     broadcast: true
     exam: {type: MANUAL, description: "Kalahkan boss area (diselesaikan staff atau dungeon)"}
     commands: ["eco give %player% 20000"]
   S:
     name: "Rank S"
     color: "&6"
-    gp: 4000
+    gp: 14000
     broadcast: true
     exam: {type: MANUAL, description: "Selesaikan dungeon tingkat tinggi"}
     commands: ["eco give %player% 50000"]
   SS:
     name: "Rank SS"
     color: "&d"
-    gp: 8000
+    gp: 26000
     broadcast: true
     exam: {type: MANUAL, description: "Kalahkan boss besar"}
     commands: ["eco give %player% 100000"]
   SSS:
     name: "Rank SSS"
     color: "&4&l"
-    gp: 15000
+    gp: 50000
     broadcast: true
     exam: {type: MANUAL, description: "Ujian khusus dari Guild Master"}
     commands: ["eco give %player% 250000"]

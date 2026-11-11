@@ -33,6 +33,23 @@ public final class Menus {
 
         public abstract void click(int slot, boolean shift);
 
+        /** Dipanggil listener: tombol Kembali membuka menu utama, selain itu diteruskan ke click. */
+        public final void handle(int slot, boolean shift) {
+            if (!(this instanceof HubMenu) && slot == backSlot()) {
+                new HubMenu(core, player).open();
+                return;
+            }
+            click(slot, shift);
+        }
+
+        protected int backSlot() {
+            return size() - 1;
+        }
+
+        protected void addBack() {
+            inv.setItem(backSlot(), Text.item(Material.SPECTRAL_ARROW, "&cKembali", "&7Ke menu utama"));
+        }
+
         public void open() {
             inv = Bukkit.createInventory(this, size(), Text.c(title()));
             render();
@@ -190,6 +207,7 @@ public final class Menus {
                 ItemStack it = Text.item(c.icon(), c.name(), lore);
                 inv.setItem(start + i, cur ? Text.glow(it) : it);
             }
+            addBack();
         }
 
         @Override
@@ -251,6 +269,11 @@ public final class Menus {
         }
 
         @Override
+        protected int backSlot() {
+            return 48;
+        }
+
+        @Override
         protected void render() {
             fill();
             Profile pr = core.profile(player);
@@ -276,6 +299,7 @@ public final class Menus {
                     "&7Aktif: &f" + pr.active.size() + "&7/&f" + core.plugin.getConfig().getInt("quests.max-active", 3),
                     "&7Selesai hari ini: &f" + pr.completedToday + "&7/&f" + core.plugin.getConfig().getInt("quests.per-day-limit", 6),
                     "&7Reset tengah malam."));
+            addBack();
         }
 
         private ItemStack questItem(Profile pr, Defs.Quest q) {
@@ -381,6 +405,7 @@ public final class Menus {
             }
             inv.setItem(22, Text.item(Material.NETHER_STAR, "&6Poin tersedia: &f" + pr.statPoints,
                     "&7Level &f" + pr.level, "&7Dapat poin tiap naik level."));
+            addBack();
         }
 
         @Override
@@ -451,6 +476,7 @@ public final class Menus {
                 ladder.add(mark + r.label() + (r.index() == 0 ? "" : " &8(" + r.gp() + " GP)"));
             }
             inv.setItem(22, Text.item(Material.BOOKSHELF, "&bDaftar rank", ladder));
+            addBack();
         }
 
         private ItemStack action(Profile pr, Defs.Rank next, long now) {

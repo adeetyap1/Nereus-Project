@@ -14,7 +14,11 @@ Menggantikan ODailyQuests dan NereusGuild. Jangan jalankan keduanya bersamaan
 - Quest harian (`/quest`): 80 quest diimpor dari ODailyQuests, GET diserahkan lewat menu, reset tengah malam.
 - Misi cerita berantai (`/story`, `missions.yml`).
 - Rank guild F-SSS (`/rank`): GP, ujian KILL/BREAK/GET/MANUAL, hadiah naik rank.
+- Semua menu punya tombol Kembali ke menu utama.
 - Login harian beruntun dan pencapaian.
+
+## Tingkat kesulitan
+Diatur di `config.yml`: `quests.gp-multiplier` (hadiah GP), `quests.amount-multiplier` (jumlah tugas), `quests.per-day-limit` (maks quest per hari), GP minimal tiap rank, dan ujian (jumlah, waktu, gagal jika mati). Default dibuat berat: sekitar seminggu per rank.
 
 ## Aturan quest
 Rank X boleh quest X dan semua di bawahnya, ditambah quest tantangan satu rank di atas X.
