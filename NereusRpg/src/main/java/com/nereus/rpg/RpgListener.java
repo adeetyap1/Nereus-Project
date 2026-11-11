@@ -1,5 +1,6 @@
 package com.nereus.rpg;
 
+import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.attribute.Attribute;
@@ -8,6 +9,7 @@ import org.bukkit.entity.AbstractArrow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -17,6 +19,8 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
@@ -159,6 +163,59 @@ public final class RpgListener implements Listener {
                 e.setDamage(e.getDamage() * Math.max(0, 1 + c.passive("fall-damage-percent") / 100.0));
             }
         }
+    }
+
+    private static boolean weaponLike(Material m) {
+        String n = m.name();
+        return n.endsWith("_SWORD") || n.endsWith("_AXE") || n.equals("BOW") || n.equals("CROSSBOW")
+                || n.equals("TRIDENT") || n.equals("MACE") || n.endsWith("_SPEAR");
+    }
+
+    private final java.util.Map<java.util.UUID, Long> lastCycle = new java.util.HashMap<>();
+
+    /** Klik kanan = pakai skill terpilih (busur: sambil jongkok). Jongkok + klik kiri = ganti skill. */
+    @EventHandler
+    public void onInteract(PlayerInteractEvent e) {
+        if (e.getHand() != EquipmentSlot.HAND) {
+            return;
+        }
+        Player p = e.getPlayer();
+        var cfg = plugin.getConfig();
+        Profile pr = core.profile(p);
+        Defs.Clazz c = core.clazz(pr);
+        if (c == null) {
+            return;
+        }
+        Material held = p.getInventory().getItemInMainHand().getType();
+        if (held.isAir() || !core.weaponOk(p, c) || (!weaponLike(held) && core.weaponList(c.key()).isEmpty())) {
+            return;
+        }
+        Action a = e.getAction();
+        if ((a == Action.RIGHT_CLICK_AIR || a == Action.RIGHT_CLICK_BLOCK) && cfg.getBoolean("controls.right-click-cast", true)) {
+            boolean ranged = held == Material.BOW || held == Material.CROSSBOW || held == Material.TRIDENT;
+            if (ranged && !p.isSneaking()) {
+                return;
+            }
+            if (a == Action.RIGHT_CLICK_BLOCK && !p.isSneaking() && e.getClickedBlock() != null
+                    && e.getClickedBlock().getType().isInteractable()) {
+                return;
+            }
+            e.setCancelled(true);
+            skills.cast(p, pr.skillSel);
+        } else if ((a == Action.LEFT_CLICK_AIR || a == Action.LEFT_CLICK_BLOCK) && p.isSneaking()
+                && cfg.getBoolean("controls.shift-left-click-cycle", true)) {
+            long now = System.currentTimeMillis();
+            Long last = lastCycle.get(p.getUniqueId());
+            if (last == null || now - last > 300) {
+                lastCycle.put(p.getUniqueId(), now);
+                skills.cycle(p);
+            }
+        }
+    }
+
+    @EventHandler
+    public void onQuitCycle(PlayerQuitEvent e) {
+        lastCycle.remove(e.getPlayer().getUniqueId());
     }
 
     /** Tombol F memakai skill terpilih. Shift+F mengganti skill. */

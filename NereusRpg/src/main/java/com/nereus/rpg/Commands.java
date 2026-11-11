@@ -99,7 +99,7 @@ public final class Commands implements CommandExecutor, TabCompleter {
                 p.sendMessage(Text.c("&e" + (i + 1) + ". &f" + s.name() + " &8(Lv " + s.level() + ", " + s.mana()
                         + " mana, cd " + (int) s.cooldown() + "d) &7" + s.desc()));
             }
-            p.sendMessage(Text.c("&8Tombol F = pakai skill terpilih, Shift+F = ganti skill, /skill <nomor> = pakai langsung."));
+            p.sendMessage(Text.c("&8Klik kanan = pakai skill (busur: jongkok + klik kanan). Jongkok + klik kiri = ganti skill. F / Shift+F / /skill <nomor> juga bisa."));
             return;
         }
         try {

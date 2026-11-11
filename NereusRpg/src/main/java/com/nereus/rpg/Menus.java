@@ -125,8 +125,8 @@ public final class Menus {
                             + " &8(" + s.mana() + " mana" + (open ? "" : ", Lv " + s.level()) + ")");
                 }
                 sk.add("");
-                sk.add("&8Tombol F = pakai skill, Shift+F = ganti skill");
-                sk.add("&8atau /skill <nomor>. Klik untuk ganti skill.");
+                sk.add("&8Klik kanan = pakai skill (busur: jongkok + klik kanan)");
+                sk.add("&8Jongkok + klik kiri = ganti skill. Klik di sini juga ganti.");
             }
             inv.setItem(16, Text.item(Material.BLAZE_POWDER, "&cSkill", sk));
         }

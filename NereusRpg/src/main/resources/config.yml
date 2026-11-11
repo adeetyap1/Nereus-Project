@@ -29,6 +29,13 @@ stats:
   vit-health-per-point: 1.0         # +1 HP (0.5 hati) per VIT
   luk-reward-chance-percent: 0.5    # peluang hadiah gold/XP quest x1.5 per LUK
 
+# Kontrol skill (juga jalan di Bedrock HP): klik kanan = pakai skill terpilih
+# (busur/crossbow/trident: klik kanan sambil jongkok), jongkok + klik kiri = ganti skill.
+# Tombol F dan Shift+F serta /skill <nomor> tetap bisa.
+controls:
+  right-click-cast: true
+  shift-left-click-cycle: true
+
 mana:
   base: 50
   per-level: 2

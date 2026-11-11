@@ -10,7 +10,7 @@ Menggantikan ODailyQuests dan NereusGuild. Jangan jalankan keduanya bersamaan
 - Senjata class dipilih admin: pegang item, `/rpg admin weapon add <class>`.
   Cocok berdasarkan material + nama item (jalan juga untuk item MMOItems). Daftar kosong = semua item boleh.
 - Level, XP, stat STR/DEX/INT/VIT/LUK (`/stats`), mana dengan regen.
-- Skill: tombol F pakai skill terpilih, Shift+F ganti skill, atau `/skill <nomor>`.
+- Skill: klik kanan pakai skill terpilih (busur: jongkok + klik kanan), jongkok + klik kiri ganti skill. Tombol F, Shift+F, dan `/skill <nomor>` juga bisa.
 - Quest harian (`/quest`): 80 quest diimpor dari ODailyQuests, GET diserahkan lewat menu, reset tengah malam.
 - Misi cerita berantai (`/story`, `missions.yml`).
 - Rank guild F-SSS (`/rank`): GP, ujian KILL/BREAK/GET/MANUAL, hadiah naik rank.
