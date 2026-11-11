@@ -4,7 +4,7 @@ main: com.nereus.rpg.NereusRpg
 api-version: '1.21'
 description: RPG lengkap Nereus MC - class, skill, quest, misi cerita, rank guild
 authors: [Nereus MC]
-softdepend: [PlaceholderAPI, LuckPerms, TAB]
+softdepend: [PlaceholderAPI, LuckPerms, TAB, Vault]
 
 commands:
   rpg:

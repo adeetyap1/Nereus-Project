@@ -20,6 +20,15 @@ Menggantikan ODailyQuests dan NereusGuild. Jangan jalankan keduanya bersamaan
 ## Tingkat kesulitan
 Diatur di `config.yml`: `quests.gp-multiplier` (hadiah GP), `quests.amount-multiplier` (jumlah tugas), `quests.per-day-limit` (maks quest per hari), GP minimal tiap rank, dan ujian (jumlah, waktu, gagal jika mati). Default dibuat berat: sekitar seminggu per rank.
 
+## HUD, scoreboard, dan menu custom
+- HUD action bar: format diatur di `config.yml` bagian `hud` (placeholder `%hp% %mana% %skill% %cd%` dst).
+- Scoreboard dipegang TAB. Contoh siap pakai: `docs/tab-scoreboard.yml`. Placeholder tambahan:
+  `%nereusrpg_xp_percent%`, `_next_gp`, `_next_rank`, `_quests_active`, `_quests_done`, `_quests_limit`,
+  `_story`, `_story_progress`, `_skill`, `_exam`, `_streak`, `_kills`, `_statpoints`.
+- Menu custom: file di `plugins/NereusRpg/menus/*.yml` (contoh `toko.yml`, buka `/toko` atau `/rpg menu toko`).
+  Tombol BUY/SELL/COMMAND/OPEN, syarat rank/level/class, uang via Vault. Judul menu dan item bisa memakai
+  glyph / item-model dari resource pack. Gambar latar GUI (art) harus disediakan di resource pack.
+
 ## Aturan quest
 Rank X boleh quest X dan semua di bawahnya, ditambah quest tantangan satu rank di atas X.
 Quest BREAK tidak menghitung blok yang dipasang pemain.

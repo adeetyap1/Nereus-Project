@@ -62,7 +62,13 @@ public final class Commands implements CommandExecutor, TabCompleter {
         }
         Profile pr = core.profile(p);
         switch (name) {
-            case "rpg" -> new Menus.HubMenu(core, p).open();
+            case "rpg" -> {
+                if (args.length >= 2 && args[0].equalsIgnoreCase("menu")) {
+                    core.menus.open(p, args[1]);
+                } else {
+                    new Menus.HubMenu(core, p).open();
+                }
+            }
             case "quest" -> new Menus.QuestMenu(core, p).open();
             case "story" -> {
                 if (args.length > 0 && args[0].equalsIgnoreCase("serahkan")) {
@@ -258,10 +264,13 @@ public final class Commands implements CommandExecutor, TabCompleter {
             out.add("serahkan");
         } else if (name.equals("rank") && args.length == 1) {
             out.add("abandon");
+        } else if (name.equals("rpg") && args.length == 2 && args[0].equalsIgnoreCase("menu")) {
+            out.addAll(core.menus.ids());
         } else if (name.equals("rpg") && admin) {
             if (args.length == 1) {
                 out.add("admin");
                 out.add("reload");
+                out.add("menu");
             } else if (args[0].equalsIgnoreCase("admin")) {
                 if (args.length == 2) {
                     out.addAll(List.of("setrank", "setclass", "setlevel", "addxp", "addgp", "examdone", "resetdaily", "sync", "weapon"));

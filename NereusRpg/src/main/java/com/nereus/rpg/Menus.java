@@ -1,5 +1,6 @@
 package com.nereus.rpg;
 
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -29,6 +30,10 @@ public final class Menus {
 
         protected abstract int size();
 
+        protected Component titleComponent() {
+            return Text.c(title());
+        }
+
         protected abstract void render();
 
         public abstract void click(int slot, boolean shift);
@@ -51,7 +56,7 @@ public final class Menus {
         }
 
         public void open() {
-            inv = Bukkit.createInventory(this, size(), Text.c(title()));
+            inv = Bukkit.createInventory(this, size(), titleComponent());
             render();
             player.openInventory(inv);
         }

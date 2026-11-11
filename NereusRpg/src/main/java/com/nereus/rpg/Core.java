@@ -38,6 +38,7 @@ import java.util.UUID;
 public final class Core {
     public final NereusRpg plugin;
     public final Tracker tracker;
+    public final CustomMenus menus;
     public final Random rng = new Random();
 
     private final Map<UUID, Profile> profiles = new HashMap<>();
@@ -54,6 +55,7 @@ public final class Core {
     public Core(NereusRpg plugin) {
         this.plugin = plugin;
         this.tracker = new Tracker(this);
+        this.menus = new CustomMenus(this);
     }
 
     // ------------------------------------------------------------ muat
@@ -84,6 +86,7 @@ public final class Core {
         loadQuests();
         loadMissions();
         loadWeapons();
+        menus.load();
         plugin.getLogger().info(ranks.size() + " rank, " + classes.size() + " class, "
                 + quests.size() + " quest, " + missions.size() + " misi dimuat.");
     }
@@ -715,10 +718,56 @@ public final class Core {
 
     // ------------------------------------------------------------ tick
 
+    private static final String DEF_HUD = "&cHP &f%hp% &8| &9Mana &f%mana%&7/&f%maxmana% &8| &6Lv &f%level% &8| &e%skill% &7%cd%";
+    private static final String DEF_EXAM = "&6Ujian %exam% &8| &f%exam_progress% &8| &c%exam_time%";
+
+    /** Isi placeholder HUD action bar. */
+    private String hudText(Player p, Profile pr, String fmt) {
+        Defs.Clazz cl = clazz(pr);
+        String skill = "-";
+        String cd = "";
+        if (cl != null && !cl.skills().isEmpty()) {
+            int idx = Math.min(pr.skillSel, cl.skills().size() - 1);
+            Defs.Skill s = cl.skills().get(idx);
+            skill = pr.level >= s.level() ? s.name() : s.name() + " &c(Lv " + s.level() + ")";
+            Long until = pr.cooldowns.get(s.type());
+            long left = until == null ? 0 : until - System.currentTimeMillis();
+            cd = left > 0 ? "&c" + Text.time(left) : "&aSiap";
+        }
+        var hp = p.getAttribute(Attribute.MAX_HEALTH);
+        Defs.Rank r = rank(pr.rank);
+        String examRank = "";
+        String examProg = "";
+        String examTime = "";
+        Defs.Rank t = rank(pr.examTarget);
+        if (t != null && t.exam() != null) {
+            examRank = t.tag();
+            examProg = t.exam().type() == Objective.Type.MANUAL ? t.desc() : pr.examProgress + "&7/&f" + t.exam().amount();
+            examTime = pr.examDeadline > 0 ? Text.time(pr.examDeadline - System.currentTimeMillis()) : "";
+        }
+        return fmt.replace("%hp%", String.valueOf((int) Math.ceil(p.getHealth())))
+                .replace("%maxhp%", String.valueOf(hp == null ? 20 : (int) hp.getValue()))
+                .replace("%mana%", String.valueOf((int) pr.mana))
+                .replace("%maxmana%", String.valueOf((int) maxMana(pr)))
+                .replace("%level%", String.valueOf(pr.level))
+                .replace("%xp%", String.valueOf(pr.xp))
+                .replace("%xpneed%", String.valueOf(xpNeeded(pr.level)))
+                .replace("%gp%", String.valueOf(pr.gp))
+                .replace("%class%", cl == null ? "-" : cl.name())
+                .replace("%rank%", r == null ? "" : r.tag())
+                .replace("%skill%", skill)
+                .replace("%cd%", cd)
+                .replace("%exam%", examRank)
+                .replace("%exam_progress%", examProg)
+                .replace("%exam_time%", examTime);
+    }
+
     private void tick() {
         FileConfiguration c = plugin.getConfig();
         double regen = c.getDouble("mana.regen-per-second", 2.0);
         boolean hud = c.getBoolean("mana.actionbar", true);
+        String hudFmt = c.getString("hud.format", DEF_HUD);
+        String examFmt = c.getString("hud.exam-format", DEF_EXAM);
         long now = System.currentTimeMillis();
         for (Player p : Bukkit.getOnlinePlayers()) {
             Profile pr = profiles.get(p.getUniqueId());
@@ -731,26 +780,10 @@ public final class Core {
             if (pr.examTarget >= 0 && pr.examDeadline > 0 && now > pr.examDeadline) {
                 failExam(p, "&cWaktu ujian habis. Kamu gagal.");
             }
-            if (pr.examTarget >= 0) {
-                Defs.Rank t = rank(pr.examTarget);
-                if (t != null && t.exam() != null) {
-                    String prog = t.exam().type() == Objective.Type.MANUAL ? t.desc()
-                            : pr.examProgress + "&7/&f" + t.exam().amount();
-                    String left = pr.examDeadline > 0 ? " &8| &c" + Text.time(pr.examDeadline - now) : "";
-                    p.sendActionBar(Text.c("&6Ujian " + t.tag() + " &8| &f" + prog + left));
-                    continue;
-                }
-            }
-            if (hud && pr.cls != null) {
-                Defs.Clazz cl = clazz(pr);
-                String skill = "";
-                if (cl != null && !cl.skills().isEmpty()) {
-                    int idx = Math.min(pr.skillSel, cl.skills().size() - 1);
-                    Defs.Skill s = cl.skills().get(idx);
-                    skill = " &8| &e" + (pr.level >= s.level() ? s.name() : s.name() + " &c(Lv " + s.level() + ")");
-                }
-                p.sendActionBar(Text.c("&cHP &f" + (int) Math.ceil(p.getHealth()) + " &8| &9Mana &f"
-                        + (int) pr.mana + "&7/&f" + (int) max + " &8| &6Lv &f" + pr.level + skill));
+            if (pr.examTarget >= 0 && rank(pr.examTarget) != null && rank(pr.examTarget).exam() != null) {
+                p.sendActionBar(Text.c(hudText(p, pr, examFmt)));
+            } else if (hud && pr.cls != null) {
+                p.sendActionBar(Text.c(hudText(p, pr, hudFmt)));
             }
         }
     }

@@ -36,6 +36,13 @@ controls:
   right-click-cast: true
   shift-left-click-cycle: true
 
+# HUD action bar di atas hotbar. Placeholder: %hp% %maxhp% %mana% %maxmana% %level% %xp% %xpneed%
+# %gp% %class% %rank% %skill% %cd% (cooldown skill terpilih) | ujian: %exam% %exam_progress% %exam_time%
+# Matikan HUD ini dengan mana.actionbar: false (misal jika TAB / plugin lain yang tampilkan).
+hud:
+  format: "&cHP &f%hp% &8| &9Mana &f%mana%&7/&f%maxmana% &8| &6Lv &f%level% &8| &e%skill% &7%cd%"
+  exam-format: "&6Ujian %exam% &8| &f%exam_progress% &8| &c%exam_time%"
+
 mana:
   base: 50
   per-level: 2

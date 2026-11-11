@@ -1,0 +1,21 @@
+# Contoh untuk TAB (bagian scoreboard di config.yml TAB). Disesuaikan dengan placeholder NereusRpg.
+# Butuh PlaceholderAPI. Sesuaikan dengan versi TAB-mu (sumber format: wiki TAB "Feature guide: Scoreboard").
+scoreboard:
+  enabled: true
+  scoreboards:
+    nereus:
+      title: "&5&lNEREUS &d&lMC"
+      lines:
+        - "&8&m                    "
+        - "&6%player%"
+        - "* &eRank&7:||%nereusrpg_rank%"
+        - "* &eClass&7:||%nereusrpg_class%"
+        - "* &eLevel&7:||&f%nereusrpg_level% &8(%nereusrpg_xp_percent%%)"
+        - "* &eGP&7:||&b%nereusrpg_gp% &8/ %nereusrpg_next_gp%"
+        - ""
+        - "&6Quest hari ini"
+        - "* &fAktif&7:||%nereusrpg_quests_active%"
+        - "* &fSelesai&7:||%nereusrpg_quests_done%/%nereusrpg_quests_limit%"
+        - "* &dMisi&7:||%nereusrpg_story%"
+        - ""
+        - "&7nereus.my.id"

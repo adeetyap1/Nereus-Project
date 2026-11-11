@@ -1,0 +1,87 @@
+# ============================================================
+# Menu buatan sendiri. Nama file = id menu (toko.yml -> id "toko").
+# Buka dengan /toko (open-command), atau /rpg menu toko.
+# Pakai uang Vault (EssentialsX dll). Setelah mengubah: /rpg reload
+#
+# title            : judul (kode &). Untuk huruf resource pack: pakai karakter glyph di sini,
+#                    atau set minimessage-title: true lalu tulis mis. <font:nereus:gui></font>
+# rows             : 1-6 baris
+# filler           : item pengisi kosong (opsional)
+# back-button      : true = tombol Kembali ke menu utama di pojok kanan bawah
+# Setiap item di bawah items:
+#   slot / slots, material, amount, name, lore, glow, hide-flags
+#   item-model : "namespace:id" dari resource pack (opsional)
+#   action     : BUY | SELL | COMMAND | OPEN | BACK | CLOSE | NONE
+#   price      : harga (BUY dipotong, SELL ditambah). %price% di name/lore terisi otomatis
+#   give-item  : {material, amount, name, lore, item-model} untuk BUY
+#   sell-item  : {material, amount} untuk SELL
+#   commands / player-commands : perintah konsol / sebagai pemain (%player%)
+#   target     : id menu untuk action OPEN
+#   min-rank, min-level, class : syarat membuka item
+#   close      : true = tutup menu setelah diklik
+# Harga di bawah hanya contoh, sesuaikan dengan ekonomi servermu.
+# ============================================================
+title: "&8Toko Pedagang"
+open-command: toko
+aliases: [shop]
+rows: 3
+filler: BLACK_STAINED_GLASS_PANE
+back-button: false
+items:
+  info:
+    slot: 4
+    material: GOLD_INGOT
+    name: "&6Uangmu: &f%gold%"
+    lore:
+      - "&7GP: &b%gp% &8| &7Rank: %rank%"
+  roti:
+    slot: 10
+    material: BREAD
+    amount: 8
+    name: "&fRoti x8"
+    lore: ["&7Harga: &6%price%"]
+    action: BUY
+    price: 40
+    give-item: {material: BREAD, amount: 8}
+  daging:
+    slot: 11
+    material: COOKED_BEEF
+    amount: 8
+    name: "&fDaging Matang x8"
+    lore: ["&7Harga: &6%price%"]
+    action: BUY
+    price: 120
+    give-item: {material: COOKED_BEEF, amount: 8}
+  panah:
+    slot: 12
+    material: ARROW
+    amount: 32
+    name: "&fPanah x32"
+    lore: ["&7Harga: &6%price%"]
+    action: BUY
+    price: 150
+    give-item: {material: ARROW, amount: 32}
+  jual-batubara:
+    slot: 14
+    material: COAL
+    amount: 16
+    name: "&aJual Batu Bara x16"
+    lore: ["&7Dapat: &6%price%"]
+    action: SELL
+    price: 50
+    sell-item: {material: COAL, amount: 16}
+  jual-besi:
+    slot: 15
+    material: IRON_INGOT
+    amount: 16
+    name: "&aJual Besi x16"
+    lore: ["&7Dapat: &6%price%"]
+    action: SELL
+    price: 120
+    sell-item: {material: IRON_INGOT, amount: 16}
+  quest:
+    slot: 16
+    material: WRITABLE_BOOK
+    name: "&bPapan Quest"
+    action: COMMAND
+    player-commands: ["quest"]
