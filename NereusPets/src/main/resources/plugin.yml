@@ -1,5 +1,5 @@
 name: NereusPets
-version: 1.0.0
+version: '${project.version}'
 main: com.nereus.pets.NereusPets
 api-version: '1.21'
 description: Pet mini ala Pokemon dengan mob vanilla untuk Nereus MC
@@ -8,7 +8,7 @@ authors: [Nereus MC]
 commands:
   pets:
     description: Buka Pet Box dan kelola pet
-    usage: /pets [recall|rename|info|release|give|reload]
+    usage: /pets [recall|rename|info|release|duel|fuse|legend|give|wild|reload]
     aliases: [pet]
     permission: nereuspets.use
 

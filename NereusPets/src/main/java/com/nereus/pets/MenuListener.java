@@ -4,25 +4,35 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
+import org.bukkit.inventory.InventoryHolder;
 
-/** Menangani klik di Pet Box. Semua klik dibatalkan supaya item tidak bisa diambil. */
+/** Menangani klik di Pet Box dan Arena Duel. Semua klik dibatalkan supaya item tidak bisa diambil. */
 public final class MenuListener implements Listener {
+
+    private static boolean ours(InventoryHolder h) {
+        return h instanceof PetMenu || h instanceof DuelMenu;
+    }
 
     @EventHandler
     public void onClick(InventoryClickEvent e) {
-        if (!(e.getView().getTopInventory().getHolder() instanceof PetMenu menu)) {
+        InventoryHolder holder = e.getView().getTopInventory().getHolder();
+        if (!ours(holder)) {
             return;
         }
         e.setCancelled(true);
         if (e.getClickedInventory() == null || e.getClickedInventory() != e.getView().getTopInventory()) {
             return;
         }
-        menu.click(e.getSlot(), e.getClick());
+        if (holder instanceof PetMenu menu) {
+            menu.click(e.getSlot(), e.getClick());
+        } else if (holder instanceof DuelMenu menu) {
+            menu.click(e.getSlot(), e.getClick());
+        }
     }
 
     @EventHandler
     public void onDrag(InventoryDragEvent e) {
-        if (e.getView().getTopInventory().getHolder() instanceof PetMenu) {
+        if (ours(e.getView().getTopInventory().getHolder())) {
             e.setCancelled(true);
         }
     }

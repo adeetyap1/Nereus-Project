@@ -60,3 +60,15 @@ Data pemain tersimpan di `plugins/NereusPets/data/<uuid>.yml`.
 - Biarkan pet kalah: pet pingsan, hilang dari dunia, dan tidak kehilangan data.
 - Relog: pet terakhir terpanggil lagi, dan level serta XP tidak hilang.
 - Tes dari Bedrock: orb bisa dilempar, menu bisa dibuka, dan ukuran mini tampil (bergantung versi Geyser).
+
+## Update: tier, duel, pet liar, Legendaris
+
+- **38 jenis mob** dengan 5 tier (Biasa, Tidak Biasa, Langka, Epik, Legendaris). Legendaris: Golem Besi, Warden, Elder Guardian, Wither, Naga Ender.
+- **Gaya serang sesuai mobnya**: panah (Skeleton/Stray/Pillager), bola api (Blaze/Ghast), tengkorak Wither, ledakan sonik (Warden), napas naga area, sinar (Guardian), ramuan (Witch), trisula (Drowned), ledakan area (Creeper).
+- **Pet terkontrol**: mob terbang/berbasis brain (Warden, Naga, Wither, Ghast, Blaze, dll.) digerakkan plugin, bukan AI vanilla.
+- **Duel pet vs pet pemain lain**: `/pets` lalu tombol *Arena Duel*, atau `/pets duel <pemain>`, `/pets duel accept|deny`. Tidak ada pingsan, pet dipulihkan, pemenang dapat XP, rekor menang/kalah tersimpan.
+- **Pet liar** tersebar dan jarang (`wild:` di config). Tidak menyerang, HP mentok 1, hilang setelah 10 menit.
+- **Legendaris tiap 10 menit** (`legendary:`): satu pet muncul dekat pemain acak, diumumkan dengan koordinat kasar. Peluang tangkap sangat kecil (0.5%-30%). `/pets legend` untuk status.
+- **Gacha**: `/pets give egg <pemain> <normal|rare|legend> [n]` (item, klik kanan menetas) atau `/pets give hatch <pemain> <tier>` (langsung dapat pet). Cocok untuk perintah hadiah crate.
+- **Naik level**: XP dari bertarung dan duel, permen (`/pets give candy <pemain> <small|medium|rare>`), dan **fusion bintang** `/pets fuse <target#> <bahan#> confirm` (maks 5 bintang, +8% stat per bintang).
+- Admin uji: `/pets wild legendary`, `/pets wild <JENIS>`.

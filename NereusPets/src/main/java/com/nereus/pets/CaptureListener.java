@@ -62,11 +62,14 @@ public final class CaptureListener implements Listener {
     private void tryCapture(Player p, LivingEntity target, String tier) {
         Location loc = target.getLocation();
         Species sp = mgr.species(target.getType());
+        boolean wild = mgr.isWild(target);
 
         String denied = null;
         if (target instanceof Player || mgr.isPetEntity(target)) {
             denied = "capture-invalid";
-        } else if (sp == null || target.customName() != null || (target instanceof Tameable t && t.isTamed())) {
+        } else if (sp == null || (target.customName() != null && !wild) || (target instanceof Tameable t && t.isTamed())
+                || (!wild && sp.rarity().ordinal() > Rarity.parse(
+                        plugin.getConfig().getString("capture.vanilla-max-rarity", "RARE")).ordinal())) {
             denied = "capture-species";
         } else if (plugin.getConfig().getStringList("disabled-worlds").contains(p.getWorld().getName())) {
             denied = "world-disabled";
@@ -84,20 +87,27 @@ public final class CaptureListener implements Listener {
         double ratio = max <= 0 ? 1.0 : Math.min(1.0, target.getHealth() / max);
         double lowHpBonus = plugin.getConfig().getDouble("capture.low-hp-bonus", 1.0);
         double chance = sp.captureRate() * orbs.multiplier(tier) * (1.0 + (1.0 - ratio) * lowHpBonus);
-        chance = Math.max(plugin.getConfig().getDouble("capture.min-chance", 0.03),
-                Math.min(plugin.getConfig().getDouble("capture.max-chance", 0.95), chance));
+        String lim = "capture.limits." + sp.rarity().name() + ".";
+        double lo = plugin.getConfig().getDouble(lim + "min", plugin.getConfig().getDouble("capture.min-chance", 0.03));
+        double hi = plugin.getConfig().getDouble(lim + "max", plugin.getConfig().getDouble("capture.max-chance", 0.95));
+        chance = Math.max(lo, Math.min(hi, chance));
 
         ThreadLocalRandom rnd = ThreadLocalRandom.current();
         Location fx = loc.clone().add(0, target.getHeight() / 2, 0);
         if (rnd.nextDouble() < chance) {
             int wildMax = Math.max(1, plugin.getConfig().getInt("wild-level-max", 5));
-            PetData d = mgr.createPet(sp.type(), 1 + rnd.nextInt(wildMax));
+            Integer wl = target.getPersistentDataContainer().get(plugin.wildKey(), org.bukkit.persistence.PersistentDataType.INTEGER);
+            PetData d = mgr.createPet(sp.type(), wl != null ? wl : 1 + rnd.nextInt(wildMax));
             if (d == null) {
                 refund(loc, tier);
                 return;
             }
+            plugin.wild().forget(target.getUniqueId());
             target.remove();
             mgr.addPet(p.getUniqueId(), d);
+            if (d.rarity == Rarity.LEGENDARY) {
+                plugin.broadcast("legendary-captured", "{player}", p.getName(), "{pet}", sp.name());
+            }
             fx.getWorld().spawnParticle(Particle.HAPPY_VILLAGER, fx, 20, 0.4, 0.4, 0.4, 0.0);
             fx.getWorld().playSound(fx, Sound.ENTITY_PLAYER_LEVELUP, 0.8f, 1.6f);
             plugin.send(p, "capture-success",

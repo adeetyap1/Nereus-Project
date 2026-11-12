@@ -17,7 +17,7 @@ auto-summon: true
 auto-engage: true
 engage-range: 8
 # Monster yang tidak diserang otomatis (supaya tidak memancing amarah mereka).
-engage-blacklist: [ENDERMAN, ZOMBIFIED_PIGLIN, WARDEN, PIGLIN_BRUTE]
+engage-blacklist: [ENDERMAN, ZOMBIFIED_PIGLIN, WARDEN, PIGLIN_BRUTE, ENDER_DRAGON, WITHER, ELDER_GUARDIAN]
 
 # Jarak serang jarak dekat (blok) dan jeda antar serangan (milidetik).
 melee-reach: 1.8
@@ -36,9 +36,22 @@ regen-percent-per-second: 1.0
 # Level pet liar saat ditangkap: 1 sampai angka ini.
 wild-level-max: 5
 
+# Kecepatan pet terkontrol (blok per 2 tick). Dipakai Warden, Naga, Wither, Ghast, dll.
+controlled-speed: 0.5
+
 capture:
   min-chance: 0.03
   max-chance: 0.95
+  # Mob vanilla biasa hanya bisa ditangkap sampai kelangkaan ini. Di atasnya hanya dari pet liar atau gacha.
+  vanilla-max-rarity: RARE
+  # Batas peluang per kelangkaan. Legendaris sengaja sangat kecil.
+  limits:
+    EPIC:
+      min: 0.02
+      max: 0.60
+    LEGENDARY:
+      min: 0.005
+      max: 0.30
   # Tambahan peluang saat HP mob rendah. 1.0 = HP hampir habis memberi hingga +100%.
   low-hp-bonus: 1.0
   show-chance: true
@@ -75,13 +88,131 @@ orbs:
     lore:
       - "&7Lempar ke mob untuk menangkapnya."
       - "&7Peluang tangkap sangat besar."
+  master:
+    name: "&d&lMaster Orb"
+    multiplier: 4.0
+    lore:
+      - "&7Orb terkuat. Cocok untuk pet Legendaris."
+      - "&8Tetap tidak ada jaminan."
 
-# Jenis pet yang bisa ditangkap. Nama harus sama dengan EntityType Minecraft.
-# rarity   : COMMON, UNCOMMON, RARE, EPIC, LEGENDARY
-# range    : 0 = serang jarak dekat, lebih dari 0 = serang dari jauh (blok)
-# skill    : none, crit, heal, slow, poison, ignite, thunder
-# Pakai mob berbasis goal AI (zombie, skeleton, dll). Hindari mob terbang dan mob berbasis brain
-# (piglin, hoglin, warden, allay).
+# Pet liar tersebar di map. Mereka tidak menyerang, tidak bisa dibunuh (HP mentok 1),
+# dan hilang sendiri setelah expire-seconds. Lempar Pet Orb untuk menangkapnya.
+wild:
+  enabled: true
+  interval-seconds: 60       # tiap berapa detik dicek untuk tiap pemain
+  chance: 0.10               # peluang muncul per pemain per pengecekan
+  max-alive: 24
+  max-near-player: 2         # maksimal pet liar dalam near-radius dari pemain
+  near-radius: 64
+  min-distance: 24
+  max-distance: 64
+  expire-seconds: 600
+  # Bobot kelangkaan untuk spawn biasa. Legendaris 0 karena lewat event tiap 10 menit.
+  rarity-weights:
+    COMMON: 60
+    UNCOMMON: 28
+    RARE: 9
+    EPIC: 3
+    LEGENDARY: 0
+  # Level pet liar (rentang).
+  levels:
+    COMMON: "1-8"
+    UNCOMMON: "3-12"
+    RARE: "8-20"
+    EPIC: "15-30"
+    LEGENDARY: "25-45"
+
+# Event: satu pet Legendaris liar muncul tiap interval (hanya satu hidup sekaligus).
+legendary:
+  enabled: true
+  interval-seconds: 600
+  expire-seconds: 480
+  min-distance: 60
+  max-distance: 120
+  announce: true
+  # Koordinat di pengumuman dibulatkan ke kelipatan ini supaya tidak terlalu mudah.
+  announce-precision: 50
+
+# Duel pet lawan pet pemain lain. Pet tidak pingsan dan dipulihkan setelah duel.
+duel:
+  enabled: true
+  max-distance: 30
+  request-seconds: 30
+  countdown-seconds: 3
+  max-seconds: 120
+  cooldown-seconds: 10
+  # XP untuk pemenang = base + per-level x level pet yang kalah.
+  xp-base: 40
+  xp-per-level: 6
+
+# Gabung 2 pet sejenis: pet kedua hilang, pet pertama dapat 1 bintang (tambahan stat).
+fuse:
+  max-stars: 5
+  bonus-per-star: 0.08
+  min-fodder-level: 10
+
+# Telur gacha. Pakai di crate: /pets give egg %player% normal 1  atau  /pets give hatch %player% rare
+# weights = peluang kelangkaan hasil tetas (angka relatif).
+eggs:
+  normal:
+    name: "&fTelur Pet"
+    material: TURTLE_EGG
+    level: 1
+    glow: false
+    lore:
+      - "&7Klik kanan untuk menetaskan pet acak."
+    weights: {COMMON: 62, UNCOMMON: 25, RARE: 10, EPIC: 2.7, LEGENDARY: 0.3}
+  rare:
+    name: "&9Telur Pet Langka"
+    material: SNIFFER_EGG
+    level: 5
+    glow: true
+    lore:
+      - "&7Klik kanan untuk menetaskan pet acak."
+      - "&7Peluang pet Epik dan Legendaris lebih besar."
+    weights: {UNCOMMON: 40, RARE: 40, EPIC: 17, LEGENDARY: 3}
+  legend:
+    name: "&6&lTelur Naga Nereus"
+    material: DRAGON_EGG
+    level: 10
+    glow: true
+    lore:
+      - "&7Dijamin Epik atau lebih."
+      - "&6Ada peluang pet Legendaris."
+    weights: {EPIC: 85, LEGENDARY: 15}
+
+# Permen XP untuk pet aktif. levels: 1 = naik tepat 1 level.
+candies:
+  small:
+    name: "&aPermen XP Kecil"
+    material: SUGAR
+    xp: 100
+    lore: ["&7Klik kanan: +100 XP untuk pet aktif."]
+  medium:
+    name: "&9Permen XP Sedang"
+    material: HONEYCOMB
+    xp: 600
+    glow: true
+    lore: ["&7Klik kanan: +600 XP untuk pet aktif."]
+  rare:
+    name: "&6&lRare Candy"
+    material: GLOW_BERRIES
+    levels: 1
+    glow: true
+    lore: ["&7Klik kanan: pet aktif naik 1 level."]
+
+# Jenis pet. Nama harus sama dengan EntityType Minecraft.
+# rarity     : COMMON, UNCOMMON, RARE, EPIC, LEGENDARY
+# range      : 0 = jarak dekat, lebih dari 0 = serang dari jauh (blok)
+# style      : melee, arrow, fireball, wither_skull, sonic_boom, breath, beam, potion, trident, explode
+# controlled : true = AI mob dimatikan dan digerakkan plugin (mob terbang / berbasis brain)
+# flying     : true = melayang (hanya bersama controlled)
+# habitat    : OVERWORLD, NETHER, END, ANY (tempat pet liar muncul)
+# wild-scale : ukuran saat jadi pet liar (di tangan pemain pakai scale)
+# wild-weight: bobot muncul di antara jenis sekelas (default 1)
+# egg        : boleh keluar dari telur gacha (default true)
+# aura       : partikel di pet liar (FLAME, SOUL_FIRE_FLAME, END_ROD, WITCH, PORTAL, ELECTRIC_SPARK, SOUL, CLOUD)
+# skill      : none, crit, heal, slow, poison, ignite, thunder
 species:
   CHICKEN:
     name: "Ayam Mini"
@@ -91,7 +222,7 @@ species:
     hp-per-level: 1.0
     attack-per-level: 0.25
     capture-rate: 0.60
-    skill: none
+
   PIG:
     name: "Babi Mini"
     rarity: COMMON
@@ -100,7 +231,7 @@ species:
     hp-per-level: 1.3
     attack-per-level: 0.25
     capture-rate: 0.55
-    skill: none
+
   SHEEP:
     name: "Domba Mini"
     rarity: COMMON
@@ -111,6 +242,7 @@ species:
     capture-rate: 0.50
     skill: heal
     skill-level: 8
+
   RABBIT:
     name: "Kelinci Mini"
     rarity: COMMON
@@ -121,6 +253,39 @@ species:
     capture-rate: 0.50
     skill: crit
     skill-level: 5
+
+  COW:
+    name: "Sapi Mini"
+    rarity: COMMON
+    hp: 18
+    attack: 2.0
+    hp-per-level: 1.5
+    attack-per-level: 0.25
+    capture-rate: 0.50
+
+  CAT:
+    name: "Kucing Mini"
+    rarity: COMMON
+    hp: 12
+    attack: 2.5
+    hp-per-level: 1.0
+    attack-per-level: 0.3
+    capture-rate: 0.45
+    skill: crit
+    skill-level: 8
+
+  SLIME:
+    name: "Slime Mini"
+    rarity: COMMON
+    hp: 14
+    attack: 2.5
+    hp-per-level: 1.2
+    attack-per-level: 0.3
+    capture-rate: 0.50
+    controlled: true
+    skill: slow
+    skill-level: 6
+
   SILVERFISH:
     name: "Silverfish Mini"
     rarity: UNCOMMON
@@ -131,6 +296,7 @@ species:
     capture-rate: 0.45
     skill: poison
     skill-level: 5
+
   ZOMBIE:
     name: "Zombie Mini"
     rarity: UNCOMMON
@@ -141,6 +307,7 @@ species:
     capture-rate: 0.40
     skill: slow
     skill-level: 6
+
   SKELETON:
     name: "Skeleton Mini"
     rarity: UNCOMMON
@@ -150,8 +317,10 @@ species:
     attack-per-level: 0.4
     capture-rate: 0.40
     range: 8
+    style: arrow
     skill: crit
     skill-level: 8
+
   SPIDER:
     name: "Laba-laba Mini"
     rarity: UNCOMMON
@@ -162,6 +331,7 @@ species:
     capture-rate: 0.40
     skill: slow
     skill-level: 5
+
   CAVE_SPIDER:
     name: "Laba-laba Gua Mini"
     rarity: UNCOMMON
@@ -172,6 +342,63 @@ species:
     capture-rate: 0.40
     skill: poison
     skill-level: 5
+
+  FOX:
+    name: "Rubah Mini"
+    rarity: UNCOMMON
+    hp: 14
+    attack: 3.0
+    hp-per-level: 1.3
+    attack-per-level: 0.35
+    capture-rate: 0.40
+    controlled: true
+    skill: crit
+    skill-level: 8
+
+  GOAT:
+    name: "Kambing Mini"
+    rarity: UNCOMMON
+    hp: 18
+    attack: 3.5
+    hp-per-level: 1.6
+    attack-per-level: 0.4
+    capture-rate: 0.38
+    controlled: true
+
+  CREEPER:
+    name: "Creeper Mini"
+    rarity: UNCOMMON
+    hp: 16
+    attack: 4.0
+    hp-per-level: 1.4
+    attack-per-level: 0.45
+    capture-rate: 0.35
+    style: explode
+    lore: ["Meledak tanpa merusak blok."]
+
+  DROWNED:
+    name: "Drowned Mini"
+    rarity: UNCOMMON
+    hp: 20
+    attack: 3.5
+    hp-per-level: 1.7
+    attack-per-level: 0.4
+    capture-rate: 0.35
+    range: 9
+    style: trident
+    lore: ["Melempar trisula."]
+
+  PILLAGER:
+    name: "Pillager Mini"
+    rarity: UNCOMMON
+    hp: 18
+    attack: 3.5
+    hp-per-level: 1.5
+    attack-per-level: 0.4
+    capture-rate: 0.35
+    range: 9
+    style: arrow
+
   WOLF:
     name: "Serigala Mini"
     rarity: RARE
@@ -182,6 +409,7 @@ species:
     capture-rate: 0.30
     skill: crit
     skill-level: 10
+
   HUSK:
     name: "Husk Mini"
     rarity: RARE
@@ -192,6 +420,7 @@ species:
     capture-rate: 0.30
     skill: slow
     skill-level: 8
+
   STRAY:
     name: "Stray Mini"
     rarity: RARE
@@ -201,8 +430,10 @@ species:
     attack-per-level: 0.45
     capture-rate: 0.28
     range: 8
+    style: arrow
     skill: slow
     skill-level: 5
+
   VINDICATOR:
     name: "Vindicator Mini"
     rarity: RARE
@@ -213,6 +444,109 @@ species:
     capture-rate: 0.25
     skill: crit
     skill-level: 10
+
+  WITCH:
+    name: "Witch Mini"
+    rarity: RARE
+    hp: 20
+    attack: 4.0
+    hp-per-level: 1.7
+    attack-per-level: 0.5
+    capture-rate: 0.25
+    range: 7
+    style: potion
+    skill: poison
+    skill-level: 6
+    lore: ["Melempar ramuan beracun."]
+
+  POLAR_BEAR:
+    name: "Beruang Kutub Mini"
+    rarity: RARE
+    hp: 30
+    attack: 5.0
+    hp-per-level: 2.4
+    attack-per-level: 0.55
+    capture-rate: 0.25
+
+  PANDA:
+    name: "Panda Mini"
+    rarity: RARE
+    hp: 28
+    attack: 4.5
+    hp-per-level: 2.2
+    attack-per-level: 0.5
+    capture-rate: 0.25
+    controlled: true
+
+  BLAZE:
+    name: "Blaze Mini"
+    rarity: RARE
+    hp: 20
+    attack: 4.0
+    hp-per-level: 1.6
+    attack-per-level: 0.5
+    capture-rate: 0.22
+    range: 10
+    style: fireball
+    controlled: true
+    flying: true
+    habitat: NETHER
+    aura: FLAME
+    skill: ignite
+    skill-level: 5
+
+  MAGMA_CUBE:
+    name: "Magma Cube Mini"
+    rarity: RARE
+    hp: 24
+    attack: 4.5
+    hp-per-level: 2.0
+    attack-per-level: 0.5
+    capture-rate: 0.25
+    controlled: true
+    habitat: NETHER
+    aura: FLAME
+    skill: ignite
+    skill-level: 8
+
+  GUARDIAN:
+    name: "Guardian Mini"
+    rarity: RARE
+    hp: 22
+    attack: 4.0
+    hp-per-level: 1.8
+    attack-per-level: 0.5
+    capture-rate: 0.22
+    range: 9
+    style: beam
+    controlled: true
+    flying: true
+    lore: ["Menembakkan sinar."]
+
+  PHANTOM:
+    name: "Phantom Mini"
+    rarity: RARE
+    hp: 18
+    attack: 5.0
+    hp-per-level: 1.5
+    attack-per-level: 0.55
+    capture-rate: 0.20
+    controlled: true
+    flying: true
+    skill: crit
+    skill-level: 8
+
+  VEX:
+    name: "Vex Mini"
+    rarity: RARE
+    hp: 14
+    attack: 5.0
+    hp-per-level: 1.2
+    attack-per-level: 0.55
+    capture-rate: 0.20
+    controlled: true
+    flying: true
+
   WITHER_SKELETON:
     name: "Wither Skeleton Mini"
     rarity: EPIC
@@ -221,8 +555,11 @@ species:
     hp-per-level: 2.4
     attack-per-level: 0.7
     capture-rate: 0.15
+    habitat: NETHER
+    aura: SOUL
     skill: ignite
     skill-level: 10
+
   RAVAGER:
     name: "Ravager Mini"
     rarity: EPIC
@@ -234,6 +571,39 @@ species:
     scale: 0.35
     skill: crit
     skill-level: 12
+
+  PIGLIN_BRUTE:
+    name: "Piglin Brute Mini"
+    rarity: EPIC
+    hp: 40
+    attack: 7.0
+    hp-per-level: 2.8
+    attack-per-level: 0.75
+    capture-rate: 0.10
+    controlled: true
+    habitat: NETHER
+    skill: crit
+    skill-level: 10
+
+  GHAST:
+    name: "Ghast Mini"
+    rarity: EPIC
+    hp: 35
+    attack: 7.0
+    hp-per-level: 2.5
+    attack-per-level: 0.75
+    capture-rate: 0.08
+    range: 14
+    style: fireball
+    controlled: true
+    flying: true
+    scale: 0.25
+    habitat: NETHER
+    aura: FLAME
+    skill: ignite
+    skill-level: 10
+    lore: ["Menembakkan bola api."]
+
   IRON_GOLEM:
     name: "Golem Besi Mini"
     rarity: LEGENDARY
@@ -243,8 +613,91 @@ species:
     attack-per-level: 0.9
     capture-rate: 0.05
     scale: 0.35
+    wild-scale: 1.0
+    wild-weight: 4
+    aura: CLOUD
     skill: thunder
     skill-level: 15
+
+  WARDEN:
+    name: "Warden Mini"
+    rarity: LEGENDARY
+    hp: 120
+    attack: 12.0
+    hp-per-level: 4.5
+    attack-per-level: 1.1
+    capture-rate: 0.03
+    range: 12
+    style: sonic_boom
+    controlled: true
+    scale: 0.35
+    wild-scale: 0.8
+    wild-weight: 2
+    aura: SOUL
+    skill: slow
+    skill-level: 10
+    lore: ["Ledakan sonik dari kejauhan."]
+
+  ELDER_GUARDIAN:
+    name: "Elder Guardian Mini"
+    rarity: LEGENDARY
+    hp: 110
+    attack: 10.0
+    hp-per-level: 4.2
+    attack-per-level: 1.0
+    capture-rate: 0.03
+    range: 12
+    style: beam
+    controlled: true
+    flying: true
+    scale: 0.3
+    wild-scale: 0.6
+    wild-weight: 2
+    aura: END_ROD
+    skill: slow
+    skill-level: 10
+
+  WITHER:
+    name: "Wither Mini"
+    rarity: LEGENDARY
+    hp: 130
+    attack: 11.0
+    hp-per-level: 4.6
+    attack-per-level: 1.1
+    capture-rate: 0.02
+    range: 14
+    style: wither_skull
+    controlled: true
+    flying: true
+    scale: 0.4
+    wild-scale: 0.9
+    habitat: ANY
+    wild-weight: 1
+    aura: SOUL_FIRE_FLAME
+    skill: ignite
+    skill-level: 12
+    lore: ["Menembakkan tengkorak Wither."]
+
+  ENDER_DRAGON:
+    name: "Naga Ender Mini"
+    rarity: LEGENDARY
+    hp: 150
+    attack: 13.0
+    hp-per-level: 5.0
+    attack-per-level: 1.2
+    capture-rate: 0.02
+    range: 10
+    style: breath
+    controlled: true
+    flying: true
+    scale: 0.12
+    wild-scale: 0.35
+    habitat: ANY
+    wild-weight: 1
+    aura: PORTAL
+    skill: thunder
+    skill-level: 12
+    lore: ["Napas naga menghantam area."]
 
 messages:
   prefix: "&8[&bPet&8] &7"
@@ -278,3 +731,38 @@ messages:
   release-confirm: "&eKetik &f/pets release {index} confirm &euntuk melepas {pet}&e selamanya."
   released: "&7{pet}&7 dilepas ke alam liar."
   invalid-index: "&cNomor pet tidak valid. Lihat nomor (#) di Pet Box."
+  duel-disabled: "&cDuel sedang dinonaktifkan."
+  duel-self: "&cTidak bisa menantang diri sendiri."
+  duel-need-pet: "&cPanggil pet dulu sebelum duel."
+  duel-target-no-pet: "&c{player} belum memanggil pet."
+  duel-busy: "&cSalah satu pet sedang duel."
+  duel-too-far: "&cLawan terlalu jauh (maksimal {dist} blok)."
+  duel-cooldown: "&cTunggu &f{time} &cdetik sebelum duel lagi."
+  duel-sent: "&aTantangan duel dikirim ke &f{player}&a."
+  duel-received: "&6{player} &7menantang duel dengan &f{pet}&7! Ketik &a/pets duel accept &7atau buka &f/pets &7lalu Arena Duel."
+  duel-none: "&cTidak ada tantangan duel."
+  duel-denied: "&c{player} menolak duelmu."
+  duel-denied-self: "&7Tantangan ditolak."
+  duel-start: "&6Duel dimulai! &7Pet-mu melawan &f{vs} &7milik &f{player}&7."
+  duel-win: "&a&lMENANG! &7{pet}&7 mendapat &e+{xp} XP&7."
+  duel-lose: "&c&lKALAH. &7{pet}&7 dikalahkan oleh {winner}&7. Pet-mu tidak pingsan."
+  duel-draw: "&eDuel berakhir seri."
+  fuse-usage: "&cPakai: /pets fuse <nomor target> <nomor bahan>"
+  fuse-same: "&cKedua pet harus sejenis dan berbeda."
+  fuse-max: "&cPet ini sudah bintang maksimal."
+  fuse-level: "&cPet bahan minimal Lv.{level}."
+  fuse-active: "&cSimpan dulu pet bahan dari panggilan."
+  fuse-confirm: "&eKetik &f/pets fuse {a} {b} confirm &euntuk menelan {fodder}&e demi bintang {target}&e."
+  fuse-done: "&6{pet}&a naik bintang! &7({fodder}&7 dikorbankan)"
+  egg-empty: "&cTelur ini tidak bisa menetas sekarang."
+  egg-hatched: "&aTelur menetas: &f{pet} &7(Lv.{level}, {rarity}&7)&a!"
+  egg-legendary: "&6&l✦ &e{player} &6menetaskan pet LEGENDARIS: &f{pet}&6!"
+  egg-epic: "&5✦ &e{player} &7menetaskan pet Epik: &f{pet}&7."
+  candy-max: "&cPet ini sudah level maksimal."
+  item-given: "&aMemberi &f{amount}x {item}&a ke &f{player}&a."
+  legendary-spawn: "&6&l✦ &e{pet} &6LEGENDARIS muncul di sekitar &fX {x}, Z {z} &7({world})&6! Hilang dalam &f{minutes} &6menit. Tangkap pakai Pet Orb!"
+  legendary-gone: "&7Pet Legendaris menghilang tanpa tertangkap."
+  legendary-captured: "&6&l✦ &e{player} &6berhasil menangkap pet LEGENDARIS &f{pet}&6!"
+  legend-alive: "&6Legendaris ada di sekitar &fX {x}, Z {z} &7({world})&6."
+  legend-none: "&7Belum ada Legendaris liar. Berikutnya sekitar &f{minutes} &7menit lagi."
+  wild-failed: "&cGagal memunculkan pet liar di sini."

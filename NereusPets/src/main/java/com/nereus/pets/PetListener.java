@@ -78,7 +78,12 @@ public final class PetListener implements Listener {
     public void onEntitiesLoad(EntitiesLoadEvent e) {
         Bukkit.getScheduler().runTask(plugin, () -> {
             for (Entity en : e.getEntities()) {
-                if (en.isValid() && mgr.isPetEntity(en) && mgr.byEntity(en) == null) {
+                if (!en.isValid()) {
+                    continue;
+                }
+                if (mgr.isPetEntity(en) && mgr.byEntity(en) == null) {
+                    en.remove();
+                } else if (mgr.isWild(en) && !plugin.wild().tracks(en.getUniqueId())) {
                     en.remove();
                 }
             }
@@ -93,13 +98,33 @@ public final class PetListener implements Listener {
         if (ap == null) {
             return;
         }
-        if (e instanceof EntityDamageByEntityEvent be) {
-            Entity damager = resolveDamager(be.getDamager());
-            if (damager instanceof Player || mgr.isPetEntity(damager)) {
+        switch (e.getCause()) {
+            case SUFFOCATION, CRAMMING, FLY_INTO_WALL -> {
                 e.setCancelled(true);
                 return;
             }
-            if (damager instanceof LivingEntity attacker && ap.target == null && !mgr.isProtected(attacker)) {
+            case FALL, DROWNING -> {
+                Species sp0 = mgr.species(ap.data.type);
+                if (sp0 != null && sp0.controlled()) {
+                    e.setCancelled(true);
+                    return;
+                }
+            }
+            default -> {
+            }
+        }
+        if (e instanceof EntityDamageByEntityEvent be) {
+            Entity damager = resolveDamager(be.getDamager());
+            if (damager instanceof Player) {
+                e.setCancelled(true);
+                return;
+            }
+            if (mgr.isPetEntity(damager) && !mgr.isDuelPair(damager, e.getEntity())) {
+                e.setCancelled(true);
+                return;
+            }
+            if (ap.duel == null && damager instanceof LivingEntity attacker && ap.target == null
+                    && !mgr.isProtected(attacker) && !mgr.isWild(attacker)) {
                 ap.target = attacker;
             }
         }
@@ -108,7 +133,12 @@ public final class PetListener implements Listener {
         if (le.getHealth() - e.getFinalDamage() <= 0) {
             e.setCancelled(true);
             Bukkit.getScheduler().runTask(plugin, () -> {
-                if (mgr.byEntity(ap.entity) == ap) {
+                if (mgr.byEntity(ap.entity) != ap) {
+                    return;
+                }
+                if (ap.duel != null) {
+                    plugin.duels().finish(ap.duel, ap, true);
+                } else {
                     mgr.faint(ap);
                 }
             });
@@ -119,7 +149,11 @@ public final class PetListener implements Listener {
     @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
     public void onPetAttack(EntityDamageByEntityEvent e) {
         Entity damager = resolveDamager(e.getDamager());
-        if (mgr.isPetEntity(damager) && (e.getEntity() instanceof Player || mgr.isPetEntity(e.getEntity()))) {
+        if (!mgr.isPetEntity(damager)) {
+            return;
+        }
+        if (e.getEntity() instanceof Player || mgr.isWild(e.getEntity())
+                || (mgr.isPetEntity(e.getEntity()) && !mgr.isDuelPair(damager, e.getEntity()))) {
             e.setCancelled(true);
         }
     }
@@ -130,13 +164,13 @@ public final class PetListener implements Listener {
         Entity damager = resolveDamager(e.getDamager());
         Entity victim = e.getEntity();
         if (damager instanceof Player p && victim instanceof LivingEntity lv
-                && !(victim instanceof Player) && !mgr.isPetEntity(victim) && !mgr.isProtected(victim)) {
+                && !(victim instanceof Player) && !mgr.isManaged(victim) && !mgr.isProtected(victim)) {
             ActivePet ap = mgr.activeOf(p);
             if (ap != null) {
                 ap.target = lv;
             }
         } else if (victim instanceof Player owner && damager instanceof LivingEntity dl
-                && !(damager instanceof Player) && !mgr.isPetEntity(damager)) {
+                && !(damager instanceof Player) && !mgr.isManaged(damager)) {
             ActivePet ap = mgr.activeOf(owner);
             if (ap != null) {
                 ap.target = dl;
@@ -154,42 +188,42 @@ public final class PetListener implements Listener {
     /** Pet mengatur target sendiri, jadi AI bawaan tidak boleh memilih target. */
     @EventHandler(ignoreCancelled = true)
     public void onTarget(EntityTargetEvent e) {
-        if (e.getTarget() != null && mgr.isPetEntity(e.getEntity())) {
+        if (e.getTarget() != null && mgr.isManaged(e.getEntity())) {
             e.setCancelled(true);
         }
     }
 
     @EventHandler(ignoreCancelled = true)
     public void onCombust(EntityCombustEvent e) {
-        if (mgr.isPetEntity(e.getEntity())) {
+        if (mgr.isManaged(e.getEntity())) {
             e.setCancelled(true);
         }
     }
 
     @EventHandler(ignoreCancelled = true)
     public void onExplosionPrime(ExplosionPrimeEvent e) {
-        if (mgr.isPetEntity(e.getEntity())) {
+        if (mgr.isManaged(e.getEntity())) {
             e.setCancelled(true);
         }
     }
 
     @EventHandler(ignoreCancelled = true)
     public void onTransform(EntityTransformEvent e) {
-        if (mgr.isPetEntity(e.getEntity())) {
+        if (mgr.isManaged(e.getEntity())) {
             e.setCancelled(true);
         }
     }
 
     @EventHandler(ignoreCancelled = true)
     public void onChangeBlock(EntityChangeBlockEvent e) {
-        if (mgr.isPetEntity(e.getEntity())) {
+        if (mgr.isManaged(e.getEntity())) {
             e.setCancelled(true);
         }
     }
 
     @EventHandler(ignoreCancelled = true)
     public void onDropItem(EntityDropItemEvent e) {
-        if (mgr.isPetEntity(e.getEntity())) {
+        if (mgr.isManaged(e.getEntity())) {
             e.setCancelled(true);
         }
     }
@@ -198,6 +232,10 @@ public final class PetListener implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
     public void onInteract(PlayerInteractEntityEvent e) {
         Entity clicked = e.getRightClicked();
+        if (mgr.isWild(clicked)) {
+            e.setCancelled(true);
+            return;
+        }
         if (!mgr.isPetEntity(clicked)) {
             return;
         }

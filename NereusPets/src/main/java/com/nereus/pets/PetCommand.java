@@ -17,13 +17,15 @@ import java.util.Locale;
 
 /** /pets dan subperintahnya. */
 public final class PetCommand implements CommandExecutor, TabCompleter {
-    private static final List<String> SUBS = List.of("recall", "rename", "info", "release", "give", "reload", "help");
+    private static final List<String> SUBS = List.of("recall", "rename", "info", "release", "duel", "fuse", "legend", "give", "wild", "reload", "help");
 
     private final NereusPets plugin;
     private final PetManager mgr;
     private final Orbs orbs;
+    private final ItemListener itemListener;
 
-    public PetCommand(NereusPets plugin, PetManager mgr, Orbs orbs) {
+    public PetCommand(NereusPets plugin, PetManager mgr, Orbs orbs, ItemListener itemListener) {
+        this.itemListener = itemListener;
         this.plugin = plugin;
         this.mgr = mgr;
         this.orbs = orbs;
@@ -106,6 +108,45 @@ public final class PetCommand implements CommandExecutor, TabCompleter {
                     plugin.send(p, "release-confirm", "{index}", String.valueOf(idx + 1), "{pet}", name);
                 }
             }
+            case "duel" -> {
+                Player p = playerOnly(sender);
+                if (p == null) {
+                    return true;
+                }
+                if (args.length < 2) {
+                    new DuelMenu(plugin, mgr, p).open();
+                } else if (args[1].equalsIgnoreCase("accept")) {
+                    plugin.duels().accept(p);
+                } else if (args[1].equalsIgnoreCase("deny")) {
+                    plugin.duels().deny(p);
+                } else {
+                    Player other = Bukkit.getPlayerExact(args[1]);
+                    if (other == null) {
+                        plugin.send(p, "unknown-player");
+                    } else {
+                        plugin.duels().challenge(p, other);
+                    }
+                }
+            }
+            case "fuse" -> {
+                Player p = playerOnly(sender);
+                if (p == null) {
+                    return true;
+                }
+                fuse(p, args);
+            }
+            case "legend" -> sender.sendMessage(plugin.wild().statusLine());
+            case "wild" -> {
+                if (!sender.hasPermission("nereuspets.admin")) {
+                    plugin.send(sender, "no-permission");
+                    return true;
+                }
+                Player p = playerOnly(sender);
+                if (p == null) {
+                    return true;
+                }
+                wildAdmin(p, args);
+            }
             case "give" -> {
                 if (!sender.hasPermission("nereuspets.admin")) {
                     plugin.send(sender, "no-permission");
@@ -126,6 +167,67 @@ public final class PetCommand implements CommandExecutor, TabCompleter {
         return true;
     }
 
+    private void fuse(Player p, String[] args) {
+        // /pets fuse <target#> <fodder#> [confirm]
+        List<PetData> list = mgr.box(p.getUniqueId());
+        int ti = args.length > 1 ? parseInt(args[1], -1) - 1 : -1;
+        int fi = args.length > 2 ? parseInt(args[2], -1) - 1 : -1;
+        if (ti < 0 || fi < 0 || ti >= list.size() || fi >= list.size()) {
+            plugin.send(p, "fuse-usage");
+            return;
+        }
+        PetData t = list.get(ti);
+        PetData f = list.get(fi);
+        int maxStars = plugin.getConfig().getInt("fuse.max-stars", 5);
+        int minLevel = plugin.getConfig().getInt("fuse.min-fodder-level", 10);
+        if (t == f || t.type != f.type) {
+            plugin.send(p, "fuse-same");
+        } else if (t.stars >= maxStars) {
+            plugin.send(p, "fuse-max");
+        } else if (f.level < minLevel) {
+            plugin.send(p, "fuse-level", "{level}", String.valueOf(minLevel));
+        } else if (mgr.isActive(f)) {
+            plugin.send(p, "fuse-active");
+        } else if (args.length > 3 && args[3].equalsIgnoreCase("confirm")) {
+            String fn = mgr.plain(mgr.displayName(f));
+            mgr.release(p, f);
+            t.stars++;
+            ActivePet ap = mgr.activeOf(p);
+            if (ap != null && ap.data == t) {
+                mgr.applyStats(ap, false);
+            }
+            plugin.send(p, "fuse-done", "{pet}", mgr.plain(mgr.displayName(t)), "{fodder}", fn);
+        } else {
+            plugin.send(p, "fuse-confirm", "{target}", mgr.plain(mgr.displayName(t)),
+                    "{fodder}", mgr.plain(mgr.displayName(f)), "{a}", String.valueOf(ti + 1), "{b}", String.valueOf(fi + 1));
+        }
+    }
+
+    private void wildAdmin(Player p, String[] args) {
+        // /pets wild legendary | /pets wild <JENIS>
+        if (args.length < 2) {
+            p.sendMessage(Component.text("Pakai: /pets wild legendary  atau  /pets wild <JENIS>"));
+            return;
+        }
+        if (args[1].equalsIgnoreCase("legendary")) {
+            if (!plugin.wild().spawnLegendaryFor(p)) {
+                plugin.send(p, "wild-failed");
+            }
+            return;
+        }
+        EntityType type;
+        try {
+            type = EntityType.valueOf(args[1].toUpperCase(Locale.ROOT));
+        } catch (IllegalArgumentException ex) {
+            plugin.send(p, "unknown-species");
+            return;
+        }
+        Species sp = mgr.species(type);
+        if (sp == null || plugin.wild().spawnWild(p.getLocation().add(p.getLocation().getDirection().multiply(4)), sp, false) == null) {
+            plugin.send(p, "wild-failed");
+        }
+    }
+
     private void give(CommandSender sender, String[] args) {
         // /pets give orb <pemain> <tier> [jumlah]
         // /pets give pet <pemain> <JENIS> [level]
@@ -138,7 +240,30 @@ public final class PetCommand implements CommandExecutor, TabCompleter {
             plugin.send(sender, "unknown-player");
             return;
         }
-        if (args[1].equalsIgnoreCase("orb")) {
+        if (args[1].equalsIgnoreCase("egg") || args[1].equalsIgnoreCase("candy")) {
+            boolean egg = args[1].equalsIgnoreCase("egg");
+            String id = args[3].toLowerCase(Locale.ROOT);
+            int amount = args.length > 4 ? parseInt(args[4], 1) : 1;
+            ItemStack item = egg ? plugin.items().egg(id, amount) : plugin.items().candy(id, amount);
+            if (item == null) {
+                plugin.send(sender, "unknown-tier");
+                return;
+            }
+            target.getInventory().addItem(item).values()
+                    .forEach(rest -> target.getWorld().dropItem(target.getLocation(), rest));
+            plugin.send(sender, "item-given", "{amount}", String.valueOf(Math.max(1, amount)),
+                    "{item}", args[1] + " " + id, "{player}", target.getName());
+        } else if (args[1].equalsIgnoreCase("hatch")) {
+            // langsung menetaskan pet acak (untuk hadiah crate): /pets give hatch <pemain> <tier>
+            PetData d = plugin.items().hatch(args[3].toLowerCase(Locale.ROOT));
+            if (d == null) {
+                plugin.send(sender, "unknown-tier");
+            } else if (!mgr.addPet(target.getUniqueId(), d)) {
+                plugin.send(sender, "box-full", "{limit}", String.valueOf(mgr.boxLimit()));
+            } else {
+                itemListener.announceHatch(target, d);
+            }
+        } else if (args[1].equalsIgnoreCase("orb")) {
             String tier = args[3].toLowerCase(Locale.ROOT);
             int amount = args.length > 4 ? parseInt(args[4], 1) : 1;
             ItemStack item = orbs.create(tier, amount);
@@ -182,6 +307,9 @@ public final class PetCommand implements CommandExecutor, TabCompleter {
                 "&b/pets rename <nama> &7- ganti nama pet aktif",
                 "&b/pets info &7- detail pet aktif",
                 "&b/pets release <nomor> &7- lepas pet",
+                "&b/pets duel [pemain|accept|deny] &7- adu pet dengan pemain lain",
+                "&b/pets fuse <nomor> <nomor> &7- gabung 2 pet sejenis jadi bintang",
+                "&b/pets legend &7- status pet Legendaris",
         };
         for (String l : lines) {
             sender.sendMessage(NereusPets.LEGACY.deserialize(l));
@@ -189,6 +317,8 @@ public final class PetCommand implements CommandExecutor, TabCompleter {
         if (sender.hasPermission("nereuspets.admin")) {
             sender.sendMessage(NereusPets.LEGACY.deserialize("&c/pets give orb <pemain> <tier> [jumlah]"));
             sender.sendMessage(NereusPets.LEGACY.deserialize("&c/pets give pet <pemain> <JENIS> [level]"));
+            sender.sendMessage(NereusPets.LEGACY.deserialize("&c/pets give egg|candy|hatch <pemain> <tier> [jumlah]"));
+            sender.sendMessage(NereusPets.LEGACY.deserialize("&c/pets wild legendary|<JENIS> &7(uji spawn)"));
             sender.sendMessage(NereusPets.LEGACY.deserialize("&c/pets reload"));
         }
     }
@@ -215,17 +345,31 @@ public final class PetCommand implements CommandExecutor, TabCompleter {
         boolean admin = sender.hasPermission("nereuspets.admin");
         if (args.length == 1) {
             for (String s : SUBS) {
-                if ((s.equals("give") || s.equals("reload")) && !admin) {
+                if ((s.equals("give") || s.equals("reload") || s.equals("wild")) && !admin) {
                     continue;
                 }
                 out.add(s);
             }
+        } else if (args[0].equalsIgnoreCase("duel") && args.length == 2) {
+            out.add("accept");
+            out.add("deny");
+            Bukkit.getOnlinePlayers().forEach(p -> out.add(p.getName()));
+        } else if (admin && args[0].equalsIgnoreCase("wild") && args.length == 2) {
+            out.add("legendary");
+            mgr.speciesTypes().forEach(t -> out.add(t.name()));
         } else if (admin && args[0].equalsIgnoreCase("give")) {
             if (args.length == 2) {
                 out.add("orb");
                 out.add("pet");
+                out.add("egg");
+                out.add("candy");
+                out.add("hatch");
             } else if (args.length == 3) {
                 Bukkit.getOnlinePlayers().forEach(p -> out.add(p.getName()));
+            } else if (args.length == 4 && (args[1].equalsIgnoreCase("egg") || args[1].equalsIgnoreCase("hatch"))) {
+                out.addAll(plugin.items().eggTiers());
+            } else if (args.length == 4 && args[1].equalsIgnoreCase("candy")) {
+                out.addAll(plugin.items().candyIds());
             } else if (args.length == 4 && args[1].equalsIgnoreCase("orb")) {
                 out.addAll(orbs.tiers());
             } else if (args.length == 4 && args[1].equalsIgnoreCase("pet")) {

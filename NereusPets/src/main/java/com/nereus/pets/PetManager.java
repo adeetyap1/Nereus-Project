@@ -53,6 +53,7 @@ public final class PetManager {
     private final Set<EntityType> engageBlacklist = new HashSet<>();
 
     private BukkitTask loop;
+    private BukkitTask mover;
     private BukkitTask autosave;
 
     public PetManager(NereusPets plugin) {
@@ -100,7 +101,15 @@ public final class PetManager {
                     s.getDouble("range", 0),
                     s.getDouble("scale", defaultScale),
                     Skill.parse(s.getString("skill", "none")),
-                    s.getInt("skill-level", 5)));
+                    s.getInt("skill-level", 5),
+                    AttackStyle.parse(s.getString("style", "melee")),
+                    s.getBoolean("controlled", false),
+                    s.getBoolean("flying", false),
+                    s.getString("habitat", "OVERWORLD").toUpperCase(Locale.ROOT),
+                    s.getBoolean("egg", true),
+                    s.getString("aura"),
+                    s.getDouble("wild-scale", 1.0),
+                    s.getStringList("lore")));
         }
     }
 
@@ -116,6 +125,7 @@ public final class PetManager {
 
     public void start() {
         loop = Bukkit.getScheduler().runTaskTimer(plugin, this::tick, 20L, 5L);
+        mover = Bukkit.getScheduler().runTaskTimer(plugin, this::controlTick, 20L, 2L);
         autosave = Bukkit.getScheduler().runTaskTimer(plugin, this::saveAll, 6000L, 6000L);
     }
 
@@ -125,6 +135,9 @@ public final class PetManager {
         }
         if (autosave != null) {
             autosave.cancel();
+        }
+        if (mover != null) {
+            mover.cancel();
         }
         for (UUID owner : new ArrayList<>(active.keySet())) {
             recall(owner);
@@ -136,7 +149,7 @@ public final class PetManager {
     public void sweepStrays() {
         for (World w : Bukkit.getWorlds()) {
             for (Entity e : w.getEntities()) {
-                if (isPetEntity(e) && !byEntity.containsKey(e.getUniqueId())) {
+                if ((isPetEntity(e) && !byEntity.containsKey(e.getUniqueId())) || isWild(e)) {
                     e.remove();
                 }
             }
@@ -174,6 +187,9 @@ public final class PetManager {
                         d.hp = s.getDouble("hp", -1);
                         d.stamp = s.getLong("stamp", System.currentTimeMillis());
                         d.faintUntil = s.getLong("faint-until", 0);
+                        d.stars = Math.max(0, s.getInt("stars", 0));
+                        d.wins = s.getInt("wins", 0);
+                        d.losses = s.getInt("losses", 0);
                         list.add(d);
                     } catch (IllegalArgumentException ex) {
                         plugin.getLogger().warning("Data pet rusak dilewati: " + k + " (" + p.getName() + ")");
@@ -215,6 +231,9 @@ public final class PetManager {
             y.set(b + ".hp", d.hp);
             y.set(b + ".stamp", d.stamp);
             y.set(b + ".faint-until", d.faintUntil);
+            y.set(b + ".stars", d.stars);
+            y.set(b + ".wins", d.wins);
+            y.set(b + ".losses", d.losses);
         }
         UUID last = lastActive.get(id);
         y.set("last-active", last == null ? null : last.toString());
@@ -281,8 +300,9 @@ public final class PetManager {
         ThreadLocalRandom rnd = ThreadLocalRandom.current();
         PetData d = new PetData(UUID.randomUUID(), type, sp.rarity());
         d.level = Math.max(1, Math.min(level, plugin.getConfig().getInt("xp.max-level", 50)));
-        d.ivHp = rnd.nextInt(16);
-        d.ivAtk = rnd.nextInt(16);
+        int floor = sp.rarity() == Rarity.LEGENDARY ? 6 : sp.rarity() == Rarity.EPIC ? 3 : 0;
+        d.ivHp = floor + rnd.nextInt(16 - floor);
+        d.ivAtk = floor + rnd.nextInt(16 - floor);
         d.hp = -1;
         return d;
     }
@@ -305,7 +325,7 @@ public final class PetManager {
         if (sp == null) {
             return 20;
         }
-        return (sp.hp() + sp.hpPerLevel() * (d.level - 1)) * d.rarity.statMult * (1 + d.ivHp / 100.0);
+        return (sp.hp() + sp.hpPerLevel() * (d.level - 1)) * d.rarity.statMult * (1 + d.ivHp / 100.0) * starMult(d);
     }
 
     public double attackPower(PetData d) {
@@ -313,7 +333,11 @@ public final class PetManager {
         if (sp == null) {
             return 2;
         }
-        return (sp.attack() + sp.attackPerLevel() * (d.level - 1)) * d.rarity.statMult * (1 + d.ivAtk / 100.0);
+        return (sp.attack() + sp.attackPerLevel() * (d.level - 1)) * d.rarity.statMult * (1 + d.ivAtk / 100.0) * starMult(d);
+    }
+
+    public double starMult(PetData d) {
+        return 1 + d.stars * plugin.getConfig().getDouble("fuse.bonus-per-star", 0.08);
     }
 
     public double xpNeeded(int level) {
@@ -352,6 +376,43 @@ public final class PetManager {
 
     public ActivePet byEntity(Entity e) {
         return e == null ? null : byEntity.get(e.getUniqueId());
+    }
+
+    public ActivePet byEntityId(UUID id) {
+        return id == null ? null : byEntity.get(id);
+    }
+
+    public ActivePet activeById(UUID owner) {
+        return active.get(owner);
+    }
+
+    public Set<UUID> activeOwners() {
+        return active.keySet();
+    }
+
+    public boolean isWild(Entity e) {
+        return e != null && e.getPersistentDataContainer().has(plugin.wildKey(), PersistentDataType.INTEGER);
+    }
+
+    /** Pet atau pet liar: dikelola plugin. */
+    public boolean isManaged(Entity e) {
+        return isPetEntity(e) || isWild(e);
+    }
+
+    public boolean isDuelPair(Entity a, Entity b) {
+        ActivePet pa = byEntity(a);
+        ActivePet pb = byEntity(b);
+        return pa != null && pb != null && pa.duel == pb && pb.duel == pa;
+    }
+
+    public void hideBossBar(Mob m) {
+        try {
+            if (m instanceof org.bukkit.entity.Boss b && b.getBossBar() != null) {
+                b.getBossBar().setVisible(false);
+            }
+        } catch (RuntimeException ignored) {
+            // tidak semua boss punya bar
+        }
     }
 
     public boolean isPetEntity(Entity e) {
@@ -408,6 +469,9 @@ public final class PetManager {
 
     private Mob spawnMob(Player owner, Species sp) {
         Location loc = owner.getLocation();
+        if (sp.flying()) {
+            loc = loc.clone().add(0, 1.6, 0);
+        }
         Entity e;
         try {
             e = loc.getWorld().spawnEntity(loc, sp.type());
@@ -433,16 +497,28 @@ public final class PetManager {
         if (mob instanceof Zombie z) {
             z.setBaby(false);
         }
+        if (mob instanceof org.bukkit.entity.Slime sl) {
+            sl.setSize(2);
+        }
+        if (sp.controlled()) {
+            mob.setAI(false);
+            mob.setGravity(false);
+        }
+        hideBossBar(mob);
         mob.setTarget(null);
         return mob;
     }
 
     /** Simpan pet kembali ke box. Tidak menghapus pet terakhir untuk auto-summon. */
     public void recall(UUID ownerId) {
-        ActivePet ap = active.remove(ownerId);
+        ActivePet ap = active.get(ownerId);
         if (ap == null) {
             return;
         }
+        if (ap.duel != null && plugin.duels() != null) {
+            plugin.duels().abort(ap);
+        }
+        active.remove(ownerId);
         byEntity.remove(ap.entity.getUniqueId());
         if (ap.entity.isValid()) {
             ap.data.hp = Math.max(1, ap.entity.getHealth());
@@ -555,8 +631,12 @@ public final class PetManager {
         long attackInterval = plugin.getConfig().getLong("attack-interval-ms", 1000);
         boolean autoEngage = plugin.getConfig().getBoolean("auto-engage", true);
         double engageRange = plugin.getConfig().getDouble("engage-range", 8);
+        Combat combat = plugin.combat();
 
         for (ActivePet ap : new ArrayList<>(active.values())) {
+            if (active.get(ap.owner) != ap) {
+                continue;
+            }
             Player owner = Bukkit.getPlayer(ap.owner);
             Mob pet = ap.entity;
             if (owner == null || !owner.isOnline() || owner.isDead()) {
@@ -570,15 +650,25 @@ public final class PetManager {
             }
             Species sp = species.get(ap.data.type);
             Location ol = owner.getLocation();
+            boolean dueling = ap.duel != null;
+
+            if (dueling && (!ap.duel.entity.isValid() || !ap.duel.entity.getWorld().equals(pet.getWorld()))) {
+                plugin.duels().draw(ap, ap.duel);
+                dueling = false;
+            }
 
             if (!pet.getWorld().equals(ol.getWorld())
-                    || pet.getLocation().distanceSquared(ol) > teleportDist * teleportDist) {
+                    || (!dueling && pet.getLocation().distanceSquared(ol) > teleportDist * teleportDist)) {
                 pet.teleport(ol);
                 ap.target = null;
             }
 
-            // pemulihan HP perlahan di luar pertarungan
-            if (now >= ap.nextRegen) {
+            if (dueling && now < ap.duelStart) {
+                halt(ap, sp);
+                continue;
+            }
+
+            if (!dueling && now >= ap.nextRegen) {
                 ap.nextRegen = now + 1000;
                 double max = maxHp(ap.data);
                 if (now - ap.lastHurt > 5000 && pet.getHealth() < max) {
@@ -586,8 +676,7 @@ public final class PetManager {
                 }
             }
 
-            // skill penyembuh
-            if (sp != null && sp.skill() == Skill.HEAL && ap.data.level >= sp.skillLevel() && now >= ap.nextSkill) {
+            if (!dueling && sp != null && sp.skill() == Skill.HEAL && ap.data.level >= sp.skillLevel() && now >= ap.nextSkill) {
                 double omax = attrValue(owner, Attribute.MAX_HEALTH, 20);
                 if (owner.getHealth() < omax * 0.7) {
                     double amount = 2 + ap.data.level * 0.15;
@@ -597,24 +686,24 @@ public final class PetManager {
                 }
             }
 
-            // validasi target
             LivingEntity t = ap.target;
-            if (t != null) {
-                if (!t.isValid() || t.isDead() || t instanceof Player || isPetEntity(t)
-                        || !t.getWorld().equals(pet.getWorld())
+            if (dueling) {
+                t = ap.duel.entity;
+                ap.target = t;
+            } else if (t != null) {
+                if (!combat.valid(ap, t) || !t.getWorld().equals(pet.getWorld())
                         || t.getLocation().distanceSquared(ol) > 24 * 24) {
                     ap.target = null;
                     t = null;
                 }
             }
 
-            // cari target otomatis
             if (t == null && autoEngage && now >= ap.nextScan) {
                 ap.nextScan = now + 1000;
                 LivingEntity best = null;
                 double bestDist = Double.MAX_VALUE;
                 for (Entity e : owner.getNearbyEntities(engageRange, 4, engageRange)) {
-                    if (!(e instanceof Monster m) || isPetEntity(e) || engageBlacklist.contains(e.getType())
+                    if (!(e instanceof Monster m) || isManaged(e) || engageBlacklist.contains(e.getType())
                             || !owner.hasLineOfSight(e)) {
                         continue;
                     }
@@ -634,28 +723,114 @@ public final class PetManager {
                 double dist = pet.getLocation().distance(t.getLocation()) - t.getWidth() / 2.0;
                 boolean inRange = dist <= reach && (!ranged || pet.hasLineOfSight(t));
                 if (inRange) {
-                    pet.getPathfinder().stopPathfinding();
+                    halt(ap, sp);
+                    if (sp.controlled()) {
+                        face(pet, t.getLocation(), sp);
+                    }
                     if (now >= ap.nextAttack) {
                         ap.nextAttack = now + attackInterval;
                         attack(ap, sp, t);
                     }
                 } else {
-                    pet.getPathfinder().moveTo(t.getLocation(), followSpeed);
+                    goTo(ap, sp, t.getLocation(), reach * 0.8, followSpeed, true);
                 }
-            } else {
+            } else if (!dueling) {
                 double dist = pet.getLocation().distance(ol);
                 if (dist > followDist) {
-                    pet.getPathfinder().moveTo(ol, followSpeed);
+                    goTo(ap, sp, ol, followDist, followSpeed, false);
                 } else if (dist < followDist * 0.5) {
-                    pet.getPathfinder().stopPathfinding();
+                    halt(ap, sp);
                 }
             }
         }
     }
 
+    private void goTo(ActivePet ap, Species sp, Location dest, double stop, double speed, boolean attacking) {
+        if (sp != null && sp.controlled()) {
+            Location g = dest.clone();
+            if (sp.flying()) {
+                g.add(0, attacking ? (sp.range() > 0 ? 2.0 : 0.5) : 1.6, 0);
+            }
+            ap.goal = g;
+            ap.stop = Math.max(0.8, stop);
+        } else {
+            ap.entity.getPathfinder().moveTo(dest, speed);
+        }
+    }
+
+    private void halt(ActivePet ap, Species sp) {
+        if (sp != null && sp.controlled()) {
+            ap.goal = null;
+        } else {
+            ap.entity.getPathfinder().stopPathfinding();
+        }
+    }
+
+    private static float yawTo(Location from, Location to, Species sp) {
+        double dx = to.getX() - from.getX();
+        double dz = to.getZ() - from.getZ();
+        float yaw = (float) Math.toDegrees(Math.atan2(-dx, dz));
+        return sp != null && sp.type() == EntityType.ENDER_DRAGON ? yaw + 180f : yaw;
+    }
+
+    private void face(Mob pet, Location to, Species sp) {
+        Location from = pet.getLocation();
+        pet.setRotation(yawTo(from, to, sp), 0f);
+    }
+
+    /** Menggerakkan pet terkontrol (AI mati) selangkah demi selangkah. */
+    private void controlTick() {
+        double step = plugin.getConfig().getDouble("controlled-speed", 0.5);
+        for (ActivePet ap : new ArrayList<>(active.values())) {
+            Species sp = species.get(ap.data.type);
+            if (sp == null || !sp.controlled() || ap.goal == null || !ap.entity.isValid()) {
+                continue;
+            }
+            moveStep(ap, sp, step);
+        }
+    }
+
+    private void moveStep(ActivePet ap, Species sp, double step) {
+        Mob m = ap.entity;
+        Location cur = m.getLocation();
+        Location g = ap.goal;
+        if (g.getWorld() == null || !g.getWorld().equals(cur.getWorld())) {
+            return;
+        }
+        double dx = g.getX() - cur.getX();
+        double dz = g.getZ() - cur.getZ();
+        double dy = sp.flying() ? g.getY() - cur.getY() : 0;
+        double dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+        double mv = Math.min(step, dist - ap.stop * 0.8);
+        if (mv <= 0.05) {
+            return;
+        }
+        double nx = cur.getX() + dx / dist * mv;
+        double nz = cur.getZ() + dz / dist * mv;
+        double ny;
+        World w = cur.getWorld();
+        if (sp.flying()) {
+            ny = cur.getY() + dy / dist * mv;
+            Location test = new Location(w, nx, ny, nz);
+            if (!test.getBlock().isPassable()) {
+                nx = cur.getX();
+                nz = cur.getZ();
+                ny = cur.getY() + 0.6;
+            }
+        } else {
+            Location start = new Location(w, nx, cur.getY() + 1.3, nz);
+            if (!start.getBlock().isPassable()) {
+                return;
+            }
+            var hit = w.rayTraceBlocks(start, new Vector(0, -1, 0), 4.0, org.bukkit.FluidCollisionMode.NEVER, true);
+            ny = hit != null ? hit.getHitPosition().getY() : cur.getY() - 0.5;
+        }
+        Location nl = new Location(w, nx, ny, nz, yawTo(cur, g, sp), 0f);
+        m.teleport(nl);
+    }
+
     private void attack(ActivePet ap, Species sp, LivingEntity target) {
         PetData d = ap.data;
-        Mob pet = ap.entity;
         ThreadLocalRandom rnd = ThreadLocalRandom.current();
         double dmg = attackPower(d);
         boolean skillOn = sp.skill() != Skill.NONE && d.level >= sp.skillLevel();
@@ -669,37 +844,7 @@ public final class PetManager {
                 target.getWorld().strikeLightningEffect(target.getLocation());
             }
         }
-
-        pet.swingMainHand();
-        if (sp.range() > 0) {
-            particleLine(pet.getEyeLocation(), target.getEyeLocation());
-            pet.getWorld().playSound(pet.getLocation(), Sound.ENTITY_ARROW_SHOOT, 0.6f, 1.2f);
-        }
-        target.damage(dmg, pet);
-
-        if (skillOn && !target.isDead()) {
-            if (sp.skill() == Skill.SLOW && rnd.nextDouble() < 0.30) {
-                target.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 60, 1));
-            } else if (sp.skill() == Skill.POISON && rnd.nextDouble() < 0.30) {
-                target.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 80, 0));
-            } else if (sp.skill() == Skill.IGNITE && rnd.nextDouble() < 0.30) {
-                target.setFireTicks(80);
-                target.getWorld().spawnParticle(Particle.FLAME, target.getLocation().add(0, 0.8, 0), 8, 0.2, 0.3, 0.2, 0.01);
-            }
-        }
-    }
-
-    private void particleLine(Location a, Location b) {
-        Vector v = b.toVector().subtract(a.toVector());
-        double len = v.length();
-        if (len < 0.1) {
-            return;
-        }
-        v.normalize();
-        for (double i = 0.5; i < len; i += 0.5) {
-            Location p = a.clone().add(v.clone().multiply(i));
-            a.getWorld().spawnParticle(Particle.CRIT, p, 1, 0, 0, 0, 0);
-        }
+        plugin.combat().deliver(ap, sp, target, dmg);
     }
 
     // ------------------------------------------------------------------ text helpers
@@ -707,7 +852,8 @@ public final class PetManager {
     public Component displayName(PetData d) {
         Species sp = species.get(d.type);
         String base = d.nickname != null ? d.nickname : (sp != null ? sp.name() : d.type.name());
-        return NereusPets.LEGACY.deserialize(d.rarity.color + "[Lv." + d.level + "] &f" + base);
+        String stars = d.stars > 0 ? " &e" + "★".repeat(d.stars) : "";
+        return NereusPets.LEGACY.deserialize(d.rarity.color + "[Lv." + d.level + "] &f" + base + stars);
     }
 
     /** Nama pet dalam kode warna & untuk dipakai di pesan. */
@@ -727,6 +873,19 @@ public final class PetManager {
         lines.add("&8#" + (index + 1));
         lines.add("&7Jenis: &f" + (sp != null ? sp.name() : d.type.name()));
         lines.add("&7Kelangkaan: " + d.rarity.color + d.rarity.label);
+        if (sp != null) {
+            lines.add("&7Serangan: &f" + sp.style().label);
+            for (String l : sp.lore()) {
+                lines.add("&8" + l);
+            }
+        }
+        if (d.stars > 0) {
+            lines.add("&7Bintang: &e" + "★".repeat(d.stars) + " &8(+" + Math.round(d.stars
+                    * plugin.getConfig().getDouble("fuse.bonus-per-star", 0.08) * 100) + "% stat)");
+        }
+        if (d.wins + d.losses > 0) {
+            lines.add("&7Duel: &a" + d.wins + " menang &c" + d.losses + " kalah");
+        }
         if (d.level >= maxLevel) {
             lines.add("&7Level: &e" + d.level + " &6(MAX)");
         } else {
