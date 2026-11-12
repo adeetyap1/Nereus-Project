@@ -8,7 +8,7 @@ authors: [Nereus MC]
 commands:
   pets:
     description: Buka Pet Box dan kelola pet
-    usage: /pets [recall|rename|info|release|give|reload]
+    usage: /pets [recall|rename|info|release|duel|fuse|legend|give|wild|reload]
     aliases: [pet]
     permission: nereuspets.use
 

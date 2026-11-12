@@ -20,6 +20,8 @@ public final class PetMenu implements InventoryHolder {
     private static final int SLOT_PREV = 45;
     private static final int SLOT_RECALL = 49;
     private static final int SLOT_NEXT = 53;
+    private static final int SLOT_DUEL = 47;
+    private static final int SLOT_LEGEND = 51;
 
     private final NereusPets plugin;
     private final PetManager mgr;
@@ -70,6 +72,10 @@ public final class PetMenu implements InventoryHolder {
         if (page < pages - 1) {
             inventory.setItem(SLOT_NEXT, named(Material.ARROW, "&eHalaman berikutnya"));
         }
+        inventory.setItem(SLOT_DUEL, named(Material.IRON_SWORD, "&cArena Duel",
+                "&7Adu pet-mu dengan pet pemain lain.", "&eKlik untuk membuka."));
+        inventory.setItem(SLOT_LEGEND, named(Material.DRAGON_EGG, "&6Pet Legendaris",
+                "&7Satu Legendaris muncul tiap 10 menit.", "&eKlik untuk lihat statusnya."));
         ActivePet ap = mgr.activeOf(player);
         if (ap != null) {
             inventory.setItem(SLOT_RECALL, named(Material.LEAD,
@@ -106,6 +112,15 @@ public final class PetMenu implements InventoryHolder {
         if (slot == SLOT_NEXT) {
             page++;
             render();
+            return;
+        }
+        if (slot == SLOT_DUEL) {
+            new DuelMenu(plugin, mgr, player).open();
+            return;
+        }
+        if (slot == SLOT_LEGEND) {
+            player.closeInventory();
+            player.sendMessage(plugin.wild().statusLine());
             return;
         }
         if (slot == SLOT_RECALL) {

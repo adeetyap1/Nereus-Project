@@ -20,6 +20,10 @@ public final class PetData {
     public double hp = -1;
     public long stamp = System.currentTimeMillis();
     public long faintUntil;
+    /** Bintang hasil fusion, 0 sampai fuse.max-stars. */
+    public int stars;
+    public int wins;
+    public int losses;
 
     public PetData(UUID id, EntityType type, Rarity rarity) {
         this.id = id;

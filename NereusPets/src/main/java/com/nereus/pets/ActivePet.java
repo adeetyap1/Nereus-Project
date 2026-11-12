@@ -18,6 +18,16 @@ public final class ActivePet {
     public long nextScan;
     public long lastHurt;
 
+    /** Lawan duel (pet pemain lain), null jika tidak sedang duel. */
+    public ActivePet duel;
+    public long duelStart;
+    public long duelEnd;
+    public boolean duelGo;
+
+    /** Tujuan gerak untuk pet terkontrol (AI mati). */
+    public org.bukkit.Location goal;
+    public double stop = 1.5;
+
     public ActivePet(UUID owner, PetData data, Mob entity) {
         this.owner = owner;
         this.data = data;
