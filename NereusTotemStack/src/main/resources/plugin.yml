@@ -1,0 +1,27 @@
+name: NereusTotemStack
+version: '${project.version}'
+main: id.nereusmc.totemstack.Main
+api-version: '1.21'
+authors: [Nereus Development]
+description: Custom Totem of Undying stacking and automatic activation for Nereus MC
+softdepend: [PlaceholderAPI, Geyser-Spigot, floodgate]
+
+commands:
+  nereustotem:
+    description: Open the NereusTotemStack menu or run admin subcommands
+    usage: /<command> [reload|give <player> <amount>|check <player>|stats]
+    aliases: [ntotem]
+
+permissions:
+  nereustotem.admin:
+    description: Full access to all NereusTotemStack administration features
+    default: op
+    children:
+      nereustotem.gui: true
+      nereustotem.use: true
+  nereustotem.use:
+    description: Allows automatic totem activation from the inventory
+    default: true
+  nereustotem.gui:
+    description: Allows opening the NereusTotemStack menu
+    default: op

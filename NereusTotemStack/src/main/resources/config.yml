@@ -1,0 +1,62 @@
+# NereusTotemStack - config.yml
+# Semua pengaturan dasar juga bisa diubah lewat GUI (/nereustotem).
+
+settings:
+  enabled: true
+
+stacking:
+  enabled: true
+  # Batas stack Totem of Undying. Rentang valid: 2-99 (batas vanilla untuk komponen max_stack_size).
+  max-stack-size: 64
+
+activation:
+  enabled: true
+  # Mencari totem di hotbar / inventory utama saat tidak ada totem di tangan.
+  inventory-activation: true
+  hotbar: true
+  main-inventory: true
+  # Tangan (MAIN_HAND, OFF_HAND) selalu ditangani langsung oleh Minecraft vanilla lebih dulu.
+  # Urutan HOTBAR / INVENTORY di bawah menentukan mana yang dicari lebih dulu.
+  priority:
+    - MAIN_HAND
+    - OFF_HAND
+    - HOTBAR
+    - INVENTORY
+
+# duration dalam tick (20 tick = 1 detik), amplifier 0 = level I
+effects:
+  regeneration:
+    enabled: true
+    duration: 900
+    amplifier: 1
+  absorption:
+    enabled: true
+    duration: 100
+    amplifier: 1
+  fire-resistance:
+    enabled: true
+    duration: 800
+    amplifier: 0
+
+gui:
+  enabled: true
+  title: "&8NereusTotemStack"
+
+statistics:
+  enabled: true
+  # Jeda (detik) sebelum perubahan statistik ditulis ke database (sekali tulis, tanpa scheduler berulang).
+  save-interval: 300
+
+messages:
+  prefix: "&6&lNEREUS &8» "
+  activation: "&aTotem activated! &7Remaining: &e%amount%"
+  no-totem: "&cYou don't have any totems!"
+  no-permission: "&cYou don't have permission."
+  reloaded: "&aConfiguration reloaded."
+  gui-disabled: "&cThe menu is disabled in config.yml."
+  player-not-found: "&cPlayer not found: &f%player%"
+  invalid-amount: "&cAmount must be a number between 1 and 2304."
+  usage: "&7Usage: &e%usage%"
+  given: "&aGave &e%amount% &atotem(s) to &f%player%&a."
+  check: "&f%player% &7has &e%amount% &7totem(s)."
+  reset-done: "&aSettings reset to defaults."
