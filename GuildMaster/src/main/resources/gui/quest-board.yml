@@ -5,7 +5,7 @@ filler: {enabled: true, material: GRAY_STAINED_GLASS_PANE, name: " "}
 challenge-label: "&c(Tantangan)"
 states:
   available: "&aTersedia"
-  active: "&eSedang berjalan"
+  active: "&eBerjalan otomatis (progres di menu Quest Aktif)"
   done: "&7Selesai hari ini"
 entry:
   name: "%rank% &f%name% %type%"

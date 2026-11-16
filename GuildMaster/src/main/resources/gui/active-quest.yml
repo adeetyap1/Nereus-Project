@@ -21,7 +21,6 @@ hint:
     - "&cShift+Klik kanan: batalkan"
   auto:
     - "&7Hadiah diberikan otomatis saat selesai."
-    - "&cShift+Klik kanan: batalkan"
 nav:
   prev: {slot: 45, material: ARROW, name: "&7Halaman sebelumnya"}
   back: {slot: 49, material: BARRIER, name: "&cKembali ke menu"}

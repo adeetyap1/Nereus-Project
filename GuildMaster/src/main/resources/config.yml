@@ -22,6 +22,47 @@ registration:
   # Isi dengan kunci rank di NereusRpg: F, E, D, C, B, A, S, SS, SSS.
   min-rank: F
 
+# --- Sumber quest --------------------------------------------
+# auto        : ODailyQuests jika terpasang, kalau tidak quest bawaan Nereus RPG
+# odailyquests: paksa ODailyQuests
+# nereusrpg   : paksa quest Nereus RPG
+# Rank dan profil Adventurer tetap dari Nereus RPG.
+quests:
+  source: auto
+
+# Tampilan quest ODailyQuests (API-nya tidak memberi ikon, deskripsi, atau hadiah, jadi diatur di sini).
+odq:
+  type-labels:
+    KILL: "Bunuh"
+    BREAK: "Hancurkan"
+    GET: "Kumpulkan"
+    LOCATION: "Kunjungi"
+    FISHING: "Memancing"
+    CRAFT: "Buat"
+    COOK: "Masak"
+    FARMING: "Panen"
+    VILLAGER_TRADE: "Berdagang"
+    ENCHANT: "Enchant"
+    BREED: "Beternak"
+    TAME: "Jinakkan"
+    CUSTOM: "Khusus"
+  type-icons:
+    KILL: IRON_SWORD
+    BREAK: IRON_PICKAXE
+    GET: CHEST
+    LOCATION: COMPASS
+    FISHING: FISHING_ROD
+    CRAFT: CRAFTING_TABLE
+    COOK: FURNACE
+    FARMING: WHEAT
+    VILLAGER_TRADE: EMERALD
+    ENCHANT: ENCHANTING_TABLE
+    BREED: WHEAT_SEEDS
+    TAME: BONE
+  # Baris hadiah di papan quest (hadiah diberikan otomatis oleh ODailyQuests).
+  reward-lines:
+    - "&7Hadiah diberikan otomatis saat selesai."
+
 # --- Akses tanpa NPC ----------------------------------------
 commands:
   # false: pemain biasa hanya bisa memakai guild lewat NPC. Admin selalu bisa /guildmaster talk dan menu.

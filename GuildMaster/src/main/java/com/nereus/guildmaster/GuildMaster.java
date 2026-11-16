@@ -11,6 +11,7 @@ import com.nereus.guildmaster.hook.GuildExpansion;
 import com.nereus.guildmaster.npc.NpcIntegration;
 import com.nereus.guildmaster.rpg.NereusRpgAdapter;
 import com.nereus.guildmaster.rpg.NoRpgAdapter;
+import com.nereus.guildmaster.rpg.OdqAdapter;
 import com.nereus.guildmaster.rpg.RpgAdapter;
 import org.bukkit.Bukkit;
 import org.bukkit.command.PluginCommand;
@@ -84,13 +85,25 @@ public final class GuildMaster extends JavaPlugin implements Listener {
                 getLogger().warning("NereusRpg ada tapi versinya tidak cocok: " + e.getMessage());
             }
         }
+        RpgAdapter base = a == null ? new NoRpgAdapter() : a;
         if (a == null) {
-            getLogger().warning("Nereus RPG tidak ditemukan: registrasi dan menu quest dinonaktifkan sampai RPG terpasang.");
-            rpg = new NoRpgAdapter();
+            getLogger().warning("Nereus RPG tidak ditemukan: rank tidak bisa dibaca, registrasi mandiri ditolak.");
         } else {
-            rpg = a;
-            getLogger().info("Terhubung ke Nereus RPG.");
+            getLogger().info("Terhubung ke Nereus RPG (rank dan profil).");
         }
+        String source = getConfig().getString("quests.source", "auto").toLowerCase();
+        RpgAdapter chosen = base;
+        if (!source.equals("nereusrpg") && Bukkit.getPluginManager().isPluginEnabled("ODailyQuests")) {
+            OdqAdapter odq = OdqAdapter.tryCreate(this, base);
+            if (odq != null) {
+                chosen = odq;
+                getLogger().info("Quest dibaca dari ODailyQuests.");
+            }
+        }
+        if (!chosen.available()) {
+            getLogger().warning("Tidak ada sumber quest (ODailyQuests atau Nereus RPG). Menu quest dinonaktifkan.");
+        }
+        rpg = chosen;
     }
 
     public void reloadAll() {

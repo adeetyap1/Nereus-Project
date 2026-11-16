@@ -5,7 +5,7 @@ api-version: '1.21'
 description: Antarmuka Adventurer Guild untuk Nereus MC
 authors: [Nereus MC]
 # NereusRpg dan FancyNpcs lunak: plugin tetap hidup tanpa keduanya dan memberi peringatan jelas.
-softdepend: [NereusRpg, FancyNpcs, PlaceholderAPI, floodgate, LuckPerms, Vault]
+softdepend: [NereusRpg, ODailyQuests, FancyNpcs, PlaceholderAPI, floodgate, LuckPerms, Vault]
 
 commands:
   guildmaster:
