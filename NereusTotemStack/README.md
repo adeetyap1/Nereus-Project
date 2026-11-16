@@ -4,7 +4,7 @@ Plugin Paper untuk server **Nereus MC**: Totem of Undying bisa ditumpuk sampai 6
 
 - Minecraft: Paper 1.21.11, Java 21, Maven
 - Package: `id.nereusmc.totemstack`
-- Versi: 1.0.0 (versi diatur di `pom.xml`; `plugin.yml` memakai `${project.version}`)
+- Versi: 1.0.1 (versi diatur di `pom.xml`; `plugin.yml` memakai `${project.version}`)
 - Soft dependency: PlaceholderAPI, Geyser, Floodgate (tidak wajib; tidak ada integrasi khusus yang diperlukan)
 
 ## Build

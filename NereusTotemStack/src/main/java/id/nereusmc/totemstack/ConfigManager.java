@@ -37,6 +37,11 @@ public final class ConfigManager {
         validate();
     }
 
+    /** NONE, ACTIONBAR, atau CHAT: cara pesan aktivasi totem ditampilkan. */
+    public String notifyMode() {
+        return cfg().getString("activation.notify", "NONE").toUpperCase(java.util.Locale.ROOT);
+    }
+
     private FileConfiguration cfg() {
         return plugin.getConfig();
     }

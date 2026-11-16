@@ -12,6 +12,8 @@ stacking:
 activation:
   enabled: true
   # Mencari totem di hotbar / inventory utama saat tidak ada totem di tangan.
+  # Pesan saat totem pecah: NONE (tanpa pesan, bawaan), ACTIONBAR (teks kecil di atas hotbar), atau CHAT.
+  notify: NONE
   inventory-activation: true
   hotbar: true
   main-inventory: true

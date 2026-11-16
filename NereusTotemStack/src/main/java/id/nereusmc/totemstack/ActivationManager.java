@@ -57,7 +57,7 @@ public final class ActivationManager implements Listener {
         }
         int slot = totems.findSlot(player);
         if (slot < 0) {
-            player.sendMessage(cfg.message("no-totem"));
+            notifyPlayer(player, cfg.message("no-totem"));
             return;
         }
         if (!totems.consumeOne(player, slot)) {
@@ -87,9 +87,20 @@ public final class ActivationManager implements Listener {
                 player.playEffect(EntityEffect.TOTEM_RESURRECT);
             }
             applyConfiguredEffects(player);
-            player.sendMessage(plugin.config().message("activation",
+            notifyPlayer(player, plugin.config().message("activation",
                     "%amount%", String.valueOf(plugin.totems().count(player))));
         });
+    }
+
+    /** Pesan aktivasi sesuai activation.notify: NONE (tanpa pesan), ACTIONBAR, atau CHAT. */
+    private void notifyPlayer(Player player, net.kyori.adventure.text.Component message) {
+        String mode = plugin.config().notifyMode();
+        switch (mode) {
+            case "CHAT" -> player.sendMessage(message);
+            case "ACTIONBAR" -> player.sendActionBar(message);
+            default -> {
+            }
+        }
     }
 
     private void applyConfiguredEffects(Player player) {

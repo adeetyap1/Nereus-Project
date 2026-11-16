@@ -6,7 +6,7 @@
 
     <groupId>id.nereusmc</groupId>
     <artifactId>NereusTotemStack</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
     <name>NereusTotemStack</name>
     <description>Custom Totem of Undying stacking and automatic activation for Nereus MC</description>
