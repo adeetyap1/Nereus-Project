@@ -21,6 +21,9 @@ registration:
   # Rank Nereus RPG minimum untuk mendaftar (F = rank terendah, jadi semua pemain RPG boleh).
   # Isi dengan kunci rank di NereusRpg: F, E, D, C, B, A, S, SS, SSS.
   min-rank: F
+  # false : /guildmaster unregister menghapus catatan, pemain bisa mendaftar lagi lewat NPC (cocok untuk tes).
+  # true  : unregister mencabut akses; pemain TIDAK bisa mendaftar sendiri lagi sampai admin /guildmaster register.
+  unregister-blocks-reregister: false
 
 # --- Sumber quest --------------------------------------------
 # auto        : ODailyQuests jika terpasang, kalau tidak quest bawaan Nereus RPG

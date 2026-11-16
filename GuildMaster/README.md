@@ -35,7 +35,7 @@ Jika FancyNpcs atau Nereus RPG tidak ada, plugin tetap hidup dan memberi peringa
 | `/guildmaster reload` | Muat ulang semua config | `guildmaster.admin.reload` |
 | `/guildmaster info` | Status database, RPG, FancyNpcs, Floodgate | `guildmaster.admin.reload` |
 | `/guildmaster register <pemain>` | Daftarkan paksa (abaikan syarat rank) atau pulihkan yang dicabut | `guildmaster.admin.register` |
-| `/guildmaster unregister <pemain>` | Cabut akses. Catatan tetap ada dan pemain tidak bisa mendaftar sendiri lagi | `guildmaster.admin.register` |
+| `/guildmaster unregister <pemain>` | Keluarkan dari guild; pemain bisa mendaftar lagi lewat NPC. Dengan `registration.unregister-blocks-reregister: true`, akses dicabut dan hanya admin yang bisa mengembalikan | `guildmaster.admin.register` |
 | `/guildmaster reset <pemain>` | Hapus catatan sepenuhnya, bisa mendaftar lagi dari awal | `guildmaster.admin.reset` |
 
 `guildmaster.use` default semua pemain. `guildmaster.admin` (default op) mencakup ketiga permission admin.

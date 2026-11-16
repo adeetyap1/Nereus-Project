@@ -118,8 +118,17 @@ public final class GuildCommand implements CommandExecutor, TabCompleter {
         switch (sub) {
             case "register" -> plugin.adventurers().adminRegister(id, name,
                     ok -> plugin.configs().send(sender, ok ? "admin-registered" : "admin-failed", "player", name));
-            case "unregister" -> plugin.adventurers().adminUnregister(id,
-                    ok -> plugin.configs().send(sender, ok ? "admin-unregistered" : "admin-not-found", "player", name));
+            case "unregister" -> {
+                boolean block = plugin.getConfig().getBoolean("registration.unregister-blocks-reregister", false);
+                if (block) {
+                    plugin.adventurers().adminUnregister(id,
+                            ok -> plugin.configs().send(sender, ok ? "admin-unregistered-blocked" : "admin-not-found", "player", name));
+                } else {
+                    plugin.dialogues().end(id);
+                    plugin.adventurers().adminReset(id,
+                            ok -> plugin.configs().send(sender, ok ? "admin-unregistered" : "admin-not-found", "player", name));
+                }
+            }
             default -> {
                 plugin.dialogues().end(id);
                 plugin.adventurers().adminReset(id,
