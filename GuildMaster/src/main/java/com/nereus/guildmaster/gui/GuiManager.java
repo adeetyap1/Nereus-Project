@@ -37,6 +37,11 @@ public final class GuiManager implements Listener {
             p.closeInventory();
             return;
         }
+        if (!plugin.rpg().available() && !id.equals("main") && !id.equals("info")) {
+            plugin.configs().send(p, "rpg-missing");
+            p.closeInventory();
+            return;
+        }
         Menu m = switch (id) {
             case "quest-board" -> new QuestBoardMenu(plugin, this, p);
             case "active", "active-quest" -> new ActiveQuestMenu(plugin, this, p);

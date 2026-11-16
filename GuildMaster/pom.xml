@@ -6,7 +6,7 @@
 
     <groupId>com.nereus</groupId>
     <artifactId>GuildMaster</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
     <name>GuildMaster</name>
     <description>Antarmuka Adventurer Guild untuk Nereus MC (NPC, dialog, registrasi, GUI)</description>
