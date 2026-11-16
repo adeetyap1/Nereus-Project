@@ -1,0 +1,22 @@
+# Informasi Guild. Ubah teksnya sesuai lore server.
+title: "&8Informasi Guild"
+rows: 3
+filler: {enabled: true, material: GRAY_STAINED_GLASS_PANE, name: " "}
+items:
+  about:
+    slot: 13
+    material: ENCHANTED_BOOK
+    glow: true
+    name: "&6Adventurer Guild Nereus"
+    lore:
+      - "&7Tempat para petualang dicatat."
+      - ""
+      - "&7- Ambil quest dari Papan Quest"
+      - "&7- Selesaikan untuk hadiah dan EXP"
+      - "&7- Naikkan Rank F sampai SSS"
+      - "&7- Semua quest bersifat solo"
+  back:
+    slot: 22
+    material: ARROW
+    name: "&eKembali"
+    action: back

@@ -1,0 +1,57 @@
+# Menu utama guild. Tiap item: slot, material, name, lore, glow, action.
+# action: open:<profile|quest-board|active-quest|quest-history|info>, back, close
+# Placeholder: %player% %status% %registered% %rank% %level% %xp% %xp_needed% %class% %quests% %kills%
+#              %streak% %gp% %today% %daily_limit% %active% %active_max% %story%
+title: "&8Adventurer Guild"
+rows: 3
+filler: {enabled: true, material: GRAY_STAINED_GLASS_PANE, name: " "}
+items:
+  profile:
+    slot: 10
+    material: PLAYER_HEAD
+    viewer-head: true
+    name: "&6Profil Adventurer"
+    lore:
+      - "&7Rank: %rank%"
+      - "&7Quest selesai: &f%quests%"
+      - ""
+      - "&eKlik untuk membuka"
+    action: "open:profile"
+  quests:
+    slot: 12
+    material: WRITABLE_BOOK
+    name: "&aPapan Quest"
+    lore:
+      - "&7Ambil quest yang tersedia."
+      - "&7Hari ini: &f%today%&7/&f%daily_limit%"
+      - ""
+      - "&eKlik untuk membuka"
+    action: "open:quest-board"
+  active:
+    slot: 14
+    material: COMPASS
+    name: "&bQuest Aktif"
+    lore:
+      - "&7Berjalan: &f%active%&7/&f%active_max%"
+      - ""
+      - "&eKlik untuk membuka"
+    action: "open:active-quest"
+  history:
+    slot: 16
+    material: BOOK
+    name: "&dRiwayat Quest"
+    lore:
+      - "&7Quest dan misi yang pernah selesai."
+      - ""
+      - "&eKlik untuk membuka"
+    action: "open:quest-history"
+  info:
+    slot: 22
+    material: OAK_SIGN
+    name: "&eInformasi Guild"
+    action: "open:info"
+  close:
+    slot: 26
+    material: BARRIER
+    name: "&cTutup"
+    action: close

@@ -42,6 +42,8 @@ public final class Profile {
     public long examCooldown;
     public int skillSel;
     public final Map<String, Long> cooldowns = new HashMap<>();
+    /** Riwayat selesai: "epochMillis|quest atau story|nama", terbaru di akhir, maksimal 50. */
+    public final java.util.List<String> history = new java.util.ArrayList<>();
 
     public Profile(UUID id) {
         this.id = id;
@@ -83,6 +85,7 @@ public final class Profile {
         s.set("exam-deadline", examDeadline);
         s.set("exam-cooldown", examCooldown);
         s.set("skill-sel", skillSel);
+        s.set("history", new java.util.ArrayList<>(history));
     }
 
     public void load(ConfigurationSection s) {
@@ -120,5 +123,6 @@ public final class Profile {
         examDeadline = s.getLong("exam-deadline", 0);
         examCooldown = s.getLong("exam-cooldown", 0);
         skillSel = s.getInt("skill-sel", 0);
+        history.addAll(s.getStringList("history"));
     }
 }

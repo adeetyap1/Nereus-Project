@@ -1,5 +1,5 @@
 name: NereusRpg
-version: 1.0.0
+version: '${project.version}'
 main: com.nereus.rpg.NereusRpg
 api-version: '1.21'
 description: RPG lengkap Nereus MC - class, skill, quest, misi cerita, rank guild

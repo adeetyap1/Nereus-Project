@@ -1,0 +1,29 @@
+# Profil Adventurer. Semua angka dibaca dari Nereus RPG; GuildMaster hanya menampilkan.
+title: "&8Profil Adventurer"
+rows: 3
+filler: {enabled: true, material: GRAY_STAINED_GLASS_PANE, name: " "}
+items:
+  profile:
+    slot: 13
+    material: PLAYER_HEAD
+    viewer-head: true
+    name: "&6%player%"
+    lore:
+      - "&7Status: &a%status%"
+      - "&7Terdaftar: &f%registered%"
+      - ""
+      - "&7Rank RPG: %rank%"
+      - "&7Level: &f%level% &8(&f%xp%&7/&f%xp_needed% &7XP&8)"
+      - "&7Class: &f%class%"
+      - "&7GP guild: &e%gp%"
+      - ""
+      - "&7Quest selesai: &f%quests%"
+      - "&7Monster dikalahkan: &f%kills%"
+      - "&7Hari beruntun: &f%streak%"
+      - "&7Quest hari ini: &f%today%&7/&f%daily_limit%"
+      - "&7Misi cerita: &f%story%"
+  back:
+    slot: 22
+    material: ARROW
+    name: "&eKembali"
+    action: back

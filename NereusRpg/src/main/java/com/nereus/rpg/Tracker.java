@@ -76,12 +76,18 @@ public final class Tracker {
         }
     }
 
+    /** XP yang diberikan saat quest selesai (dipakai juga oleh GuildMaster untuk tampilan hadiah). */
+    public long questXp(Defs.Quest q) {
+        return Math.round(core.plugin.getConfig().getInt("level.xp-quest-base", 40) * (q.rank() + 1) * (q.challenge() ? 1.5 : 1.0));
+    }
+
     private void completeQuest(Player p, Profile pr, Defs.Quest q) {
         pr.active.remove(q.id());
         pr.done.add(q.id());
+        core.logHistory(pr, "quest", q.name());
         pr.completedToday++;
         pr.totalQuests++;
-        long xp = Math.round(core.plugin.getConfig().getInt("level.xp-quest-base", 40) * (q.rank() + 1) * (q.challenge() ? 1.5 : 1.0));
+        long xp = questXp(q);
         p.showTitle(Title.title(Text.c("&aQuest Selesai"), Text.c(q.name())));
         p.playSound(p.getLocation(), Sound.UI_TOAST_CHALLENGE_COMPLETE, 1f, 1f);
         core.reward(p, q.gp(), xp, q.commands());
@@ -176,6 +182,7 @@ public final class Tracker {
     private void completeMission(Player p, Profile pr, Defs.Mission m) {
         pr.story++;
         pr.storyProgress = 0;
+        core.logHistory(pr, "story", m.title());
         p.showTitle(Title.title(Text.c("&dMisi Selesai"), Text.c(m.title())));
         p.playSound(p.getLocation(), Sound.UI_TOAST_CHALLENGE_COMPLETE, 1f, 0.8f);
         core.reward(p, m.gp(), m.xp(), m.commands());

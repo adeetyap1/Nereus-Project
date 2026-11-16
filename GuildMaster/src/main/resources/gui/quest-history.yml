@@ -1,0 +1,27 @@
+# Riwayat penyelesaian (maksimal 50 terakhir, dicatat oleh Nereus RPG). Terbaru di atas.
+# Placeholder: %name% %date% %kind%
+title: "&8Riwayat Quest"
+filler: {enabled: true, material: GRAY_STAINED_GLASS_PANE, name: " "}
+kinds:
+  quest: {material: PAPER, label: "Quest harian"}
+  story: {material: WRITABLE_BOOK, label: "Misi cerita"}
+entry:
+  name: "&f%name%"
+  lore:
+    - "&7Jenis: &f%kind%"
+    - "&7Selesai: &f%date%"
+nav:
+  prev: {slot: 45, material: ARROW, name: "&7Halaman sebelumnya"}
+  back: {slot: 49, material: BARRIER, name: "&cKembali ke menu"}
+  next: {slot: 53, material: ARROW, name: "&7Halaman berikutnya"}
+  info:
+    slot: 47
+    material: CLOCK
+    name: "&6Riwayat"
+    lore:
+      - "&7Halaman &f%page%&7/&f%pages%"
+      - "&7Total: &f%quests% &7quest selesai"
+empty:
+  slot: 22
+  material: BARRIER
+  name: "&7Belum ada riwayat"

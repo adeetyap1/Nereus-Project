@@ -1,0 +1,131 @@
+# ============================================================
+# Dialog NPC Guild Master.
+# Setiap node = satu layar popup. Tiap tombol punya aksi:
+#   goto:<node>  pindah ke layar lain (tombol "back" kembali ke layar sebelumnya)
+#   back         kembali ke layar sebelumnya
+#   register     daftarkan pemain (hasilnya memilih layar dari "results")
+#   menu         tutup dialog dan buka menu guild
+#   close        tutup dialog
+# Placeholder: %player% %npc% %rank% (rank RPG pemain) %rank_min% %level% %quests%
+#              %status% %registered_date%
+# Java memakai popup native Paper. Bedrock memakai form Floodgate (atau teks bernomor jika tidak ada).
+# ============================================================
+
+npc-name: "&6&lGUILD MASTER"
+
+# Layar pertama menurut status pemain.
+entry:
+  unregistered: welcome
+  registered: returning
+  revoked: revoked
+
+# Layar hasil setelah tombol "register".
+results:
+  registered-ok: registered
+  already: already
+  revoked: revoked
+  rank-too-low: rank-too-low
+  rpg-unavailable: rpg-unavailable
+  error: error
+
+nodes:
+  welcome:
+    lines:
+      - "&f\"Selamat datang di Adventurer Guild.\""
+      - ""
+      - "&f\"Apakah kamu ingin mendaftarkan namamu dalam catatan guild?\""
+    buttons:
+      - {label: "&aDaftar Adventurer", tooltip: "Mulai pendaftaran", action: "goto:confirm"}
+      - {label: "&eInformasi Guild", tooltip: "Apa itu Adventurer Guild", action: "goto:info"}
+      - {label: "&cTutup", action: close}
+
+  info:
+    lines:
+      - "&f\"Adventurer Guild menaungi para petualang Nereus.\""
+      - ""
+      - "&7- Ambil quest dari papan quest"
+      - "&7- Selesaikan untuk hadiah dan EXP"
+      - "&7- Naikkan Rank dari F sampai SSS"
+      - ""
+      - "&f\"Semua perjalanan dilakukan sendiri. Kamu hanya perlu keberanian.\""
+    buttons:
+      - {label: "&eKembali", action: back}
+      - {label: "&cTutup", action: close}
+
+  confirm:
+    lines:
+      - "&f\"Aku akan mencatat namamu, &e%player%&f.\""
+      - ""
+      - "&7Syarat: minimal Rank &f%rank_min%&7. Rank-mu: %rank%"
+      - "&7Pendaftaran hanya dilakukan satu kali."
+      - ""
+      - "&f\"Apakah kamu yakin?\""
+    buttons:
+      - {label: "&aYa, daftarkan aku", action: register}
+      - {label: "&eKembali", action: back}
+
+  registered:
+    lines:
+      - "&f\"Namamu kini tercatat dalam Adventurer Guild.\""
+      - ""
+      - "&f\"Perjalananmu sebagai petualang resmi dimulai.\""
+      - ""
+      - "&7Status: &aRegistered"
+      - "&7Rank: %rank%"
+      - "&7Terdaftar: &f%registered_date%"
+    buttons:
+      - {label: "&aBuka Layanan Guild", action: menu}
+      - {label: "&cTutup", action: close}
+
+  returning:
+    lines:
+      - "&f\"Selamat datang kembali, &e%player%&f.\""
+      - ""
+      - "&7Rank: %rank% &8| &7Quest selesai: &f%quests%"
+      - ""
+      - "&f\"Apa yang bisa kubantu hari ini?\""
+    buttons:
+      - {label: "&aBuka Layanan Guild", action: menu}
+      - {label: "&eInformasi Guild", action: "goto:info"}
+      - {label: "&cTutup", action: close}
+
+  already:
+    lines:
+      - "&f\"Namamu sudah tercatat di sini, petualang.\""
+    buttons:
+      - {label: "&aBuka Layanan Guild", action: menu}
+      - {label: "&cTutup", action: close}
+
+  revoked:
+    lines:
+      - "&f\"Catatanmu telah dicabut oleh guild.\""
+      - ""
+      - "&7Hubungi staff jika ini keliru."
+    buttons:
+      - {label: "&cTutup", action: close}
+
+  rank-too-low:
+    lines:
+      - "&f\"Maaf, kamu belum memenuhi syarat.\""
+      - ""
+      - "&7Dibutuhkan minimal Rank &f%rank_min%&7. Rank-mu: %rank%"
+    buttons:
+      - {label: "&eKembali", action: back}
+      - {label: "&cTutup", action: close}
+
+  rpg-unavailable:
+    lines:
+      - "&f\"Catatan guild sedang tidak bisa dibuka.\""
+      - ""
+      - "&7Sistem RPG belum aktif. Coba lagi nanti."
+    buttons:
+      - {label: "&cTutup", action: close}
+
+  error:
+    lines:
+      - "&f\"Tinta kami tumpah. Coba lagi sebentar.\""
+      - ""
+      - "&7Terjadi kesalahan saat menyimpan. Hubungi staff jika berulang."
+    buttons:
+      - {label: "&eKembali", action: back}
+      - {label: "&cTutup", action: close}

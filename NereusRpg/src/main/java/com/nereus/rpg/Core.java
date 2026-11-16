@@ -325,6 +325,14 @@ public final class Core {
         return LocalDate.now(zone).toString();
     }
 
+    /** Catat satu penyelesaian ke riwayat pemain (maksimal 50 terakhir). */
+    public void logHistory(Profile pr, String kind, String name) {
+        pr.history.add(System.currentTimeMillis() + "|" + kind + "|" + name);
+        while (pr.history.size() > 50) {
+            pr.history.remove(0);
+        }
+    }
+
     public void checkDay(Profile pr) {
         String t = today();
         if (!t.equals(pr.day)) {
