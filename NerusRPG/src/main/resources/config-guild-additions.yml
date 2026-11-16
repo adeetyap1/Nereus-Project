@@ -1,0 +1,50 @@
+# ============================================================
+# NERUS GUILD
+# ============================================================
+
+# Format tanggal (registered_date, /gm info).
+date-format: "dd MMM yyyy"
+
+# NPC Guild Master "Caylin" dibuat di FancyNpcs (/npc create ...). Isi ID atau nama NPC-nya di sini.
+npc:
+  ids: ["caylin", "guildmaster"]
+  click: ANY_CLICK            # RIGHT_CLICK | LEFT_CLICK | ANY_CLICK
+  click-cooldown-ms: 1200
+  max-distance: 8.0
+
+# Tampilan dialog. Java: GUI (inventori, bawaan) | DIALOG (popup Paper) | CHAT (teks bernomor).
+# Bedrock: form Floodgate jika Floodgate terpasang, jika tidak teks bernomor (/gm choose N).
+dialogue:
+  java-view: GUI
+  button-width: 220           # hanya untuk java-view: DIALOG
+
+# Perintah konsol yang dijalankan saat pemain berhasil mendaftar. Placeholder: %player%
+registration:
+  commands: []
+
+# Warna rank untuk pemain Bedrock memakai warna cadangan (legacy) dari ranks.yml.
+colors:
+  bedrock-fallback: true
+
+# Tampilan rank saat belum terdaftar (placeholder %nereusrpg_rank% = NONE).
+ranks-display:
+  none: "&7NONE"
+
+# Alias /gm: true = NerusRPG mengambil alih /gm jika plugin lain (mis. Essentials: gamemode) sudah memakainya.
+# Gamemode tetap bisa lewat /gamemode. false = /gm milik plugin lain dibiarkan, pakai /nereusrpg.
+commands:
+  take-over-gm: true
+
+# Backup otomatis playerdata/ ke backups/ (zip). interval 0 = mati.
+backup:
+  interval-hours: 12
+  keep: 14
+
+# Migrasi otomatis dari plugin lama NereusRpg dan GuildMaster saat pertama kali jalan.
+# legacy-players: pemain lama yang punya progres tetapi belum tercatat di GuildMaster:
+#   REGISTER_IF_PROGRESS = otomatis REGISTERED (progres dipertahankan) | UNREGISTERED = harus daftar lewat Caylin
+migration:
+  auto: true
+  legacy-players: REGISTER_IF_PROGRESS
+
+# Syarat rank ada di ranks.yml. Bagian "ranks:" lama di atas tidak dipakai lagi.

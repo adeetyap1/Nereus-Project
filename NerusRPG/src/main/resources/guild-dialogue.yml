@@ -1,0 +1,138 @@
+# ============================================================
+# guild-dialogue.yml - dialog Caylin, Guild Master Nerus Guild.
+# Setiap node = satu layar. Tombol punya aksi:
+#   goto:<node>  pindah ke layar lain
+#   back         kembali ke layar sebelumnya
+#   register     daftarkan pemain (hasilnya memilih layar dari "results")
+#   menu         tutup dialog dan buka menu Nerus Guild
+#   close        tutup dialog
+# Placeholder: %player% %npc% %rank% %level% %quests% %status% %registered_date% %rank_next%
+# Baris yang berisi hanya %rank_list% diganti daftar rank F-S.
+# Java: inventori (atau popup Paper, lihat config dialogue.java-view). Bedrock: form Floodgate / teks bernomor.
+# ============================================================
+
+npc-name: "&6&lCaylin"
+title: "&6Caylin &8- &7Guild Master Nerus Guild"
+
+# Layar pertama menurut status pemain.
+entry:
+  unregistered: welcome
+  registered: returning
+  revoked: revoked
+  restored: restored
+
+# Layar hasil setelah tombol "register".
+results:
+  ok: registered
+  already: already
+  revoked: revoked
+  error: error
+
+nodes:
+  welcome:
+    lines:
+      - "&f\"Selamat datang di &6Nerus Guild&f, pengelana. Aku &e%npc%&f, Guild Master di sini.\""
+      - ""
+      - "&f\"Kamu belum tercatat sebagai petualang. Mau kudaftarkan?\""
+    buttons:
+      - {label: "&aDaftar jadi petualang", tooltip: "Mulai pendaftaran", action: "goto:confirm"}
+      - {label: "&eTentang Nerus Guild", tooltip: "Apa itu Nerus Guild", action: "goto:info"}
+      - {label: "&6Jenjang Rank", tooltip: "Rank F sampai S", action: "goto:rank-info"}
+      - {label: "&cTutup", action: close}
+
+  info:
+    lines:
+      - "&f\"&6Nerus Guild&f menaungi para petualang di dunia Nereus.\""
+      - ""
+      - "&7- Ambil quest dari papan quest dan selesaikan untuk EXP dan hadiah"
+      - "&7- Naikkan Level, lalu tempuh ujian untuk naik Rank dari F sampai S"
+      - "&7- Perjalanan ini kamu jalani sendiri, tanpa party"
+      - ""
+      - "&f\"Tanpa mendaftar pun kamu bebas bermain survival. Tapi nama besar dimulai dari catatan di buku ini.\""
+    buttons:
+      - {label: "&6Jenjang Rank", action: "goto:rank-info"}
+      - {label: "&eKembali", action: back}
+      - {label: "&cTutup", action: close}
+
+  rank-info:
+    lines:
+      - "&f\"Tujuh tingkat, dari yang paling umum sampai yang paling langka:\""
+      - ""
+      - "%rank_list%"
+      - ""
+      - "&f\"Semua petualang baru memulai dari Rank F. Rank S adalah puncaknya.\""
+    buttons:
+      - {label: "&eKembali", action: back}
+      - {label: "&cTutup", action: close}
+
+  confirm:
+    lines:
+      - "&f\"Aku akan menuliskan namamu, &e%player%&f, ke buku &6Nerus Guild&f.\""
+      - ""
+      - "&7Kamu akan mendapat &fRank F &7dan &fLevel 1&7."
+      - "&7Pendaftaran hanya dilakukan satu kali."
+      - ""
+      - "&f\"Apakah kamu yakin?\""
+    buttons:
+      - {label: "&aYa, daftarkan aku", action: register}
+      - {label: "&eKembali", action: back}
+
+  registered:
+    lines:
+      - "&f\"Selesai. Namamu, &e%player%&f, kini tercatat di &6Nerus Guild&f.\""
+      - ""
+      - "&f\"Selamat bergabung, petualang. Perjalananmu dimulai dari sini.\""
+      - ""
+      - "&7Status: %status%"
+      - "&7Rank: %rank% &8| &7Level: &f%level%"
+      - "&7Terdaftar: &f%registered_date%"
+    buttons:
+      - {label: "&aBuka menu Nerus Guild", action: menu}
+      - {label: "&cTutup", action: close}
+
+  returning:
+    lines:
+      - "&f\"Selamat datang kembali, &e%player%&f. Senang melihatmu masih utuh.\""
+      - ""
+      - "&7Rank: %rank% &8| &7Level: &f%level% &8| &7Quest selesai: &f%quests%"
+      - ""
+      - "&f\"Ada yang bisa kubantu hari ini?\""
+    buttons:
+      - {label: "&aBuka menu Nerus Guild", action: menu}
+      - {label: "&6Jenjang Rank", action: "goto:rank-info"}
+      - {label: "&eTentang Nerus Guild", action: "goto:info"}
+      - {label: "&cTutup", action: close}
+
+  already:
+    lines:
+      - "&f\"Namamu sudah ada di bukuku, petualang. Tidak perlu mendaftar dua kali.\""
+    buttons:
+      - {label: "&aBuka menu Nerus Guild", action: menu}
+      - {label: "&cTutup", action: close}
+
+  revoked:
+    lines:
+      - "&f\"Maaf, &e%player%&f. Keanggotaanmu di &6Nerus Guild&f sedang dicabut.\""
+      - ""
+      - "&f\"Catatan perjalananmu tidak hilang, tapi aku tak bisa melayanimu sekarang. Bicaralah dengan staff.\""
+    buttons:
+      - {label: "&cTutup", action: close}
+
+  restored:
+    lines:
+      - "&f\"&e%player%&f! Catatanmu sudah dipulihkan. Selamat datang kembali di &6Nerus Guild&f.\""
+      - ""
+      - "&7Rank: %rank% &8| &7Level: &f%level%"
+      - "&f\"Semua perjalananmu yang dulu masih tersimpan. Lanjutkan di mana kamu berhenti.\""
+    buttons:
+      - {label: "&aBuka menu Nerus Guild", action: menu}
+      - {label: "&cTutup", action: close}
+
+  error:
+    lines:
+      - "&f\"Aduh, tintaku tumpah. Coba lagi sebentar ya.\""
+      - ""
+      - "&7Terjadi kesalahan saat mencatat. Hubungi staff jika terus berulang."
+    buttons:
+      - {label: "&eKembali", action: back}
+      - {label: "&cTutup", action: close}

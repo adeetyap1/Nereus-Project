@@ -1,0 +1,83 @@
+# ============================================================
+# messages.yml - teks Nerus Guild (kode warna & dan hex &#RRGGBB).
+# Placeholder tertera per pesan: %kunci%. Ubah lalu /gm reload.
+# Kunci yang dihapus memakai bawaan plugin.
+# ============================================================
+
+# Label status (dipakai dialog, placeholder %status%, /gm info).
+status-unregistered: "&7Belum terdaftar"
+status-registered: "&aTerdaftar"
+status-revoked: "&cDicabut"
+
+# Pemain mencoba memakai fitur RPG tanpa terdaftar / saat dicabut.
+not-member: "&cKamu belum menjadi anggota Nerus Guild. Temui &eCaylin &cdi Nerus Guild untuk mendaftar."
+revoked-block: "&cKeanggotaan Nerus Guild-mu sedang dicabut. Hubungi staff jika ini keliru."
+intro-unregistered: "&7Temui &eCaylin&7, Guild Master di &6Nerus Guild&7, untuk mendaftar dan memulai perjalanan petualangmu."
+
+# Pendaftaran. %rank% = rank awal (F).
+register-title: "&6Selamat datang!"
+register-subtitle: "&7Kamu resmi anggota &eNerus Guild"
+register-ok: "&aPendaftaran berhasil! Kamu kini anggota Nerus Guild dengan rank %rank%&a dan Level 1."
+revoked-notice: "&cKeanggotaan Nerus Guild-mu dicabut. Progresmu aman dan akan kembali jika dipulihkan."
+restored-notice: "&aKeanggotaan Nerus Guild-mu dipulihkan. Seluruh progres lamamu tersedia kembali!"
+
+# Menu /gm untuk pemain yang belum terdaftar.
+gate-status-title: "&6Status Guild"
+gate-status-lore:
+  - "&7Status: &fBelum terdaftar"
+  - "&7RPG Rank: &fNONE"
+  - "&7RPG Level: &f0"
+  - ""
+  - "&8Kamu tetap bisa bermain survival."
+gate-talk-title: "&aDaftar di Nerus Guild"
+gate-talk-lore:
+  - "&7Klik untuk berbicara dengan &eCaylin"
+  - "&7dan mendaftar sebagai petualang."
+gate-ranks-title: "&bJenjang Rank"
+gate-revoked-title: "&cKeanggotaan dicabut"
+gate-revoked-lore:
+  - "&7Keanggotaan Nerus Guild-mu dicabut."
+  - "&7Progres RPG-mu aman. Hubungi staff."
+
+# Hasil perintah admin. %player% = nama pemain.
+admin-register: "&a%player% didaftarkan ke Nerus Guild (Rank F, Level 1)."
+admin-revoke: "&e%player% dicabut dari Nerus Guild. Data tetap tersimpan."
+admin-restore: "&a%player% dipulihkan. Seluruh progres lama tersedia kembali."
+admin-rank-set: "&aRank %player% = %rank%"
+admin-rank-reset: "&aRank %player% direset ke F. Level, EXP, dan quest tidak berubah."
+admin-rank-reset-confirm: "&eYakin reset rank %player% ke F? Ketik ulang perintah yang sama dengan &fconfirm&e di belakangnya dalam 30 detik."
+res-already: "&c%player% sudah dalam status tersebut."
+res-revoked: "&c%player% berstatus DICABUT. Pakai &f/gm restore %player%&c."
+res-not_registered: "&c%player% belum menjadi anggota Nerus Guild."
+res-not_revoked: "&c%player% tidak sedang dicabut."
+res-not_found: "&cPemain tidak ditemukan."
+res-unknown_rank: "&cRank tidak dikenal. Pilihan: F, E, D, C, B, A, S."
+
+reloaded: "&aKonfigurasi dimuat ulang."
+no-permission: "&cKamu tidak punya izin."
+player-only: "&cPerintah ini hanya untuk pemain."
+player-unknown: "&cPemain tidak ditemukan (belum pernah masuk server atau datanya tidak ada)."
+unknown-sub: "&cSubperintah tidak dikenal. Ketik &f/gm help&c."
+usage-info: "&cPakai: /gm info <pemain>"
+usage-data: "&cPakai: /gm data <pemain>"
+usage-register: "&cPakai: /gm register <pemain>"
+usage-revoke: "&cPakai: /gm revoke <pemain>"
+usage-restore: "&cPakai: /gm restore <pemain>"
+usage-rank: "&cPakai: /gm rank set <pemain> <rank> | /gm rank reset <pemain>"
+usage-choose: "&cPakai: /gm choose <nomor>"
+backup-start: "&7Backup playerdata dimulai..."
+backup-done: "&aBackup selesai: &f%file%"
+backup-fail: "&cBackup gagal, lihat konsol."
+
+help-player:
+  - "&6&lNerus Guild &7- bantuan"
+  - "&e/gm &7atau &e/nereusrpg &8- buka menu Nerus Guild"
+  - "&e/quest &8- papan quest | &e/story &8- misi cerita | &e/class &8- class"
+  - "&e/stats &8- stat | &e/skill &8- skill | &e/rank &8- rank dan ujian"
+help-admin:
+  - "&6Admin:"
+  - "&e/gm reload &8- muat ulang konfigurasi"
+  - "&e/gm info <pemain> &8- ringkasan RPG | &e/gm data <pemain> &8- seluruh data"
+  - "&e/gm register|revoke|restore <pemain> &8- kelola keanggotaan"
+  - "&e/gm rank set <pemain> <rank> &8- atur rank | &e/gm rank reset <pemain> &8- reset ke F"
+  - "&e/gm backup &8- backup playerdata | &e/gm migrate &8- migrasi data lama | &e/gm talk &8- uji dialog Caylin"

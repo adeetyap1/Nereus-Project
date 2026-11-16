@@ -1,0 +1,117 @@
+# ============================================================
+# ranks.yml - RPG Rank Nerus Guild: F, E, D, C, B, A, S (S = rank tertinggi).
+# TIDAK ADA rank di atas S. Urutan harus F, E, D, C, B, A, S.
+# Pemain mendapat Rank F saat mendaftar di Nerus Guild (Caylin); sebelum itu rank = NONE.
+#
+# Per rank:
+#   name            nama tampil
+#   color           warna utama hex (#RRGGBB), warna mengikuti kelangkaan
+#   secondary-color (opsional) warna kedua: huruf rank dibuat gradasi dari color ke secondary-color
+#   bold            true = huruf tebal
+#   legacy-color    kode warna & cadangan (pemain Bedrock / plugin tanpa hex)
+#   rarity          kelangkaan (teks tampilan)
+#   commands        hadiah (perintah konsol, %player%) saat naik ke rank ini
+#   broadcast       umumkan ke server saat ada yang naik ke rank ini
+#   requirements    SYARAT naik KE rank ini (semua harus terpenuhi sebelum ujian/promosi):
+#     min-level       level minimal
+#     min-exp         total EXP seumur hidup minimal
+#     min-quests      jumlah quest selesai minimal
+#     quest-ids       daftar ID quest (quests.yml) yang harus pernah diselesaikan
+#     story-missions  jumlah misi cerita selesai minimal
+#     min-kills       jumlah monster dibunuh minimal
+#     gp              Guild Points (GP) minimal
+#     permission      izin khusus (opsional), mis. untuk persetujuan staff
+#   exam            ujian setelah syarat terpenuhi (opsional):
+#     type: KILL (entity, amount) | BREAK (block, amount) | GET (item, amount) | MANUAL (staff: /gm admin examdone <pemain>) | NONE
+#     minutes: batas waktu | description: teks tampil
+# Ubah lalu /gm reload.
+# ============================================================
+ranks:
+  F:
+    name: "Rank F"
+    color: "#808080"
+    legacy-color: "&7"
+    rarity: "Common"
+
+  E:
+    name: "Rank E"
+    color: "#55AA55"
+    legacy-color: "&a"
+    rarity: "Uncommon"
+    requirements:
+      min-level: 5
+      min-exp: 800
+      min-quests: 3
+      gp: 400
+    exam: {type: KILL, entity: ZOMBIE, amount: 60, minutes: 20, description: "Bunuh 60 zombie dalam 20 menit"}
+    commands: ["eco give %player% 500"]
+
+  D:
+    name: "Rank D"
+    color: "#3399FF"
+    legacy-color: "&9"
+    rarity: "Rare"
+    requirements:
+      min-level: 15
+      min-exp: 18000
+      min-quests: 10
+      gp: 900
+    exam: {type: KILL, entity: SKELETON, amount: 80, minutes: 25, description: "Bunuh 80 skeleton dalam 25 menit"}
+    commands: ["eco give %player% 1200"]
+
+  C:
+    name: "Rank C"
+    color: "#00CED1"
+    legacy-color: "&3"
+    rarity: "Advanced"
+    requirements:
+      min-level: 30
+      min-exp: 150000
+      min-quests: 25
+      gp: 1750
+    exam: {type: KILL, entity: BLAZE, amount: 50, minutes: 25, description: "Bunuh 50 blaze dalam 25 menit"}
+    commands: ["eco give %player% 3000"]
+
+  B:
+    name: "Rank B"
+    color: "#AA55FF"
+    legacy-color: "&5"
+    rarity: "Epic"
+    broadcast: true
+    requirements:
+      min-level: 45
+      min-exp: 500000
+      min-quests: 50
+      gp: 3500
+    exam: {type: KILL, entity: WITHER_SKELETON, amount: 50, minutes: 30, description: "Bunuh 50 wither skeleton dalam 30 menit"}
+    commands: ["eco give %player% 8000"]
+
+  A:
+    name: "Rank A"
+    color: "#FF4444"
+    legacy-color: "&c"
+    rarity: "Legendary"
+    broadcast: true
+    requirements:
+      min-level: 60
+      min-exp: 1200000
+      min-quests: 100
+      gp: 7000
+    exam: {type: MANUAL, description: "Kalahkan boss area (diselesaikan staff atau dungeon)"}
+    commands: ["eco give %player% 20000"]
+
+  S:
+    name: "Rank S"
+    color: "#FFD700"
+    secondary-color: "#B8860B"
+    bold: true
+    legacy-color: "&6"
+    rarity: "Mythical"
+    broadcast: true
+    requirements:
+      min-level: 80
+      min-exp: 3000000
+      min-quests: 200
+      gp: 14000
+    exam: {type: MANUAL, description: "Selesaikan dungeon tingkat tinggi"}
+    commands: ["eco give %player% 50000"]
