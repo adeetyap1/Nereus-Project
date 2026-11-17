@@ -191,7 +191,7 @@ public final class VaultGui {
             case 45 -> plugin.getServer().getScheduler().runTask(plugin, () -> plugin.gui().openMain(p));
             case 47 -> plugin.getServer().getScheduler().runTask(plugin, () -> open(p, h.page - 1));
             case 51 -> plugin.getServer().getScheduler().runTask(plugin, () -> open(p, h.page + 1));
-            case 53 -> plugin.getServer().getScheduler().runTask(plugin, p::closeInventory);
+            case 53 -> plugin.getServer().getScheduler().runTask(plugin, () -> p.closeInventory());
             default -> {
             }
         }
