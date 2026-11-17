@@ -1,4 +1,5 @@
-# Nereus Bank by naook1/adityap
+# Bank Nerus Guild (NereusBank 2.0.0) by naook1/adityap
+# Tanpa resource pack: semua ikon memakai item vanilla.
 developer: naook1/adityap
 small-caps: false
 
@@ -13,11 +14,12 @@ interest-days: 30
 # daily-limit    = batas total transfer keluar per hari, max-balance = batas saldo bank
 # loan-limit     = batas pinjaman, loan-rate = % bunga pinjaman
 # deposit-bonus  = tambahan % bunga deposito berjangka
+# material       = item vanilla untuk ikon/kartu tier, vault-slots = slot Brankas Item
 # card-price / card-min-balance = harga kartu dan saldo bank minimum untuk membelinya
 tiers:
   STANDARD:
-    name: "Standard"
-    color: "&7"
+    name: "Perunggu"
+    color: "&#CD7F32"
     interest: 0.5
     interest-cap: 50000
     transfer-fee: 5
@@ -28,10 +30,11 @@ tiers:
     deposit-bonus: 0
     card-price: 0
     card-min-balance: 0
-    model: 8004
+    material: COPPER_INGOT
+    vault-slots: 9
   SILVER:
-    name: "Silver"
-    color: "&f"
+    name: "Perak"
+    color: "&#C0C0C0"
     interest: 1.5
     interest-cap: 250000
     transfer-fee: 3
@@ -42,10 +45,11 @@ tiers:
     deposit-bonus: 0.5
     card-price: 10000
     card-min-balance: 0
-    model: 8001
+    material: IRON_INGOT
+    vault-slots: 18
   GOLD:
-    name: "Gold"
-    color: "&6"
+    name: "Emas"
+    color: "&#FFD700"
     interest: 3
     interest-cap: 2000000
     transfer-fee: 1.5
@@ -56,10 +60,11 @@ tiers:
     deposit-bonus: 1.5
     card-price: 50000
     card-min-balance: 25000
-    model: 8002
+    material: GOLD_INGOT
+    vault-slots: 36
   PLATINUM:
-    name: "Platinum"
-    color: "&b"
+    name: "Platina"
+    color: "&#7FDBFF"
     interest: 5
     interest-cap: 20000000
     transfer-fee: 0
@@ -70,7 +75,8 @@ tiers:
     deposit-bonus: 3
     card-price: 250000
     card-min-balance: 100000
-    model: 8003
+    material: DIAMOND
+    vault-slots: 54
 
 card:
   replace-fee: 5000         # biaya cetak ulang kartu hilang
@@ -101,3 +107,33 @@ transfer:
 atm:
   require-card: false
   blocks: []
+
+# Bonus dari RPG Rank Nerus Guild (dibaca dari NerusRPG lewat PlaceholderAPI %nereusrpg_rank_plain%).
+# interest-bonus = tambahan % bunga, loan-bonus = tambahan batas hutang, vault-bonus = tambahan slot brankas.
+guild-perks-enabled: true
+guild-perks:
+  F: {interest-bonus: 0.0, loan-bonus: 0, vault-bonus: 0}
+  E: {interest-bonus: 0.1, loan-bonus: 5000, vault-bonus: 1}
+  D: {interest-bonus: 0.2, loan-bonus: 15000, vault-bonus: 2}
+  C: {interest-bonus: 0.4, loan-bonus: 40000, vault-bonus: 4}
+  B: {interest-bonus: 0.7, loan-bonus: 100000, vault-bonus: 6}
+  A: {interest-bonus: 1.0, loan-bonus: 250000, vault-bonus: 9}
+  S: {interest-bonus: 1.5, loan-bonus: 600000, vault-bonus: 18}
+
+# Tampilan jumlah dalam koin (hanya tampilan, nilai tetap angka biasa).
+coins:
+  enabled: true
+  units:
+    - {name: "Platina", value: 1000000, color: "&#7FDBFF"}
+    - {name: "Emas", value: 10000, color: "&#FFD700"}
+    - {name: "Perak", value: 100, color: "&#C0C0C0"}
+    - {name: "Tembaga", value: 1, color: "&#CD7F32"}
+
+# Brankas Item
+vault:
+  blacklist-materials: [BEDROCK, BARRIER, COMMAND_BLOCK, STRUCTURE_BLOCK]
+
+# NPC Teller (FancyNpcs): klik NPC berikut membuka bank. Isi dengan nama NPC (/npc list).
+teller:
+  npc-ids: []
+  max-distance: 8

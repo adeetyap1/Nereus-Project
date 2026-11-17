@@ -28,6 +28,10 @@ public final class BankListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGH)
     public void onClick(InventoryClickEvent e) {
+        if (e.getView().getTopInventory().getHolder() instanceof VaultGui.Holder vh) {
+            plugin.vault().click(e, vh);
+            return;
+        }
         if (!(e.getView().getTopInventory().getHolder() instanceof BankGui.Holder h)) {
             return;
         }
@@ -44,7 +48,8 @@ public final class BankListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGH)
     public void onDrag(InventoryDragEvent e) {
-        if (e.getView().getTopInventory().getHolder() instanceof BankGui.Holder) {
+        var holder = e.getView().getTopInventory().getHolder();
+        if (holder instanceof BankGui.Holder || holder instanceof VaultGui.Holder) {
             e.setCancelled(true);
         }
     }
@@ -83,6 +88,7 @@ public final class BankListener implements Listener {
         var p = e.getPlayer();
         plugin.getServer().getScheduler().runTaskLater(plugin, () -> {
             if (p.isOnline()) {
+                plugin.bank().refreshRank(p);
                 plugin.bank().deliverNotices(p);
             }
         }, 60L);

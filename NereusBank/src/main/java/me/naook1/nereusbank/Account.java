@@ -35,6 +35,25 @@ public final class Account {
     public final List<Tx> txs = new ArrayList<>();
     public final List<String> notices = new ArrayList<>();
 
+    /** Rank RPG Nerus Guild terakhir yang terlihat (F-S, kosong = belum terdaftar). Dipakai bonus saat offline. */
+    public String guildRank = "";
+
+    /** Brankas Item (dimuat malas dari vaults/<uuid>.yml). */
+    public final List<VaultItem> vault = new ArrayList<>();
+    public boolean vaultLoaded;
+    public boolean vaultDirty;
+
+    /** Satu slot brankas. raw menyimpan data asli bila item tidak bisa dibaca (supaya tidak hilang). */
+    public static final class VaultItem {
+        public org.bukkit.inventory.ItemStack item;
+        public final String raw;
+
+        public VaultItem(org.bukkit.inventory.ItemStack item, String raw) {
+            this.item = item;
+            this.raw = raw;
+        }
+    }
+
     public Account(UUID id, String name) {
         this.id = id;
         this.name = name;

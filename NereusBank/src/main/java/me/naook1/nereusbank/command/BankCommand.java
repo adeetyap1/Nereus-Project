@@ -135,6 +135,7 @@ public final class BankCommand implements CommandExecutor, TabCompleter {
             }
             case "top" -> plugin.gui().openTop(p);
             case "cards", "card" -> plugin.gui().openCards(p);
+            case "vault", "brankas" -> plugin.vault().open(p, 0);
             default -> m.send(p, "usage");
         }
         return true;
@@ -275,7 +276,7 @@ public final class BankCommand implements CommandExecutor, TabCompleter {
         List<String> out = new ArrayList<>();
         if (a.length == 1) {
             for (String x : List.of("deposit", "withdraw", "transfer", "history", "savings", "loan", "repay",
-                    "top", "cards", "info", "help")) {
+                    "top", "cards", "vault", "info", "help")) {
                 out.add(x);
             }
             if (admin(s)) {

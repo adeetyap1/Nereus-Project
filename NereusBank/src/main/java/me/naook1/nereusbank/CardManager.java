@@ -31,27 +31,28 @@ public final class CardManager {
     }
 
     public ItemStack create(Account a, Tier t) {
-        ItemStack item = new ItemStack(Material.PAPER);
+        ItemStack item = new ItemStack(material(t));
         ItemMeta meta = item.getItemMeta();
-        meta.displayName(Text.item("&b&lNereus " + t.label() + " &b&lCard"));
+        meta.displayName(Text.item("&6&lKartu Guild &8| " + t.label()));
         List<net.kyori.adventure.text.Component> lore = new ArrayList<>();
-        lore.add(Text.item("&8Nereus Bank"));
+        lore.add(Text.item("&8Bank Nerus Guild"));
         lore.add(Text.item(""));
         lore.add(Text.item("&7Pemegang: &f" + a.name));
         lore.add(Text.item("&7Nomor: &f" + a.cardNo));
         lore.add(Text.item("&7Tier: " + t.label()));
         lore.add(Text.item(""));
-        lore.add(Text.item("&7Bunga: &a" + Fmt.pct(t.interest()) + " &8/ " + plugin.bank().interestDays() + " hari"));
+        lore.add(Text.item("&7Bunga: &a" + Fmt.pct(t.interest() + plugin.bank().perk(a).interestBonus()) + " &8/ " + plugin.bank().interestDays() + " hari"));
+        lore.add(Text.item("&7Brankas item: &f" + (t.vaultSlots() + plugin.bank().perk(a).vaultBonus()) + " slot"));
         lore.add(Text.item("&7Biaya transfer: &e" + Fmt.pct(t.transferFee())));
         lore.add(Text.item("&7Batas harian: &e" + (t.dailyLimit() < 0 ? "Tanpa batas" : Fmt.money(t.dailyLimit()))));
-        lore.add(Text.item("&7Pinjaman: &e" + Fmt.money(t.loanLimit()) + " &8@ " + Fmt.pct(t.loanRate())));
+        lore.add(Text.item("&7Hutang: &e" + Fmt.money(t.loanLimit() + plugin.bank().perk(a).loanBonus()) + " &8@ " + Fmt.pct(t.loanRate())));
         lore.add(Text.item(""));
-        lore.add(Text.item("&8Klik kanan untuk membuka bank."));
+        lore.add(Text.item("&8Klik kanan untuk membuka bank guild."));
         lore.add(Text.item("&8Kartu ini hanya bisa dipakai pemiliknya."));
         meta.lore(lore);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        if (t.model() > 0) {
-            meta.setCustomModelData(t.model());
+        if (t.order() >= 2) {
+            meta.setEnchantmentGlintOverride(true);
         }
         PersistentDataContainer pdc = meta.getPersistentDataContainer();
         pdc.set(keyOwner, PersistentDataType.STRING, a.id.toString());
@@ -61,12 +62,18 @@ public final class CardManager {
         return item;
     }
 
+    /** Item vanilla ikon kartu (tanpa resource pack). */
+    public Material material(Tier t) {
+        Material m = Material.matchMaterial(t.material() == null ? "" : t.material());
+        return m == null || m.isAir() ? Material.PAPER : m;
+    }
+
     public boolean isCard(ItemStack item) {
         return owner(item) != null;
     }
 
     public UUID owner(ItemStack item) {
-        if (item == null || item.getType() != Material.PAPER || !item.hasItemMeta()) {
+        if (item == null || item.getType().isAir() || !item.hasItemMeta()) {
             return null;
         }
         String s = item.getItemMeta().getPersistentDataContainer().get(keyOwner, PersistentDataType.STRING);

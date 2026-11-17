@@ -3,14 +3,14 @@ version: '${project.version}'
 main: me.naook1.nereusbank.NereusBank
 api-version: '1.21'
 authors: [naook1, adityap]
-description: Nereus Bank - akun, transfer, bunga, deposito, pinjaman dan kartu by naook1/adityap
-softdepend: [Vault, PlaceholderAPI, floodgate]
+description: Bank Nerus Guild - rekening, kartu guild, simpanan, hutang, brankas item by naook1/adityap
+softdepend: [Vault, PlaceholderAPI, floodgate, FancyNpcs, NerusRPG]
 
 commands:
   bank:
     description: Buka Nereus Bank
     aliases: [nbank, nb]
-    usage: /<command> [deposit|withdraw|transfer|history|savings|loan|repay|top|info|help]
+    usage: /<command> [deposit|withdraw|transfer|history|savings|loan|repay|top|vault|info|help]
   card:
     description: Ambil / upgrade kartu Nereus Bank
     aliases: [kartu]

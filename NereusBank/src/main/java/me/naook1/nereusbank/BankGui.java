@@ -26,8 +26,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
 /**
- * All Nereus Bank screens. Java players get the textured panel (font glyph in the title + custom item icons),
- * Bedrock players get the same layout as a normal chest with the custom icons.
+ * Semua layar Bank Nerus Guild. Tanpa resource pack: ikon memakai item vanilla, judul teks biasa,
+ * dan tata letak yang sama untuk pemain Java maupun Bedrock.
  */
 public final class BankGui {
 
@@ -48,7 +48,7 @@ public final class BankGui {
         }
     }
 
-    // custom_model_data of the PAPER icons (see resource pack)
+    // kode ikon -> item vanilla (lihat ICONS)
     static final int M_ACCOUNT = 8018, M_DEPOSIT = 8010, M_WITHDRAW = 8011, M_TRANSFER = 8012, M_HISTORY = 8013,
             M_SAVINGS = 8014, M_LOAN = 8015, M_CARDS = 8016, M_TOP = 8017, M_CLOSE = 8019, M_BACK = 8020,
             M_ADD = 8030, M_SUB = 8036, M_ALL = 8042, M_HALF = 8043, M_RESET = 8044, M_CONFIRM = 8045,
@@ -57,9 +57,51 @@ public final class BankGui {
             M_TX_CARD = 8058, M_P7 = 8060, M_P14 = 8061, M_P30 = 8062, M_FD = 8063, M_BORROW = 8070,
             M_REPAY = 8071, M_LOANINFO = 8072, M_REPLACE = 8080;
 
+    private static final Map<Integer, Material> ICONS = new HashMap<>();
+
+    static {
+        ICONS.put(M_ACCOUNT, Material.ENCHANTED_BOOK);
+        ICONS.put(M_DEPOSIT, Material.GOLD_INGOT);
+        ICONS.put(M_WITHDRAW, Material.EMERALD);
+        ICONS.put(M_TRANSFER, Material.ENDER_PEARL);
+        ICONS.put(M_HISTORY, Material.WRITABLE_BOOK);
+        ICONS.put(M_SAVINGS, Material.NETHER_STAR);
+        ICONS.put(M_LOAN, Material.CHAIN);
+        ICONS.put(M_CARDS, Material.NAME_TAG);
+        ICONS.put(M_TOP, Material.GOLDEN_HELMET);
+        ICONS.put(M_CLOSE, Material.BARRIER);
+        ICONS.put(M_BACK, Material.ARROW);
+        for (int i = 0; i < 6; i++) {
+            ICONS.put(M_ADD + i, Material.LIME_DYE);
+            ICONS.put(M_SUB + i, Material.RED_DYE);
+        }
+        ICONS.put(M_ALL, Material.DIAMOND);
+        ICONS.put(M_HALF, Material.GOLD_NUGGET);
+        ICONS.put(M_RESET, Material.GRAY_DYE);
+        ICONS.put(M_CONFIRM, Material.LIME_CONCRETE);
+        ICONS.put(M_CANCEL, Material.RED_CONCRETE);
+        ICONS.put(M_AMOUNT, Material.GOLD_BLOCK);
+        ICONS.put(M_TYPE, Material.OAK_SIGN);
+        ICONS.put(M_PREV, Material.ARROW);
+        ICONS.put(M_NEXT, Material.ARROW);
+        ICONS.put(M_TX_IN, Material.LIME_DYE);
+        ICONS.put(M_TX_OUT, Material.ORANGE_DYE);
+        ICONS.put(M_TX_INTEREST, Material.SUNFLOWER);
+        ICONS.put(M_TX_LOAN, Material.CHAIN);
+        ICONS.put(M_TX_FD, Material.NETHER_STAR);
+        ICONS.put(M_TX_FEE, Material.COPPER_INGOT);
+        ICONS.put(M_TX_CARD, Material.NAME_TAG);
+        ICONS.put(M_P7, Material.COPPER_INGOT);
+        ICONS.put(M_P14, Material.IRON_INGOT);
+        ICONS.put(M_P30, Material.GOLD_INGOT);
+        ICONS.put(M_FD, Material.NETHER_STAR);
+        ICONS.put(M_BORROW, Material.EMERALD);
+        ICONS.put(M_REPAY, Material.REDSTONE);
+        ICONS.put(M_LOANINFO, Material.BOOK);
+        ICONS.put(M_REPLACE, Material.PAPER);
+    }
+
     private static final long[] STEPS = {100, 1_000, 10_000, 100_000, 1_000_000, 10_000_000};
-    private static final String MAIN_BG = "";
-    private static final String PLAIN_BG = "";
 
     private final NereusBank plugin;
 
@@ -79,20 +121,16 @@ public final class BankGui {
         }
     }
 
-    private Holder open(Player p, boolean main, String bedrockTitle) {
+    private Holder open(Player p, boolean main, String title) {
         Holder h = new Holder();
         h.bedrock = isBedrock(p);
-        Component title = h.bedrock ? Text.parse(bedrockTitle)
-                : Component.text(main ? MAIN_BG : PLAIN_BG).color(NamedTextColor.WHITE);
-        h.inv = Bukkit.createInventory(h, 54, title);
+        h.inv = Bukkit.createInventory(h, 54, Text.parse(title));
         p.openInventory(h.inv);
         return h;
     }
 
+    /** Isi slot kosong dengan kaca abu-abu agar tampilan rapi tanpa resource pack. */
     private void finish(Holder h) {
-        if (!h.bedrock) {
-            return;
-        }
         ItemStack pane = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
         ItemMeta m = pane.getItemMeta();
         m.displayName(Component.text(" "));
@@ -109,7 +147,11 @@ public final class BankGui {
     }
 
     private static ItemStack icon(int model, String name, String... lore) {
-        ItemStack it = new ItemStack(Material.PAPER);
+        return icon(ICONS.getOrDefault(model, Material.PAPER), name, lore);
+    }
+
+    private static ItemStack icon(Material mat, String name, String... lore) {
+        ItemStack it = new ItemStack(mat);
         ItemMeta m = it.getItemMeta();
         m.displayName(Text.item(name));
         if (lore.length > 0) {
@@ -119,7 +161,6 @@ public final class BankGui {
             }
             m.lore(l);
         }
-        m.setCustomModelData(model);
         m.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_ADDITIONAL_TOOLTIP);
         it.setItemMeta(m);
         return it;
@@ -136,8 +177,8 @@ public final class BankGui {
     }
 
     private void backAndClose(Player p, Holder h) {
-        put(h, 45, icon(M_BACK, "&e&lBack", "&7Kembali ke menu utama."), c -> later(() -> openMain(p)));
-        put(h, 49, icon(M_CLOSE, "&c&lClose"), c -> p.closeInventory());
+        put(h, 45, icon(M_BACK, "&e&lKembali", "&7Kembali ke aula guild."), c -> later(() -> openMain(p)));
+        put(h, 49, icon(M_CLOSE, "&c&lTutup"), c -> p.closeInventory());
     }
 
     private void click(Player p) {
@@ -153,54 +194,72 @@ public final class BankGui {
     public void openMain(Player p) {
         Account a = plugin.bank().account(p);
         Tier t = plugin.bank().tier(a);
-        Holder h = open(p, true, "&b&lNereus Bank");
+        plugin.bank().refreshRank(p);
+        Holder h = open(p, true, "&6&lBank Nerus Guild");
         long wallet = plugin.economy().wallet(p);
         List<String> lore = new ArrayList<>();
-        lore.add("&7Pemegang: &f" + a.name);
+        lore.add("&7Petualang: &f" + a.name);
         lore.add("&7Nomor: &f" + a.cardNo);
         lore.add("&7Tier: " + t.label());
         lore.add("");
-        lore.add("&7Saldo bank: &a" + Fmt.money(a.balance));
+        lore.add("&7Brankas guild: &a" + Fmt.money(a.balance));
         lore.add("&7Dompet: &e" + Fmt.money(wallet));
+        String coins = Fmt.coins(a.balance);
+        if (!coins.isEmpty()) {
+            lore.add("&7Setara: " + coins);
+        }
+        if (!a.guildRank.isEmpty()) {
+            var perk = plugin.bank().perk(a);
+            lore.add("&7Rank Guild: &f" + a.guildRank + " &8(bunga +" + Fmt.pct(perk.interestBonus())
+                    + ", brankas +" + perk.vaultBonus() + ")");
+        }
         if (a.lockedInDeposits() > 0) {
-            lore.add("&7Deposito: &b" + Fmt.money(a.lockedInDeposits()));
+            lore.add("&7Segel simpanan: &b" + Fmt.money(a.lockedInDeposits()));
         }
         if (a.loan > 0) {
-            lore.add("&7Pinjaman: &c" + Fmt.money(a.loan) + (a.overdue() ? " &4(TERLAMBAT)" : ""));
+            lore.add("&7Hutang: &c" + Fmt.money(a.loan) + (a.overdue() ? " &4(TERLAMBAT)" : ""));
         }
         lore.add("");
         long left = plugin.bank().nextInterestAt(a) - System.currentTimeMillis();
         lore.add("&7Bunga berikutnya: &a+" + Fmt.money(plugin.bank().interestPreview(a)) + " &8(" + Fmt.duration(left) + ")");
-        put(h, 4, icon(t.model() > 0 ? t.model() : M_ACCOUNT, "&b&lNereus Bank &8| " + t.label(),
+        put(h, 4, icon(plugin.cards().material(t), "&6&lBank Nerus Guild &8| " + t.label(),
                 lore.toArray(new String[0])), null);
 
-        put(h, 10, icon(M_DEPOSIT, "&a&lDeposit", "&7Simpan uang dompet ke bank.", "",
-                "&7Dompet: &e" + Fmt.money(wallet)), c -> later(() -> openPicker(p, Mode.DEPOSIT, null, 0, 0)), 19);
-        put(h, 12, icon(M_WITHDRAW, "&e&lWithdraw", "&7Tarik uang bank ke dompet.", "",
-                "&7Saldo: &a" + Fmt.money(a.balance)), c -> later(() -> openPicker(p, Mode.WITHDRAW, null, 0, 0)), 21);
-        put(h, 14, icon(M_TRANSFER, "&b&lTransfer", "&7Kirim uang ke pemain lain.", "",
+        put(h, 10, icon(M_DEPOSIT, "&a&lTitip Koin", "&7Titipkan koin dari dompetmu ke brankas guild.", "",
+                "&7Dompet: &e" + Fmt.money(wallet)), c -> later(() -> openPicker(p, Mode.DEPOSIT, null, 0, 0)));
+        put(h, 12, icon(M_WITHDRAW, "&e&lAmbil Koin", "&7Ambil koin dari brankas guild ke dompet.", "",
+                "&7Saldo: &a" + Fmt.money(a.balance)), c -> later(() -> openPicker(p, Mode.WITHDRAW, null, 0, 0)));
+        put(h, 14, icon(M_TRANSFER, "&b&lKirim Koin", "&7Kirim koin lewat kurir guild ke petualang lain.", "",
                 "&7Biaya: &e" + Fmt.pct(t.transferFee()),
                 "&7Sisa batas hari ini: &e" + (t.dailyLimit() < 0 ? "Tanpa batas" : Fmt.money(plugin.bank().dailyRemaining(a)))),
-                c -> later(() -> openTargets(p, 0)), 23);
-        put(h, 16, icon(M_HISTORY, "&f&lStatement", "&7Riwayat transaksi terakhir."),
-                c -> later(() -> openHistory(p, 0)), 25);
-        put(h, 28, icon(M_SAVINGS, "&d&lSavings", "&7Deposito berjangka, bunga lebih tinggi.", "",
-                "&7Terkunci: &b" + Fmt.money(a.lockedInDeposits())), c -> later(() -> openSavings(p)), 37);
-        put(h, 30, icon(M_LOAN, "&c&lLoan", "&7Pinjam uang, bayar dalam " + plugin.getConfig().getInt("loan.due-days", 30) + " hari.", "",
-                "&7Batas: &e" + Fmt.money(t.loanLimit()), "&7Bunga: &e" + Fmt.pct(t.loanRate())),
-                c -> later(() -> openLoan(p)), 39);
-        put(h, 32, icon(M_CARDS, "&6&lCards", "&7Silver, Gold dan Platinum.", "",
-                "&7Tier kamu: " + t.label()), c -> later(() -> openCards(p)), 41);
-        put(h, 34, icon(M_TOP, "&e&lRich List", "&7Pemain terkaya di server."),
-                c -> later(() -> openTop(p)), 43);
-        put(h, 49, icon(M_CLOSE, "&c&lClose"), c -> p.closeInventory());
+                c -> later(() -> openTargets(p, 0)));
+        put(h, 16, icon(M_HISTORY, "&f&lBuku Catatan", "&7Catatan transaksi terakhirmu."),
+                c -> later(() -> openHistory(p, 0)));
+        put(h, 28, icon(M_SAVINGS, "&d&lSegel Simpanan", "&7Segel koin untuk bunga lebih tinggi.", "",
+                "&7Terkunci: &b" + Fmt.money(a.lockedInDeposits())), c -> later(() -> openSavings(p)));
+        put(h, 30, icon(M_LOAN, "&c&lHutang Guild", "&7Pinjam koin, lunasi dalam " + plugin.getConfig().getInt("loan.due-days", 30) + " hari.", "",
+                "&7Batas: &e" + Fmt.money(plugin.bank().loanLimit(a)), "&7Bunga: &e" + Fmt.pct(t.loanRate())),
+                c -> later(() -> openLoan(p)));
+        put(h, 32, icon(M_CARDS, "&6&lKartu Guild", "&7Naikkan tier: bunga, batas, dan brankas lebih besar.", "",
+                "&7Tier kamu: " + t.label()), c -> later(() -> openCards(p)));
+        put(h, 34, icon(M_TOP, "&e&lDaftar Konglomerat", "&7Petualang terkaya di dunia Nereus."),
+                c -> later(() -> openTop(p)));
+        put(h, 22, icon(Material.ENDER_CHEST, "&5&lBrankas Item", "&7Simpan item berharga di brankas guild.", "",
+                "&7Kapasitas: &f" + plugin.bank().vaultSlots(a) + " slot",
+                "&7Terpakai: &f" + vaultUsed(a)), c -> later(() -> plugin.vault().open(p, 0)));
+        put(h, 49, icon(M_CLOSE, "&c&lTutup"), c -> p.closeInventory());
         finish(h);
+    }
+
+    private int vaultUsed(Account a) {
+        plugin.bank().ensureVault(a);
+        return a.vault.size();
     }
 
     // ---------------- amount picker ----------------
 
     public void openPicker(Player p, Mode mode, UUID target, int period, long preset) {
-        Holder h = open(p, false, "&b&lNereus Bank");
+        Holder h = open(p, false, "&6&lBank Nerus Guild");
         h.mode = mode;
         h.target = target;
         h.period = period;
@@ -223,7 +282,7 @@ public final class BankGui {
             case FIXED:
                 return a.balance;
             case BORROW:
-                return Math.max(0, Math.min(t.loanLimit() - a.loan, plugin.bank().depositRoom(a)));
+                return Math.max(0, Math.min(plugin.bank().loanLimit(a) - a.loan, plugin.bank().depositRoom(a)));
             case REPAY:
                 return Math.min(a.loan, a.balance);
             default:
@@ -238,10 +297,10 @@ public final class BankGui {
         switch (h.mode) {
             case DEPOSIT:
                 l.add("&7Dompet: &e" + Fmt.money(plugin.economy().wallet(p)));
-                l.add("&7Saldo bank: &a" + Fmt.money(a.balance) + " &8-> &a" + Fmt.money(a.balance + amt));
+                l.add("&7Brankas guild: &a" + Fmt.money(a.balance) + " &8-> &a" + Fmt.money(a.balance + amt));
                 break;
             case WITHDRAW:
-                l.add("&7Saldo bank: &a" + Fmt.money(a.balance) + " &8-> &a" + Fmt.money(a.balance - amt));
+                l.add("&7Brankas guild: &a" + Fmt.money(a.balance) + " &8-> &a" + Fmt.money(a.balance - amt));
                 break;
             case TRANSFER: {
                 Account to = plugin.bank().get(h.target);
@@ -278,12 +337,12 @@ public final class BankGui {
 
     private String modeTitle(Mode m) {
         return switch (m) {
-            case DEPOSIT -> "&a&lDeposit";
-            case WITHDRAW -> "&e&lWithdraw";
-            case TRANSFER -> "&b&lTransfer";
-            case FIXED -> "&d&lSavings";
-            case BORROW -> "&c&lBorrow";
-            case REPAY -> "&a&lRepay";
+            case DEPOSIT -> "&a&lTitip Koin";
+            case WITHDRAW -> "&e&lAmbil Koin";
+            case TRANSFER -> "&b&lKirim Koin";
+            case FIXED -> "&d&lSegel Simpanan";
+            case BORROW -> "&c&lPinjam Koin";
+            case REPAY -> "&a&lLunasi";
         };
     }
 
@@ -336,12 +395,12 @@ public final class BankGui {
                 openPicker(p, h.mode, h.target, h.period, v);
             });
         });
-        put(h, 19, icon(M_HALF, "&b&lHalf", "&7Setengah dari maksimal."), c -> {
+        put(h, 19, icon(M_HALF, "&b&lSetengah", "&7Setengah dari maksimal."), c -> {
             h.amount = max / 2;
             click(p);
             renderPicker(p, h);
         });
-        put(h, 20, icon(M_ALL, "&b&lAll", "&7Jumlah maksimal."), c -> {
+        put(h, 20, icon(M_ALL, "&b&lSemua", "&7Jumlah maksimal."), c -> {
             h.amount = max;
             click(p);
             renderPicker(p, h);
@@ -351,9 +410,9 @@ public final class BankGui {
             click(p);
             renderPicker(p, h);
         });
-        put(h, 25, icon(M_TYPE, "&f&lType", "&7Ketik jumlah di chat."), c -> h.actions.get(22).accept(c));
-        put(h, 41, icon(M_CONFIRM, "&a&lConfirm", "&7Jalankan: &f" + Fmt.money(h.amount)), c -> confirmPicker(p, h));
-        put(h, 39, icon(M_CANCEL, "&c&lCancel", "&7Batal dan kembali."), c -> later(() -> openMain(p)));
+        put(h, 25, icon(M_TYPE, "&f&lKetik", "&7Ketik jumlah di chat."), c -> h.actions.get(22).accept(c));
+        put(h, 41, icon(M_CONFIRM, "&a&lSetuju", "&7Jalankan: &f" + Fmt.money(h.amount)), c -> confirmPicker(p, h));
+        put(h, 39, icon(M_CANCEL, "&c&lBatal", "&7Batal dan kembali."), c -> later(() -> openMain(p)));
         finish(h);
     }
 
@@ -429,7 +488,7 @@ public final class BankGui {
     // ---------------- transfer targets ----------------
 
     public void openTargets(Player p, int page) {
-        Holder h = open(p, false, "&b&lNereus Bank");
+        Holder h = open(p, false, "&6&lBank Nerus Guild");
         List<Player> list = new ArrayList<>();
         for (Player o : Bukkit.getOnlinePlayers()) {
             if (!o.getUniqueId().equals(p.getUniqueId())) {
@@ -469,10 +528,10 @@ public final class BankGui {
             }));
         }
         if (pg > 0) {
-            put(h, 48, icon(M_PREV, "&e&lPrev"), c -> later(() -> openTargets(p, pg - 1)));
+            put(h, 48, icon(M_PREV, "&e&lSebelumnya"), c -> later(() -> openTargets(p, pg - 1)));
         }
         if (pg < pages - 1) {
-            put(h, 50, icon(M_NEXT, "&e&lNext"), c -> later(() -> openTargets(p, pg + 1)));
+            put(h, 50, icon(M_NEXT, "&e&lBerikutnya"), c -> later(() -> openTargets(p, pg + 1)));
         }
         backAndClose(p, h);
         finish(h);
@@ -482,7 +541,7 @@ public final class BankGui {
 
     public void openHistory(Player p, int page) {
         Account a = plugin.bank().account(p);
-        Holder h = open(p, false, "&b&lNereus Bank");
+        Holder h = open(p, false, "&6&lBank Nerus Guild");
         int per = 36;
         int pages = Math.max(1, (a.txs.size() + per - 1) / per);
         int pg = Math.max(0, Math.min(page, pages - 1));
@@ -518,13 +577,13 @@ public final class BankGui {
             lore.add("&8" + clock(t.time()));
             put(h, 9 + i, icon(model, color + "&l" + label, lore.toArray(new String[0])), null);
         }
-        put(h, 4, icon(M_HISTORY, "&f&lStatement", "&7Halaman " + (pg + 1) + "/" + pages,
+        put(h, 4, icon(M_HISTORY, "&f&lBuku Catatan", "&7Halaman " + (pg + 1) + "/" + pages,
                 "&7Total transaksi: &f" + a.txs.size()), null);
         if (pg > 0) {
-            put(h, 48, icon(M_PREV, "&e&lPrev"), c -> later(() -> openHistory(p, pg - 1)));
+            put(h, 48, icon(M_PREV, "&e&lSebelumnya"), c -> later(() -> openHistory(p, pg - 1)));
         }
         if (pg < pages - 1) {
-            put(h, 50, icon(M_NEXT, "&e&lNext"), c -> later(() -> openHistory(p, pg + 1)));
+            put(h, 50, icon(M_NEXT, "&e&lBerikutnya"), c -> later(() -> openHistory(p, pg + 1)));
         }
         backAndClose(p, h);
         finish(h);
@@ -534,8 +593,8 @@ public final class BankGui {
 
     public void openSavings(Player p) {
         Account a = plugin.bank().account(p);
-        Holder h = open(p, false, "&b&lNereus Bank");
-        put(h, 4, icon(M_SAVINGS, "&d&lSavings", "&7Kunci uang, dapat bunga lebih besar.", "",
+        Holder h = open(p, false, "&6&lBank Nerus Guild");
+        put(h, 4, icon(M_SAVINGS, "&d&lSegel Simpanan", "&7Kunci uang, dapat bunga lebih besar.", "",
                 "&7Terkunci: &b" + Fmt.money(a.lockedInDeposits()),
                 "&7Bonus tier: &a+" + Fmt.pct(plugin.bank().tier(a).depositBonus()),
                 "&7Min. setoran: &e" + Fmt.money(plugin.getConfig().getLong("fixed-deposit.min-amount", 1000))), null);
@@ -544,7 +603,7 @@ public final class BankGui {
             Account.Deposit d = a.deposits.get(i);
             long earn = Math.round(d.amount() * d.rate() / 100.0);
             final int index = i;
-            put(h, slots[i], icon(M_FD, "&d&lDeposito " + Fmt.compact(d.amount()),
+            put(h, slots[i], icon(M_FD, "&d&lSegel " + Fmt.compact(d.amount()),
                     "&7Pokok: &f" + Fmt.money(d.amount()),
                     "&7Bunga: &a" + Fmt.pct(d.rate()) + " &8(+" + Fmt.money(earn) + ")",
                     "&7Cair dalam: &f" + Fmt.duration(d.end() - System.currentTimeMillis()),
@@ -585,9 +644,9 @@ public final class BankGui {
     public void openLoan(Player p) {
         Account a = plugin.bank().account(p);
         Tier t = plugin.bank().tier(a);
-        Holder h = open(p, false, "&b&lNereus Bank");
+        Holder h = open(p, false, "&6&lBank Nerus Guild");
         List<String> l = new ArrayList<>();
-        l.add("&7Batas pinjaman: &e" + Fmt.money(t.loanLimit()));
+        l.add("&7Batas hutang: &e" + Fmt.money(plugin.bank().loanLimit(a)));
         l.add("&7Bunga: &e" + Fmt.pct(t.loanRate()));
         l.add("&7Tagihan sekarang: &c" + Fmt.money(a.loan));
         if (a.loan > 0) {
@@ -597,17 +656,17 @@ public final class BankGui {
                 l.add("&7Jatuh tempo: &f" + Fmt.duration(a.loanDue - System.currentTimeMillis()));
             }
         }
-        l.add("&7Sisa bisa dipinjam: &a" + Fmt.money(Math.max(0, t.loanLimit() - a.loan)));
-        put(h, 13, icon(M_LOANINFO, "&c&lLoan", l.toArray(new String[0])), null);
-        put(h, 29, icon(M_BORROW, "&a&lBorrow", "&7Pinjam uang ke saldo bank.",
+        l.add("&7Sisa bisa dipinjam: &a" + Fmt.money(Math.max(0, plugin.bank().loanLimit(a) - a.loan)));
+        put(h, 13, icon(M_LOANINFO, "&c&lHutang Guild", l.toArray(new String[0])), null);
+        put(h, 29, icon(M_BORROW, "&a&lPinjam", "&7Pinjam uang ke saldo bank.",
                 "&7Bunga &e" + Fmt.pct(t.loanRate()) + " &7langsung ditambahkan,",
                 "&7tapi &adibebaskan &7jika lunas dalam &f" + plugin.getConfig().getInt("loan.grace-minutes", 60) + " menit&7."),
                 c -> later(() -> openPicker(p, Mode.BORROW, null, 0, 0)));
         if (a.loan > 0) {
-            put(h, 33, icon(M_REPAY, "&e&lRepay", "&7Bayar tagihan dari saldo bank."),
+            put(h, 33, icon(M_REPAY, "&e&lLunasi", "&7Bayar tagihan dari saldo bank."),
                     c -> later(() -> openPicker(p, Mode.REPAY, null, 0, 0)));
         } else {
-            put(h, 33, icon(M_REPAY, "&8&lRepay", "&7Kamu tidak punya pinjaman."), null);
+            put(h, 33, icon(M_REPAY, "&8&lLunasi", "&7Kamu tidak punya pinjaman."), null);
         }
         backAndClose(p, h);
         finish(h);
@@ -619,8 +678,8 @@ public final class BankGui {
         BankManager bank = plugin.bank();
         Account a = bank.account(p);
         Tier cur = bank.tier(a);
-        Holder h = open(p, false, "&b&lNereus Bank");
-        put(h, 4, icon(cur.model() > 0 ? cur.model() : M_ACCOUNT, "&6&lCards &8| " + cur.label(),
+        Holder h = open(p, false, "&6&lBank Nerus Guild");
+        put(h, 4, icon(plugin.cards().material(cur), "&6&lKartu Guild &8| " + cur.label(),
                 "&7Nomor: &f" + a.cardNo, "&7Beli kartu untuk naik tier."), null);
         int[] slots = {11, 13, 15, 29, 31, 33};
         int i = 0;
@@ -633,8 +692,9 @@ public final class BankGui {
             l.add("&7Biaya transfer: &e" + Fmt.pct(t.transferFee()));
             l.add("&7Batas transfer harian: &e" + (t.dailyLimit() < 0 ? "Tanpa batas" : Fmt.money(t.dailyLimit())));
             l.add("&7Saldo maksimal: &e" + (t.maxBalance() < 0 ? "Tanpa batas" : Fmt.money(t.maxBalance())));
-            l.add("&7Pinjaman: &e" + Fmt.money(t.loanLimit()) + " &8@ " + Fmt.pct(t.loanRate()));
+            l.add("&7Hutang: &e" + Fmt.money(t.loanLimit()) + " &8@ " + Fmt.pct(t.loanRate()));
             l.add("&7Bonus deposito: &a+" + Fmt.pct(t.depositBonus()));
+            l.add("&7Brankas item: &f" + t.vaultSlots() + " slot");
             l.add("");
             l.add("&7Harga: &e" + Fmt.money(t.cardPrice()));
             if (t.cardMinBalance() > 0) {
@@ -649,12 +709,12 @@ public final class BankGui {
                 l.add("&eKlik untuk membeli.");
             }
             final Tier target = t;
-            put(h, slots[i++], icon(t.model() > 0 ? t.model() : M_ACCOUNT, "&b&lNereus " + t.label() + " &b&lCard",
+            put(h, slots[i++], icon(plugin.cards().material(t), "&6&lKartu Guild &8| " + t.label(),
                     l.toArray(new String[0])), c -> {
                 if (target.order() <= cur.order()) {
                     return;
                 }
-                later(() -> confirm(p, icon(target.model() > 0 ? target.model() : M_ACCOUNT, "&6&lBeli " + target.label() + "?",
+                later(() -> confirm(p, icon(plugin.cards().material(target), "&6&lBeli " + target.label() + "?",
                         "&7Harga: &e" + Fmt.money(target.cardPrice()),
                         "&7Dibayar dari saldo bank, lalu dompet."), () -> {
                             BankManager.Result r = plugin.cards().buy(p, target);
@@ -670,7 +730,7 @@ public final class BankGui {
             });
         }
         long fee = plugin.getConfig().getLong("card.replace-fee", 5000);
-        put(h, 38, icon(M_REPLACE, "&e&lReplace Card", "&7Cetak ulang kartu yang hilang.", "&7Biaya: &e" + Fmt.money(fee)),
+        put(h, 38, icon(M_REPLACE, "&e&lCetak Ulang Kartu", "&7Cetak ulang kartu yang hilang.", "&7Biaya: &e" + Fmt.money(fee)),
                 c -> later(() -> confirm(p, icon(M_REPLACE, "&e&lCetak ulang kartu?", "&7Biaya: &e" + Fmt.money(fee)), () -> {
                     BankManager.Result r = plugin.cards().replace(p);
                     if (r.success()) {
@@ -687,8 +747,8 @@ public final class BankGui {
     // ---------------- rich list ----------------
 
     public void openTop(Player p) {
-        Holder h = open(p, false, "&b&lNereus Bank");
-        put(h, 4, icon(M_TOP, "&e&lRich List", "&7Total saldo + deposito."), null);
+        Holder h = open(p, false, "&6&lBank Nerus Guild");
+        put(h, 4, icon(M_TOP, "&e&lDaftar Konglomerat", "&7Total saldo + deposito."), null);
         int[] slots = {10, 11, 12, 13, 14, 15, 16, 19, 20, 21};
         List<Account> top = plugin.bank().top(slots.length);
         for (int i = 0; i < top.size(); i++) {
@@ -710,10 +770,10 @@ public final class BankGui {
     // ---------------- confirm ----------------
 
     public void confirm(Player p, ItemStack info, Runnable yes, Runnable no) {
-        Holder h = open(p, false, "&b&lNereus Bank");
+        Holder h = open(p, false, "&6&lBank Nerus Guild");
         put(h, 13, info, null);
-        put(h, 29, icon(M_CONFIRM, "&a&lYes", "&7Lanjutkan."), c -> later(yes));
-        put(h, 33, icon(M_CANCEL, "&c&lNo", "&7Batal."), c -> later(no));
+        put(h, 29, icon(M_CONFIRM, "&a&lYa", "&7Lanjutkan."), c -> later(yes));
+        put(h, 33, icon(M_CANCEL, "&c&lTidak", "&7Batal."), c -> later(no));
         finish(h);
     }
 }

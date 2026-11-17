@@ -42,7 +42,42 @@ public final class BankManager {
     private final Map<UUID, Account> accounts = new LinkedHashMap<>();
     private final Map<String, Tier> tiers = new LinkedHashMap<>();
     private final TreeMap<Integer, Double> periods = new TreeMap<>();
+    private final Map<String, Perk> perks = new LinkedHashMap<>();
     private boolean dirty;
+
+    /** Bonus dari RPG Rank NerusRPG: tambahan poin bunga, tambahan batas pinjaman, tambahan slot brankas. */
+    public record Perk(double interestBonus, long loanBonus, int vaultBonus) {
+        static final Perk NONE = new Perk(0, 0, 0);
+    }
+
+    public Perk perk(Account a) {
+        if (a.guildRank == null || a.guildRank.isEmpty()) {
+            return Perk.NONE;
+        }
+        return perks.getOrDefault(a.guildRank.toUpperCase(Locale.ROOT), Perk.NONE);
+    }
+
+    public double interestRate(Account a) {
+        return tier(a).interest() + perk(a).interestBonus();
+    }
+
+    public long loanLimit(Account a) {
+        return tier(a).loanLimit() + perk(a).loanBonus();
+    }
+
+    public int vaultSlots(Account a) {
+        return Math.max(0, tier(a).vaultSlots() + perk(a).vaultBonus());
+    }
+
+    /** Baca RPG Rank pemain dari NerusRPG (via PlaceholderAPI). Kosong = belum terdaftar / tidak tersedia. */
+    public void refreshRank(Player p) {
+        Account a = account(p);
+        String r = RankHook.rankOf(plugin, p);
+        if (r != null && !r.equals(a.guildRank)) {
+            a.guildRank = r;
+            dirty = true;
+        }
+    }
 
     public BankManager(NereusBank plugin) {
         this.plugin = plugin;
@@ -68,13 +103,36 @@ public final class BankManager {
                         s.getDouble("interest", 0), s.getLong("interest-cap", -1), s.getDouble("transfer-fee", 0),
                         s.getLong("daily-limit", -1), s.getLong("max-balance", -1), s.getLong("loan-limit", 0),
                         s.getDouble("loan-rate", 0), s.getDouble("deposit-bonus", 0), s.getLong("card-price", 0),
-                        s.getLong("card-min-balance", 0), s.getInt("model", 0)));
+                        s.getLong("card-min-balance", 0), s.getString("material", defaultMaterial(order - 1)),
+                        s.getInt("vault-slots", defaultVault(order - 1))));
             }
         }
         if (tiers.isEmpty()) {
             tiers.put("STANDARD", new Tier("STANDARD", 0, "Standard", "&7", 0.5, 50000, 5, 100000, 1000000,
-                    20000, 10, 0, 0, 0, 0));
+                    20000, 10, 0, 0, 0, "PAPER", 9));
         }
+        perks.clear();
+        ConfigurationSection gp = cfg.getConfigurationSection("guild-perks");
+        if (gp != null) {
+            for (String k : gp.getKeys(false)) {
+                ConfigurationSection c = gp.getConfigurationSection(k);
+                if (c != null) {
+                    perks.put(k.toUpperCase(Locale.ROOT), new Perk(c.getDouble("interest-bonus", 0),
+                            c.getLong("loan-bonus", 0), c.getInt("vault-bonus", 0)));
+                }
+            }
+        }
+        Fmt.coinsEnabled = cfg.getBoolean("coins.enabled", true);
+        Fmt.coinUnits = new ArrayList<>();
+        for (Map<?, ?> m : cfg.getMapList("coins.units")) {
+            Object n = m.get("name");
+            Object v = m.get("value");
+            if (n != null && v instanceof Number num) {
+                Object c = m.get("color");
+                Fmt.coinUnits.add(new Fmt.Coin(String.valueOf(n), num.longValue(), c == null ? "&f" : String.valueOf(c)));
+            }
+        }
+        Fmt.coinUnits.sort((x, y) -> Long.compare(y.value(), x.value()));
         ConfigurationSection ps = cfg.getConfigurationSection("fixed-deposit.periods");
         if (ps != null) {
             for (String k : ps.getKeys(false)) {
@@ -85,6 +143,24 @@ public final class BankManager {
                 }
             }
         }
+    }
+
+    private static String defaultMaterial(int order) {
+        return switch (order) {
+            case 0 -> "PAPER";
+            case 1 -> "IRON_INGOT";
+            case 2 -> "GOLD_INGOT";
+            default -> "DIAMOND";
+        };
+    }
+
+    private static int defaultVault(int order) {
+        return switch (order) {
+            case 0 -> 9;
+            case 1 -> 18;
+            case 2 -> 36;
+            default -> 54;
+        };
     }
 
     public Map<String, Tier> tiers() {
@@ -241,7 +317,7 @@ public final class BankManager {
 
     public long interestPreview(Account a) {
         Tier t = tier(a);
-        long raw = Math.round(a.balance * t.interest() / 100.0);
+        long raw = Math.round(a.balance * interestRate(a) / 100.0);
         return t.interestCap() < 0 ? raw : Math.min(raw, t.interestCap());
     }
 
@@ -361,7 +437,7 @@ public final class BankManager {
         if (amount < min) {
             return Result.fail("loan-min", "min", Fmt.money(min));
         }
-        long room = t.loanLimit() - a.loan;
+        long room = loanLimit(a) - a.loan;
         if (amount > room) {
             return Result.fail("loan-limit", "limit", Fmt.money(Math.max(0, room)));
         }
@@ -542,6 +618,7 @@ public final class BankManager {
                             num(m.get("amount")), String.valueOf(m.get("note")), num(m.get("after"))));
                 }
                 a.notices.addAll(c.getStringList("notices"));
+                a.guildRank = c.getString("guild-rank", "");
                 if (a.cardNo == null) {
                     a.cardNo = newCardNumber();
                 }
@@ -556,7 +633,64 @@ public final class BankManager {
         return o instanceof Number n ? n.longValue() : 0;
     }
 
+    // ---------------- brankas item ----------------
+
+    private File vaultFile(UUID id) {
+        return new File(new File(plugin.getDataFolder(), "vaults"), id + ".yml");
+    }
+
+    /** Muat isi brankas dari file (sekali per akun). */
+    public void ensureVault(Account a) {
+        if (a.vaultLoaded) {
+            return;
+        }
+        a.vaultLoaded = true;
+        File f = vaultFile(a.id);
+        if (!f.isFile()) {
+            return;
+        }
+        for (String raw : YamlConfiguration.loadConfiguration(f).getStringList("items")) {
+            org.bukkit.inventory.ItemStack it = null;
+            try {
+                it = org.bukkit.inventory.ItemStack.deserializeBytes(java.util.Base64.getDecoder().decode(raw));
+            } catch (Exception | LinkageError e) {
+                plugin.getLogger().warning("Item brankas " + a.name + " tidak terbaca (disimpan apa adanya): " + e.getMessage());
+            }
+            a.vault.add(new Account.VaultItem(it, raw));
+        }
+    }
+
+    public void saveVaults() {
+        File dir = new File(plugin.getDataFolder(), "vaults");
+        for (Account a : accounts.values()) {
+            if (!a.vaultDirty) {
+                continue;
+            }
+            List<String> out = new ArrayList<>();
+            for (Account.VaultItem v : a.vault) {
+                if (v.item != null) {
+                    out.add(java.util.Base64.getEncoder().encodeToString(v.item.serializeAsBytes()));
+                } else if (v.raw != null) {
+                    out.add(v.raw);
+                }
+            }
+            try {
+                dir.mkdirs();
+                YamlConfiguration y = new YamlConfiguration();
+                y.set("items", out);
+                File f = vaultFile(a.id);
+                File tmp = new File(dir, a.id + ".yml.tmp");
+                y.save(tmp);
+                java.nio.file.Files.move(tmp.toPath(), f.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+                a.vaultDirty = false;
+            } catch (Exception ex) {
+                plugin.getLogger().warning("Brankas " + a.name + " gagal disimpan: " + ex.getMessage());
+            }
+        }
+    }
+
     public synchronized void save() {
+        saveVaults();
         if (!dirty) {
             return;
         }
@@ -599,6 +733,7 @@ public final class BankManager {
             }
             y.set(p + ".txs", ts);
             y.set(p + ".notices", a.notices);
+            y.set(p + ".guild-rank", a.guildRank);
         }
         try {
             plugin.getDataFolder().mkdirs();

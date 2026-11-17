@@ -6,6 +6,40 @@ public final class Fmt {
 
     public static String symbol = "$";
 
+    /** Satuan koin (dari besar ke kecil): {nama, nilai, warna}. */
+    public record Coin(String name, long value, String color) {
+    }
+
+    public static java.util.List<Coin> coinUnits = new java.util.ArrayList<>();
+    public static boolean coinsEnabled = false;
+
+    /** 12345 -> "&61 Emas &f23 Perak &c45 Tembaga" (kosong jika fitur mati). */
+    public static String coins(long v) {
+        if (!coinsEnabled || coinUnits.isEmpty()) {
+            return "";
+        }
+        StringBuilder sb = new StringBuilder();
+        long rest = Math.max(0, v);
+        for (Coin c : coinUnits) {
+            if (c.value() <= 0) {
+                continue;
+            }
+            long n = rest / c.value();
+            rest %= c.value();
+            if (n > 0) {
+                if (sb.length() > 0) {
+                    sb.append(' ');
+                }
+                sb.append(c.color()).append(String.format(Locale.US, "%,d", n)).append(' ').append(c.name());
+            }
+        }
+        if (sb.length() == 0) {
+            Coin last = coinUnits.get(coinUnits.size() - 1);
+            sb.append(last.color()).append("0 ").append(last.name());
+        }
+        return sb.toString();
+    }
+
     private Fmt() {
     }
 

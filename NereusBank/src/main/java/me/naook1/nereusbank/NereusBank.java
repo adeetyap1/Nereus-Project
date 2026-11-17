@@ -16,7 +16,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
- * Nereus Bank - accounts, transfers, interest, fixed deposits, loans and cards.
+ * Bank Nerus Guild - rekening, kartu guild, simpanan, hutang, brankas item (tanpa resource pack).
  * Developer: naook1/adityap
  */
 public final class NereusBank extends JavaPlugin {
@@ -26,6 +26,7 @@ public final class NereusBank extends JavaPlugin {
     private BankManager bank;
     private CardManager cards;
     private BankGui gui;
+    private VaultGui vault;
     private final Map<UUID, Consumer<String>> prompts = new HashMap<>();
 
     @Override
@@ -37,6 +38,7 @@ public final class NereusBank extends JavaPlugin {
         bank = new BankManager(this);
         cards = new CardManager(this);
         gui = new BankGui(this);
+        vault = new VaultGui(this);
         messages.reload();
         bank.reloadConfig();
         bank.load();
@@ -48,6 +50,15 @@ public final class NereusBank extends JavaPlugin {
         CardCommand cc = new CardCommand(this);
         getCommand("card").setExecutor(cc);
         getCommand("card").setTabCompleter(cc);
+
+        if (getServer().getPluginManager().getPlugin("FancyNpcs") != null) {
+            try {
+                getServer().getPluginManager().registerEvents(new TellerListener(this), this);
+                getLogger().info("FancyNpcs terdeteksi: NPC teller aktif (teller.npc-ids).");
+            } catch (Throwable t) {
+                getLogger().warning("Teller NPC dilewati: " + t);
+            }
+        }
 
         getServer().getScheduler().runTaskTimer(this, () -> bank.tick(), 1200L, 6000L);
         getServer().getScheduler().runTaskTimer(this, () -> bank.save(), 6000L, 6000L);
@@ -95,6 +106,10 @@ public final class NereusBank extends JavaPlugin {
 
     public BankGui gui() {
         return gui;
+    }
+
+    public VaultGui vault() {
+        return vault;
     }
 
     // ---------------- chat prompts ----------------
