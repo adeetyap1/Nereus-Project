@@ -302,11 +302,11 @@ quests:
     gp: 50
     commands:
     - eco give %player% 500
-    - crazycrates give virtual common 1 %player% -s
+    - crazycrates give virtual nereusabyss 1 %player% -s
     reward-lore:
     - ' &3&l| &6500 Gold'
     - ' &3&l| &b50 GP'
-    - ' &3&l| &71 Key Crate Common'
+    - ' &3&l| &71 Key Nereus Abyss'
   d-2:
     rank: D
     challenge: false
@@ -318,11 +318,11 @@ quests:
     gp: 50
     commands:
     - eco give %player% 600
-    - crazycrates give virtual common 1 %player% -s
+    - crazycrates give virtual nereusabyss 1 %player% -s
     reward-lore:
     - ' &3&l| &6600 Gold'
     - ' &3&l| &b50 GP'
-    - ' &3&l| &71 Key Crate Common'
+    - ' &3&l| &71 Key Nereus Abyss'
   d-3:
     rank: D
     challenge: false
@@ -334,11 +334,11 @@ quests:
     gp: 50
     commands:
     - eco give %player% 700
-    - crazycrates give virtual common 1 %player% -s
+    - crazycrates give virtual nereusabyss 1 %player% -s
     reward-lore:
     - ' &3&l| &6700 Gold'
     - ' &3&l| &b50 GP'
-    - ' &3&l| &71 Key Crate Common'
+    - ' &3&l| &71 Key Nereus Abyss'
   d-4:
     rank: D
     challenge: false
@@ -350,11 +350,11 @@ quests:
     gp: 50
     commands:
     - eco give %player% 800
-    - crazycrates give virtual common 1 %player% -s
+    - crazycrates give virtual nereusabyss 1 %player% -s
     reward-lore:
     - ' &3&l| &6800 Gold'
     - ' &3&l| &b50 GP'
-    - ' &3&l| &71 Key Crate Common'
+    - ' &3&l| &71 Key Nereus Abyss'
   d-5:
     rank: D
     challenge: false
@@ -366,11 +366,11 @@ quests:
     gp: 50
     commands:
     - eco give %player% 900
-    - crazycrates give virtual common 1 %player% -s
+    - crazycrates give virtual nereusabyss 1 %player% -s
     reward-lore:
     - ' &3&l| &6900 Gold'
     - ' &3&l| &b50 GP'
-    - ' &3&l| &71 Key Crate Common'
+    - ' &3&l| &71 Key Nereus Abyss'
   d-1-t:
     rank: D
     challenge: true
@@ -382,11 +382,11 @@ quests:
     gp: 62
     commands:
     - eco give %player% 620
-    - crazycrates give virtual common 1 %player% -s
+    - crazycrates give virtual nereusabyss 1 %player% -s
     reward-lore:
     - ' &3&l| &6620 Gold'
     - ' &3&l| &b62 GP'
-    - ' &3&l| &71 Key Crate Common'
+    - ' &3&l| &71 Key Nereus Abyss'
   d-2-t:
     rank: D
     challenge: true
@@ -398,11 +398,11 @@ quests:
     gp: 62
     commands:
     - eco give %player% 750
-    - crazycrates give virtual common 1 %player% -s
+    - crazycrates give virtual nereusabyss 1 %player% -s
     reward-lore:
     - ' &3&l| &6750 Gold'
     - ' &3&l| &b62 GP'
-    - ' &3&l| &71 Key Crate Common'
+    - ' &3&l| &71 Key Nereus Abyss'
   d-3-t:
     rank: D
     challenge: true
@@ -414,11 +414,11 @@ quests:
     gp: 62
     commands:
     - eco give %player% 880
-    - crazycrates give virtual common 1 %player% -s
+    - crazycrates give virtual nereusabyss 1 %player% -s
     reward-lore:
     - ' &3&l| &6880 Gold'
     - ' &3&l| &b62 GP'
-    - ' &3&l| &71 Key Crate Common'
+    - ' &3&l| &71 Key Nereus Abyss'
   d-4-t:
     rank: D
     challenge: true
@@ -430,11 +430,11 @@ quests:
     gp: 62
     commands:
     - eco give %player% 1000
-    - crazycrates give virtual common 1 %player% -s
+    - crazycrates give virtual nereusabyss 1 %player% -s
     reward-lore:
     - ' &3&l| &61.000 Gold'
     - ' &3&l| &b62 GP'
-    - ' &3&l| &71 Key Crate Common'
+    - ' &3&l| &71 Key Nereus Abyss'
   d-5-t:
     rank: D
     challenge: true
@@ -446,11 +446,11 @@ quests:
     gp: 62
     commands:
     - eco give %player% 1120
-    - crazycrates give virtual common 1 %player% -s
+    - crazycrates give virtual nereusabyss 1 %player% -s
     reward-lore:
     - ' &3&l| &61.120 Gold'
     - ' &3&l| &b62 GP'
-    - ' &3&l| &71 Key Crate Common'
+    - ' &3&l| &71 Key Nereus Abyss'
   c-1:
     rank: C
     challenge: false
@@ -462,11 +462,11 @@ quests:
     gp: 100
     commands:
     - eco give %player% 1000
-    - crazycrates give virtual rare 1 %player% -s
+    - crazycrates give virtual nereusdraco 1 %player% -s
     reward-lore:
     - ' &3&l| &61.000 Gold'
     - ' &3&l| &b100 GP'
-    - ' &3&l| &71 Key Crate Rare'
+    - ' &3&l| &71 Key Nereus Draco'
   c-2:
     rank: C
     challenge: false
@@ -478,11 +478,11 @@ quests:
     gp: 100
     commands:
     - eco give %player% 1250
-    - crazycrates give virtual rare 1 %player% -s
+    - crazycrates give virtual nereusdraco 1 %player% -s
     reward-lore:
     - ' &3&l| &61.250 Gold'
     - ' &3&l| &b100 GP'
-    - ' &3&l| &71 Key Crate Rare'
+    - ' &3&l| &71 Key Nereus Draco'
   c-3:
     rank: C
     challenge: false
@@ -494,11 +494,11 @@ quests:
     gp: 100
     commands:
     - eco give %player% 1500
-    - crazycrates give virtual rare 1 %player% -s
+    - crazycrates give virtual nereusdraco 1 %player% -s
     reward-lore:
     - ' &3&l| &61.500 Gold'
     - ' &3&l| &b100 GP'
-    - ' &3&l| &71 Key Crate Rare'
+    - ' &3&l| &71 Key Nereus Draco'
   c-4:
     rank: C
     challenge: false
@@ -510,11 +510,11 @@ quests:
     gp: 100
     commands:
     - eco give %player% 1750
-    - crazycrates give virtual rare 1 %player% -s
+    - crazycrates give virtual nereusdraco 1 %player% -s
     reward-lore:
     - ' &3&l| &61.750 Gold'
     - ' &3&l| &b100 GP'
-    - ' &3&l| &71 Key Crate Rare'
+    - ' &3&l| &71 Key Nereus Draco'
   c-5:
     rank: C
     challenge: false
@@ -526,11 +526,11 @@ quests:
     gp: 100
     commands:
     - eco give %player% 2000
-    - crazycrates give virtual rare 1 %player% -s
+    - crazycrates give virtual nereusdraco 1 %player% -s
     reward-lore:
     - ' &3&l| &62.000 Gold'
     - ' &3&l| &b100 GP'
-    - ' &3&l| &71 Key Crate Rare'
+    - ' &3&l| &71 Key Nereus Draco'
   c-1-t:
     rank: C
     challenge: true
@@ -542,11 +542,11 @@ quests:
     gp: 125
     commands:
     - eco give %player% 1250
-    - crazycrates give virtual rare 1 %player% -s
+    - crazycrates give virtual nereusdraco 1 %player% -s
     reward-lore:
     - ' &3&l| &61.250 Gold'
     - ' &3&l| &b125 GP'
-    - ' &3&l| &71 Key Crate Rare'
+    - ' &3&l| &71 Key Nereus Draco'
   c-2-t:
     rank: C
     challenge: true
@@ -558,11 +558,11 @@ quests:
     gp: 125
     commands:
     - eco give %player% 1560
-    - crazycrates give virtual rare 1 %player% -s
+    - crazycrates give virtual nereusdraco 1 %player% -s
     reward-lore:
     - ' &3&l| &61.560 Gold'
     - ' &3&l| &b125 GP'
-    - ' &3&l| &71 Key Crate Rare'
+    - ' &3&l| &71 Key Nereus Draco'
   c-3-t:
     rank: C
     challenge: true
@@ -574,11 +574,11 @@ quests:
     gp: 125
     commands:
     - eco give %player% 1880
-    - crazycrates give virtual rare 1 %player% -s
+    - crazycrates give virtual nereusdraco 1 %player% -s
     reward-lore:
     - ' &3&l| &61.880 Gold'
     - ' &3&l| &b125 GP'
-    - ' &3&l| &71 Key Crate Rare'
+    - ' &3&l| &71 Key Nereus Draco'
   c-4-t:
     rank: C
     challenge: true
@@ -590,11 +590,11 @@ quests:
     gp: 125
     commands:
     - eco give %player% 2190
-    - crazycrates give virtual rare 1 %player% -s
+    - crazycrates give virtual nereusdraco 1 %player% -s
     reward-lore:
     - ' &3&l| &62.190 Gold'
     - ' &3&l| &b125 GP'
-    - ' &3&l| &71 Key Crate Rare'
+    - ' &3&l| &71 Key Nereus Draco'
   c-5-t:
     rank: C
     challenge: true
@@ -606,11 +606,11 @@ quests:
     gp: 125
     commands:
     - eco give %player% 2500
-    - crazycrates give virtual rare 1 %player% -s
+    - crazycrates give virtual nereusdraco 1 %player% -s
     reward-lore:
     - ' &3&l| &62.500 Gold'
     - ' &3&l| &b125 GP'
-    - ' &3&l| &71 Key Crate Rare'
+    - ' &3&l| &71 Key Nereus Draco'
   b-1:
     rank: B
     challenge: false
@@ -623,11 +623,11 @@ quests:
     commands:
     - eco give %player% 2500
     - mi give MATERIAL RARE_DIAMOND %player% 2
-    - crazycrates forceopen hadiah_b %player%
+    - crazycrates forceopen nereuswarlord %player%
     reward-lore:
     - ' &3&l| &62.500 Gold'
     - ' &3&l| &b200 GP'
-    - ' &3&l| &72 Rare Diamond, peluang senjata/armor Epic'
+    - ' &3&l| &72 Rare Diamond, peluang Nereus Warlord (Epic)'
   b-2:
     rank: B
     challenge: false
@@ -640,11 +640,11 @@ quests:
     commands:
     - eco give %player% 3120
     - mi give MATERIAL MAGIC_ESSENCE %player% 1
-    - crazycrates forceopen hadiah_b %player%
+    - crazycrates forceopen nereuswarlord %player%
     reward-lore:
     - ' &3&l| &63.120 Gold'
     - ' &3&l| &b200 GP'
-    - ' &3&l| &71 Magic Essence, peluang senjata/armor Epic'
+    - ' &3&l| &71 Magic Essence, peluang Nereus Warlord (Epic)'
   b-3:
     rank: B
     challenge: false
@@ -657,11 +657,11 @@ quests:
     commands:
     - eco give %player% 3750
     - mi give MATERIAL DARK_NETHERITE %player% 1
-    - crazycrates forceopen hadiah_b %player%
+    - crazycrates forceopen nereuswarlord %player%
     reward-lore:
     - ' &3&l| &63.750 Gold'
     - ' &3&l| &b200 GP'
-    - ' &3&l| &71 Dark Netherite, peluang senjata/armor Epic'
+    - ' &3&l| &71 Dark Netherite, peluang Nereus Warlord (Epic)'
   b-4:
     rank: B
     challenge: false
@@ -674,11 +674,11 @@ quests:
     commands:
     - eco give %player% 4380
     - mi give MATERIAL RARE_DIAMOND %player% 2
-    - crazycrates forceopen hadiah_b %player%
+    - crazycrates forceopen nereuswarlord %player%
     reward-lore:
     - ' &3&l| &64.380 Gold'
     - ' &3&l| &b200 GP'
-    - ' &3&l| &72 Rare Diamond, peluang senjata/armor Epic'
+    - ' &3&l| &72 Rare Diamond, peluang Nereus Warlord (Epic)'
   b-5:
     rank: B
     challenge: false
@@ -691,11 +691,11 @@ quests:
     commands:
     - eco give %player% 5000
     - mi give MATERIAL MAGIC_ESSENCE %player% 1
-    - crazycrates forceopen hadiah_b %player%
+    - crazycrates forceopen nereuswarlord %player%
     reward-lore:
     - ' &3&l| &65.000 Gold'
     - ' &3&l| &b200 GP'
-    - ' &3&l| &71 Magic Essence, peluang senjata/armor Epic'
+    - ' &3&l| &71 Magic Essence, peluang Nereus Warlord (Epic)'
   b-1-t:
     rank: B
     challenge: true
@@ -708,11 +708,11 @@ quests:
     commands:
     - eco give %player% 3120
     - mi give MATERIAL RARE_DIAMOND %player% 2
-    - crazycrates forceopen hadiah_b %player%
+    - crazycrates forceopen nereuswarlord %player%
     reward-lore:
     - ' &3&l| &63.120 Gold'
     - ' &3&l| &b250 GP'
-    - ' &3&l| &72 Rare Diamond, peluang senjata/armor Epic'
+    - ' &3&l| &72 Rare Diamond, peluang Nereus Warlord (Epic)'
   b-2-t:
     rank: B
     challenge: true
@@ -725,11 +725,11 @@ quests:
     commands:
     - eco give %player% 3900
     - mi give MATERIAL MAGIC_ESSENCE %player% 1
-    - crazycrates forceopen hadiah_b %player%
+    - crazycrates forceopen nereuswarlord %player%
     reward-lore:
     - ' &3&l| &63.900 Gold'
     - ' &3&l| &b250 GP'
-    - ' &3&l| &71 Magic Essence, peluang senjata/armor Epic'
+    - ' &3&l| &71 Magic Essence, peluang Nereus Warlord (Epic)'
   b-3-t:
     rank: B
     challenge: true
@@ -742,11 +742,11 @@ quests:
     commands:
     - eco give %player% 4690
     - mi give MATERIAL DARK_NETHERITE %player% 1
-    - crazycrates forceopen hadiah_b %player%
+    - crazycrates forceopen nereuswarlord %player%
     reward-lore:
     - ' &3&l| &64.690 Gold'
     - ' &3&l| &b250 GP'
-    - ' &3&l| &71 Dark Netherite, peluang senjata/armor Epic'
+    - ' &3&l| &71 Dark Netherite, peluang Nereus Warlord (Epic)'
   b-4-t:
     rank: B
     challenge: true
@@ -759,11 +759,11 @@ quests:
     commands:
     - eco give %player% 5480
     - mi give MATERIAL RARE_DIAMOND %player% 2
-    - crazycrates forceopen hadiah_b %player%
+    - crazycrates forceopen nereuswarlord %player%
     reward-lore:
     - ' &3&l| &65.480 Gold'
     - ' &3&l| &b250 GP'
-    - ' &3&l| &72 Rare Diamond, peluang senjata/armor Epic'
+    - ' &3&l| &72 Rare Diamond, peluang Nereus Warlord (Epic)'
   b-5-t:
     rank: B
     challenge: true
@@ -776,11 +776,11 @@ quests:
     commands:
     - eco give %player% 6250
     - mi give MATERIAL MAGIC_ESSENCE %player% 1
-    - crazycrates forceopen hadiah_b %player%
+    - crazycrates forceopen nereuswarlord %player%
     reward-lore:
     - ' &3&l| &66.250 Gold'
     - ' &3&l| &b250 GP'
-    - ' &3&l| &71 Magic Essence, peluang senjata/armor Epic'
+    - ' &3&l| &71 Magic Essence, peluang Nereus Warlord (Epic)'
   a-1:
     rank: A
     challenge: false
@@ -792,12 +792,12 @@ quests:
     gp: 400
     commands:
     - eco give %player% 6000
-    - crazycrates give virtual epic 1 %player% -s
+    - crazycrates give virtual nereuswarlord 1 %player% -s
     - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
     reward-lore:
     - ' &3&l| &66.000 Gold'
     - ' &3&l| &b400 GP'
-    - ' &3&l| &71 Key Crate Epic dan 1 Fragmen Artefak'
+    - ' &3&l| &71 Key Nereus Warlord dan 1 Fragmen Artefak'
   a-2:
     rank: A
     challenge: false
@@ -809,12 +809,12 @@ quests:
     gp: 400
     commands:
     - eco give %player% 7000
-    - crazycrates give virtual epic 1 %player% -s
+    - crazycrates give virtual nereuswarlord 1 %player% -s
     - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
     reward-lore:
     - ' &3&l| &67.000 Gold'
     - ' &3&l| &b400 GP'
-    - ' &3&l| &71 Key Crate Epic dan 1 Fragmen Artefak'
+    - ' &3&l| &71 Key Nereus Warlord dan 1 Fragmen Artefak'
   a-3:
     rank: A
     challenge: false
@@ -826,12 +826,12 @@ quests:
     gp: 400
     commands:
     - eco give %player% 8000
-    - crazycrates give virtual epic 1 %player% -s
+    - crazycrates give virtual nereuswarlord 1 %player% -s
     - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
     reward-lore:
     - ' &3&l| &68.000 Gold'
     - ' &3&l| &b400 GP'
-    - ' &3&l| &71 Key Crate Epic dan 1 Fragmen Artefak'
+    - ' &3&l| &71 Key Nereus Warlord dan 1 Fragmen Artefak'
   a-4:
     rank: A
     challenge: false
@@ -843,12 +843,12 @@ quests:
     gp: 400
     commands:
     - eco give %player% 9000
-    - crazycrates give virtual epic 1 %player% -s
+    - crazycrates give virtual nereuswarlord 1 %player% -s
     - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
     reward-lore:
     - ' &3&l| &69.000 Gold'
     - ' &3&l| &b400 GP'
-    - ' &3&l| &71 Key Crate Epic dan 1 Fragmen Artefak'
+    - ' &3&l| &71 Key Nereus Warlord dan 1 Fragmen Artefak'
   a-5:
     rank: A
     challenge: false
@@ -860,12 +860,12 @@ quests:
     gp: 400
     commands:
     - eco give %player% 10000
-    - crazycrates give virtual epic 1 %player% -s
+    - crazycrates give virtual nereuswarlord 1 %player% -s
     - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
     reward-lore:
     - ' &3&l| &610.000 Gold'
     - ' &3&l| &b400 GP'
-    - ' &3&l| &71 Key Crate Epic dan 1 Fragmen Artefak'
+    - ' &3&l| &71 Key Nereus Warlord dan 1 Fragmen Artefak'
   a-1-t:
     rank: A
     challenge: true
@@ -877,12 +877,12 @@ quests:
     gp: 500
     commands:
     - eco give %player% 7500
-    - crazycrates give virtual epic 1 %player% -s
+    - crazycrates give virtual nereuswarlord 1 %player% -s
     - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
     reward-lore:
     - ' &3&l| &67.500 Gold'
     - ' &3&l| &b500 GP'
-    - ' &3&l| &71 Key Crate Epic dan 1 Fragmen Artefak'
+    - ' &3&l| &71 Key Nereus Warlord dan 1 Fragmen Artefak'
   a-2-t:
     rank: A
     challenge: true
@@ -894,12 +894,12 @@ quests:
     gp: 500
     commands:
     - eco give %player% 8750
-    - crazycrates give virtual epic 1 %player% -s
+    - crazycrates give virtual nereuswarlord 1 %player% -s
     - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
     reward-lore:
     - ' &3&l| &68.750 Gold'
     - ' &3&l| &b500 GP'
-    - ' &3&l| &71 Key Crate Epic dan 1 Fragmen Artefak'
+    - ' &3&l| &71 Key Nereus Warlord dan 1 Fragmen Artefak'
   a-3-t:
     rank: A
     challenge: true
@@ -911,12 +911,12 @@ quests:
     gp: 500
     commands:
     - eco give %player% 10000
-    - crazycrates give virtual epic 1 %player% -s
+    - crazycrates give virtual nereuswarlord 1 %player% -s
     - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
     reward-lore:
     - ' &3&l| &610.000 Gold'
     - ' &3&l| &b500 GP'
-    - ' &3&l| &71 Key Crate Epic dan 1 Fragmen Artefak'
+    - ' &3&l| &71 Key Nereus Warlord dan 1 Fragmen Artefak'
   a-4-t:
     rank: A
     challenge: true
@@ -928,12 +928,12 @@ quests:
     gp: 500
     commands:
     - eco give %player% 11250
-    - crazycrates give virtual epic 1 %player% -s
+    - crazycrates give virtual nereuswarlord 1 %player% -s
     - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
     reward-lore:
     - ' &3&l| &611.250 Gold'
     - ' &3&l| &b500 GP'
-    - ' &3&l| &71 Key Crate Epic dan 1 Fragmen Artefak'
+    - ' &3&l| &71 Key Nereus Warlord dan 1 Fragmen Artefak'
   a-5-t:
     rank: A
     challenge: true
@@ -945,12 +945,12 @@ quests:
     gp: 500
     commands:
     - eco give %player% 12500
-    - crazycrates give virtual epic 1 %player% -s
+    - crazycrates give virtual nereuswarlord 1 %player% -s
     - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
     reward-lore:
     - ' &3&l| &612.500 Gold'
     - ' &3&l| &b500 GP'
-    - ' &3&l| &71 Key Crate Epic dan 1 Fragmen Artefak'
+    - ' &3&l| &71 Key Nereus Warlord dan 1 Fragmen Artefak'
   s-1:
     rank: S
     challenge: false
@@ -962,11 +962,11 @@ quests:
     gp: 800
     commands:
     - eco give %player% 12000
-    - crazycrates forceopen hadiah_s %player%
+    - crazycrates forceopen nereuseclipse %player%
     reward-lore:
     - ' &3&l| &612.000 Gold'
     - ' &3&l| &b800 GP'
-    - ' &3&l| &7Peluang senjata/armor Legendary'
+    - ' &3&l| &7Peluang Nereus Eclipse (Legend)'
   s-2:
     rank: S
     challenge: false
@@ -978,11 +978,11 @@ quests:
     gp: 800
     commands:
     - eco give %player% 16330
-    - crazycrates forceopen hadiah_s %player%
+    - crazycrates forceopen nereuseclipse %player%
     reward-lore:
     - ' &3&l| &616.330 Gold'
     - ' &3&l| &b800 GP'
-    - ' &3&l| &7Peluang senjata/armor Legendary'
+    - ' &3&l| &7Peluang Nereus Eclipse (Legend)'
   s-3:
     rank: S
     challenge: false
@@ -994,11 +994,11 @@ quests:
     gp: 800
     commands:
     - eco give %player% 20670
-    - crazycrates forceopen hadiah_s %player%
+    - crazycrates forceopen nereuseclipse %player%
     reward-lore:
     - ' &3&l| &620.670 Gold'
     - ' &3&l| &b800 GP'
-    - ' &3&l| &7Peluang senjata/armor Legendary'
+    - ' &3&l| &7Peluang Nereus Eclipse (Legend)'
   s-4:
     rank: S
     challenge: false
@@ -1010,11 +1010,11 @@ quests:
     gp: 800
     commands:
     - eco give %player% 25000
-    - crazycrates forceopen hadiah_s %player%
+    - crazycrates forceopen nereuseclipse %player%
     reward-lore:
     - ' &3&l| &625.000 Gold'
     - ' &3&l| &b800 GP'
-    - ' &3&l| &7Peluang senjata/armor Legendary'
+    - ' &3&l| &7Peluang Nereus Eclipse (Legend)'
   s-1-t:
     rank: S
     challenge: true
@@ -1026,11 +1026,11 @@ quests:
     gp: 1000
     commands:
     - eco give %player% 15000
-    - crazycrates forceopen hadiah_s %player%
+    - crazycrates forceopen nereuseclipse %player%
     reward-lore:
     - ' &3&l| &615.000 Gold'
     - ' &3&l| &b1.000 GP'
-    - ' &3&l| &7Peluang senjata/armor Legendary'
+    - ' &3&l| &7Peluang Nereus Eclipse (Legend)'
   s-2-t:
     rank: S
     challenge: true
@@ -1042,11 +1042,11 @@ quests:
     gp: 1000
     commands:
     - eco give %player% 20410
-    - crazycrates forceopen hadiah_s %player%
+    - crazycrates forceopen nereuseclipse %player%
     reward-lore:
     - ' &3&l| &620.410 Gold'
     - ' &3&l| &b1.000 GP'
-    - ' &3&l| &7Peluang senjata/armor Legendary'
+    - ' &3&l| &7Peluang Nereus Eclipse (Legend)'
   s-3-t:
     rank: S
     challenge: true
@@ -1058,11 +1058,11 @@ quests:
     gp: 1000
     commands:
     - eco give %player% 25840
-    - crazycrates forceopen hadiah_s %player%
+    - crazycrates forceopen nereuseclipse %player%
     reward-lore:
     - ' &3&l| &625.840 Gold'
     - ' &3&l| &b1.000 GP'
-    - ' &3&l| &7Peluang senjata/armor Legendary'
+    - ' &3&l| &7Peluang Nereus Eclipse (Legend)'
   s-4-t:
     rank: S
     challenge: true
@@ -1074,11 +1074,11 @@ quests:
     gp: 1000
     commands:
     - eco give %player% 31250
-    - crazycrates forceopen hadiah_s %player%
+    - crazycrates forceopen nereuseclipse %player%
     reward-lore:
     - ' &3&l| &631.250 Gold'
     - ' &3&l| &b1.000 GP'
-    - ' &3&l| &7Peluang senjata/armor Legendary'
+    - ' &3&l| &7Peluang Nereus Eclipse (Legend)'
   ss-1:
     rank: S
     challenge: false
@@ -1090,12 +1090,11 @@ quests:
     gp: 1500
     commands:
     - eco give %player% 30000
-    - crazycrates forceopen hadiah_ss %player%
-    - lp user %player% meta setsuffix 20 " &d[Legenda Guild]"
+    - crazycrates forceopen nereusmythrill %player%
     reward-lore:
     - ' &3&l| &630.000 Gold'
     - ' &3&l| &b1.500 GP'
-    - ' &3&l| &7Peluang artefak, title Legenda Guild'
+    - ' &3&l| &7Peluang senjata Legend (Nereus Mythrill)'
   ss-2:
     rank: S
     challenge: false
@@ -1107,12 +1106,11 @@ quests:
     gp: 1500
     commands:
     - eco give %player% 40000
-    - crazycrates forceopen hadiah_ss %player%
-    - lp user %player% meta setsuffix 20 " &d[Legenda Guild]"
+    - crazycrates forceopen nereusmythrill %player%
     reward-lore:
     - ' &3&l| &640.000 Gold'
     - ' &3&l| &b1.500 GP'
-    - ' &3&l| &7Peluang artefak, title Legenda Guild'
+    - ' &3&l| &7Peluang senjata Legend (Nereus Mythrill)'
   ss-3:
     rank: S
     challenge: false
@@ -1124,12 +1122,11 @@ quests:
     gp: 1500
     commands:
     - eco give %player% 50000
-    - crazycrates forceopen hadiah_ss %player%
-    - lp user %player% meta setsuffix 20 " &d[Legenda Guild]"
+    - crazycrates forceopen nereusmythrill %player%
     reward-lore:
     - ' &3&l| &650.000 Gold'
     - ' &3&l| &b1.500 GP'
-    - ' &3&l| &7Peluang artefak, title Legenda Guild'
+    - ' &3&l| &7Peluang senjata Legend (Nereus Mythrill)'
   ss-4:
     rank: S
     challenge: false
@@ -1141,12 +1138,11 @@ quests:
     gp: 1500
     commands:
     - eco give %player% 60000
-    - crazycrates forceopen hadiah_ss %player%
-    - lp user %player% meta setsuffix 20 " &d[Legenda Guild]"
+    - crazycrates forceopen nereusmythrill %player%
     reward-lore:
     - ' &3&l| &660.000 Gold'
     - ' &3&l| &b1.500 GP'
-    - ' &3&l| &7Peluang artefak, title Legenda Guild'
+    - ' &3&l| &7Peluang senjata Legend (Nereus Mythrill)'
   ss-1-t:
     rank: S
     challenge: true
@@ -1158,12 +1154,11 @@ quests:
     gp: 1875
     commands:
     - eco give %player% 37500
-    - crazycrates forceopen hadiah_ss %player%
-    - lp user %player% meta setsuffix 20 " &d[Legenda Guild]"
+    - crazycrates forceopen nereusmythrill %player%
     reward-lore:
     - ' &3&l| &637.500 Gold'
     - ' &3&l| &b1.875 GP'
-    - ' &3&l| &7Peluang artefak, title Legenda Guild'
+    - ' &3&l| &7Peluang senjata Legend (Nereus Mythrill)'
   ss-2-t:
     rank: S
     challenge: true
@@ -1175,12 +1170,11 @@ quests:
     gp: 1875
     commands:
     - eco give %player% 50000
-    - crazycrates forceopen hadiah_ss %player%
-    - lp user %player% meta setsuffix 20 " &d[Legenda Guild]"
+    - crazycrates forceopen nereusmythrill %player%
     reward-lore:
     - ' &3&l| &650.000 Gold'
     - ' &3&l| &b1.875 GP'
-    - ' &3&l| &7Peluang artefak, title Legenda Guild'
+    - ' &3&l| &7Peluang senjata Legend (Nereus Mythrill)'
   ss-3-t:
     rank: S
     challenge: true
@@ -1192,12 +1186,11 @@ quests:
     gp: 1875
     commands:
     - eco give %player% 62500
-    - crazycrates forceopen hadiah_ss %player%
-    - lp user %player% meta setsuffix 20 " &d[Legenda Guild]"
+    - crazycrates forceopen nereusmythrill %player%
     reward-lore:
     - ' &3&l| &662.500 Gold'
     - ' &3&l| &b1.875 GP'
-    - ' &3&l| &7Peluang artefak, title Legenda Guild'
+    - ' &3&l| &7Peluang senjata Legend (Nereus Mythrill)'
   ss-4-t:
     rank: S
     challenge: true
@@ -1209,12 +1202,11 @@ quests:
     gp: 1875
     commands:
     - eco give %player% 75000
-    - crazycrates forceopen hadiah_ss %player%
-    - lp user %player% meta setsuffix 20 " &d[Legenda Guild]"
+    - crazycrates forceopen nereusmythrill %player%
     reward-lore:
     - ' &3&l| &675.000 Gold'
     - ' &3&l| &b1.875 GP'
-    - ' &3&l| &7Peluang artefak, title Legenda Guild'
+    - ' &3&l| &7Peluang senjata Legend (Nereus Mythrill)'
   sss-1:
     rank: S
     challenge: false
