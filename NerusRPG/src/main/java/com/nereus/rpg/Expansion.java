@@ -99,6 +99,13 @@ public final class Expansion extends PlaceholderExpansion {
             case "rank_legacy" -> {
                 return r == null ? "§7NONE" : color(r.legacyTag());
             }
+            case "rank_index" -> {
+                return r == null ? "0" : String.valueOf(Core.RANK_ORDER.indexOf(r.key().charAt(0)) + 1);
+            }
+            case "rank_score" -> {
+                return r == null ? "0" : String.valueOf((Core.RANK_ORDER.indexOf(r.key().charAt(0)) + 1)
+                        * 1_000_000_000L + pr.totalXp);
+            }
             case "rank_rarity" -> {
                 return r == null ? "-" : r.rarity();
             }

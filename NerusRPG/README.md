@@ -49,7 +49,7 @@ Pintasan pemain: `/quest /story /class /stats /skill /rank` (hanya anggota aktif
 **Konflik `/gm`:** Essentials memakai `/gm` untuk gamemode. NerusRPG dimuat sebelum Essentials dan, jika `/gm` masih dipakai plugin lain, mengambil alihnya (`commands.take-over-gm: true`, tercatat di konsol). Gamemode tetap lewat `/gamemode`. Set `false` untuk membiarkan plugin lain dan pakai `/nereusrpg`.
 
 ## Placeholder (PlaceholderAPI)
-`%nereusrpg_rank%` (huruf berwarna, NONE bila belum daftar), `_rank_plain`, `_rank_name`, `_rank_color`, `_rank_legacy` (warna cadangan Bedrock), `_rank_rarity`, `_level`, `_exp` (EXP di level ini), `_exp_total`, `_guild_status`, `_registered` (true/false), `_quests_completed`, `_quests_active`, plus `_class`, `_gp`, `_mana`, `_maxmana`, `_next_rank`, `_story`, dll. Berfungsi untuk REGISTERED, UNREGISTERED, REVOKED (rank NONE, level 0), dan pemain offline bila datanya ada.
+`%nereusrpg_rank%` (huruf berwarna, NONE bila belum daftar), `_rank_plain`, `_rank_name`, `_rank_color`, `_rank_legacy` (warna cadangan Bedrock), `_rank_rarity`, `_rank_index` (F=1 … S=7, 0 bila belum daftar), `_rank_score` (rank×1.000.000.000 + EXP total, untuk leaderboard), `_level`, `_exp` (EXP di level ini), `_exp_total`, `_guild_status`, `_registered` (true/false), `_quests_completed`, `_quests_active`, plus `_class`, `_gp`, `_mana`, `_maxmana`, `_next_rank`, `_story`, dll. Berfungsi untuk REGISTERED, UNREGISTERED, REVOKED (rank NONE, level 0), dan pemain offline bila datanya ada.
 
 ## Rank F–S (`ranks.yml`)
 | Rank | Warna | Rarity |
