@@ -13,11 +13,58 @@ public final class Expansion extends PlaceholderExpansion {
     }
 
     private final Core core;
+    private Top top;
     /** Cache singkat untuk pemain offline (data dibaca dari playerdata/). */
     private final Map<UUID, Cached> offline = new ConcurrentHashMap<>();
 
     public Expansion(Core core) {
         this.core = core;
+    }
+
+    public void top(Top top) {
+        this.top = top;
+    }
+
+    /** %nereusrpg_top_N_name|rank|rank_plain|level|exp_total% dan %nereusrpg_top_pos%. */
+    private String topRequest(OfflinePlayer player, String key) {
+        if (top == null) {
+            return "";
+        }
+        if (key.equals("top_pos")) {
+            int pos = player == null ? 0 : top.positionOf(player.getUniqueId());
+            return pos == 0 ? "-" : String.valueOf(pos);
+        }
+        String[] a = key.split("_", 3);
+        if (a.length < 3) {
+            return null;
+        }
+        int n;
+        try {
+            n = Integer.parseInt(a[1]);
+        } catch (NumberFormatException e) {
+            return null;
+        }
+        Top.Entry e = top.at(n);
+        String field = a[2];
+        if (e == null) {
+            return switch (field) {
+                case "name" -> core.plugin.getConfig().getString("top.empty-name", "-");
+                case "rank", "rank_plain" -> "-";
+                case "level", "exp_total" -> "0";
+                default -> null;
+            };
+        }
+        return switch (field) {
+            case "name" -> e.name();
+            case "rank" -> {
+                Defs.Rank r = core.rank(e.rankIndex());
+                yield r == null ? e.rankKey() : color(r.tag());
+            }
+            case "rank_plain" -> e.rankKey();
+            case "level" -> String.valueOf(e.level());
+            case "exp_total" -> String.valueOf(e.totalXp());
+            default -> null;
+        };
     }
 
     @Override
@@ -68,6 +115,10 @@ public final class Expansion extends PlaceholderExpansion {
 
     @Override
     public String onRequest(OfflinePlayer player, String params) {
+        String lower = params.toLowerCase();
+        if (lower.startsWith("top_")) {
+            return topRequest(player, lower);
+        }
         if (player == null) {
             return "";
         }

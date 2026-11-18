@@ -72,3 +72,7 @@ Syarat tiap rank (dapat diubah): `min-level`, `min-exp` (total), `min-quests`, `
 ## Catatan
 - Quest memakai sistem quest NerusRPG (quests.yml, solo). Papan ODailyQuests dari GuildMaster 1.x tidak dibawa.
 - MySQL GuildMaster hanya dibaca saat migrasi; penyimpanan kini berupa file YAML.
+
+## Top rank (hologram / scoreboard / AJLeaderboards tidak perlu)
+`%nereusrpg_top_1_name%`, `%nereusrpg_top_1_rank%` (huruf berwarna), `_rank_plain`, `_level`, `_exp_total` — ganti `1` dengan 1..`top.size`.
+`%nereusrpg_top_pos%` = posisi pemain sendiri. Urutan: rank S→F, lalu EXP total. Diperbarui otomatis tiap `top.refresh-seconds` (default 60 dtk), termasuk pemain offline.

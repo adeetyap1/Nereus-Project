@@ -209,3 +209,10 @@ backup:
 migration:
   auto: true
   legacy-players: REGISTER_IF_PROGRESS
+
+# Peringkat Nerus Guild untuk placeholder %nereusrpg_top_N_name|rank|rank_plain|level|exp_total% dan %nereusrpg_top_pos%
+# Urutan: rank tertinggi (S ... F) lalu EXP total. Hanya pemain REGISTERED.
+top:
+  size: 100
+  refresh-seconds: 60
+  empty-name: "-"

@@ -18,6 +18,7 @@ import java.util.Map;
 /** NerusRPG: RPG (class, skill, quest, rank F-S) dan Nerus Guild (Caylin) dalam satu plugin. */
 public final class NerusRPG extends JavaPlugin implements Listener {
     private Core core;
+    private Top top;
     private Skills skills;
     private Backups backups;
     private Migration migration;
@@ -56,7 +57,11 @@ public final class NerusRPG extends JavaPlugin implements Listener {
         npcs.hook();
 
         if (getServer().getPluginManager().getPlugin("PlaceholderAPI") != null) {
-            new Expansion(core).register();
+            Expansion ex = new Expansion(core);
+            top = new Top(core);
+            ex.top(top);
+            top.start();
+            ex.register();
             getLogger().info("Placeholder %nereusrpg_*% terdaftar.");
         }
         for (Player p : getServer().getOnlinePlayers()) {
@@ -130,6 +135,9 @@ public final class NerusRPG extends JavaPlugin implements Listener {
     public void onDisable() {
         if (backupTask != null) {
             backupTask.cancel();
+        }
+        if (top != null) {
+            top.stop();
         }
         if (core != null) {
             core.guild.dialogue.clear();
