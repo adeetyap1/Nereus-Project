@@ -28,7 +28,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Menu buatan sendiri dari folder menus/*.yml (toko, dll). Judul menu boleh memakai huruf
+ * Menu buatan sendiri dari folder menus/*.yml (opsional, tidak ada menu bawaan). Judul menu boleh memakai huruf
  * resource pack (glyph), item boleh memakai item-model dari resource pack.
  * Uang lewat Vault (EssentialsX dll) dengan refleksi, jadi Vault opsional.
  */
@@ -54,7 +54,6 @@ public final class CustomMenus {
         File dir = new File(core.plugin.getDataFolder(), "menus");
         if (!dir.exists()) {
             dir.mkdirs();
-            core.plugin.saveResource("menus/toko.yml", false);
         }
         defs.clear();
         File[] files = dir.listFiles((d, n) -> n.endsWith(".yml"));

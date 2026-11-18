@@ -47,7 +47,7 @@ missions:
     amount: 15
     xp: 150
     gp: 30
-    commands: ["eco give %player% 400", "give %player% iron_sword 1"]
+    commands: ["eco give %player% 300", "give %player% iron_sword 1"]
   - id: kisah-d1
     title: "&aUrat Bumi"
     story:
@@ -58,7 +58,7 @@ missions:
     amount: 32
     xp: 250
     gp: 50
-    commands: ["eco give %player% 800", "give %player% shield 1"]
+    commands: ["eco give %player% 500", "give %player% shield 1"]
   - id: kisah-d2
     title: "&aSetelah Gelap Datang"
     story:
@@ -69,7 +69,7 @@ missions:
     amount: 30
     xp: 400
     gp: 80
-    commands: ["eco give %player% 1500"]
+    commands: ["eco give %player% 800"]
   - id: kisah-c
     title: "&9Api dari Dunia Bawah"
     story:
@@ -80,7 +80,7 @@ missions:
     amount: 20
     xp: 700
     gp: 150
-    commands: ["eco give %player% 4000", "give %player% blaze_rod 4"]
+    commands: ["eco give %player% 1500", "give %player% blaze_rod 4"]
   - id: kisah-b
     title: "&5Raja Kerangka"
     story:
@@ -91,7 +91,7 @@ missions:
     amount: 25
     xp: 1200
     gp: 300
-    commands: ["eco give %player% 9000", "give %player% diamond 4"]
+    commands: ["eco give %player% 2500", "give %player% diamond 4"]
   - id: kisah-a
     title: "&cPenyihir Hitam"
     story:
@@ -102,7 +102,7 @@ missions:
     amount: 25
     xp: 2000
     gp: 500
-    commands: ["eco give %player% 20000", "give %player% netherite_scrap 2"]
+    commands: ["eco give %player% 4000", "give %player% netherite_scrap 2"]
   - id: kisah-s
     title: "&6Gerbang Akhir"
     story:
@@ -113,7 +113,7 @@ missions:
     amount: 2
     xp: 4000
     gp: 1000
-    commands: ["eco give %player% 50000", "give %player% netherite_ingot 3"]
+    commands: ["eco give %player% 7000", "give %player% netherite_ingot 3"]
   - id: kisah-ss
     title: "&dSang Penjaga Kehampaan"
     story:
@@ -124,7 +124,7 @@ missions:
     amount: 1
     xp: 8000
     gp: 2000
-    commands: ["eco give %player% 120000", "give %player% netherite_block 1"]
+    commands: ["eco give %player% 12000", "give %player% netherite_block 1"]
   - id: kisah-sss
     title: "&4&lPahlawan Nereus"
     story:
@@ -136,4 +136,4 @@ missions:
     amount: 1
     xp: 20000
     gp: 5000
-    commands: ["eco give %player% 300000", "give %player% dragon_egg 1"]
+    commands: ["eco give %player% 25000", "give %player% dragon_egg 1"]

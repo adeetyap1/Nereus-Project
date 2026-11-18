@@ -44,7 +44,7 @@ ranks:
       min-quests: 3
       gp: 400
     exam: {type: KILL, entity: ZOMBIE, amount: 60, minutes: 20, description: "Bunuh 60 zombie dalam 20 menit"}
-    commands: ["eco give %player% 500"]
+    commands: ["eco give %player% 300"]
 
   D:
     name: "Rank D"
@@ -57,7 +57,7 @@ ranks:
       min-quests: 10
       gp: 900
     exam: {type: KILL, entity: SKELETON, amount: 80, minutes: 25, description: "Bunuh 80 skeleton dalam 25 menit"}
-    commands: ["eco give %player% 1200"]
+    commands: ["eco give %player% 600"]
 
   C:
     name: "Rank C"
@@ -70,7 +70,7 @@ ranks:
       min-quests: 25
       gp: 1750
     exam: {type: KILL, entity: BLAZE, amount: 50, minutes: 25, description: "Bunuh 50 blaze dalam 25 menit"}
-    commands: ["eco give %player% 3000"]
+    commands: ["eco give %player% 1200"]
 
   B:
     name: "Rank B"
@@ -84,7 +84,7 @@ ranks:
       min-quests: 50
       gp: 3500
     exam: {type: KILL, entity: WITHER_SKELETON, amount: 50, minutes: 30, description: "Bunuh 50 wither skeleton dalam 30 menit"}
-    commands: ["eco give %player% 8000"]
+    commands: ["eco give %player% 2500"]
 
   A:
     name: "Rank A"
@@ -98,7 +98,7 @@ ranks:
       min-quests: 100
       gp: 7000
     exam: {type: MANUAL, description: "Kalahkan boss area (diselesaikan staff atau dungeon)"}
-    commands: ["eco give %player% 20000"]
+    commands: ["eco give %player% 5000"]
 
   S:
     name: "Rank S"
@@ -114,4 +114,4 @@ ranks:
       min-quests: 200
       gp: 14000
     exam: {type: MANUAL, description: "Selesaikan dungeon tingkat tinggi"}
-    commands: ["eco give %player% 50000"]
+    commands: ["eco give %player% 10000"]

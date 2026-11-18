@@ -12,10 +12,10 @@ quests:
     amount: 10
     gp: 10
     commands:
-    - eco give %player% 50
+    - eco give %player% 20
     - give %player% bread 8
     reward-lore:
-    - ' &3&l| &650 Gold'
+    - ' &3&l| &620 NR'
     - ' &3&l| &b10 GP'
     - ' &3&l| &78 Roti'
   f-2:
@@ -28,10 +28,10 @@ quests:
     amount: 16
     gp: 10
     commands:
-    - eco give %player% 70
+    - eco give %player% 30
     - give %player% stone_sword 1
     reward-lore:
-    - ' &3&l| &670 Gold'
+    - ' &3&l| &630 NR'
     - ' &3&l| &b10 GP'
     - ' &3&l| &7Pedang Batu'
   f-3:
@@ -44,10 +44,10 @@ quests:
     amount: 24
     gp: 10
     commands:
-    - eco give %player% 90
+    - eco give %player% 35
     - give %player% potion[potion_contents={potion:"minecraft:healing"}] 2
     reward-lore:
-    - ' &3&l| &690 Gold'
+    - ' &3&l| &635 NR'
     - ' &3&l| &b10 GP'
     - ' &3&l| &72 Potion Healing'
   f-4:
@@ -60,10 +60,10 @@ quests:
     amount: 8
     gp: 10
     commands:
-    - eco give %player% 110
+    - eco give %player% 45
     - give %player% stone_pickaxe 1
     reward-lore:
-    - ' &3&l| &6110 Gold'
+    - ' &3&l| &645 NR'
     - ' &3&l| &b10 GP'
     - ' &3&l| &7Beliung Batu'
   f-5:
@@ -76,10 +76,10 @@ quests:
     amount: 48
     gp: 10
     commands:
-    - eco give %player% 130
+    - eco give %player% 50
     - give %player% cooked_beef 8
     reward-lore:
-    - ' &3&l| &6130 Gold'
+    - ' &3&l| &650 NR'
     - ' &3&l| &b10 GP'
     - ' &3&l| &78 Daging Panggang'
   f-6:
@@ -92,11 +92,11 @@ quests:
     amount: 12
     gp: 10
     commands:
-    - eco give %player% 150
+    - eco give %player% 60
     - give %player% wooden_axe 1
     - give %player% bread 4
     reward-lore:
-    - ' &3&l| &6150 Gold'
+    - ' &3&l| &660 NR'
     - ' &3&l| &b10 GP'
     - ' &3&l| &7Kapak Kayu dan 4 Roti'
   e-1:
@@ -109,10 +109,10 @@ quests:
     amount: 10
     gp: 25
     commands:
-    - eco give %player% 200
+    - eco give %player% 70
     - give %player% iron_ingot 12
     reward-lore:
-    - ' &3&l| &6200 Gold'
+    - ' &3&l| &670 NR'
     - ' &3&l| &b25 GP'
     - ' &3&l| &712 Batang Besi'
   e-2:
@@ -125,10 +125,10 @@ quests:
     amount: 10
     gp: 25
     commands:
-    - eco give %player% 240
+    - eco give %player% 85
     - mi give MATERIAL STEEL_INGOT %player% 4
     reward-lore:
-    - ' &3&l| &6240 Gold'
+    - ' &3&l| &685 NR'
     - ' &3&l| &b25 GP'
     - ' &3&l| &74 Steel Ingot'
   e-3:
@@ -141,10 +141,10 @@ quests:
     amount: 20
     gp: 25
     commands:
-    - eco give %player% 280
+    - eco give %player% 100
     - give %player% iron_helmet 1
     reward-lore:
-    - ' &3&l| &6280 Gold'
+    - ' &3&l| &6100 NR'
     - ' &3&l| &b25 GP'
     - ' &3&l| &7Helm Besi'
   e-4:
@@ -157,10 +157,10 @@ quests:
     amount: 16
     gp: 25
     commands:
-    - eco give %player% 320
+    - eco give %player% 110
     - give %player% iron_chestplate 1
     reward-lore:
-    - ' &3&l| &6320 Gold'
+    - ' &3&l| &6110 NR'
     - ' &3&l| &b25 GP'
     - ' &3&l| &7Zirah Besi'
   e-5:
@@ -173,10 +173,10 @@ quests:
     amount: 6
     gp: 25
     commands:
-    - eco give %player% 360
+    - eco give %player% 125
     - give %player% iron_leggings 1
     reward-lore:
-    - ' &3&l| &6360 Gold'
+    - ' &3&l| &6125 NR'
     - ' &3&l| &b25 GP'
     - ' &3&l| &7Celana Besi'
   e-6:
@@ -189,10 +189,10 @@ quests:
     amount: 16
     gp: 25
     commands:
-    - eco give %player% 400
+    - eco give %player% 140
     - give %player% iron_boots 1
     reward-lore:
-    - ' &3&l| &6400 Gold'
+    - ' &3&l| &6140 NR'
     - ' &3&l| &b25 GP'
     - ' &3&l| &7Sepatu Besi'
   e-1-t:
@@ -205,10 +205,10 @@ quests:
     amount: 10
     gp: 31
     commands:
-    - eco give %player% 250
+    - eco give %player% 90
     - give %player% iron_ingot 12
     reward-lore:
-    - ' &3&l| &6250 Gold'
+    - ' &3&l| &690 NR'
     - ' &3&l| &b31 GP'
     - ' &3&l| &712 Batang Besi'
   e-2-t:
@@ -221,10 +221,10 @@ quests:
     amount: 10
     gp: 31
     commands:
-    - eco give %player% 300
+    - eco give %player% 105
     - mi give MATERIAL STEEL_INGOT %player% 4
     reward-lore:
-    - ' &3&l| &6300 Gold'
+    - ' &3&l| &6105 NR'
     - ' &3&l| &b31 GP'
     - ' &3&l| &74 Steel Ingot'
   e-3-t:
@@ -237,10 +237,10 @@ quests:
     amount: 20
     gp: 31
     commands:
-    - eco give %player% 350
+    - eco give %player% 120
     - give %player% iron_helmet 1
     reward-lore:
-    - ' &3&l| &6350 Gold'
+    - ' &3&l| &6120 NR'
     - ' &3&l| &b31 GP'
     - ' &3&l| &7Helm Besi'
   e-4-t:
@@ -253,10 +253,10 @@ quests:
     amount: 16
     gp: 31
     commands:
-    - eco give %player% 400
+    - eco give %player% 140
     - give %player% iron_chestplate 1
     reward-lore:
-    - ' &3&l| &6400 Gold'
+    - ' &3&l| &6140 NR'
     - ' &3&l| &b31 GP'
     - ' &3&l| &7Zirah Besi'
   e-5-t:
@@ -269,10 +269,10 @@ quests:
     amount: 6
     gp: 31
     commands:
-    - eco give %player% 450
+    - eco give %player% 160
     - give %player% iron_leggings 1
     reward-lore:
-    - ' &3&l| &6450 Gold'
+    - ' &3&l| &6160 NR'
     - ' &3&l| &b31 GP'
     - ' &3&l| &7Celana Besi'
   e-6-t:
@@ -285,10 +285,10 @@ quests:
     amount: 16
     gp: 31
     commands:
-    - eco give %player% 500
+    - eco give %player% 175
     - give %player% iron_boots 1
     reward-lore:
-    - ' &3&l| &6500 Gold'
+    - ' &3&l| &6175 NR'
     - ' &3&l| &b31 GP'
     - ' &3&l| &7Sepatu Besi'
   d-1:
@@ -301,10 +301,10 @@ quests:
     amount: 25
     gp: 50
     commands:
-    - eco give %player% 500
+    - eco give %player% 150
     - crazycrates give virtual nereusabyss 1 %player% -s
     reward-lore:
-    - ' &3&l| &6500 Gold'
+    - ' &3&l| &6150 NR'
     - ' &3&l| &b50 GP'
     - ' &3&l| &71 Key Nereus Abyss'
   d-2:
@@ -317,10 +317,10 @@ quests:
     amount: 12
     gp: 50
     commands:
-    - eco give %player% 600
+    - eco give %player% 180
     - crazycrates give virtual nereusabyss 1 %player% -s
     reward-lore:
-    - ' &3&l| &6600 Gold'
+    - ' &3&l| &6180 NR'
     - ' &3&l| &b50 GP'
     - ' &3&l| &71 Key Nereus Abyss'
   d-3:
@@ -333,10 +333,10 @@ quests:
     amount: 10
     gp: 50
     commands:
-    - eco give %player% 700
+    - eco give %player% 210
     - crazycrates give virtual nereusabyss 1 %player% -s
     reward-lore:
-    - ' &3&l| &6700 Gold'
+    - ' &3&l| &6210 NR'
     - ' &3&l| &b50 GP'
     - ' &3&l| &71 Key Nereus Abyss'
   d-4:
@@ -349,10 +349,10 @@ quests:
     amount: 4
     gp: 50
     commands:
-    - eco give %player% 800
+    - eco give %player% 240
     - crazycrates give virtual nereusabyss 1 %player% -s
     reward-lore:
-    - ' &3&l| &6800 Gold'
+    - ' &3&l| &6240 NR'
     - ' &3&l| &b50 GP'
     - ' &3&l| &71 Key Nereus Abyss'
   d-5:
@@ -365,10 +365,10 @@ quests:
     amount: 32
     gp: 50
     commands:
-    - eco give %player% 900
+    - eco give %player% 270
     - crazycrates give virtual nereusabyss 1 %player% -s
     reward-lore:
-    - ' &3&l| &6900 Gold'
+    - ' &3&l| &6270 NR'
     - ' &3&l| &b50 GP'
     - ' &3&l| &71 Key Nereus Abyss'
   d-1-t:
@@ -381,10 +381,10 @@ quests:
     amount: 25
     gp: 62
     commands:
-    - eco give %player% 620
+    - eco give %player% 185
     - crazycrates give virtual nereusabyss 1 %player% -s
     reward-lore:
-    - ' &3&l| &6620 Gold'
+    - ' &3&l| &6185 NR'
     - ' &3&l| &b62 GP'
     - ' &3&l| &71 Key Nereus Abyss'
   d-2-t:
@@ -397,10 +397,10 @@ quests:
     amount: 12
     gp: 62
     commands:
-    - eco give %player% 750
+    - eco give %player% 220
     - crazycrates give virtual nereusabyss 1 %player% -s
     reward-lore:
-    - ' &3&l| &6750 Gold'
+    - ' &3&l| &6220 NR'
     - ' &3&l| &b62 GP'
     - ' &3&l| &71 Key Nereus Abyss'
   d-3-t:
@@ -413,10 +413,10 @@ quests:
     amount: 10
     gp: 62
     commands:
-    - eco give %player% 880
+    - eco give %player% 260
     - crazycrates give virtual nereusabyss 1 %player% -s
     reward-lore:
-    - ' &3&l| &6880 Gold'
+    - ' &3&l| &6260 NR'
     - ' &3&l| &b62 GP'
     - ' &3&l| &71 Key Nereus Abyss'
   d-4-t:
@@ -429,10 +429,10 @@ quests:
     amount: 4
     gp: 62
     commands:
-    - eco give %player% 1000
+    - eco give %player% 300
     - crazycrates give virtual nereusabyss 1 %player% -s
     reward-lore:
-    - ' &3&l| &61.000 Gold'
+    - ' &3&l| &6300 NR'
     - ' &3&l| &b62 GP'
     - ' &3&l| &71 Key Nereus Abyss'
   d-5-t:
@@ -445,10 +445,10 @@ quests:
     amount: 32
     gp: 62
     commands:
-    - eco give %player% 1120
+    - eco give %player% 340
     - crazycrates give virtual nereusabyss 1 %player% -s
     reward-lore:
-    - ' &3&l| &61.120 Gold'
+    - ' &3&l| &6340 NR'
     - ' &3&l| &b62 GP'
     - ' &3&l| &71 Key Nereus Abyss'
   c-1:
@@ -461,10 +461,10 @@ quests:
     amount: 12
     gp: 100
     commands:
-    - eco give %player% 1000
+    - eco give %player% 250
     - crazycrates give virtual nereusdraco 1 %player% -s
     reward-lore:
-    - ' &3&l| &61.000 Gold'
+    - ' &3&l| &6250 NR'
     - ' &3&l| &b100 GP'
     - ' &3&l| &71 Key Nereus Draco'
   c-2:
@@ -477,10 +477,10 @@ quests:
     amount: 5
     gp: 100
     commands:
-    - eco give %player% 1250
+    - eco give %player% 310
     - crazycrates give virtual nereusdraco 1 %player% -s
     reward-lore:
-    - ' &3&l| &61.250 Gold'
+    - ' &3&l| &6310 NR'
     - ' &3&l| &b100 GP'
     - ' &3&l| &71 Key Nereus Draco'
   c-3:
@@ -493,10 +493,10 @@ quests:
     amount: 10
     gp: 100
     commands:
-    - eco give %player% 1500
+    - eco give %player% 380
     - crazycrates give virtual nereusdraco 1 %player% -s
     reward-lore:
-    - ' &3&l| &61.500 Gold'
+    - ' &3&l| &6380 NR'
     - ' &3&l| &b100 GP'
     - ' &3&l| &71 Key Nereus Draco'
   c-4:
@@ -509,10 +509,10 @@ quests:
     amount: 20
     gp: 100
     commands:
-    - eco give %player% 1750
+    - eco give %player% 440
     - crazycrates give virtual nereusdraco 1 %player% -s
     reward-lore:
-    - ' &3&l| &61.750 Gold'
+    - ' &3&l| &6440 NR'
     - ' &3&l| &b100 GP'
     - ' &3&l| &71 Key Nereus Draco'
   c-5:
@@ -525,10 +525,10 @@ quests:
     amount: 8
     gp: 100
     commands:
-    - eco give %player% 2000
+    - eco give %player% 500
     - crazycrates give virtual nereusdraco 1 %player% -s
     reward-lore:
-    - ' &3&l| &62.000 Gold'
+    - ' &3&l| &6500 NR'
     - ' &3&l| &b100 GP'
     - ' &3&l| &71 Key Nereus Draco'
   c-1-t:
@@ -541,10 +541,10 @@ quests:
     amount: 12
     gp: 125
     commands:
-    - eco give %player% 1250
+    - eco give %player% 310
     - crazycrates give virtual nereusdraco 1 %player% -s
     reward-lore:
-    - ' &3&l| &61.250 Gold'
+    - ' &3&l| &6310 NR'
     - ' &3&l| &b125 GP'
     - ' &3&l| &71 Key Nereus Draco'
   c-2-t:
@@ -557,10 +557,10 @@ quests:
     amount: 5
     gp: 125
     commands:
-    - eco give %player% 1560
+    - eco give %player% 390
     - crazycrates give virtual nereusdraco 1 %player% -s
     reward-lore:
-    - ' &3&l| &61.560 Gold'
+    - ' &3&l| &6390 NR'
     - ' &3&l| &b125 GP'
     - ' &3&l| &71 Key Nereus Draco'
   c-3-t:
@@ -573,10 +573,10 @@ quests:
     amount: 10
     gp: 125
     commands:
-    - eco give %player% 1880
+    - eco give %player% 470
     - crazycrates give virtual nereusdraco 1 %player% -s
     reward-lore:
-    - ' &3&l| &61.880 Gold'
+    - ' &3&l| &6470 NR'
     - ' &3&l| &b125 GP'
     - ' &3&l| &71 Key Nereus Draco'
   c-4-t:
@@ -589,10 +589,10 @@ quests:
     amount: 20
     gp: 125
     commands:
-    - eco give %player% 2190
+    - eco give %player% 550
     - crazycrates give virtual nereusdraco 1 %player% -s
     reward-lore:
-    - ' &3&l| &62.190 Gold'
+    - ' &3&l| &6550 NR'
     - ' &3&l| &b125 GP'
     - ' &3&l| &71 Key Nereus Draco'
   c-5-t:
@@ -605,10 +605,10 @@ quests:
     amount: 8
     gp: 125
     commands:
-    - eco give %player% 2500
+    - eco give %player% 620
     - crazycrates give virtual nereusdraco 1 %player% -s
     reward-lore:
-    - ' &3&l| &62.500 Gold'
+    - ' &3&l| &6620 NR'
     - ' &3&l| &b125 GP'
     - ' &3&l| &71 Key Nereus Draco'
   b-1:
@@ -621,11 +621,11 @@ quests:
     amount: 15
     gp: 200
     commands:
-    - eco give %player% 2500
+    - eco give %player% 500
     - mi give MATERIAL RARE_DIAMOND %player% 2
     - crazycrates forceopen nereuswarlord %player%
     reward-lore:
-    - ' &3&l| &62.500 Gold'
+    - ' &3&l| &6500 NR'
     - ' &3&l| &b200 GP'
     - ' &3&l| &72 Rare Diamond, peluang Crate Nereus Warlord (Epic)'
   b-2:
@@ -638,11 +638,11 @@ quests:
     amount: 10
     gp: 200
     commands:
-    - eco give %player% 3120
+    - eco give %player% 620
     - mi give MATERIAL MAGIC_ESSENCE %player% 1
     - crazycrates forceopen nereuswarlord %player%
     reward-lore:
-    - ' &3&l| &63.120 Gold'
+    - ' &3&l| &6620 NR'
     - ' &3&l| &b200 GP'
     - ' &3&l| &71 Magic Essence, peluang Crate Nereus Warlord (Epic)'
   b-3:
@@ -655,11 +655,11 @@ quests:
     amount: 30
     gp: 200
     commands:
-    - eco give %player% 3750
+    - eco give %player% 750
     - mi give MATERIAL DARK_NETHERITE %player% 1
     - crazycrates forceopen nereuswarlord %player%
     reward-lore:
-    - ' &3&l| &63.750 Gold'
+    - ' &3&l| &6750 NR'
     - ' &3&l| &b200 GP'
     - ' &3&l| &71 Dark Netherite, peluang Crate Nereus Warlord (Epic)'
   b-4:
@@ -672,11 +672,11 @@ quests:
     amount: 12
     gp: 200
     commands:
-    - eco give %player% 4380
+    - eco give %player% 880
     - mi give MATERIAL RARE_DIAMOND %player% 2
     - crazycrates forceopen nereuswarlord %player%
     reward-lore:
-    - ' &3&l| &64.380 Gold'
+    - ' &3&l| &6880 NR'
     - ' &3&l| &b200 GP'
     - ' &3&l| &72 Rare Diamond, peluang Crate Nereus Warlord (Epic)'
   b-5:
@@ -689,11 +689,11 @@ quests:
     amount: 15
     gp: 200
     commands:
-    - eco give %player% 5000
+    - eco give %player% 1000
     - mi give MATERIAL MAGIC_ESSENCE %player% 1
     - crazycrates forceopen nereuswarlord %player%
     reward-lore:
-    - ' &3&l| &65.000 Gold'
+    - ' &3&l| &61.000 NR'
     - ' &3&l| &b200 GP'
     - ' &3&l| &71 Magic Essence, peluang Crate Nereus Warlord (Epic)'
   b-1-t:
@@ -706,11 +706,11 @@ quests:
     amount: 15
     gp: 250
     commands:
-    - eco give %player% 3120
+    - eco give %player% 620
     - mi give MATERIAL RARE_DIAMOND %player% 2
     - crazycrates forceopen nereuswarlord %player%
     reward-lore:
-    - ' &3&l| &63.120 Gold'
+    - ' &3&l| &6620 NR'
     - ' &3&l| &b250 GP'
     - ' &3&l| &72 Rare Diamond, peluang Crate Nereus Warlord (Epic)'
   b-2-t:
@@ -723,11 +723,11 @@ quests:
     amount: 10
     gp: 250
     commands:
-    - eco give %player% 3900
+    - eco give %player% 780
     - mi give MATERIAL MAGIC_ESSENCE %player% 1
     - crazycrates forceopen nereuswarlord %player%
     reward-lore:
-    - ' &3&l| &63.900 Gold'
+    - ' &3&l| &6780 NR'
     - ' &3&l| &b250 GP'
     - ' &3&l| &71 Magic Essence, peluang Crate Nereus Warlord (Epic)'
   b-3-t:
@@ -740,11 +740,11 @@ quests:
     amount: 30
     gp: 250
     commands:
-    - eco give %player% 4690
+    - eco give %player% 940
     - mi give MATERIAL DARK_NETHERITE %player% 1
     - crazycrates forceopen nereuswarlord %player%
     reward-lore:
-    - ' &3&l| &64.690 Gold'
+    - ' &3&l| &6940 NR'
     - ' &3&l| &b250 GP'
     - ' &3&l| &71 Dark Netherite, peluang Crate Nereus Warlord (Epic)'
   b-4-t:
@@ -757,11 +757,11 @@ quests:
     amount: 12
     gp: 250
     commands:
-    - eco give %player% 5480
+    - eco give %player% 1100
     - mi give MATERIAL RARE_DIAMOND %player% 2
     - crazycrates forceopen nereuswarlord %player%
     reward-lore:
-    - ' &3&l| &65.480 Gold'
+    - ' &3&l| &61.100 NR'
     - ' &3&l| &b250 GP'
     - ' &3&l| &72 Rare Diamond, peluang Crate Nereus Warlord (Epic)'
   b-5-t:
@@ -774,11 +774,11 @@ quests:
     amount: 15
     gp: 250
     commands:
-    - eco give %player% 6250
+    - eco give %player% 1250
     - mi give MATERIAL MAGIC_ESSENCE %player% 1
     - crazycrates forceopen nereuswarlord %player%
     reward-lore:
-    - ' &3&l| &66.250 Gold'
+    - ' &3&l| &61.250 NR'
     - ' &3&l| &b250 GP'
     - ' &3&l| &71 Magic Essence, peluang Crate Nereus Warlord (Epic)'
   a-1:
@@ -791,11 +791,11 @@ quests:
     amount: 25
     gp: 400
     commands:
-    - eco give %player% 6000
+    - eco give %player% 900
     - crazycrates give virtual nereuswarlord 1 %player% -s
     - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
     reward-lore:
-    - ' &3&l| &66.000 Gold'
+    - ' &3&l| &6900 NR'
     - ' &3&l| &b400 GP'
     - ' &3&l| &71 Key Nereus Warlord dan 1 Fragmen Artefak'
   a-2:
@@ -808,11 +808,11 @@ quests:
     amount: 25
     gp: 400
     commands:
-    - eco give %player% 7000
+    - eco give %player% 1050
     - crazycrates give virtual nereuswarlord 1 %player% -s
     - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
     reward-lore:
-    - ' &3&l| &67.000 Gold'
+    - ' &3&l| &61.050 NR'
     - ' &3&l| &b400 GP'
     - ' &3&l| &71 Key Nereus Warlord dan 1 Fragmen Artefak'
   a-3:
@@ -825,11 +825,11 @@ quests:
     amount: 4
     gp: 400
     commands:
-    - eco give %player% 8000
+    - eco give %player% 1200
     - crazycrates give virtual nereuswarlord 1 %player% -s
     - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
     reward-lore:
-    - ' &3&l| &68.000 Gold'
+    - ' &3&l| &61.200 NR'
     - ' &3&l| &b400 GP'
     - ' &3&l| &71 Key Nereus Warlord dan 1 Fragmen Artefak'
   a-4:
@@ -842,11 +842,11 @@ quests:
     amount: 5
     gp: 400
     commands:
-    - eco give %player% 9000
+    - eco give %player% 1350
     - crazycrates give virtual nereuswarlord 1 %player% -s
     - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
     reward-lore:
-    - ' &3&l| &69.000 Gold'
+    - ' &3&l| &61.350 NR'
     - ' &3&l| &b400 GP'
     - ' &3&l| &71 Key Nereus Warlord dan 1 Fragmen Artefak'
   a-5:
@@ -859,11 +859,11 @@ quests:
     amount: 3
     gp: 400
     commands:
-    - eco give %player% 10000
+    - eco give %player% 1500
     - crazycrates give virtual nereuswarlord 1 %player% -s
     - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
     reward-lore:
-    - ' &3&l| &610.000 Gold'
+    - ' &3&l| &61.500 NR'
     - ' &3&l| &b400 GP'
     - ' &3&l| &71 Key Nereus Warlord dan 1 Fragmen Artefak'
   a-1-t:
@@ -876,11 +876,11 @@ quests:
     amount: 25
     gp: 500
     commands:
-    - eco give %player% 7500
+    - eco give %player% 1100
     - crazycrates give virtual nereuswarlord 1 %player% -s
     - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
     reward-lore:
-    - ' &3&l| &67.500 Gold'
+    - ' &3&l| &61.100 NR'
     - ' &3&l| &b500 GP'
     - ' &3&l| &71 Key Nereus Warlord dan 1 Fragmen Artefak'
   a-2-t:
@@ -893,11 +893,11 @@ quests:
     amount: 25
     gp: 500
     commands:
-    - eco give %player% 8750
+    - eco give %player% 1300
     - crazycrates give virtual nereuswarlord 1 %player% -s
     - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
     reward-lore:
-    - ' &3&l| &68.750 Gold'
+    - ' &3&l| &61.300 NR'
     - ' &3&l| &b500 GP'
     - ' &3&l| &71 Key Nereus Warlord dan 1 Fragmen Artefak'
   a-3-t:
@@ -910,11 +910,11 @@ quests:
     amount: 4
     gp: 500
     commands:
-    - eco give %player% 10000
+    - eco give %player% 1500
     - crazycrates give virtual nereuswarlord 1 %player% -s
     - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
     reward-lore:
-    - ' &3&l| &610.000 Gold'
+    - ' &3&l| &61.500 NR'
     - ' &3&l| &b500 GP'
     - ' &3&l| &71 Key Nereus Warlord dan 1 Fragmen Artefak'
   a-4-t:
@@ -927,11 +927,11 @@ quests:
     amount: 5
     gp: 500
     commands:
-    - eco give %player% 11250
+    - eco give %player% 1700
     - crazycrates give virtual nereuswarlord 1 %player% -s
     - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
     reward-lore:
-    - ' &3&l| &611.250 Gold'
+    - ' &3&l| &61.700 NR'
     - ' &3&l| &b500 GP'
     - ' &3&l| &71 Key Nereus Warlord dan 1 Fragmen Artefak'
   a-5-t:
@@ -944,11 +944,11 @@ quests:
     amount: 3
     gp: 500
     commands:
-    - eco give %player% 12500
+    - eco give %player% 1900
     - crazycrates give virtual nereuswarlord 1 %player% -s
     - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
     reward-lore:
-    - ' &3&l| &612.500 Gold'
+    - ' &3&l| &61.900 NR'
     - ' &3&l| &b500 GP'
     - ' &3&l| &71 Key Nereus Warlord dan 1 Fragmen Artefak'
   s-1:
@@ -961,10 +961,10 @@ quests:
     amount: 5
     gp: 800
     commands:
-    - eco give %player% 12000
+    - eco give %player% 1450
     - crazycrates forceopen nereuseclipse %player%
     reward-lore:
-    - ' &3&l| &612.000 Gold'
+    - ' &3&l| &61.450 NR'
     - ' &3&l| &b800 GP'
     - ' &3&l| &7Peluang Crate Nereus Eclipse (Legend)'
   s-2:
@@ -977,10 +977,10 @@ quests:
     amount: 10
     gp: 800
     commands:
-    - eco give %player% 16330
+    - eco give %player% 1950
     - crazycrates forceopen nereuseclipse %player%
     reward-lore:
-    - ' &3&l| &616.330 Gold'
+    - ' &3&l| &61.950 NR'
     - ' &3&l| &b800 GP'
     - ' &3&l| &7Peluang Crate Nereus Eclipse (Legend)'
   s-3:
@@ -993,10 +993,10 @@ quests:
     amount: 40
     gp: 800
     commands:
-    - eco give %player% 20670
+    - eco give %player% 2500
     - crazycrates forceopen nereuseclipse %player%
     reward-lore:
-    - ' &3&l| &620.670 Gold'
+    - ' &3&l| &62.500 NR'
     - ' &3&l| &b800 GP'
     - ' &3&l| &7Peluang Crate Nereus Eclipse (Legend)'
   s-4:
@@ -1009,10 +1009,10 @@ quests:
     amount: 2
     gp: 800
     commands:
-    - eco give %player% 25000
+    - eco give %player% 3000
     - crazycrates forceopen nereuseclipse %player%
     reward-lore:
-    - ' &3&l| &625.000 Gold'
+    - ' &3&l| &63.000 NR'
     - ' &3&l| &b800 GP'
     - ' &3&l| &7Peluang Crate Nereus Eclipse (Legend)'
   s-1-t:
@@ -1025,10 +1025,10 @@ quests:
     amount: 5
     gp: 1000
     commands:
-    - eco give %player% 15000
+    - eco give %player% 1800
     - crazycrates forceopen nereuseclipse %player%
     reward-lore:
-    - ' &3&l| &615.000 Gold'
+    - ' &3&l| &61.800 NR'
     - ' &3&l| &b1.000 GP'
     - ' &3&l| &7Peluang Crate Nereus Eclipse (Legend)'
   s-2-t:
@@ -1041,10 +1041,10 @@ quests:
     amount: 10
     gp: 1000
     commands:
-    - eco give %player% 20410
+    - eco give %player% 2450
     - crazycrates forceopen nereuseclipse %player%
     reward-lore:
-    - ' &3&l| &620.410 Gold'
+    - ' &3&l| &62.450 NR'
     - ' &3&l| &b1.000 GP'
     - ' &3&l| &7Peluang Crate Nereus Eclipse (Legend)'
   s-3-t:
@@ -1057,10 +1057,10 @@ quests:
     amount: 40
     gp: 1000
     commands:
-    - eco give %player% 25840
+    - eco give %player% 3100
     - crazycrates forceopen nereuseclipse %player%
     reward-lore:
-    - ' &3&l| &625.840 Gold'
+    - ' &3&l| &63.100 NR'
     - ' &3&l| &b1.000 GP'
     - ' &3&l| &7Peluang Crate Nereus Eclipse (Legend)'
   s-4-t:
@@ -1073,10 +1073,10 @@ quests:
     amount: 2
     gp: 1000
     commands:
-    - eco give %player% 31250
+    - eco give %player% 3750
     - crazycrates forceopen nereuseclipse %player%
     reward-lore:
-    - ' &3&l| &631.250 Gold'
+    - ' &3&l| &63.750 NR'
     - ' &3&l| &b1.000 GP'
     - ' &3&l| &7Peluang Crate Nereus Eclipse (Legend)'
   ss-1:
@@ -1089,10 +1089,10 @@ quests:
     amount: 15
     gp: 1500
     commands:
-    - eco give %player% 30000
+    - eco give %player% 2400
     - crazycrates forceopen nereusmythrill %player%
     reward-lore:
-    - ' &3&l| &630.000 Gold'
+    - ' &3&l| &62.400 NR'
     - ' &3&l| &b1.500 GP'
     - ' &3&l| &7Peluang Crate Nereus Mythrill (senjata Legend)'
   ss-2:
@@ -1105,10 +1105,10 @@ quests:
     amount: 60
     gp: 1500
     commands:
-    - eco give %player% 40000
+    - eco give %player% 3200
     - crazycrates forceopen nereusmythrill %player%
     reward-lore:
-    - ' &3&l| &640.000 Gold'
+    - ' &3&l| &63.200 NR'
     - ' &3&l| &b1.500 GP'
     - ' &3&l| &7Peluang Crate Nereus Mythrill (senjata Legend)'
   ss-3:
@@ -1121,10 +1121,10 @@ quests:
     amount: 1
     gp: 1500
     commands:
-    - eco give %player% 50000
+    - eco give %player% 4000
     - crazycrates forceopen nereusmythrill %player%
     reward-lore:
-    - ' &3&l| &650.000 Gold'
+    - ' &3&l| &64.000 NR'
     - ' &3&l| &b1.500 GP'
     - ' &3&l| &7Peluang Crate Nereus Mythrill (senjata Legend)'
   ss-4:
@@ -1137,10 +1137,10 @@ quests:
     amount: 1
     gp: 1500
     commands:
-    - eco give %player% 60000
+    - eco give %player% 4800
     - crazycrates forceopen nereusmythrill %player%
     reward-lore:
-    - ' &3&l| &660.000 Gold'
+    - ' &3&l| &64.800 NR'
     - ' &3&l| &b1.500 GP'
     - ' &3&l| &7Peluang Crate Nereus Mythrill (senjata Legend)'
   ss-1-t:
@@ -1153,10 +1153,10 @@ quests:
     amount: 15
     gp: 1875
     commands:
-    - eco give %player% 37500
+    - eco give %player% 3000
     - crazycrates forceopen nereusmythrill %player%
     reward-lore:
-    - ' &3&l| &637.500 Gold'
+    - ' &3&l| &63.000 NR'
     - ' &3&l| &b1.875 GP'
     - ' &3&l| &7Peluang Crate Nereus Mythrill (senjata Legend)'
   ss-2-t:
@@ -1169,10 +1169,10 @@ quests:
     amount: 60
     gp: 1875
     commands:
-    - eco give %player% 50000
+    - eco give %player% 4000
     - crazycrates forceopen nereusmythrill %player%
     reward-lore:
-    - ' &3&l| &650.000 Gold'
+    - ' &3&l| &64.000 NR'
     - ' &3&l| &b1.875 GP'
     - ' &3&l| &7Peluang Crate Nereus Mythrill (senjata Legend)'
   ss-3-t:
@@ -1185,10 +1185,10 @@ quests:
     amount: 1
     gp: 1875
     commands:
-    - eco give %player% 62500
+    - eco give %player% 5000
     - crazycrates forceopen nereusmythrill %player%
     reward-lore:
-    - ' &3&l| &662.500 Gold'
+    - ' &3&l| &65.000 NR'
     - ' &3&l| &b1.875 GP'
     - ' &3&l| &7Peluang Crate Nereus Mythrill (senjata Legend)'
   ss-4-t:
@@ -1201,10 +1201,10 @@ quests:
     amount: 1
     gp: 1875
     commands:
-    - eco give %player% 75000
+    - eco give %player% 6000
     - crazycrates forceopen nereusmythrill %player%
     reward-lore:
-    - ' &3&l| &675.000 Gold'
+    - ' &3&l| &66.000 NR'
     - ' &3&l| &b1.875 GP'
     - ' &3&l| &7Peluang Crate Nereus Mythrill (senjata Legend)'
   sss-1:
@@ -1217,10 +1217,10 @@ quests:
     amount: 1
     gp: 3000
     commands:
-    - eco give %player% 80000
+    - eco give %player% 4000
     - lp user %player% meta setsuffix 30 " &6&l[S]"
     reward-lore:
-    - ' &3&l| &680.000 Gold'
+    - ' &3&l| &64.000 NR'
     - ' &3&l| &b3.000 GP'
     - ' &3&l| &7Title S'
   sss-2:
@@ -1233,10 +1233,10 @@ quests:
     amount: 3
     gp: 3000
     commands:
-    - eco give %player% 100000
+    - eco give %player% 5000
     - lp user %player% meta setsuffix 30 " &6&l[S]"
     reward-lore:
-    - ' &3&l| &6100.000 Gold'
+    - ' &3&l| &65.000 NR'
     - ' &3&l| &b3.000 GP'
     - ' &3&l| &7Title S'
   sss-3:
@@ -1249,10 +1249,10 @@ quests:
     amount: 2
     gp: 3000
     commands:
-    - eco give %player% 120000
+    - eco give %player% 6000
     - lp user %player% meta setsuffix 30 " &6&l[S]"
     reward-lore:
-    - ' &3&l| &6120.000 Gold'
+    - ' &3&l| &66.000 NR'
     - ' &3&l| &b3.000 GP'
     - ' &3&l| &7Title S'
   sss-1-t:
@@ -1265,10 +1265,10 @@ quests:
     amount: 1
     gp: 3750
     commands:
-    - eco give %player% 100000
+    - eco give %player% 5000
     - lp user %player% meta setsuffix 30 " &6&l[S]"
     reward-lore:
-    - ' &3&l| &6100.000 Gold'
+    - ' &3&l| &65.000 NR'
     - ' &3&l| &b3.750 GP'
     - ' &3&l| &7Title S'
   sss-2-t:
@@ -1281,10 +1281,10 @@ quests:
     amount: 3
     gp: 3750
     commands:
-    - eco give %player% 125000
+    - eco give %player% 6250
     - lp user %player% meta setsuffix 30 " &6&l[S]"
     reward-lore:
-    - ' &3&l| &6125.000 Gold'
+    - ' &3&l| &66.250 NR'
     - ' &3&l| &b3.750 GP'
     - ' &3&l| &7Title S'
   sss-3-t:
@@ -1297,9 +1297,9 @@ quests:
     amount: 2
     gp: 3750
     commands:
-    - eco give %player% 150000
+    - eco give %player% 7500
     - lp user %player% meta setsuffix 30 " &6&l[S]"
     reward-lore:
-    - ' &3&l| &6150.000 Gold'
+    - ' &3&l| &67.500 NR'
     - ' &3&l| &b3.750 GP'
     - ' &3&l| &7Title S'
