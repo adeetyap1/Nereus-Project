@@ -1,0 +1,31 @@
+name: NereusIntro
+version: '${project.version}'
+main: my.nereus.intro.NereusIntro
+api-version: '1.21'
+description: Cinematic Isekai Reincarnation System - intro kehidupan kedua di Nereus
+author: Nereus MC
+website: https://nereus.my.id
+load: POSTWORLD
+depend: [FancyNpcs]
+softdepend: [floodgate, Geyser-Spigot, LuckPerms]
+
+commands:
+  intro:
+    description: Mulai intro Nereus
+    usage: /<command> [help|test|skip|reload|reset|setpos]
+    permission: nereusintro.use
+  nereusintro:
+    description: Alias aman untuk /intro (dipakai jika /intro bentrok dengan plugin lain)
+    usage: /<command> [help|test|skip|reload|reset|setpos]
+    permission: nereusintro.use
+    aliases: [nintro]
+
+permissions:
+  nereusintro.use:
+    description: Menjalankan dan melewati intro sendiri
+    default: true
+  nereusintro.admin:
+    description: Test mode, reload, reset progres, set lokasi, kontrol sesi pemain lain
+    default: op
+    children:
+      nereusintro.use: true

@@ -1,0 +1,402 @@
+# ============================================================================
+#  NereusIntro - Cinematic Isekai Reincarnation System
+#  Semua teks memakai format MiniMessage (https://docs.advntr.dev/minimessage/format.html)
+#  Placeholder yang tersedia di teks cerita:  <player>  (nama pemain)
+# ============================================================================
+config-version: 1
+
+# Matikan untuk menonaktifkan intro bagi pemain biasa (admin tetap bisa /intro test).
+enabled: true
+
+prefix: "<dark_gray>[<aqua>Intro</aqua>]</dark_gray> "
+
+# ----------------------------------------------------------------------------
+# Mulai otomatis saat login
+# ----------------------------------------------------------------------------
+auto-start:
+  enabled: true
+  delay-ticks: 60             # jeda setelah login sebelum intro dimulai (20 tick = 1 detik)
+  # true  = hanya pemain yang BARU PERTAMA KALI masuk server (aman untuk server yang sudah berjalan)
+  # false = semua pemain yang belum pernah menyelesaikan intro (pemain lama juga akan dapat intro)
+  new-players-only: true
+
+replay:
+  # Pemain biasa boleh menjalankan /intro lagi setelah selesai? (admin selalu bisa)
+  allow-players: false
+
+# ----------------------------------------------------------------------------
+# Skip
+# ----------------------------------------------------------------------------
+skip:
+  enabled: true
+  allow-players: true         # pemain biasa boleh /intro skip
+  min-seconds-before-skip: 5  # tidak bisa skip di beberapa detik pertama (mencegah skip tidak sengaja)
+  require-confirm: true       # ketik /intro skip dua kali
+  confirm-window-seconds: 10
+
+# ----------------------------------------------------------------------------
+# Admin / testing
+# ----------------------------------------------------------------------------
+admin:
+  allow-test: true
+  test-works-when-disabled: true   # /intro test tetap jalan walau enabled: false
+  unlimited-replay: true           # /intro biasa untuk admin tidak dibatasi
+  debug-in-test: true              # tampilkan nomor langkah di action bar saat test
+  allow-commands-in-test: true     # admin boleh memakai command lain saat test
+
+# ----------------------------------------------------------------------------
+# LOKASI  (WAJIB DIISI sebelum intro bisa berjalan)
+# Cara termudah: berdiri di tempat yang diinginkan lalu ketik:
+#     /intro setpos room      -> ruang putih (tempat pemain berdiri, hadap ke Nerith)
+#     /intro setpos spawn     -> spawn akhir Nereus
+# Jika world kosong, intro TIDAK akan berjalan dan pemain TIDAK diteleport ke mana pun.
+# ----------------------------------------------------------------------------
+locations:
+  # Ruang putih. Contoh isian:  world: "nereus_intro"  x: 0.5  y: 100.0  z: 0.5  yaw: 180.0  pitch: 0.0
+  # (yaw 0 = menghadap selatan, 90 = barat, 180 = utara, -90 = timur)
+  room:
+    world: ""
+    x: 0.5
+    y: 100.0
+    z: 0.5
+    yaw: 180.0
+    pitch: 0.0
+  # Spawn akhir. Pilih salah satu:
+  #  (a) use-world-spawn-of: "world"   -> memakai spawn bawaan world tsb (/setworldspawn)
+  #  (b) kosongkan use-world-spawn-of lalu isi world/x/y/z di bawah
+  spawn:
+    use-world-spawn-of: ""
+    world: ""
+    x: 0.5
+    y: 64.0
+    z: 0.5
+    yaw: 0.0
+    pitch: 0.0
+  # Hanya dipakai bila npc.position.mode = absolute
+  nerith:
+    world: ""
+    x: 0.5
+    y: 100.0
+    z: -2.5
+    yaw: 0.0
+    pitch: 0.0
+
+# ----------------------------------------------------------------------------
+# NPC NERITH (FancyNpcs)
+# NPC dibuat per-pemain (packet), tidak disimpan ke file FancyNpcs, dan hanya terlihat
+# oleh pemain yang sedang menjalani intro. Dihapus otomatis saat intro selesai.
+# ----------------------------------------------------------------------------
+npc:
+  enabled: true
+  display-name: "<white><bold>NERITH</bold></white>"
+  scale: 1.0
+  # NPC terus menghadap pemain (tick). 0 = hanya menghadap saat muncul dan saat langkah "npc: look".
+  keep-facing-interval-ticks: 20
+  # continue = intro lanjut tanpa NPC (dialog tetap tampil di chat); abort = intro dibatalkan
+  on-failure: continue
+  position:
+    mode: relative         # relative = di depan pemain; absolute = pakai locations.nerith
+    forward: 3.0           # jarak di depan pemain (blok)
+    side: 0.0              # geser kanan (+) / kiri (-)
+    y-offset: 0.0
+  # Skin. mode: default | username | uuid | url | file | texture
+  #  default  -> skin bawaan klien (Steve/Alex) + pakaian putih (white-outfit di bawah)
+  #  username -> nama akun Minecraft Java yang punya skin putih
+  #  url      -> link langsung ke file PNG skin 64x64
+  #  texture  -> isi value dan signature dari mineskin.org (paling stabil, tanpa fetch saat runtime)
+  skin:
+    mode: default
+    value: ""
+    signature: ""
+    variant: AUTO          # AUTO | SLIM
+  # Pakaian serba putih: armor kulit yang diwarnai. Kosongkan material untuk slot yang tidak dipakai.
+  white-outfit:
+    enabled: true
+    color: "#FFFFFF"
+    head: LEATHER_HELMET
+    chest: LEATHER_CHESTPLATE
+    legs: LEATHER_LEGGINGS
+    feet: LEATHER_BOOTS
+
+# ----------------------------------------------------------------------------
+# Pengaturan cinematic
+# ----------------------------------------------------------------------------
+cinematic:
+  lock-player: true              # pemain tidak bisa bergerak/berinteraksi selama intro
+  game-mode: ADVENTURE           # mode permainan selama intro (dikembalikan setelahnya)
+  isolate-from-others: true      # sembunyikan pemain intro dari pemain lain (dan sebaliknya)
+  fade:
+    enabled: true                # fade hitam memakai efek Blindness (jalan di Java dan Bedrock)
+  sounds: true
+  max-duration-minutes: 15       # pengaman: sesi yang menggantung dihentikan otomatis
+  teleport-timeout-ticks: 200
+  min-step-delay-ticks: 1
+  # Jeda otomatis untuk baris narasi/dialog yang tidak punya "wait":
+  #   jeda = base + jumlah_huruf * per-char, dibatasi min..max (tick)
+  pause:
+    base-ticks: 30
+    per-char-ticks: 0.9
+    min-ticks: 45
+    max-ticks: 180
+  format:
+    dialogue: "<white><bold>NERITH</bold></white> <dark_gray>»</dark_gray> <white><text>"
+    player: "<yellow><player></yellow> <dark_gray>»</dark_gray> <gray><text>"
+    narration: "<gray><italic><text></italic>"
+    actionbar: "<gray><text>"
+
+# ----------------------------------------------------------------------------
+# Bedrock (Geyser + Floodgate)
+# ----------------------------------------------------------------------------
+bedrock:
+  spawn-npc: true           # false = pemain Bedrock tidak melihat NPC (dialog tetap tampil lewat chat)
+  use-fallback-sounds: true # pakai "bedrock-sound" pada langkah sound untuk pemain Bedrock
+
+# ----------------------------------------------------------------------------
+# Recovery
+# ----------------------------------------------------------------------------
+recovery:
+  enabled: true                # simpan kondisi pemain ke plugins/NereusIntro/recovery/<uuid>.yml selama intro
+  restore-on-join: true
+  restart-interrupted: true    # intro yang terputus (disconnect/crash) dimulai lagi saat login
+  max-restarts: 2              # batas pengulangan otomatis agar tidak terjadi loop
+  restart-delay-ticks: 60
+
+# Selama intro, command lain diblokir kecuali yang ada di daftar ini.
+protection:
+  block-commands: true
+  allowed-commands: [intro, nereusintro, nintro]
+
+# ----------------------------------------------------------------------------
+# Pesan sistem
+# ----------------------------------------------------------------------------
+messages:
+  no-permission: "<red>Kamu tidak punya izin untuk itu."
+  player-only: "<red>Command ini hanya untuk pemain. Dari konsol gunakan: /intro test <nama>"
+  player-not-found: "<red>Pemain tidak ditemukan."
+  disabled: "<yellow>Intro sedang dinonaktifkan."
+  already-active: "<yellow>Intro sedang berjalan."
+  already-completed: "<yellow>Kamu sudah menyelesaikan intro."
+  not-active: "<yellow>Tidak ada intro yang sedang berjalan."
+  not-configured: "<red>Intro belum bisa dijalankan. Lokasi belum diatur: <problems>"
+  not-configured-admin-hint: "<gray>Atur dengan /intro setpos room dan /intro setpos spawn, lalu /intro reload."
+  npc-unavailable: "<red>FancyNpcs tidak tersedia. Intro tidak dapat dijalankan."
+  empty-timeline: "<red>Timeline cerita kosong atau tidak valid. Periksa config.yml."
+  recovery-pending: "<yellow>Kondisimu sedang dipulihkan. Coba lagi sebentar lagi."
+  dead: "<yellow>Intro tidak bisa dimulai saat kamu mati."
+  test-started: "<gold>[TEST] <gray>Mode test dimulai. Progresmu tidak berubah. Ketik /intro skip untuk berhenti."
+  test-ended: "<gold>[TEST] <gray>Test selesai. Kondisimu sudah dipulihkan."
+  skipped: "<gray>Intro dilewati."
+  skip-disabled: "<yellow>Skip dinonaktifkan."
+  skip-too-early: "<yellow>Tunggu sebentar sebelum melewati intro."
+  skip-confirm: "<yellow>Ketik <white>/intro skip</white> sekali lagi untuk melewati intro."
+  failed: "<red>Intro dihentikan karena terjadi kesalahan. Kondisimu sudah dipulihkan."
+  timed-out: "<red>Intro dihentikan karena melewati batas waktu."
+  recovered: "<gray>Kondisimu dipulihkan setelah intro yang terputus."
+  command-blocked: "<red>Command tidak bisa dipakai selama intro. Ketik /intro skip untuk melewati."
+  reloaded: "<green>Config dimuat ulang. Sesi yang sedang berjalan tidak terganggu."
+  reset-done: "<green>Progres intro <player> direset."
+  location-saved: "<green>Lokasi <name> disimpan: <where>"
+  location-invalid: "<red>Gunakan: /intro setpos <room|spawn|nerith>"
+  conflict-hint: "<gray>/intro dipakai plugin lain. Gunakan /nereusintro."
+
+# ----------------------------------------------------------------------------
+# TIMELINE CERITA
+# Langkah dijalankan berurutan, satu per satu. Setiap langkah punya "type" dan opsional "wait"
+# (jeda dalam tick SETELAH langkah itu sebelum langkah berikutnya).
+#
+#   narrate  : text                         narasi di chat (jeda otomatis sesuai panjang teks)
+#   say      : text                         dialog Nerith di chat
+#   player   : text                         ucapan pemain sendiri di chat
+#   title    : title, subtitle, fade-in, stay, fade-out
+#   actionbar: text
+#   sound    : sound, volume, pitch, bedrock-sound   (wait default 0)
+#   fade     : mode (out = gelap, in = terang), ticks
+#   teleport : target (room | spawn)
+#   npc      : action (spawn | look | remove)
+#   wait     : ticks
+# ----------------------------------------------------------------------------
+timeline:
+  # ---- A. Kehidupan lama ---------------------------------------------------
+  - type: fade
+    mode: out
+    ticks: 50
+  - type: teleport
+    target: room
+    wait: 20
+  - type: sound
+    sound: "minecraft:weather.rain"
+    bedrock-sound: "minecraft:weather.rain"
+    volume: 0.6
+    pitch: 1.0
+  - type: title
+    title: "<white>23.47"
+    subtitle: "<gray>Hujan belum juga berhenti"
+    fade-in: 20
+    stay: 70
+    fade-out: 30
+    wait: 110
+  - type: narrate
+    text: "Hujan sudah turun sejak sore. Lampu penyeberangan berubah hijau, dan kamu melangkah tanpa menoleh. Layar ponselmu masih menyala di tangan."
+  - type: narrate
+    text: "Pesan terakhir belum selesai diketik."
+  - type: sound
+    sound: "minecraft:item.goat_horn.sound.0"
+    bedrock-sound: "minecraft:block.note_block.bass"
+    volume: 0.5
+    pitch: 0.7
+  - type: narrate
+    text: "Suara klakson. Cahaya putih yang terlalu terang. Tidak ada rasa sakit. Hanya terkejut."
+    wait: 50
+  - type: narrate
+    text: "Anehnya, satu-satunya yang terpikir olehmu adalah charger yang ketinggalan di kantor."
+  - type: narrate
+    text: "Suara hujan menjauh. Lalu senyap."
+    wait: 60
+
+  # ---- B. Ruang putih ------------------------------------------------------
+  - type: sound
+    sound: "minecraft:block.amethyst_block.chime"
+    bedrock-sound: "minecraft:block.amethyst_block.chime"
+    volume: 0.7
+    pitch: 1.2
+  - type: fade
+    mode: in
+    ticks: 50
+  - type: narrate
+    text: "Tidak ada hujan. Tidak ada suara. Lantai di bawah kakimu terasa seperti kaca susu: putih, rata, dan tidak berujung."
+  - type: npc
+    action: spawn
+    wait: 40
+  - type: narrate
+    text: "Seseorang berdiri beberapa langkah di depanmu. Serba putih, tangan di saku, seperti sudah menunggu dari tadi."
+    wait: 30
+
+  # ---- C. Pertemuan dengan Nerith -----------------------------------------
+  - type: say
+    text: "Oh, sudah bangun? Cepat juga. Biasanya orang butuh waktu lebih lama untuk berhenti bengong."
+  - type: player
+    text: "...Di mana ini?"
+  - type: say
+    text: "Pertanyaan bagus. Jawaban jujurnya: bukan di mana-mana. Jawaban sopannya: ruang tunggu."
+  - type: say
+    text: "Tenang, tidak ada loket antrean. Mau duduk, berdiri, terserah. Aku sendiri lebih suka berdiri."
+  - type: player
+    text: "Tadi aku di jalan. Ada mobil, terus..."
+  - type: say
+    text: "Iya. Lampu hijau, ponsel di tangan, pesan yang belum terkirim."
+  - type: say
+    text: "Dan charger yang ketinggalan di kantor. Lucu, ya? Dari semua hal yang bisa dipikirkan di detik terakhir, yang muncul malah charger."
+  - type: say
+    text: "Maaf, aku tidak meledek. Hanya saja, bagian itu selalu jadi favoritku."
+  - type: player
+    text: "Jadi aku... sudah mati?"
+  - type: say
+    text: "Kata itu agak kasar untuk dipakai di pertemuan pertama. Tapi ya, kehidupanmu yang lama sudah selesai. Bukan salahmu, bukan salah siapa-siapa. Mobilnya saja yang terlalu cepat."
+    wait: 60
+  - type: say
+    text: "Biasanya setelah ini orang menangis, marah, atau menawar. Kamu mau yang mana? Aku tunggu, tidak buru-buru."
+    wait: 40
+  - type: narrate
+    text: "Kamu menunggu dirimu sendiri bereaksi. Yang keluar hanya napas panjang."
+  - type: say
+    text: "Hm. Ternyata kamu tipe yang diam. Aku suka tipe yang diam, mereka biasanya mendengarkan sampai habis."
+  - type: player
+    text: "Siapa kamu sebenarnya?"
+  - type: title
+    title: "<white><bold>NERITH"
+    subtitle: "<gray>Seseorang yang menunggu di ruang putih"
+    fade-in: 15
+    stay: 55
+    fade-out: 25
+    wait: 0
+  - type: say
+    text: "Nerith. Panggil saja begitu. Namamu <player>, kan? Nama yang lumayan."
+  - type: say
+    text: "Soal aku ini apa, itu belum waktunya. Jangan cemberut, nanti kelihatan kamu sebenarnya penasaran."
+  - type: say
+    text: "Yang penting, aku bawa kabar baik. Kamu mendapat satu kesempatan lagi. Bukan perpanjangan, bukan hadiah hiburan. Kehidupan kedua, dari awal, di tempat lain."
+    wait: 50
+  - type: player
+    text: "Tempat lain...?"
+  - type: say
+    text: "Sebuah dunia. Namanya Nereus."
+  - type: sound
+    sound: "minecraft:block.beacon.ambient"
+    bedrock-sound: "minecraft:block.beacon.ambient"
+    volume: 0.6
+    pitch: 1.0
+  - type: title
+    title: "<aqua><bold>NEREUS"
+    subtitle: "<gray>Dunia yang tidak peduli siapa kamu dulu"
+    fade-in: 20
+    stay: 70
+    fade-out: 30
+    wait: 40
+
+  # ---- D. Dunia baru -------------------------------------------------------
+  - type: say
+    text: "Di sana ada kerajaan yang suka berebut perbatasan, kota-kota yang ramai pedagang, dan pasar yang menjual apa saja asal bisa ditawar."
+  - type: say
+    text: "Ada sihir. Tidak seheboh di dongeng, tapi cukup untuk membuat tukang roti punya api yang rapi."
+  - type: say
+    text: "Ada monster di luar tembok kota, guild yang membayar orang nekat untuk menghadapi mereka, dan jalan panjang yang belum ada di peta siapa pun."
+  - type: player
+    text: "Dan aku... jadi pahlawan?"
+  - type: say
+    text: "Pfft. Tidak. Tidak, tidak."
+    wait: 30
+  - type: say
+    text: "Tidak ada ramalan, tidak ada pedang yang menunggu di batu. Kamu bukan orang terpilih. Kamu mulai sebagai orang asing, dengan tas hampir kosong dan tidak tahu jalan."
+  - type: say
+    text: "Terdengar kurang keren? Menurutku justru itu yang menarik. Orang yang tidak dijanjikan apa-apa biasanya paling sering bikin kejutan."
+  - type: say
+    text: "Mau jadi pedagang, petani, penjelajah, atau orang malas dengan rumah bagus, itu urusanmu. Aku cuma penonton."
+  - type: player
+    text: "Kenapa aku? Kenapa kamu repot-repot?"
+  - type: say
+    text: "Pertanyaan itu kusimpan dulu. Kalau kujawab sekarang, kamu tidak penasaran lagi, dan ceritanya jadi membosankan."
+    wait: 50
+
+  # ---- E. Reinkarnasi ------------------------------------------------------
+  - type: say
+    text: "Oh, sepertinya waktunya habis. Selalu cepat kalau lagi seru."
+  - type: sound
+    sound: "minecraft:block.beacon.activate"
+    bedrock-sound: "minecraft:block.beacon.activate"
+    volume: 0.8
+    pitch: 1.0
+  - type: narrate
+    text: "Cahaya merembes dari lantai, dari dinding, dari mana-mana sebenarnya. Putih yang tadinya tenang kini semakin terang."
+    wait: 20
+  - type: say
+    text: "Sampai ketemu lagi, <player>. Dan makan yang benar di sana. Ini saran serius."
+    wait: 30
+  - type: narrate
+    text: "Suara Nerith menjauh, masih dengan nada setengah tertawa. Batas ruangan menghilang. Lalu tidak ada apa-apa."
+    wait: 20
+  - type: fade
+    mode: out
+    ticks: 60
+  - type: npc
+    action: remove
+  - type: teleport
+    target: spawn
+    wait: 50
+  - type: sound
+    sound: "minecraft:block.amethyst_block.resonate"
+    bedrock-sound: "minecraft:block.amethyst_block.chime"
+    volume: 0.6
+    pitch: 1.0
+  - type: narrate
+    text: "Bau tanah basah. Suara orang menawar di kejauhan. Hangat matahari di kelopak matamu."
+    wait: 20
+  - type: fade
+    mode: in
+    ticks: 60
+  - type: title
+    title: "<aqua><bold>NEREUS"
+    subtitle: "<gray>Kehidupan keduamu dimulai"
+    fade-in: 20
+    stay: 70
+    fade-out: 40
+    wait: 120
