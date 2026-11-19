@@ -1,4 +1,4 @@
-# NereusIntro 1.0.0 — Cinematic Isekai Reincarnation System
+# NereusIntro 1.1.0 — Cinematic Isekai Reincarnation System
 
 Intro isekai untuk pemain baru Nereus MC: kehidupan lama berakhir → ruang putih → bertemu **NERITH** → dunia **Nereus**.
 Paper 1.21.11 · Java 21 · FancyNpcs (wajib) · Floodgate/Geyser (opsional, untuk deteksi Bedrock).
@@ -49,6 +49,20 @@ lp group admin   permission set nereusintro.admin true    # sudah termasuk nereu
 Plugin tidak membawa file skin. Penampilan putih dibuat dengan **armor kulit diwarnai putih** di atas skin yang dipilih.
 Untuk hasil terbaik, buat skin putih di mineskin.org lalu isi `npc.skin.mode: texture`, `value`, `signature`
 (atau `mode: username/url`). Skin dimuat async saat start/reload.
+
+## Musik latar (1.1.0)
+Langkah timeline `music` (`action: start|stop`, `sound`, `bedrock-sound`, `length`, `volume`) memutar suara custom dari resource pack,
+diulang sesuai `length` (detik), dan selalu dihentikan saat intro selesai/skip/error/pemain keluar. Tanpa resource pack: hening, tidak error.
+Volume tidak bisa di-fade oleh klien Minecraft (musik masuk/keluar langsung).
+
+Membuat pack dari lagu (mp3/wav/m4a) — butuh `ffmpeg`:
+```
+python3 NereusIntro/tools/build_pack.py --whiteroom ruang_putih.mp3 --nereus nereus.mp3 --out hasil
+```
+Hasil: `Nereus-Intro-Java.zip`, `Nereus-Intro-Bedrock.mcpack`, dan panjang tiap lagu untuk `length:`.
+- Java: gabungkan ke pack server (namespace `nereusintro`, tidak bentrok dengan `assets/nereus`), perbarui `resource-pack` / `resource-pack-sha1` di `server.properties`.
+- Bedrock: taruh `.mcpack` di `plugins/Geyser-Spigot/packs/`, restart Geyser.
+- Config lama tidak ditimpa saat update: salin blok `music` dari `config.yml` baru atau hapus config lama.
 
 ## Cerita
 Seluruh narasi, dialog, title, sound, dan jeda ada di `timeline:` pada `config.yml` (tanpa ubah kode). Jenis langkah:

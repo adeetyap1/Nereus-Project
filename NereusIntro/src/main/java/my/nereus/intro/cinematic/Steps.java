@@ -5,6 +5,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.title.Title;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.scheduler.BukkitTask;
@@ -202,6 +203,7 @@ public final class Steps {
                 return;
             }
             Player p = ctx.player();
+            final World before = p.getWorld();
             BukkitTask watchdog = Bukkit.getScheduler().runTaskLater(ctx.plugin(),
                     () -> ctx.fail("teleport melewati batas waktu"), cfg.teleportTimeout);
             ctx.track(watchdog);
@@ -214,6 +216,7 @@ public final class Steps {
                             return;
                         }
                         if (toSpawn) ctx.session().markAtSpawn();
+                        if (!p.getWorld().equals(before) && ctx.session().music().isPlaying()) ctx.session().music().restart();
                         done.accept(delay(10));
                     };
                     if (Bukkit.isPrimaryThread()) r.run();
@@ -232,6 +235,42 @@ public final class Steps {
         }
 
         @Override public String name() { return toSpawn ? "teleport-spawn" : "teleport-room"; }
+    }
+
+    public static final class Music extends Base {
+        private final boolean start;
+        private final String sound;
+        private final String bedrockSound;
+        private final double length;
+        private final float volume;
+
+        public Music(boolean start, String sound, String bedrockSound, double length, float volume, int wait) {
+            super(wait);
+            this.start = start;
+            this.sound = sound;
+            this.bedrockSound = bedrockSound;
+            this.length = length;
+            this.volume = volume;
+        }
+
+        @Override
+        public void execute(StepContext ctx, LongConsumer done) {
+            IntroConfig cfg = ctx.cfg();
+            if (cfg.musicEnabled) {
+                if (start) {
+                    String key = sound;
+                    if (ctx.bedrock() && cfg.bedrockFallbackSounds && bedrockSound != null && !bedrockSound.isBlank()) {
+                        key = bedrockSound;
+                    }
+                    ctx.session().music().start(key, length, volume, cfg.musicSource);
+                } else {
+                    ctx.session().music().stop();
+                }
+            }
+            done.accept(delay(0));
+        }
+
+        @Override public String name() { return start ? "music-start" : "music-stop"; }
     }
 
     public static final class NpcAction extends Base {

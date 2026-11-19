@@ -128,6 +128,10 @@ cinematic:
   fade:
     enabled: true                # fade hitam memakai efek Blindness (jalan di Java dan Bedrock)
   sounds: true
+  # Musik latar (suara custom dari resource pack, lihat README). Tanpa resource pack = hening, tidak error.
+  music:
+    enabled: true
+    category: RECORD         # RECORD | MUSIC | MASTER | AMBIENT ... (kategori slider volume pemain)
   max-duration-minutes: 15       # pengaman: sesi yang menggantung dihentikan otomatis
   teleport-timeout-ticks: 200
   min-step-delay-ticks: 1
@@ -210,6 +214,7 @@ messages:
 #   title    : title, subtitle, fade-in, stay, fade-out
 #   actionbar: text
 #   sound    : sound, volume, pitch, bedrock-sound   (wait default 0)
+#   music    : action (start | stop), sound, bedrock-sound, length (detik, untuk mengulang lagu), volume
 #   fade     : mode (out = gelap, in = terang), ticks
 #   teleport : target (room | spawn)
 #   npc      : action (spawn | look | remove)
@@ -259,6 +264,12 @@ timeline:
     bedrock-sound: "minecraft:block.amethyst_block.chime"
     volume: 0.7
     pitch: 1.2
+  - type: music
+    action: start
+    sound: "nereusintro:music.whiteroom"
+    bedrock-sound: "nereusintro:music.whiteroom"
+    length: 90          # panjang lagu dalam detik (isi sesuai file .ogg kamu)
+    volume: 0.7
   - type: fade
     mode: in
     ticks: 50
@@ -374,6 +385,8 @@ timeline:
   - type: narrate
     text: "Suara Nerith menjauh, masih dengan nada setengah tertawa. Batas ruangan menghilang. Lalu tidak ada apa-apa."
     wait: 20
+  - type: music
+    action: stop
   - type: fade
     mode: out
     ticks: 60
@@ -390,6 +403,12 @@ timeline:
   - type: narrate
     text: "Bau tanah basah. Suara orang menawar di kejauhan. Hangat matahari di kelopak matamu."
     wait: 20
+  - type: music
+    action: start
+    sound: "nereusintro:music.nereus"
+    bedrock-sound: "nereusintro:music.nereus"
+    length: 60
+    volume: 0.7
   - type: fade
     mode: in
     ticks: 60

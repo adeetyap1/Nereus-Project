@@ -3,6 +3,7 @@ package my.nereus.intro.session;
 import my.nereus.intro.NereusIntro;
 import my.nereus.intro.cinematic.CinematicRunner;
 import my.nereus.intro.cinematic.FadeEffect;
+import my.nereus.intro.cinematic.MusicPlayer;
 import my.nereus.intro.config.IntroConfig;
 import my.nereus.intro.npc.NerithNpc;
 import my.nereus.intro.recovery.PlayerSnapshot;
@@ -35,6 +36,7 @@ public final class IntroSession {
     private final AtomicBoolean ended = new AtomicBoolean(false);
     private final List<BukkitTask> tasks = new CopyOnWriteArrayList<>();
     private CinematicRunner runner;
+    private MusicPlayer music;
     private boolean atSpawn;
     private boolean faded;
     private boolean bedrock;
@@ -62,6 +64,11 @@ public final class IntroSession {
 
     public long skipConfirmUntil() { return skipConfirmUntil; }
     public void skipConfirmUntil(long t) { this.skipConfirmUntil = t; }
+
+    public MusicPlayer music() {
+        if (music == null) music = new MusicPlayer(plugin, player);
+        return music;
+    }
 
     public void track(BukkitTask t) { if (t != null) tasks.add(t); }
     public void markAtSpawn() { this.atSpawn = true; }
@@ -160,6 +167,7 @@ public final class IntroSession {
         if (runner != null) runner.stop();
         for (BukkitTask t : tasks) t.cancel();
         tasks.clear();
+        if (music != null) music.stop();
         plugin.npcService().remove(uuid);
         plugin.isolation().release(player);
         if (faded || player.isOnline()) {

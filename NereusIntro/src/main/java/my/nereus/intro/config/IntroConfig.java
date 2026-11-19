@@ -73,6 +73,8 @@ public final class IntroConfig {
     public final boolean isolate;
     public final boolean fadeEnabled;
     public final boolean sounds;
+    public final boolean musicEnabled;
+    public final net.kyori.adventure.sound.Sound.Source musicSource;
     public final int maxDurationMinutes;
     public final int teleportTimeout;
     public final int minStepDelay;
@@ -158,6 +160,14 @@ public final class IntroConfig {
         isolate = c.getBoolean("cinematic.isolate-from-others", true);
         fadeEnabled = c.getBoolean("cinematic.fade.enabled", true);
         sounds = c.getBoolean("cinematic.sounds", true);
+        musicEnabled = c.getBoolean("cinematic.music.enabled", true);
+        net.kyori.adventure.sound.Sound.Source src;
+        try {
+            src = net.kyori.adventure.sound.Sound.Source.valueOf(c.getString("cinematic.music.category", "RECORD").toUpperCase(Locale.ROOT));
+        } catch (IllegalArgumentException e) {
+            src = net.kyori.adventure.sound.Sound.Source.RECORD;
+        }
+        musicSource = src;
         maxDurationMinutes = Math.max(1, c.getInt("cinematic.max-duration-minutes", 15));
         teleportTimeout = Math.max(20, c.getInt("cinematic.teleport-timeout-ticks", 200));
         minStepDelay = Math.max(1, c.getInt("cinematic.min-step-delay-ticks", 1));

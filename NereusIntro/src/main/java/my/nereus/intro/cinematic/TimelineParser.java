@@ -56,6 +56,12 @@ public final class TimelineParser {
                 return new Steps.Sound(s, str(m, "bedrock-sound", ""),
                         (float) dbl(m, "volume", 1.0), (float) dbl(m, "pitch", 1.0), wait < 0 ? 0 : wait);
             }
+            case "music": {
+                boolean start = !"stop".equalsIgnoreCase(str(m, "action", "start"));
+                if (start && str(m, "sound", "").isEmpty()) return null;
+                return new Steps.Music(start, str(m, "sound", ""), str(m, "bedrock-sound", ""),
+                        dbl(m, "length", 0), (float) dbl(m, "volume", 1.0), wait < 0 ? 0 : wait);
+            }
             case "fade": {
                 boolean out = !"in".equalsIgnoreCase(str(m, "mode", "out"));
                 return new Steps.Fade(out, Math.max(1, integer(m, "ticks", 40)), wait);
