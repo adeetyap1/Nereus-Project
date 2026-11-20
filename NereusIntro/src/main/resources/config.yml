@@ -261,10 +261,10 @@ timeline:
   - type: "sound"
     sound: "minecraft:weather.rain"
     bedrock-sound: "minecraft:weather.rain"
-    volume: 0.6
+    volume: 0.4
     pitch: 1.0
     duration: 1200
-    interval: 50
+    interval: 20
 
   - type: "title"
     title: "<white>23.47"
