@@ -3,8 +3,8 @@ package my.nereus.intro.manager;
 import my.nereus.intro.NereusIntro;
 import my.nereus.intro.config.IntroConfig;
 import my.nereus.intro.session.IntroSession;
-import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -46,7 +46,8 @@ public final class ResourcePackService implements Listener {
         }
         byte[] hash = parseHash(cfg.packSha1);
         try {
-            Component prompt = MiniMessage.miniMessage().deserialize(cfg.packPrompt);
+            String prompt = PlainTextComponentSerializer.plainText()
+                    .serialize(MiniMessage.miniMessage().deserialize(cfg.packPrompt));
             waiting.put(id, ready);
             p.addResourcePack(PACK_ID, cfg.packUrl, hash, prompt, cfg.packForce);
         } catch (Throwable t) {
