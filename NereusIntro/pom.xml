@@ -6,7 +6,7 @@
 
     <groupId>my.nereus</groupId>
     <artifactId>NereusIntro</artifactId>
-    <version>1.2.1</version>
+    <version>1.2.2</version>
     <packaging>jar</packaging>
     <name>NereusIntro</name>
     <description>Cinematic Isekai Reincarnation System untuk Nereus MC</description>

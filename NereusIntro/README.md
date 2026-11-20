@@ -1,4 +1,4 @@
-# NereusIntro 1.2.1 — Cinematic Isekai Reincarnation System
+# NereusIntro 1.2.2 — Cinematic Isekai Reincarnation System
 
 Intro isekai untuk pemain baru Nereus MC: kehidupan lama berakhir → ruang putih → bertemu **NERITH** → dunia **Nereus**.
 Paper 1.21.11 · Java 21 · FancyNpcs (wajib) · Floodgate/Geyser (opsional, untuk deteksi Bedrock).
@@ -68,8 +68,12 @@ Hasil: `Nereus-Intro-Java.zip`, `Nereus-Intro-Bedrock.mcpack`, dan panjang tiap 
 - Langkah `sound` punya `duration` (tick) dan `interval`: suara vanilla pendek (hujan, klakson, dengung) diulang tiap `interval` selama `duration`, lalu dihentikan.
   Hentikan lebih awal dengan `type: sound`, `action: stop`, `sound: <key yang sama>`. Semua dihentikan otomatis saat intro berakhir.
 - `cinematic.dialogue-effects`: bunyi lembut + partikel cahaya tipis di sekitar Nerith setiap baris `say`, bunyi kecil saat ucapan pemain.
-- `resource-pack:` plugin mengirim pack musik ke pemain Java sendiri (URL + SHA1 di config) dan menunggu sampai termuat sebelum intro mulai,
+- (Bawaan mati sejak 1.2.2) `resource-pack:` plugin mengirim pack musik ke pemain Java sendiri (URL + SHA1 di config) dan menunggu sampai termuat sebelum intro mulai,
   sehingga `server.properties` tidak perlu diubah. Ditolak/gagal/timeout: intro tetap jalan tanpa musik. Pemain Bedrock tetap memakai `.mcpack` di Geyser.
+
+## Musik lewat resource pack server (cara yang disarankan, sama seperti NereusEvents)
+Lagu intro sudah dimasukkan ke `Nereus-Pack-Java-Lite.zip` dan `Nereus-Pack-Java.zip` (namespace `nereusintro`). Cukup perbarui
+`resource-pack-sha1=` di `server.properties` ke hash file terbaru (URL tetap), restart, lalu pemain relog.
 
 ## Cerita
 Seluruh narasi, dialog, title, sound, dan jeda ada di `timeline:` pada `config.yml` (tanpa ubah kode). Jenis langkah:

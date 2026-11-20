@@ -161,12 +161,12 @@ cinematic:
     actionbar: "<gray><text>"
 
 # ----------------------------------------------------------------------------
-# Resource pack musik (khusus pemain Java). Plugin mengirim pack ini sendiri saat intro dimulai
+# (OPSIONAL, bawaan MATI) Kirim pack musik langsung dari plugin ke pemain Java saat intro dimulai
 # dan menunggu sampai termuat, jadi server.properties TIDAK perlu diubah.
 # Pemain Bedrock memakai .mcpack di plugins/Geyser-Spigot/packs/.
 # ----------------------------------------------------------------------------
 resource-pack:
-  enabled: true
+  enabled: false
   url: "https://raw.githubusercontent.com/adeetyap1/Nereus-Project/main/resourcepacks/Nereus-Intro-Java.zip"
   sha1: "e448b9618ab8c973ad5bbc84fc624320ef2f8c7a"
   prompt: "<gray>Musik dan suara intro Nereus"
