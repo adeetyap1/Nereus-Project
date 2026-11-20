@@ -115,7 +115,13 @@ public final class IntroSession {
             finish(EndReason.FAILED);
         }, cfg.maxDurationMinutes * 60L * 20L));
 
-        if (test) player.sendMessage(cfg.message("test-started"));
+        if (test) {
+            player.sendMessage(cfg.message("test-started"));
+            boolean packOk = plugin.resourcePacks().isLoaded(uuid);
+            player.sendMessage(net.kyori.adventure.text.Component.text("[TEST] Platform: " + (bedrock ? "Bedrock" : "Java")
+                    + (bedrock ? " | musik memakai .mcpack Geyser (plugins/Geyser-Spigot/packs)"
+                    : " | resource pack dari plugin: " + (packOk ? "termuat" : "BELUM termuat (musik hening)"))));
+        }
         runner = new CinematicRunner(plugin, this, cfg.timeline);
         runner.start();
     }

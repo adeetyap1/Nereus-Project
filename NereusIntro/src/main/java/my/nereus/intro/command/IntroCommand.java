@@ -22,6 +22,7 @@ public final class IntroCommand implements TabExecutor {
     private static final String ADMIN = "nereusintro.admin";
 
     private final NereusIntro plugin;
+    private final java.util.Map<java.util.UUID, String> lastSound = new java.util.concurrent.ConcurrentHashMap<>();
 
     public IntroCommand(NereusIntro plugin) {
         this.plugin = plugin;
@@ -100,6 +101,29 @@ public final class IntroCommand implements TabExecutor {
                 }
                 plugin.progress().reset(off.getUniqueId());
                 sender.sendMessage(cfg.message("reset-done", Placeholder.unparsed("player", args[1])));
+            }
+            case "sound" -> {
+                if (!requireAdmin(sender, admin)) return true;
+                if (!(sender instanceof Player p)) {
+                    sender.sendMessage(cfg.message("player-only"));
+                    return true;
+                }
+                if (args.length < 2) {
+                    p.sendMessage(Component.text("/" + label + " sound <key> | stop   contoh: nereusintro:music.whiteroom"));
+                    return true;
+                }
+                if (args[1].equalsIgnoreCase("stop")) {
+                    String last = lastSound.remove(p.getUniqueId());
+                    if (last != null) p.stopSound(last);
+                    p.sendMessage(Component.text("[TEST] Suara dihentikan."));
+                } else {
+                    String key = args[1].contains(":") ? args[1] : "minecraft:" + args[1];
+                    lastSound.put(p.getUniqueId(), key);
+                    p.playSound(net.kyori.adventure.sound.Sound.sound(net.kyori.adventure.key.Key.key(key),
+                            net.kyori.adventure.sound.Sound.Source.RECORD, 1f, 1f), net.kyori.adventure.sound.Sound.Emitter.self());
+                    p.sendMessage(Component.text("[TEST] Memutar " + key + " (" + (plugin.platform().isBedrock(p) ? "Bedrock" : "Java")
+                            + "). Tidak terdengar = resource pack belum termuat di klien ini."));
+                }
             }
             case "setpos" -> {
                 if (!requireAdmin(sender, admin)) return true;
@@ -187,7 +211,7 @@ public final class IntroCommand implements TabExecutor {
 
     private void help(CommandSender s, String label, boolean admin) {
         s.sendMessage(Component.text("NereusIntro — /" + label + " | skip" + (admin
-                ? " | test [pemain] [--bedrock|--java] | play <pemain> | reload | reset <pemain> | setpos <room|spawn|nerith>" : "")));
+                ? " | test [pemain] [--bedrock|--java] | play <pemain> | reload | reset <pemain> | setpos <room|spawn|nerith> | sound <key|stop>" : "")));
     }
 
     @Override
@@ -196,7 +220,7 @@ public final class IntroCommand implements TabExecutor {
         boolean admin = sender.hasPermission(ADMIN);
         if (args.length == 1) {
             List<String> subs = admin
-                    ? List.of("help", "skip", "test", "play", "reload", "reset", "setpos")
+                    ? List.of("help", "skip", "test", "play", "reload", "reset", "setpos", "sound")
                     : List.of("help", "skip");
             for (String s : subs) if (s.startsWith(args[0].toLowerCase(Locale.ROOT))) out.add(s);
         } else if (admin && args.length >= 2) {

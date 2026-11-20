@@ -78,6 +78,10 @@ public final class ResourcePackService implements Listener {
         waiting.remove(id);
     }
 
+    public boolean isLoaded(UUID id) {
+        return loaded.contains(id);
+    }
+
     public void forget(UUID id) {
         cancel(id);
         loaded.remove(id);

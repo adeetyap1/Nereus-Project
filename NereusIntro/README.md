@@ -1,4 +1,4 @@
-# NereusIntro 1.2.0 — Cinematic Isekai Reincarnation System
+# NereusIntro 1.2.1 — Cinematic Isekai Reincarnation System
 
 Intro isekai untuk pemain baru Nereus MC: kehidupan lama berakhir → ruang putih → bertemu **NERITH** → dunia **Nereus**.
 Paper 1.21.11 · Java 21 · FancyNpcs (wajib) · Floodgate/Geyser (opsional, untuk deteksi Bedrock).
