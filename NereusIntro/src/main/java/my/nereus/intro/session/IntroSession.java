@@ -4,6 +4,7 @@ import my.nereus.intro.NereusIntro;
 import my.nereus.intro.cinematic.CinematicRunner;
 import my.nereus.intro.cinematic.FadeEffect;
 import my.nereus.intro.cinematic.MusicPlayer;
+import my.nereus.intro.cinematic.SoundLayers;
 import my.nereus.intro.config.IntroConfig;
 import my.nereus.intro.npc.NerithNpc;
 import my.nereus.intro.recovery.PlayerSnapshot;
@@ -37,6 +38,7 @@ public final class IntroSession {
     private final List<BukkitTask> tasks = new CopyOnWriteArrayList<>();
     private CinematicRunner runner;
     private MusicPlayer music;
+    private SoundLayers layers;
     private boolean atSpawn;
     private boolean faded;
     private boolean bedrock;
@@ -70,6 +72,11 @@ public final class IntroSession {
         return music;
     }
 
+    public SoundLayers layers() {
+        if (layers == null) layers = new SoundLayers(plugin, player);
+        return layers;
+    }
+
     public void track(BukkitTask t) { if (t != null) tasks.add(t); }
     public void markAtSpawn() { this.atSpawn = true; }
     public void setFaded(boolean f) { this.faded = f; }
@@ -78,6 +85,12 @@ public final class IntroSession {
 
     public void start() {
         bedrock = bedrockOverride != null ? bedrockOverride : plugin.platform().isBedrock(player);
+        plugin.resourcePacks().ensure(this, this::begin);
+    }
+
+    /** Dipanggil setelah pack musik siap (atau dilewati). */
+    private void begin() {
+        if (ended.get()) return;
         if (cfg.recoveryEnabled) plugin.recovery().store().save(uuid, snapshot, test);
 
         try {
@@ -167,7 +180,9 @@ public final class IntroSession {
         if (runner != null) runner.stop();
         for (BukkitTask t : tasks) t.cancel();
         tasks.clear();
+        plugin.resourcePacks().cancel(uuid);
         if (music != null) music.stop();
+        if (layers != null) layers.stopAll();
         plugin.npcService().remove(uuid);
         plugin.isolation().release(player);
         if (faded || player.isOnline()) {

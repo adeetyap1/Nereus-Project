@@ -53,8 +53,11 @@ public final class TimelineParser {
             case "sound": {
                 String s = str(m, "sound", "");
                 if (s.isEmpty()) return null;
+                boolean stop = "stop".equalsIgnoreCase(str(m, "action", "start"));
                 return new Steps.Sound(s, str(m, "bedrock-sound", ""),
-                        (float) dbl(m, "volume", 1.0), (float) dbl(m, "pitch", 1.0), wait < 0 ? 0 : wait);
+                        (float) dbl(m, "volume", 1.0), (float) dbl(m, "pitch", 1.0),
+                        Math.max(0, integer(m, "duration", 0)), Math.max(5, integer(m, "interval", 40)),
+                        stop, wait < 0 ? 0 : wait);
             }
             case "music": {
                 boolean start = !"stop".equalsIgnoreCase(str(m, "action", "start"));

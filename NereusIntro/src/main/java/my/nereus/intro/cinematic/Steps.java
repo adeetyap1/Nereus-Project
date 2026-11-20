@@ -56,6 +56,7 @@ public final class Steps {
             Component c = TextFormatter.formatted(ctx.cfg().fmtDialogue, text, p);
             p.sendMessage(c);
             ctx.session().npcLook();
+            DialogueFx.say(ctx);
             done.accept(delay(ctx.pauseFor(c)));
         }
 
@@ -72,6 +73,7 @@ public final class Steps {
             Player p = ctx.player();
             Component c = TextFormatter.formatted(ctx.cfg().fmtPlayer, text, p);
             p.sendMessage(c);
+            DialogueFx.player(ctx);
             done.accept(delay(Math.max(ctx.cfg().pauseMin, ctx.pauseFor(c) - 15)));
         }
 
@@ -127,29 +129,40 @@ public final class Steps {
         private final String bedrockSound;
         private final float volume;
         private final float pitch;
+        private final int duration;
+        private final int interval;
+        private final boolean stop;
 
-        public Sound(String sound, String bedrockSound, float volume, float pitch, int wait) {
+        public Sound(String sound, String bedrockSound, float volume, float pitch,
+                     int duration, int interval, boolean stop, int wait) {
             super(wait);
             this.sound = sound;
             this.bedrockSound = bedrockSound;
             this.volume = volume;
             this.pitch = pitch;
+            this.duration = duration;
+            this.interval = interval;
+            this.stop = stop;
         }
 
         @Override
         public void execute(StepContext ctx, LongConsumer done) {
             IntroConfig cfg = ctx.cfg();
-            if (cfg.sounds) {
+            if (stop) {
+                ctx.session().layers().stop(sound);
+                if (bedrockSound != null && !bedrockSound.isBlank()) ctx.session().layers().stop(bedrockSound);
+            } else if (cfg.sounds) {
                 String key = sound;
                 if (ctx.bedrock() && cfg.bedrockFallbackSounds && bedrockSound != null && !bedrockSound.isBlank()) {
                     key = bedrockSound;
                 }
-                SoundPlayer.play(ctx.player(), key, volume, pitch);
+                if (duration > 0) ctx.session().layers().start(key, volume, pitch, duration, interval);
+                else SoundPlayer.play(ctx.player(), key, volume, pitch);
             }
             done.accept(delay(0));
         }
 
-        @Override public String name() { return "sound"; }
+        @Override public String name() { return stop ? "sound-stop" : "sound"; }
     }
 
     public static final class Fade extends Base {

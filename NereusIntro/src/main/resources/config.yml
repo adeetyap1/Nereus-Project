@@ -132,6 +132,18 @@ cinematic:
   music:
     enabled: true
     category: RECORD         # RECORD | MUSIC | MASTER | AMBIENT ... (kategori slider volume pemain)
+  # Efek halus saat dialog supaya tidak sepi: bunyi lembut + sedikit partikel cahaya di sekitar Nerith.
+  dialogue-effects:
+    enabled: true
+    say-sound: "minecraft:block.amethyst_block.chime"
+    say-bedrock-sound: ""      # kosong = sama dengan say-sound
+    say-volume: 0.25
+    pitch-min: 1.4
+    pitch-max: 1.9
+    particles: true
+    particles-on-bedrock: true # matikan bila partikel bermasalah di Bedrock
+    player-sound: "minecraft:block.note_block.hat"   # bunyi kecil saat ucapan pemain; kosong = mati
+    player-volume: 0.2
   max-duration-minutes: 15       # pengaman: sesi yang menggantung dihentikan otomatis
   teleport-timeout-ticks: 200
   min-step-delay-ticks: 1
@@ -147,6 +159,19 @@ cinematic:
     player: "<yellow><player></yellow> <dark_gray>»</dark_gray> <gray><text>"
     narration: "<gray><italic><text></italic>"
     actionbar: "<gray><text>"
+
+# ----------------------------------------------------------------------------
+# Resource pack musik (khusus pemain Java). Plugin mengirim pack ini sendiri saat intro dimulai
+# dan menunggu sampai termuat, jadi server.properties TIDAK perlu diubah.
+# Pemain Bedrock memakai .mcpack di plugins/Geyser-Spigot/packs/.
+# ----------------------------------------------------------------------------
+resource-pack:
+  enabled: true
+  url: "https://raw.githubusercontent.com/adeetyap1/Nereus-Project/main/resourcepacks/Nereus-Intro-Java.zip"
+  sha1: "e448b9618ab8c973ad5bbc84fc624320ef2f8c7a"
+  prompt: "<gray>Musik dan suara intro Nereus"
+  force: false             # true = pemain yang menolak pack ditendang oleh klien
+  wait-seconds: 15         # batas menunggu pack termuat; lewat itu intro jalan tanpa musik
 
 # ----------------------------------------------------------------------------
 # Bedrock (Geyser + Floodgate)
@@ -213,7 +238,9 @@ messages:
 #   player   : text                         ucapan pemain sendiri di chat
 #   title    : title, subtitle, fade-in, stay, fade-out
 #   actionbar: text
-#   sound    : sound, volume, pitch, bedrock-sound   (wait default 0)
+#   sound    : sound, volume, pitch, bedrock-sound, duration, interval   (wait default 0)
+#              duration (tick) > 0 = suara diulang tiap `interval` tick selama `duration`, lalu dihentikan
+#              (untuk hujan, klakson, dengung). Hentikan lebih awal: type sound, action stop, sound <key sama>
 #   music    : action (start | stop), sound, bedrock-sound, length (detik, untuk mengulang lagu), volume
 #   fade     : mode (out = gelap, in = terang), ticks
 #   teleport : target (room | spawn)
@@ -221,201 +248,196 @@ messages:
 #   wait     : ticks
 # ----------------------------------------------------------------------------
 timeline:
-  # ---- A. Kehidupan lama ---------------------------------------------------
-  - type: fade
-    mode: out
-    ticks: 50
-  - type: teleport
-    target: room
-    wait: 20
-  - type: sound
+  # ---- A. Kehidupan lama
+
+  - type: "fade"
+    mode: "out"
+    ticks: 20
+
+  - type: "teleport"
+    target: "room"
+    wait: 10
+
+  - type: "sound"
     sound: "minecraft:weather.rain"
     bedrock-sound: "minecraft:weather.rain"
     volume: 0.6
     pitch: 1.0
-  - type: title
+    duration: 1200
+    interval: 50
+
+  - type: "title"
     title: "<white>23.47"
     subtitle: "<gray>Hujan belum juga berhenti"
-    fade-in: 20
-    stay: 70
-    fade-out: 30
-    wait: 110
-  - type: narrate
-    text: "Hujan sudah turun sejak sore. Lampu penyeberangan berubah hijau, dan kamu melangkah tanpa menoleh. Layar ponselmu masih menyala di tangan."
-  - type: narrate
-    text: "Pesan terakhir belum selesai diketik."
-  - type: sound
+    fade-in: 5
+    stay: 25
+    fade-out: 10
+    wait: 35
+
+  - type: "narrate"
+    text: "Hujan turun deras. Kamu berjalan menyeberangi jalan sambil menatap ponsel."
+
+  - type: "narrate"
+    text: "Ada satu pesan yang belum sempat kamu balas."
+
+  - type: "sound"
     sound: "minecraft:item.goat_horn.sound.0"
     bedrock-sound: "minecraft:block.note_block.bass"
     volume: 0.5
     pitch: 0.7
-  - type: narrate
-    text: "Suara klakson. Cahaya putih yang terlalu terang. Tidak ada rasa sakit. Hanya terkejut."
-    wait: 50
-  - type: narrate
-    text: "Anehnya, satu-satunya yang terpikir olehmu adalah charger yang ketinggalan di kantor."
-  - type: narrate
-    text: "Suara hujan menjauh. Lalu senyap."
-    wait: 60
+    duration: 80
+    interval: 40
 
-  # ---- B. Ruang putih ------------------------------------------------------
-  - type: sound
+  - type: "narrate"
+    text: "Suara klakson. Cahaya menyilaukan. Semuanya terjadi begitu cepat."
+
+  - type: "narrate"
+    text: "Ada banyak hal yang belum sempat kamu lakukan. Banyak orang yang belum sempat kamu temui lagi."
+
+  - type: "narrate"
+    text: "Tapi sekarang, semuanya sudah terlambat."
+    wait: 20
+
+  - type: "sound"
+    action: "stop"
+    sound: "minecraft:weather.rain"
+    bedrock-sound: "minecraft:weather.rain"
+
+  - type: "sound"
+    action: "stop"
+    sound: "minecraft:item.goat_horn.sound.0"
+    bedrock-sound: "minecraft:block.note_block.bass"
+
+  # ---- B. Ruang putih
+
+  - type: "fade"
+    mode: "in"
+    ticks: 20
+
+  - type: "sound"
     sound: "minecraft:block.amethyst_block.chime"
     bedrock-sound: "minecraft:block.amethyst_block.chime"
     volume: 0.7
     pitch: 1.2
-  - type: music
-    action: start
+
+  - type: "music"
+    action: "start"
     sound: "nereusintro:music.whiteroom"
     bedrock-sound: "nereusintro:music.whiteroom"
-    length: 90          # panjang lagu dalam detik (isi sesuai file .ogg kamu)
+    length: 60.5
     volume: 0.7
-  - type: fade
-    mode: in
-    ticks: 50
-  - type: narrate
-    text: "Tidak ada hujan. Tidak ada suara. Lantai di bawah kakimu terasa seperti kaca susu: putih, rata, dan tidak berujung."
-  - type: npc
-    action: spawn
-    wait: 40
-  - type: narrate
-    text: "Seseorang berdiri beberapa langkah di depanmu. Serba putih, tangan di saku, seperti sudah menunggu dari tadi."
-    wait: 30
 
-  # ---- C. Pertemuan dengan Nerith -----------------------------------------
-  - type: say
-    text: "Oh, sudah bangun? Cepat juga. Biasanya orang butuh waktu lebih lama untuk berhenti bengong."
-  - type: player
-    text: "...Di mana ini?"
-  - type: say
-    text: "Pertanyaan bagus. Jawaban jujurnya: bukan di mana-mana. Jawaban sopannya: ruang tunggu."
-  - type: say
-    text: "Tenang, tidak ada loket antrean. Mau duduk, berdiri, terserah. Aku sendiri lebih suka berdiri."
-  - type: player
-    text: "Tadi aku di jalan. Ada mobil, terus..."
-  - type: say
-    text: "Iya. Lampu hijau, ponsel di tangan, pesan yang belum terkirim."
-  - type: say
-    text: "Dan charger yang ketinggalan di kantor. Lucu, ya? Dari semua hal yang bisa dipikirkan di detik terakhir, yang muncul malah charger."
-  - type: say
-    text: "Maaf, aku tidak meledek. Hanya saja, bagian itu selalu jadi favoritku."
-  - type: player
-    text: "Jadi aku... sudah mati?"
-  - type: say
-    text: "Kata itu agak kasar untuk dipakai di pertemuan pertama. Tapi ya, kehidupanmu yang lama sudah selesai. Bukan salahmu, bukan salah siapa-siapa. Mobilnya saja yang terlalu cepat."
-    wait: 60
-  - type: say
-    text: "Biasanya setelah ini orang menangis, marah, atau menawar. Kamu mau yang mana? Aku tunggu, tidak buru-buru."
-    wait: 40
-  - type: narrate
-    text: "Kamu menunggu dirimu sendiri bereaksi. Yang keluar hanya napas panjang."
-  - type: say
-    text: "Hm. Ternyata kamu tipe yang diam. Aku suka tipe yang diam, mereka biasanya mendengarkan sampai habis."
-  - type: player
-    text: "Siapa kamu sebenarnya?"
-  - type: title
-    title: "<white><bold>NERITH"
-    subtitle: "<gray>Seseorang yang menunggu di ruang putih"
-    fade-in: 15
-    stay: 55
-    fade-out: 25
-    wait: 0
-  - type: say
-    text: "Nerith. Panggil saja begitu. Namamu <player>, kan? Nama yang lumayan."
-  - type: say
-    text: "Soal aku ini apa, itu belum waktunya. Jangan cemberut, nanti kelihatan kamu sebenarnya penasaran."
-  - type: say
-    text: "Yang penting, aku bawa kabar baik. Kamu mendapat satu kesempatan lagi. Bukan perpanjangan, bukan hadiah hiburan. Kehidupan kedua, dari awal, di tempat lain."
-    wait: 50
-  - type: player
-    text: "Tempat lain...?"
-  - type: say
-    text: "Sebuah dunia. Namanya Nereus."
-  - type: sound
+  - type: "sound"
     sound: "minecraft:block.beacon.ambient"
     bedrock-sound: "minecraft:block.beacon.ambient"
-    volume: 0.6
+    volume: 0.25
     pitch: 1.0
-  - type: title
-    title: "<aqua><bold>NEREUS"
-    subtitle: "<gray>Dunia yang tidak peduli siapa kamu dulu"
-    fade-in: 20
-    stay: 70
-    fade-out: 30
-    wait: 40
+    duration: 6000
+    interval: 80
 
-  # ---- D. Dunia baru -------------------------------------------------------
-  - type: say
-    text: "Di sana ada kerajaan yang suka berebut perbatasan, kota-kota yang ramai pedagang, dan pasar yang menjual apa saja asal bisa ditawar."
-  - type: say
-    text: "Ada sihir. Tidak seheboh di dongeng, tapi cukup untuk membuat tukang roti punya api yang rapi."
-  - type: say
-    text: "Ada monster di luar tembok kota, guild yang membayar orang nekat untuk menghadapi mereka, dan jalan panjang yang belum ada di peta siapa pun."
-  - type: player
-    text: "Dan aku... jadi pahlawan?"
-  - type: say
-    text: "Pfft. Tidak. Tidak, tidak."
-    wait: 30
-  - type: say
-    text: "Tidak ada ramalan, tidak ada pedang yang menunggu di batu. Kamu bukan orang terpilih. Kamu mulai sebagai orang asing, dengan tas hampir kosong dan tidak tahu jalan."
-  - type: say
-    text: "Terdengar kurang keren? Menurutku justru itu yang menarik. Orang yang tidak dijanjikan apa-apa biasanya paling sering bikin kejutan."
-  - type: say
-    text: "Mau jadi pedagang, petani, penjelajah, atau orang malas dengan rumah bagus, itu urusanmu. Aku cuma penonton."
-  - type: player
-    text: "Kenapa aku? Kenapa kamu repot-repot?"
-  - type: say
-    text: "Pertanyaan itu kusimpan dulu. Kalau kujawab sekarang, kamu tidak penasaran lagi, dan ceritanya jadi membosankan."
-    wait: 50
+  - type: "narrate"
+    text: "Saat membuka mata, kamu tidak lagi berada di jalanan. Hanya ada hamparan putih tanpa ujung."
 
-  # ---- E. Reinkarnasi ------------------------------------------------------
-  - type: say
-    text: "Oh, sepertinya waktunya habis. Selalu cepat kalau lagi seru."
-  - type: sound
+  - type: "npc"
+    action: "spawn"
+    wait: 20
+
+  - type: "narrate"
+    text: "Sebuah entitas berwarna putih berdiri di hadapanmu. Entah sejak kapan ia berada di sana."
+
+  # ---- C. Percakapan dengan Nerith
+
+  - type: "say"
+    text: "Akhirnya bangun juga."
+
+  - type: "player"
+    text: "Ini di mana? Kamu siapa?"
+
+  - type: "say"
+    text: "Tempat antara hidup dan mati. Dan ya, kamu sudah mati."
+
+  - type: "player"
+    text: "Tunggu... jadi aku benar-benar mati?"
+
+  - type: "say"
+    text: "Iya. Mau kuucapkan selamat datang di alam baka?"
+
+  - type: "player"
+    text: "Lalu sekarang bagaimana?"
+
+  - type: "say"
+    text: "Aku bisa memberimu kesempatan hidup kedua. Di dunia bernama Nereus."
+
+  - type: "player"
+    text: "Dunia lain? Jangan-jangan aku harus jadi pahlawan?"
+
+  - type: "say"
+    text: "Pfft. Bro pikir dirinya MC?"
+
+  - type: "player"
+    text: "Jadi, aku tidak dapat kekuatan khusus atau semacamnya?"
+
+  - type: "say"
+    text: "Baru juga hidup lagi, sudah banyak maunya."
+
+  - type: "player"
+    text: "Setidaknya kasih sedikit kemudahan."
+
+  - type: "say"
+    text: "Hahaha. Selamat datang di Nereus. Semoga kali ini hidupmu tidak berakhir terlalu cepat."
+
+  # ---- D. Reinkarnasi
+
+  - type: "sound"
     sound: "minecraft:block.beacon.activate"
     bedrock-sound: "minecraft:block.beacon.activate"
     volume: 0.8
     pitch: 1.0
-  - type: narrate
-    text: "Cahaya merembes dari lantai, dari dinding, dari mana-mana sebenarnya. Putih yang tadinya tenang kini semakin terang."
+
+  - type: "music"
+    action: "stop"
+
+  - type: "sound"
+    action: "stop"
+    sound: "minecraft:block.beacon.ambient"
+    bedrock-sound: "minecraft:block.beacon.ambient"
+
+  - type: "fade"
+    mode: "out"
+    ticks: 30
+
+  - type: "npc"
+    action: "remove"
+
+  - type: "teleport"
+    target: "spawn"
     wait: 20
-  - type: say
-    text: "Sampai ketemu lagi, <player>. Dan makan yang benar di sana. Ini saran serius."
-    wait: 30
-  - type: narrate
-    text: "Suara Nerith menjauh, masih dengan nada setengah tertawa. Batas ruangan menghilang. Lalu tidak ada apa-apa."
-    wait: 20
-  - type: music
-    action: stop
-  - type: fade
-    mode: out
-    ticks: 60
-  - type: npc
-    action: remove
-  - type: teleport
-    target: spawn
-    wait: 50
-  - type: sound
+
+  - type: "sound"
     sound: "minecraft:block.amethyst_block.resonate"
     bedrock-sound: "minecraft:block.amethyst_block.chime"
     volume: 0.6
     pitch: 1.0
-  - type: narrate
-    text: "Bau tanah basah. Suara orang menawar di kejauhan. Hangat matahari di kelopak matamu."
-    wait: 20
-  - type: music
-    action: start
+
+  - type: "music"
+    action: "start"
     sound: "nereusintro:music.nereus"
     bedrock-sound: "nereusintro:music.nereus"
-    length: 60
+    length: 60.5
     volume: 0.7
-  - type: fade
-    mode: in
-    ticks: 60
-  - type: title
+
+  - type: "narrate"
+    text: "Angin menyentuh wajahmu. Suara orang-orang terdengar dari kejauhan. Sebuah dunia baru terbentang di hadapanmu."
+
+  - type: "fade"
+    mode: "in"
+    ticks: 30
+
+  - type: "title"
     title: "<aqua><bold>NEREUS"
     subtitle: "<gray>Kehidupan keduamu dimulai"
-    fade-in: 20
-    stay: 70
-    fade-out: 40
-    wait: 120
+    fade-in: 10
+    stay: 35
+    fade-out: 15
+    wait: 100
+

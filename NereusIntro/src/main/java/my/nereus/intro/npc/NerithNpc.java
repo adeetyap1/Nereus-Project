@@ -24,10 +24,16 @@ import java.util.UUID;
 public final class NerithNpc {
 
     private final Npc npc;
+    private final Location location;
     private boolean removed;
 
-    private NerithNpc(Npc npc) {
+    private NerithNpc(Npc npc, Location location) {
         this.npc = npc;
+        this.location = location.clone();
+    }
+
+    public Location location() {
+        return location;
     }
 
     public static NerithNpc spawn(Player player, Location where, IntroConfig cfg, SkinData skin) {
@@ -54,7 +60,7 @@ public final class NerithNpc {
 
         Npc npc = FancyNpcsPlugin.get().getNpcAdapter().apply(data);
         npc.setSaveToFile(false);
-        NerithNpc handle = new NerithNpc(npc);
+        NerithNpc handle = new NerithNpc(npc, where);
         try {
             npc.create();
             npc.spawn(player);

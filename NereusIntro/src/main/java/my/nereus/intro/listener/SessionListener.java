@@ -38,5 +38,6 @@ public final class SessionListener implements Listener {
         IntroSession s = plugin.sessions().get(e.getPlayer().getUniqueId());
         if (s != null) s.finish(EndReason.QUIT);
         plugin.isolation().release(e.getPlayer());
+        plugin.resourcePacks().forget(e.getPlayer().getUniqueId());
     }
 }

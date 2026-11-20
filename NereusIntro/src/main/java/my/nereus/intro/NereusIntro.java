@@ -7,6 +7,7 @@ import my.nereus.intro.listener.SessionListener;
 import my.nereus.intro.manager.IntroService;
 import my.nereus.intro.manager.IsolationService;
 import my.nereus.intro.manager.PlatformManager;
+import my.nereus.intro.manager.ResourcePackService;
 import my.nereus.intro.manager.ProgressManager;
 import my.nereus.intro.npc.NpcService;
 import my.nereus.intro.recovery.RecoveryService;
@@ -29,6 +30,7 @@ public final class NereusIntro extends JavaPlugin {
     private IsolationService isolation;
     private PlatformManager platform;
     private IntroService intro;
+    private ResourcePackService resourcePacks;
 
     @Override
     public void onEnable() {
@@ -40,6 +42,7 @@ public final class NereusIntro extends JavaPlugin {
         this.isolation = new IsolationService(this);
         this.recovery = new RecoveryService(this, new RecoveryStore(getDataFolder(), getLogger()));
         this.intro = new IntroService(this);
+        this.resourcePacks = new ResourcePackService(this);
         reloadAll();
 
         IntroCommand executor = new IntroCommand(this);
@@ -55,6 +58,7 @@ public final class NereusIntro extends JavaPlugin {
 
         Bukkit.getPluginManager().registerEvents(new SessionListener(this), this);
         Bukkit.getPluginManager().registerEvents(new ProtectionListener(this), this);
+        Bukkit.getPluginManager().registerEvents(resourcePacks, this);
 
         // Setelah semua plugin termuat: pastikan /intro memang milik kita, bukan plugin lain.
         Bukkit.getScheduler().runTask(this, this::checkCommandConflict);
@@ -114,4 +118,5 @@ public final class NereusIntro extends JavaPlugin {
     public IsolationService isolation() { return isolation; }
     public PlatformManager platform() { return platform; }
     public IntroService intro() { return intro; }
+    public ResourcePackService resourcePacks() { return resourcePacks; }
 }
