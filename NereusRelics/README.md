@@ -1,4 +1,4 @@
-# NereusRelics 1.0.0 — Legendary Weapon Altar Event
+# NereusRelics 1.1.0 — Legendary Weapon Altar Event
 
 Plugin event untuk Paper 1.21.11 (Java 21). Admin membuat **satu altar** yang menampilkan senjata legendaris melayang.
 Pemain memberi persembahan dengan **melempar item** ke area altar. Siapa pun yang **pertama** melengkapi seluruh
@@ -6,7 +6,7 @@ persembahannya (kontribusi per pemain, tidak pernah digabung) memulai ritual dan
 altar otomatis nonaktif (state `CLAIMED`) sampai admin melakukan `/altar reset`.
 
 ## Instalasi
-1. Upload `NereusRelics-1.0.0.jar` ke folder `plugins/`, restart server.
+1. Upload `NereusRelics-1.1.0.jar` ke folder `plugins/`, restart server.
 2. `plugins/NereusRelics/config.yml` dan `relics.db` (SQLite) dibuat otomatis. Tidak perlu dependency lain (driver SQLite bawaan Paper).
 3. Pastikan kamu punya permission `nereusrelics.admin` (default: OP).
 
@@ -60,6 +60,14 @@ Pengeditan (posisi, senjata, item, nama, dll.) **diblokir saat altar ACTIVE/RITU
 - **Proteksi area**: blok break/place, ledakan, piston, api, aliran cairan, dan enderman/falling block dicegah di radius `protection.*` selama altar berjalan (admin dengan permission melewati).
 - **Anti-ClearLag**: penghapusan entity display altar oleh plugin lain terdeteksi lewat `EntityRemoveEvent` dan entity dibuat ulang (debounce, maks `entity-recovery.max-respawns-per-10s`). Chunk yang dimuat diperiksa: duplikat dan entity yatim dihapus. Ada validasi ringan tiap 60 detik hanya saat altar berjalan. Item persembahan yang dihapus plugin lain dikembalikan ke pelemparnya.
 - **Persistensi**: SQLite (WAL, `synchronous=FULL`), satu thread database. Tulis progres bersifat asinkron (tidak memblokir server); operasi kritis (aktivasi, mulai ritual, klaim, pengiriman) sinkron dalam transaksi. Ritual yang terputus restart dilanjutkan (hitung mundur diulang dari awal).
+
+## Scene sinematik klaim (1.1.0)
+Setelah ritual selesai dan klaim tersimpan di database, scene berjalan (default 9 detik): hologram hilang, senjata naik dan berputar
+makin cepat, heliks partikel menyatu, layar pemain di sekitar menggelap berdenyut, cincin kejut dan petir visual muncul, lalu
+ledakan kembang api, totem, dan judul besar ke seluruh server (`⚔ <senjata> ⚔` / `diklaim oleh <pemain>`). Senjata baru diberikan
+**setelah** scene berakhir. Karena klaim sudah tersimpan lebih dulu, server mati di tengah scene tidak menghilangkan senjata
+(diberikan saat pemenang login). Semua bagian dapat diatur/dimatikan di bagian `cinematic:` pada `config.yml`.
+Di Bedrock: partikel, suara, judul, kembang api, petir, dan efek gelap berfungsi; animasi senjata (ItemDisplay) tetap belum terverifikasi.
 
 ## Konfigurasi
 Semua teks hologram, pengumuman, pesan, efek (partikel/suara), tinggi senjata/hologram, radius area, dan proteksi ada di `config.yml` dan dikomentari. Placeholder hologram: `{weapon} {status} {leader} {leader_percent} {last} {claimant} {seconds} {owner}`, plus baris `{lore}` dan `{requirements}` yang diperluas ke banyak baris.

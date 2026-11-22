@@ -67,7 +67,10 @@ public final class OfferingManager {
                 plugin.tell(p, "ritual-busy");
                 return;
             }
-            if (creativeBlocked(p)) return;
+            if (creativeBlocked(p)) {
+                plugin.tell(p, "creative-blocked");
+                return;
+            }
             item.getPersistentDataContainer().set(plugin.keys().offerThrower, PersistentDataType.STRING, p.getUniqueId().toString());
             item.setInvulnerable(true);
             item.setOwner(p.getUniqueId());

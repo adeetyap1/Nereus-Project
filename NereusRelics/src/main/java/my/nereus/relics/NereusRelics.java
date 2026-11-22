@@ -10,6 +10,7 @@ import my.nereus.relics.offering.OfferingManager;
 import my.nereus.relics.protection.AltarProtection;
 import my.nereus.relics.protection.ClearLagProtection;
 import my.nereus.relics.protection.ExploitProtection;
+import my.nereus.relics.ritual.CinematicManager;
 import my.nereus.relics.ritual.RitualManager;
 import my.nereus.relics.storage.AltarRepository;
 import my.nereus.relics.storage.DatabaseManager;
@@ -38,6 +39,7 @@ public final class NereusRelics extends JavaPlugin {
     private HologramManager holograms;
     private OfferingManager offerings;
     private RitualManager rituals;
+    private CinematicManager cinematic;
     private DeliveryManager deliveries;
     private ClearLagProtection clearLag;
     private final Map<UUID, String> names = new ConcurrentHashMap<>();
@@ -59,6 +61,7 @@ public final class NereusRelics extends JavaPlugin {
             holograms = new HologramManager(this);
             offerings = new OfferingManager(this);
             rituals = new RitualManager(this);
+            cinematic = new CinematicManager(this);
             deliveries = new DeliveryManager(this);
             clearLag = new ClearLagProtection(this);
 
@@ -95,6 +98,7 @@ public final class NereusRelics extends JavaPlugin {
     @Override
     public void onDisable() {
         if (rituals != null) rituals.shutdown();
+        if (cinematic != null) cinematic.shutdown();
         if (altars != null) altars.shutdown();
         Bukkit.getScheduler().cancelTasks(this);
         if (db != null) db.close();
@@ -114,6 +118,7 @@ public final class NereusRelics extends JavaPlugin {
     public HologramManager holograms() { return holograms; }
     public OfferingManager offerings() { return offerings; }
     public RitualManager rituals() { return rituals; }
+    public CinematicManager cinematic() { return cinematic; }
     public DeliveryManager deliveries() { return deliveries; }
     public ClearLagProtection clearLag() { return clearLag; }
 

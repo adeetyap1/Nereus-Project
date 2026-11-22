@@ -107,7 +107,30 @@ announcements:
   location-hidden:
     - "&7Wilayah: &f{region}"
 
+# ============================================================================
+#  Scene sinematik saat senjata diklaim (berjalan SETELAH klaim tersimpan di database,
+#  jadi aman: item tetap terkirim walau server mati di tengah scene).
+# ============================================================================
+cinematic:
+  enabled: true
+  duration-seconds: 9        # 3 - 30
+  viewer-radius: 48          # pemain dalam jarak ini terkena efek gelap + suara lokal
+  darkness: true             # layar menggelap berdenyut saat ritual memuncak
+  rise-height: 3.0           # senjata naik setinggi ini (blok)
+  lightning-strikes: 3       # sambaran petir visual (tanpa api/kerusakan)
+  fireworks: true            # ledakan kembang api saat puncak
+  server-wide-title: true    # true = judul besar tampil di SEMUA pemain online
+  title: "&6&l⚔ {weapon} ⚔"
+  subtitle: "&7diklaim oleh &f{player}"
+  helix-particle: end_rod
+  aura-particle: enchant
+  shockwave-particle: firework
+  sound-start: "minecraft:entity.ender_dragon.growl"
+  sound-rise: "minecraft:block.beacon.power_select"
+  sound-climax: "minecraft:ui.toast.challenge_complete"
+
 messages:
+  creative-blocked: "&cMode Creative/Spectator tidak bisa memberi persembahan. Pindah ke Survival."
   prefix: "&8[&6Relics&8] &7"
   offered: "&aPersembahan diterima: &f{amount}x {item} &8(&f{have}/{need}&8)"
   remaining: "&7Masih kurang: &f{list}"

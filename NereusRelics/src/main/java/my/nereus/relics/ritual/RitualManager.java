@@ -134,16 +134,13 @@ public final class RitualManager {
             return;
         }
         a.progress().clear();
-        Location base = plugin.altars().baseLocation(a);
-        if (base != null) {
-            Location c = base.clone().add(0, plugin.altars().weaponHeight(a), 0);
-            plugin.effects().particle(c, plugin.getConfig().getString("effects.ritual-finish-particle", "totem_of_undying"), 80, 0.6, 0.6, 0.6, 0.3);
-            plugin.effects().sound(c, plugin.altars().str(a, "claim-sound", "effects.claim-sound"), 2.0f, 1.0f);
-        }
-        plugin.weapons().remove(a);
-        plugin.holograms().remove(a);
         plugin.altars().save(a);
-        plugin.deliveries().enqueue(specs, ids);
-        plugin.altars().announce("claimed", a, name);
+        plugin.cinematic().play(a, name, () -> {
+            plugin.weapons().remove(a);
+            plugin.holograms().remove(a);
+            plugin.altars().save(a);
+            plugin.deliveries().enqueue(specs, ids);
+            plugin.altars().announce("claimed", a, name);
+        });
     }
 }
