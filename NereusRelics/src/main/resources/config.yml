@@ -1,0 +1,118 @@
+# ============================================================================
+#  NereusRelics - Legendary Weapon Altar Event
+#  Color code: &6 &l dst. dan hex &#RRGGBB. Placeholder dijelaskan di tiap bagian.
+#  Perintah admin: /altar ... (permission nereusrelics.admin)
+# ============================================================================
+
+offering:
+  radius: 2.5               # jari-jari area persembahan (blok, horizontal) dari titik altar
+  height-below: 2.0         # toleransi tinggi item di bawah titik altar
+  height-above: 4.0         # toleransi tinggi item di atas titik altar
+  scan-interval-ticks: 10   # seberapa sering area dipindai (hanya saat altar AKTIF)
+  allow-creative: false     # false = pemain Creative/Spectator tidak bisa memberi persembahan (anti item tak terbatas)
+  guard-range: 12.0         # item pemain yang dilempar dalam jarak ini dilindungi (anti-curi, anti-merge)
+  refund-on-claim: true     # pemain yang kalah mendapat kembali persembahannya saat senjata diklaim
+  refund-on-deactivate: true
+
+weapon:
+  height: 1.4               # tinggi senjata melayang di atas altar (blok)
+  scale: 1.4
+  display-transform: FIXED  # FIXED | GROUND | NONE | THIRDPERSON_RIGHTHAND | HEAD ...
+  glow: true
+  rotate-seconds: 4.0       # waktu satu putaran penuh
+  bob-height: 0.12          # amplitudo naik-turun (blok)
+  animation-interval-ticks: 20
+
+hologram:
+  height: 3.7               # titik tengah teks di atas altar
+  view-range: 48
+  line-width: 260
+  # Placeholder: {weapon} {status} {leader} {leader_percent} {last} {claimant} {seconds} {owner}
+  # Baris {lore} dan {requirements} diperluas menjadi beberapa baris.
+  active:
+    - "&6&l✦ ANCIENT RELIC ✦"
+    - ""
+    - "&e&l{weapon}"
+    - ""
+    - "&7{lore}"
+    - ""
+    - "&c&lPERSYARATAN:"
+    - "{requirements}"
+    - ""
+    - "&7Status: &a{status}"
+    - "&7Progres tertinggi: &f{leader} &8(&f{leader_percent}%&8)"
+    - "&7Persembahan terakhir: &f{last}"
+    - ""
+    - "&7Lemparkan persembahanmu"
+    - "&7untuk membangkitkan relik ini."
+  ritual:
+    - "&5&lTHE SEAL HAS BEEN BROKEN"
+    - ""
+    - "&dSebuah kekuatan kuno telah terbangun."
+    - ""
+    - "&7Relik ini sedang memilih pemiliknya..."
+    - "&f{claimant}"
+  requirement-line: "&f{amount}x {item}"
+
+effects:
+  ambient-particle: end_rod
+  ambient-particle-count: 3
+  ambient-sound: "minecraft:block.beacon.ambient"
+  ambient-sound-every-seconds: 6
+  offer-sound: "minecraft:entity.experience_orb.pickup"
+  ritual-particle: soul_fire_flame
+  ritual-sound: "minecraft:block.end_portal.spawn"
+  ritual-finish-particle: totem_of_undying
+  claim-sound: "minecraft:ui.toast.challenge_complete"
+  activate-sound: "minecraft:block.beacon.activate"
+
+protection:
+  block-radius: 3           # blok di sekitar altar yang dilindungi selama altar AKTIF
+  block-depth: 3            # kedalaman perlindungan ke bawah
+  block-height: 6           # tinggi perlindungan ke atas
+  admin-bypass: true        # admin boleh merusak/memasang blok di area altar
+
+# Pemulihan entity (anti-ClearLag, anti-despawn)
+entity-recovery:
+  validate-interval-seconds: 60   # validasi ringan; BUKAN spawn ulang berkala
+  max-respawns-per-10s: 5         # pencegah loop bila ada plugin yang terus menghapus entity
+
+announcements:
+  # Placeholder: {weapon} {location} (diperluas sesuai mode lokasi) {player}
+  activate:
+    - "&6&l✦ NEREUS WORLD EVENT ✦"
+    - ""
+    - "&eSebuah relik legendaris telah ditemukan!"
+    - ""
+    - "&7Relik: &f&l{weapon}"
+    - "{location}"
+    - ""
+    - "&7Hanya satu orang yang dapat memilikinya."
+  ritual:
+    - "&5&l✦ ANCIENT RITUAL ✦"
+    - ""
+    - "&f{player} &7telah memenuhi seluruh persembahan."
+    - ""
+    - "&dSebuah kekuatan kuno mulai terbangun..."
+  claimed:
+    - "&6&l✦ LEGENDARY RELIC CLAIMED ✦"
+    - ""
+    - "&f{player} &eberhasil memperoleh &6&l{weapon}&e!"
+    - ""
+    - "&7Relik legendaris tersebut kini memiliki pemilik."
+  # Baris lokasi untuk mode PUBLIC / HIDDEN. Mode SECRET: tidak ada. Mode ADMIN: teks dari /altar setannouncement.
+  location-public:
+    - "&7Lokasi: &f{world}"
+    - "&7Koordinat: &fX: {x} | Z: {z}"
+  location-hidden:
+    - "&7Wilayah: &f{region}"
+
+messages:
+  prefix: "&8[&6Relics&8] &7"
+  offered: "&aPersembahan diterima: &f{amount}x {item} &8(&f{have}/{need}&8)"
+  remaining: "&7Masih kurang: &f{list}"
+  all-done: "&aSeluruh persembahanmu lengkap! Ritual dimulai..."
+  ritual-busy: "&cRitual sedang berlangsung, persembahan tidak bisa diterima."
+  delivered-weapon: "&6Relik legendaris telah berada di tanganmu: &f{item}"
+  delivered-refund: "&7Persembahanmu dikembalikan: &f{amount}x {item}"
+  delivered-dropped: "&eInventorymu penuh, item dijatuhkan di dekatmu (hanya kamu yang bisa mengambilnya)."

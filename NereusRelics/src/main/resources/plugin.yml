@@ -1,0 +1,21 @@
+name: NereusRelics
+version: '${project.version}'
+main: my.nereus.relics.NereusRelics
+api-version: '1.21'
+description: Legendary Weapon Altar Event - satu altar, satu senjata, satu pemilik
+author: Nereus MC
+website: https://nereus.my.id
+load: POSTWORLD
+softdepend: [ClearLag, LuckPerms]
+
+commands:
+  altar:
+    description: Kelola altar relik legendaris
+    usage: /<command> <create|setpos|setweapon|additem|removeitem|setamount|setname|setlore|setduration|setannouncement|set|activate|deactivate|reset|remove|info|list> [id]
+    permission: nereusrelics.admin
+    aliases: [relicaltar]
+
+permissions:
+  nereusrelics.admin:
+    description: Mengelola altar relik (membuat, mengaktifkan, mereset, menghapus)
+    default: op
