@@ -116,6 +116,7 @@ cinematic:
   duration-seconds: 9        # 3 - 30
   viewer-radius: 48          # pemain dalam jarak ini terkena efek gelap + suara lokal
   camera: true               # kamera sinematik memutari altar + pemenang (pemenang sementara mode Spectator)
+  decoy: MANNEQUIN           # MANNEQUIN = karakter pemain penuh (skin asli); ARMOR_STAND = boneka sederhana
   camera-turns: 1.25         # jumlah putaran kamera
   camera-height: 3.5         # tinggi kamera awal dari tanah (naik perlahan)
   camera-extra-radius: 5.0   # jarak kamera tambahan dari titik tengah

@@ -52,7 +52,7 @@ public final class CinematicManager {
     }
 
     /** Sesi kamera aktif per pemain (untuk pemulihan aman). */
-    private final Map<UUID, ArmorStand> decoys = new ConcurrentHashMap<>();
+    private final Map<UUID, org.bukkit.entity.Entity> decoys = new ConcurrentHashMap<>();
 
     public boolean isFilming(UUID id) {
         return decoys.containsKey(id);
@@ -69,7 +69,7 @@ public final class CinematicManager {
     }
 
     private void endCamera(UUID id) {
-        ArmorStand st = decoys.remove(id);
+        org.bukkit.entity.Entity st = decoys.remove(id);
         if (st != null) {
             plugin.clearLag().expect(st.getUniqueId());
             st.remove();
@@ -96,12 +96,37 @@ public final class CinematicManager {
         }
     }
 
-    private ArmorStand startCamera(Player p) {
+    /** Karakter pemain penuh (skin asli) memakai entity Mannequin (Minecraft 1.21.9+). */
+    private org.bukkit.entity.Entity spawnMannequin(Player p, Location l) {
+        return l.getWorld().spawn(l, org.bukkit.entity.Mannequin.class, m -> {
+            m.setProfile(io.papermc.paper.datacomponent.item.ResolvableProfile.resolvableProfile(p.getPlayerProfile()));
+            m.setDescription(Text.color("&f" + p.getName()));
+            m.setImmovable(true);
+            m.setGravity(false);
+            m.setInvulnerable(true);
+            m.setPersistent(false);
+            var eq = m.getEquipment();
+            eq.setArmorContents(p.getInventory().getArmorContents());
+            eq.setItemInMainHand(p.getInventory().getItemInMainHand().clone());
+            eq.setItemInOffHand(p.getInventory().getItemInOffHand().clone());
+        });
+    }
+
+    private org.bukkit.entity.Entity startCamera(Player p) {
         Location l = p.getLocation();
         String data = p.getGameMode().name() + "|" + l.getWorld().getName() + "|" + l.getX() + "|" + l.getY() + "|"
                 + l.getZ() + "|" + l.getYaw() + "|" + l.getPitch();
         p.getPersistentDataContainer().set(plugin.keys().cameraRestore, PersistentDataType.STRING, data);
-        ArmorStand st = l.getWorld().spawn(l, ArmorStand.class, s -> {
+        org.bukkit.entity.Entity st = null;
+        if (!"ARMOR_STAND".equalsIgnoreCase(plugin.getConfig().getString("cinematic.decoy", "MANNEQUIN"))) {
+            try {
+                st = spawnMannequin(p, l);
+            } catch (Throwable t) {
+                plugin.getLogger().warning("Mannequin tidak tersedia, memakai armor stand: " + t);
+            }
+        }
+        if (st == null) {
+            st = l.getWorld().spawn(l, ArmorStand.class, s -> {
             s.setArms(true);
             s.setBasePlate(false);
             s.setGravity(false);
@@ -122,6 +147,7 @@ public final class CinematicManager {
             }
             eq.setItemInMainHand(p.getInventory().getItemInMainHand().clone());
         });
+        }
         decoys.put(p.getUniqueId(), st);
         p.setGameMode(GameMode.SPECTATOR);
         return st;
@@ -157,7 +183,7 @@ public final class CinematicManager {
         final boolean camera = c.getBoolean("cinematic.camera", true) && winner != null && winner.isOnline()
                 && !winner.isDead() && winner.getWorld() == w && !decoys.containsKey(winnerId);
         final Location winnerLoc = camera ? winner.getLocation().clone() : null;
-        final ArmorStand decoy = camera ? startCamera(winner) : null;
+        final org.bukkit.entity.Entity decoy = camera ? startCamera(winner) : null;
         final Location mid = camera ? center.clone().add(winnerLoc).multiply(0.5) : center;
         final double camRadius = camera ? Math.min(16.0, center.distance(winnerLoc) / 2.0 + c.getDouble("cinematic.camera-extra-radius", 5.0)) : 0;
         final double camHeight = c.getDouble("cinematic.camera-height", 3.5);
