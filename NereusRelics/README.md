@@ -1,4 +1,4 @@
-# NereusRelics 1.1.0 — Legendary Weapon Altar Event
+# NereusRelics 1.2.0 — Legendary Weapon Altar Event
 
 Plugin event untuk Paper 1.21.11 (Java 21). Admin membuat **satu altar** yang menampilkan senjata legendaris melayang.
 Pemain memberi persembahan dengan **melempar item** ke area altar. Siapa pun yang **pertama** melengkapi seluruh
@@ -6,7 +6,7 @@ persembahannya (kontribusi per pemain, tidak pernah digabung) memulai ritual dan
 altar otomatis nonaktif (state `CLAIMED`) sampai admin melakukan `/altar reset`.
 
 ## Instalasi
-1. Upload `NereusRelics-1.1.0.jar` ke folder `plugins/`, restart server.
+1. Upload `NereusRelics-1.2.0.jar` ke folder `plugins/`, restart server.
 2. `plugins/NereusRelics/config.yml` dan `relics.db` (SQLite) dibuat otomatis. Tidak perlu dependency lain (driver SQLite bawaan Paper).
 3. Pastikan kamu punya permission `nereusrelics.admin` (default: OP).
 
@@ -68,6 +68,13 @@ ledakan kembang api, totem, dan judul besar ke seluruh server (`⚔ <senjata> �
 **setelah** scene berakhir. Karena klaim sudah tersimpan lebih dulu, server mati di tengah scene tidak menghilangkan senjata
 (diberikan saat pemenang login). Semua bagian dapat diatur/dimatikan di bagian `cinematic:` pada `config.yml`.
 Di Bedrock: partikel, suara, judul, kembang api, petir, dan efek gelap berfungsi; animasi senjata (ItemDisplay) tetap belum terverifikasi.
+
+### Kamera sinematik (1.2.0)
+Selama scene, pemenang dipindah ke mode Spectator dan kameranya memutari altar + dirinya sendiri (`cinematic.camera`). Tubuh pemenang
+digantikan boneka armor stand (kepala/armor/item sama, tangan terangkat, melayang naik) agar terlihat di scene. Di akhir scene pemenang
+dikembalikan ke lokasi dan mode semula. Pengaman: data pemulihan disimpan di data pemain, jadi bila server crash atau pemain keluar di
+tengah scene, mode dan lokasinya dipulihkan saat login. Teleport spectator dicegah selama scene. Kamera bergerak dengan teleport tiap tick,
+jadi bisa terlihat sedikit patah-patah pada koneksi buruk. Matikan dengan `cinematic.camera: false`.
 
 ## Konfigurasi
 Semua teks hologram, pengumuman, pesan, efek (partikel/suara), tinggi senjata/hologram, radius area, dan proteksi ada di `config.yml` dan dikomentari. Placeholder hologram: `{weapon} {status} {leader} {leader_percent} {last} {claimant} {seconds} {owner}`, plus baris `{lore}` dan `{requirements}` yang diperluas ke banyak baris.

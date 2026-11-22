@@ -8,6 +8,15 @@ import net.kyori.adventure.title.Title;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
+import org.bukkit.GameMode;
+import org.bukkit.Material;
+import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.entity.ArmorStand;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.util.EulerAngle;
+import java.util.Map;
+import java.util.UUID;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -42,12 +51,83 @@ public final class CinematicManager {
         this.plugin = plugin;
     }
 
+    /** Sesi kamera aktif per pemain (untuk pemulihan aman). */
+    private final Map<UUID, ArmorStand> decoys = new ConcurrentHashMap<>();
+
+    public boolean isFilming(UUID id) {
+        return decoys.containsKey(id);
+    }
+
     public void shutdown() {
         for (BukkitTask t : tasks) t.cancel();
         tasks.clear();
+        for (UUID id : new ArrayList<>(decoys.keySet())) {
+            Player p = Bukkit.getPlayer(id);
+            if (p != null) restore(p);
+            endCamera(id);
+        }
     }
 
-    public void play(Altar a, String winnerName, Runnable done) {
+    private void endCamera(UUID id) {
+        ArmorStand st = decoys.remove(id);
+        if (st != null) {
+            plugin.clearLag().expect(st.getUniqueId());
+            st.remove();
+        }
+    }
+
+    /** Kembalikan mode permainan + lokasi pemain bila ada sisa sesi kamera (juga setelah crash). */
+    public void restore(Player p) {
+        String data = p.getPersistentDataContainer().get(plugin.keys().cameraRestore, PersistentDataType.STRING);
+        if (data == null) return;
+        p.getPersistentDataContainer().remove(plugin.keys().cameraRestore);
+        endCamera(p.getUniqueId());
+        try {
+            String[] x = data.split("\\|");
+            World w = Bukkit.getWorld(x[1]);
+            Location l = w == null ? null : new Location(w, Double.parseDouble(x[2]), Double.parseDouble(x[3]),
+                    Double.parseDouble(x[4]), Float.parseFloat(x[5]), Float.parseFloat(x[6]));
+            GameMode gm = GameMode.valueOf(x[0]);
+            if (l != null) p.teleport(l);
+            p.setGameMode(gm);
+        } catch (RuntimeException e) {
+            plugin.getLogger().warning("Gagal memulihkan pemain setelah kamera: " + e);
+            p.setGameMode(GameMode.SURVIVAL);
+        }
+    }
+
+    private ArmorStand startCamera(Player p) {
+        Location l = p.getLocation();
+        String data = p.getGameMode().name() + "|" + l.getWorld().getName() + "|" + l.getX() + "|" + l.getY() + "|"
+                + l.getZ() + "|" + l.getYaw() + "|" + l.getPitch();
+        p.getPersistentDataContainer().set(plugin.keys().cameraRestore, PersistentDataType.STRING, data);
+        ArmorStand st = l.getWorld().spawn(l, ArmorStand.class, s -> {
+            s.setArms(true);
+            s.setBasePlate(false);
+            s.setGravity(false);
+            s.setInvulnerable(true);
+            s.setPersistent(false);
+            s.setRightArmPose(new EulerAngle(Math.toRadians(-165), 0, Math.toRadians(-10)));
+            s.setLeftArmPose(new EulerAngle(Math.toRadians(-165), 0, Math.toRadians(10)));
+            s.customName(Text.color("&f" + p.getName()));
+            s.setCustomNameVisible(true);
+            var eq = s.getEquipment();
+            eq.setArmorContents(p.getInventory().getArmorContents());
+            if (eq.getHelmet() == null || eq.getHelmet().getType().isAir()) {
+                ItemStack head = new ItemStack(Material.PLAYER_HEAD);
+                SkullMeta sm = (SkullMeta) head.getItemMeta();
+                sm.setOwningPlayer(p);
+                head.setItemMeta(sm);
+                eq.setHelmet(head);
+            }
+            eq.setItemInMainHand(p.getInventory().getItemInMainHand().clone());
+        });
+        decoys.put(p.getUniqueId(), st);
+        p.setGameMode(GameMode.SPECTATOR);
+        return st;
+    }
+
+    public void play(Altar a, UUID winnerId, String winnerName, Runnable done) {
         FileConfiguration c = plugin.getConfig();
         Location base = plugin.altars().baseLocation(a);
         if (base == null || !base.getWorld().isChunkLoaded(a.location().chunkX(), a.location().chunkZ())) {
@@ -73,6 +153,16 @@ public final class CinematicManager {
         final boolean darkness = c.getBoolean("cinematic.darkness", true);
 
         plugin.holograms().remove(a);
+        final Player winner = Bukkit.getPlayer(winnerId);
+        final boolean camera = c.getBoolean("cinematic.camera", true) && winner != null && winner.isOnline()
+                && !winner.isDead() && winner.getWorld() == w && !decoys.containsKey(winnerId);
+        final Location winnerLoc = camera ? winner.getLocation().clone() : null;
+        final ArmorStand decoy = camera ? startCamera(winner) : null;
+        final Location mid = camera ? center.clone().add(winnerLoc).multiply(0.5) : center;
+        final double camRadius = camera ? Math.min(16.0, center.distance(winnerLoc) / 2.0 + c.getDouble("cinematic.camera-extra-radius", 5.0)) : 0;
+        final double camHeight = c.getDouble("cinematic.camera-height", 3.5);
+        final double camTurns = c.getDouble("cinematic.camera-turns", 1.25);
+        final double camStart = camera ? Math.atan2(winnerLoc.getZ() - center.getZ(), winnerLoc.getX() - center.getX()) + Math.PI : 0;
         final ItemDisplay disp = plugin.weapons().find(a);
         plugin.effects().sound(center, c.getString("cinematic.sound-start", ""), 3.0f, 0.7f);
         plugin.effects().sound(center, c.getString("cinematic.sound-rise", ""), 2.0f, 0.5f);
@@ -80,6 +170,7 @@ public final class CinematicManager {
         if (darkness) {
             int dur = (int) (total * 0.75);
             for (Player p : viewers(w, center, radius)) {
+                if (camera && p.getUniqueId().equals(winnerId)) continue;
                 p.addPotionEffect(new PotionEffect(PotionEffectType.DARKNESS, dur, 0, false, false, false));
             }
         }
@@ -94,6 +185,24 @@ public final class CinematicManager {
             double p = Math.min(1.0, tick[0] / (double) total);
             double lift = rise * Math.min(1.0, p / 0.8);
             Location cur = center.clone().add(0, lift, 0);
+
+            if (camera) {
+                Player wp = Bukkit.getPlayer(winnerId);
+                if (wp == null || !wp.isOnline() || !decoys.containsKey(winnerId)) {
+                    endCamera(winnerId);
+                } else {
+                    double ca = camStart + camTurns * 2 * Math.PI * p;
+                    double ch = mid.getY() + camHeight + 2.0 * p;
+                    double cr = camRadius;
+                    Location pos = new Location(w, mid.getX() + Math.cos(ca) * cr, ch, mid.getZ() + Math.sin(ca) * cr);
+                    double tx = mid.getX(), ty = mid.getY() + 1.2 + lift * 0.5, tz = mid.getZ();
+                    double dx = tx - pos.getX(), dy = ty - pos.getY(), dz = tz - pos.getZ();
+                    pos.setYaw((float) Math.toDegrees(Math.atan2(-dx, dz)));
+                    pos.setPitch((float) -Math.toDegrees(Math.atan2(dy, Math.sqrt(dx * dx + dz * dz))));
+                    wp.teleport(pos);
+                    decoy.teleport(winnerLoc.clone().add(0, 1.6 * Math.min(1.0, p / 0.8), 0));
+                }
+            }
 
             if (disp != null && disp.isValid() && tick[0] % 10 == 0) {
                 angle[0] += Math.toRadians(25 + 130 * p); // < 180 derajat per langkah agar interpolasi berputar searah
@@ -145,6 +254,11 @@ public final class CinematicManager {
                 self[0].cancel();
                 tasks.remove(self[0]);
                 for (Player pl : viewers(w, center, radius + 16)) pl.removePotionEffect(PotionEffectType.DARKNESS);
+                if (camera) {
+                    Player wp = Bukkit.getPlayer(winnerId);
+                    if (wp != null) restore(wp);
+                    endCamera(winnerId);
+                }
                 climax(a, winnerName, cur);
                 done.run();
             }

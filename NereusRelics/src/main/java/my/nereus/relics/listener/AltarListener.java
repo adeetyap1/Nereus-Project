@@ -8,6 +8,8 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.event.world.EntitiesLoadEvent;
 import org.bukkit.event.world.ChunkLoadEvent;
@@ -29,7 +31,20 @@ public final class AltarListener implements Listener {
     public void onJoin(PlayerJoinEvent e) {
         Player p = e.getPlayer();
         plugin.rememberName(p.getUniqueId(), p.getName());
+        Bukkit.getScheduler().runTaskLater(plugin, () -> plugin.cinematic().restore(p), 1L);
         Bukkit.getScheduler().runTaskLater(plugin, () -> plugin.deliveries().process(p), 40L);
+    }
+
+    @EventHandler
+    public void onQuit(PlayerQuitEvent e) {
+        plugin.cinematic().restore(e.getPlayer());
+    }
+
+    @EventHandler(ignoreCancelled = true)
+    public void onTeleport(PlayerTeleportEvent e) {
+        if (e.getCause() == PlayerTeleportEvent.TeleportCause.SPECTATE && plugin.cinematic().isFilming(e.getPlayer().getUniqueId())) {
+            e.setCancelled(true);
+        }
     }
 
     @EventHandler

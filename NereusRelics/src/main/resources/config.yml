@@ -115,6 +115,10 @@ cinematic:
   enabled: true
   duration-seconds: 9        # 3 - 30
   viewer-radius: 48          # pemain dalam jarak ini terkena efek gelap + suara lokal
+  camera: true               # kamera sinematik memutari altar + pemenang (pemenang sementara mode Spectator)
+  camera-turns: 1.25         # jumlah putaran kamera
+  camera-height: 3.5         # tinggi kamera awal dari tanah (naik perlahan)
+  camera-extra-radius: 5.0   # jarak kamera tambahan dari titik tengah
   darkness: true             # layar menggelap berdenyut saat ritual memuncak
   rise-height: 3.0           # senjata naik setinggi ini (blok)
   lightning-strikes: 3       # sambaran petir visual (tanpa api/kerusakan)

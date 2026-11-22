@@ -11,6 +11,7 @@ public final class Keys {
     public final NamespacedKey offerThrower;
     public final NamespacedKey weaponAltar;
     public final NamespacedKey weaponSerial;
+    public final NamespacedKey cameraRestore;
 
     public Keys(Plugin plugin) {
         entityAltar = new NamespacedKey(plugin, "altar_id");
@@ -18,5 +19,6 @@ public final class Keys {
         offerThrower = new NamespacedKey(plugin, "offer_thrower");
         weaponAltar = new NamespacedKey(plugin, "relic_altar");
         weaponSerial = new NamespacedKey(plugin, "relic_serial");
+        cameraRestore = new NamespacedKey(plugin, "camera_restore");
     }
 }

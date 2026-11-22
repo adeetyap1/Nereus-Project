@@ -135,7 +135,7 @@ public final class RitualManager {
         }
         a.progress().clear();
         plugin.altars().save(a);
-        plugin.cinematic().play(a, name, () -> {
+        plugin.cinematic().play(a, winner, name, () -> {
             plugin.weapons().remove(a);
             plugin.holograms().remove(a);
             plugin.altars().save(a);
