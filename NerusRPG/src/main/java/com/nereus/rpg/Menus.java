@@ -398,8 +398,7 @@ public final class Menus {
             }
             if (act) {
                 if (q.obj().type() == Objective.Type.GET) {
-                    Material m = Material.matchMaterial(q.obj().target());
-                    int have = m == null ? 0 : core.tracker.count(player, m);
+                    int have = core.tracker.countFor(player, q.obj());
                     lore.add("&7Di tasmu: &f" + Math.min(have, q.obj().amount()) + "&7/&f" + q.obj().amount());
                     lore.add("&eKlik untuk menyerahkan item");
                 } else {

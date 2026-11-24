@@ -117,7 +117,7 @@ public final class Tracker {
         for (String id : new ArrayList<>(pr.active.keySet())) {
             Defs.Quest q = core.quests.get(id);
             if (q == null || q.obj().type() != type || type == Objective.Type.GET
-                    || !q.obj().target().equalsIgnoreCase(target)) {
+                    || !q.obj().matches(target)) {
                 continue;
             }
             int cur = pr.active.get(id) + 1;
@@ -129,7 +129,7 @@ public final class Tracker {
         }
 
         Defs.Mission m = mission(pr);
-        if (m != null && m.minRank() <= pr.rank && m.obj().type() == type && m.obj().target().equalsIgnoreCase(target)) {
+        if (m != null && m.minRank() <= pr.rank && m.obj().type() == type && m.obj().matches(target)) {
             pr.storyProgress++;
             if (pr.storyProgress >= m.obj().amount()) {
                 completeMission(p, pr, m);
@@ -138,7 +138,7 @@ public final class Tracker {
 
         if (pr.examTarget >= 0) {
             Defs.Rank t = core.rank(pr.examTarget);
-            if (t != null && t.exam() != null && t.exam().type() == type && t.exam().target().equalsIgnoreCase(target)) {
+            if (t != null && t.exam() != null && t.exam().type() == type && t.exam().matches(target)) {
                 pr.examProgress++;
                 if (pr.examProgress >= t.exam().amount()) {
                     core.completeExam(p);
@@ -186,7 +186,7 @@ public final class Tracker {
         }
         Defs.Mission m = mission(pr);
         if (m != null && m.minRank() <= pr.rank && m.obj().type() == Objective.Type.TALK
-                && m.obj().target().equalsIgnoreCase(target)) {
+                && m.obj().matches(target)) {
             completeMission(p, pr, m);
         }
     }
@@ -262,13 +262,47 @@ public final class Tracker {
         return n;
     }
 
-    /** Ambil item untuk tugas GET. Mengembalikan false jika kurang. */
+    /** Ambil item untuk tugas GET (boleh beberapa jenis material). Mengembalikan false jika kurang. */
     public boolean take(Player p, Objective o) {
-        Material m = Material.matchMaterial(o.target());
-        if (m == null || count(p, m) < o.amount()) {
+        List<Material> mats = materials(o);
+        int have = 0;
+        for (Material m : mats) {
+            have += count(p, m);
+        }
+        if (mats.isEmpty() || have < o.amount()) {
             return false;
         }
-        p.getInventory().removeItem(new ItemStack(m, o.amount()));
+        int left = o.amount();
+        for (Material m : mats) {
+            int n = Math.min(left, count(p, m));
+            if (n > 0) {
+                p.getInventory().removeItem(new ItemStack(m, n));
+                left -= n;
+            }
+            if (left <= 0) {
+                break;
+            }
+        }
         return true;
+    }
+
+    public List<Material> materials(Objective o) {
+        List<Material> out = new ArrayList<>();
+        for (String t : o.targets()) {
+            Material m = Material.matchMaterial(t);
+            if (m != null && !out.contains(m)) {
+                out.add(m);
+            }
+        }
+        return out;
+    }
+
+    /** Jumlah item milik pemain yang cocok dengan tugas GET. */
+    public int countFor(Player p, Objective o) {
+        int n = 0;
+        for (Material m : materials(o)) {
+            n += count(p, m);
+        }
+        return n;
     }
 }
