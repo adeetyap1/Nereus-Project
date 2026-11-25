@@ -1,0 +1,60 @@
+# ============================================================================
+#  NereusAFK - zona AFK, fragmen, dan toko villager
+#  Zona dibuat dengan /afk admin zone create <id> [radius] [tinggi] dan disimpan di zones.yml
+#  Toko dibuat dengan /afk admin setshop (villager muncul di tempatmu berdiri)
+# ============================================================================
+
+timezone: "Asia/Jakarta"     # batas harian reset tengah malam zona ini
+
+afk:
+  interval-seconds: 60       # tiap berapa detik di zona dapat fragmen
+  fragments-per-interval: 1
+  daily-cap: 180             # maks fragmen per hari dari AFK (0 = tanpa batas)
+  show-actionbar: true
+
+shop:
+  title: "&8Toko Fragmen AFK"
+  villager-name: "&6&lPenukar Fragmen"
+  allow-command: true        # /afk shop membuka toko dari mana saja
+  click-cooldown-ticks: 5
+  # Setiap item: material, name, lore, cost (fragmen), daily-limit (0 = tanpa batas), commands (konsol, %player%)
+  items:
+    nr-kecil:
+      material: GOLD_NUGGET
+      name: "&e100 NR"
+      lore: ["&7Tukar fragmen jadi uang."]
+      cost: 25
+      daily-limit: 0
+      commands: ["eco give %player% 100"]
+    nr-sedang:
+      material: GOLD_INGOT
+      name: "&e500 NR"
+      lore: ["&7Lebih hemat dibanding paket kecil."]
+      cost: 100
+      daily-limit: 0
+      commands: ["eco give %player% 500"]
+    apel:
+      material: GOLDEN_APPLE
+      name: "&6Golden Apple x2"
+      lore: ["&7Untuk bertahan di petualangan."]
+      cost: 30
+      daily-limit: 3
+      commands: ["give %player% golden_apple 2"]
+    kunci:
+      material: TRIPWIRE_HOOK
+      name: "&dKunci Crate Abyss"
+      lore: ["&7Satu kunci virtual."]
+      cost: 150
+      daily-limit: 1
+      commands: ["crazycrates give virtual nereusabyss 1 %player% -s"]
+
+messages:
+  prefix: "&8[&6AFK&8] &7"
+  gained: "&a+{amount} fragmen AFK &8(total &f{fragments}&8)"
+  actionbar: "&6Fragmen: &f{fragments} &8| &7berikutnya &f{seconds}s &8| &7hari ini &f{today}&7/{cap}"
+  actionbar-capped: "&6Fragmen: &f{fragments} &8| &cBatas harian tercapai ({today}/{cap})"
+  info: "&7Fragmen AFK kamu: &f{fragments} &8| &7hari ini &f{today}&7/{cap} &8| &7total &f{total}"
+  not-enough: "&cFragmen kurang. Butuh &f{cost}&c, kamu punya &f{fragments}&c."
+  daily-limit: "&cBatas penukaran harian item ini tercapai."
+  purchased: "&aDitukar: &f{item} &8(-{cost} fragmen)"
+  no-permission: "&cKamu tidak punya izin."

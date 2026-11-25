@@ -1,0 +1,92 @@
+# ============================================================================
+#  NereusDuel - duel 1v1 best-of-three
+#  Mode: "Kit Adil" (semua pemain memakai kit yang sama) atau "Armor Sendiri" (pakai barang milikmu).
+#  Inventory asli selalu DISIMPAN sebelum duel dan DIKEMBALIKAN persis setelah selesai
+#  (kit hilang otomatis; barang yang rusak/terpakai di duel kembali utuh). Tidak ada kematian sungguhan.
+#  Arena: /duel admin arena create <id> lalu setspawn <id> 1 dan setspawn <id> 2 (berdiri di titik spawn).
+# ============================================================================
+
+match:
+  rounds-to-win: 2            # best of three = 2
+  countdown-seconds: 5
+  intermission-seconds: 5
+  round-time-limit-seconds: 120   # habis waktu: HP lebih banyak menang ronde; sama = ronde diulang
+  arena-radius: 25            # keluar dari radius dari titik tengah = kalah ronde
+  void-depth: 12              # jatuh sedalam ini di bawah spawn = kalah ronde
+  block-ender-pearl: true
+  allowed-commands: [duel, pvp, dd]
+  broadcast-results: true
+  winner-commands: []         # konsol, %player%  mis. ["eco give %player% 50"]
+  loser-commands: []
+
+challenge:
+  expire-seconds: 30
+
+# Kit adil. Slot hotbar 0-8, 9-35 inventory. helmet/chestplate/leggings/boots/offhand opsional.
+kits:
+  iron:
+    name: "&fKit Besi"
+    icon: IRON_SWORD
+    helmet: {material: IRON_HELMET}
+    chestplate: {material: IRON_CHESTPLATE}
+    leggings: {material: IRON_LEGGINGS}
+    boots: {material: IRON_BOOTS}
+    offhand: {material: SHIELD}
+    items:
+      0: {material: IRON_SWORD}
+      1: {material: BOW}
+      2: {material: GOLDEN_APPLE, amount: 2}
+      3: {material: ARROW, amount: 24}
+  diamond:
+    name: "&bKit Berlian"
+    icon: DIAMOND_SWORD
+    helmet: {material: DIAMOND_HELMET}
+    chestplate: {material: DIAMOND_CHESTPLATE}
+    leggings: {material: DIAMOND_LEGGINGS}
+    boots: {material: DIAMOND_BOOTS}
+    offhand: {material: SHIELD}
+    items:
+      0: {material: DIAMOND_SWORD}
+      1: {material: BOW}
+      2: {material: GOLDEN_APPLE, amount: 3}
+      3: {material: ARROW, amount: 32}
+  # Contoh enchant: items: { 0: {material: IRON_SWORD, enchants: {sharpness: 1}} }
+
+menu:
+  title: "&8Arena Duel"
+  own-name: "&6Armor Sendiri"
+  own-lore:
+    - "&7Pakai armor dan senjata milikmu."
+    - "&7Inventory dikembalikan utuh setelah duel."
+
+messages:
+  prefix: "&8[&cDuel&8] &7"
+  queued: "&aKamu masuk antrean &f{mode}&a. Menunggu lawan..."
+  left-queue: "&7Kamu keluar dari antrean."
+  not-queued: "&cKamu tidak sedang antre."
+  already: "&cKamu sedang dalam duel atau antrean. Keluar dulu dengan /duel leave."
+  bad-gamemode: "&cDuel hanya untuk mode Survival."
+  no-arena: "&cBelum ada arena yang siap. Hubungi staff."
+  arena-busy: "&eSemua arena sedang dipakai, kamu masuk antrean."
+  match-found: "&aLawan ditemukan: &f{opponent}&a. Mode: &f{mode}"
+  countdown: "&e{seconds}"
+  fight: "&c&lFIGHT!"
+  round-win: "&a&lKamu menang ronde!"
+  round-lose: "&c&lKamu kalah ronde."
+  round-draw: "&e&lSeri! Ronde diulang."
+  match-win: "&6&lKAMU MENANG!"
+  match-lose: "&c&lKAMU KALAH"
+  score: "&7Skor &a{you} &8- &c{opp}"
+  actionbar: "&6Ronde {round} &8| &a{you} &8- &c{opp} &8| &f{opponent} &8| &7{time}s"
+  result: "&6{winner} &7mengalahkan &c{loser} &8({ws}-{ls}) &7di duel &f{mode}&7!"
+  forfeit: "&e{player} keluar dari duel."
+  command-blocked: "&cPerintah itu tidak bisa dipakai saat duel. Gunakan /duel leave untuk menyerah."
+  challenge-sent: "&aTantangan dikirim ke &f{player} &7(mode {mode})."
+  challenge-received: "&e{player} menantangmu duel (mode {mode}). Ketik &f/duel accept &eatau &f/duel deny&e. Berlaku {seconds} detik."
+  challenge-none: "&cTidak ada tantangan untuk kamu."
+  challenge-expired: "&7Tantangan kedaluwarsa."
+  challenge-denied: "&7{player} menolak tantanganmu."
+  player-not-found: "&cPemain tidak online."
+  restored: "&aInventory dan posisimu dikembalikan."
+  stats: "&6{player} &7- Menang &a{wins} &7| Kalah &c{losses}"
+  no-permission: "&cKamu tidak punya izin."

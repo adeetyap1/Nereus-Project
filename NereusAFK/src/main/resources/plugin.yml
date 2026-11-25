@@ -1,0 +1,21 @@
+name: NereusAFK
+version: '${project.version}'
+main: my.nereus.afk.NereusAFK
+api-version: '1.21'
+description: Zona AFK, fragmen AFK, dan toko villager untuk menukarnya
+author: Nereus MC
+website: https://nereus.my.id
+
+commands:
+  afk:
+    description: Info fragmen AFK, toko, dan perintah admin
+    usage: /<command> [shop|admin]
+    aliases: [fragmen]
+
+permissions:
+  nereusafk.use:
+    description: Memakai /afk dan toko
+    default: true
+  nereusafk.admin:
+    description: Mengelola zona AFK, villager toko, dan fragmen pemain
+    default: op

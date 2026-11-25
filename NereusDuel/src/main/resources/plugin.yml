@@ -1,0 +1,21 @@
+name: NereusDuel
+version: '${project.version}'
+main: my.nereus.duel.NereusDuel
+api-version: '1.21'
+description: Arena duel 1v1 best-of-three dengan kit adil atau armor sendiri
+author: Nereus MC
+website: https://nereus.my.id
+
+commands:
+  duel:
+    description: Menu duel, tantang pemain, statistik
+    usage: /<command> [queue|leave|challenge|accept|deny|stats|top|admin]
+    aliases: [pvp, dd]
+
+permissions:
+  nereusduel.use:
+    description: Ikut duel
+    default: true
+  nereusduel.admin:
+    description: Mengelola arena duel
+    default: op
