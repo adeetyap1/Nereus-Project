@@ -469,7 +469,8 @@ public final class Commands implements CommandExecutor, TabCompleter {
                     case "resetdaily" -> {
                         pr.day = "";
                         core.checkDay(pr);
-                        core.msg(s, "&aQuest harian direset.");
+                        pr.questCooldowns.clear();
+                        core.msg(s, "&aStatistik harian dan cooldown quest direset (progres quest aktif tidak dihapus).");
                     }
                     case "sync" -> {
                         core.syncRank(t, "");

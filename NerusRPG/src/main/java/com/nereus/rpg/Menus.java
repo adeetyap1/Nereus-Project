@@ -10,6 +10,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /** Semua menu GUI (aman untuk Bedrock lewat Geyser). Klik selalu dibatalkan oleh MenuListener. */
 public final class Menus {
@@ -141,8 +142,8 @@ public final class Menus {
             inv.setItem(12, Text.item(Material.EXPERIENCE_BOTTLE, "&aStat Karakter",
                     "&7Poin tersedia: &f" + pr.statPoints, "&7Klik untuk membagi poin"));
             inv.setItem(13, Text.item(Material.WRITABLE_BOOK, "&bPapan Quest",
-                    "&7Aktif: &f" + pr.active.size() + "&7/&f" + core.plugin.getConfig().getInt("quests.max-active", 3),
-                    "&7Selesai hari ini: &f" + pr.completedToday));
+                    "&7Quest aktif: &f" + pr.active.size(),
+                    "&7Tanpa batas jumlah quest."));
             Defs.Mission m = core.tracker.mission(pr);
             inv.setItem(14, Text.item(Material.ENCHANTED_BOOK, "&dMisi Cerita",
                     m == null ? "&7Kisah utama tamat" : "&7Sekarang: " + m.title(), "&7Klik untuk melihat (/story)"));
@@ -372,10 +373,28 @@ public final class Menus {
             inv.setItem(53, Text.item(Material.ARROW, "&7Halaman berikutnya"));
             inv.setItem(49, Text.item(Material.CLOCK, "&6Quest harian",
                     "&7Halaman &f" + (page + 1) + "&7/&f" + pages,
-                    "&7Aktif: &f" + pr.active.size() + "&7/&f" + core.plugin.getConfig().getInt("quests.max-active", 3),
-                    "&7Selesai hari ini: &f" + pr.completedToday + "&7/&f" + core.plugin.getConfig().getInt("quests.per-day-limit", 6),
-                    "&7Reset tengah malam."));
+                    cooldownLines(pr)));
             addBack();
+        }
+
+        private String[] cooldownLines(Profile pr) {
+            List<String> out = new ArrayList<>();
+            out.add("&7Quest aktif: &f" + pr.active.size() + " &8(tanpa batas)");
+            boolean any = false;
+            for (Map.Entry<String, Long> e : pr.questCooldowns.entrySet()) {
+                long left = core.cooldownLeft(pr, e.getKey());
+                if (left > 0) {
+                    if (!any) {
+                        out.add("&7Cooldown jenis quest:");
+                        any = true;
+                    }
+                    out.add(" &c" + core.categoryName(e.getKey()) + " &8- &f" + Text.time(left));
+                }
+            }
+            if (!any) {
+                out.add("&aSemua jenis quest siap diambil.");
+            }
+            return out.toArray(new String[0]);
         }
 
         private ItemStack questItem(Profile pr, Defs.Quest q) {
@@ -390,12 +409,8 @@ public final class Menus {
                 lore.add(" &b" + q.gp() + " GP");
             }
             lore.add("");
-            boolean done = pr.done.contains(q.id());
             boolean act = pr.active.containsKey(q.id());
-            if (done) {
-                lore.add("&a✔ Selesai hari ini");
-                return Text.item(q.icon(), "&a✔ " + Text.strip(q.name()), lore);
-            }
+            lore.add("&7Jenis: &f" + core.categoryName(q.category()));
             if (act) {
                 if (q.obj().type() == Objective.Type.GET) {
                     int have = core.tracker.countFor(player, q.obj());
@@ -407,7 +422,14 @@ public final class Menus {
                 lore.add("&8Shift+klik untuk membatalkan");
                 return Text.glow(Text.item(q.icon(), q.name(), lore));
             }
+            long left = core.cooldownLeft(pr, q.category());
+            if (left > 0) {
+                lore.add("&cCooldown " + core.categoryName(q.category()) + ": &f" + Text.time(left));
+                lore.add("&7Quest jenis lain tetap bisa diambil.");
+                return Text.item(q.icon(), "&8✖ " + Text.strip(q.name()), lore);
+            }
             lore.add("&eKlik untuk mengambil quest");
+            lore.add("&8Cooldown jenis ini: " + Text.time(core.cooldownMillis(q.category())) + " setelah diambil");
             return Text.item(q.icon(), q.name(), lore);
         }
 

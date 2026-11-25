@@ -128,6 +128,15 @@ public final class Expansion extends PlaceholderExpansion {
         Defs.Rank r = member ? core.rank(pr.rank) : null;
         Defs.Clazz c = member ? core.clazz(pr) : null;
         String key = params.toLowerCase();
+        if (key.startsWith("quests_cd_")) {
+            // %nereusrpg_quests_cd_mining% -> sisa cooldown jenis quest, atau "Siap"
+            if (pr == null || !member) {
+                return "Siap";
+            }
+            String cat = key.substring("quests_cd_".length()).toUpperCase();
+            long left = core.cooldownLeft(pr, cat);
+            return left <= 0 ? "Siap" : Text.time(left);
+        }
         switch (key) {
             case "guild_status" -> {
                 return st.name();
@@ -167,7 +176,7 @@ public final class Expansion extends PlaceholderExpansion {
             return switch (key) {
                 case "level", "exp", "exp_total", "xp", "gp", "mana", "maxmana", "statpoints", "kills", "streak",
                         "quests_active", "quests_done", "quests_completed", "xp_percent", "xp_need" -> "0";
-                case "quests_limit" -> String.valueOf(core.plugin.getConfig().getInt("quests.per-day-limit", 6));
+                case "quests_limit" -> "∞";
                 case "class", "class_plain", "skill", "story", "next_rank", "next_gp", "exam" -> key.equals("class")
                         || key.equals("class_plain") ? "" : "-";
                 case "story_progress" -> "";
@@ -191,7 +200,7 @@ public final class Expansion extends PlaceholderExpansion {
             case "quests_completed" -> String.valueOf(pr.totalQuests);
             case "quests_active" -> String.valueOf(pr.active.size());
             case "quests_done" -> String.valueOf(pr.completedToday);
-            case "quests_limit" -> String.valueOf(core.plugin.getConfig().getInt("quests.per-day-limit", 6));
+            case "quests_limit" -> "∞";
             case "story" -> {
                 Defs.Mission m = core.tracker.mission(pr);
                 yield m == null ? "Tamat" : Text.strip(m.title());

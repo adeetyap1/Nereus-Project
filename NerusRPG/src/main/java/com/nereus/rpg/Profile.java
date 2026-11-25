@@ -45,6 +45,8 @@ public final class Profile {
     public String day = "";
     public final Map<String, Integer> active = new LinkedHashMap<>();
     public final Set<String> done = new HashSet<>();
+    /** Cooldown ambil quest per jenis: kode jenis -> waktu (epoch ms) boleh diambil lagi. */
+    public final Map<String, Long> questCooldowns = new java.util.concurrent.ConcurrentHashMap<>();
     public int completedToday;
     public int totalQuests;
     public int totalKills;
@@ -103,6 +105,12 @@ public final class Profile {
             s.set("active." + e.getKey(), e.getValue());
         }
         s.set("done", new java.util.ArrayList<>(done));
+        long nowMs = System.currentTimeMillis();
+        for (Map.Entry<String, Long> e : questCooldowns.entrySet()) {
+            if (e.getValue() > nowMs) {
+                s.set("quest-cooldowns." + e.getKey(), e.getValue());
+            }
+        }
         s.set("completed-today", completedToday);
         s.set("total-quests", totalQuests);
         s.set("total-kills", totalKills);
@@ -149,6 +157,12 @@ public final class Profile {
             }
         }
         done.addAll(s.getStringList("done"));
+        ConfigurationSection cd = s.getConfigurationSection("quest-cooldowns");
+        if (cd != null) {
+            for (String k : cd.getKeys(false)) {
+                questCooldowns.put(k, cd.getLong(k));
+            }
+        }
         completedToday = s.getInt("completed-today", 0);
         totalQuests = s.getInt("total-quests", 0);
         totalKills = s.getInt("total-kills", 0);

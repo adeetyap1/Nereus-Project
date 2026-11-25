@@ -86,8 +86,13 @@ class-change:
 
 # ---------- Daftar quest harian ----------
 quests:
-  max-active: 3                     # maksimal quest aktif sekaligus
-  per-day-limit: 4                  # maksimal quest selesai per hari (membatasi grinding GP)
+  # TIDAK ADA batas jumlah quest aktif maupun per hari. Yang ada: cooldown per JENIS quest.
+  # Setelah mengambil quest suatu jenis (mis. Mining), jenis itu tidak bisa diambil lagi selama cooldown;
+  # jenis lain tetap bebas. Jenis otomatis: MINING (hancurkan blok/bijih), WOODCUTTING (kayu), HUNTING (bunuh mob),
+  # GATHERING (kumpulkan item). Bisa diubah per quest dengan baris `category: NAMA` di quests.yml.
+  cooldown-hours: 5                 # cooldown bawaan semua jenis (jam)
+  category-cooldown-hours: {}       # khusus jenis tertentu, mis. { MINING: 5, HUNTING: 3 }
+  category-names: {}                # nama tampil, mis. { MINING: "Mining" }
   # Pengali kesulitan, dipakai saat quests.yml dimuat. Ubah lalu /rpg reload.
   gp-multiplier: 0.5                # hadiah GP quest dan misi cerita x0.5
   amount-multiplier: 2.0            # jumlah tugas quest x2 (bunuh 10 jadi 20)

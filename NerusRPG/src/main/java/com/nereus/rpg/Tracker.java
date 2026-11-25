@@ -41,23 +41,32 @@ public final class Tracker {
         }
         core.checkDay(pr);
         Defs.Quest q = core.quests.get(id);
-        int max = core.plugin.getConfig().getInt("quests.max-active", 3);
-        int limit = core.plugin.getConfig().getInt("quests.per-day-limit", 6);
         if (q == null || !eligible(pr).contains(q)) {
             core.msg(p, "&cQuest ini belum bisa kamu ambil.");
-        } else if (pr.done.contains(id)) {
-            core.msg(p, "&cQuest ini sudah selesai hari ini.");
-        } else if (pr.active.containsKey(id)) {
-            core.msg(p, "&cQuest ini sedang berjalan.");
-        } else if (pr.active.size() >= max) {
-            core.msg(p, "&cMaksimal &f" + max + " &cquest aktif sekaligus.");
-        } else if (pr.completedToday + pr.active.size() >= limit) {
-            core.msg(p, "&cBatas quest harian (&f" + limit + "&c) tercapai. Kembali besok.");
-        } else {
-            pr.active.put(id, 0);
-            core.msg(p, "&aQuest diambil: " + q.name() + " &8- &f" + q.obj().describe());
-            p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 1.2f);
+            return;
         }
+        if (pr.active.containsKey(id)) {
+            core.msg(p, "&cQuest ini sedang berjalan.");
+            return;
+        }
+        // Tidak ada batas jumlah quest aktif maupun per hari. Hanya jenis quest yang sama punya cooldown.
+        String cat = q.category();
+        long left = core.cooldownLeft(pr, cat);
+        if (left > 0) {
+            core.msg(p, "&cQuest jenis &f" + core.categoryName(cat) + " &cmasih cooldown: &f" + Text.time(left)
+                    + "&c. Kamu tetap bisa mengambil quest jenis lain.");
+            return;
+        }
+        pr.active.put(id, 0);
+        long cd = core.cooldownMillis(cat);
+        if (cd > 0) {
+            pr.questCooldowns.put(cat, System.currentTimeMillis() + cd);
+        }
+        core.msg(p, "&aQuest diambil: " + q.name() + " &8- &f" + q.obj().describe());
+        if (cd > 0) {
+            core.msg(p, "&7Quest jenis &f" + core.categoryName(cat) + " &7bisa diambil lagi dalam &f" + Text.time(cd) + "&7.");
+        }
+        p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 1.2f);
     }
 
     public void abandon(Player p, String id) {

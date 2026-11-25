@@ -51,7 +51,7 @@ public final class Defs {
     }
 
     public record Quest(String id, int rank, boolean challenge, String name, Material icon,
-                        Objective obj, int gp, List<String> commands, List<String> lore) {
+                        Objective obj, int gp, List<String> commands, List<String> lore, String category) {
     }
 
     public record Mission(String id, String title, List<String> story, int minRank, Objective obj,

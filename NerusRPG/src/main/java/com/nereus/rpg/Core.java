@@ -273,7 +273,7 @@ public final class Core {
             }
             quests.put(id, new Defs.Quest(id, rank, q.getBoolean("challenge", false), q.getString("name", id),
                     mat(q.getString("icon"), Material.PAPER), o, (int) Math.round(q.getInt("gp", 0) * gpMul),
-                    q.getStringList("commands"), lore));
+                    q.getStringList("commands"), lore, category(q.getString("category", ""), o)));
         }
     }
 
@@ -382,14 +382,70 @@ public final class Core {
         }
     }
 
+    /** Hanya statistik harian yang direset. Quest aktif dan progresnya TIDAK dihapus. */
     public void checkDay(Profile pr) {
         String t = today();
         if (!t.equals(pr.day)) {
             pr.day = t;
-            pr.active.clear();
             pr.done.clear();
             pr.completedToday = 0;
         }
+    }
+
+    // ------------------------------------------------------------ cooldown per jenis quest
+
+    /** Jenis quest: dari 'category' di quests.yml bila ada, jika tidak diturunkan dari tugasnya. */
+    public static String category(String explicit, Objective o) {
+        if (explicit != null && !explicit.isBlank()) {
+            return explicit.trim().toUpperCase(Locale.ROOT).replace(' ', '_');
+        }
+        switch (o.type()) {
+            case BREAK: {
+                boolean wood = !o.targets().isEmpty();
+                for (String t : o.targets()) {
+                    String u = t.toUpperCase(Locale.ROOT);
+                    if (!(u.endsWith("_LOG") || u.endsWith("_STEM") || u.endsWith("_WOOD") || u.endsWith("_HYPHAE"))) {
+                        wood = false;
+                    }
+                }
+                return wood ? "WOODCUTTING" : "MINING";
+            }
+            case KILL:
+                return "HUNTING";
+            case GET:
+                return "GATHERING";
+            default:
+                return "OTHER";
+        }
+    }
+
+    public String categoryName(String cat) {
+        String cfg = plugin.getConfig().getString("quests.category-names." + cat, "");
+        if (!cfg.isEmpty()) {
+            return cfg;
+        }
+        return switch (cat) {
+            case "MINING" -> "Mining";
+            case "WOODCUTTING" -> "Menebang Kayu";
+            case "HUNTING" -> "Berburu";
+            case "GATHERING" -> "Mengumpulkan";
+            default -> {
+                String s = cat.toLowerCase(Locale.ROOT).replace('_', ' ');
+                yield s.isEmpty() ? cat : Character.toUpperCase(s.charAt(0)) + s.substring(1);
+            }
+        };
+    }
+
+    public long cooldownMillis(String cat) {
+        double d = plugin.getConfig().getDouble("quests.category-cooldown-hours." + cat,
+                plugin.getConfig().getDouble("quests.cooldown-hours", 5.0));
+        return d <= 0 ? 0 : (long) (d * 3_600_000L);
+    }
+
+    /** Sisa cooldown (ms) jenis quest ini untuk pemain; 0 bila siap diambil. */
+    public long cooldownLeft(Profile pr, String cat) {
+        Long until = pr.questCooldowns.get(cat);
+        return until == null ? 0 : Math.max(0, until - System.currentTimeMillis());
     }
 
     // ------------------------------------------------------------ pesan
