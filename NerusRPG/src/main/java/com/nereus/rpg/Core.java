@@ -63,6 +63,8 @@ public final class Core {
 
     // ------------------------------------------------------------ muat
 
+    public Display display;
+
     public void start() {
         plugin.getDataFolder().mkdirs();
         store = new PlayerStore(new File(plugin.getDataFolder(), "playerdata"), plugin.getLogger());
@@ -726,30 +728,8 @@ public final class Core {
     }
 
     public void updateDisplay(Player p) {
-        FileConfiguration c = plugin.getConfig();
-        if (!c.getBoolean("display.builtin-nametag", false)) {
-            return;
-        }
-        Defs.Rank r = activeRank(profile(p));
-        if (r == null) {
-            return;
-        }
-        Scoreboard sb = Bukkit.getScoreboardManager().getMainScoreboard();
-        for (Team t : sb.getTeams()) {
-            if (t.getName().startsWith("nrpg") && t.hasEntry(p.getName())) {
-                t.removeEntry(p.getName());
-            }
-        }
-        String tn = "nrpg" + r.index();
-        Team team = sb.getTeam(tn);
-        if (team == null) {
-            team = sb.registerNewTeam(tn);
-        }
-        Component prefix = Text.L.deserialize(c.getString("display.nametag-format", "&8[%rank%&8] ").replace("%rank%", r.tag()));
-        team.prefix(prefix);
-        team.addEntry(p.getName());
-        if (c.getBoolean("display.tab-list-name", false)) {
-            p.playerListName(prefix.append(Component.text(p.getName())));
+        if (display != null) {
+            display.refresh(p);
         }
     }
 

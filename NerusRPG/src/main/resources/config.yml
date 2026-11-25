@@ -141,9 +141,17 @@ milestones:
 # Cara 2: meta LuckPerms lewat sync-commands (placeholder %luckperms_meta_adv_rank%).
 # Cara 3: nametag bawaan plugin (matikan jika TAB yang mengatur nametag).
 display:
-  builtin-nametag: false
-  nametag-format: "&8[%rank%&8] "       # prefix di atas kepala & TAB jika builtin aktif
-  tab-list-name: false                  # ubah nama di TAB juga (jika builtin aktif)
+  # Chat: [PREFIX DONATUR] Nama [RANK] » pesan. %luckperms_prefix% = rank donatur (butuh PlaceholderAPI + ekspansi LuckPerms).
+  # Matikan jika plugin chat lain yang mengatur format.
+  chat:
+    enabled: true
+    format: "%luckperms_prefix%&f%player% %rank%&8 » &f"
+  # Nametag di atas kepala: [PREFIX DONATUR] Nama [RANK]. Matikan jika TAB yang mengatur nametag.
+  builtin-nametag: true
+  nametag-format: "%luckperms_prefix%"   # sebelum nama
+  nametag-suffix: " &8[%rank%&8]"        # sesudah nama
+  health-below-name: true                # angka darah ❤ di bawah nama
+  tab-list-name: false                   # ubah nama di TAB juga
 
 # Dijalankan konsol setiap rank diterapkan (naik rank, /rpg admin setrank, login).
 # Placeholder: %player% %rank% (kode, mis. S atau NONE) %old_rank%

@@ -41,6 +41,8 @@ public final class NerusRPG extends JavaPlugin implements Listener {
 
         getServer().getPluginManager().registerEvents(new RpgListener(this, core, skills), this);
         getServer().getPluginManager().registerEvents(new MenuListener(core), this);
+        core.display = new Display(core);
+        getServer().getPluginManager().registerEvents(core.display, this);
         getServer().getPluginManager().registerEvents(core.guild.dialogue, this);
         getServer().getPluginManager().registerEvents(this, this);
 
