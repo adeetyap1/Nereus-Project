@@ -371,13 +371,14 @@ public final class Menus {
             }
             inv.setItem(45, Text.item(Material.ARROW, "&7Halaman sebelumnya"));
             inv.setItem(53, Text.item(Material.ARROW, "&7Halaman berikutnya"));
-            inv.setItem(49, Text.item(Material.CLOCK, "&6Quest harian",
-                    "&7Halaman &f" + (page + 1) + "&7/&f" + pages,
-                    cooldownLines(pr)));
+            List<String> info = new ArrayList<>();
+            info.add("&7Halaman &f" + (page + 1) + "&7/&f" + pages);
+            info.addAll(cooldownLines(pr));
+            inv.setItem(49, Text.item(Material.CLOCK, "&6Papan Quest", info));
             addBack();
         }
 
-        private String[] cooldownLines(Profile pr) {
+        private List<String> cooldownLines(Profile pr) {
             List<String> out = new ArrayList<>();
             out.add("&7Quest aktif: &f" + pr.active.size() + " &8(tanpa batas)");
             boolean any = false;
@@ -394,7 +395,7 @@ public final class Menus {
             if (!any) {
                 out.add("&aSemua jenis quest siap diambil.");
             }
-            return out.toArray(new String[0]);
+            return out;
         }
 
         private ItemStack questItem(Profile pr, Defs.Quest q) {
