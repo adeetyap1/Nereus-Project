@@ -43,6 +43,10 @@ public final class NerusRPG extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(new MenuListener(core), this);
         core.display = new Display(core);
         getServer().getPluginManager().registerEvents(core.display, this);
+        getLogger().info("Display: chat=" + getConfig().getBoolean("display.chat.enabled", true)
+                + " nametag=" + getConfig().getBoolean("display.builtin-nametag", false)
+                + " PlaceholderAPI=" + getServer().getPluginManager().isPluginEnabled("PlaceholderAPI")
+                + " TAB=" + getServer().getPluginManager().isPluginEnabled("TAB"));
         getServer().getPluginManager().registerEvents(core.guild.dialogue, this);
         getServer().getPluginManager().registerEvents(this, this);
 

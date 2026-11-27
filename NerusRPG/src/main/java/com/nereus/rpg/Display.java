@@ -50,6 +50,19 @@ public final class Display implements Listener {
         e.renderer((source, name, msg, viewer) -> head.append(msg));
     }
 
+    /** Plugin chat lama (EssentialsXChat dkk) memakai event legacy; format kita dipasang paling akhir agar menang. */
+    @SuppressWarnings("deprecation")
+    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    public void onLegacyChat(org.bukkit.event.player.AsyncPlayerChatEvent e) {
+        if (!cfg().getBoolean("display.chat.enabled", true)) {
+            return;
+        }
+        String fmt = cfg().getString("display.chat.format", "%luckperms_prefix%&f%player% %rank%&8 » &f");
+        Component head = Text.L.deserialize(fill(fmt, e.getPlayer()));
+        String legacy = net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer.legacySection().serialize(head);
+        e.setFormat(legacy.replace("%", "%%") + "%2$s");
+    }
+
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
         Bukkit.getScheduler().runTaskLater(core.plugin, () -> refresh(e.getPlayer()), 20L);
