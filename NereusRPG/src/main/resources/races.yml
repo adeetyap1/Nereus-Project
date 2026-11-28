@@ -1,0 +1,140 @@
+# ============================================================
+# 8 Ras NereusRPG. Setiap ras: 5 kemampuan pasif (otomatis) + 1 kekurangan.
+#   attributes : atribut Minecraft permanen (operation ADD atau SCALAR). Dipakai juga untuk kekurangan bertipe atribut.
+#   abilities  : id (dikenali kode), name, desc, weakness (true = kekurangan), values (angka yang bisa disetel)
+#   skills     : skill aktif (opsional) yang terbuka berdasarkan level; tombol F / klik kanan
+# Balancing: bonus damage ras yang mengenai PEMAIN dikali races.pvp-scale di config.yml.
+# Tidak ada resource pack. Semua efek memakai particle/efek vanilla (aman untuk Bedrock lewat Geyser).
+# ============================================================
+races:
+  elf:
+    name: "&aElf"
+    icon: BOW
+    description:
+      - "&7Pemanah hutan yang gesit dan peka."
+      - "&7Rapuh jika terkena serangan langsung."
+    attributes:
+      max_health: {operation: ADD, amount: -4.0}
+    abilities:
+      - {id: elven_archery, name: "Panah Elf", desc: "+12% damage busur dan crossbow", values: {bow_percent: 12}}
+      - {id: forest_stride, name: "Langkah Hutan", desc: "Speed I saat berada di biome hutan", values: {amplifier: 0}}
+      - {id: natures_meal, name: "Santapan Alam", desc: "Makanan nabati memberi +3 saturation", values: {saturation: 3}}
+      - {id: starlight_eyes, name: "Mata Bintang", desc: "Night Vision otomatis di tempat gelap", values: {max_light: 4}}
+      - {id: light_step, name: "Langkah Ringan", desc: "Tidak menginjak rusak tanah pertanian"}
+      - {id: fragile_frame, name: "Tubuh Rapuh", desc: "-2 hati darah maksimal", weakness: true}
+    skills:
+      - {type: power_shot, name: "Tembakan Kuat", level: 1, mana: 15, cooldown: 7, power: 8.0, description: "Panah bertenaga besar"}
+      - {type: arrow_rain, name: "Hujan Panah", level: 5, mana: 25, cooldown: 14, power: 4.0, description: "Hujan panah di area target"}
+      - {type: roll, name: "Berguling", level: 10, mana: 12, cooldown: 8, power: 1.0, description: "Berguling menghindar"}
+  human:
+    name: "&fHuman"
+    icon: IRON_HELMET
+    description:
+      - "&7Cepat belajar dan penuh akal."
+      - "&7Tanpa bakat tempur khusus, rentan sihir."
+    attributes: {}
+    abilities:
+      - {id: quick_learner, name: "Cepat Belajar", desc: "+8% EXP dari semua sumber", values: {exp_percent: 8}}
+      - {id: silver_tongue, name: "Lidah Perak", desc: "+10% hadiah Nerith quest", values: {nr_percent: 10}}
+      - {id: second_wind, name: "Napas Kedua", desc: "Darah di bawah 30%: pulih 6 HP (cooldown 120 dtk)", values: {threshold: 0.30, heal: 6, cooldown: 120}}
+      - {id: efficient_hands, name: "Tangan Cekatan", desc: "8% peluang alat tidak berkurang durability", values: {chance: 8}}
+      - {id: survivors_grit, name: "Daya Tahan", desc: "Rasa lapar turun 15% lebih lambat", values: {chance: 15}}
+      - {id: mortal_frame, name: "Raga Fana", desc: "+15% damage dari sihir, racun, dan wither", weakness: true, values: {percent: 15}}
+  orc:
+    name: "&cOrc"
+    icon: IRON_AXE
+    description:
+      - "&7Petarung brutal yang tahan dorongan."
+      - "&7Lamban dan buruk memakai busur."
+    attributes:
+      knockback_resistance: {operation: ADD, amount: 0.3}
+      movement_speed: {operation: SCALAR, amount: -0.06}
+    abilities:
+      - {id: brute_force, name: "Kekuatan Buas", desc: "+10% damage jarak dekat", values: {melee_percent: 10}}
+      - {id: thick_hide, name: "Kulit Tebal", desc: "Tahan dorongan (knockback resistance +0.3)"}
+      - {id: bloodlust, name: "Haus Darah", desc: "Membunuh mob memberi Strength I 6 detik", values: {seconds: 6}}
+      - {id: berserk_heart, name: "Hati Berserk", desc: "Darah di bawah 50%: +15% damage", values: {threshold: 0.5, percent: 15}}
+      - {id: iron_gut, name: "Perut Baja", desc: "Kebal efek Hunger dan Nausea"}
+      - {id: clumsy_hands, name: "Tangan Kasar", desc: "-25% damage busur, -6% kecepatan", weakness: true, values: {bow_penalty: 25}}
+    skills:
+      - {type: cleave, name: "Tebasan Sapuan", level: 1, mana: 15, cooldown: 6, power: 7.0, description: "Tebas semua musuh di sekitarmu"}
+      - {type: charge, name: "Terjangan", level: 5, mana: 20, cooldown: 10, power: 8.0, description: "Menerjang maju dan menghantam musuh"}
+      - {type: warcry, name: "Raungan Perang", level: 10, mana: 30, cooldown: 30, power: 1.0, description: "Kekuatan untukmu dan rekan sekitar"}
+  vampire:
+    name: "&4Vampire"
+    icon: REDSTONE
+    description:
+      - "&7Pemburu malam yang menghisap darah."
+      - "&7Lemah di bawah sinar matahari."
+    attributes: {}
+    abilities:
+      - {id: blood_drain, name: "Hisap Darah", desc: "Pulih 10% dari damage jarak dekat (maks 3 HP)", values: {percent: 10, cap: 3}}
+      - {id: night_predator, name: "Pemangsa Malam", desc: "+12% damage saat malam hari", values: {percent: 12}}
+      - {id: hunters_rush, name: "Terjangan Pemburu", desc: "Membunuh mob memberi Speed I 4 detik", values: {seconds: 4}}
+      - {id: dark_regeneration, name: "Regenerasi Gelap", desc: "Regeneration I di tempat gelap", values: {max_light: 4}}
+      - {id: sanguine, name: "Sanguin", desc: "Membunuh mob memulihkan 2 lapar dan 3 saturation", values: {food: 2, saturation: 3}}
+      - {id: sun_sickness, name: "Sakit Matahari", desc: "Weakness di bawah sinar matahari langsung tanpa helm", weakness: true}
+  fairy:
+    name: "&dFairy"
+    icon: GLOW_BERRIES
+    description:
+      - "&7Peri kecil, ringan, dan beruntung."
+      - "&7Sangat rapuh."
+    attributes:
+      max_health: {operation: ADD, amount: -6.0}
+      jump_strength: {operation: ADD, amount: 0.08}
+      luck: {operation: ADD, amount: 1.0}
+    abilities:
+      - {id: featherweight, name: "Seringan Bulu", desc: "Kebal damage jatuh dan lompat lebih tinggi"}
+      - {id: pixie_dust, name: "Debu Peri", desc: "15% peluang menghindari serangan proyektil", values: {chance: 15}}
+      - {id: green_thumb, name: "Tangan Hijau", desc: "12% panen tanaman matang menghasilkan drop ganda", values: {chance: 12}}
+      - {id: lucky_glimmer, name: "Kilau Beruntung", desc: "Luck +1 (loot, memancing)"}
+      - {id: healing_touch, name: "Sentuhan Penyembuh", desc: "Jongkok + klik kanan pemain lain: pulihkan 4 HP (cooldown 40 dtk)", values: {heal: 4, cooldown: 40}}
+      - {id: delicate, name: "Rapuh", desc: "-3 hati darah maksimal, +10% damage jarak dekat diterima", weakness: true, values: {melee_taken: 10}}
+  dragonborn:
+    name: "&6Dragonborn"
+    icon: DRAGON_BREATH
+    description:
+      - "&7Darah naga: tahan api dan buas."
+      - "&7Boros makan dan benci dingin."
+    attributes: {}
+    abilities:
+      - {id: scaled_hide, name: "Sisik Naga", desc: "-40% damage api dan lava", values: {percent: 40}}
+      - {id: dragons_bite, name: "Gigitan Naga", desc: "10% peluang membakar musuh 4 detik", values: {chance: 10, seconds: 4}}
+      - {id: draconic_roar, name: "Raungan Naga", desc: "Darah di bawah 25%: Resistance I 5 dtk (cooldown 90 dtk)", values: {threshold: 0.25, seconds: 5, cooldown: 90}}
+      - {id: carnivore, name: "Karnivora", desc: "Daging memberi +3 saturation", values: {saturation: 3}}
+      - {id: ancient_might, name: "Kekuatan Purba", desc: "+12% damage di Nether dan End", values: {percent: 12}}
+      - {id: cold_blooded, name: "Darah Dingin", desc: "Slowness I di biome dingin, lapar 20% lebih cepat", weakness: true, values: {hunger_chance: 20}}
+  dark_elf:
+    name: "&5Dark Elf"
+    icon: NETHERITE_SWORD
+    description:
+      - "&7Pembunuh bayangan yang licin."
+      - "&7Kehilangan taring saat siang bolong."
+    attributes: {}
+    abilities:
+      - {id: shadow_cloak, name: "Jubah Bayangan", desc: "Jongkok di tempat gelap: mob kehilangan targetmu", values: {max_light: 6}}
+      - {id: backstab, name: "Tikam Punggung", desc: "+25% damage menyerang dari belakang", values: {percent: 25}}
+      - {id: venom_edge, name: "Bilah Racun", desc: "12% peluang meracuni musuh 4 detik", values: {chance: 12, seconds: 4}}
+      - {id: deep_dweller, name: "Penghuni Kedalaman", desc: "Haste I di bawah Y=40", values: {max_y: 40}}
+      - {id: evasion, name: "Elakan", desc: "8% peluang menghindari serangan jarak dekat", values: {chance: 8}}
+      - {id: sun_blinded, name: "Silau Siang", desc: "-12% damage di bawah sinar matahari langsung", weakness: true, values: {percent: 12}}
+    skills:
+      - {type: shadowstep, name: "Langkah Bayangan", level: 1, mana: 18, cooldown: 7, power: 6.0, description: "Menyelinap ke belakang target dan menusuk"}
+      - {type: venom_strike, name: "Tusukan Racun", level: 5, mana: 20, cooldown: 9, power: 5.0, description: "Serang target dengan racun"}
+      - {type: smoke_bomb, name: "Bom Asap", level: 10, mana: 30, cooldown: 25, power: 1.0, description: "Menghilang dan membutakan musuh"}
+  dwarf:
+    name: "&eDwarf"
+    icon: IRON_PICKAXE
+    description:
+      - "&7Penambang tangguh dari perut gunung."
+      - "&7Pendek dan lamban."
+    attributes:
+      movement_speed: {operation: SCALAR, amount: -0.08}
+    abilities:
+      - {id: mountain_heart, name: "Jantung Gunung", desc: "-10% damage diterima di bawah Y=50", values: {percent: 10, max_y: 50}}
+      - {id: prospector, name: "Pencari Bijih", desc: "8% peluang bijih alami memberi drop tambahan", values: {chance: 8}}
+      - {id: heavy_blows, name: "Pukulan Berat", desc: "+15% damage dengan kapak", values: {percent: 15}}
+      - {id: iron_constitution, name: "Raga Besi", desc: "-50% damage racun dan wither", values: {percent: 50}}
+      - {id: stonesense, name: "Naluri Batu", desc: "Haste I saat memegang beliung di bawah Y=60", values: {max_y: 60}}
+      - {id: short_legs, name: "Kaki Pendek", desc: "-8% kecepatan jalan", weakness: true}

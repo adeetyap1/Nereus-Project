@@ -4,12 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>me.naook1</groupId>
+    <groupId>com.nereus</groupId>
     <artifactId>NereusRPG</artifactId>
-    <version>1.0.0</version>
+    <version>3.0.0</version>
     <packaging>jar</packaging>
     <name>NereusRPG</name>
-    <description>MMO-style RPG core (levels, stats, classes, skills, loot) by naook1/adityap</description>
+    <description>RPG dan Nerus Guild (Caylin) dalam satu plugin untuk Nereus MC</description>
 
     <properties>
         <maven.compiler.release>21</maven.compiler.release>
@@ -21,13 +21,45 @@
             <id>papermc</id>
             <url>https://repo.papermc.io/repository/maven-public/</url>
         </repository>
+        <repository>
+            <id>placeholderapi</id>
+            <url>https://repo.extendedclip.com/releases/</url>
+        </repository>
+        <repository>
+            <id>fancyplugins</id>
+            <url>https://repo.fancyinnovations.com/releases</url>
+        </repository>
+        <repository>
+            <id>opencollab</id>
+            <url>https://repo.opencollab.dev/main/</url>
+        </repository>
     </repositories>
 
     <dependencies>
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
-            <version>1.21.1-R0.1-SNAPSHOT</version>
+            <version>1.21.11-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>me.clip</groupId>
+            <artifactId>placeholderapi</artifactId>
+            <version>2.11.6</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- API FancyNpcs: NpcInteractEvent, Npc, NpcData, ActionTrigger (server memakai FancyNpcs 2.7-2.10) -->
+        <dependency>
+            <groupId>de.oliver</groupId>
+            <artifactId>FancyNpcs</artifactId>
+            <version>2.9.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- Floodgate: form Bedrock (SimpleForm) -->
+        <dependency>
+            <groupId>org.geysermc.floodgate</groupId>
+            <artifactId>api</artifactId>
+            <version>2.2.4-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

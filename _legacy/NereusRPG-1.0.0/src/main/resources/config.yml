@@ -1,0 +1,88 @@
+# NereusRPG - RPG ala MMO, bisa santai atau kompetitif (by naook1/adityap)
+
+leveling:
+  max-level: 100
+  xp-base: 60            # XP untuk naik dari level 1 -> 2; level n butuh xp-base * n^xp-exponent
+  xp-exponent: 1.35
+  xp-per-mob-health: 1.0 # XP per 1 HP mob musuh yang dibunuh
+  xp-multiplier: 1.0     # pengali XP global (naikkan saat event)
+  points-per-level: 3
+  pvp-kill-season-xp: 50
+
+# efek 1 poin stat
+stats:
+  str-melee-damage-percent: 1.5    # STR: +% damage serangan dekat dan skill Warrior
+  dex-ranged-damage-percent: 1.5   # DEX: +% damage panah dan skill Archer
+  dex-crit-percent: 0.4            # DEX: +% peluang critical
+  int-mana: 5                      # INT: + mana maksimum
+  int-skill-damage-percent: 2.0    # INT: +% damage skill Mage
+  int-mana-regen: 0.1              # INT: + mana per detik
+  vit-health: 2.0                  # VIT: + HP maksimum (2 HP = 1 hati)
+  vit-defense-percent: 0.3         # VIT: -% damage diterima (maks 40%)
+  luk-crit-percent: 0.3            # LUK: +% peluang critical
+  luk-drop-percent: 0.12           # LUK: +% peluang drop loot
+
+base:
+  mana: 50
+  mana-per-level: 2
+  mana-regen: 1.0
+  health-per-level: 0.5            # HP tambahan per level
+  crit-multiplier: 1.6
+
+mode:
+  switch-cooldown-minutes: 60      # jeda ganti mode santai <-> kompetitif
+  combat-lock-seconds: 15          # tidak bisa ganti mode setelah bertarung
+  pvp-only-competitive: true       # PvP hanya antar pemain mode kompetitif
+
+respec:
+  cooldown-hours: 24
+
+loot:
+  base-chance-percent: 7           # peluang drop dari mob musuh
+  tier-bonus-percent: 1.5          # tambahan per tier mob (HP besar = tier tinggi)
+  boss-chance-percent: 100
+  rarity-weights:                  # bobot dasar, LUK menggeser ke rarity tinggi
+    COMMON: 55
+    UNCOMMON: 27
+    RARE: 12
+    EPIC: 5
+    LEGENDARY: 1
+
+# Hadiah musim (jalankan /rpg admin season end). %player% = nama pemain.
+season:
+  rewards:
+    1: ["give %player% diamond 32", "say %player% juara 1 musim ini!"]
+    2: ["give %player% diamond 16"]
+    3: ["give %player% diamond 8"]
+
+classes:
+  warrior:
+    name: "Warrior"
+    icon: IRON_SWORD
+    description: "Tangguh dan kuat di garis depan."
+    skills: [cleave, charge, warcry]
+  archer:
+    name: "Archer"
+    icon: BOW
+    description: "Gesit dan mematikan dari jauh."
+    skills: [powershot, roll, arrowrain]
+  mage:
+    name: "Mage"
+    icon: BLAZE_ROD
+    description: "Sihir api, es, dan penyembuhan."
+    skills: [fireball, frostnova, heal]
+
+# unlock = level minimal. damage dihitung: (damage + level*per-level) * (1 + stat*persen)
+skills:
+  cleave:    {name: "Cleave",     unlock: 1,  mana: 10, cooldown: 6,  damage: 6,  per-level: 0.25, radius: 4.0, desc: "Tebasan memutar ke semua musuh di sekitar."}
+  charge:    {name: "Charge",     unlock: 10, mana: 15, cooldown: 10, damage: 8,  per-level: 0.30, radius: 2.5, desc: "Menerjang ke depan dan menghantam musuh."}
+  warcry:    {name: "War Cry",    unlock: 20, mana: 25, cooldown: 25, damage: 0,  per-level: 0,    radius: 8.0, desc: "Teriakan perang: Strength dan Resistance untukmu dan teman di dekatmu."}
+  powershot: {name: "Power Shot", unlock: 1,  mana: 10, cooldown: 5,  damage: 9,  per-level: 0.30, range: 30,   desc: "Tembakan lurus jarak jauh yang menembus sampai target pertama."}
+  roll:      {name: "Roll",       unlock: 10, mana: 8,  cooldown: 8,  damage: 0,  per-level: 0,    desc: "Berguling menjauh dengan cepat."}
+  arrowrain: {name: "Arrow Rain", unlock: 20, mana: 28, cooldown: 20, damage: 5,  per-level: 0.20, radius: 5.0, range: 25, desc: "Hujan panah di titik yang kamu bidik."}
+  fireball:  {name: "Fireball",   unlock: 1,  mana: 12, cooldown: 4,  damage: 8,  per-level: 0.30, range: 28,   desc: "Bola api yang membakar target."}
+  frostnova: {name: "Frost Nova", unlock: 10, mana: 20, cooldown: 12, damage: 6,  per-level: 0.25, radius: 6.0, desc: "Ledakan es memperlambat semua musuh di sekitar."}
+  heal:      {name: "Heal",       unlock: 20, mana: 30, cooldown: 20, damage: 8,  per-level: 0.20, radius: 6.0, desc: "Menyembuhkan dirimu dan pemain di sekitar."}
+
+messages:
+  prefix: "&6[RPG] &r"
