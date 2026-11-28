@@ -15,7 +15,7 @@ final class RankHook {
         try {
             String v = me.clip.placeholderapi.PlaceholderAPI.setPlaceholders(p, "%nereusrpg_rank_plain%");
             if (v == null || v.contains("%")) {
-                return null; // NerusRPG belum terpasang
+                return null; // NereusRPG belum terpasang
             }
             v = v.trim().toUpperCase();
             return v.equals("NONE") || v.length() != 1 ? "" : v;

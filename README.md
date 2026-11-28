@@ -30,7 +30,7 @@ Custom Paper 1.21.1 plugins (Java 21) by naook1/adityap.
   dengan Pet Orb (bola salju bertanda, peluang naik kalau HP mob rendah), pet mengikuti dan bertarung real-time, ada level, XP, skill,
   kelangkaan, dan pingsan (tidak mati permanen). Menu Pet Box berupa inventory (aman untuk Bedrock). Admin: `/pets give orb|pet`, `/pets reload`.
 - **NereusGuild** - `/guild` (alias `/advrank`): rank guild petualang F sampai SSS. GP dari PlayerPoints, ujian promosi per rank
-- **NerusRPG** - plugin gabungan RPG + Nerus Guild (menggantikan NereusRpg dan GuildMaster): NPC Caylin (FancyNpcs), pendaftaran, status UNREGISTERED/REGISTERED/REVOKED, class, level/stat/mana, quest harian, misi cerita, RPG Rank F-S (placeholder `%nereusrpg_rank%`), command `/nereusrpg` (alias `/gm`), migrasi data otomatis
+- **NereusRPG** (dulu NerusRPG) - plugin gabungan RPG + Nerus Guild (menggantikan NereusRpg dan GuildMaster): NPC Caylin (FancyNpcs), pendaftaran, status UNREGISTERED/REGISTERED/REVOKED, 8 ras dengan kemampuan pasif, 6 atribut, 78 quest (13 kategori, tier F-S, cooldown per ID), GUI quest 54 slot, misi cerita, RPG Rank F-S (placeholder `%nereusrpg_rank%`), command `/nereusrpg` (alias `/gm`), migrasi data otomatis
   (bunuh mob dengan batas waktu, atau diselesaikan staff/dungeon), permission quest otomatis (rank X boleh quest X, semua di bawahnya,
   dan satu tingkat di atas lewat `nereus.guild.<rank>` dan `nereus.guild.tantangan.<rank>`), meta tampilan TAB, dan `dqa reset` saat naik rank.
   Admin: `/guild set|exam|sync|reload`.

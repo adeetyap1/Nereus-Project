@@ -108,7 +108,7 @@ atm:
   require-card: false
   blocks: []
 
-# Bonus dari RPG Rank Nerus Guild (dibaca dari NerusRPG lewat PlaceholderAPI %nereusrpg_rank_plain%).
+# Bonus dari RPG Rank Nerus Guild (dibaca dari NereusRPG lewat PlaceholderAPI %nereusrpg_rank_plain%).
 # interest-bonus = tambahan % bunga, loan-bonus = tambahan batas hutang, vault-bonus = tambahan slot brankas.
 guild-perks-enabled: true
 guild-perks:

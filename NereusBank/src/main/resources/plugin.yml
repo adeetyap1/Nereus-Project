@@ -4,7 +4,7 @@ main: me.naook1.nereusbank.NereusBank
 api-version: '1.21'
 authors: [naook1, adityap]
 description: Bank Nerus Guild - rekening, kartu guild, simpanan, hutang, brankas item by naook1/adityap
-softdepend: [Vault, PlaceholderAPI, floodgate, FancyNpcs, NerusRPG]
+softdepend: [Vault, PlaceholderAPI, floodgate, FancyNpcs, NereusRPG]
 
 commands:
   bank:

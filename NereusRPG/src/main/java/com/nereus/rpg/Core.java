@@ -299,6 +299,7 @@ public final class Core {
                     plugin.getLogger().warning("Quest " + id + " dilewati: tipe tugas tidak dikenal.");
                     continue;
                 }
+                validateTargets(id, o);
                 String tk = RANK_ORDER.substring(rank, rank + 1);
                 double w = q.getDouble("weight", 1.0);
                 ConfigurationSection tier = cfg.getConfigurationSection("quests.tiers." + tk);
@@ -311,6 +312,39 @@ public final class Core {
             }
         }
         loadLegacyQuests();
+    }
+
+    /** Peringatkan di console jika target quest tidak dikenal (quest seperti itu tidak akan pernah maju). */
+    private void validateTargets(String id, Objective o) {
+        for (String t : o.targets()) {
+            if (t.contains("*")) {
+                continue;
+            }
+            String u = t.toUpperCase(Locale.ROOT);
+            boolean ok = switch (o.type()) {
+                case BREAK, GET, HARVEST, PLANT, PLACE, CRAFT, SMELT, SMITH, SELL, EAT -> Material.getMaterial(u) != null;
+                case KILL, BREED, TAME, SHEAR, MILK -> {
+                    try {
+                        org.bukkit.entity.EntityType.valueOf(u);
+                        yield true;
+                    } catch (IllegalArgumentException e) {
+                        yield false;
+                    }
+                }
+                case STAT -> {
+                    try {
+                        org.bukkit.Statistic.valueOf(u);
+                        yield true;
+                    } catch (IllegalArgumentException e) {
+                        yield false;
+                    }
+                }
+                default -> true;
+            };
+            if (!ok) {
+                plugin.getLogger().warning("Quest " + id + ": target '" + t + "' tidak dikenal (cek ejaan di quests.yml).");
+            }
+        }
     }
 
     /** Quest lama (quests-legacy.yml) hanya dimuat supaya quest aktif pemain tetap bisa diselesaikan. */

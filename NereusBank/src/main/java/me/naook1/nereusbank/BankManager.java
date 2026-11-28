@@ -45,7 +45,7 @@ public final class BankManager {
     private final Map<String, Perk> perks = new LinkedHashMap<>();
     private boolean dirty;
 
-    /** Bonus dari RPG Rank NerusRPG: tambahan poin bunga, tambahan batas pinjaman, tambahan slot brankas. */
+    /** Bonus dari RPG Rank NereusRPG: tambahan poin bunga, tambahan batas pinjaman, tambahan slot brankas. */
     public record Perk(double interestBonus, long loanBonus, int vaultBonus) {
         static final Perk NONE = new Perk(0, 0, 0);
     }
@@ -69,7 +69,7 @@ public final class BankManager {
         return Math.max(0, tier(a).vaultSlots() + perk(a).vaultBonus());
     }
 
-    /** Baca RPG Rank pemain dari NerusRPG (via PlaceholderAPI). Kosong = belum terdaftar / tidak tersedia. */
+    /** Baca RPG Rank pemain dari NereusRPG (via PlaceholderAPI). Kosong = belum terdaftar / tidak tersedia. */
     public void refreshRank(Player p) {
         Account a = account(p);
         String r = RankHook.rankOf(plugin, p);
