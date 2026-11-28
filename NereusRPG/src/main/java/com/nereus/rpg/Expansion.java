@@ -129,12 +129,11 @@ public final class Expansion extends PlaceholderExpansion {
         Defs.Race c = member ? core.clazz(pr) : null;
         String key = params.toLowerCase();
         if (key.startsWith("quests_cd_")) {
-            // %nereusrpg_quests_cd_mining% -> sisa cooldown jenis quest, atau "Siap"
+            // %nereusrpg_quests_cd_mining-1% -> sisa cooldown quest dengan ID itu, atau "Siap"
             if (pr == null || !member) {
                 return "Siap";
             }
-            String cat = key.substring("quests_cd_".length()).toUpperCase();
-            long left = core.cooldownLeft(pr, cat);
+            long left = core.cooldownLeft(pr, key.substring("quests_cd_".length()));
             return left <= 0 ? "Siap" : Text.time(left);
         }
         switch (key) {

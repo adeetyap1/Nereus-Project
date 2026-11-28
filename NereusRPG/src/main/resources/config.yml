@@ -103,20 +103,27 @@ class-change:
   # Jika perintah gagal (uang kurang) pemain tetap ganti, jadi isi hanya jika perlu.
   commands: []
 
-# ---------- Daftar quest harian ----------
+# ---------- Quest ----------
+# TIDAK ADA batas harian maupun batas jumlah quest aktif. Satu-satunya batas: cooldown PER ID quest.
+# Daftar quest (13 kategori, tier F-S) ada di quests.yml.
 quests:
-  # TIDAK ADA batas jumlah quest aktif maupun per hari. Yang ada: cooldown per JENIS quest.
-  # Setelah mengambil quest suatu jenis (mis. Mining), jenis itu tidak bisa diambil lagi selama cooldown;
-  # jenis lain tetap bebas. Jenis otomatis: MINING (hancurkan blok/bijih), WOODCUTTING (kayu), HUNTING (bunuh mob),
-  # GATHERING (kumpulkan item). Bisa diubah per quest dengan baris `category: NAMA` di quests.yml.
-  cooldown-hours: 5                 # cooldown bawaan semua jenis (jam)
-  category-cooldown-hours: {}       # khusus jenis tertentu, mis. { MINING: 5, HUNTING: 3 }
-  category-names: {}                # nama tampil, mis. { MINING: "Mining" }
-  # Pengali kesulitan, dipakai saat quests.yml dimuat. Ubah lalu /rpg reload.
-  gp-multiplier: 0.5                # hadiah GP quest dan misi cerita x0.5
-  amount-multiplier: 2.0            # jumlah tugas quest x2 (bunuh 10 jadi 20)
-  # Rank X boleh quest X dan di bawahnya. Quest tantangan = satu rank di atas X.
-  # Blok buatan pemain tidak dihitung untuk quest BREAK.
+  cooldown-hours: 5                 # quest yang sama baru bisa diambil lagi 5 jam setelah diambil (tetap jalan setelah restart)
+  cooldown-hours-by-id: {}          # khusus ID tertentu, mis. { combat-1: 2 }
+  reward-multiplier: 1.0            # pengali semua hadiah quest baru
+  nr-command: "eco give %player% %amount%"   # perintah konsol pemberi Nerith
+  count-creative: false             # progres quest dihitung saat Creative/Spectator
+  # Hadiah dasar per tier x weight quest di quests.yml. exp = EXP, nr = Nerith, gp = Guild Point.
+  tiers:
+    F: {exp: 50, nr: 30, gp: 5}
+    E: {exp: 110, nr: 60, gp: 10}
+    D: {exp: 220, nr: 130, gp: 20}
+    C: {exp: 420, nr: 280, gp: 35}
+    B: {exp: 800, nr: 600, gp: 60}
+    A: {exp: 1500, nr: 1300, gp: 100}
+    S: {exp: 2800, nr: 3000, gp: 160}
+  # Dipakai untuk quest lama (quests-legacy.yml) yang masih aktif di pemain.
+  gp-multiplier: 0.5
+  amount-multiplier: 2.0
 
 # ---------- Login harian ----------
 daily-login:

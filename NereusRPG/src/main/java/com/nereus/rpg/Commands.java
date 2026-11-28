@@ -86,7 +86,7 @@ public final class Commands implements CommandExecutor, TabCompleter {
             return true;
         }
         switch (name) {
-            case "quest" -> new Menus.QuestMenu(core, p).open();
+            case "quest" -> new QuestUi.Menu(core, p).open();
             case "story" -> {
                 if (args.length > 0 && args[0].equalsIgnoreCase("serahkan")) {
                     core.tracker.turnInStory(p);

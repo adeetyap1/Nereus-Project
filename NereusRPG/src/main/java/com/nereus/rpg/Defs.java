@@ -50,8 +50,17 @@ public final class Defs {
         }
     }
 
+    /** Kategori quest (13 jenis) untuk tampilan GUI. */
+    public record QuestCat(String key, String name, Material icon, String desc) {
+    }
+
+    /**
+     * Quest. rank = tier (0=F ... 6=S). Quest baru: nr/exp/gp dihitung dari tabel tier; commands kosong.
+     * legacy = quest lama (quests-legacy.yml): hanya bisa diselesaikan jika masih aktif, tidak ditawarkan lagi.
+     */
     public record Quest(String id, int rank, boolean challenge, String name, Material icon,
-                        Objective obj, int gp, List<String> commands, List<String> lore, String category) {
+                        Objective obj, int gp, List<String> commands, List<String> lore, String category,
+                        String desc, int nr, long exp, boolean legacy) {
     }
 
     public record Mission(String id, String title, List<String> story, int minRank, Objective obj,

@@ -68,14 +68,6 @@ public final class RpgListener implements Listener {
         core.placed.mark(e.getBlockPlaced());
     }
 
-    @EventHandler(ignoreCancelled = true)
-    public void onBreak(BlockBreakEvent e) {
-        if (core.placed.remove(e.getBlock())) {
-            return;
-        }
-        core.tracker.progress(e.getPlayer(), Objective.Type.BREAK, e.getBlock().getType().name());
-    }
-
     @EventHandler
     public void onKill(EntityDeathEvent e) {
         LivingEntity victim = e.getEntity();
@@ -91,7 +83,6 @@ public final class RpgListener implements Listener {
         var c = plugin.getConfig();
         long xp = Math.round(Math.min(c.getDouble("level.xp-kill-cap", 60), max * c.getDouble("level.xp-kill-multiplier", 0.5)));
         core.addXp(killer, Math.max(1, xp));
-        core.tracker.kill(killer, victim.getType().name());
     }
 
     @EventHandler

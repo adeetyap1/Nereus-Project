@@ -258,42 +258,89 @@ public final class Core {
         }
     }
 
+    public final Map<String, Defs.QuestCat> questCats = new LinkedHashMap<>();
+
     private void loadQuests() {
         quests.clear();
-        ConfigurationSection qs = file("quests.yml").getConfigurationSection("quests");
+        questCats.clear();
+        YamlConfiguration qy = file("quests.yml");
+        ConfigurationSection cs = qy.getConfigurationSection("categories");
+        if (cs != null) {
+            for (String k : cs.getKeys(false)) {
+                ConfigurationSection c = cs.getConfigurationSection(k);
+                if (c != null) {
+                    questCats.put(k.toUpperCase(Locale.ROOT), new Defs.QuestCat(k.toUpperCase(Locale.ROOT),
+                            c.getString("name", k), mat(c.getString("icon"), Material.PAPER), c.getString("description", "")));
+                }
+            }
+        }
+        FileConfiguration cfg = plugin.getConfig();
+        double mul = cfg.getDouble("quests.reward-multiplier", 1.0);
+        ConfigurationSection qs = qy.getConfigurationSection("quests");
+        if (qs != null) {
+            for (String id : qs.getKeys(false)) {
+                ConfigurationSection q = qs.getConfigurationSection(id);
+                if (q == null) {
+                    continue;
+                }
+                int rank = rankIndex(q.getString("tier", ""));
+                if (rank < 0) {
+                    plugin.getLogger().warning("Quest " + id + " dilewati: tier tidak dikenal.");
+                    continue;
+                }
+                String cat = q.getString("category", "").toUpperCase(Locale.ROOT);
+                if (!questCats.containsKey(cat)) {
+                    plugin.getLogger().warning("Quest " + id + " dilewati: kategori tidak dikenal (" + cat + ").");
+                    continue;
+                }
+                Objective o = Objective.parse(q.getString("type", "KILL"), q.getString("target", ""),
+                        q.getInt("amount", 1), q.getString("cond", ""));
+                if (o.type() == Objective.Type.NONE) {
+                    plugin.getLogger().warning("Quest " + id + " dilewati: tipe tugas tidak dikenal.");
+                    continue;
+                }
+                String tk = RANK_ORDER.substring(rank, rank + 1);
+                double w = q.getDouble("weight", 1.0);
+                ConfigurationSection tier = cfg.getConfigurationSection("quests.tiers." + tk);
+                long exp = Math.round((tier == null ? 50 : tier.getDouble("exp", 50)) * w * mul);
+                int nr = (int) Math.round((tier == null ? 30 : tier.getDouble("nr", 30)) * w * mul);
+                int gp = (int) Math.round((tier == null ? 5 : tier.getDouble("gp", 5)) * w * mul);
+                quests.put(id.toLowerCase(Locale.ROOT), new Defs.Quest(id.toLowerCase(Locale.ROOT), rank, false,
+                        q.getString("name", id), mat(q.getString("icon"), questCats.get(cat).icon()), o, gp,
+                        List.of(), List.of(), cat, q.getString("description", ""), nr, exp, false));
+            }
+        }
+        loadLegacyQuests();
+    }
+
+    /** Quest lama (quests-legacy.yml) hanya dimuat supaya quest aktif pemain tetap bisa diselesaikan. */
+    private void loadLegacyQuests() {
+        File lf = new File(plugin.getDataFolder(), "quests-legacy.yml");
+        if (!lf.isFile()) {
+            return;
+        }
+        ConfigurationSection qs = YamlConfiguration.loadConfiguration(lf).getConfigurationSection("quests");
         if (qs == null) {
             return;
         }
         for (String id : qs.getKeys(false)) {
             ConfigurationSection q = qs.getConfigurationSection(id);
-            if (q == null) {
+            if (q == null || quests.containsKey(id.toLowerCase(Locale.ROOT)) || quests.containsKey(id)) {
                 continue;
             }
             int rank = rankIndex(q.getString("rank", ""));
             if (rank < 0) {
-                plugin.getLogger().warning("Quest " + id + " dilewati: rank tidak dikenal.");
                 continue;
             }
             double gpMul = plugin.getConfig().getDouble("quests.gp-multiplier", 1.0);
             double amtMul = plugin.getConfig().getDouble("quests.amount-multiplier", 1.0);
             Objective o = Objective.parse(q.getString("type", "KILL"), q.getString("target", ""),
                     (int) Math.round(q.getInt("amount", 1) * amtMul));
-            List<String> lore = new ArrayList<>();
-            for (String l : q.getStringList("reward-lore")) {
-                java.util.regex.Matcher mt = java.util.regex.Pattern.compile("([\\d.]+) GP").matcher(l);
-                if (mt.find()) {
-                    try {
-                        long v = Math.round(Long.parseLong(mt.group(1).replace(".", "")) * gpMul);
-                        l = l.substring(0, mt.start()) + String.format(Locale.ROOT, "%,d", v).replace(',', '.') + " GP" + l.substring(mt.end());
-                    } catch (NumberFormatException ignored) {
-                        // biarkan teks apa adanya
-                    }
-                }
-                lore.add(l);
-            }
+            long exp = Math.round(plugin.getConfig().getInt("level.xp-quest-base", 40) * (rank + 1)
+                    * (q.getBoolean("challenge", false) ? 1.5 : 1.0));
             quests.put(id, new Defs.Quest(id, rank, q.getBoolean("challenge", false), q.getString("name", id),
                     mat(q.getString("icon"), Material.PAPER), o, (int) Math.round(q.getInt("gp", 0) * gpMul),
-                    q.getStringList("commands"), lore, category(q.getString("category", ""), o)));
+                    q.getStringList("commands"), q.getStringList("reward-lore"), "LEGACY", "", 0, exp, true));
         }
     }
 
@@ -412,59 +459,27 @@ public final class Core {
         }
     }
 
-    // ------------------------------------------------------------ cooldown per jenis quest
-
-    /** Jenis quest: dari 'category' di quests.yml bila ada, jika tidak diturunkan dari tugasnya. */
-    public static String category(String explicit, Objective o) {
-        if (explicit != null && !explicit.isBlank()) {
-            return explicit.trim().toUpperCase(Locale.ROOT).replace(' ', '_');
-        }
-        switch (o.type()) {
-            case BREAK: {
-                boolean wood = !o.targets().isEmpty();
-                for (String t : o.targets()) {
-                    String u = t.toUpperCase(Locale.ROOT);
-                    if (!(u.endsWith("_LOG") || u.endsWith("_STEM") || u.endsWith("_WOOD") || u.endsWith("_HYPHAE"))) {
-                        wood = false;
-                    }
-                }
-                return wood ? "WOODCUTTING" : "MINING";
-            }
-            case KILL:
-                return "HUNTING";
-            case GET:
-                return "GATHERING";
-            default:
-                return "OTHER";
-        }
-    }
+    // ------------------------------------------------------------ cooldown per ID quest
 
     public String categoryName(String cat) {
-        String cfg = plugin.getConfig().getString("quests.category-names." + cat, "");
-        if (!cfg.isEmpty()) {
-            return cfg;
+        Defs.QuestCat qc = questCats.get(cat);
+        if (qc != null) {
+            return qc.name();
         }
-        return switch (cat) {
-            case "MINING" -> "Mining";
-            case "WOODCUTTING" -> "Menebang Kayu";
-            case "HUNTING" -> "Berburu";
-            case "GATHERING" -> "Mengumpulkan";
-            default -> {
-                String s = cat.toLowerCase(Locale.ROOT).replace('_', ' ');
-                yield s.isEmpty() ? cat : Character.toUpperCase(s.charAt(0)) + s.substring(1);
-            }
-        };
+        String s = cat.toLowerCase(Locale.ROOT).replace('_', ' ');
+        return s.isEmpty() ? cat : Character.toUpperCase(s.charAt(0)) + s.substring(1);
     }
 
-    public long cooldownMillis(String cat) {
-        double d = plugin.getConfig().getDouble("quests.category-cooldown-hours." + cat,
+    /** Cooldown ambil ulang satu quest (ms): quests.cooldown-hours (5 jam), bisa per ID lewat cooldown-hours-by-id. */
+    public long cooldownMillis(String questId) {
+        double d = plugin.getConfig().getDouble("quests.cooldown-hours-by-id." + questId,
                 plugin.getConfig().getDouble("quests.cooldown-hours", 5.0));
         return d <= 0 ? 0 : (long) (d * 3_600_000L);
     }
 
-    /** Sisa cooldown (ms) jenis quest ini untuk pemain; 0 bila siap diambil. */
-    public long cooldownLeft(Profile pr, String cat) {
-        Long until = pr.questCooldowns.get(cat);
+    /** Sisa cooldown (ms) quest ini untuk pemain; 0 bila siap diambil. */
+    public long cooldownLeft(Profile pr, String questId) {
+        Long until = pr.questCooldowns.get(questId);
         return until == null ? 0 : Math.max(0, until - System.currentTimeMillis());
     }
 
@@ -976,6 +991,41 @@ public final class Core {
         }
         runConsole(p, cmds);
         msg(p, "&7Hadiah: &b+" + gp + " GP &7| &a+" + xp + " XP" + (cmds.isEmpty() ? "" : " &7| &6item/gold"));
+    }
+
+    /** Hadiah quest: EXP, Guild Point, dan Nerith (lewat perintah ekonomi) atau perintah lama untuk quest lama. */
+    public void rewardQuest(Player p, Defs.Quest q) {
+        Profile pr = profile(p);
+        int gp = q.gp();
+        long xp = q.exp();
+        int nr = q.nr();
+        double luck = pr.stat("luk") * plugin.getConfig().getDouble("stats.luk-reward-chance-percent", 0.5);
+        boolean lucky = luck > 0 && rng.nextDouble() * 100 < luck;
+        if (lucky) {
+            gp = (int) Math.round(gp * 1.5);
+            xp = Math.round(xp * 1.5);
+            nr = (int) Math.round(nr * 1.5);
+            msg(p, "&6Keberuntungan! Hadiah x1.5");
+        }
+        Defs.Ability st = ability(p, "silver_tongue");
+        if (st != null && nr > 0) {
+            nr = (int) Math.round(nr * (1 + st.v("nr_percent", 10) / 100.0));
+        }
+        if (gp > 0) {
+            pr.gp += gp;
+        }
+        if (xp > 0) {
+            addXp(p, xp);
+        }
+        if (nr > 0) {
+            runConsole(p, List.of(plugin.getConfig().getString("quests.nr-command", "eco give %player% %amount%")),
+                    "%amount%", String.valueOf(nr));
+        }
+        if (!q.commands().isEmpty()) {
+            runConsole(p, q.commands());
+        }
+        msg(p, "&7Hadiah: &a+" + xp + " EXP &8| &6+" + nr + " NR &8| &b+" + gp + " GP"
+                + (q.commands().isEmpty() ? "" : " &8| &7item"));
     }
 
     // ------------------------------------------------------------ tick

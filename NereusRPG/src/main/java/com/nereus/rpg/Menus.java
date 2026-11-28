@@ -189,7 +189,7 @@ public final class Menus {
             switch (slot) {
                 case 11 -> new ClassMenu(core, player).open();
                 case 12 -> new StatsMenu(core, player).open();
-                case 13 -> new QuestMenu(core, player).open();
+                case 13 -> new QuestUi.Menu(core, player).open();
                 case 14 -> {
                     player.closeInventory();
                     Commands.showStory(core, player);
@@ -322,138 +322,6 @@ public final class Menus {
             }
             core.msg(player, "&aKamu sekarang ras " + c.name() + "&a! Kemampuan pasifnya aktif otomatis.");
             player.closeInventory();
-        }
-    }
-
-    // ------------------------------------------------------------ quest
-
-    public static final class QuestMenu extends Base {
-        private final List<Defs.Quest> shown = new ArrayList<>();
-        private int page;
-
-        public QuestMenu(Core core, Player p) {
-            super(core, p);
-        }
-
-        @Override
-        protected String title() {
-            return t("quests", "&8Papan Quest");
-        }
-
-        @Override
-        protected int size() {
-            return 54;
-        }
-
-        @Override
-        protected int backSlot() {
-            return 48;
-        }
-
-        @Override
-        protected void render() {
-            fill();
-            Profile pr = core.profile(player);
-            core.checkDay(pr);
-            List<Defs.Quest> list = core.tracker.eligible(pr);
-            int pages = Math.max(1, (list.size() + 44) / 45);
-            page = Math.max(0, Math.min(page, pages - 1));
-            shown.clear();
-            for (int i = 0; i < 45; i++) {
-                int idx = page * 45 + i;
-                if (idx >= list.size()) {
-                    inv.setItem(i, null);
-                    continue;
-                }
-                Defs.Quest q = list.get(idx);
-                shown.add(q);
-                inv.setItem(i, questItem(pr, q));
-            }
-            inv.setItem(45, Text.item(Material.ARROW, "&7Halaman sebelumnya"));
-            inv.setItem(53, Text.item(Material.ARROW, "&7Halaman berikutnya"));
-            List<String> info = new ArrayList<>();
-            info.add("&7Halaman &f" + (page + 1) + "&7/&f" + pages);
-            info.addAll(cooldownLines(pr));
-            inv.setItem(49, Text.item(Material.CLOCK, "&6Papan Quest", info));
-            addBack();
-        }
-
-        private List<String> cooldownLines(Profile pr) {
-            List<String> out = new ArrayList<>();
-            out.add("&7Quest aktif: &f" + pr.active.size() + " &8(tanpa batas)");
-            boolean any = false;
-            for (Map.Entry<String, Long> e : pr.questCooldowns.entrySet()) {
-                long left = core.cooldownLeft(pr, e.getKey());
-                if (left > 0) {
-                    if (!any) {
-                        out.add("&7Cooldown jenis quest:");
-                        any = true;
-                    }
-                    out.add(" &c" + core.categoryName(e.getKey()) + " &8- &f" + Text.time(left));
-                }
-            }
-            if (!any) {
-                out.add("&aSemua jenis quest siap diambil.");
-            }
-            return out;
-        }
-
-        private ItemStack questItem(Profile pr, Defs.Quest q) {
-            Defs.Rank r = core.rank(q.rank());
-            List<String> lore = new ArrayList<>();
-            lore.add("&7Rank: " + (r == null ? "?" : r.tag()) + (q.challenge() ? " &c(Tantangan)" : ""));
-            lore.add("&7Tugas: &f" + q.obj().describe());
-            lore.add("");
-            lore.add("&3Hadiah:");
-            lore.addAll(q.lore());
-            if (q.lore().isEmpty()) {
-                lore.add(" &b" + q.gp() + " GP");
-            }
-            lore.add("");
-            boolean act = pr.active.containsKey(q.id());
-            lore.add("&7Jenis: &f" + core.categoryName(q.category()));
-            if (act) {
-                if (q.obj().type() == Objective.Type.GET) {
-                    int have = core.tracker.countFor(player, q.obj());
-                    lore.add("&7Di tasmu: &f" + Math.min(have, q.obj().amount()) + "&7/&f" + q.obj().amount());
-                    lore.add("&eKlik untuk menyerahkan item");
-                } else {
-                    lore.add("&7Progres: &f" + pr.active.get(q.id()) + "&7/&f" + q.obj().amount());
-                }
-                lore.add("&8Shift+klik untuk membatalkan");
-                return Text.glow(Text.item(q.icon(), q.name(), lore));
-            }
-            long left = core.cooldownLeft(pr, q.category());
-            if (left > 0) {
-                lore.add("&cCooldown " + core.categoryName(q.category()) + ": &f" + Text.time(left));
-                lore.add("&7Quest jenis lain tetap bisa diambil.");
-                return Text.item(q.icon(), "&8✖ " + Text.strip(q.name()), lore);
-            }
-            lore.add("&eKlik untuk mengambil quest");
-            lore.add("&8Cooldown jenis ini: " + Text.time(core.cooldownMillis(q.category())) + " setelah diambil");
-            return Text.item(q.icon(), q.name(), lore);
-        }
-
-        @Override
-        public void click(int slot, boolean shift) {
-            if (slot == 45) {
-                page--;
-            } else if (slot == 53) {
-                page++;
-            } else if (slot >= 0 && slot < shown.size()) {
-                Defs.Quest q = shown.get(slot);
-                Profile pr = core.profile(player);
-                if (pr.active.containsKey(q.id())) {
-                    if (shift) {
-                        core.tracker.abandon(player, q.id());
-                    } else {
-                        core.tracker.turnInQuest(player, q.id());
-                    }
-                } else {
-                    core.tracker.accept(player, q.id());
-                }
-            }
-            render();
         }
     }
 

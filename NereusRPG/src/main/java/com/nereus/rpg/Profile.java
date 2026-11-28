@@ -50,6 +50,10 @@ public final class Profile {
     public final Set<String> done = new HashSet<>();
     /** Cooldown ambil quest per jenis: kode jenis -> waktu (epoch ms) boleh diambil lagi. */
     public final Map<String, Long> questCooldowns = new java.util.concurrent.ConcurrentHashMap<>();
+    /** Titik awal statistik Minecraft untuk quest STAT: id quest -> nilai saat diambil. */
+    public final Map<String, Long> questBase = new java.util.concurrent.ConcurrentHashMap<>();
+    /** Berapa kali tiap quest (ID) diselesaikan dan diklaim, seumur hidup. */
+    public final Map<String, Integer> questCounts = new LinkedHashMap<>();
     public int completedToday;
     public int totalQuests;
     public int totalKills;
@@ -116,6 +120,12 @@ public final class Profile {
                 s.set("quest-cooldowns." + e.getKey(), e.getValue());
             }
         }
+        for (Map.Entry<String, Long> e : questBase.entrySet()) {
+            s.set("quest-base." + e.getKey(), e.getValue());
+        }
+        for (Map.Entry<String, Integer> e : questCounts.entrySet()) {
+            s.set("quest-counts." + e.getKey(), e.getValue());
+        }
         s.set("completed-today", completedToday);
         s.set("total-quests", totalQuests);
         s.set("total-kills", totalKills);
@@ -168,6 +178,18 @@ public final class Profile {
         if (cd != null) {
             for (String k : cd.getKeys(false)) {
                 questCooldowns.put(k, cd.getLong(k));
+            }
+        }
+        ConfigurationSection qb = s.getConfigurationSection("quest-base");
+        if (qb != null) {
+            for (String k : qb.getKeys(false)) {
+                questBase.put(k, qb.getLong(k));
+            }
+        }
+        ConfigurationSection qc = s.getConfigurationSection("quest-counts");
+        if (qc != null) {
+            for (String k : qc.getKeys(false)) {
+                questCounts.put(k, qc.getInt(k));
             }
         }
         completedToday = s.getInt("completed-today", 0);

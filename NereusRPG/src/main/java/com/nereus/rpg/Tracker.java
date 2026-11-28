@@ -18,19 +18,101 @@ public final class Tracker {
         this.core = core;
     }
 
-    // ------------------------------------------------------------ quest harian
+    // ------------------------------------------------------------ quest
 
+    /** Konteks kejadian untuk syarat tambahan quest (cond). */
+    public record Ctx(boolean bow, boolean melee, boolean night, boolean nether, boolean end, boolean underground,
+                      boolean adult) {
+        public static Ctx env(Player p) {
+            var w = p.getWorld();
+            var env = w.getEnvironment();
+            return new Ctx(false, false, env == org.bukkit.World.Environment.NORMAL && !w.isDayTime(),
+                    env == org.bukkit.World.Environment.NETHER, env == org.bukkit.World.Environment.THE_END,
+                    p.getLocation().getY() < 50, true);
+        }
+
+        public Ctx weapon(boolean bow, boolean melee) {
+            return new Ctx(bow, melee, night, nether, end, underground, adult);
+        }
+
+        public Ctx adult(boolean a) {
+            return new Ctx(bow, melee, night, nether, end, underground, a);
+        }
+
+        public boolean ok(String cond) {
+            return switch (cond == null ? "" : cond) {
+                case "BOW" -> bow;
+                case "MELEE" -> melee;
+                case "NIGHT" -> night;
+                case "NETHER" -> nether;
+                case "END" -> end;
+                case "UNDERGROUND" -> underground;
+                case "ADULT" -> adult;
+                default -> true;
+            };
+        }
+    }
+
+    /** Quest baru yang boleh diambil: tier pemain ke bawah, ditambah satu tier di atasnya. Quest lama tidak ditawarkan. */
     public List<Defs.Quest> eligible(Profile pr) {
         List<Defs.Quest> out = new ArrayList<>();
         for (Defs.Quest q : core.quests.values()) {
-            boolean ok = q.challenge() ? q.rank() == pr.rank + 1 : q.rank() <= pr.rank;
-            if (ok) {
+            if (!q.legacy() && q.rank() <= pr.rank + 1) {
                 out.add(q);
             }
         }
-        out.sort((a, b) -> a.rank() != b.rank() ? Integer.compare(a.rank(), b.rank())
-                : Boolean.compare(a.challenge(), b.challenge()));
+        List<String> order = new ArrayList<>(core.questCats.keySet());
+        out.sort((a, b) -> {
+            int c = Integer.compare(order.indexOf(a.category()), order.indexOf(b.category()));
+            return c != 0 ? c : Integer.compare(a.rank(), b.rank());
+        });
         return out;
+    }
+
+    private static long statRaw(Player p, String name) {
+        try {
+            return p.getStatistic(org.bukkit.Statistic.valueOf(name));
+        } catch (IllegalArgumentException | UnsupportedOperationException e) {
+            return 0;
+        }
+    }
+
+    private static long statScaled(String name, long delta) {
+        if (name.endsWith("_ONE_CM")) {
+            return delta / 100;
+        }
+        if (name.equals("TIME_SINCE_DEATH") || name.equals("PLAY_ONE_MINUTE")) {
+            return delta / 1200;
+        }
+        return delta;
+    }
+
+    /** Progres saat ini: GET dihitung dari inventory (diserahkan saat klaim), STAT dari statistik, lainnya dari event. */
+    public int progressOf(Player p, Profile pr, Defs.Quest q) {
+        Integer stored = pr.active.get(q.id());
+        if (stored == null) {
+            return 0;
+        }
+        Objective o = q.obj();
+        switch (o.type()) {
+            case GET:
+                return Math.min(o.amount(), countFor(p, o));
+            case STAT: {
+                long cur = statRaw(p, o.target());
+                Long base = pr.questBase.get(q.id());
+                if (base == null || (o.target().equals("TIME_SINCE_DEATH") && cur < base)) {
+                    base = cur;
+                    pr.questBase.put(q.id(), cur);
+                }
+                return (int) Math.min(o.amount(), statScaled(o.target(), Math.max(0, cur - base)));
+            }
+            default:
+                return Math.min(stored, o.amount());
+        }
+    }
+
+    public boolean isDone(Player p, Profile pr, Defs.Quest q) {
+        return pr.active.containsKey(q.id()) && progressOf(p, pr, q) >= q.obj().amount();
     }
 
     public void accept(Player p, String id) {
@@ -41,7 +123,7 @@ public final class Tracker {
         }
         core.checkDay(pr);
         Defs.Quest q = core.quests.get(id);
-        if (q == null || !eligible(pr).contains(q)) {
+        if (q == null || q.legacy() || !eligible(pr).contains(q)) {
             core.msg(p, "&cQuest ini belum bisa kamu ambil.");
             return;
         }
@@ -49,23 +131,21 @@ public final class Tracker {
             core.msg(p, "&cQuest ini sedang berjalan.");
             return;
         }
-        // Tidak ada batas jumlah quest aktif maupun per hari. Hanya jenis quest yang sama punya cooldown.
-        String cat = q.category();
-        long left = core.cooldownLeft(pr, cat);
+        // Tidak ada batas jumlah quest. Cooldown hanya berlaku untuk quest dengan ID yang sama.
+        long left = core.cooldownLeft(pr, id);
         if (left > 0) {
-            core.msg(p, "&cQuest jenis &f" + core.categoryName(cat) + " &cmasih cooldown: &f" + Text.time(left)
-                    + "&c. Kamu tetap bisa mengambil quest jenis lain.");
+            core.msg(p, "&cQuest ini masih cooldown: &f" + Text.time(left) + "&c. Quest lain tetap bisa diambil.");
             return;
         }
         pr.active.put(id, 0);
-        long cd = core.cooldownMillis(cat);
+        if (q.obj().type() == Objective.Type.STAT) {
+            pr.questBase.put(id, statRaw(p, q.obj().target()));
+        }
+        long cd = core.cooldownMillis(id);
         if (cd > 0) {
-            pr.questCooldowns.put(cat, System.currentTimeMillis() + cd);
+            pr.questCooldowns.put(id, System.currentTimeMillis() + cd);
         }
         core.msg(p, "&aQuest diambil: " + q.name() + " &8- &f" + q.obj().describe());
-        if (cd > 0) {
-            core.msg(p, "&7Quest jenis &f" + core.categoryName(cat) + " &7bisa diambil lagi dalam &f" + Text.time(cd) + "&7.");
-        }
         p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 1.2f);
     }
 
@@ -75,65 +155,97 @@ public final class Tracker {
             return;
         }
         if (pr.active.remove(id) != null) {
-            core.msg(p, "&7Quest dibatalkan.");
+            pr.questBase.remove(id);
+            core.msg(p, "&7Quest dibatalkan. Cooldown quest ini tetap berjalan.");
         }
     }
 
-    public void turnInQuest(Player p, String id) {
+    /** Klaim hadiah quest yang sudah selesai. Quest dihapus dari daftar aktif lebih dulu supaya tidak bisa dobel. */
+    public void claim(Player p, String id) {
         Profile pr = core.profile(p);
         if (!pr.member()) {
             return;
         }
         Defs.Quest q = core.quests.get(id);
-        if (q == null || !pr.active.containsKey(id) || q.obj().type() != Objective.Type.GET) {
+        if (q == null || !pr.active.containsKey(id)) {
             return;
         }
-        if (take(p, q.obj())) {
-            completeQuest(p, pr, q);
-        } else {
-            core.msg(p, "&cItem belum cukup: &f" + q.obj().describe());
+        if (progressOf(p, pr, q) < q.obj().amount()) {
+            core.msg(p, "&cQuest belum selesai: &f" + q.obj().describe());
+            return;
         }
+        if (q.obj().type() == Objective.Type.GET && !take(p, q.obj())) {
+            core.msg(p, "&cItem belum cukup: &f" + q.obj().describe());
+            return;
+        }
+        if (pr.active.remove(id) == null) {
+            return;
+        }
+        pr.questBase.remove(id);
+        completeQuest(p, pr, q);
     }
 
-    /** XP yang diberikan saat quest selesai (dipakai juga oleh GuildMaster untuk tampilan hadiah). */
+    /** Dipakai quest lama bertipe GET. */
+    public void turnInQuest(Player p, String id) {
+        claim(p, id);
+    }
+
+    /** EXP quest (dipakai juga oleh tampilan hadiah). */
     public long questXp(Defs.Quest q) {
-        return Math.round(core.plugin.getConfig().getInt("level.xp-quest-base", 40) * (q.rank() + 1) * (q.challenge() ? 1.5 : 1.0));
+        return q.exp();
     }
 
     private void completeQuest(Player p, Profile pr, Defs.Quest q) {
         pr.active.remove(q.id());
         pr.done.add(q.id());
         pr.completedQuestIds.add(q.id());
+        pr.questCounts.merge(q.id(), 1, Integer::sum);
         core.logHistory(pr, "quest", q.name());
         pr.completedToday++;
         pr.totalQuests++;
-        long xp = questXp(q);
         p.showTitle(Title.title(Text.c("&aQuest Selesai"), Text.c(q.name())));
         p.playSound(p.getLocation(), Sound.UI_TOAST_CHALLENGE_COMPLETE, 1f, 1f);
-        core.reward(p, q.gp(), xp, q.commands());
+        core.rewardQuest(p, q);
         milestones(p, pr);
     }
 
     // ------------------------------------------------------------ progres
 
     public void progress(Player p, Objective.Type type, String target) {
+        progress(p, type, target, 1, Ctx.env(p));
+    }
+
+    public void progress(Player p, Objective.Type type, String target, int amount, Ctx ctx) {
         Profile pr = core.profile(p);
-        if (!pr.member()) {
+        if (!pr.member() || amount <= 0) {
+            return;
+        }
+        if ((p.getGameMode() == org.bukkit.GameMode.CREATIVE || p.getGameMode() == org.bukkit.GameMode.SPECTATOR)
+                && !core.plugin.getConfig().getBoolean("quests.count-creative", false)) {
             return;
         }
         core.checkDay(pr);
 
         for (String id : new ArrayList<>(pr.active.keySet())) {
             Defs.Quest q = core.quests.get(id);
-            if (q == null || q.obj().type() != type || type == Objective.Type.GET
-                    || !q.obj().matches(target)) {
+            if (q == null || q.obj().type() != type || type == Objective.Type.GET || type == Objective.Type.STAT
+                    || !q.obj().matches(target) || !ctx.ok(q.obj().cond())) {
                 continue;
             }
-            int cur = pr.active.get(id) + 1;
+            int before = pr.active.get(id);
+            if (before >= q.obj().amount()) {
+                continue;
+            }
+            int cur = Math.min(q.obj().amount(), before + amount);
+            pr.active.put(id, cur);
             if (cur >= q.obj().amount()) {
-                completeQuest(p, pr, q);
-            } else {
-                pr.active.put(id, cur);
+                if (q.legacy()) {
+                    pr.active.remove(id);
+                    completeQuest(p, pr, q);
+                } else {
+                    core.msg(p, "&aQuest selesai: " + q.name() + " &7- buka &f/quest &7lalu klaim hadiahmu.");
+                    p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 0.6f, 1.6f);
+                }
             }
         }
 
@@ -156,14 +268,18 @@ public final class Tracker {
         }
     }
 
-    public void kill(Player p, String entity) {
+    public void kill(Player p, String entity, Ctx ctx) {
         Profile pr = core.profile(p);
         if (!pr.member()) {
             return;
         }
         pr.totalKills++;
-        progress(p, Objective.Type.KILL, entity);
+        progress(p, Objective.Type.KILL, entity, 1, ctx);
         milestones(p, pr);
+    }
+
+    public void kill(Player p, String entity) {
+        kill(p, entity, Ctx.env(p));
     }
 
     // ------------------------------------------------------------ misi cerita

@@ -1,1305 +1,855 @@
-# Quest harian. Diimpor dari ODailyQuests, boleh diedit.
-# type: KILL (entity) | BREAK (blok) | GET (item, diserahkan)
-# gp = Guild Point. commands = perintah konsol hadiah. %player% diganti nama pemain.
-quests:
-  f-1:
-    rank: F
-    challenge: false
-    name: '&fPatroli Malam'
-    icon: ROTTEN_FLESH
-    type: KILL
-    target: ZOMBIE
-    amount: 10
-    gp: 10
-    commands:
-    - eco give %player% 20
-    - give %player% bread 8
-    reward-lore:
-    - ' &3&l| &620 NR'
-    - ' &3&l| &b10 GP'
-    - ' &3&l| &78 Roti'
-  f-2:
-    rank: F
-    challenge: false
-    name: '&fPengumpul Gandum'
+# ============================================================
+# Quest NereusRPG: 13 kategori x 6 variasi = 78 quest. Tier F E D C B A S (S tertinggi).
+# Hadiah (EXP, Nerith, Guild Points) dihitung dari tabel tier di config.yml (quests.tiers) x `weight` quest ini.
+#   category : salah satu dari categories di bawah
+#   tier     : F..S. Pemain rank X boleh mengambil quest tier X dan di bawahnya, plus satu tier di atasnya.
+#   type     : KILL BREAK HARVEST PLANT PLACE CRAFT SMELT SMITH ENCHANT BREED TAME SHEAR MILK EAT SLEEP
+#              SELL SELL_VALUE BUY_VALUE GET (diserahkan saat klaim) STAT (statistik Minecraft)
+#   target   : daftar dipisah koma. Boleh wildcard: *_LOG (akhiran) atau NETHERITE_* (awalan).
+#   cond     : opsional - BOW MELEE NIGHT NETHER END UNDERGROUND ADULT
+#   amount   : jumlah. STAT: blok (jarak) / menit (TIME_SINCE_DEATH) / hitungan lain apa adanya.
+#   weight   : pengali hadiah (0.8 mudah ... 1.5 sulit).
+# Cooldown 5 jam berlaku per ID quest (config quests.cooldown-hours), bertahan setelah restart.
+# ============================================================
+categories:
+  COMBAT:
+    name: '&cCombat'
+    icon: IRON_SWORD
+    description: Bunuh monster dengan syarat tertentu.
+  MINING:
+    name: '&7Mining'
+    icon: IRON_PICKAXE
+    description: Tambang batu dan bijih.
+  GATHERING:
+    name: '&aGathering'
+    icon: SAND
+    description: Kumpulkan sumber daya alam.
+  FARMING:
+    name: '&eFarming'
     icon: WHEAT
-    type: GET
-    target: WHEAT
-    amount: 16
-    gp: 10
-    commands:
-    - eco give %player% 30
-    - give %player% stone_sword 1
-    reward-lore:
-    - ' &3&l| &630 NR'
-    - ' &3&l| &b10 GP'
-    - ' &3&l| &7Pedang Batu'
-  f-3:
-    rank: F
-    challenge: false
-    name: '&fPenebang Kayu'
+    description: Tanam dan panen tanaman.
+  ECONOMY:
+    name: '&6Economy'
+    icon: GOLD_INGOT
+    description: Jual dan belanja di shop.
+  CRAFTING:
+    name: '&bCrafting'
+    icon: CRAFTING_TABLE
+    description: Buat barang dengan crafting.
+  SURVIVAL:
+    name: '&2Survival'
+    icon: COOKED_BEEF
+    description: Bertahan hidup dan menjelajah.
+  HUNTING:
+    name: '&6Hunting'
+    icon: BOW
+    description: Buru hewan buruan.
+  BUILDING:
+    name: '&dBuilding'
+    icon: BRICKS
+    description: Bangun dengan blok.
+  SMITHING:
+    name: '&9Smithing'
+    icon: ANVIL
+    description: Lebur, tempa, dan sihir perlengkapan.
+  COLLECTION:
+    name: '&5Collection'
+    icon: CHEST
+    description: Kumpulkan item dan serahkan ke guild.
+  WOODCUTTING:
+    name: '&6Woodcutting'
     icon: IRON_AXE
-    type: BREAK
-    target: '[''OAK_LOG'', ''BIRCH_LOG'', ''SPRUCE_LOG'', ''JUNGLE_LOG'', ''ACACIA_LOG'', ''DARK_OAK_LOG'', ''MANGROVE_LOG'', ''CHERRY_LOG'']'
-    amount: 24
-    gp: 10
-    commands:
-    - eco give %player% 35
-    - give %player% potion[potion_contents={potion:"minecraft:healing"}] 2
-    reward-lore:
-    - ' &3&l| &635 NR'
-    - ' &3&l| &b10 GP'
-    - ' &3&l| &72 Potion Healing'
-  f-4:
-    rank: F
-    challenge: false
-    name: '&fTulang Berserakan'
-    icon: BONE
+    description: Tebang dan tanam pohon.
+  HUSBANDRY:
+    name: '&fAnimal Husbandry'
+    icon: HAY_BLOCK
+    description: Ternakkan dan rawat hewan.
+quests:
+  combat-1:
+    category: COMBAT
+    tier: F
+    name: Pembersih Padang
+    icon: ROTTEN_FLESH
+    description: Tebas mayat hidup dengan senjata jarak dekat.
     type: KILL
-    target: SKELETON
-    amount: 8
-    gp: 10
-    commands:
-    - eco give %player% 45
-    - give %player% stone_pickaxe 1
-    reward-lore:
-    - ' &3&l| &645 NR'
-    - ' &3&l| &b10 GP'
-    - ' &3&l| &7Beliung Batu'
-  f-5:
-    rank: F
-    challenge: false
-    name: '&fPenggali Batu'
-    icon: STONE_PICKAXE
+    amount: 15
+    weight: 1.0
+    target: ZOMBIE,HUSK,DROWNED
+    cond: MELEE
+  combat-2:
+    category: COMBAT
+    tier: E
+    name: Pemanah Tulang
+    icon: BOW
+    description: Tembak kerangka dengan panah.
+    type: KILL
+    amount: 15
+    weight: 1.0
+    target: SKELETON,STRAY,BOGGED
+    cond: BOW
+  combat-3:
+    category: COMBAT
+    tier: D
+    name: Penjinak Ledakan
+    icon: GUNPOWDER
+    description: Bunuh Creeper sebelum meledak.
+    type: KILL
+    amount: 12
+    weight: 1.0
+    target: CREEPER
+  combat-4:
+    category: COMBAT
+    tier: C
+    name: Malam Panjang
+    icon: SPIDER_EYE
+    description: Bertahan memburu monster saat malam hari.
+    type: KILL
+    amount: 40
+    weight: 1.1
+    target: ZOMBIE,SKELETON,SPIDER,CREEPER,WITCH,ENDERMAN
+    cond: NIGHT
+  combat-5:
+    category: COMBAT
+    tier: B
+    name: Pemburu Api Neraka
+    icon: BLAZE_ROD
+    description: Habisi penghuni Nether.
+    type: KILL
+    amount: 30
+    weight: 1.2
+    target: BLAZE,WITHER_SKELETON,GHAST,MAGMA_CUBE,PIGLIN_BRUTE
+    cond: NETHER
+  combat-6:
+    category: COMBAT
+    tier: S
+    name: Penjaga Ujung Dunia
+    icon: ENDER_EYE
+    description: Bunuh makhluk End.
+    type: KILL
+    amount: 30
+    weight: 1.3
+    target: ENDERMAN,SHULKER,ENDERMITE
+    cond: END
+  mining-1:
+    category: MINING
+    tier: F
+    name: Pemecah Batu
+    icon: STONE
+    description: Hancurkan batu dan variannya.
     type: BREAK
-    target: '[''STONE'', ''DEEPSLATE'', ''COBBLESTONE'']'
-    amount: 48
-    gp: 10
-    commands:
-    - eco give %player% 50
-    - give %player% cooked_beef 8
-    reward-lore:
-    - ' &3&l| &650 NR'
-    - ' &3&l| &b10 GP'
-    - ' &3&l| &78 Daging Panggang'
-  f-6:
-    rank: F
-    challenge: false
-    name: '&fStok Batu Bara'
+    amount: 128
+    weight: 0.8
+    target: STONE,DEEPSLATE,ANDESITE,DIORITE,GRANITE,TUFF
+  mining-2:
+    category: MINING
+    tier: E
+    name: Penambang Batu Bara
     icon: COAL
-    type: GET
-    target: COAL
-    amount: 12
-    gp: 10
-    commands:
-    - eco give %player% 60
-    - give %player% wooden_axe 1
-    - give %player% bread 4
-    reward-lore:
-    - ' &3&l| &660 NR'
-    - ' &3&l| &b10 GP'
-    - ' &3&l| &7Kapak Kayu dan 4 Roti'
-  e-1:
-    rank: E
-    challenge: false
-    name: '&7Sarang Laba-laba'
-    icon: STRING
-    type: KILL
-    target: SPIDER
-    amount: 10
-    gp: 25
-    commands:
-    - eco give %player% 70
-    - give %player% iron_ingot 12
-    reward-lore:
-    - ' &3&l| &670 NR'
-    - ' &3&l| &b25 GP'
-    - ' &3&l| &712 Batang Besi'
-  e-2:
-    rank: E
-    challenge: false
-    name: '&7Penyamak Kulit'
-    icon: LEATHER
-    type: GET
-    target: LEATHER
-    amount: 10
-    gp: 25
-    commands:
-    - eco give %player% 85
-    - mi give MATERIAL STEEL_INGOT %player% 4
-    reward-lore:
-    - ' &3&l| &685 NR'
-    - ' &3&l| &b25 GP'
-    - ' &3&l| &74 Steel Ingot'
-  e-3:
-    rank: E
-    challenge: false
-    name: '&7Gerombolan Mayat'
-    icon: ZOMBIE_HEAD
-    type: KILL
-    target: ZOMBIE
-    amount: 20
-    gp: 25
-    commands:
-    - eco give %player% 100
-    - give %player% iron_helmet 1
-    reward-lore:
-    - ' &3&l| &6100 NR'
-    - ' &3&l| &b25 GP'
-    - ' &3&l| &7Helm Besi'
-  e-4:
-    rank: E
-    challenge: false
-    name: '&7Bijih Besi'
-    icon: RAW_IRON
+    description: Tambang bijih batu bara.
     type: BREAK
-    target: '[''IRON_ORE'', ''DEEPSLATE_IRON_ORE'']'
-    amount: 16
-    gp: 25
-    commands:
-    - eco give %player% 110
-    - give %player% iron_chestplate 1
-    reward-lore:
-    - ' &3&l| &6110 NR'
-    - ' &3&l| &b25 GP'
-    - ' &3&l| &7Zirah Besi'
-  e-5:
-    rank: E
-    challenge: false
-    name: '&7Ledakan Hijau'
-    icon: GUNPOWDER
-    type: KILL
-    target: CREEPER
-    amount: 6
-    gp: 25
-    commands:
-    - eco give %player% 125
-    - give %player% iron_leggings 1
-    reward-lore:
-    - ' &3&l| &6125 NR'
-    - ' &3&l| &b25 GP'
-    - ' &3&l| &7Celana Besi'
-  e-6:
-    rank: E
-    challenge: false
-    name: '&7Pandai Besi Muda'
-    icon: IRON_INGOT
-    type: GET
-    target: IRON_INGOT
-    amount: 16
-    gp: 25
-    commands:
-    - eco give %player% 140
-    - give %player% iron_boots 1
-    reward-lore:
-    - ' &3&l| &6140 NR'
-    - ' &3&l| &b25 GP'
-    - ' &3&l| &7Sepatu Besi'
-  e-1-t:
-    rank: E
-    challenge: true
-    name: '&7Sarang Laba-laba'
-    icon: STRING
-    type: KILL
-    target: SPIDER
-    amount: 10
-    gp: 31
-    commands:
-    - eco give %player% 90
-    - give %player% iron_ingot 12
-    reward-lore:
-    - ' &3&l| &690 NR'
-    - ' &3&l| &b31 GP'
-    - ' &3&l| &712 Batang Besi'
-  e-2-t:
-    rank: E
-    challenge: true
-    name: '&7Penyamak Kulit'
-    icon: LEATHER
-    type: GET
-    target: LEATHER
-    amount: 10
-    gp: 31
-    commands:
-    - eco give %player% 105
-    - mi give MATERIAL STEEL_INGOT %player% 4
-    reward-lore:
-    - ' &3&l| &6105 NR'
-    - ' &3&l| &b31 GP'
-    - ' &3&l| &74 Steel Ingot'
-  e-3-t:
-    rank: E
-    challenge: true
-    name: '&7Gerombolan Mayat'
-    icon: ZOMBIE_HEAD
-    type: KILL
-    target: ZOMBIE
-    amount: 20
-    gp: 31
-    commands:
-    - eco give %player% 120
-    - give %player% iron_helmet 1
-    reward-lore:
-    - ' &3&l| &6120 NR'
-    - ' &3&l| &b31 GP'
-    - ' &3&l| &7Helm Besi'
-  e-4-t:
-    rank: E
-    challenge: true
-    name: '&7Bijih Besi'
-    icon: RAW_IRON
-    type: BREAK
-    target: '[''IRON_ORE'', ''DEEPSLATE_IRON_ORE'']'
-    amount: 16
-    gp: 31
-    commands:
-    - eco give %player% 140
-    - give %player% iron_chestplate 1
-    reward-lore:
-    - ' &3&l| &6140 NR'
-    - ' &3&l| &b31 GP'
-    - ' &3&l| &7Zirah Besi'
-  e-5-t:
-    rank: E
-    challenge: true
-    name: '&7Ledakan Hijau'
-    icon: GUNPOWDER
-    type: KILL
-    target: CREEPER
-    amount: 6
-    gp: 31
-    commands:
-    - eco give %player% 160
-    - give %player% iron_leggings 1
-    reward-lore:
-    - ' &3&l| &6160 NR'
-    - ' &3&l| &b31 GP'
-    - ' &3&l| &7Celana Besi'
-  e-6-t:
-    rank: E
-    challenge: true
-    name: '&7Pandai Besi Muda'
-    icon: IRON_INGOT
-    type: GET
-    target: IRON_INGOT
-    amount: 16
-    gp: 31
-    commands:
-    - eco give %player% 175
-    - give %player% iron_boots 1
-    reward-lore:
-    - ' &3&l| &6175 NR'
-    - ' &3&l| &b31 GP'
-    - ' &3&l| &7Sepatu Besi'
-  d-1:
-    rank: D
-    challenge: false
-    name: '&aPemanah Bangkit'
-    icon: BOW
-    type: KILL
-    target: SKELETON
-    amount: 25
-    gp: 50
-    commands:
-    - eco give %player% 150
-    - crazycrates give virtual nereusabyss 1 %player% -s
-    reward-lore:
-    - ' &3&l| &6150 NR'
-    - ' &3&l| &b50 GP'
-    - ' &3&l| &71 Key Nereus Abyss'
-  d-2:
-    rank: D
-    challenge: false
-    name: '&aPenjinak Creeper'
-    icon: TNT
-    type: KILL
-    target: CREEPER
-    amount: 12
-    gp: 50
-    commands:
-    - eco give %player% 180
-    - crazycrates give virtual nereusabyss 1 %player% -s
-    reward-lore:
-    - ' &3&l| &6180 NR'
-    - ' &3&l| &b50 GP'
-    - ' &3&l| &71 Key Nereus Abyss'
-  d-3:
-    rank: D
-    challenge: false
-    name: '&aKilau Emas'
-    icon: GOLD_INGOT
-    type: GET
-    target: GOLD_INGOT
-    amount: 10
-    gp: 50
-    commands:
-    - eco give %player% 210
-    - crazycrates give virtual nereusabyss 1 %player% -s
-    reward-lore:
-    - ' &3&l| &6210 NR'
-    - ' &3&l| &b50 GP'
-    - ' &3&l| &71 Key Nereus Abyss'
-  d-4:
-    rank: D
-    challenge: false
-    name: '&aPenyihir Rawa'
-    icon: GLASS_BOTTLE
-    type: KILL
-    target: WITCH
-    amount: 4
-    gp: 50
-    commands:
-    - eco give %player% 240
-    - crazycrates give virtual nereusabyss 1 %player% -s
-    reward-lore:
-    - ' &3&l| &6240 NR'
-    - ' &3&l| &b50 GP'
-    - ' &3&l| &71 Key Nereus Abyss'
-  d-5:
-    rank: D
-    challenge: false
-    name: '&aUrat Besi Dalam'
-    icon: IRON_PICKAXE
-    type: BREAK
-    target: '[''IRON_ORE'', ''DEEPSLATE_IRON_ORE'']'
-    amount: 32
-    gp: 50
-    commands:
-    - eco give %player% 270
-    - crazycrates give virtual nereusabyss 1 %player% -s
-    reward-lore:
-    - ' &3&l| &6270 NR'
-    - ' &3&l| &b50 GP'
-    - ' &3&l| &71 Key Nereus Abyss'
-  d-1-t:
-    rank: D
-    challenge: true
-    name: '&aPemanah Bangkit'
-    icon: BOW
-    type: KILL
-    target: SKELETON
-    amount: 25
-    gp: 62
-    commands:
-    - eco give %player% 185
-    - crazycrates give virtual nereusabyss 1 %player% -s
-    reward-lore:
-    - ' &3&l| &6185 NR'
-    - ' &3&l| &b62 GP'
-    - ' &3&l| &71 Key Nereus Abyss'
-  d-2-t:
-    rank: D
-    challenge: true
-    name: '&aPenjinak Creeper'
-    icon: TNT
-    type: KILL
-    target: CREEPER
-    amount: 12
-    gp: 62
-    commands:
-    - eco give %player% 220
-    - crazycrates give virtual nereusabyss 1 %player% -s
-    reward-lore:
-    - ' &3&l| &6220 NR'
-    - ' &3&l| &b62 GP'
-    - ' &3&l| &71 Key Nereus Abyss'
-  d-3-t:
-    rank: D
-    challenge: true
-    name: '&aKilau Emas'
-    icon: GOLD_INGOT
-    type: GET
-    target: GOLD_INGOT
-    amount: 10
-    gp: 62
-    commands:
-    - eco give %player% 260
-    - crazycrates give virtual nereusabyss 1 %player% -s
-    reward-lore:
-    - ' &3&l| &6260 NR'
-    - ' &3&l| &b62 GP'
-    - ' &3&l| &71 Key Nereus Abyss'
-  d-4-t:
-    rank: D
-    challenge: true
-    name: '&aPenyihir Rawa'
-    icon: GLASS_BOTTLE
-    type: KILL
-    target: WITCH
-    amount: 4
-    gp: 62
-    commands:
-    - eco give %player% 300
-    - crazycrates give virtual nereusabyss 1 %player% -s
-    reward-lore:
-    - ' &3&l| &6300 NR'
-    - ' &3&l| &b62 GP'
-    - ' &3&l| &71 Key Nereus Abyss'
-  d-5-t:
-    rank: D
-    challenge: true
-    name: '&aUrat Besi Dalam'
-    icon: IRON_PICKAXE
-    type: BREAK
-    target: '[''IRON_ORE'', ''DEEPSLATE_IRON_ORE'']'
-    amount: 32
-    gp: 62
-    commands:
-    - eco give %player% 340
-    - crazycrates give virtual nereusabyss 1 %player% -s
-    reward-lore:
-    - ' &3&l| &6340 NR'
-    - ' &3&l| &b62 GP'
-    - ' &3&l| &71 Key Nereus Abyss'
-  c-1:
-    rank: C
-    challenge: false
-    name: '&bPemburu Enderman'
-    icon: ENDER_PEARL
-    type: KILL
-    target: ENDERMAN
-    amount: 12
-    gp: 100
-    commands:
-    - eco give %player% 250
-    - crazycrates give virtual nereusdraco 1 %player% -s
-    reward-lore:
-    - ' &3&l| &6250 NR'
-    - ' &3&l| &b100 GP'
-    - ' &3&l| &71 Key Nereus Draco'
-  c-2:
-    rank: C
-    challenge: false
-    name: '&bMata Berlian'
-    icon: DIAMOND_PICKAXE
-    type: BREAK
-    target: '[''DIAMOND_ORE'', ''DEEPSLATE_DIAMOND_ORE'']'
-    amount: 5
-    gp: 100
-    commands:
-    - eco give %player% 310
-    - crazycrates give virtual nereusdraco 1 %player% -s
-    reward-lore:
-    - ' &3&l| &6310 NR'
-    - ' &3&l| &b100 GP'
-    - ' &3&l| &71 Key Nereus Draco'
-  c-3:
-    rank: C
-    challenge: false
-    name: '&bPenjaga Laut'
-    icon: PRISMARINE_SHARD
-    type: KILL
-    target: GUARDIAN
-    amount: 10
-    gp: 100
-    commands:
-    - eco give %player% 380
-    - crazycrates give virtual nereusdraco 1 %player% -s
-    reward-lore:
-    - ' &3&l| &6380 NR'
-    - ' &3&l| &b100 GP'
-    - ' &3&l| &71 Key Nereus Draco'
-  c-4:
-    rank: C
-    challenge: false
-    name: '&bWabah Creeper'
-    icon: CREEPER_HEAD
-    type: KILL
-    target: CREEPER
-    amount: 20
-    gp: 100
-    commands:
-    - eco give %player% 440
-    - crazycrates give virtual nereusdraco 1 %player% -s
-    reward-lore:
-    - ' &3&l| &6440 NR'
-    - ' &3&l| &b100 GP'
-    - ' &3&l| &71 Key Nereus Draco'
-  c-5:
-    rank: C
-    challenge: false
-    name: '&bKutukan Rawa'
-    icon: SPLASH_POTION
-    type: KILL
-    target: WITCH
-    amount: 8
-    gp: 100
-    commands:
-    - eco give %player% 500
-    - crazycrates give virtual nereusdraco 1 %player% -s
-    reward-lore:
-    - ' &3&l| &6500 NR'
-    - ' &3&l| &b100 GP'
-    - ' &3&l| &71 Key Nereus Draco'
-  c-1-t:
-    rank: C
-    challenge: true
-    name: '&bPemburu Enderman'
-    icon: ENDER_PEARL
-    type: KILL
-    target: ENDERMAN
-    amount: 12
-    gp: 125
-    commands:
-    - eco give %player% 310
-    - crazycrates give virtual nereusdraco 1 %player% -s
-    reward-lore:
-    - ' &3&l| &6310 NR'
-    - ' &3&l| &b125 GP'
-    - ' &3&l| &71 Key Nereus Draco'
-  c-2-t:
-    rank: C
-    challenge: true
-    name: '&bMata Berlian'
-    icon: DIAMOND_PICKAXE
-    type: BREAK
-    target: '[''DIAMOND_ORE'', ''DEEPSLATE_DIAMOND_ORE'']'
-    amount: 5
-    gp: 125
-    commands:
-    - eco give %player% 390
-    - crazycrates give virtual nereusdraco 1 %player% -s
-    reward-lore:
-    - ' &3&l| &6390 NR'
-    - ' &3&l| &b125 GP'
-    - ' &3&l| &71 Key Nereus Draco'
-  c-3-t:
-    rank: C
-    challenge: true
-    name: '&bPenjaga Laut'
-    icon: PRISMARINE_SHARD
-    type: KILL
-    target: GUARDIAN
-    amount: 10
-    gp: 125
-    commands:
-    - eco give %player% 470
-    - crazycrates give virtual nereusdraco 1 %player% -s
-    reward-lore:
-    - ' &3&l| &6470 NR'
-    - ' &3&l| &b125 GP'
-    - ' &3&l| &71 Key Nereus Draco'
-  c-4-t:
-    rank: C
-    challenge: true
-    name: '&bWabah Creeper'
-    icon: CREEPER_HEAD
-    type: KILL
-    target: CREEPER
-    amount: 20
-    gp: 125
-    commands:
-    - eco give %player% 550
-    - crazycrates give virtual nereusdraco 1 %player% -s
-    reward-lore:
-    - ' &3&l| &6550 NR'
-    - ' &3&l| &b125 GP'
-    - ' &3&l| &71 Key Nereus Draco'
-  c-5-t:
-    rank: C
-    challenge: true
-    name: '&bKutukan Rawa'
-    icon: SPLASH_POTION
-    type: KILL
-    target: WITCH
-    amount: 8
-    gp: 125
-    commands:
-    - eco give %player% 620
-    - crazycrates give virtual nereusdraco 1 %player% -s
-    reward-lore:
-    - ' &3&l| &6620 NR'
-    - ' &3&l| &b125 GP'
-    - ' &3&l| &71 Key Nereus Draco'
-  b-1:
-    rank: B
-    challenge: false
-    name: '&9Penjinak Api'
-    icon: BLAZE_ROD
-    type: KILL
-    target: BLAZE
-    amount: 15
-    gp: 200
-    commands:
-    - eco give %player% 500
-    - mi give MATERIAL RARE_DIAMOND %player% 2
-    - crazycrates forceopen nereuswarlord %player%
-    reward-lore:
-    - ' &3&l| &6500 NR'
-    - ' &3&l| &b200 GP'
-    - ' &3&l| &72 Rare Diamond, peluang Crate Nereus Warlord (Epic)'
-  b-2:
-    rank: B
-    challenge: false
-    name: '&9Benteng Nether'
-    icon: WITHER_SKELETON_SKULL
-    type: KILL
-    target: WITHER_SKELETON
-    amount: 10
-    gp: 200
-    commands:
-    - eco give %player% 620
-    - mi give MATERIAL MAGIC_ESSENCE %player% 1
-    - crazycrates forceopen nereuswarlord %player%
-    reward-lore:
-    - ' &3&l| &6620 NR'
-    - ' &3&l| &b200 GP'
-    - ' &3&l| &71 Magic Essence, peluang Crate Nereus Warlord (Epic)'
-  b-3:
-    rank: B
-    challenge: false
-    name: '&9Babi Zombi'
-    icon: GOLD_NUGGET
-    type: KILL
-    target: ZOMBIFIED_PIGLIN
-    amount: 30
-    gp: 200
-    commands:
-    - eco give %player% 750
-    - mi give MATERIAL DARK_NETHERITE %player% 1
-    - crazycrates forceopen nereuswarlord %player%
-    reward-lore:
-    - ' &3&l| &6750 NR'
-    - ' &3&l| &b200 GP'
-    - ' &3&l| &71 Dark Netherite, peluang Crate Nereus Warlord (Epic)'
-  b-4:
-    rank: B
-    challenge: false
-    name: '&9Urat Berlian'
-    icon: DIAMOND
-    type: BREAK
-    target: '[''DIAMOND_ORE'', ''DEEPSLATE_DIAMOND_ORE'']'
-    amount: 12
-    gp: 200
-    commands:
-    - eco give %player% 880
-    - mi give MATERIAL RARE_DIAMOND %player% 2
-    - crazycrates forceopen nereuswarlord %player%
-    reward-lore:
-    - ' &3&l| &6880 NR'
-    - ' &3&l| &b200 GP'
-    - ' &3&l| &72 Rare Diamond, peluang Crate Nereus Warlord (Epic)'
-  b-5:
-    rank: B
-    challenge: false
-    name: '&9Penyerbu Desa'
-    icon: CROSSBOW
-    type: KILL
-    target: PILLAGER
-    amount: 15
-    gp: 200
-    commands:
-    - eco give %player% 1000
-    - mi give MATERIAL MAGIC_ESSENCE %player% 1
-    - crazycrates forceopen nereuswarlord %player%
-    reward-lore:
-    - ' &3&l| &61.000 NR'
-    - ' &3&l| &b200 GP'
-    - ' &3&l| &71 Magic Essence, peluang Crate Nereus Warlord (Epic)'
-  b-1-t:
-    rank: B
-    challenge: true
-    name: '&9Penjinak Api'
-    icon: BLAZE_ROD
-    type: KILL
-    target: BLAZE
-    amount: 15
-    gp: 250
-    commands:
-    - eco give %player% 620
-    - mi give MATERIAL RARE_DIAMOND %player% 2
-    - crazycrates forceopen nereuswarlord %player%
-    reward-lore:
-    - ' &3&l| &6620 NR'
-    - ' &3&l| &b250 GP'
-    - ' &3&l| &72 Rare Diamond, peluang Crate Nereus Warlord (Epic)'
-  b-2-t:
-    rank: B
-    challenge: true
-    name: '&9Benteng Nether'
-    icon: WITHER_SKELETON_SKULL
-    type: KILL
-    target: WITHER_SKELETON
-    amount: 10
-    gp: 250
-    commands:
-    - eco give %player% 780
-    - mi give MATERIAL MAGIC_ESSENCE %player% 1
-    - crazycrates forceopen nereuswarlord %player%
-    reward-lore:
-    - ' &3&l| &6780 NR'
-    - ' &3&l| &b250 GP'
-    - ' &3&l| &71 Magic Essence, peluang Crate Nereus Warlord (Epic)'
-  b-3-t:
-    rank: B
-    challenge: true
-    name: '&9Babi Zombi'
-    icon: GOLD_NUGGET
-    type: KILL
-    target: ZOMBIFIED_PIGLIN
-    amount: 30
-    gp: 250
-    commands:
-    - eco give %player% 940
-    - mi give MATERIAL DARK_NETHERITE %player% 1
-    - crazycrates forceopen nereuswarlord %player%
-    reward-lore:
-    - ' &3&l| &6940 NR'
-    - ' &3&l| &b250 GP'
-    - ' &3&l| &71 Dark Netherite, peluang Crate Nereus Warlord (Epic)'
-  b-4-t:
-    rank: B
-    challenge: true
-    name: '&9Urat Berlian'
-    icon: DIAMOND
-    type: BREAK
-    target: '[''DIAMOND_ORE'', ''DEEPSLATE_DIAMOND_ORE'']'
-    amount: 12
-    gp: 250
-    commands:
-    - eco give %player% 1100
-    - mi give MATERIAL RARE_DIAMOND %player% 2
-    - crazycrates forceopen nereuswarlord %player%
-    reward-lore:
-    - ' &3&l| &61.100 NR'
-    - ' &3&l| &b250 GP'
-    - ' &3&l| &72 Rare Diamond, peluang Crate Nereus Warlord (Epic)'
-  b-5-t:
-    rank: B
-    challenge: true
-    name: '&9Penyerbu Desa'
-    icon: CROSSBOW
-    type: KILL
-    target: PILLAGER
-    amount: 15
-    gp: 250
-    commands:
-    - eco give %player% 1250
-    - mi give MATERIAL MAGIC_ESSENCE %player% 1
-    - crazycrates forceopen nereuswarlord %player%
-    reward-lore:
-    - ' &3&l| &61.250 NR'
-    - ' &3&l| &b250 GP'
-    - ' &3&l| &71 Magic Essence, peluang Crate Nereus Warlord (Epic)'
-  a-1:
-    rank: A
-    challenge: false
-    name: '&dPasukan Wither'
-    icon: COAL_BLOCK
-    type: KILL
-    target: WITHER_SKELETON
-    amount: 25
-    gp: 400
-    commands:
-    - eco give %player% 900
-    - crazycrates give virtual nereuswarlord 1 %player% -s
-    - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
-    reward-lore:
-    - ' &3&l| &6900 NR'
-    - ' &3&l| &b400 GP'
-    - ' &3&l| &71 Key Nereus Warlord dan 1 Fragmen Artefak'
-  a-2:
-    rank: A
-    challenge: false
-    name: '&dBadai Api'
-    icon: BLAZE_POWDER
-    type: KILL
-    target: BLAZE
-    amount: 25
-    gp: 400
-    commands:
-    - eco give %player% 1050
-    - crazycrates give virtual nereuswarlord 1 %player% -s
-    - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
-    reward-lore:
-    - ' &3&l| &61.050 NR'
-    - ' &3&l| &b400 GP'
-    - ' &3&l| &71 Key Nereus Warlord dan 1 Fragmen Artefak'
-  a-3:
-    rank: A
-    challenge: false
-    name: '&dPuing Kuno'
-    icon: ANCIENT_DEBRIS
-    type: BREAK
-    target: ANCIENT_DEBRIS
-    amount: 4
-    gp: 400
-    commands:
-    - eco give %player% 1200
-    - crazycrates give virtual nereuswarlord 1 %player% -s
-    - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
-    reward-lore:
-    - ' &3&l| &61.200 NR'
-    - ' &3&l| &b400 GP'
-    - ' &3&l| &71 Key Nereus Warlord dan 1 Fragmen Artefak'
-  a-4:
-    rank: A
-    challenge: false
-    name: '&dPenjaga Benteng'
-    icon: GOLDEN_AXE
-    type: KILL
-    target: PIGLIN_BRUTE
-    amount: 5
-    gp: 400
-    commands:
-    - eco give %player% 1350
-    - crazycrates give virtual nereuswarlord 1 %player% -s
-    - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
-    reward-lore:
-    - ' &3&l| &61.350 NR'
-    - ' &3&l| &b400 GP'
-    - ' &3&l| &71 Key Nereus Warlord dan 1 Fragmen Artefak'
-  a-5:
-    rank: A
-    challenge: false
-    name: '&dPemanggil Roh'
-    icon: TOTEM_OF_UNDYING
-    type: KILL
-    target: EVOKER
-    amount: 3
-    gp: 400
-    commands:
-    - eco give %player% 1500
-    - crazycrates give virtual nereuswarlord 1 %player% -s
-    - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
-    reward-lore:
-    - ' &3&l| &61.500 NR'
-    - ' &3&l| &b400 GP'
-    - ' &3&l| &71 Key Nereus Warlord dan 1 Fragmen Artefak'
-  a-1-t:
-    rank: A
-    challenge: true
-    name: '&dPasukan Wither'
-    icon: COAL_BLOCK
-    type: KILL
-    target: WITHER_SKELETON
-    amount: 25
-    gp: 500
-    commands:
-    - eco give %player% 1100
-    - crazycrates give virtual nereuswarlord 1 %player% -s
-    - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
-    reward-lore:
-    - ' &3&l| &61.100 NR'
-    - ' &3&l| &b500 GP'
-    - ' &3&l| &71 Key Nereus Warlord dan 1 Fragmen Artefak'
-  a-2-t:
-    rank: A
-    challenge: true
-    name: '&dBadai Api'
-    icon: BLAZE_POWDER
-    type: KILL
-    target: BLAZE
-    amount: 25
-    gp: 500
-    commands:
-    - eco give %player% 1300
-    - crazycrates give virtual nereuswarlord 1 %player% -s
-    - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
-    reward-lore:
-    - ' &3&l| &61.300 NR'
-    - ' &3&l| &b500 GP'
-    - ' &3&l| &71 Key Nereus Warlord dan 1 Fragmen Artefak'
-  a-3-t:
-    rank: A
-    challenge: true
-    name: '&dPuing Kuno'
-    icon: ANCIENT_DEBRIS
-    type: BREAK
-    target: ANCIENT_DEBRIS
-    amount: 4
-    gp: 500
-    commands:
-    - eco give %player% 1500
-    - crazycrates give virtual nereuswarlord 1 %player% -s
-    - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
-    reward-lore:
-    - ' &3&l| &61.500 NR'
-    - ' &3&l| &b500 GP'
-    - ' &3&l| &71 Key Nereus Warlord dan 1 Fragmen Artefak'
-  a-4-t:
-    rank: A
-    challenge: true
-    name: '&dPenjaga Benteng'
-    icon: GOLDEN_AXE
-    type: KILL
-    target: PIGLIN_BRUTE
-    amount: 5
-    gp: 500
-    commands:
-    - eco give %player% 1700
-    - crazycrates give virtual nereuswarlord 1 %player% -s
-    - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
-    reward-lore:
-    - ' &3&l| &61.700 NR'
-    - ' &3&l| &b500 GP'
-    - ' &3&l| &71 Key Nereus Warlord dan 1 Fragmen Artefak'
-  a-5-t:
-    rank: A
-    challenge: true
-    name: '&dPemanggil Roh'
-    icon: TOTEM_OF_UNDYING
-    type: KILL
-    target: EVOKER
-    amount: 3
-    gp: 500
-    commands:
-    - eco give %player% 1900
-    - crazycrates give virtual nereuswarlord 1 %player% -s
-    - mi give MATERIAL FRAGMEN_ARTEFAK %player% 1
-    reward-lore:
-    - ' &3&l| &61.900 NR'
-    - ' &3&l| &b500 GP'
-    - ' &3&l| &71 Key Nereus Warlord dan 1 Fragmen Artefak'
-  s-1:
-    rank: S
-    challenge: false
-    name: '&6Raksasa Penyerbu'
-    icon: SADDLE
-    type: KILL
-    target: RAVAGER
-    amount: 5
-    gp: 800
-    commands:
-    - eco give %player% 1450
-    - crazycrates forceopen nereuseclipse %player%
-    reward-lore:
-    - ' &3&l| &61.450 NR'
-    - ' &3&l| &b800 GP'
-    - ' &3&l| &7Peluang Crate Nereus Eclipse (Legend)'
-  s-2:
-    rank: S
-    challenge: false
-    name: '&6Puing Neraka'
-    icon: NETHERITE_SCRAP
-    type: BREAK
-    target: ANCIENT_DEBRIS
-    amount: 10
-    gp: 800
-    commands:
-    - eco give %player% 1950
-    - crazycrates forceopen nereuseclipse %player%
-    reward-lore:
-    - ' &3&l| &61.950 NR'
-    - ' &3&l| &b800 GP'
-    - ' &3&l| &7Peluang Crate Nereus Eclipse (Legend)'
-  s-3:
-    rank: S
-    challenge: false
-    name: '&6Legiun Wither'
-    icon: WITHER_ROSE
-    type: KILL
-    target: WITHER_SKELETON
     amount: 40
-    gp: 800
-    commands:
-    - eco give %player% 2500
-    - crazycrates forceopen nereuseclipse %player%
-    reward-lore:
-    - ' &3&l| &62.500 NR'
-    - ' &3&l| &b800 GP'
-    - ' &3&l| &7Peluang Crate Nereus Eclipse (Legend)'
-  s-4:
-    rank: S
-    challenge: false
-    name: '&6Tetua Samudra'
-    icon: SPONGE
-    type: KILL
-    target: ELDER_GUARDIAN
-    amount: 2
-    gp: 800
-    commands:
-    - eco give %player% 3000
-    - crazycrates forceopen nereuseclipse %player%
-    reward-lore:
-    - ' &3&l| &63.000 NR'
-    - ' &3&l| &b800 GP'
-    - ' &3&l| &7Peluang Crate Nereus Eclipse (Legend)'
-  s-1-t:
-    rank: S
-    challenge: true
-    name: '&6Raksasa Penyerbu'
-    icon: SADDLE
-    type: KILL
-    target: RAVAGER
-    amount: 5
-    gp: 1000
-    commands:
-    - eco give %player% 1800
-    - crazycrates forceopen nereuseclipse %player%
-    reward-lore:
-    - ' &3&l| &61.800 NR'
-    - ' &3&l| &b1.000 GP'
-    - ' &3&l| &7Peluang Crate Nereus Eclipse (Legend)'
-  s-2-t:
-    rank: S
-    challenge: true
-    name: '&6Puing Neraka'
-    icon: NETHERITE_SCRAP
+    weight: 1.0
+    target: COAL_ORE,DEEPSLATE_COAL_ORE
+  mining-3:
+    category: MINING
+    tier: D
+    name: Pencari Besi dan Tembaga
+    icon: IRON_ORE
+    description: Tambang bijih besi dan tembaga.
     type: BREAK
+    amount: 48
+    weight: 1.0
+    target: IRON_ORE,DEEPSLATE_IRON_ORE,COPPER_ORE,DEEPSLATE_COPPER_ORE
+  mining-4:
+    category: MINING
+    tier: C
+    name: Penggali Bawah Tanah
+    icon: LAPIS_LAZULI
+    description: Tambang emas, lapis, dan redstone di bawah tanah.
+    type: BREAK
+    amount: 60
+    weight: 1.1
+    target: GOLD_ORE,DEEPSLATE_GOLD_ORE,NETHER_GOLD_ORE,LAPIS_ORE,DEEPSLATE_LAPIS_ORE,REDSTONE_ORE,DEEPSLATE_REDSTONE_ORE
+    cond: UNDERGROUND
+  mining-5:
+    category: MINING
+    tier: A
+    name: Pemburu Permata
+    icon: DIAMOND
+    description: Tambang berlian dan zamrud.
+    type: BREAK
+    amount: 24
+    weight: 1.3
+    target: DIAMOND_ORE,DEEPSLATE_DIAMOND_ORE,EMERALD_ORE,DEEPSLATE_EMERALD_ORE
+  mining-6:
+    category: MINING
+    tier: S
+    name: Penggali Puing Kuno
+    icon: ANCIENT_DEBRIS
+    description: Gali Ancient Debris di Nether.
+    type: BREAK
+    amount: 12
+    weight: 1.4
     target: ANCIENT_DEBRIS
-    amount: 10
-    gp: 1000
-    commands:
-    - eco give %player% 2450
-    - crazycrates forceopen nereuseclipse %player%
-    reward-lore:
-    - ' &3&l| &62.450 NR'
-    - ' &3&l| &b1.000 GP'
-    - ' &3&l| &7Peluang Crate Nereus Eclipse (Legend)'
-  s-3-t:
-    rank: S
-    challenge: true
-    name: '&6Legiun Wither'
-    icon: WITHER_ROSE
-    type: KILL
-    target: WITHER_SKELETON
+    cond: NETHER
+  gathering-1:
+    category: GATHERING
+    tier: F
+    name: Pengumpul Pasir
+    icon: SAND
+    description: Gali pasir.
+    type: BREAK
+    amount: 64
+    weight: 0.8
+    target: SAND,RED_SAND
+  gathering-2:
+    category: GATHERING
+    tier: E
+    name: Penggali Kerikil dan Tanah Liat
+    icon: CLAY_BALL
+    description: Gali kerikil dan tanah liat.
+    type: BREAK
+    amount: 64
+    weight: 0.9
+    target: GRAVEL,CLAY
+  gathering-3:
+    category: GATHERING
+    tier: D
+    name: Pemetik Bunga
+    icon: POPPY
+    description: Petik bunga liar.
+    type: BREAK
     amount: 40
-    gp: 1000
-    commands:
-    - eco give %player% 3100
-    - crazycrates forceopen nereuseclipse %player%
-    reward-lore:
-    - ' &3&l| &63.100 NR'
-    - ' &3&l| &b1.000 GP'
-    - ' &3&l| &7Peluang Crate Nereus Eclipse (Legend)'
-  s-4-t:
-    rank: S
-    challenge: true
-    name: '&6Tetua Samudra'
-    icon: SPONGE
-    type: KILL
-    target: ELDER_GUARDIAN
-    amount: 2
-    gp: 1000
-    commands:
-    - eco give %player% 3750
-    - crazycrates forceopen nereuseclipse %player%
-    reward-lore:
-    - ' &3&l| &63.750 NR'
-    - ' &3&l| &b1.000 GP'
-    - ' &3&l| &7Peluang Crate Nereus Eclipse (Legend)'
-  ss-1:
-    rank: S
-    challenge: false
-    name: '&cPembantai Shulker'
-    icon: SHULKER_SHELL
-    type: KILL
-    target: SHULKER
-    amount: 15
-    gp: 1500
-    commands:
-    - eco give %player% 2400
-    - crazycrates forceopen nereusmythrill %player%
-    reward-lore:
-    - ' &3&l| &62.400 NR'
-    - ' &3&l| &b1.500 GP'
-    - ' &3&l| &7Peluang Crate Nereus Mythrill (senjata Legend)'
-  ss-2:
-    rank: S
-    challenge: false
-    name: '&cPemburu End'
-    icon: ENDER_EYE
-    type: KILL
-    target: ENDERMAN
+    weight: 1.0
+    target: DANDELION,POPPY,AZURE_BLUET,OXEYE_DAISY,CORNFLOWER,LILY_OF_THE_VALLEY,ALLIUM,BLUE_ORCHID,RED_TULIP,ORANGE_TULIP,WHITE_TULIP,PINK_TULIP
+  gathering-4:
+    category: GATHERING
+    tier: C
+    name: Pencari Jamur
+    icon: RED_MUSHROOM
+    description: Panen jamur dan blok jamur raksasa.
+    type: BREAK
     amount: 60
-    gp: 1500
-    commands:
-    - eco give %player% 3200
-    - crazycrates forceopen nereusmythrill %player%
-    reward-lore:
-    - ' &3&l| &63.200 NR'
-    - ' &3&l| &b1.500 GP'
-    - ' &3&l| &7Peluang Crate Nereus Mythrill (senjata Legend)'
-  ss-3:
-    rank: S
-    challenge: false
-    name: '&cKehancuran Wither'
-    icon: NETHER_STAR
+    weight: 1.0
+    target: RED_MUSHROOM,BROWN_MUSHROOM,RED_MUSHROOM_BLOCK,BROWN_MUSHROOM_BLOCK,MUSHROOM_STEM
+  gathering-5:
+    category: GATHERING
+    tier: B
+    name: Penjelajah Tanah Nether
+    icon: SOUL_SAND
+    description: Gali tanah khas Nether.
+    type: BREAK
+    amount: 96
+    weight: 1.2
+    target: SOUL_SAND,SOUL_SOIL,BASALT,BLACKSTONE
+    cond: NETHER
+  gathering-6:
+    category: GATHERING
+    tier: A
+    name: Penambang Kristal
+    icon: AMETHYST_SHARD
+    description: Pecahkan gugus kristal ametis.
+    type: BREAK
+    amount: 20
+    weight: 1.3
+    target: AMETHYST_CLUSTER
+  farming-1:
+    category: FARMING
+    tier: F
+    name: Panen Gandum
+    icon: WHEAT
+    description: Panen gandum yang sudah matang.
+    type: HARVEST
+    amount: 48
+    weight: 0.9
+    target: WHEAT
+  farming-2:
+    category: FARMING
+    tier: E
+    name: Panen Umbi
+    icon: CARROT
+    description: Panen wortel, kentang, dan bit yang matang.
+    type: HARVEST
+    amount: 64
+    weight: 1.0
+    target: CARROTS,POTATOES,BEETROOTS
+  farming-3:
+    category: FARMING
+    tier: D
+    name: Penanam Ladang
+    icon: WHEAT_SEEDS
+    description: Tanam bibit di lahan pertanian.
+    type: PLANT
+    amount: 100
+    weight: 1.0
+    target: WHEAT,CARROTS,POTATOES,BEETROOTS
+  farming-4:
+    category: FARMING
+    tier: C
+    name: Panen Labu dan Semangka
+    icon: MELON_SLICE
+    description: Panen labu dan semangka.
+    type: BREAK
+    amount: 64
+    weight: 1.0
+    target: PUMPKIN,MELON
+  farming-5:
+    category: FARMING
+    tier: B
+    name: Petani Nether
+    icon: NETHER_WART
+    description: Panen Nether Wart yang matang.
+    type: HARVEST
+    amount: 96
+    weight: 1.2
+    target: NETHER_WART
+  farming-6:
+    category: FARMING
+    tier: S
+    name: Lumbung Raksasa
+    icon: HAY_BLOCK
+    description: Panen segala tanaman matang dalam jumlah besar.
+    type: HARVEST
+    amount: 600
+    weight: 1.4
+    target: WHEAT,CARROTS,POTATOES,BEETROOTS,NETHER_WART
+  economy-1:
+    category: ECONOMY
+    tier: F
+    name: Pedagang Pasar
+    icon: EMERALD
+    description: Jual hasil tani ke shop.
+    type: SELL
+    amount: 64
+    weight: 0.9
+    target: WHEAT,CARROT,POTATO,BEETROOT,MELON_SLICE,PUMPKIN
+  economy-2:
+    category: ECONOMY
+    tier: E
+    name: Penjual Tambang
+    icon: COAL
+    description: Jual batu dan batu bara ke shop.
+    type: SELL
+    amount: 128
+    weight: 1.0
+    target: COBBLESTONE,STONE,COAL,COPPER_INGOT,IRON_INGOT
+  economy-3:
+    category: ECONOMY
+    tier: D
+    name: Penghasil Nerith
+    icon: GOLD_NUGGET
+    description: Hasilkan Nerith dengan menjual item di shop.
+    type: SELL_VALUE
+    amount: 500
+    weight: 1.0
+  economy-4:
+    category: ECONOMY
+    tier: C
+    name: Pembeli Setia
+    icon: CHEST
+    description: Belanja di shop (pengeluaran Nerith).
+    type: BUY_VALUE
+    amount: 1000
+    weight: 1.0
+  economy-5:
+    category: ECONOMY
+    tier: B
+    name: Penadah Hasil Buruan
+    icon: BONE
+    description: Jual hasil buruan monster ke shop.
+    type: SELL
+    amount: 192
+    weight: 1.1
+    target: ROTTEN_FLESH,BONE,STRING,SPIDER_EYE,GUNPOWDER
+  economy-6:
+    category: ECONOMY
+    tier: S
+    name: Raja Dagang
+    icon: GOLD_BLOCK
+    description: Hasilkan Nerith dalam jumlah besar dari penjualan.
+    type: SELL_VALUE
+    amount: 15000
+    weight: 1.4
+  crafting-1:
+    category: CRAFTING
+    tier: F
+    name: Penerang Gua
+    icon: TORCH
+    description: Buat obor.
+    type: CRAFT
+    amount: 64
+    weight: 0.8
+    target: TORCH
+  crafting-2:
+    category: CRAFTING
+    tier: E
+    name: Juru Masak
+    icon: BREAD
+    description: Buat roti dan kue kering.
+    type: CRAFT
+    amount: 48
+    weight: 0.9
+    target: BREAD,COOKIE
+  crafting-3:
+    category: CRAFTING
+    tier: D
+    name: Tukang Perabot
+    icon: CHEST
+    description: Buat peti, tong, dan tungku.
+    type: CRAFT
+    amount: 24
+    weight: 1.0
+    target: CHEST,BARREL,FURNACE,SMOKER,CRAFTING_TABLE
+  crafting-4:
+    category: CRAFTING
+    tier: C
+    name: Pembuat Panah
+    icon: ARROW
+    description: Buat panah dan busur.
+    type: CRAFT
+    amount: 128
+    weight: 1.0
+    target: ARROW,BOW,CROSSBOW
+  crafting-5:
+    category: CRAFTING
+    tier: B
+    name: Insinyur Redstone
+    icon: REDSTONE
+    description: Buat komponen redstone.
+    type: CRAFT
+    amount: 32
+    weight: 1.2
+    target: PISTON,STICKY_PISTON,OBSERVER,REPEATER,COMPARATOR,HOPPER,DROPPER,DISPENSER
+  crafting-6:
+    category: CRAFTING
+    tier: A
+    name: Pengrajin Arkana
+    icon: ENCHANTING_TABLE
+    description: Buat meja sihir, ramuan, dan perabot ahli.
+    type: CRAFT
+    amount: 12
+    weight: 1.3
+    target: ENCHANTING_TABLE,BREWING_STAND,ANVIL,LECTERN,JUKEBOX
+  survival-1:
+    category: SURVIVAL
+    tier: F
+    name: Bertahan Hidup
+    icon: TOTEM_OF_UNDYING
+    description: Bertahan hidup tanpa mati (hitungan menit).
+    type: STAT
+    amount: 20
+    weight: 0.9
+    target: TIME_SINCE_DEATH
+  survival-2:
+    category: SURVIVAL
+    tier: E
+    name: Pejalan Kaki
+    icon: LEATHER_BOOTS
+    description: Berjalan kaki (blok).
+    type: STAT
+    amount: 1000
+    weight: 1.0
+    target: WALK_ONE_CM
+  survival-3:
+    category: SURVIVAL
+    tier: D
+    name: Pemakan Segala
+    icon: COOKED_BEEF
+    description: Makan makanan apa pun.
+    type: EAT
+    amount: 30
+    weight: 1.0
+    target: BREAD,COOKED_BEEF,COOKED_PORKCHOP,COOKED_MUTTON,COOKED_CHICKEN,COOKED_RABBIT,COOKED_COD,COOKED_SALMON,BAKED_POTATO,APPLE,CARROT,GOLDEN_CARROT,MELON_SLICE,SWEET_BERRIES,PUMPKIN_PIE,COOKIE,BEETROOT_SOUP,MUSHROOM_STEW
+  survival-4:
+    category: SURVIVAL
+    tier: C
+    name: Tidur Nyenyak
+    icon: RED_BED
+    description: Tidur di ranjang hingga pagi.
+    type: SLEEP
+    amount: 5
+    weight: 1.0
+  survival-5:
+    category: SURVIVAL
+    tier: B
+    name: Perenang Handal
+    icon: HEART_OF_THE_SEA
+    description: Berenang jauh (blok).
+    type: STAT
+    amount: 500
+    weight: 1.2
+    target: SWIM_ONE_CM
+  survival-6:
+    category: SURVIVAL
+    tier: A
+    name: Pendaki Tebing
+    icon: LADDER
+    description: Memanjat tangga atau tebing (blok).
+    type: STAT
+    amount: 300
+    weight: 1.2
+    target: CLIMB_ONE_CM
+  hunting-1:
+    category: HUNTING
+    tier: F
+    name: Pemburu Ternak Liar
+    icon: BEEF
+    description: Buru sapi, babi, domba, dan ayam dewasa.
     type: KILL
-    target: WITHER
-    amount: 1
-    gp: 1500
-    commands:
-    - eco give %player% 4000
-    - crazycrates forceopen nereusmythrill %player%
-    reward-lore:
-    - ' &3&l| &64.000 NR'
-    - ' &3&l| &b1.500 GP'
-    - ' &3&l| &7Peluang Crate Nereus Mythrill (senjata Legend)'
-  ss-4:
-    rank: S
-    challenge: false
-    name: '&cPenjaga Kegelapan'
-    icon: SCULK_CATALYST
+    amount: 20
+    weight: 0.9
+    target: COW,PIG,SHEEP,CHICKEN
+    cond: ADULT
+  hunting-2:
+    category: HUNTING
+    tier: E
+    name: Pemburu Perairan
+    icon: COD
+    description: Buru ikan dan cumi.
     type: KILL
-    target: WARDEN
-    amount: 1
-    gp: 1500
-    commands:
-    - eco give %player% 4800
-    - crazycrates forceopen nereusmythrill %player%
-    reward-lore:
-    - ' &3&l| &64.800 NR'
-    - ' &3&l| &b1.500 GP'
-    - ' &3&l| &7Peluang Crate Nereus Mythrill (senjata Legend)'
-  ss-1-t:
-    rank: S
-    challenge: true
-    name: '&cPembantai Shulker'
-    icon: SHULKER_SHELL
+    amount: 25
+    weight: 1.0
+    target: SQUID,GLOW_SQUID,COD,SALMON,PUFFERFISH,TROPICAL_FISH
+  hunting-3:
+    category: HUNTING
+    tier: D
+    name: Pemanah Pemburu
+    icon: ARROW
+    description: Buru hewan dengan panah.
     type: KILL
-    target: SHULKER
+    amount: 40
+    weight: 1.1
+    target: COW,PIG,SHEEP,CHICKEN,RABBIT
+    cond: BOW
+  hunting-4:
+    category: HUNTING
+    tier: C
+    name: Pemburu Malam
+    icon: RABBIT_HIDE
+    description: Buru hewan saat malam hari.
+    type: KILL
+    amount: 40
+    weight: 1.1
+    target: COW,PIG,SHEEP,CHICKEN,RABBIT,GOAT
+    cond: NIGHT
+  hunting-5:
+    category: HUNTING
+    tier: B
+    name: Pemburu Pegunungan
+    icon: GOAT_HORN
+    description: Buru kambing gunung dan beruang kutub.
+    type: KILL
     amount: 15
-    gp: 1875
-    commands:
-    - eco give %player% 3000
-    - crazycrates forceopen nereusmythrill %player%
-    reward-lore:
-    - ' &3&l| &63.000 NR'
-    - ' &3&l| &b1.875 GP'
-    - ' &3&l| &7Peluang Crate Nereus Mythrill (senjata Legend)'
-  ss-2-t:
-    rank: S
-    challenge: true
-    name: '&cPemburu End'
-    icon: ENDER_EYE
+    weight: 1.2
+    target: GOAT,POLAR_BEAR
+    cond: ADULT
+  hunting-6:
+    category: HUNTING
+    tier: A
+    name: Pemburu Nether
+    icon: COOKED_PORKCHOP
+    description: Buru Hoglin dan Strider di Nether.
     type: KILL
-    target: ENDERMAN
-    amount: 60
-    gp: 1875
-    commands:
-    - eco give %player% 4000
-    - crazycrates forceopen nereusmythrill %player%
-    reward-lore:
-    - ' &3&l| &64.000 NR'
-    - ' &3&l| &b1.875 GP'
-    - ' &3&l| &7Peluang Crate Nereus Mythrill (senjata Legend)'
-  ss-3-t:
-    rank: S
-    challenge: true
-    name: '&cKehancuran Wither'
-    icon: NETHER_STAR
-    type: KILL
-    target: WITHER
-    amount: 1
-    gp: 1875
-    commands:
-    - eco give %player% 5000
-    - crazycrates forceopen nereusmythrill %player%
-    reward-lore:
-    - ' &3&l| &65.000 NR'
-    - ' &3&l| &b1.875 GP'
-    - ' &3&l| &7Peluang Crate Nereus Mythrill (senjata Legend)'
-  ss-4-t:
-    rank: S
-    challenge: true
-    name: '&cPenjaga Kegelapan'
-    icon: SCULK_CATALYST
-    type: KILL
-    target: WARDEN
-    amount: 1
-    gp: 1875
-    commands:
-    - eco give %player% 6000
-    - crazycrates forceopen nereusmythrill %player%
-    reward-lore:
-    - ' &3&l| &66.000 NR'
-    - ' &3&l| &b1.875 GP'
-    - ' &3&l| &7Peluang Crate Nereus Mythrill (senjata Legend)'
-  sss-1:
-    rank: S
-    challenge: false
-    name: '&4Pembunuh Naga'
-    icon: DRAGON_HEAD
-    type: KILL
-    target: ENDER_DRAGON
-    amount: 1
-    gp: 3000
-    commands:
-    - eco give %player% 4000
-    - lp user %player% meta setsuffix 30 " &6&l[S]"
-    reward-lore:
-    - ' &3&l| &64.000 NR'
-    - ' &3&l| &b3.000 GP'
-    - ' &3&l| &7Title S'
-  sss-2:
-    rank: S
-    challenge: false
-    name: '&4Tiga Bencana'
-    icon: WITHER_SKELETON_SKULL
-    type: KILL
-    target: WITHER
-    amount: 3
-    gp: 3000
-    commands:
-    - eco give %player% 5000
-    - lp user %player% meta setsuffix 30 " &6&l[S]"
-    reward-lore:
-    - ' &3&l| &65.000 NR'
-    - ' &3&l| &b3.000 GP'
-    - ' &3&l| &7Title S'
-  sss-3:
-    rank: S
-    challenge: false
-    name: '&4Gema Kehampaan'
-    icon: ECHO_SHARD
-    type: KILL
-    target: WARDEN
+    amount: 25
+    weight: 1.3
+    target: HOGLIN,STRIDER
+    cond: NETHER
+  building-1:
+    category: BUILDING
+    tier: F
+    name: Tukang Kayu
+    icon: OAK_PLANKS
+    description: Pasang papan kayu.
+    type: PLACE
+    amount: 128
+    weight: 0.8
+    target: '*_PLANKS'
+  building-2:
+    category: BUILDING
+    tier: E
+    name: Tukang Batu
+    icon: STONE_BRICKS
+    description: Pasang batu bata dan batu.
+    type: PLACE
+    amount: 192
+    weight: 0.9
+    target: STONE_BRICKS,COBBLESTONE,STONE,BRICKS,MOSSY_COBBLESTONE,MOSSY_STONE_BRICKS
+  building-3:
+    category: BUILDING
+    tier: D
+    name: Pemasang Jendela
+    icon: GLASS
+    description: Pasang kaca dan panel kaca.
+    type: PLACE
+    amount: 64
+    weight: 1.0
+    target: GLASS,GLASS_PANE
+  building-4:
+    category: BUILDING
+    tier: C
+    name: Penerang Kota
+    icon: LANTERN
+    description: Pasang penerangan.
+    type: PLACE
+    amount: 64
+    weight: 1.0
+    target: TORCH,LANTERN,SOUL_LANTERN,SOUL_TORCH,CAMPFIRE
+  building-5:
+    category: BUILDING
+    tier: B
+    name: Pewarna Bangunan
+    icon: WHITE_CONCRETE
+    description: Pasang beton dan terakota.
+    type: PLACE
+    amount: 256
+    weight: 1.2
+    target: '*_CONCRETE,*_TERRACOTTA'
+  building-6:
+    category: BUILDING
+    tier: A
+    name: Arsitek Agung
+    icon: OAK_STAIRS
+    description: Pasang tangga, slab, pagar, dan pintu.
+    type: PLACE
+    amount: 256
+    weight: 1.3
+    target: '*_STAIRS,*_SLAB,*_FENCE,*_WALL,*_DOOR'
+  smithing-1:
+    category: SMITHING
+    tier: F
+    name: Peleburan Awal
+    icon: IRON_INGOT
+    description: Lebur besi dan tembaga di tungku.
+    type: SMELT
+    amount: 48
+    weight: 0.9
+    target: IRON_INGOT,COPPER_INGOT
+  smithing-2:
+    category: SMITHING
+    tier: E
+    name: Peleburan Emas
+    icon: GOLD_INGOT
+    description: Lebur emas di tungku.
+    type: SMELT
+    amount: 32
+    weight: 1.0
+    target: GOLD_INGOT
+  smithing-3:
+    category: SMITHING
+    tier: D
+    name: Pengrajin Material
+    icon: GLASS
+    description: Lebur kaca, batu, dan bata.
+    type: SMELT
+    amount: 128
+    weight: 1.0
+    target: GLASS,STONE,BRICK,TERRACOTTA,SMOOTH_STONE
+  smithing-4:
+    category: SMITHING
+    tier: C
+    name: Pandai Besi
+    icon: IRON_CHESTPLATE
+    description: Buat perlengkapan besi.
+    type: CRAFT
+    amount: 6
+    weight: 1.2
+    target: IRON_PICKAXE,IRON_AXE,IRON_SWORD,IRON_SHOVEL,IRON_HOE,IRON_HELMET,IRON_CHESTPLATE,IRON_LEGGINGS,IRON_BOOTS
+  smithing-5:
+    category: SMITHING
+    tier: B
+    name: Penyihir Perlengkapan
+    icon: ENCHANTED_BOOK
+    description: Sihir perlengkapan di meja sihir.
+    type: ENCHANT
+    amount: 8
+    weight: 1.2
+  smithing-6:
+    category: SMITHING
+    tier: S
+    name: Penempa Netherite
+    icon: NETHERITE_INGOT
+    description: Tempa perlengkapan Netherite di smithing table.
+    type: SMITH
     amount: 2
-    gp: 3000
-    commands:
-    - eco give %player% 6000
-    - lp user %player% meta setsuffix 30 " &6&l[S]"
-    reward-lore:
-    - ' &3&l| &66.000 NR'
-    - ' &3&l| &b3.000 GP'
-    - ' &3&l| &7Title S'
-  sss-1-t:
-    rank: S
-    challenge: true
-    name: '&4Pembunuh Naga'
-    icon: DRAGON_HEAD
-    type: KILL
-    target: ENDER_DRAGON
-    amount: 1
-    gp: 3750
-    commands:
-    - eco give %player% 5000
-    - lp user %player% meta setsuffix 30 " &6&l[S]"
-    reward-lore:
-    - ' &3&l| &65.000 NR'
-    - ' &3&l| &b3.750 GP'
-    - ' &3&l| &7Title S'
-  sss-2-t:
-    rank: S
-    challenge: true
-    name: '&4Tiga Bencana'
-    icon: WITHER_SKELETON_SKULL
-    type: KILL
-    target: WITHER
+    weight: 1.5
+    target: NETHERITE_*
+  collection-1:
+    category: COLLECTION
+    tier: F
+    name: Pengumpul Rongsok Monster
+    icon: ROTTEN_FLESH
+    description: Serahkan hasil buruan monster.
+    type: GET
+    amount: 48
+    weight: 0.9
+    target: ROTTEN_FLESH,BONE,STRING,SPIDER_EYE
+  collection-2:
+    category: COLLECTION
+    tier: E
+    name: Pengumpul Mesiu
+    icon: GUNPOWDER
+    description: Serahkan mesiu.
+    type: GET
+    amount: 32
+    weight: 1.0
+    target: GUNPOWDER
+  collection-3:
+    category: COLLECTION
+    tier: D
+    name: Pengantar Hasil Panen
+    icon: WHEAT
+    description: Serahkan hasil panen ke guild.
+    type: GET
+    amount: 96
+    weight: 1.0
+    target: WHEAT,CARROT,POTATO,BEETROOT
+  collection-4:
+    category: COLLECTION
+    tier: C
+    name: Pengantar Hasil Ternak
+    icon: LEATHER
+    description: Serahkan kulit dan bulu.
+    type: GET
+    amount: 96
+    weight: 1.0
+    target: LEATHER,FEATHER
+  collection-5:
+    category: COLLECTION
+    tier: B
+    name: Pengumpul Barang Langka
+    icon: ENDER_PEARL
+    description: Serahkan mutiara ender dan tongkat blaze.
+    type: GET
+    amount: 24
+    weight: 1.2
+    target: ENDER_PEARL,BLAZE_ROD
+  collection-6:
+    category: COLLECTION
+    tier: S
+    name: Pengumpul Sisa Netherite
+    icon: NETHERITE_SCRAP
+    description: Serahkan serpihan netherite.
+    type: GET
+    amount: 8
+    weight: 1.5
+    target: NETHERITE_SCRAP
+  woodcutting-1:
+    category: WOODCUTTING
+    tier: F
+    name: Penebang Pemula
+    icon: OAK_LOG
+    description: Tebang pohon ek dan birch.
+    type: BREAK
+    amount: 64
+    weight: 0.8
+    target: OAK_LOG,BIRCH_LOG
+  woodcutting-2:
+    category: WOODCUTTING
+    tier: E
+    name: Penebang Hutan Dingin
+    icon: SPRUCE_LOG
+    description: Tebang pohon spruce dan dark oak.
+    type: BREAK
+    amount: 64
+    weight: 0.9
+    target: SPRUCE_LOG,DARK_OAK_LOG
+  woodcutting-3:
+    category: WOODCUTTING
+    tier: D
+    name: Penebang Hutan Tropis
+    icon: JUNGLE_LOG
+    description: Tebang pohon jungle, acacia, mangrove, dan cherry.
+    type: BREAK
+    amount: 80
+    weight: 1.0
+    target: JUNGLE_LOG,ACACIA_LOG,MANGROVE_LOG,CHERRY_LOG
+  woodcutting-4:
+    category: WOODCUTTING
+    tier: C
+    name: Penanam Hutan
+    icon: OAK_SAPLING
+    description: Tanam bibit pohon.
+    type: PLANT
+    amount: 40
+    weight: 1.0
+    target: '*_SAPLING'
+  woodcutting-5:
+    category: WOODCUTTING
+    tier: B
+    name: Penebang Nether
+    icon: CRIMSON_STEM
+    description: Tebang batang crimson dan warped.
+    type: BREAK
+    amount: 96
+    weight: 1.2
+    target: CRIMSON_STEM,WARPED_STEM,CRIMSON_HYPHAE,WARPED_HYPHAE
+  woodcutting-6:
+    category: WOODCUTTING
+    tier: A
+    name: Raja Penebang
+    icon: DIAMOND_AXE
+    description: Tebang kayu dalam jumlah besar.
+    type: BREAK
+    amount: 400
+    weight: 1.3
+    target: '*_LOG'
+  husbandry-1:
+    category: HUSBANDRY
+    tier: F
+    name: Peternak Sapi dan Domba
+    icon: WHEAT
+    description: Kawinkan sapi dan domba.
+    type: BREED
+    amount: 6
+    weight: 1.0
+    target: COW,SHEEP
+  husbandry-2:
+    category: HUSBANDRY
+    tier: E
+    name: Pencukur Bulu
+    icon: SHEARS
+    description: Cukur bulu domba.
+    type: SHEAR
+    amount: 12
+    weight: 1.0
+    target: SHEEP
+  husbandry-3:
+    category: HUSBANDRY
+    tier: D
+    name: Peternak Kecil
+    icon: EGG
+    description: Kawinkan babi, ayam, dan kelinci.
+    type: BREED
+    amount: 10
+    weight: 1.0
+    target: PIG,CHICKEN,RABBIT
+  husbandry-4:
+    category: HUSBANDRY
+    tier: C
+    name: Penjinak Hewan
+    icon: BONE
+    description: Jinakkan serigala, kucing, atau burung beo.
+    type: TAME
     amount: 3
-    gp: 3750
-    commands:
-    - eco give %player% 6250
-    - lp user %player% meta setsuffix 30 " &6&l[S]"
-    reward-lore:
-    - ' &3&l| &66.250 NR'
-    - ' &3&l| &b3.750 GP'
-    - ' &3&l| &7Title S'
-  sss-3-t:
-    rank: S
-    challenge: true
-    name: '&4Gema Kehampaan'
-    icon: ECHO_SHARD
-    type: KILL
-    target: WARDEN
-    amount: 2
-    gp: 3750
-    commands:
-    - eco give %player% 7500
-    - lp user %player% meta setsuffix 30 " &6&l[S]"
-    reward-lore:
-    - ' &3&l| &67.500 NR'
-    - ' &3&l| &b3.750 GP'
-    - ' &3&l| &7Title S'
+    weight: 1.2
+    target: WOLF,CAT,PARROT
+  husbandry-5:
+    category: HUSBANDRY
+    tier: B
+    name: Pemerah Susu
+    icon: MILK_BUCKET
+    description: Perah sapi dewasa.
+    type: MILK
+    amount: 15
+    weight: 1.0
+    target: COW,MOOSHROOM
+  husbandry-6:
+    category: HUSBANDRY
+    tier: A
+    name: Peternak Berkuda
+    icon: SADDLE
+    description: Kawinkan hewan tunggangan dan langka.
+    type: BREED
+    amount: 10
+    weight: 1.3
+    target: HORSE,DONKEY,LLAMA,CAMEL,GOAT,AXOLOTL,FOX

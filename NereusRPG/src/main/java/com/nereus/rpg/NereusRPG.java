@@ -48,6 +48,7 @@ public final class NereusRPG extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(new RpgListener(this, core, skills), this);
         getServer().getPluginManager().registerEvents(new MenuListener(core), this);
         getServer().getPluginManager().registerEvents(new RaceAbilities(this, core), this);
+        getServer().getPluginManager().registerEvents(new QuestEvents(this, core), this);
         core.display = new Display(core);
         getServer().getPluginManager().registerEvents(core.display, this);
         getLogger().info("Display: chat=" + getConfig().getBoolean("display.chat.enabled", true)
