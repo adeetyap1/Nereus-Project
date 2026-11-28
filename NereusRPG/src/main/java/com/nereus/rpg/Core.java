@@ -724,7 +724,9 @@ public final class Core {
                 continue;
             }
             for (AttributeModifier m : new ArrayList<>(inst.getModifiers())) {
-                if (m.getKey().getNamespace().equals(ns)) {
+                // "nerusrpg" = namespace plugin lama (NerusRPG); modifier-nya tersimpan di data pemain dan harus dibersihkan
+                String mns = m.getKey().getNamespace();
+                if (mns.equals(ns) || mns.equals("nerusrpg")) {
                     inst.removeModifier(m);
                 }
             }

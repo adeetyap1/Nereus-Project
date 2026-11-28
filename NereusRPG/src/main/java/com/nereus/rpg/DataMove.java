@@ -40,6 +40,9 @@ final class DataMove {
         Path oldP = old.toPath();
         try (ZipOutputStream z = new ZipOutputStream(Files.newOutputStream(zip.toPath())); Stream<Path> w = Files.walk(oldP)) {
             for (Path f : (Iterable<Path>) w.filter(Files::isRegularFile)::iterator) {
+                if (oldP.relativize(f).toString().startsWith("backups")) {
+                    continue;
+                }
                 z.putNextEntry(new ZipEntry(oldP.relativize(f).toString().replace('\\', '/')));
                 Files.copy(f, z);
                 z.closeEntry();
